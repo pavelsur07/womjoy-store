@@ -1,0 +1,22 @@
+User-agent: *
+Disallow: /*
+Disallow: /*.php
+Disallow: /search
+Disallow: /login
+Disallow: /logout
+Disallow: /registration
+Disallow: /remind
+Disallow: /error
+Disallow: /comment
+Disallow: /blog/date/
+Disallow: /blog/search
+Disallow: /search
+Disallow: /users
+Disallow: /copyright
+Disallow: /privacy
+
+User-agent: Mediapartners-Google
+Disallow:
+
+User-Agent: YaDirectBot
+Disallow:
