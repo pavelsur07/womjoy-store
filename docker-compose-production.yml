@@ -1,0 +1,217 @@
+version: "3.9"
+services:
+  site:
+    image: ${REGISTRY}/site:${IMAGE_TAG}
+    networks:
+      - traefik-public
+      - default
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.http.routers.frontend.rule=Host(`unionmall.ru`) || Host(`www.unionmall.ru`)
+        - traefik.http.services.frontend.loadBalancer.server.port=80
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.unionmall.ru/(.*)$$
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}unionmall.ru/$${2}
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.permanent=true
+        - traefik.http.routers.frontend.middlewares=frontend-redirect,secure-headers
+        - traefik.http.routers.frontend.entryPoints=https
+        - traefik.http.routers.frontend.tls=true
+        - traefik.http.routers.frontend.tls.certResolver=letsEncrypt
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_ERLANG_COOKIE: SWQOKODS556QALRPCLNMEQG
+      RABBITMQ_DEFAULT_USER: rabbit
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - traefik-public
+      - default
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.unionmall.ru`)
+        - traefik.http.routers.rabbitmq.entryPoints=https
+        - traefik.http.services.rabbitmq.loadBalancer.server.port=15672
+        - traefik.http.routers.rabbitmq.tls=true
+        - traefik.http.routers.rabbitmq.tls.certResolver=letsEncrypt
+
+  site-php-fpm:
+    image: ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${SHOP_APP_SECRET}
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${SHOP_REDIS_PASSWORD}
+      DATABASE_URL: pgsql://app:${SHOP_DB_PG_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: redis://site-queue-redis:6379/messages
+      STORAGE_BASE_URL: 'https://577227.selcdn.ru/um-static'
+      STORAGE_FTP_HOST: 'ftp.selcdn.ru'
+      STORAGE_FTP_USERNAME: '167309_unionmall'
+      STORAGE_FTP_PASSWORD: ${STORAGE_FTP_PASSWORD}
+      STORAGE_FTP_ROOT: 'um-static'
+      STORAGE_FTP_PASSIVE: 1
+      MAILER_DSN: smtp://info@unionmall.ru:${SHOP_MAIL_PASSWORD}@smtp.mail.ru:465
+      #MAILER_DSN: smtp://smtp.mail.ru:465?encryption=ssl&auth_mode=login&username=info@unionmall.ru&password=${SHOP_MAIL_PASSWORD}
+      MAIL_NOTIFICATION: 'mail@unionmall.ru'
+      SENTRY_DSN: ${SHOP_SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      API_URL: 'https://unionmall.ru/'
+      ECONT_USER: ${ECONT_USER}
+      ECONT_PASSWORD: ${ECONT_PASSWORD}
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+
+  site-migration:
+    image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${SHOP_APP_SECRET}
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${SHOP_REDIS_PASSWORD}
+      DATABASE_URL: pgsql://app:${SHOP_DB_PG_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: redis://site-queue-redis:6379/messages
+      STORAGE_BASE_URL: 'https://577227.selcdn.ru/um-static'
+      STORAGE_FTP_HOST: 'ftp.selcdn.ru'
+      STORAGE_FTP_USERNAME: '167309_unionmall'
+      STORAGE_FTP_PASSWORD: ${STORAGE_FTP_PASSWORD}
+      STORAGE_FTP_ROOT: 'um-static'
+      STORAGE_FTP_PASSIVE: 1
+      MAILER_DSN: smtp://info@unionmall.ru:${SHOP_MAIL_PASSWORD}@smtp.mail.ru:465
+      MAIL_NOTIFICATION: 'mail@unionmall.ru'
+      SENTRY_DSN: ${SHOP_SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      API_URL: 'https://unionmall.ru/'
+      ECONT_USER: ${ECONT_USER}
+      ECONT_PASSWORD: ${ECONT_PASSWORD}
+    command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s
+
+  site-worker-async:
+    image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${SHOP_APP_SECRET}
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${SHOP_REDIS_PASSWORD}
+      DATABASE_URL: pgsql://app:${SHOP_DB_PG_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: redis://site-queue-redis:6379/messages
+      STORAGE_BASE_URL: 'https://577227.selcdn.ru/um-static'
+      STORAGE_FTP_HOST: 'ftp.selcdn.ru'
+      STORAGE_FTP_USERNAME: '167309_unionmall'
+      STORAGE_FTP_PASSWORD: ${STORAGE_FTP_PASSWORD}
+      STORAGE_FTP_ROOT: 'um-static'
+      STORAGE_FTP_PASSIVE: 1
+      MAILER_DSN: smtp://info@unionmall.ru:${SHOP_MAIL_PASSWORD}@smtp.mail.ru:465
+      MAIL_NOTIFICATION: 'mail@unionmall.ru'
+      SENTRY_DSN: ${SHOP_SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      API_URL: 'https://unionmall.ru/'
+      ECONT_USER: ${ECONT_USER}
+      ECONT_PASSWORD: ${ECONT_PASSWORD}
+    command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async notification -vv "
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      
+  site-queue-redis:
+    image: redis:7.0-alpine
+    volumes:
+      - shop-queue-redis:/data
+    deploy:
+      placement:
+        constraints: [ node.labels.db == db ]
+      endpoint_mode: dnsrr
+
+  site-redis:
+    image: redis:7.0-alpine
+    volumes:
+      - site-redis:/data
+    command:
+      - 'redis-server'
+      - '--databases 2'
+      - '--save 900 1'
+      - '--save 300 10'
+      - '--save 60 10000'
+      - '--requirepass ${SHOP_REDIS_PASSWORD}'
+    deploy:
+      placement:
+        constraints: [ node.labels.db == db ]
+      endpoint_mode: dnsrr
+
+  elasticsearch:
+    image: elasticsearch:8.6.1
+    networks:
+      - traefik-public
+      - default
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - site-elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    deploy:
+      placement:
+        constraints: [ node.labels.db == db ]
+      
+  site-postgres:
+    image: postgres:13.3-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${SHOP_DB_PG_PASSWORD}
+      POSTGRES_DB: app
+    volumes:
+      - shop-postgres:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints: [ node.labels.db == db ]
+      endpoint_mode: dnsrr
+
+volumes:
+  shop-postgres:
+  shop-queue-redis:
+  site-elasticsearch:
+  site-redis:
+
+networks:
+  traefik-public:
+    external: true
+    driver: bridge

@@ -1,0 +1,236 @@
+version: "3.9"
+services:
+  traefik:
+    image: traefik:2.4
+    command:
+      --providers.docker=true
+      --providers.docker.exposedByDefault=false
+      --entryPoints.http.address=:80
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - traefik-public
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+
+  site:
+    build:
+      context: site/docker
+      dockerfile: development/nginx/Dockerfile
+    volumes:
+      - ./site:/app
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.site.rule=Host(`localhost`)
+      - traefik.http.routers.site.entryPoints=http
+      - traefik.http.services.site.loadBalancer.server.port=80
+
+  site-php-fpm:
+    build:
+      context: site/docker
+      dockerfile: development/php-fpm/Dockerfile
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: 777
+      SENTRY_DSN: ""
+      API_URL: 'http://localhost/'
+    volumes:
+      - ./site:/app
+  site-php-cli:
+    build:
+      context: site/docker
+      dockerfile: development/php-cli/Dockerfile
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: 777
+      SENTRY_DSN: ""
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      API_URL: 'http://localhost/'
+    volumes:
+      - ./site:/app
+  site-php-async:
+    build:
+      context: site/docker
+      dockerfile: development/php-cli/Dockerfile
+    restart: always
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: 777
+      SENTRY_DSN: ""
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      API_URL: 'http://localhost/'
+    volumes:
+      - ./site:/app
+    command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
+      
+  site-node-watch:
+    build:
+      context: site/docker
+      dockerfile: development/node/Dockerfile
+    volumes:
+      - ./site:/app
+    working_dir: /app
+    command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && yarn run watch"
+    tty: true
+
+  site-node-cli:
+    build:
+      context: site/docker
+      dockerfile: development/node/Dockerfile
+    volumes:
+      - ./site:/app
+    working_dir: /app
+  
+  elasticsearch:
+    image: elasticsearch:7.16.3
+    volumes:
+      - site-elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      discovery.type: single-node
+    networks:
+      - traefik-public
+      - default
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    labels:
+      - traefik.enable=true
+      - traefik.tcp.routers.elastic-tcp.tls=true
+      - traefik.tcp.routers.elastic-tcp.entrypoints=http
+      - traefik.tcp.routers.elastic-tcp.service=tcp-service
+      - traefik.tcp.services.tcp-service.loadbalancer.server.port=9200
+      - traefik.tcp.routers.elastic-tcp.rule=HostSNI(`es.localhost`)
+      - traefik.tcp.routers.elastic-tcp.tls.certresolver=le
+      - traefik.tcp.routers.elastic-tcp.tls.options=myTLSOptions@file
+      - traefik.tcp.routers.elastic-tcp.tls.passthrough=true
+  
+  site-postgres:
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD_FILE: /run/secrets/site_db_password
+      POSTGRES_DB: app
+    secrets:
+      - site_db_password
+    volumes:
+      - site-postgres:/var/lib/postgresql/data
+    ports:
+      - "54321:5432"
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_ERLANG_COOKIE: SWQOKODS556QALRPCLNMEQG
+      RABBITMQ_DEFAULT_USER: rabbit
+      RABBITMQ_DEFAULT_PASS: rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)
+      - traefik.http.routers.rabbitmq.entryPoints=http
+      - traefik.http.services.rabbitmq.loadBalancer.server.port=15672
+  
+  site-redis:
+    image: redis:7.0-alpine
+    volumes:
+      - site-redis:/data
+    command:
+      - 'redis-server'
+      - '--databases 2'
+      - '--save 900 1'
+      - '--save 300 10'
+      - '--save 60 10000'
+      - '--requirepass secret'
+
+  mailer:
+    image: mailhog/mailhog
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.mailer.rule=Host(`mailer.localhost`)
+      - traefik.http.routers.mailer.entryPoints=http
+      - traefik.http.services.mailer.loadBalancer.server.port=8025
+
+  storage:
+    build:
+      context: ./storage/docker/development
+      dockerfile: nginx.docker
+    volumes:
+      - ./storage:/app
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.storage.rule=Host(`storage.localhost`)
+      - traefik.http.routers.storage.entryPoints=http
+      - traefik.http.services.storage.loadBalancer.server.port=80
+  
+  storage-ftp:
+    image: stilliard/pure-ftpd
+    ports:
+      - "21:21"
+    environment:
+      FTP_USER_NAME: app
+      FTP_USER_PASS: secret
+      FTP_USER_HOME: /app
+    volumes:
+      - ./storage/public:/app
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.adminer.rule=Host(`adminer.localhost`)
+      - traefik.http.routers.adminer.entrypoints=http
+      - traefik.http.services.adminer.loadBalancer.server.port=8080
+    depends_on:
+      - site-postgres
+      - elasticsearch
+secrets:
+  site_db_password:
+    file: ./docker/development/secrets/site_db_password
+volumes:
+  site-postgres:
+  site-elasticsearch:
+  site-redis:
+  composer:
+  
+networks:
+  traefik-public:
+    name: traefik-public
+    driver: bridge
