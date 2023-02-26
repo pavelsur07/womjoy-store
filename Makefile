@@ -3,8 +3,8 @@ init-ci: docker-down-clear \
 	site-clear \
 	docker-pull docker-build docker-up \
 	site-init \
-	site-assets-build \
-	site-indexer-elastic
+	site-assets-build
+#	site-indexer-elastic
 
 up: docker-up
 down: docker-down

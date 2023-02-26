@@ -55,7 +55,6 @@ services:
       APP_SECRET: 777
       SENTRY_DSN: ""
       # TODO: Remove after installing CS Fixer for PHP 8.2
-      PHP_CS_FIXER_IGNORE_ENV: 1
       API_URL: 'http://localhost/'
     volumes:
       - ./site:/app
@@ -71,7 +70,6 @@ services:
       SENTRY_DSN: ""
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
-      API_URL: 'http://localhost/'
     volumes:
       - ./site:/app
     command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
@@ -123,7 +121,7 @@ services:
       - traefik.tcp.routers.elastic-tcp.tls.passthrough=true
   
   site-postgres:
-    image: postgres:13.3-alpine
+    image: postgres:15.1-alpine
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD_FILE: /run/secrets/site_db_password
@@ -154,7 +152,6 @@ services:
       - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)
       - traefik.http.routers.rabbitmq.entryPoints=http
       - traefik.http.services.rabbitmq.loadBalancer.server.port=15672
-  
   site-redis:
     image: redis:7.0-alpine
     volumes:
