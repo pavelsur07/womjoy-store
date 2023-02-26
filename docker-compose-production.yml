@@ -1,5 +1,51 @@
 version: "3.9"
 services:
+  traefik:
+    image: traefik:2.4
+    command:
+      --providers.docker=true
+      --providers.docker.watch=true
+      --providers.docker.swarmMode=true
+      --providers.docker.exposedByDefault=false
+      --entryPoints.http.address=:80
+      --entryPoints.https.address=:443
+      --certificatesresolvers.letsEncrypt.acme.httpChallenge=true
+      --certificatesresolvers.letsEncrypt.acme.httpChallenge.entryPoint=http
+      --certificatesresolvers.letsEncrypt.acme.email=mail@womjoy.ru
+      --certificatesresolvers.letsEncrypt.acme.storage=/certs/acme.json
+    ports:
+      -   target: 80
+          published: 80
+          protocol: tcp
+          mode: host
+      -   target: 443
+          published: 443
+          protocol: tcp
+          mode: host
+    networks:
+      - traefik-public
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-public-certs:/certs
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        
+        - traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)
+        - traefik.http.routers.http-catchall.entryPoints=http
+        - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+        - traefik.http.services.http-catchall.loadBalancer.server.port=80
+        
+        - traefik.http.middlewares.redirect-to-https.redirectScheme.scheme=https
+        - traefik.http.middlewares.redirect-to-https.redirectScheme.permanent=true
+        
+        - traefik.http.middlewares.secure-headers.headers.sslRedirect=true
+        - traefik.http.middlewares.secure-headers.headers.stsSeconds=31536000
+        - traefik.http.middlewares.secure-headers.headers.contentSecurityPolicy=block-all-mixed-content
+      placement:
+        constraints: [ node.role == manager ]
+  
   site:
     image: ${REGISTRY}/site:${IMAGE_TAG}
     networks:
@@ -9,10 +55,10 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
-        - traefik.http.routers.frontend.rule=Host(`womjoy.com`) || Host(`www.womjoy.com`)
+        - traefik.http.routers.frontend.rule=Host(`stage.womjoy.ru`) || Host(`www.stage.womjoy.ru`)
         - traefik.http.services.frontend.loadBalancer.server.port=80
-        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.womjoy.com/(.*)$$
-        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}womjoy.com/$${2}
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.stage.womjoy.ru/(.*)$$
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}stage.womjoy.ru/$${2}
         - traefik.http.middlewares.frontend-redirect.redirectRegex.permanent=true
         - traefik.http.routers.frontend.middlewares=frontend-redirect,secure-headers
         - traefik.http.routers.frontend.entryPoints=https
@@ -23,43 +69,15 @@ services:
       update_config:
         parallelism: 1
         delay: 10s
-        
-  rabbitmq:
-    image: rabbitmq:3-management
-    hostname: rabbitmq
-    restart: always
-    environment:
-      RABBITMQ_ERLANG_COOKIE: SWQOKODS556QALRPCLNMEQG
-      RABBITMQ_DEFAULT_USER: rabbit
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    networks:
-      - traefik-public
-      - default
-    deploy:
-      labels:
-        - traefik.enable=true
-        - traefik.docker.network=traefik-public
-        - traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.womjoy.com`)
-        - traefik.http.routers.rabbitmq.entryPoints=https
-        - traefik.http.services.rabbitmq.loadBalancer.server.port=15672
-        - traefik.http.routers.rabbitmq.tls=true
-        - traefik.http.routers.rabbitmq.tls.certResolver=letsEncrypt
 
   site-php-fpm:
     image: ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
     environment:
       APP_ENV: prod
       APP_DEBUG: 0
-      APP_SECRET: ${SHOP_APP_SECRET}
-      REDIS_HOST: site-redis
-      REDIS_PASSWORD: ${SHOP_REDIS_PASSWORD}
-      DATABASE_URL: pgsql://app:${SHOP_DB_PG_PASSWORD}@site-postgres:5432/app
-      MESSENGER_TRANSPORT_DSN: redis://site-queue-redis:6379/messages
-      MAILER_DSN: smtp://info@womjoy.com:${SHOP_MAIL_PASSWORD}@smtp.mail.ru:465
-      SENTRY_DSN: ${SHOP_SENTRY_DSN}
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      SENTRY_DSN: ""
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
     deploy:
@@ -74,13 +92,9 @@ services:
     environment:
       APP_ENV: prod
       APP_DEBUG: 0
-      APP_SECRET: ${SHOP_APP_SECRET}
-      REDIS_HOST: site-redis
-      REDIS_PASSWORD: ${SHOP_REDIS_PASSWORD}
-      DATABASE_URL: pgsql://app:${SHOP_DB_PG_PASSWORD}@site-postgres:5432/app
-      MESSENGER_TRANSPORT_DSN: redis://site-queue-redis:6379/messages
-      MAILER_DSN: smtp://info@womjoy.com:${SHOP_MAIL_PASSWORD}@smtp.mail.ru:465
-      SENTRY_DSN: ${SHOP_SENTRY_DSN}
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      SENTRY_DSN: ""
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
@@ -90,83 +104,23 @@ services:
         delay: 5s
         max_attempts: 5
         window: 120s
-
-  site-worker-async:
-    image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
-    environment:
-      APP_ENV: prod
-      APP_DEBUG: 0
-      APP_SECRET: ${SHOP_APP_SECRET}
-      REDIS_HOST: site-redis
-      REDIS_PASSWORD: ${SHOP_REDIS_PASSWORD}
-      DATABASE_URL: pgsql://app:${SHOP_DB_PG_PASSWORD}@site-postgres:5432/app
-      MESSENGER_TRANSPORT_DSN: redis://site-queue-redis:6379/messages
-      MAILER_DSN: smtp://info@womjoy.com:${SHOP_MAIL_PASSWORD}@smtp.mail.ru:465
-      SENTRY_DSN: ${SHOP_SENTRY_DSN}
-      # TODO: Remove after installing CS Fixer for PHP 8.2
-      PHP_CS_FIXER_IGNORE_ENV: 1
-    command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async notification -vv "
-    deploy:
-      mode: replicated
-      replicas: 2
-      update_config:
-        parallelism: 1
-        delay: 10s
-  site-redis:
-    image: redis:7.0-alpine
-    volumes:
-      - site-redis:/data
-    command:
-      - 'redis-server'
-      - '--databases 2'
-      - '--save 900 1'
-      - '--save 300 10'
-      - '--save 60 10000'
-      - '--requirepass ${SHOP_REDIS_PASSWORD}'
-    deploy:
-      placement:
-        constraints: [ node.labels.db == db ]
-      endpoint_mode: dnsrr
-  elasticsearch:
-    image: elasticsearch:8.6.1
-    networks:
-      - traefik-public
-      - default
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - site-elasticsearch:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-    deploy:
-      placement:
-        constraints: [ node.labels.db == db ]
       
   site-postgres:
     image: postgres:15.1-alpine
     restart: always
     environment:
       POSTGRES_USER: app
-      POSTGRES_PASSWORD: ${SHOP_DB_PG_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: app
     volumes:
-      - shop-postgres:/var/lib/postgresql/data
+      - site-postgres:/var/lib/postgresql/data
     deploy:
       placement:
         constraints: [ node.labels.db == db ]
       endpoint_mode: dnsrr
 
 volumes:
-  shop-postgres:
-  site-elasticsearch:
-  site-redis:
+  site-postgres:
 
 networks:
   traefik-public:

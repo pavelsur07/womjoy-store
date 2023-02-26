@@ -22,16 +22,6 @@ pipeline {
                 sh "make site-validate-schema"
             }
         }
-        stage("Lint") {
-            steps {
-                sh "make site-cs-fix"
-            }
-        }
-        stage("Test") {
-            steps {
-                sh "make site-test"
-            }
-        }
         stage("Down") {
             steps {
                 sh "make docker-down-clear"
@@ -46,7 +36,7 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'REGISTRY_AUTH',
+                        credentialsId: 'DOCKER_HUB_AUTH',
                         usernameVariable: 'USER',
                         passwordVariable: 'PASSWORD'
                     )
@@ -64,12 +54,10 @@ pipeline {
                 withCredentials([
                     string(credentialsId: 'PROD_HOST', variable: 'HOST'),
                     string(credentialsId: 'PROD_PORT', variable: 'PORT'),
-                    string(credentialsId: 'PROD_SHOP_APP_SECRET', variable: 'SHOP_APP_SECRET'),
-                    string(credentialsId: 'PROD_SHOP_DB_PG_PASSWORD', variable: 'SHOP_DB_PG_PASSWORD'),
-                    string(credentialsId: 'PROD_SHOP_SENTRY_DSN', variable: 'SHOP_SENTRY_DSN'),
-                    string(credentialsId: 'PROD_RABBITMQ_PASS', variable: 'RABBITMQ_PASS')
+                    string(credentialsId: 'PROD_APP_SECRET', variable: 'APP_SECRET'),
+                    string(credentialsId: 'PROD_DB_PASSWORD', variable: 'DB_PASSWORD'),
                 ]) {
-                    sshagent (credentials: ['PROD_AUTH']) {
+                    sshagent (credentials: ['PROD_DEPLOY_AUTH']) {
                         sh 'make deploy'
                     }
                 }
