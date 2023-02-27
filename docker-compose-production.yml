@@ -77,6 +77,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ""
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
@@ -94,6 +95,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ""
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1

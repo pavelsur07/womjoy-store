@@ -50,7 +50,7 @@ pipeline {
                     string(credentialsId: 'PROD_HOST', variable: 'HOST'),
                     string(credentialsId: 'PROD_PORT', variable: 'PORT'),
                     string(credentialsId: 'PROD_APP_SECRET', variable: 'APP_SECRET'),
-                    string(credentialsId: 'PROD_DB_PASSWORD', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'PROD_DB_PASSWORD', variable: 'DB_PASSWORD')
                 ]) {
                     sshagent (credentials: ['PROD_AUTH']) {
                         sh 'make deploy'
