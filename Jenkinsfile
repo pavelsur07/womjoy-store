@@ -4,6 +4,7 @@ pipeline {
         timestamps()
     }
     environment {
+        REGISTRY = credentials('REGISTRY')
         IMAGE_TAG = sh(
             returnStdout: true,
             script: "echo '${env.BUILD_TAG}' | sed 's/%2F/-/g'"
@@ -13,7 +14,12 @@ pipeline {
     stages {
         stage("Init") {
             steps {
-                sh "make docker-up"
+                 sh "make init"
+            }
+        }
+        stage("Down") {
+            steps {
+                sh "make docker-down-clear"
             }
         }
     }
