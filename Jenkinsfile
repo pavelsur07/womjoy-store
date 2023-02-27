@@ -41,6 +41,23 @@ pipeline {
                     sh "make push"
             }
         }
+        stage("Deploy") {
+            when {
+                branch "master"
+            }
+            steps {
+                withCredentials([
+                    string(credentialsId: 'PROD_HOST', variable: 'HOST'),
+                    string(credentialsId: 'PROD_PORT', variable: 'PORT'),
+                    string(credentialsId: 'PROD_APP_SECRET', variable: 'APP_SECRET'),
+                    string(credentialsId: 'PROD_DB_PASSWORD', variable: 'DB_PASSWORD'),
+                ]) {
+                    sshagent (credentials: ['PROD_AUTH']) {
+                        sh 'make deploy'
+                    }
+                }
+            }
+        }
     }
     post {
         always {
