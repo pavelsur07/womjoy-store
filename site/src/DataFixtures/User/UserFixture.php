@@ -19,7 +19,7 @@ class UserFixture extends Fixture
     {
 
         $user = new User();
-        $user->setEmail('admin.@app.test');
+        $user->setEmail('admin@app.test');
         $hashed = $this->hasher->hashPassword(
             user: $user,
             plainPassword: 'password'
