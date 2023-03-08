@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route(path: '/product/{slug}')]
+    #[Route(path: '/product/{slug}', name: 'store.product.show')]
     public function show(string $slug): Response
     {
         return $this->render('store/product/show.html.twig');
