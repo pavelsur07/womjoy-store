@@ -121,9 +121,44 @@ services:
         constraints: [ node.labels.db == db ]
       endpoint_mode: dnsrr
 
+  storage:
+    image: ${REGISTRY}/storage-nginx:${IMAGE_TAG}
+    volumes:
+      - storage:/app
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.storage.rule=Host(`static.womjoy.ru`)
+      - traefik.http.routers.storage.entryPoints=http
+      - traefik.http.services.storage.loadBalancer.server.port=80
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
+        
+  storage-ftp:
+    image: stilliard/pure-ftpd
+    ports:
+      - "21:21"
+    environment:
+      FTP_USER_NAME: app
+      FTP_USER_PASS: secret
+      FTP_USER_HOME: /app
+    volumes:
+      - storage-ftp:/app
+    deploy:
+      placement:
+        constraints: [ node.labels.db == db ]
+      endpoint_mode: dnsrr
+
 volumes:
   site-postgres:
   traefik-public-certs:
+  storage:
+  storage-ftp:
+  
 
 networks:
   traefik-public:

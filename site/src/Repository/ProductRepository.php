@@ -3,40 +3,75 @@
 namespace App\Repository;
 
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * @extends ServiceEntityRepository<Product>
  *
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
  * @method Product|null findOneBy(array $criteria, array $orderBy = null)
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProductRepository extends ServiceEntityRepository
+class ProductRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private PaginatorInterface $paginator;
+    private EntityManagerInterface $em;
+    /**
+     * @var EntityRepository<Product>
+     */
+    private EntityRepository $repo;
+
+    public function __construct(PaginatorInterface $paginator,EntityManagerInterface $em)
     {
-        parent::__construct($registry, Product::class);
+        $this->em = $em;
+        $this->paginator = $paginator;
+        $this->repo = $em->getRepository(Product::class);
+    }
+
+    public function get(int $id): Product
+    {
+        $object = $this->repo->find($id);
+        if ($object === null) {
+            throw new \DomainException('Product not fount');
+        }
+
+        return $object;
+    }
+    public function list(int $page,int $size): PaginationInterface
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Product::class, 'p');
+
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
     }
 
     public function save(Product $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->persist($entity);
+        $this->em->persist($entity);
 
         if ($flush) {
-            $this->getEntityManager()->flush();
+            $this->em->flush();
         }
     }
 
     public function remove(Product $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->remove($entity);
+        $this->em->remove($entity);
 
         if ($flush) {
-            $this->getEntityManager()->flush();
+            $this->em->flush();
         }
+    }
+
+    public function flush(): void
+    {
+        $this->em->flush();
     }
 
 //    /**

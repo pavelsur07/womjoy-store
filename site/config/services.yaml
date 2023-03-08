@@ -22,3 +22,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Menu\Admin\Product\MainMenu:
+        tags: [{ name: knp_menu.menu_builder, method: build, alias: admin_product }]
+    
+    App\Repository\ProductRepository:
+        class: App\Repository\ProductRepository
+    
+    App\Repository\Flusher:
+        class: App\Repository\Flusher
+        
+    App\Service\Uploader\FileUploader:
+        arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]

@@ -24,6 +24,7 @@ class UserFixture extends Fixture
             user: $user,
             plainPassword: 'password'
         );
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword($hashed);
         $manager->persist($user);
         $manager->flush();

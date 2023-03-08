@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <div class="card card">
+        {% include 'admin/product/_tabs.html.twig' %}
+        <div class="card-body">
+
+            <h1>Product</h1>
+            <div class="row">
+                <div class="col m-2">
+                    {{ form_start(form) }}
+
+                    {{ form_row(form.files, { 'attr': {'class': 'form-control'}}) }}
+                    <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <div class="row row-cols-5 mb-3 g-2 mt-5">
+                {% for image in product.images %}
+                    <div class="col">
+                    <div class="card">
+                        <img src=" {{ storage_path(image.patch~'/'~image.name) }}">
+                        <div class="card-footer p-0 mt-2">
+                            <div class="btn-group w-100" role="group">
+                                <button type="button" class="btn btn-primary"><span class="fa fa-arrow-left"></span></button>
+                                <button type="button" class="btn btn-danger"><span class="fa fa-trash"></span></button>
+                                <button type="button" class="btn btn-primary"><span class="fa fa-arrow-right"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {{ include('admin/product/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

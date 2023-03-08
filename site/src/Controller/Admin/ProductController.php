@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Product;
 use App\Form\ProductType;
@@ -13,11 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/product', name: 'admin.product')]
 class ProductController extends AbstractController
 {
+    public const PER_PAGE= 5;
+
     #[Route('/', name: '.index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(Request $request,ProductRepository $productRepository): Response
     {
         return $this->render('admin/product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'pagination' => $productRepository->list(
+                page: $request->query->getInt('page', 1),
+                size: $request->query->getInt('size', self::PER_PAGE),
+            ),
         ]);
     }
 

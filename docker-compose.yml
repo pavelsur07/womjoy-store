@@ -178,8 +178,8 @@ services:
 
   storage:
     build:
-      context: ./storage/docker/development
-      dockerfile: nginx.docker
+      context: storage/docker
+      dockerfile: development/Dockerfile
     volumes:
       - ./storage:/app
     networks:

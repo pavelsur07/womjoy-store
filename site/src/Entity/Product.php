@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\Entity]
 #[ORM\Table(name: '`store_products`')]
 class Product
 {
@@ -34,7 +34,7 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $seoDescription = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['ALL'])]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $images;
 
     public function __construct()
@@ -131,7 +131,7 @@ class Product
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
-            $image->setProduct($this);
+            //$image->setProduct($this);
         }
 
         return $this;

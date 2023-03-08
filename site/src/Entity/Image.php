@@ -29,6 +29,23 @@ class Image
     #[ORM\Column]
     private ?int $size = null;
 
+    /**
+     * @param Product|null $product
+     * @param string|null  $patch
+     * @param string|null  $name
+     * @param int|null     $sort
+     * @param int|null     $size
+     */
+    public function __construct(Product $product, ?string $patch, ?string $name, ?int $size,?int $sort)
+    {
+        $this->product = $product;
+        $this->patch = $patch;
+        $this->name = $name;
+        $this->sort = $sort;
+        $this->size = $size;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
