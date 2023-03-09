@@ -142,6 +142,9 @@ services:
     image: stilliard/pure-ftpd
     ports:
       - "21:21"
+    networks:
+      - traefik-public
+      - default
     environment:
       FTP_USER_NAME: app
       FTP_USER_PASS: secret
