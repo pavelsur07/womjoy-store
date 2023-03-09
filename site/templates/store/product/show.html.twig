@@ -1,63 +1,105 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="row">
-        <div class="col-xxl-8">
-            <svg class="bd-placeholder-img card-img-top rounded-0" width="100%" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c">
-                </rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail
-                </text>
-            </svg>
-        </div>
-        <div class="col-xxl-4">
-            <h1>Product name</h1>
-            <p><strong>Article:</strong> 200000088856</p>
-            <p><strong>Rating :</strong> 5 <span class="badge bg-success">In stock</span></p>
 
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Description
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Delivery
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Accordion Item #3
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <div class="row no-gutters">
+            <aside class="col-sm-5 border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <div> <a href="images/items/1.jpg" data-fancybox=""><img src="images/items/1.jpg"></a></div>
+                    </div> <!-- slider-product.// -->
+                    <div class="img-small-wrap">
+                        <div class="item-gallery"> <img src="images/items/1.jpg"></div>
+                        <div class="item-gallery"> <img src="images/items/2.jpg"></div>
+                        <div class="item-gallery"> <img src="images/items/3.jpg"></div>
+                        <div class="item-gallery"> <img src="images/items/4.jpg"></div>
+                    </div> <!-- slider-nav.// -->
+                </article> <!-- gallery-wrap .end// -->
+            </aside>
+            <aside class="col-sm-7">
+                <article class="p-5">
+                    <h3 class="title mb-3">Original Version of Some product name</h3>
 
+                    <div class="mb-3">
+                        <var class="price h3 text-warning">
+                            <span class="currency">US $</span><span class="num">1299</span>
+                        </var>
+                        <span>/per kg</span>
+                    </div> <!-- price-detail-wrap .// -->
+                    <dl>
+                        <dt>Description</dt>
+                        <dd><p>Here goes description consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco </p></dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-3">Model#</dt>
+                        <dd class="col-sm-9">12345611</dd>
 
+                        <dt class="col-sm-3">Color</dt>
+                        <dd class="col-sm-9">Black and white </dd>
 
-            <button class="btn btn-success mt-2">Add to cart</button>
+                        <dt class="col-sm-3">Delivery</dt>
+                        <dd class="col-sm-9">Russia, USA, and Europe </dd>
+                    </dl>
+                    <div class="rating-wrap">
 
-        </div>
-    </div>
+                        <ul class="rating-stars">
+                            <li style="width:80%" class="stars-active">
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                        </ul>
+                        <div class="label-rating">132 reviews</div>
+                        <div class="label-rating">154 orders </div>
+                    </div> <!-- rating-wrap.// -->
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dl class="dlist-inline">
+                                <dt>Quantity: </dt>
+                                <dd>
+                                    <select class="form-control form-control-sm" style="width:70px;">
+                                        <option> 1 </option>
+                                        <option> 2 </option>
+                                        <option> 3 </option>
+                                    </select>
+                                </dd>
+                            </dl>  <!-- item-property .// -->
+                        </div> <!-- col.// -->
+                        <div class="col-sm-7">
+                            <dl class="dlist-inline">
+                                <dt>Size: </dt>
+                                <dd>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <span class="form-check-label">SM</span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <span class="form-check-label">MD</span>
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <span class="form-check-label">XXL</span>
+                                    </label>
+                                </dd>
+                            </dl>  <!-- item-property .// -->
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+                    <hr>
+                    <a href="#" class="btn  btn-primary"> Buy now </a>
+                    <a href="#" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                </article> <!-- card-body.// -->
+            </aside> <!-- col.// -->
+        </div> <!-- row.// -->
+    </div> <!-- card.// -->
+
 
 {% endblock %}

@@ -9,15 +9,15 @@
                         <div class="mask" style="height: 50px;">
                             <div class="d-flex justify-content-start align-items-start h-100 m-2">
                                 <h6><span class="badge bg-success pt-2">Offer</span></h6>
-                                <h6><span class="badge bg-success pt-2">Offer</span></h6>
-                                <h6><span class="badge bg-success pt-2">Offer</span></h6>
+                                <h6><span class="badge bg-danger pt-2">Sale</span></h6>
+                                <h6><span class="badge bg-primary pt-2">Offer</span></h6>
                             </div>
                         </div>
                         <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp" class="card-img-top" style="aspect-ratio: 1 / 1">
                     </a>
                     <div class="card-body pt-3">
-                        <h5 class="card-title">$29.95</h5>
-                        <p class="card-text mb-0">GoPro action camera 4K</p>
+                        <h5 class="card-title">{{ product.price|number_format(2, '.', ' ') }}</h5>
+                        <p class="card-text mb-0">{{ product.name }}</p>
                         <p class="text-muted">
                             Model: X-200
                         </p>

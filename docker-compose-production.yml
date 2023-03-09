@@ -141,7 +141,11 @@ services:
   storage-ftp:
     image: stilliard/pure-ftpd
     ports:
-      - "21:21"
+    #  - "21:21"
+      -   target: 21
+          published: 21
+          protocol: tcp
+          mode: host
     networks:
       - traefik-public
       - default
@@ -150,7 +154,7 @@ services:
       FTP_USER_PASS: secret
       FTP_USER_HOME: /app
     volumes:
-      - storage-ftp:/app
+      - storage:/app
     deploy:
       placement:
         constraints: [ node.labels.db == db ]
@@ -160,8 +164,6 @@ volumes:
   site-postgres:
   traefik-public-certs:
   storage:
-  storage-ftp:
-  
 
 networks:
   traefik-public:
