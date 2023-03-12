@@ -11,18 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InstallController extends AbstractController
 {
-    #[Route(path: '/install/3038b048-1012-4a81-83a0-d3f800e08b2f/create-admin/{password}', name: 'store.install')]
-    public function checkout(string $password,UserRepository $users,UserPasswordHasherInterface $hasher): Response
+    #[Route(path: '/install/3038b048-1012-4a81-83a0-d3f800e08b2f/create-admin/', name: 'store.install')]
+    public function checkout(UserPasswordHasherInterface $hasher, UserRepository $users): Response
     {
         $user = new User();
-        $user->setEmail('womjoy_pavel@gmail.com');
+        $user->setEmail('pavelsur07@gmail.com');
         $hashed = $hasher->hashPassword(
             user: $user,
-            plainPassword: $password
+            plainPassword: 'passwordSecret'
         );
         $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword($hashed);
-
         $users->save($user, true);
 
         return $this->redirectToRoute('admin.dashboard.show');
