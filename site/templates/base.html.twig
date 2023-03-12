@@ -18,6 +18,10 @@
                 <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
                 <li class="nav-item"><a href="{{ path('admin.dashboard.show') }}" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="{{ path('store.cart') }}" class="nav-link">Cart</a></li>
+                <li class="nav-item"><a href="{{ path('store.account') }}" class="nav-link">Account</a></li>
+                {% if is_granted('IS_AUTHENTICATED')  == false %}
+                    <li class="nav-item"><a href="{{ path('store.registration') }}" class="nav-link">Sign Up</a></li>
+                {% endif %}
             </ul>
         </header>
     </div>

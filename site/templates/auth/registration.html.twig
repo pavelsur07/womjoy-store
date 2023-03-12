@@ -1,0 +1,9 @@
+{% extends 'auth/base.html.twig' %}
+{% block body %}
+    <div class="card card-body">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Sign Up') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
