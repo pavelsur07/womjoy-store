@@ -91,35 +91,6 @@ services:
     volumes:
       - ./site:/app
     working_dir: /app
-  
-  elasticsearch:
-    image: elasticsearch:7.16.3
-    volumes:
-      - site-elasticsearch:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      discovery.type: single-node
-    networks:
-      - traefik-public
-      - default
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    labels:
-      - traefik.enable=true
-      - traefik.tcp.routers.elastic-tcp.tls=true
-      - traefik.tcp.routers.elastic-tcp.entrypoints=http
-      - traefik.tcp.routers.elastic-tcp.service=tcp-service
-      - traefik.tcp.services.tcp-service.loadbalancer.server.port=9200
-      - traefik.tcp.routers.elastic-tcp.rule=HostSNI(`es.localhost`)
-      - traefik.tcp.routers.elastic-tcp.tls.certresolver=le
-      - traefik.tcp.routers.elastic-tcp.tls.options=myTLSOptions@file
-      - traefik.tcp.routers.elastic-tcp.tls.passthrough=true
-  
   site-postgres:
     image: postgres:15.1-alpine
     environment:
