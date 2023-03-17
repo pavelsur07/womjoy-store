@@ -91,6 +91,7 @@ services:
     volumes:
       - ./site:/app
     working_dir: /app
+  
   site-postgres:
     image: postgres:15.1-alpine
     environment:
@@ -188,13 +189,11 @@ services:
       - traefik.http.services.adminer.loadBalancer.server.port=8080
     depends_on:
       - site-postgres
-      - elasticsearch
 secrets:
   site_db_password:
     file: ./docker/development/secrets/site_db_password
 volumes:
   site-postgres:
-  site-elasticsearch:
   site-redis:
   composer:
   
