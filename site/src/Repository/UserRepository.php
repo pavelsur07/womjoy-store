@@ -5,23 +5,38 @@ namespace App\Repository;
 use App\Entity\User\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DomainException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Webmozart\Assert\Assert;
 
-/**
- * @extends ServiceEntityRepository<User>
- *
- * @method User|null find($id, $lockMode = null, $lockVersion = null)
- * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[]    findAll()
- * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    public function get(int $id): User
+    {
+        $object = $this->find($id);
+        if ($object === null) {
+            throw new DomainException('User not fount');
+        }
+        return $object;
+    }
+
+    public function getByEmail(string $email): User
+    {
+        Assert::email($email);
+        $object = $this->findOneBy(['email' => $email]);
+
+        if ($object === null) {
+            throw new DomainException('User not fount');
+        }
+
+        return $object;
     }
 
     public function save(User $entity, bool $flush = false): void

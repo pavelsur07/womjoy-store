@@ -13,7 +13,18 @@
                                 <h6><span class="badge bg-primary pt-2">Offer</span></h6>
                             </div>
                         </div>
-                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp" class="card-img-top" style="aspect-ratio: 1 / 1">
+                        {% if product.images.count > 0 %}
+                            {#                            {% set file = product.images.first.name %}#}
+                            {# {% set file_url = storage_path(file.url) %}#}
+
+                            {#{% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}
+
+                            {# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}
+                            <img class="avatar avatar-sm" src=" {{ storage_path(product.images.first.patch~'/'~product.images.first.name) }} " width="400" height="300" alt="{{ product.name }}">
+                            {# </a>#}
+                        {% else %}
+                            <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp" class="card-img-top" style="aspect-ratio: 1 / 1">
+                        {% endif %}
                     </a>
                     <div class="card-body pt-3">
                         <h5 class="card-title">{{ product.price|number_format(2, '.', ' ') }}</h5>

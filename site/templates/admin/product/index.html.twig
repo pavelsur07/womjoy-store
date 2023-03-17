@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
@@ -26,6 +27,18 @@
             {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
+                    <td>
+                        {% if product.images.count > 0 %}
+{#                            {% set file = product.images.first.name %}#}
+                           {# {% set file_url = storage_path(file.url) %}#}
+
+                            {#{% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}
+
+                           {# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}
+                                <img class="avatar avatar-sm" src=" {{ storage_path(product.images.first.patch~'/'~product.images.first.name) }} " alt="{{ product.name }}">
+                           {# </a>#}
+                        {% endif %}
+                    </td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>

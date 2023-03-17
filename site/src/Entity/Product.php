@@ -34,6 +34,7 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $seoDescription = null;
 
+    /** @var ArrayCollection<array-key, Image>  */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $images;
 

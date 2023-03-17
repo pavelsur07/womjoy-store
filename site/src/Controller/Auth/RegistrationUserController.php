@@ -20,6 +20,7 @@ class RegistrationUserController extends AbstractController
 
         $form = $this->createForm(UserRegistrationType::class, []);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
