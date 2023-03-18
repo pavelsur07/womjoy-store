@@ -11,7 +11,7 @@ services:
       --entryPoints.https.address=:443
       --certificatesresolvers.letsEncrypt.acme.httpChallenge=true
       --certificatesresolvers.letsEncrypt.acme.httpChallenge.entryPoint=http
-      --certificatesresolvers.letsEncrypt.acme.email=mail@stage.womjoy.ru
+      --certificatesresolvers.letsEncrypt.acme.email=mail@womjoy.com
       --certificatesresolvers.letsEncrypt.acme.storage=/certs/acme.json
     ports:
       -   target: 80
@@ -55,10 +55,10 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
-        - traefik.http.routers.frontend.rule=Host(`stage.womjoy.ru`) || Host(`www.stage.womjoy.ru`)
+        - traefik.http.routers.frontend.rule=Host(`womjoy.com`) || Host(`www.womjoy.com`)
         - traefik.http.services.frontend.loadBalancer.server.port=80
-        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.stage.womjoy.ru/(.*)$$
-        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}stage.womjoy.ru/$${2}
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.womjoy.com/(.*)$$
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}womjoy.com/$${2}
         - traefik.http.middlewares.frontend-redirect.redirectRegex.permanent=true
         - traefik.http.routers.frontend.middlewares=frontend-redirect,secure-headers
         - traefik.http.routers.frontend.entryPoints=https
