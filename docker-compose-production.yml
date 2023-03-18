@@ -73,8 +73,8 @@ services:
   site-php-fpm:
     image: ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
     environment:
-      APP_ENV: dev
-      APP_DEBUG: 1
+      APP_ENV: prod
+      APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
