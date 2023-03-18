@@ -62,9 +62,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app.user.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/user/edit.html.twig', [
+        return $this->render('admin/user/edit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -86,7 +86,7 @@ class UserController extends AbstractController
             $users->flush();
 
 
-            return $this->redirectToRoute('app.user.index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app.user.index');
         }
 
         return $this->render('admin/user/change_password.html.twig',
@@ -103,6 +103,6 @@ class UserController extends AbstractController
             $userRepository->remove($user, true);
         }
 
-        return $this->redirectToRoute('app.user.index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app.user.index');
     }
 }
