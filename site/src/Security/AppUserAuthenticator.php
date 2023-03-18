@@ -27,8 +27,19 @@ final class AppUserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email', '');
 
+        /** @var array{email: string, password: string, csrf_token:string } $credentials */
+        $credentials = $this->getCredentials($request);
+
+        return new Passport(
+            new UserBadge($credentials['email']),
+            new PasswordCredentials($credentials['password']),
+            [
+                new CsrfTokenBadge('authenticate', $credentials['csrf_token']),
+            ]
+        );
+
+        /*$email = $request->request->get('email', '');
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
@@ -37,7 +48,7 @@ final class AppUserAuthenticator extends AbstractLoginFormAuthenticator
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
-        );
+        );*/
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
@@ -46,9 +57,20 @@ final class AppUserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
          return new RedirectResponse($this->urlGenerator->generate('home'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+    }
+
+    private function getCredentials(Request $request): array
+    {
+        $credentials = [
+            'email' => $request->request->get('email'),
+            'password' => $request->request->get('password'),
+            'csrf_token' => $request->request->get('_csrf_token'),
+        ];
+
+        $request->getSession()->set(Security::LAST_USERNAME, $credentials['email']);
+
+        return $credentials;
     }
 
     protected function getLoginUrl(Request $request): string
