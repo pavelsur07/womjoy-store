@@ -81,6 +81,12 @@ services:
       SENTRY_DSN: ${SENTRY_DSN}
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
+      STORAGE_BASE_URL: 'https://static.womjoy.com'
+      STORAGE_FTP_HOST: 'storage-ftp'
+      STORAGE_FTP_USERNAME: 'app'
+      STORAGE_FTP_PASSWORD: 'secret'
+      STORAGE_FTP_ROOT: '/'
+      STORAGE_FTP_PASSIVE: 0
     deploy:
       mode: replicated
       replicas: 2
@@ -131,7 +137,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.storage.rule=Host(`static.womjoy.ru`)
+      - traefik.http.routers.storage.rule=Host(`static.womjoy.com`)
       - traefik.http.routers.storage.entryPoints=http
       - traefik.http.services.storage.loadBalancer.server.port=80
     deploy:

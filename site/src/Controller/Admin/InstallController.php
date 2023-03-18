@@ -13,6 +13,7 @@ class InstallController extends AbstractController
     #[Route(path: '/install/install-admin/', name: 'store.install')]
     public function checkout(UserPasswordHasherInterface $hasher, UserRepository $users): Response
     {
+
         return $this->redirectToRoute('admin.dashboard.show');
     }
 }
