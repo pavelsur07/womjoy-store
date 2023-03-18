@@ -26,6 +26,7 @@
                 <td>
                     <a href="{{ path('app.user.show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app.user.edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app.user.change_password', {'id': user.id}) }}">pass</a>
                 </td>
             </tr>
         {% else %}

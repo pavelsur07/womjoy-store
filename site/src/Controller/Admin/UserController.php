@@ -3,11 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User\User;
+use App\Form\User\UserChangePasswordForm;
 use App\Form\User\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/user')]
@@ -34,9 +36,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app.user.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/user/new.html.twig', [
+        return $this->render('admin/user/new.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -64,6 +66,34 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/{id}/change-password', name: 'app.user.change_password')]
+    public function changePassword(int $id, Request $request, UserRepository $users,UserPasswordHasherInterface $hasher): Response
+    {
+        $user = $users->get($id);
+
+        $form = $this->createForm(UserChangePasswordForm::class,[]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $hashed = $hasher->hashPassword(
+                user: $user,
+                plainPassword: $data['password']
+            );
+            $user->setPassword($hashed);
+            $users->flush();
+
+
+            return $this->redirectToRoute('app.user.index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/user/change_password.html.twig',
+            [
+                'form' => $form->createView(),
+            ]);
+
     }
 
     #[Route('/{id}', name: 'app.user.delete', methods: ['POST'])]
