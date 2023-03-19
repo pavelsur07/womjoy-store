@@ -135,11 +135,16 @@ services:
       - traefik-public
       - default
     labels:
-      - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.storage.rule=Host(`static.womjoy.com`)
-      - traefik.http.routers.storage.entryPoints=http
+      - traefik.http.routers.storage.rule=Host(`static.womjoy.com`) || Host(`www.static.womjoy.com`)
       - traefik.http.services.storage.loadBalancer.server.port=80
+      - traefik.http.middlewares.storage-redirect.redirectRegex.regex=^(https?://)www.static.womjoy.com/(.*)$$
+      - traefik.http.middlewares.storage-redirect.redirectRegex.replacement=$${1}static.womjoy.com/$${2}
+      - traefik.http.middlewares.storage-redirect.redirectRegex.permanent=true
+      - traefik.http.routers.storage.middlewares=frontend-redirect,secure-headers
+      - traefik.http.routers.storage.entryPoints=https
+      - traefik.http.routers.storage.tls=true
+      - traefik.http.routers.storage.tls.certResolver=letsEncrypt
     deploy:
       placement:
         constraints: [ node.role == manager ]
