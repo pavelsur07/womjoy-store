@@ -33,7 +33,7 @@ final readonly class ProductImageHandler
             );
 
             $this->images->save($image);
-            $this->products->flush();
+            $this->flusher->flush();
         }
     }
 }

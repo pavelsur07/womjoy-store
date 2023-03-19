@@ -32,7 +32,9 @@ services:
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
         arguments:
             - '@Redis'
-
+    
+    App\Repository\Flusher:
+        class: App\Repository\Flusher
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     App\Menu\Admin\Product\MainMenu:
@@ -41,8 +43,5 @@ services:
     App\Repository\ProductRepository:
         class: App\Repository\ProductRepository
     
-    App\Repository\Flusher:
-        class: App\Repository\Flusher
-        
     App\Service\Uploader\FileUploader:
         arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]

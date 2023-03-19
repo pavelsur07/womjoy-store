@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DomainException;
 
 /**
  * @extends ServiceEntityRepository<Image>
@@ -21,6 +22,15 @@ class ImageRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Image::class);
+    }
+
+    public function get(int $id): Image
+    {
+        $object = $this->find($id);
+        if ($object === null) {
+            throw new DomainException('Image not fount');
+        }
+        return $object;
     }
 
     public function save(Image $entity, bool $flush = false): void

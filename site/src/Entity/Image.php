@@ -31,9 +31,6 @@ class Image
     #[ORM\Column]
     private ?int $size = null;
 
-    /**
-     * @param Product|null $product
-     */
     public function __construct(Product $product, ?string $patch, ?string $name, ?int $size, ?int $sort)
     {
         $this->product = $product;

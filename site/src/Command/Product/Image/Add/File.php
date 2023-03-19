@@ -9,7 +9,7 @@ final readonly class File
     public function __construct(
         private string $pach,
         private string $name,
-        private string $size,
+        private int $size,
     ) {
     }
 
@@ -23,7 +23,7 @@ final readonly class File
         return $this->name;
     }
 
-    public function getSize(): string
+    public function getSize(): int
     {
         return $this->size;
     }
