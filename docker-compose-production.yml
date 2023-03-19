@@ -87,6 +87,8 @@ services:
       STORAGE_FTP_PASSWORD: 'secret'
       STORAGE_FTP_ROOT: '/'
       STORAGE_FTP_PASSIVE: 0
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     deploy:
       mode: replicated
       replicas: 2
@@ -105,6 +107,8 @@ services:
       SENTRY_DSN: ${SENTRY_DSN}
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
     deploy:
       restart_policy:
@@ -153,7 +157,6 @@ services:
   storage-ftp:
     image: stilliard/pure-ftpd
     ports:
-    #  - "21:21"
       -   target: 21
           published: 21
           protocol: tcp
@@ -171,10 +174,22 @@ services:
       placement:
         constraints: [ node.labels.db == db ]
       endpoint_mode: dnsrr
-
+  
+  site-redis:
+    image: redis:7.0-alpine
+    volumes:
+      - site-redis:/data
+    command:
+      - 'redis-server'
+      - '--databases 2'
+      - '--save 900 1'
+      - '--save 300 10'
+      - '--save 60 10000'
+      - '--requirepass ${REDIS_PASSWORD}'
 volumes:
   site-postgres:
   traefik-public-certs:
+  site-redis:
   storage:
 
 networks:
