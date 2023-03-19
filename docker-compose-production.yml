@@ -186,6 +186,9 @@ services:
       - '--save 300 10'
       - '--save 60 10000'
       - '--requirepass ${REDIS_PASSWORD}'
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
 volumes:
   site-postgres:
   traefik-public-certs:
