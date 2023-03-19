@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Auth;
 
 use App\Entity\User\User;
@@ -17,7 +19,6 @@ class RegistrationUserController extends AbstractController
     #[Route(path: '/registration/', name: 'store.registration')]
     public function checkout(Request $request, UserPasswordHasherInterface $hasher, UserRepository $users): Response
     {
-
         $form = $this->createForm(UserRegistrationType::class, []);
         $form->handleRequest($request);
 
@@ -40,12 +41,13 @@ class RegistrationUserController extends AbstractController
 
             $users->save($user, true);
             $this->addFlash('success', 'Registration new user.');
-
         }
 
-        return $this->render('auth/registration.html.twig',
+        return $this->render(
+            'auth/registration.html.twig',
             [
                 'form' => $form->createView(),
-            ]);
+            ]
+        );
     }
 }

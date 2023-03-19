@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
 use App\Entity\Product;
@@ -17,8 +19,7 @@ class ProductType extends AbstractType
             ->add('price')
             ->add('status')
             ->add('seoTitle')
-            ->add('seoDescription')
-        ;
+            ->add('seoDescription');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

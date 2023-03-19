@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures\Store;
 
 use App\Entity\Product;
@@ -10,7 +12,6 @@ class ProductFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-
         $product = new Product();
         $product->setName('product name');
         $product->setDescription('product description');

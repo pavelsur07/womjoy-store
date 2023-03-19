@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Controller;
 
 use App\Entity\Product;
@@ -7,7 +9,10 @@ use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ProductControllerTest extends WebTestCase
+/**
+ * @internal
+ */
+final class ProductControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
     private ProductRepository $repository;
@@ -15,8 +20,8 @@ class ProductControllerTest extends WebTestCase
 
     protected function setUp(): void
     {
-        $this->client = static::createClient();
-        $this->repository = static::getContainer()->get('doctrine')->getRepository(Product::class);
+        $this->client = self::createClient();
+        $this->repository = self::getContainer()->get('doctrine')->getRepository(Product::class);
 
         foreach ($this->repository->findAll() as $object) {
             $this->repository->remove($object, true);
@@ -25,9 +30,9 @@ class ProductControllerTest extends WebTestCase
 
     public function testIndex(): void
     {
-        //$client = static::createClient();
+        // $client = static::createClient();
         $crawler = $this->client->request('GET', $this->path);
-        //$client->request('GET', $this->path);
+        // $client->request('GET', $this->path);
         self::assertResponseStatusCodeSame(200);
         self::assertPageTitleContains('Product index');
 
@@ -37,9 +42,9 @@ class ProductControllerTest extends WebTestCase
 
     public function testNew(): void
     {
-        $originalNumObjectsInRepository = count($this->repository->findAll());
+        $originalNumObjectsInRepository = \count($this->repository->findAll());
 
-        $this->markTestIncomplete();
+        self::markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
@@ -55,7 +60,7 @@ class ProductControllerTest extends WebTestCase
 
         self::assertResponseRedirects('/admin/product/');
 
-        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
+        self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
     }
 
    /* public function testShow(): void

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Webmozart\Assert\Assert;
@@ -38,6 +40,7 @@ class Status
     {
         return $this->value === self::ARCHIVE;
     }
+
     public function getValue(): string
     {
         return $this->value;

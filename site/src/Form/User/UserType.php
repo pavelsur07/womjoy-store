@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form\User;
 
 use App\Entity\User\User;
@@ -13,8 +15,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('password')
-        ;
+            ->add('password');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

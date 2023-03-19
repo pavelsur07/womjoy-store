@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use DomainException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- *
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
  * @method Product|null findOneBy(array $criteria, array $orderBy = null)
  * @method Product[]    findAll()
@@ -24,7 +26,7 @@ class ProductRepository
      */
     private EntityRepository $repo;
 
-    public function __construct(PaginatorInterface $paginator,EntityManagerInterface $em)
+    public function __construct(PaginatorInterface $paginator, EntityManagerInterface $em)
     {
         $this->em = $em;
         $this->paginator = $paginator;
@@ -35,12 +37,13 @@ class ProductRepository
     {
         $object = $this->repo->find($id);
         if ($object === null) {
-            throw new \DomainException('Product not fount');
+            throw new DomainException('Product not fount');
         }
 
         return $object;
     }
-    public function list(int $page,int $size): PaginationInterface
+
+    public function list(int $page, int $size): PaginationInterface
     {
         $qb = $this->em->createQueryBuilder()
             ->select('p')

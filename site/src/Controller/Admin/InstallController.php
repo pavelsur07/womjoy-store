@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Repository\UserRepository;
@@ -13,7 +15,6 @@ class InstallController extends AbstractController
     #[Route(path: '/install/install-admin/', name: 'store.install')]
     public function checkout(UserPasswordHasherInterface $hasher, UserRepository $users): Response
     {
-
         return $this->redirectToRoute('admin.dashboard.show');
     }
 }

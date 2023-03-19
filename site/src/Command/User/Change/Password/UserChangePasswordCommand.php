@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command\User\Change\Password;
 
 final readonly class UserChangePasswordCommand
@@ -7,8 +9,7 @@ final readonly class UserChangePasswordCommand
     public function __construct(
         private string $email,
         private string $password,
-    )
-    {
+    ) {
     }
 
     public function getEmail(): string

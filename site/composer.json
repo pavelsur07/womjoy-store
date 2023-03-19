@@ -117,6 +117,10 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^6.2",
         "symfony/stopwatch": "6.2.*",
-        "symfony/web-profiler-bundle": "6.2.*"
+        "symfony/web-profiler-bundle": "6.2.*",
+        "doctrine/data-fixtures": "^1.4",
+        "lctrs/psalm-psr-container-plugin": "^1.1",
+        "psalm/plugin-phpunit": "^0.16.0",
+        "vimeo/psalm": "^4.3"
     }
 }

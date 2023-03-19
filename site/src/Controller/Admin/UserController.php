@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\User\User;
@@ -69,15 +71,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/change-password', name: 'app.user.change_password')]
-    public function changePassword(int $id, Request $request, UserRepository $users,UserPasswordHasherInterface $hasher): Response
+    public function changePassword(int $id, Request $request, UserRepository $users, UserPasswordHasherInterface $hasher): Response
     {
         $user = $users->get($id);
 
-        $form = $this->createForm(UserChangePasswordForm::class,[]);
+        $form = $this->createForm(UserChangePasswordForm::class, []);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $data = $form->getData();
             $hashed = $hasher->hashPassword(
                 user: $user,
@@ -89,17 +90,18 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app.user.index');
         }
 
-        return $this->render('admin/user/change_password.html.twig',
+        return $this->render(
+            'admin/user/change_password.html.twig',
             [
                 'form' => $form->createView(),
-            ]);
-
+            ]
+        );
     }
 
     #[Route('/{id}', name: 'app.user.delete', methods: ['POST'])]
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
         }
 

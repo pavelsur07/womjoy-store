@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command\User\Change\Password;
 
 use App\Repository\Flusher;
@@ -9,11 +11,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 final readonly class UserChangePasswordHandler
 {
     public function __construct(
-        private UserRepository              $users,
-        private Flusher                     $flusher,
+        private UserRepository $users,
+        private Flusher $flusher,
         private UserPasswordHasherInterface $hasher
-    )
-    {
+    ) {
     }
 
     public function __invoke(UserChangePasswordCommand $command): void
@@ -26,6 +27,5 @@ final readonly class UserChangePasswordHandler
 
         $user->setPassword($hashed);
         $this->flusher->flush();
-
     }
 }

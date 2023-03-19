@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,7 +35,7 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $seoDescription = null;
 
-    /** @var ArrayCollection<array-key, Image>  */
+    /** @var ArrayCollection<array-key, Image> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $images;
 
@@ -132,7 +133,7 @@ class Product
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
-            //$image->setProduct($this);
+            // $image->setProduct($this);
         }
 
         return $this;

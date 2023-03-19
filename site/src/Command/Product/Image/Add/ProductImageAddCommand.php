@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Command\Product\Image\Add;
 
 class ProductImageAddCommand
@@ -10,26 +12,16 @@ class ProductImageAddCommand
          * @var File[]
          */
         private array $files,
-
-    )
-    {
+    ) {
     }
 
-    /**
-     * @return int
-     */
     public function getProductId(): int
     {
         return $this->productId;
     }
 
-    /**
-     * @return array
-     */
     public function getFiles(): array
     {
         return $this->files;
     }
-
-
 }

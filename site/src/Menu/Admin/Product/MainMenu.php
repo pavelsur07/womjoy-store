@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Menu\Admin\Product;
 
 use Knp\Menu\FactoryInterface;
@@ -19,7 +21,7 @@ class MainMenu
         $menu
             ->addChild('Base', [
                 'route' => 'admin.product.show',
-                'routeParameters' => ['id' => $options['id']]
+                'routeParameters' => ['id' => $options['id']],
             ])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link');
@@ -27,11 +29,10 @@ class MainMenu
         $menu
             ->addChild('Images', [
                 'route' => 'admin.product.image.index',
-                'routeParameters' => ['id' => $options['id']]
+                'routeParameters' => ['id' => $options['id']],
             ])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link');
-
 
         return $menu;
     }

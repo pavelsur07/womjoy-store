@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
@@ -16,7 +18,7 @@ class ProductController extends AbstractController
     public const PER_PAGE= 5;
 
     #[Route('/', name: '.index', methods: ['GET'])]
-    public function index(Request $request,ProductRepository $productRepository): Response
+    public function index(Request $request, ProductRepository $productRepository): Response
     {
         return $this->render('admin/product/index.html.twig', [
             'pagination' => $productRepository->list(
@@ -74,7 +76,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: '.delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
         }
 

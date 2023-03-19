@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Command\Product\Image\Add\File;
@@ -16,17 +18,16 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/product/{id}/image', name: 'admin.product.image')]
 class ImageController extends AbstractController
 {
-    #[Route('/', name: '.index', methods: ['GET','POST'])]
+    #[Route('/', name: '.index', methods: ['GET', 'POST'])]
     public function index(Request $request, ProductRepository $products, FileUploader $uploader, ProductImageHandler $handler): Response
     {
         $id = (int)$request->get('id');
         $product = $products->get($id);
 
-        $form = $this->createForm(ProductImageAddForm::class,[]);
+        $form = $this->createForm(ProductImageAddForm::class, []);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $files = [];
             foreach ($form->get('files')->getData() as $file) {
                 $uploaded = $uploader->upload($file);
@@ -45,12 +46,14 @@ class ImageController extends AbstractController
 
             $handler($command);
 
-            return $this->redirectToRoute('admin.product.image.index',['id'=> $id]);
+            return $this->redirectToRoute('admin.product.image.index', ['id'=> $id]);
         }
-        return $this->render('admin/product/image/index.html.twig',
+        return $this->render(
+            'admin/product/image/index.html.twig',
             [
                 'product'=> $product,
                 'form' => $form->createView(),
-            ]);
+            ]
+        );
     }
 }

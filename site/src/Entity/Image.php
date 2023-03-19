@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
@@ -31,12 +33,8 @@ class Image
 
     /**
      * @param Product|null $product
-     * @param string|null  $patch
-     * @param string|null  $name
-     * @param int|null     $sort
-     * @param int|null     $size
      */
-    public function __construct(Product $product, ?string $patch, ?string $name, ?int $size,?int $sort)
+    public function __construct(Product $product, ?string $patch, ?string $name, ?int $size, ?int $sort)
     {
         $this->product = $product;
         $this->patch = $patch;
@@ -44,7 +42,6 @@ class Image
         $this->sort = $sort;
         $this->size = $size;
     }
-
 
     public function getId(): ?int
     {
