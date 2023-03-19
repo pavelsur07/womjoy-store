@@ -77,6 +77,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $data = $form->getData();
             $hashed = $hasher->hashPassword(
                 user: $user,
@@ -84,7 +85,6 @@ class UserController extends AbstractController
             );
             $user->setPassword($hashed);
             $users->flush();
-
 
             return $this->redirectToRoute('app.user.index');
         }

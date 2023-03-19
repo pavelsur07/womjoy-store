@@ -3,7 +3,60 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<main class="form-signin">
+    <div class="page page-center">
+        <div class="container container-tight py-4">
+            <div class="text-center mb-4">
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36" alt=""></a>
+            </div>
+            <div class="card card-md">
+                <div class="card-body">
+                    <h2 class="h2 text-center mb-4">Login to your account</h2>
+                    <form action="{{ path('app_login') }}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus placeholder="your@email.com" autocomplete="off">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">
+                                Password
+                                <span class="form-label-description">
+                                    <a href="#">I forgot password</a>
+                                </span>
+                            </label>
+                            <div class="input-group input-group-flat">
+                                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required >
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                <span class="input-group-text">
+                                    <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-check">
+                                <input type="checkbox" class="form-check-input"/>
+                                <span class="form-check-label">Remember me on this device</span>
+                            </label>
+                        </div>
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="text-center text-muted mt-3">
+                Don't have account yet? <a href="#" tabindex="-1">Sign up</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{#<main class="form-signin">
     <div class="card card-body">
     <form action="{{ path('app_login') }}" method="post">
         {% if error %}
@@ -24,10 +77,10 @@
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-{#
+#}{#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html
-#}
+#}{#
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" name="_remember_me"> Remember me
@@ -39,5 +92,5 @@
         </button>
     </form>
     </div>
-</main>
-{% endblock %}
+</main>#}
+
