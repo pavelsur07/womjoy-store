@@ -165,7 +165,7 @@ services:
       FTP_USER_PASS: secret
       FTP_USER_HOME: /app
     volumes:
-      - storage/public:/app
+      - storage:/app
     deploy:
       placement:
         constraints: [ node.labels.db == db ]
