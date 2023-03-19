@@ -133,6 +133,7 @@ services:
 
   storage:
     image: ${REGISTRY}/storage-nginx:${IMAGE_TAG}
+    restart: always
     volumes:
       - storage:/app
     networks:
@@ -156,6 +157,7 @@ services:
         
   storage-ftp:
     image: stilliard/pure-ftpd
+    restart: always
     ports:
       -   target: 21
           published: 21
@@ -177,6 +179,7 @@ services:
   
   site-redis:
     image: redis:7.0-alpine
+    restart: always
     volumes:
       - site-redis:/data
     command:
