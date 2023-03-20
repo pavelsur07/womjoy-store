@@ -35,13 +35,21 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $seoDescription = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $article = null;
+
     /** @var ArrayCollection<array-key, Image> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $images;
 
+    /** @var ArrayCollection<array-key, Variant> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Collection $variants;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->variants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +153,35 @@ class Product
             // set the owning side to null (unless already changed)
             if ($image->getProduct() === $this) {
                 $image->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Variant>
+     */
+    public function getVariants(): Collection
+    {
+        return $this->variants;
+    }
+
+    public function addVariant(Variant $variant): self
+    {
+        if (!$this->variants->contains($variant)) {
+            $this->variants->add($variant);
+            $variant->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVariant(Variant $variant): self
+    {
+        if ($this->variants->removeElement($variant)) {
+            if ($variant->getProduct() === $this) {
+                $variant->setProduct(null);
             }
         }
 
