@@ -1,15 +1,316 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {#<link rel="stylesheet" href="{{ asset('./css/style.css') }}">#}
+        {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
         {% block stylesheets %}
             {{ encore_entry_link_tags('store') }}
         {% endblock %}
     </head>
     <body>
-    <div class="container-xxl">
+
+    <div class="h-grid-12-col hidden">
+        <div class="h-grid-12-col-items">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="wrapper">
+            <div class="header__main">
+                <div class="header__left">
+                    <a href="#" class="header__logo">
+                        <img src="{{ asset('./img/logo.svg') }}" alt="" width="205" height="36">
+                    </a>
+                    <div class="country">
+                        <button class="country__crnt" type="button">
+                            <img src="{{ asset('./img/countries/ru.svg') }}" alt="" width="24" height="24" class="country__crnt_flag">
+                            <img src="{{ asset('./img/icons/arrow-down.svg') }}" alt="" width="20" height="20" class="country__crnt_arrow">
+                        </button>
+                        <form class="country__content">
+                            <button class="country__close" type="button">
+                                <img src="{{ asset('./img/icons/close.svg') }}" alt="" width="24" height="24">
+                            </button>
+                            <div class="country__field sel-field">
+                                <span class="sel-field__ph">Выберите страну</span>
+                                <div class="sel-field__main">
+									<span class="sel-field__left">
+										<img src="{{ asset('./img/countries/ru.svg') }}" alt="" width="24" height="24">
+									</span>
+                                    <select class="sel-field__sel">
+                                        <option value="" selected>Россия</option>
+                                        <option value="">Грузия</option>
+                                        <option value="">Казахстан</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="country__field sel-field">
+                                <span class="sel-field__ph">Валюта</span>
+                                <div class="sel-field__main">
+									<span class="sel-field__left">
+										₽ <span>/</span>
+									</span>
+                                    <select class="sel-field__sel">
+                                        <option value="" selected>Рубль</option>
+                                        <option value="">Рубль</option>
+                                        <option value="">Рубль</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn-primary" type="submit">Подтвердить</button>
+                        </form>
+                    </div>
+                    <div class="burger">
+                        <span class="burger__item"></span>
+                        <span class="burger__item"></span>
+                        <span class="burger__item"></span>
+                    </div>
+                </div>
+                <form class="search">
+                    <input type="text" class="search__inp" placeholder="Я хочу найти">
+                    <button class="search__submit" type="submit">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43" fill-opacity="0.4"/>
+                        </svg>
+                    </button>
+                </form>
+                <ul class="header__actions">
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('./img/icons/trace.svg') }}" alt="" width="24" height="24">
+                            Отследить
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="" width="24" height="24">
+                            Кабинет
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="" width="24" height="24">
+                            Избранное
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="24" height="24">
+                            Корзина
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header__bottom">
+            <div class="wrapper">
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item menu-droper">
+                            <a href="#" class="nav__link">Женщинам</a>
+                            <div class="menu">
+                                <div class="wrapper">
+                                    <div class="menu__content">
+                                        <div class="menu__cols">
+                                            <div class="menu__col">
+                                                <div class="menu__title">Женщинам</div>
+                                                <ul class="menu__list">
+                                                    <li><a href="#">Брюки</a></li>
+                                                    <li><a href="#">Леггинсы</a></li>
+                                                    <li><a href="#">Топы</a></li>
+                                                    <li><a href="#">Рашгарды</a></li>
+                                                    <li><a href="#">Футболки</a></li>
+                                                    <li><a href="#">Худи</a></li>
+                                                    <li><a href="#">Шорты</a></li>
+                                                    <li><a href="#">Аксессуары</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="menu__col">
+                                                <div class="menu__title">Занятия</div>
+                                                <ul class="menu__list">
+                                                    <li><a href="#">Йога</a></li>
+                                                    <li><a href="#">Фитнес</a></li>
+                                                    <li><a href="#">Бег</a></li>
+                                                    <li><a href="#">Активный отдых</a></li>
+                                                    <li><a href="#">Полиденс</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="menu__col">
+                                                <div class="menu__title">Спецпредложения</div>
+                                                <ul class="menu__list">
+                                                    <li><a href="#">Весна 2023</a></li>
+                                                    <li><a href="#">Новинки</a></li>
+                                                    <li><a href="#">Распродажа</a></li>
+                                                    <li><a href="#">Скоро в продаже</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="menu__banner">
+                                            <img src="{{ asset('./img/banners/menu-banner.webp') }}" alt="" width="392" height="290">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
+                        <li class="nav__item drop">
+                            <a href="#" class="nav__link">Покупателям</a>
+                            <ul class="drop__list">
+                                <li class="drop__item"><a href="#" class="drop__link">Доставка и оплата</a></li>
+                                <li class="drop__item"><a href="#" class="drop__link">Обмен и возврат</a></li>
+                                <li class="drop__item"><a href="#" class="drop__link">О компании</a></li>
+                                <li class="drop__item"><a href="#" class="drop__link">Личный кабинет</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+
+    {% block body %}{% endblock %}
+
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="footer__main">
+                <div class="footer__left">
+                    <a href="#" class="footer__logo">
+                        <img src="{{ asset('./img/logo.svg') }}" alt="" width="205" height="36">
+                    </a>
+                    <div class="footer__phone">
+                        <a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
+                        <span class="footer__phone_descr">Звонок по РФ бесплатный</span>
+                    </div>
+                    <ul class="footer__socials">
+                        <li><a href="#"><img src="{{ asset('./img/icons/vk.svg') }}" alt="VK" width="40" height="40"></a></li>
+                        <li><a href="#"><img src="{{ asset('./img/icons/tg.svg') }}" alt="Telegram" width="40" height="40"></a></li>
+                        <li><a href="#"><img src="{{ asset('./img/icons/wa.svg') }}" alt="WhatsApp" width="40" height="40"></a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title">Покупателям</div>
+                    <ul class="footer__list">
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Обмен и возврат</a></li>
+                        <li><a href="#">Публичная оферта</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Отложенные товары</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <div class="footer__title">Магазин</div>
+                    <ul class="footer__list">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Отзывы покупателей</a></li>
+                        <li><a href="#">Бонусные баллы</a></li>
+                        <li><a href="#">Карта сайта</a></li>
+                        <li><a href="#">Личный кабинет</a></li>
+                    </ul>
+                </div>
+                <div class="footer__right">
+                    <div class="footer__marketplaces">
+                        <a href="#" class="footer__marketplace">
+                            <img src="{{ asset('./img/icons/wb.png') }}" alt="" class="footer__marketplace_img" width="40" height="40">
+                            <div class="footer__marketplace_text">
+                                <span class="footer__marketplace_descr">Наш магазин</span>
+                                <span class="footer__marketplace_name">Wildberries</span>
+                            </div>
+                        </a>
+                        <a href="#" class="footer__marketplace">
+                            <img src="{{ asset('./img/icons/ozon.png') }}" alt="" class="footer__marketplace_img" width="40" height="40">
+                            <div class="footer__marketplace_text">
+                                <span class="footer__marketplace_descr">Наш магазин</span>
+                                <span class="footer__marketplace_name">Ozon</span>
+                            </div>
+                        </a>
+                        <a href="#" class="footer__marketplace">
+                            <img src="{{ asset('./img/icons/ym.png') }}" alt="" class="footer__marketplace_img" width="40" height="40">
+                            <div class="footer__marketplace_text">
+                                <span class="footer__marketplace_descr">Наш магазин</span>
+                                <span class="footer__marketplace_name">Яндекс Маркет</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="wrapper">
+                <div class="footer__bottom_row">
+                    <span class="footer__copyright">© 2019 - 2023 ООО "Вумджой"</span>
+                    <ul class="footer__pay">
+                        <li><img src="{{ asset('./img/icons/visa.svg') }}" alt="" width="58" height="40"></li>
+                        <li><img src="{{ asset('./img/icons/mc.svg') }}" alt="" width="58" height="40"></li>
+                        <li><img src="{{ asset('./img/icons/mir.svg') }}" alt="" width="58" height="40"></li>
+                        <li><img src="{{ asset('./img/icons/sbp.svg') }}" alt="" width="58" height="40"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <ul class="mob-bar">
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link c-open">
+                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/catalog.svg') }}" alt="" width="24" height="24"></span>
+                Каталог
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/trace.svg') }}" alt="" width="24" height="24"></span>
+                Отследить
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/cabinet.svg') }}" alt="" width="24" height="24"></span>
+                Кабинет
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/favourite.svg') }}" alt="" width="24" height="24"></span>
+                Изрбранное
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="24" height="24"></span>
+                Корзина
+            </a>
+        </li>
+    </ul>
+
+    <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('./js/script.js') }}"></script>
+
+
+    {#<div class="container-xxl">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="{{ path('home') }}" class="nav-link" aria-current="page">Home</a></li>
@@ -22,6 +323,33 @@
                 {% if is_granted('IS_AUTHENTICATED')  == false %}
                     <li class="nav-item"><a href="{{ path('store.registration') }}" class="nav-link">Sign Up</a></li>
                 {% endif %}
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for locale in locales() %}
+                        <li
+                            {% if app.request.locale == locale.code %}
+                                aria-checked="true" class="active"
+                            {% else %}
+                                aria-checked="false"
+                            {% endif %}
+                            role="menuitem">
+                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                                {{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small>
+                            </a>
+                        </li>
+                        {% endfor %}
+                        #}{#
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        #}{#
+                    </ul>
+                </li>
             </ul>
         </header>
     </div>
@@ -32,9 +360,9 @@
         <div class="container">
             <span class="text-muted">Place sticky footer content here.</span>
         </div>
-    </footer>
+    </footer>#}
     </body>
-    {% block javascripts %}
+{#    {% block javascripts %}
         {{ encore_entry_script_tags('store') }}
-    {% endblock %}
+    {% endblock %}#}
 </html>

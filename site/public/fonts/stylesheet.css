@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Hauora';
+    src: url('Hauora-Bold.eot');
+    src: url('Hauora-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Hauora-Bold.woff2') format('woff2'),
+        url('Hauora-Bold.woff') format('woff'),
+        url('Hauora-Bold.ttf') format('truetype'),
+        url('Hauora-Bold.svg#Hauora-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

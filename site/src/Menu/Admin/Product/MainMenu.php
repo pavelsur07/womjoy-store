@@ -16,23 +16,45 @@ class MainMenu
     public function build(array $options): ItemInterface
     {
         $menu = $this->factory->createItem('root')
-            ->setChildrenAttributes(['class' => 'nav nav-tabs mb-4']);
+            ->setChildrenAttributes(
+                [
+                    'class' => 'nav nav-tabs card-header-tabs',
+                    'data-bs-toggle' => 'tabs',
+                ]
+            );
 
         $menu
-            ->addChild('Base', [
-                'route' => 'admin.product.show',
-                'routeParameters' => ['id' => $options['id']],
-            ])
+            ->addChild(
+                'Product identity',
+                [
+                    'route' => 'admin.product.show',
+                    'routeParameters' => ['id' => $options['id']],
+                ]
+            )
             ->setAttribute('class', 'nav-item')
-            ->setLinkAttribute('class', 'nav-link');
+            ->setLinkAttributes(['class'=>'nav-link', 'data-bs-toggle'=> 'tab']);
 
         $menu
-            ->addChild('Images', [
-                'route' => 'admin.product.image.index',
-                'routeParameters' => ['id' => $options['id']],
-            ])
+            ->addChild(
+                'Images',
+                [
+                    'route' => 'admin.product.image.index',
+                    'routeParameters' => ['id' => $options['id']],
+                ]
+            )
             ->setAttribute('class', 'nav-item')
-            ->setLinkAttribute('class', 'nav-link');
+            ->setLinkAttributes(['class'=>'nav-link', 'data-bs-toggle'=> 'tab']);
+
+        $menu
+            ->addChild(
+                'Variants',
+                [
+                    'route' => 'admin.product.image.index',
+                    'routeParameters' => ['id' => $options['id']],
+                ]
+            )
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttributes(['class'=>'nav-link', 'data-bs-toggle'=> 'tab']);
 
         return $menu;
     }
