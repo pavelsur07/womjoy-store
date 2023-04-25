@@ -4,10 +4,12 @@ pipeline {
         timestamps()
     }
     environment {
+        REGISTRY = credentials('REGISTRY')
         IMAGE_TAG = sh(
             returnStdout: true,
             script: "echo '${env.BUILD_TAG}' | sed 's/%2F/-/g'"
         ).trim()
+
     }
     stages {
         stage("Init") {
