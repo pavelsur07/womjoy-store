@@ -43,18 +43,7 @@ class MainMenu
                 ]
             )
             ->setAttribute('class', 'nav-item')
-            ->setLinkAttributes(['class'=>'nav-link', 'data-bs-toggle'=> 'tab']);
-
-        $menu
-            ->addChild(
-                'Variants',
-                [
-                    'route' => 'admin.product.image.index',
-                    'routeParameters' => ['id' => $options['id']],
-                ]
-            )
-            ->setAttribute('class', 'nav-item')
-            ->setLinkAttributes(['class'=>'nav-link', 'data-bs-toggle'=> 'tab']);
+            ->setLinkAttributes(['class'=>'nav-link',]);
 
         return $menu;
     }

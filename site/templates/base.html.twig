@@ -5,9 +5,10 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {#<link rel="stylesheet" href="{{ asset('./css/style.css') }}">#}
         {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
-        {% block stylesheets %}
+        {#{% block stylesheets %}
             {{ encore_entry_link_tags('store') }}
-        {% endblock %}
+        {% endblock %}#}
+        <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
     </head>
     <body>
 
@@ -306,10 +307,6 @@
         </li>
     </ul>
 
-    <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
-    <script src="{{ asset('./js/script.js') }}"></script>
-
-
     {#<div class="container-xxl">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
@@ -362,7 +359,10 @@
         </div>
     </footer>#}
     </body>
-{#    {% block javascripts %}
-        {{ encore_entry_script_tags('store') }}
-    {% endblock %}#}
+        {% block javascripts %}
+       {# {{ encore_entry_script_tags('store') }}#}
+            <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
+            <script src="{{ asset('./js/script.js') }}"></script>
+    {% endblock %}
+
 </html>

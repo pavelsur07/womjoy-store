@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Product;
 
 use App\Command\Product\Image\Add\File;
 use App\Command\Product\Image\Add\ProductImageAddCommand;

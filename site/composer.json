@@ -14,6 +14,7 @@
         "doctrine/orm": "^2.14",
         "knplabs/knp-menu-bundle": "^3.2",
         "knplabs/knp-paginator-bundle": "^6.1",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "league/flysystem-bundle": "^3.1",
         "league/flysystem-ftp": "^3.10",
         "phpdocumentor/reflection-docblock": "^5.3",

@@ -28,6 +28,15 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    Aws\S3\S3Client:
+        arguments:
+            - version: '2006-03-01'
+              region: 'us-east-1'
+              endpoint: 's3.localhost'
+              credentials:
+                  key: '%env(AWS_S3_ACCESS_ID)%'
+                  secret: '%env(AWS_S3_ACCESS_SECRET)%'
+
     Redis:
         class: Redis
         calls:
@@ -54,3 +63,5 @@ services:
     
     App\Service\Uploader\FileUploader:
         arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]
+#    App\Service\Uploader\FileUploader:
+#        arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%' ]
