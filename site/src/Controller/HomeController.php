@@ -30,4 +30,10 @@ class HomeController extends AbstractController
             ]
         );
     }
+
+    #[Route(path: '/locale/{locale}', name: 'locale', requirements: ['_locale' => 'en|ru|bg'])]
+    public function locale(Request $request): Response
+    {
+        return $this->redirectToRoute('home');
+    }
 }
