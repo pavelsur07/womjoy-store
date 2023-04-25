@@ -23,7 +23,7 @@ class HomeController extends AbstractController
             size: $request->query->getInt('size', self::PER_PAGE),
         );
         return $this->render(
-            'store/home.html.twig',
+            'store/home/home.html.twig',
             [
                 'pagination' => $pagination,
                 'locales' => $locales,

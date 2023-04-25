@@ -43,7 +43,7 @@ class MainMenu
                 ]
             )
             ->setAttribute('class', 'nav-item')
-            ->setLinkAttributes(['class'=>'nav-link',]);
+            ->setLinkAttributes(['class'=>'nav-link']);
 
         return $menu;
     }
