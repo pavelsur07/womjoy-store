@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Admin\Product;
+namespace App\Http\Store\Admin;
 
 use App\Entity\Product;
 use App\Form\ProductType;

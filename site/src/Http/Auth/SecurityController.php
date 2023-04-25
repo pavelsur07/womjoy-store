@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Auth;
+namespace App\Http\Auth;
 
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

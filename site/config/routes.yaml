@@ -1,8 +1,6 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+http:
+    resource: ../src/Http/
+    type: annotation
 #    prefix:
 #        en: '' # don't prefix URLs for English, the default locale
 #        ru: '/ru'

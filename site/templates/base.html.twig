@@ -13,7 +13,7 @@
     </head>
     <body>
 
-    <div class="h-grid-12-col hidden">
+{#    <div class="h-grid-12-col hidden">
         <div class="h-grid-12-col-items">
             <span></span>
             <span></span>
@@ -28,13 +28,13 @@
             <span></span>
             <span></span>
         </div>
-    </div>
+    </div>#}
 
     <header class="header">
         <div class="wrapper">
             <div class="header__main">
                 <div class="header__left">
-                    <a href="#" class="header__logo">
+                    <a href="{{ path('home') }}" class="header__logo">
                         <img src="{{ asset('./img/logo.svg') }}" alt="" width="205" height="36">
                     </a>
                     <div class="country">
