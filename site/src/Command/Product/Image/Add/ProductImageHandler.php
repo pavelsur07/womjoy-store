@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Command\Product\Image\Add;
 
-use App\Entity\Image;
-use App\Repository\Flusher;
-use App\Repository\ImageRepository;
-use App\Repository\ProductRepository;
+use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Store\Domain\Entity\Image;
+use App\Store\Infrastructure\Repository\ImageRepository;
+use App\Store\Infrastructure\Repository\ProductRepository;
 
 final readonly class ProductImageHandler
 {

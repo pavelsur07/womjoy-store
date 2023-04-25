@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Store\Domain\Entity;
 
-use App\Repository\ImageRepository;
+use App\Store\Infrastructure\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]

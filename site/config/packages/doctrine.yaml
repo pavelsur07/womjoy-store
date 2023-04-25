@@ -21,11 +21,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Auth/Domain/Entity'
                 prefix: 'App\Auth\Domain\Entity'
                 alias: Auth
-#            Store:
-#                is_bundle: false
-#                dir: '%kernel.project_dir%/src/Store/Domain/Entity'
-#                prefix: 'App\Store\Domain\Entity'
-#                alias: Store
+            Store:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Store/Domain/Entity'
+                prefix: 'App\Store\Domain\Entity'
+                alias: Store
 
 when@test:
     doctrine:

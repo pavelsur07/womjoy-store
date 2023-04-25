@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\Store\Infrastructure\Repository;
 
-use App\Entity\Product;
+use App\Store\Domain\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use DomainException;

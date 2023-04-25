@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Store;
 
-use App\Entity\Product;
+use App\Store\Domain\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

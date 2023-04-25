@@ -52,17 +52,16 @@ services:
         arguments:
             - '@Redis'
     
-    App\Repository\Flusher:
-        class: App\Repository\Flusher
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Common\Infrastructure\Doctrine\Flusher:
+        class: App\Common\Infrastructure\Doctrine\Flusher
+    
     App\Menu\Admin\Product\MainMenu:
         tags: [{ name: knp_menu.menu_builder, method: build, alias: admin_product }]
     
-    App\Repository\ProductRepository:
-        class: App\Repository\ProductRepository
+    App\Store\Infrastructure\Repository\ProductRepository:
+        class: App\Store\Infrastructure\Repository\ProductRepository
     
-    App\Service\Uploader\FileUploader:
+    App\Common\Infrastructure\Uploader\FileUploader:
         arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]
-#    App\Service\Uploader\FileUploader:
+#    App\Common\Infrastructure\Uploader\FileUploader:
 #        arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%' ]

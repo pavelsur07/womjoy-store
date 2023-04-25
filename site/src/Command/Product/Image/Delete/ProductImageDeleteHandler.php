@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Command\Product\Image\Delete;
 
-use App\Repository\Flusher;
-use App\Repository\ImageRepository;
-use App\Service\Uploader\FileUploader;
+use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Uploader\FileUploader;
+use App\Store\Infrastructure\Repository\ImageRepository;
 use League\Flysystem\FilesystemException;
 
 final readonly class ProductImageDeleteHandler
