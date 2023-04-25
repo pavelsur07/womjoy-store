@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Uploader;
+namespace App\Common\Infrastructure\Uploader;
 
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
