@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller;
 
-use App\Store\Domain\Entity\Product;
+use App\Store\Domain\Entity\Product\Product;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

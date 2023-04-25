@@ -10,11 +10,8 @@ use Twig\TwigFunction;
 
 class StoragePathExtension extends AbstractExtension
 {
-    private $uploader;
-
-    public function __construct(FileUploader $uploader)
+    public function __construct(private readonly FileUploader $uploader)
     {
-        $this->uploader = $uploader;
     }
 
     public function getFunctions(): array

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Auth;
 
 use App\Auth\Domain\Entity\User;
+use App\Auth\Infrastructure\Form\UserRegistrationType;
 use App\Auth\Infrastructure\Repository\UserRepository;
-use App\Form\UserRegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

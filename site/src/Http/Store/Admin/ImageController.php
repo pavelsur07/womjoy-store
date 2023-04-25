@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Store\Admin;
 
-use App\Command\Product\Image\Add\File;
-use App\Command\Product\Image\Add\ProductImageAddCommand;
-use App\Command\Product\Image\Add\ProductImageHandler;
-use App\Command\Product\Image\Delete\ProductImageDeleteCommand;
-use App\Command\Product\Image\Delete\ProductImageDeleteHandler;
 use App\Common\Infrastructure\Uploader\FileUploader;
-use App\Form\ProductImageAddForm;
+use App\Store\Application\Command\Product\Image\Add\File;
+use App\Store\Application\Command\Product\Image\Add\ProductImageAddCommand;
+use App\Store\Application\Command\Product\Image\Add\ProductImageHandler;
+use App\Store\Application\Command\Product\Image\Delete\ProductImageDeleteCommand;
+use App\Store\Application\Command\Product\Image\Delete\ProductImageDeleteHandler;
+use App\Store\Infrastructure\Form\Product\ProductImageAddForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

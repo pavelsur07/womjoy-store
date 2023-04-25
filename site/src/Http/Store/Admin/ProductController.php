@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Store\Admin;
 
-use App\Form\ProductType;
-use App\Store\Domain\Entity\Product;
+use App\Store\Domain\Entity\Product\Product;
+use App\Store\Infrastructure\Form\Product\ProductType;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

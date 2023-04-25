@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Repository;
 
-use App\Store\Domain\Entity\Variant;
+use App\Store\Domain\Entity\Product\Variant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

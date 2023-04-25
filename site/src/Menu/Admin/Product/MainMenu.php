@@ -18,7 +18,7 @@ class MainMenu
         $menu = $this->factory->createItem('root')
             ->setChildrenAttributes(
                 [
-                    'class' => 'nav nav-tabs card-header-tabs',
+                    'class' => 'nav nav-tabs',
                     'data-bs-toggle' => 'tabs',
                 ]
             );

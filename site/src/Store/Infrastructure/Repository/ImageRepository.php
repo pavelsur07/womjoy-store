@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Repository;
 
-use App\Store\Domain\Entity\Image;
+use App\Store\Domain\Entity\Product\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use DomainException;
