@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Entity\User;
+namespace App\Auth\Domain\Entity;
 
-use App\Repository\UserRepository;
+use App\Auth\Infrastructure\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Auth\Admin;
 
-use App\Entity\User\User;
+use App\Auth\Domain\Entity\User;
+use App\Auth\Infrastructure\Repository\UserRepository;
 use App\Form\User\UserChangePasswordForm;
 use App\Form\User\UserType;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

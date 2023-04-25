@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\User;
 
-use App\Entity\User\User;
+use App\Auth\Domain\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

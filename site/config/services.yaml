@@ -28,6 +28,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    
     Aws\S3\S3Client:
         arguments:
             - version: '2006-03-01'

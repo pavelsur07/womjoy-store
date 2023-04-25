@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Command\User\Change\Password;
 
+use App\Auth\Infrastructure\Repository\UserRepository;
 use App\Repository\Flusher;
-use App\Repository\UserRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final readonly class UserChangePasswordHandler
