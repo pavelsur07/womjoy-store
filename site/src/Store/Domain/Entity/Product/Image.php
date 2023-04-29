@@ -26,7 +26,7 @@ class Image
     private ?string $name = null;
 
     #[ORM\Column]
-    private ?int $sort = null;
+    private ?int $sort = 0;
 
     #[ORM\Column]
     private ?int $size = null;
