@@ -12,7 +12,7 @@ readonly class CartService
 {
     public function __construct(
         private CartRepositoryInterface $carts,
-        private Flusher                 $flusher,
+        private Flusher $flusher,
     ) {
     }
 
