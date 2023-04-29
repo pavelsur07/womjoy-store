@@ -12,7 +12,7 @@ readonly class HomeService
 {
     public function __construct(
         private HomeSettingRepositoryInterface $repo,
-        private Flusher                        $flusher,
+        private Flusher $flusher,
     ) {
     }
 
