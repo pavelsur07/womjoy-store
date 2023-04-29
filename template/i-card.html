@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Womjoy</title>
+
+	<!-- <link rel="stylesheet" href="./libs/swiper/swiper.min.css"> -->
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+	<div class="h-grid-12-col hidden">
+        <div class="h-grid-12-col-items">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <header class="header">
+		<div class="wrapper">
+			<div class="header__main">
+				<div class="header__left">
+					<a href="#" class="header__logo">
+						<img src="./img/logo.svg" alt="" width="205" height="36">
+					</a>
+					<div class="country">
+						<button class="country__crnt" type="button">
+							<img src="./img/countries/ru.svg" alt="" width="24" height="24" class="country__crnt_flag">
+							<img src="./img/icons/arrow-down.svg" alt="" width="20" height="20" class="country__crnt_arrow">
+						</button>
+						<form class="country__content">
+							<button class="country__close" type="button">
+								<img src="./img/icons/close.svg" alt="" width="24" height="24">
+							</button>
+							<div class="country__field sel-field">
+								<span class="sel-field__ph">Выберите страну</span>
+								<div class="sel-field__main">
+									<span class="sel-field__left">
+										<img src="./img/countries/ru.svg" alt="" width="24" height="24">
+									</span>
+									<select class="sel-field__sel">
+										<option value="" selected>Россия</option>
+										<option value="">Грузия</option>
+										<option value="">Казахстан</option>
+									</select>
+								</div>
+							</div>
+							<div class="country__field sel-field">
+								<span class="sel-field__ph">Валюта</span>
+								<div class="sel-field__main">
+									<span class="sel-field__left">
+										₽ <span>/</span>
+									</span>
+									<select class="sel-field__sel">
+										<option value="" selected>Рубль</option>
+										<option value="">Рубль</option>
+										<option value="">Рубль</option>
+									</select>
+								</div>
+							</div>
+							<button class="btn-primary" type="submit">Подтвердить</button>
+						</form>
+					</div>
+					<div class="burger">
+						<span class="burger__item"></span>
+						<span class="burger__item"></span>
+						<span class="burger__item"></span>
+					</div>
+				</div>
+				<form class="search">
+					<input type="text" class="search__inp" placeholder="Я хочу найти">
+					<button class="search__submit" type="submit">
+						<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43" fill-opacity="0.4"/>
+						</svg>
+					</button>
+				</form>
+				<ul class="header__actions">
+					<li>
+						<a href="#">
+							<img src="./img/icons/trace.svg" alt="" width="24" height="24">
+							Отследить
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/cabinet.svg" alt="" width="24" height="24">
+							Кабинет
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/favourite.svg" alt="" width="24" height="24">
+							Избранное
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/cart.svg" alt="" width="24" height="24">
+							Корзина
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="header__bottom">
+			<div class="wrapper">
+				<nav class="nav">
+					<ul class="nav__list">
+						<li class="nav__item menu-droper">
+							<a href="#" class="nav__link">Женщинам</a>
+							<div class="menu">
+								<div class="wrapper">
+									<div class="menu__content">
+										<div class="menu__cols">
+											<div class="menu__col">
+												<div class="menu__title">Щенщинам</div>
+												<ul class="menu__list">
+													<li><a href="#">Брюки</a></li>
+													<li><a href="#">Леггинсы</a></li>
+													<li><a href="#">Топы</a></li>
+													<li><a href="#">Рашгарды</a></li>
+													<li><a href="#">Футболки</a></li>
+													<li><a href="#">Худи</a></li>
+													<li><a href="#">Шорты</a></li>
+													<li><a href="#">Аксессуары</a></li>
+												</ul>
+											</div>
+											<div class="menu__col">
+												<div class="menu__title">Занятия</div>
+												<ul class="menu__list">
+													<li><a href="#">Йога</a></li>
+													<li><a href="#">Фитнес</a></li>
+													<li><a href="#">Бег</a></li>
+													<li><a href="#">Активный отдых</a></li>
+													<li><a href="#">Полиденс</a></li>
+												</ul>
+											</div>
+											<div class="menu__col">
+												<div class="menu__title">Спецпредложения</div>
+												<ul class="menu__list">
+													<li><a href="#">Весна 2023</a></li>
+													<li><a href="#">Новинки</a></li>
+													<li><a href="#">Распродажа</a></li>
+													<li><a href="#">Скоро в продаже</a></li>
+												</ul>
+											</div>
+										</div>
+										<a href="#" class="menu__banner">
+											<img src="./img/banners/menu-banner.webp" alt="" width="392" height="290">
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
+						<li class="nav__item drop">
+							<a href="#" class="nav__link">Покупателям</a>
+							<ul class="drop__list">
+								<li class="drop__item"><a href="#" class="drop__link">Доставка и оплата</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">Обмен и возврат</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">О компании</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">Личный кабинет</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</header>
+
+	<div class="burger-menu">
+		<div class="wrapper">
+			<form class="search">
+				<input type="text" class="search__inp" placeholder="Я хочу найти">
+				<button class="search__submit" type="submit">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
+					</svg>
+				</button>
+			</form>
+			<ul class="burger-menu__list">
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Щенщинам</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+						<li><a href="#">Рашгарды</a></li>
+						<li><a href="#">Футболки</a></li>
+						<li><a href="#">Худи</a></li>
+						<li><a href="#">Шорты</a></li>
+						<li><a href="#">Аксессуары</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Занятия</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Спецпредложения</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Покупателям</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="catalog-menu">
+		<div class="wrapper">
+			<form class="search">
+				<input type="text" class="search__inp" placeholder="Я хочу найти">
+				<button class="search__submit" type="submit">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
+					</svg>
+				</button>
+			</form>
+			<div class="cat__items">
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Брюки</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-1.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Леггинсы</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-2.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Топы</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-3.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Рашгарды</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-4.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Футболки</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-5.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Худи</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-6.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Шорты</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-7.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<div class="cat__item cat__sale">
+					<span class="cat__sale_alert">%</span>
+					<span class="cat__sale_name">Распродажа</span>
+				</div>
+			</div>
+
+			<ul class="catalog-menu__list">
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Щенщинам</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+						<li><a href="#">Рашгарды</a></li>
+						<li><a href="#">Футболки</a></li>
+						<li><a href="#">Худи</a></li>
+						<li><a href="#">Шорты</a></li>
+						<li><a href="#">Аксессуары</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Занятия</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Спецпредложения</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Покупателям</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+    <section class="i-card">
+    	<div class="wrapper">
+    		<nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="#">Каталог</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Лонгслив</li>
+                </ol>
+            </nav>
+    		<div class="i-card__content">
+    			<div class="i-card__images">
+    				<span class="i-card__sellout">Распродажа</span>
+                    <a href="#" class="i-card__back">
+                        <img src="./img/icons/arrow-left-tail.svg" alt="" width="24" height="24">
+                    </a>
+    				<div class="i-card__slider">
+    					<div class="i-card-swiper swiper">
+    						<div class="swiper-wrapper">
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-1-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-2-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-3-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-4-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-5-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-6-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-4-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-5-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    							<div class="i-card__slide swiper-slide">
+    								<div class="i-card__slide_img">
+	    								<img src="./img/i-card/img-6-lg.webp" alt="" width="598" height="798">
+	    							</div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    				<div class="i-card__smslider">
+    					<div class="i-card-smswiper swiper">
+    						<div class="swiper-wrapper">
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-1-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-2-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-3-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-4-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-5-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-6-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-4-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-5-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    							<div class="i-card__smslide swiper-slide">
+    								<div class="i-card__smslide_img">
+	    								<img src="./img/i-card/img-6-sm.webp" alt="" width="83" height="111">
+	    							</div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="i-card__main">
+    				<h1 class="i-card__title">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</h1>
+    				<div class="i-card__info">
+    					<div class="rating">
+    						<div class="rating__stars">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star.svg" alt="" width="16" height="16">
+    						</div>
+    						<span class="rating__crnt">25 отзывов</span>
+    					</div>
+    					<span class="i-card__id">Арт: 2000779532052</span>
+    				</div>
+    				<div class="i-card__size">
+    					<div class="i-card__size_top">
+    						<span class="gray">Размер</span>
+    						<div class="i-card__size_table call-modal" data-target="card-sizes">
+    							<img src="./img/icons/ruler.svg" alt="" width="20" height="20">
+    							Таблица размеров
+    						</div>
+    					</div>
+    					<div class="i-card__size_items">
+							<label class="i-card__size_item">
+								<input type="radio" name="card-size" checked hidden>
+								<span class="i-card__size_visual">
+									XS
+									<span>40-42</span>
+								</span>
+							</label>
+							<label class="i-card__size_item">
+								<input type="radio" name="card-size" hidden>
+								<span class="i-card__size_visual">
+									XS
+									<span>40-42</span>
+								</span>
+							</label>
+							<label class="i-card__size_item disabled">
+								<input type="radio" name="card-size" hidden>
+								<span class="i-card__size_visual">
+									XS
+									<span>40-42</span>
+								</span>
+							</label>
+							<label class="i-card__size_item">
+								<input type="radio" name="card-size" hidden>
+								<span class="i-card__size_visual">
+									XS
+									<span>40-42</span>
+								</span>
+							</label>
+                            <label class="i-card__size_item">
+                                <input type="radio" name="card-size" hidden>
+                                <span class="i-card__size_visual">
+                                    XS
+                                    <span>40-42</span>
+                                </span>
+                            </label>
+                            <label class="i-card__size_item disabled">
+                                <input type="radio" name="card-size" hidden>
+                                <span class="i-card__size_visual">
+                                    XS
+                                    <span>40-42</span>
+                                </span>
+                            </label>
+                            <label class="i-card__size_item">
+                                <input type="radio" name="card-size" hidden>
+                                <span class="i-card__size_visual">
+                                    XS
+                                    <span>40-42</span>
+                                </span>
+                            </label>
+                            <label class="i-card__size_item">
+                                <input type="radio" name="card-size" hidden>
+                                <span class="i-card__size_visual">
+                                    XS
+                                    <span>40-42</span>
+                                </span>
+                            </label>
+    					</div>
+    				</div>
+    				<div class="i-card__color">
+    					<span class="i-card__color_title">Цвет</span>
+    					<div class="i-card__color_items">
+    						<label class="i-card__color_item">
+    							<input type="radio" name="card-color" checked hidden>
+    							<span style="background-color: #9EDFE5;"></span>
+    						</label>
+    						<label class="i-card__color_item">
+    							<input type="radio" name="card-color" hidden>
+    							<span style="background-color: #6E72A8;"></span>
+    						</label>
+    						<label class="i-card__color_item">
+    							<input type="radio" name="card-color" hidden>
+    							<span style="background-color: #3740B4;"></span>
+    						</label>
+    						<label class="i-card__color_item">
+    							<input type="radio" name="card-color" hidden>
+    							<span style="background-color: #A8AAB6;"></span>
+    						</label>
+    						<label class="i-card__color_item">
+    							<input type="radio" name="card-color" hidden>
+    							<span style="background-color: #27262C;"></span>
+    						</label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #9EDFE5;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #6E72A8;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #3740B4;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #A8AAB6;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #27262C;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #3740B4;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #A8AAB6;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #27262C;"></span>
+                            </label>
+    					</div>
+    				</div>
+    				<div class="i-card__price">
+    					<span class="i-card__cost">1 299 ₽</span>
+    					<del class="i-card__oldcost">1 299 ₽</del>
+    					<span class="i-card__sale">-30%</span>
+    				</div>
+    				<div class="i-card__btns">
+    					<button class="i-card__greenbtn btn-primary" type="button">
+    						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+    						В корзину
+    					</button>
+    					<button class="i-card__graybtn" type="button">
+    						<img src="./img/icons/favourite.svg" alt="" width="20" height="20">
+    						В избранное
+    					</button>
+    				</div>
+    				<div class="i-card__btns">
+    					<button class="i-card__greenbtn btn-primary" type="button">
+    						Оформить предзаказ
+    					</button>
+    					<button class="i-card__graybtn" type="button">
+    						<img src="./img/icons/favourite.svg" alt="" width="20" height="20">
+    						В избранное
+    					</button>
+    				</div>
+    				<div class="i-card__btns">
+    					<button class="i-card__greenbtn btn-primary call-modal" type="button" data-target="card-inform">
+    						Сообщить о поступлении
+    					</button>
+    					<button class="i-card__graybtn" type="button">
+    						<img src="./img/icons/favourite.svg" alt="" width="20" height="20">
+    						В избранное
+    					</button>
+    				</div>
+                    <div class="i-card__more">
+        				<div class="i-card__delivery">
+        					<img src="./img/icons/trace.svg" alt="" width="24" height="24">
+        					Доставка 1-2 дня
+        				</div>
+                        <button class="i-card__mobfav" type="button">
+                            <img src="./img/icons/favourite.svg" alt="" width="20" height="20">
+                            В избранное
+                        </button>
+                    </div>
+                    <div class="i-card__marketplace">
+                        <p class="i-card__marketplace_title">Купить на маркетплейсах</p>
+                        <div class="i-card__marketplace_list">
+                            <a href="#" class="i-card__marketplace_item"><img src="./img/icons/wb.png" alt="" width="40" height="40">Wildberries</a>
+                            <a href="#" class="i-card__marketplace_item"><img src="./img/icons/ozon.png" alt="" width="40" height="40">Ozon</a>
+                            <a href="#" class="i-card__marketplace_item"><img src="./img/icons/ym.png" alt="" width="40" height="40">Яндекс Маркет</a>
+                        </div>
+                    </div>
+
+    				<div class="i-card__faq">
+    					<div class="i-card__faq_item">
+    						<div class="i-card__faq_ask">Описание</div>
+    						<div class="i-card__faq_answer">
+    							<p>Идеальный лонгслив, в котором совершенна каждая деталь, существует! И это – Womjoy Сlassic Logo Black. В нем продумана каждая мелочь, чтобы во время активных нагрузок в зале, на пробежке, на занятиях по фитнесу, йоге или пилатесу ты не ощущала ни малейшего дискомфорта. Эта модель изготовлена из спортивной эластичной ткани с плоскими швами, которая отводит влагу и позволяет коже дышать</p>
+    						</div>
+    					</div>
+    					<div class="i-card__faq_item">
+    						<div class="i-card__faq_ask">Состав и уход</div>
+    						<div class="i-card__faq_answer">
+    							<p>Состав: полиэстер, эластан</p>
+                                <ul class="i-card__faq_icons">
+                                    <li><img src="./img/icons/card-faq-icon-1.svg" alt="" width="32" height="32"></li>
+                                    <li><img src="./img/icons/card-faq-icon-2.svg" alt="" width="32" height="32"></li>
+                                    <li><img src="./img/icons/card-faq-icon-3.svg" alt="" width="32" height="32"></li>
+                                    <li><img src="./img/icons/card-faq-icon-4.svg" alt="" width="32" height="32"></li>
+                                </ul>
+                                <p>Бережная стирка при 30 градусах, отбеливание запрещено, глажка запрещена, химическая чистка запрещена</p>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <section class="products section">
+		<div class="wrapper">
+			<div class="section-top">
+				<h2 class="section-title">Возможно, вам понравится</h2>
+			</div>
+
+			<div class="products__slider">
+	<div class="products-swiper swiper">
+		<div class="swiper-wrapper">
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+					<li><a href="#" style="background-color: #27262C;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+					<li><a href="#" style="background-color: #27262C;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+					<li><a href="#" style="background-color: #27262C;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+		</div>
+		<button class="slider-btn-prev" type="button"><img src="./img/icons/arrow-left.svg" alt="" width="24" height="24"></button>
+		<button class="slider-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt="" width="24" height="24"></button>
+	</div>
+</div>
+		</div>
+	</section>
+
+	<section class="p-review section">
+		<div class="wrapper">
+			<div class="section-top">
+				<h2 class="section-title">Отзывы о товаре</h2>
+			</div>
+			<div class="p-review__photos">
+				<span class="p-review__photos_title">Фотографии покупателей (234)</span>
+				<div class="p-review__slider">
+					<div class="p-review-swiper swiper">
+						<div class="swiper-wrapper">
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-1.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-2.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-3.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-4.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-1.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-2.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-3.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-4.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-1.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-2.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-3.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+							<div class="p-review__slide swiper-slide">
+								<div class="p-review__slide_img">
+									<img src="./img/i-card/review-photos/img-4.webp" alt="" width="120" height="160">
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="p-review-btn-next">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M8.46967 5.46967C8.17678 5.76256 8.17678 6.23744 8.46967 6.53033L13.9393 12L8.46967 17.4697C8.17678 17.7626 8.17678 18.2374 8.46967 18.5303C8.76256 18.8232 9.23744 18.8232 9.53033 18.5303L15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L9.53033 5.46967C9.23744 5.17678 8.76256 5.17678 8.46967 5.46967Z" fill="#A6AFC0"/>
+						</svg>
+					</button>
+					<button class="p-review-btn-prev">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M8.46967 5.46967C8.17678 5.76256 8.17678 6.23744 8.46967 6.53033L13.9393 12L8.46967 17.4697C8.17678 17.7626 8.17678 18.2374 8.46967 18.5303C8.76256 18.8232 9.23744 18.8232 9.53033 18.5303L15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L9.53033 5.46967C9.23744 5.17678 8.76256 5.17678 8.46967 5.46967Z" fill="#A6AFC0"/>
+						</svg>
+					</button>
+				</div>
+			</div>
+
+			<div class="p-review__items">
+				<div class="p-review__item">
+					<div class="p-review__top">
+						<div class="p-review__info">
+							<span class="p-review__name">Наталья</span>
+							<span class="p-review__dt">02 декабря 2022</span>
+						</div>
+						<div class="rating">
+    						<div class="rating__stars">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star.svg" alt="" width="16" height="16">
+    						</div>
+    					</div>
+					</div>
+					<p class="p-review__text">Отличная футболка по качеству. Цвет тёмно-синий насыщенный,как хотела. Идёт в размер, ношу 46, всё супер. Думаю закажу ещё</p>
+				</div>
+				<div class="p-review__item">
+					<div class="p-review__top">
+						<div class="p-review__info">
+							<span class="p-review__name">Евгения</span>
+							<span class="p-review__dt">Вчера</span>
+						</div>
+						<div class="rating">
+    						<div class="rating__stars">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star.svg" alt="" width="16" height="16">
+    						</div>
+    					</div>
+					</div>
+					<p class="p-review__text">Хорошая футболка. Цена супер. Хороша к телу. Цвет глубокий синий</p>
+					<div class="p-review__imgs">
+						<div class="p-review__img">
+							<div class="p-review__img_in"><img src="./img/review-imgs/img-1.png" alt="" width="80" height="100"></div>
+						</div>
+						<div class="p-review__img">
+							<div class="p-review__img_in"><img src="./img/review-imgs/img-2.png" alt="" width="80" height="100"></div>
+						</div>
+						<div class="p-review__img">
+							<div class="p-review__img_in"><img src="./img/review-imgs/img-3.png" alt="" width="80" height="100"></div>
+						</div>
+					</div>
+				</div>
+				<div class="p-review__item">
+					<div class="p-review__top">
+						<div class="p-review__info">
+							<span class="p-review__name">Наталья</span>
+							<span class="p-review__dt">02 декабря 2022</span>
+						</div>
+						<div class="rating">
+    						<div class="rating__stars">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star-active.svg" alt="" width="16" height="16">
+    							<img src="./img/icons/star.svg" alt="" width="16" height="16">
+    						</div>
+    					</div>
+					</div>
+					<p class="p-review__text">Отличная футболка по качеству. Цвет тёмно-синий насыщенный,как хотела. Идёт в размер, ношу 46, всё супер. Думаю закажу ещё</p>
+				</div>
+			</div>
+			<button class="p-review__btn" type="button">
+				Показать ещё
+				<img src="./img/icons/arrow-down-tail.svg" alt="" width="20" height="20">
+			</button>
+		</div>
+	</section>
+
+	<section class="products section">
+		<div class="wrapper">
+			<div class="section-top">
+				<h2 class="section-title">Идеи образа от стилиста</h2>
+			</div>
+
+			<div class="products__slider">
+	<div class="products-swiper swiper">
+		<div class="swiper-wrapper">
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+					<li><a href="#" style="background-color: #27262C;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+					<li><a href="#" style="background-color: #27262C;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+			<div class="product swiper-slide">
+				<div class="product__img">
+					<div class="product__img_slider swiper">
+						<div class="swiper-wrapper">
+							<div class="product__img_slide swiper-slide active">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-1.webp" alt="" width="289" height="384">
+							</div>
+							<div class="product__img_slide swiper-slide">
+								<img src="./img/products/img-2.webp" alt="" width="289" height="384">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="product__row">
+					<span class="product__cost">1 299 ₽</span>
+					<del class="product__old">1 299 ₽</del>
+					<span class="product__sale">-30%</span>
+				</div>
+				<p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+				<ul class="product__colors">
+					<li><a href="#" style="background-color: #9EDFE5;"></a></li>
+					<li><a href="#" style="background-color: #6E72A8;"></a></li>
+					<li><a href="#" style="background-color: #3740B4;"></a></li>
+					<li><a href="#" style="background-color: #A8AAB6;"></a></li>
+					<li><a href="#" style="background-color: #27262C;"></a></li>
+				</ul>
+				<div class="product__hidden">
+					<button class="product__addtocart btn-primary" type="button">
+						<img src="./img/icons/cart.svg" alt="" width="20" height="20">
+						В корзину
+					</button>
+					<div class="product__sizes">Размеры: XS S M L</div>
+				</div>
+			</div>
+		</div>
+		<button class="slider-btn-prev" type="button"><img src="./img/icons/arrow-left.svg" alt="" width="24" height="24"></button>
+		<button class="slider-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt="" width="24" height="24"></button>
+	</div>
+</div>
+		</div>
+	</section>
+
+	<section class="recent section">
+        <div class="wrapper">
+            <div class="section-top">
+                <h2 class="section-title">Вы недавно смотрели</h2>
+            </div>
+            <div class="recent__slider">
+                <div class="recent-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <div class="recent__slide swiper-slide">
+                            <div class="recent__img">
+                                <span class="recent__img_in">
+                                    <img src="./img/recent/img-1.png" alt="" width="150" height="199">
+                                </span>
+                            </div>
+                            <div class="recent__main">
+                                <span class="recent__sale">-30%</span>
+                                <div class="recent__price">
+                                    <span class="recent__cost">1 299 ₽</span>
+                                    <del class="recent__old">1 299 ₽</del>
+                                </div>
+                                <p class="recent__name">Легинсы женские спортивные с высокой посадкой серые Sexy Logo серые Sexy Logo серые Sexy Logo</p>
+                            </div>
+                        </div>
+                        <div class="recent__slide swiper-slide">
+                            <div class="recent__img">
+                                <span class="recent__img_in">
+                                    <img src="./img/recent/img-1.png" alt="" width="150" height="199">
+                                </span>
+                            </div>
+                            <div class="recent__main">
+                                <div class="recent__price">
+                                    <span class="recent__cost">1 299 ₽</span>
+                                </div>
+                                <p class="recent__name">Легинсы женские спортивные с высокой посадкой серые Sexy Logo</p>
+                            </div>
+                        </div>
+                        <div class="recent__slide swiper-slide">
+                            <div class="recent__img">
+                                <span class="recent__img_in">
+                                    <img src="./img/recent/img-1.png" alt="" width="150" height="199">
+                                </span>
+                            </div>
+                            <div class="recent__main">
+                                <div class="recent__price">
+                                    <span class="recent__cost">1 299 ₽</span>
+                                </div>
+                                <p class="recent__name">Легинсы женские спортивные с высокой посадкой серые Sexy Logo</p>
+                            </div>
+                        </div>
+                        <div class="recent__slide swiper-slide">
+                            <div class="recent__img">
+                                <span class="recent__img_in">
+                                    <img src="./img/recent/img-1.png" alt="" width="150" height="199">
+                                </span>
+                            </div>
+                            <div class="recent__main">
+                                <div class="recent__price">
+                                    <span class="recent__cost">1 299 ₽</span>
+                                </div>
+                                <p class="recent__name">Легинсы женские спортивные с высокой посадкой серые Sexy Logo</p>
+                            </div>
+                        </div>
+                        <div class="recent__slide swiper-slide">
+                            <div class="recent__img">
+                                <span class="recent__img_in">
+                                    <img src="./img/recent/img-1.png" alt="" width="150" height="199">
+                                </span>
+                            </div>
+                            <div class="recent__main">
+                                <div class="recent__price">
+                                    <span class="recent__cost">1 299 ₽</span>
+                                </div>
+                                <p class="recent__name">Легинсы женские спортивные с высокой посадкой серые Sexy Logo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="recent-btn-prev slider-btn-prev" type="button">
+                    <img src="./img/icons/arrow-left.svg" alt="" width="24" height="24">
+                </button>
+                <button class="recent-btn-next slider-btn-next" type="button">
+                    <img src="./img/icons/arrow-right.svg" alt="" width="24" height="24">
+                </button>
+            </div>
+        </div>
+    </section>
+
+	<footer class="footer">
+		<div class="wrapper">
+			<div class="footer__main">
+				<div class="footer__left">
+					<a href="#" class="footer__logo">
+						<img src="./img/logo.svg" alt="" width="205" height="36">
+					</a>
+					<div class="footer__phone">
+						<a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
+						<span class="footer__phone_descr">Звонок по РФ бесплатный</span>
+					</div>
+					<ul class="footer__socials">
+						<li><a href="#"><img src="./img/icons/vk.svg" alt="" width="40" height="40"></a></li>
+						<li><a href="#"><img src="./img/icons/tg.svg" alt="" width="40" height="40"></a></li>
+						<li><a href="#"><img src="./img/icons/wa.svg" alt="" width="40" height="40"></a></li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<div class="footer__title">Покупателям</div>
+					<ul class="footer__list">
+						<li><a href="#">Доставка и оплата</a></li>
+						<li><a href="#">Обмен и возврат</a></li>
+						<li><a href="#">Публичная оферта</a></li>
+						<li><a href="#">Политика конфиденциальности</a></li>
+						<li><a href="#">Отложенные товары</a></li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<div class="footer__title">Магазин</div>
+					<ul class="footer__list">
+						<li><a href="#">О нас</a></li>
+						<li><a href="#">Отзывы покупателей</a></li>
+						<li><a href="#">Бонусные баллы</a></li>
+						<li><a href="#">Карта сайта</a></li>
+						<li><a href="#">Личный кабинет</a></li>
+					</ul>
+				</div>
+				<div class="footer__right">
+					<div class="footer__marketplaces">
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/wb.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Wildberries</span>
+							</div>
+						</a>
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/ozon.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Ozon</span>
+							</div>
+						</a>
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/ym.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Яндекс Маркет</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer__bottom">
+			<div class="wrapper">
+				<div class="footer__bottom_row">
+					<span class="footer__copyright">© 2019 - 2023 ООО "Вумджой"</span>
+					<ul class="footer__pay">
+						<li><img src="./img/icons/visa.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/mc.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/mir.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/sbp.svg" alt="" width="58" height="40"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<ul class="mob-bar">
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link c-open">
+            	<span class="mob-bar__icon"><img src="./img/icons/catalog.svg" alt="" width="24" height="24"></span>
+                Каталог
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/trace.svg" alt="" width="24" height="24"></span>
+                Отследить
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/cabinet.svg" alt="" width="24" height="24"></span>
+                Кабинет
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/favourite.svg" alt="" width="24" height="24"></span>
+                Изрбранное
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/cart.svg" alt="" width="24" height="24"></span>
+                Корзина
+            </a>
+        </li>
+    </ul>
+
+	<div class="modal" id="card-sizes">
+		<div class="modal__bg"></div>
+		<div class="modal__content">
+			<button class="modal__close" type="button"><img src="./img/icons/close-black.svg" alt="" width="24" height="24"></button>
+			<div class="size-table">
+                <div class="size-table__titles">
+        			<p class="size-table__title active">Подберите свой <br>точный размер</p>
+                    <p class="size-table__title">Обмеры изделия</p>
+                </div>
+				<div class="size-table__tabs">
+					<div class="size-table__tab active">Таблица размеров</div>
+					<div class="size-table__tab">Обмеры изделия</div>
+				</div>
+                <div class="size-table__contents">
+                    <div class="size-table__content active">
+        				<p class="size-table__descr">Общая таблица размеров показывает нашу стандартную размерную линейку</p>
+        				<div class="size-table__main">
+        					<table class="size-table__choose">
+        						<thead>
+        							<tr>
+        								<th>INT</th>
+        								<th>RU</th>
+        								<th>Обхват груди</th>
+        								<th>Обхват талии</th>
+        								<th>Обхват бедер</th>
+        							</tr>
+        						</thead>
+        						<tbody>
+        							<tr>
+        								<td>XXS</td>
+        								<td>40</td>
+        								<td>80</td>
+        								<td>60</td>
+        								<td>88</td>
+        							</tr>
+                                    <tr>
+                                        <td>XS</td>
+                                        <td>40</td>
+                                        <td>80</td>
+                                        <td>60</td>
+                                        <td>88</td>
+                                    </tr>
+                                    <tr>
+                                        <td>S</td>
+                                        <td>40</td>
+                                        <td>80</td>
+                                        <td>60</td>
+                                        <td>88</td>
+                                    </tr>
+                                    <tr>
+                                        <td>M</td>
+                                        <td>40</td>
+                                        <td>80</td>
+                                        <td>60</td>
+                                        <td>88</td>
+                                    </tr>
+                                    <tr>
+                                        <td>L</td>
+                                        <td>40</td>
+                                        <td>80</td>
+                                        <td>60</td>
+                                        <td>88</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XL</td>
+                                        <td>40</td>
+                                        <td>80</td>
+                                        <td>60</td>
+                                        <td>88</td>
+                                    </tr>
+        						</tbody>
+        					</table>
+        				</div>
+                        <p class="size-table__sm">*Все размеры указаны в см</p>
+                    </div>
+                    <div class="size-table__content">
+                        <div class="size-table__main">
+                            <table class="size-table__obmer">
+                                <thead>
+                                    <tr>
+                                        <th>Размер</th>
+                                        <th>XS</th>
+                                        <th>S</th>
+                                        <th>M</th>
+                                        <th>L</th>
+                                        <th>XL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Длина по спинке</td>
+                                        <td>120</td>
+                                        <td>124</td>
+                                        <td>125</td>
+                                        <td>126</td>
+                                        <td>127</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Длина под проймой</td>
+                                        <td>120</td>
+                                        <td>124</td>
+                                        <td>125</td>
+                                        <td>126</td>
+                                        <td>127</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Обхват по бёдрам</td>
+                                        <td>120</td>
+                                        <td>124</td>
+                                        <td>125</td>
+                                        <td>126</td>
+                                        <td>127</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Длина рукава с плечом</td>
+                                        <td>120</td>
+                                        <td>124</td>
+                                        <td>125</td>
+                                        <td>126</td>
+                                        <td>127</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="size-table__sm">*Все размеры указаны в см</p>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+
+    <div class="modal modal-dark" id="card-inform">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <button class="modal__close" type="button"><img src="./img/icons/close-white.svg" alt="" width="24" height="24"></button>
+            <div class="inform">
+                <div class="inform__top">
+                    <p class="inform__title">Будем держать в курсе</p>
+                    <p class="inform__descr">Как только товар появится в продаже, мы сразу сообщим</p>
+                </div>
+                <form class="inform__form">
+                    <div class="inform__form_row">
+                        <div class="inform__field field">
+                            <span class="field__ph">Электронная почта</span>
+                            <input type="text" class="field__inp" value="email@example.com">
+                        </div>
+                        <button class="inform__submit btn-primary" type="submit">Подписаться</button>
+                    </div>
+                    <label class="inform__check">
+                        <input type="checkbox" checked hidden>
+                        <span class="inform__check_sq">
+                            <img src="./img/icons/check-black.svg" alt="" width="18" height="18">
+                        </span>
+                        Согласен с условиями Правил пользования торговой площадкой
+                    </label>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+	<script src="./libs/swiper/swiper.min.js"></script>
+	<script src="./js/script.js"></script>
+</body>
+</html>

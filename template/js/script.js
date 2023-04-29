@@ -38,10 +38,34 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	const modalCallers = document.querySelectorAll('.call-modal');
+	modalCallers.forEach(modalCaller => modalCaller.addEventListener('click', () => {
+		const modal = document.querySelector('#' + modalCaller.dataset.target);
+		modal.classList.add('active');
+		modal.querySelectorAll('.modal__close, .modal__bg').forEach(closer => closer.addEventListener('click', () => modal.classList.remove('active')));
+	}));
+
+	const sizeTabs = document.querySelectorAll('.size-table__tab');
+	const sizeTitles = document.querySelectorAll('.size-table__title');
+	const sizeContents = document.querySelectorAll('.size-table__content');
+
+	sizeTabs.forEach(sizeTab => sizeTab.addEventListener('click', function() {
+		classToggle([sizeTabs, sizeTitles, sizeContents]);
+	}));
+	function classToggle(items) {
+		items.forEach(item => item.forEach(subItem => {
+			subItem.classList.toggle('active');
+		}));
+	}
+
+
 	const faqItems = document.querySelectorAll('.faq__item');
 	faqItems.forEach(item => item.querySelector('.faq__ask').addEventListener('click', () => {
-		console.log(item)
 		toggleItem(item.querySelector('.faq__ask'), item.querySelector('.faq__answer'));
+	}));
+	const cardFaqItems = document.querySelectorAll('.i-card__faq_item');
+	cardFaqItems.forEach(item => item.querySelector('.i-card__faq_ask').addEventListener('click', () => {
+		toggleItem(item.querySelector('.i-card__faq_ask'), item.querySelector('.i-card__faq_answer'));
 	}));
 
 	const countryBtn = document.querySelector('.country__crnt');
@@ -137,6 +161,60 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 				480: {
 					spaceBetween: 20,
+				},
+			}
+		});
+	}
+
+	if (document.querySelector('.i-card-swiper')) {
+		const thumbs = new Swiper('.i-card-smswiper', {
+			slidesPerView: 6,
+			spaceBetween: 20,
+		});
+
+		new Swiper('.i-card-swiper', {
+			slidesPerView: 1,
+			spaceBetween: 10,
+			thumbs: {
+				swiper: thumbs
+			},
+			breakpoints: {
+				0: {
+					slidesPerView: 1.2,
+					spaceBetween: 5,
+				},
+				481: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				}
+			}
+		});
+	}
+
+	if (document.querySelector('.p-review-swiper')) {
+		const productReviewSwiper = document.querySelector('.p-review__slider');
+		new Swiper('.p-review-swiper', {
+			slidesPerView: 'auto',
+			spaceBetween: 15,
+			navigation: {
+				nextEl: '.p-review-btn-next',
+				prevEl: '.p-review-btn-prev',
+			},
+			on: {
+				slideChange: function(swiper) {
+					if (swiper.isEnd) {
+						productReviewSwiper.classList.add('active');
+					} else {
+						productReviewSwiper.classList.remove('active');
+					}
+				},
+			},
+			breakpoints: {
+				0: {
+					spaceBetween: 10,
+				},
+				481: {
+					spaceBetween: 15,
 				},
 			}
 		});
@@ -245,4 +323,18 @@ function jsHeightAnimation(el, isReverse, onFinish) {
         el.jsAnimated = false
         onFinish();
     });
+}
+
+function tabInit(headsSel, contentsSel) {
+    const heads = document.querySelectorAll(headsSel);
+    const contents = document.querySelectorAll(contentsSel);
+
+    if (heads.length > 0) {
+		heads.forEach((head, i) => head.addEventListener('click', () => {
+			document.querySelector(`${headsSel}.active`).classList.remove('active');
+			document.querySelector(`${contentsSel}.active`).classList.remove('active');
+			head.classList.add('active');
+			contents[i].classList.add('active');
+		}));
+    }
 }

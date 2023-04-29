@@ -147,81 +147,45 @@ services:
       - traefik.http.routers.mailer.rule=Host(`mailer.localhost`)
       - traefik.http.routers.mailer.entryPoints=http
       - traefik.http.services.mailer.loadBalancer.server.port=8025
-
-  static-nginx:
-    image: nginx
-    volumes:
-      - static-data:/usr/share/nginx/html
-      - s3-data:/usr/share/nginx/html/s3
+      
+  static-storage:
+    image: minio/minio
     environment:
-      - NGINX_PROXY_CACHE_PATH=/var/cache/nginx
-      - NGINX_GZIP=on
-      - NGINX_GZIP_TYPES=text/plain text/css application/json application/javascript
-      - NGINX_FASTCGI_BUFFER_SIZE=128k
-      - NGINX_CLIENT_MAX_BODY_SIZE=10M
-      - NGINX_WORKER_CONNECTIONS=1024
-      - NGINX_KEEPALIVE_TIMEOUT=65
-      - NGINX_SERVER_NAME_HASH_BUCKET_SIZE=64
-    networks:
-      - traefik-public
-      - default
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-public
-      - traefik.http.routers.static.rule=Host(`static.localhost`)
-      - traefik.http.routers.static.entryPoints=http
-      - traefik.http.services.static.loadBalancer.server.port=80
-    #static.localhost -
-    #static.unionmall.ru - в проде
-    #настройки nginx
-    #сервис для загруз статических файлов по протоколу ftp или s3, лучше s3 только чтоб проблем с лицензий не было
-    #настройки кэширования статики, сжатия и т.д.
-
-  static-minio:
-    image: minio/mc
-    volumes:
-      - s3-data:/data
-    command: ["mc", "mirror", "--remove", "s3/bucketname", "/data"]
-    environment:
-      - MINIO_ALIAS=mys3
-      - MINIO_ACCESS_KEY=minioaccesskey
-      - MINIO_SECRET_KEY=miniosecretkey
-    networks:
-      - traefik-public
-      - default
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-public
-      - traefik.http.routers.minio.rule=Host(`s3.localhost`)
-      - traefik.http.routers.minio.entryPoints=http
-      - traefik.http.services.minio.loadBalancer.server.port=80
-
-  storage:
-    build:
-      context: ./storage/docker
-      dockerfile: development/Dockerfile
-    volumes:
-      - ./storage:/app
-    networks:
-      - traefik-public
-      - default
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-public
-      - traefik.http.routers.storage.rule=Host(`storage.localhost`)
-      - traefik.http.routers.storage.entryPoints=http
-      - traefik.http.services.storage.loadBalancer.server.port=80
-  
-  storage-ftp:
-    image: stilliard/pure-ftpd
+      MINIO_ROOT_USER: storage_app
+      MINIO_ROOT_PASSWORD: secret_key
     ports:
-      - "21:21"
-    environment:
-      FTP_USER_NAME: app
-      FTP_USER_PASS: secret
-      FTP_USER_HOME: /app
+      - "9000:9000"
+      - "9090:9090"
     volumes:
-      - ./storage/public:/app
+      #- ./storage/public:/data
+      - static-storage:/data
+    #entrypoint: sh -c 'mkdir -p /data/static && docker-entrypoint.sh minio server /data --console-address ":80"'
+    entrypoint: sh -c 'docker-entrypoint.sh minio server /data --console-address ":80"'
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.static-storage.rule=Host(`static-storage.localhost`)
+      - traefik.http.routers.static-storage.entryPoints=http
+      - traefik.http.services.static-storage.loadBalancer.server.port=80
+  
+  static-storage-create-buckets:
+    image: minio/mc
+    depends_on:
+      - static-storage
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://static-storage:9000 storage_app secret_key;
+      /usr/bin/mc mb myminio/static;
+      /usr/bin/mc policy set download myminio/static;
+      /usr/bin/mc policy set public myminio/static;
+      exit 0;
+      "
+    networks:
+      - traefik-public
+      - default
 
   adminer:
     image: adminer
@@ -244,8 +208,8 @@ volumes:
   site-postgres:
   site-redis:
   composer:
-  static-data:
-  s3-data:
+  static-storage:
+  nginx-data:
   
 networks:
   traefik-public:
