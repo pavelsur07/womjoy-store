@@ -1,0 +1,63 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('admin.product.new') }}">Create new</a>
+    </div>
+    <div class="card card-body">
+        <h1>Matrix index</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Article</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+{#            {% for product in pagination %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>
+                        {% if product.images.count > 0 %}
+                            #}{# {% set file = product.images.first.name %}#}{#
+                            #}{# {% set file_url = storage_path(file.url) %}#}{#
+                            #}{# {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}{#
+
+                            #}{# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}{#
+                            <img class="avatar avatar-sm" src=" {{ storage_path(product.images.first.patch~'/'~product.images.first.name) }} " alt="{{ product.name }}">
+                            #}{# </a>#}{#
+                        {% endif %}
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.status }}</td>
+                    <td>{{ product.seoTitle }}</td>
+                    <td>{{ product.seoDescription }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{{ path('admin.product.show', {'id': product.id}) }}">show</a>
+                        <a class="btn btn-sm btn-primary" href="{{ path('admin.product.edit', {'id': product.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}#}
+            </tbody>
+        </table>
+
+
+        {#<div class="pagination mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>#}
+    </div>
+{% endblock %}
