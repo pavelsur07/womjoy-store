@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Category;
 
-use App\Store\Domain\Repository\CategoryRepositoryInterface;
-use App\Store\Infrastructure\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Entity;
 use Gedmo\Mapping\Annotation as Gedmo;
-
 
 class Category
 {
@@ -37,22 +33,21 @@ class Category
     private int|null $rgt;
 
     #[Gedmo\TreeRoot]
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'tree_root', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private self|null $root;
 
     #[Gedmo\TreeParent]
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'children')]
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private self|null $parent;
 
     /**
      * @var ArrayCollection<int, Category>
      */
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: Category::class)]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
     #[ORM\OrderBy(['lft' => 'ASC'])]
     private Collection $children;
-
 
     public function __construct()
     {

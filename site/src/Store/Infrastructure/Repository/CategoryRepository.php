@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Repository;
 
 use App\Store\Domain\Entity\Category\Category;
-use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 class CategoryRepository extends NestedTreeRepository
