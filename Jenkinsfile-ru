@@ -55,7 +55,7 @@ pipeline {
                     string(credentialsId: 'PROD_REDIS_PASSWORD', variable: 'REDIS_PASSWORD')
                 ]) {
                     sshagent (credentials: ['PROD_AUTH']) {
-                        sh 'make deploy'
+                        sh 'make deploy-ru'
                     }
                 }
             }
