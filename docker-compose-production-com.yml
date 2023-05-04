@@ -86,7 +86,7 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://static.womjoy.ru'
+      STORAGE_BASE_URL: 'https://static.womjoy.ru/s3'
       STORAGE_FTP_HOST: 'storage-ftp'
       STORAGE_FTP_USERNAME: 'app'
       STORAGE_FTP_PASSWORD: 'secret'
@@ -117,7 +117,7 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://static.womjoy.ru'
+      STORAGE_BASE_URL: 'https://static.womjoy.ru/s3'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
