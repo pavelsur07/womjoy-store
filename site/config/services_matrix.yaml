@@ -1,0 +1,3 @@
+services:
+    App\Matrix\Domain\Repository\Product\RepositoryInterface:
+        class: App\Store\Infrastructure\Repository\ProductRepository
