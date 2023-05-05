@@ -35,17 +35,24 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function list(): array
     {
-        // TODO: Implement list() method.
-        return [];
+        return $this->repo->findAll();
     }
 
-    public function save(Product $product): void
+    public function save(Product $product, bool $flush = false): void
     {
-        // TODO: Implement save() method.
+        $this->em->persist($product);
+
+        if ($flush) {
+            $this->em->flush();
+        }
     }
 
-    public function remove(Product $product): void
+    public function remove(Product $product, bool $flush = false): void
     {
-        // TODO: Implement remove() method.
+        $this->em->remove($product);
+
+        if ($flush) {
+            $this->em->flush();
+        }
     }
 }

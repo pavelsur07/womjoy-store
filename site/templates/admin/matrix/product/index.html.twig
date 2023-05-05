@@ -38,36 +38,34 @@
             </tr>
             </thead>
             <tbody>
-{#            {% for product in pagination %}
+            {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
                     <td>
-                        {% if product.images.count > 0 %}
-                            #}{# {% set file = product.images.first.name %}#}{#
-                            #}{# {% set file_url = storage_path(file.url) %}#}{#
-                            #}{# {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}{#
+                        {#{% if product.images.count > 0 %}
+                            #}{# {% set file = product.images.first.name %}#}{##}{#
+                            #}{# {% set file_url = storage_path(file.url) %}#}{##}{#
+                            #}{# {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}{##}{#
 
-                            #}{# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}{#
+                            #}{# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}{##}{#
                             <img class="avatar avatar-sm" src=" {{ storage_path(product.images.first.patch~'/'~product.images.first.name) }} " alt="{{ product.name }}">
                             #}{# </a>#}{#
-                        {% endif %}
+                        {% endif %}#}
                     </td>
+                    <td>{{ product.article }}</td>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.status }}</td>
-                    <td>{{ product.seoTitle }}</td>
-                    <td>{{ product.seoDescription }}</td>
+                    <td>{{ product.subject }}</td>
+                    <td>status</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{ path('admin.product.show', {'id': product.id}) }}">show</a>
-                        <a class="btn btn-sm btn-primary" href="{{ path('admin.product.edit', {'id': product.id}) }}">edit</a>
+                        <a class="btn btn-sm btn-bitbucket" href="#">show</a>
+                        <a class="btn btn-sm btn-bitbucket" href="#">edit</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
                     <td colspan="8">no records found</td>
                 </tr>
-            {% endfor %}#}
+            {% endfor %}
             </tbody>
         </table>
 
