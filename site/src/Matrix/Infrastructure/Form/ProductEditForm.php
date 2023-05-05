@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Form;
 
+use App\Matrix\Domain\Entity\Model;
 use App\Matrix\Domain\Entity\Subject;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -29,6 +30,14 @@ class ProductEditForm extends AbstractType
                 EntityType::class,
                 [
                     'class' => Subject::class,
+                    'choice_label' => 'name',
+                ]
+            )
+            ->add(
+                'model',
+                EntityType::class,
+                [
+                    'class' => Model::class,
                     'choice_label' => 'name',
                 ]
             )

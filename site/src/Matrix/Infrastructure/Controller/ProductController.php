@@ -38,8 +38,9 @@ class ProductController extends AbstractController
             $product = new Product(
                 createdAt: DateTimeImmutable::createFromMutable($data['createdAt']),
                 article: $data['article'],
-                subject: $data['subject'],
                 name: $data['name'],
+                subject: $data['subject'],
+                model: $data['model'],
             );
 
             $products->save($product, true);
