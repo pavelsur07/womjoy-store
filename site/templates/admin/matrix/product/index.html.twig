@@ -28,7 +28,7 @@
             <tr>
                 <th>Id</th>
                 <th>Image</th>
-                <th>Article</th>
+                <th>Article / Color</th>
                 <th>Name</th>
                 <th>Subject</th>
                 <th>Model</th>
@@ -50,7 +50,12 @@
                             #}{# </a>#}{#
                         {% endif %}#}
                     </td>
-                    <td>{{ product.article }}</td>
+                    <td>
+                        {{ product.article }}
+                        <br>
+                        {{ product.color.name }}
+
+                    </td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.subject.name }}</td>
                     <td>{{ product.model.name }}</td>

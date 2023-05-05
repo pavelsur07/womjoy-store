@@ -8,3 +8,6 @@ services:
         
     App\Matrix\Domain\Entity\Model\ModelRepositoryInterface:
         class: App\Matrix\Infrastructure\Repository\ModelRepository
+        
+    App\Matrix\Domain\Repository\ColorRepositoryInterface:
+        class: App\Matrix\Infrastructure\Repository\ColorRepository

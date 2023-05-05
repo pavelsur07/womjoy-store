@@ -41,6 +41,7 @@ class ProductController extends AbstractController
                 name: $data['name'],
                 subject: $data['subject'],
                 model: $data['model'],
+                color: $data['color'],
             );
 
             $products->save($product, true);

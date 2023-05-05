@@ -29,6 +29,9 @@ class Product
     #[ORM\ManyToOne(targetEntity: Model::class, inversedBy: 'products')]
     private Model $model;
 
+    #[ORM\ManyToOne(targetEntity: Color::class, inversedBy: 'products')]
+    private Color $color;
+
     #[ORM\Column(type: Types::STRING)]
     private string $name;
 
@@ -37,12 +40,14 @@ class Product
         string $article,
         string $name,
         Subject $subject,
-        Model $model
+        Model $model,
+        Color $color,
     ) {
         $this->createdAt = $createdAt;
         $this->article = $article;
         $this->subject = $subject;
         $this->model = $model;
+        $this->color = $color;
         $this->name = $name;
     }
 
@@ -74,5 +79,10 @@ class Product
     public function getModel(): Model
     {
         return $this->model;
+    }
+
+    public function getColor(): Color
+    {
+        return $this->color;
     }
 }

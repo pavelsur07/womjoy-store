@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Form;
 
+use App\Matrix\Domain\Entity\Color;
 use App\Matrix\Domain\Entity\Model;
 use App\Matrix\Domain\Entity\Subject;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
@@ -38,6 +39,15 @@ class ProductEditForm extends AbstractType
                 EntityType::class,
                 [
                     'class' => Model::class,
+                    'choice_label' => 'name',
+                ]
+            )
+
+            ->add(
+                'color',
+                EntityType::class,
+                [
+                    'class' => Color::class,
                     'choice_label' => 'name',
                 ]
             )

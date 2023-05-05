@@ -1,0 +1,56 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Matrix\Infrastructure\Controller;
+
+use App\Matrix\Domain\Entity\Color;
+use App\Matrix\Domain\Repository\ColorRepositoryInterface;
+use App\Matrix\Infrastructure\Form\ColorlEditForm;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+#[Route(path: '/admin/matrix/colors', name: 'matrix.admin.color')]
+class ColorController extends AbstractController
+{
+    #[Route(path: '/', name: '.index')]
+    public function index(ColorRepositoryInterface $colors): Response
+    {
+        return $this->render(
+            'admin/matrix/color/index.html.twig',
+            [
+                'pagination' => $colors->list(),
+            ]
+        );
+    }
+
+    #[Route(path: '/create', name: '.create')]
+    public function create(Request $request, ColorRepositoryInterface $colors)
+    {
+        $form = $this->createForm(ColorlEditForm::class, []);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $color = new Color(
+                name: $data['name'],
+            );
+
+            $colors->save($color, true);
+
+            return $this->redirectToRoute('matrix.admin.color.index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('admin/matrix/color/create.html.twig', ['form'=> $form->createView()]);
+    }
+
+    public function remove(): void
+    {
+    }
+
+    public function edit(): void
+    {
+    }
+}
