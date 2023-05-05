@@ -1,3 +1,7 @@
 services:
-    App\Matrix\Domain\Repository\Product\RepositoryInterface:
+    
+    App\Matrix\Domain\Repository\ProductRepositoryInterface:
         class: App\Store\Infrastructure\Repository\ProductRepository
+    
+    App\Matrix\Domain\Repository\SubjectRepositoryInterface:
+        class: App\Matrix\Infrastructure\Repository\SubjectRepository

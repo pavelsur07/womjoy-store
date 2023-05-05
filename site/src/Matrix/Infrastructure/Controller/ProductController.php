@@ -27,7 +27,7 @@ class ProductController extends AbstractController
     }
 
     #[Route(path: '/admin/matrix/products/create', name: 'matrix.admin.product.create')]
-    public function createProduct(Request $request, ProductRepositoryInterface $products): Response
+    public function create(Request $request, ProductRepositoryInterface $products): Response
     {
         $form = $this->createForm(ProductEditForm::class, []);
         $form->handleRequest($request);
@@ -50,13 +50,19 @@ class ProductController extends AbstractController
     }
 
     #[Route(path: '/admin/matrix/products/{id}/remove', name: 'matrix.admin.product.remove')]
-    public function removeProduct(int $id, Request $request, ProductRepositoryInterface $products): Response
+    public function remove(int $id, Request $request, ProductRepositoryInterface $products): Response
     {
+        $product = $products->get($id);
+
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
+            $products->remove($product, true);
+        }
+
         return $this->redirectToRoute('matrix.admin.product.index');
     }
 
     #[Route(path: '/admin/matrix/products/{id}/edit', name: 'matrix.admin.product.edit')]
-    public function editProduct(int $id, Request $request, ProductRepositoryInterface $products): Response
+    public function edit(int $id, Request $request, ProductRepositoryInterface $products): Response
     {
         return $this->render('admin/matrix/product/edit.html.twig');
     }

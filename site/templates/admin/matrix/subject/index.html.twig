@@ -10,7 +10,7 @@
                 Matrix
             </div>
             <h2 class="page-title">
-                Product index
+                Subject index
             </h2>
         </div>
         <!-- Page title actions -->
@@ -20,45 +20,27 @@
         </div>
     </div>
     <div class="mt-3 mb-3">
-        <a class="btn btn-bitbucket" href="{{ path('matrix.admin.product.create') }}">Create new</a>
+        <a class="btn btn-bitbucket" href="{{ path('matrix.admin.subject.create') }}">Create new</a>
     </div>
     <div class="card card-body">
         <table class="table">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Image</th>
-                <th>Article</th>
                 <th>Name</th>
-                <th>Subject</th>
-                <th>Status</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            {% for product in pagination %}
+            {% for subject in pagination %}
                 <tr>
-                    <td>{{ product.id }}</td>
-                    <td>
-                        {#{% if product.images.count > 0 %}
-                            #}{# {% set file = product.images.first.name %}#}{##}{#
-                            #}{# {% set file_url = storage_path(file.url) %}#}{##}{#
-                            #}{# {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}{##}{#
-
-                            #}{# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}{##}{#
-                            <img class="avatar avatar-sm" src=" {{ storage_path(product.images.first.patch~'/'~product.images.first.name) }} " alt="{{ product.name }}">
-                            #}{# </a>#}{#
-                        {% endif %}#}
-                    </td>
-                    <td>{{ product.article }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.subject.name }}</td>
-                    <td>status</td>
+                    <td class='w-5'>{{ subject.id }}</td>
+                    <td>{{ subject.name }}</td>
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="#">show</a>
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
-                            {% include 'admin/matrix/product/_delete_form.html.twig' %}
+                            <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
                         </div>
                     </td>
                 </tr>

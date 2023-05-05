@@ -23,13 +23,13 @@ class Product
     #[ORM\Column(type: Types::STRING)]
     private string $article;
 
-    #[ORM\Column(type: Types::STRING)]
-    private string $subject;
+    #[ORM\ManyToOne(targetEntity: Subject::class, inversedBy: 'products')]
+    private Subject $subject;
 
     #[ORM\Column(type: Types::STRING)]
     private string $name;
 
-    public function __construct(DateTimeImmutable $createdAt, string $article, string $subject, string $name)
+    public function __construct(DateTimeImmutable $createdAt, string $article, Subject $subject, string $name)
     {
         $this->createdAt = $createdAt;
         $this->article = $article;
@@ -52,7 +52,7 @@ class Product
         return $this->article;
     }
 
-    public function getSubject(): string
+    public function getSubject(): Subject
     {
         return $this->subject;
     }
