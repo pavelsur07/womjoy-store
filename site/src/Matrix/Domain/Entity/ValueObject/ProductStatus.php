@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Domain\Entity\ValueObject;
 
-use App\Common\Domain\ValueObject\StringValueObject;
+use App\Common\Domain\Entity\ValueObject\StringValueObject;
 use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
