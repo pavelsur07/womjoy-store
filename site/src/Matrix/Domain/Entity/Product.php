@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Domain\Entity;
 
+use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,6 +36,9 @@ class Product
     #[ORM\Column(type: Types::STRING)]
     private string $name;
 
+    #[ORM\Embedded(class: ProductStatus::class, columnPrefix: 'status_')]
+    private ProductStatus $status;
+
     public function __construct(
         DateTimeImmutable $createdAt,
         string $article,
@@ -49,6 +53,7 @@ class Product
         $this->model = $model;
         $this->color = $color;
         $this->name = $name;
+        $this->status = new ProductStatus(ProductStatus::DRAFT);
     }
 
     public function getId(): int
@@ -84,5 +89,10 @@ class Product
     public function getColor(): Color
     {
         return $this->color;
+    }
+
+    public function getStatus(): ProductStatus
+    {
+        return $this->status;
     }
 }

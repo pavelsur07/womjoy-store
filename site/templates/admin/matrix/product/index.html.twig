@@ -27,6 +27,7 @@
             <thead>
             <tr>
                 <th>Id</th>
+                <th>Status</th>
                 <th>Image</th>
                 <th>Article / Color</th>
                 <th>Name</th>
@@ -39,6 +40,7 @@
             {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
+                    <td>{{matrix_product_status(product.status) }}</td>
                     <td>
                         {#{% if product.images.count > 0 %}
                             #}{# {% set file = product.images.first.name %}#}{##}{#

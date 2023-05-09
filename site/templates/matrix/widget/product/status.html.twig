@@ -1,0 +1,7 @@
+{% if status == 'draft' %}
+    <span class="badge badge-secondary">Draft</span>
+{% elseif status == 'active' %}
+    <span class="badge badge-primary">Active</span>
+{% elseif status == 'archived' %}
+    <span class="badge badge-danger">Archives</span>
+{% endif %}
