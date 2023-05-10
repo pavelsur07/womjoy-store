@@ -10,7 +10,7 @@ dist/
 /xxx
 # Compiled Java class files
 *.class
-
+/site/.ready
 # Compiled Python bytecode
 *.py[cod]
 
