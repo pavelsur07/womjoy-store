@@ -8,6 +8,7 @@ use App\Auth\Domain\Entity\User;
 use App\Auth\Infrastructure\Form\UserChangePasswordForm;
 use App\Auth\Infrastructure\Form\UserType;
 use App\Auth\Infrastructure\Repository\UserRepository;
+use App\Common\Infrastructure\Doctrine\Flusher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,6 +51,15 @@ class UserController extends AbstractController
         return $this->render('admin/user/show.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    #[Route('/{id}/set-role-admin', name: 'app.user.set_role_admin', methods: ['GET'])]
+    public function setRoleAdmin(int $id, Request $request, UserRepository $users, Flusher $flusher): Response
+    {
+        $user = $users->get($id);
+        $user->setRoles(['ROLE_ADMIN']);
+        $flusher->flush();
+        return $this->redirectToRoute('app.user.index');
     }
 
     #[Route('/{id}/edit', name: 'app.user.edit', methods: ['GET', 'POST'])]
