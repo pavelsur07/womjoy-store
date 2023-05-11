@@ -8,3 +8,7 @@ http:
 matrix:
     resource: ../src/Matrix/Infrastructure/Controller/
     type: annotation
+
+store:
+    resource: ../src/Store/Infrastructure/Controller/
+    type: annotation

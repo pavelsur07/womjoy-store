@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Store\Admin;
+namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Application\Command\Product\Image\Add\File;

@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="mt-3 mb-3">
-        <a class="btn btn-outline-primary" href="{{ path('admin.product.new') }}">Create new</a>
+        <a class="btn btn-bitbucket" href="{{ path('admin.product.new') }}">Create new</a>
     </div>
     <div class="card card-body">
         <h1>Product index</h1>
@@ -12,21 +12,19 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th class="w-1">Id</th>
+                    <th class="w-1">Status</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Description</th>
                     <th>Price</th>
-                    <th>Status</th>
-                    <th>SeoTitle</th>
-                    <th>SeoDescription</th>
-                    <th>actions</th>
+                    <th class="w-25">Actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
+                    <td>{{ product.status }}</td>
                     <td>
                         {% if product.images.count > 0 %}
                            {# {% set file = product.images.first.name %}#}
@@ -39,14 +37,11 @@
                         {% endif %}
                     </td>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
-                    <td>{{ product.status }}</td>
-                    <td>{{ product.seoTitle }}</td>
-                    <td>{{ product.seoDescription }}</td>
+
                     <td>
-                        <a class="btn btn-sm btn-primary" href="{{ path('admin.product.show', {'id': product.id}) }}">show</a>
-                        <a class="btn btn-sm btn-primary" href="{{ path('admin.product.edit', {'id': product.id}) }}">edit</a>
+                        <a class="btn btn-sm btn-bitbucket" href="{{ path('admin.product.show', {'id': product.id}) }}">show</a>
+                        <a class="btn btn-sm btn-bitbucket" href="{{ path('admin.product.edit', {'id': product.id}) }}">edit</a>
                     </td>
                 </tr>
             {% else %}
