@@ -1,0 +1,10 @@
+<div class="position-absolute bottom-0 end-0 mb-4 me-3">
+    {% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} " role="alert">
+                <h4 class="alert-title">{{ label|capitalize }}</h4>
+                <div class="text-muted">{{ message }}</div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>

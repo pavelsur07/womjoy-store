@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: '`matrix_products`')]
+#[ORM\UniqueConstraint(name: 'matrix_article_unique_index', columns: ['article'])]
 class Product
 {
     #[ORM\Id]
@@ -21,7 +22,7 @@ class Product
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, unique: true)]
     private string $article;
 
     #[ORM\ManyToOne(targetEntity: Subject::class, inversedBy: 'products')]

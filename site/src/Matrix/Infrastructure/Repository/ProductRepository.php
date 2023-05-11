@@ -55,4 +55,13 @@ class ProductRepository implements ProductRepositoryInterface
             $this->em->flush();
         }
     }
+
+    public function findByArticle(string $article): ?Product
+    {
+        return $this->repo->findOneBy(
+            [
+                'article'=> $article,
+            ]
+        );
+    }
 }

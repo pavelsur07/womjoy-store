@@ -8,6 +8,8 @@ use App\Matrix\Domain\Entity\Product;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\ProductEditForm;
 use DateTimeImmutable;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use DomainException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,17 +36,26 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            try {
+                $product = $products->findByArticle(mb_strtolower(trim($data['article'])));
 
-            $product = new Product(
-                createdAt: DateTimeImmutable::createFromMutable($data['createdAt']),
-                article: $data['article'],
-                name: $data['name'],
-                subject: $data['subject'],
-                model: $data['model'],
-                color: $data['color'],
-            );
+                if ($product !== null) {
+                    throw new DomainException('Duplicate key value violates unique constraint article.');
+                }
 
-            $products->save($product, true);
+                $product = new Product(
+                    createdAt: DateTimeImmutable::createFromMutable($data['createdAt']),
+                    article: mb_strtolower(trim($data['article'])),
+                    name: $data['name'],
+                    subject: $data['subject'],
+                    model: $data['model'],
+                    color: $data['color'],
+                );
+
+                $products->save($product, true);
+            } catch (DomainException|UniqueConstraintViolationException $e) {
+                $this->addFlash('danger', $e->getMessage());
+            }
 
             return $this->redirectToRoute('matrix.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }
