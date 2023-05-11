@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Infrastructure\Controller;
+namespace App\Matrix\Infrastructure\Controller\Product;
 
 use App\Matrix\Domain\Entity\Product;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
@@ -77,6 +77,13 @@ class ProductController extends AbstractController
     #[Route(path: '/admin/matrix/products/{id}/edit', name: 'matrix.admin.product.edit')]
     public function edit(int $id, Request $request, ProductRepositoryInterface $products): Response
     {
-        return $this->render('admin/matrix/product/edit.html.twig');
+        $product = $products->get($id);
+
+        return $this->render(
+            'admin/matrix/product/edit.html.twig',
+            [
+                'product' => $product,
+            ]
+        );
     }
 }

@@ -5,7 +5,12 @@ declare(strict_types=1);
 namespace App\Matrix\Domain\Entity;
 
 use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
+use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
+use App\Matrix\Domain\Entity\ValueObject\VariantValue;
+use App\Matrix\Domain\Exception\MatrixException;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +45,10 @@ class Product
     #[ORM\Embedded(class: ProductStatus::class, columnPrefix: 'status_')]
     private ProductStatus $status;
 
+    /** @var ArrayCollection<array-key, Variant */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'])]
+    private Collection $variants;
+
     public function __construct(
         DateTimeImmutable $createdAt,
         string $article,
@@ -55,6 +64,33 @@ class Product
         $this->color = $color;
         $this->name = $name;
         $this->status = new ProductStatus(ProductStatus::DRAFT);
+        $this->variants = new ArrayCollection();
+    }
+
+    public function addVariant(VariantBarcode $barcode, VariantValue $value): void
+    {
+        foreach ($this->variants as $variant) {
+            if ($variant->isEquivalentToBarcode($barcode)) {
+                throw new MatrixException('Duplicate barcode value violates unique constraint.');
+            }
+        }
+        $this->variants->add(new Variant(
+            product: $this,
+            barcode: $barcode,
+            value: $value,
+        ));
+    }
+
+    public function removeVariant(int $idVariant): void
+    {
+        foreach ($this->variants as $variant) {
+            if ($variant->getId() === $idVariant) {
+                $this->variants->removeElement($variant);
+                return;
+            }
+        }
+
+        throw new MatrixException('Variant not fount.');
     }
 
     public function getId(): int
@@ -95,5 +131,10 @@ class Product
     public function getStatus(): ProductStatus
     {
         return $this->status;
+    }
+
+    public function getVariants(): Collection
+    {
+        return $this->variants;
     }
 }
