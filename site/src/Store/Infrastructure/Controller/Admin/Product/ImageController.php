@@ -21,6 +21,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/product/{id}/image', name: 'admin.product.image')]
 class ImageController extends AbstractController
 {
+    /**
+     * @throws FilesystemException
+     */
     #[Route('/', name: '.index', methods: ['GET', 'POST'])]
     public function index(Request $request, ProductRepository $products, FileUploader $uploader, ProductImageHandler $handler): Response
     {

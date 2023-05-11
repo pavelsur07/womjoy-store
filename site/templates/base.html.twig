@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.request.defaultLocale }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +34,14 @@
         <div class="wrapper">
             <div class="header__main">
                 <div class="header__left">
-                    <a href="{{ path('home') }}" class="header__logo">
-                        <img src="{{ asset('./img/logo.svg') }}" alt="" width="205" height="36">
-                    </a>
+                    {% if app.request.pathInfo == '/' %}
+                        <img src="{{ asset('./img/logo.svg') }}" alt="{{ app.request.baseUrl }}" width="205" height="36">
+                    {% else %}
+                        <a href="{{ path('home') }}" class="header__logo">
+                            <img src="{{ asset('./img/logo.svg') }}" alt="{{ app.request.baseUrl }}" width="205" height="36">
+                        </a>
+                    {% endif %}
+
                     <div class="country">
                         <button class="country__crnt" type="button">
                             <img src="{{ asset('./img/countries/ru.svg') }}" alt="" width="24" height="24" class="country__crnt_flag">

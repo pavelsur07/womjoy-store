@@ -1,4 +1,4 @@
-{% extends 'admin/base.html.twig' %}
+{#{% extends 'admin/base.html.twig' %}
 
 {% block title %}Edit Product{% endblock %}
 
@@ -12,4 +12,41 @@
 
         {{ include('admin/product/_delete_form.html.twig') }}
     </div>
+{% endblock %}#}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Store
+            </div>
+            <h2 class="page-title">
+                Edit product
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('admin.product.index') }}">Back to list</a>
+    </div>
+    <div class="card">
+        {#{% include 'admin/product/_tabs.html.twig' %}#}
+        <div class="card-body">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
 {% endblock %}
+

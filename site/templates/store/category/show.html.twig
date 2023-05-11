@@ -21,7 +21,7 @@
                             <span class="cat__price">от 1 799 ₽</span>
                         </div>
                     </div>
-                    <img src="./img/cats/img-1.webp" alt="" class="cat__img" width="250" height="250">
+                    <img src="{{ asset('./img/cats/img-1.webp') }}" alt="" class="cat__img" width="250" height="250">
                 </a>
                 <a href="#" class="cat__item cat__item-lg">
                     <div class="cat__text">
@@ -130,64 +130,60 @@
             </ul>
         </div>
     </div>
+
     <section class="i-cat">
         <div class="wrapper">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                    <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Каталог</li>
-                </ol>
-            </nav>
+            {{ include('store/category/breadcrumb.html.twig') }}
+
             <h1 class="in-title">Каталог</h1>
             <div class="i-cat__slider">
                 <div class="i-cat-swiper swiper">
                     <div class="swiper-wrapper">
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-1.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-1.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Брюки</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-2.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-2.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Леггинсы</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-3.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-3.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Топы</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-4.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-4.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Рашгарды</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-5.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-5.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Футболки</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-6.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-6.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Худи</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-7.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-7.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Шорты</span>
                         </a>
                         <a href="#" class="i-cat__slide swiper-slide">
                             <span class="i-cat__img">
-                                <img src="./img/i-cats/img-7.png" alt="" width="130" height="130">
+                                <img src="{{ asset('./img/i-cats/img-7.png') }}" alt="" width="130" height="130">
                             </span>
                             <span class="i-cat__name">Аксессуары</span>
                         </a>
@@ -199,595 +195,8 @@
     <section class="catalog section">
         <div class="wrapper">
             <div class="catalog__content">
-                <div class="filter">
-                    <div class="filter__top">
-                        <div class="filter__title">Фильтры</div>
-                        <button class="filter__close" type="button">
-                            <img src="./img/icons/close-black.svg" alt="" width="24" height="24">
-                        </button>
-                    </div>
-                    <div class="filter__rows">
-                        <div class="filter__row">
-                            <span class="filter__name">Категории</span>
-                            <ul class="filter__list">
-                                <li><a href="#">Брюки</a></li>
-                                <li><a href="#">Леггинсы</a></li>
-                                <li><a href="#">Топы</a></li>
-                                <li><a href="#">Рашгарды</a></li>
-                                <li><a href="#">Футболки</a></li>
-                                <li><a href="#">Худи</a></li>
-                                <li><a href="#">Шорты</a></li>
-                                <li><a href="#">Аксессуары</a></li>
-                            </ul>
-                        </div>
-                        <div class="filter__row">
-                            <span class="filter__name">Виды спорта</span>
-                            <ul class="filter__list">
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden checked>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Йога</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Фитнес</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Бег</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Активный отдых</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Полденс</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="filter__row">
-                            <span class="filter__name">Размер</span>
-                            <ul class="filter__list">
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">L (46-48)</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">L (46-48)</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">L (46-48)</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">L (46-48)</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="filter__row">
-                            <span class="filter__name">Модель</span>
-                            <ul class="filter__list">
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Стандартная</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Высокая посадка</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__txt">Plus Size</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="filter__row">
-                            <span class="filter__name">Модель</span>
-                            <ul class="filter__list">
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: rgba(47, 43, 67, 0.7)"></span>
-                                        <span class="check__txt">Графитовый</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: #8482FF"></span>
-                                        <span class="check__txt">Лавандовый</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: #AFFFCF"></span>
-                                        <span class="check__txt">Мятный</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: rgba(47, 43, 67, 0.4);"></span>
-                                        <span class="check__txt">Серый</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: #4F398F;"></span>
-                                        <span class="check__txt">Сливовый</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: #9747FF;"></span>
-                                        <span class="check__txt">Фиолетовый</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label class="check">
-                                        <input type="checkbox" hidden>
-                                        <span class="check__sq">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    											<path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    										</svg>
-                                        </span>
-                                        <span class="check__color" style="background-color: #2F2B43;"></span>
-                                        <span class="check__txt">Черный</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <button class="filter__btn btn-primary" type="button">Применить</button>
-                </div>
-                <div class="catalog__main">
-                    <div class="catalog__top">
-                        <div class="sort">
-                            <div class="sort__trigger">По популярности</div>
-                            <ul class="sort__list">
-                                <li class="active">По популярности</li>
-                                <li>По рейтингу</li>
-                                <li>По возрастанию цены</li>
-                                <li>По убыванию цены</li>
-                                <li>По скидкам</li>
-                            </ul>
-                        </div>
-                        <div class="filter-trigger">
-                            <img src="./img/icons/filter.svg" alt="" width="20" height="20">
-                            Фильтры
-                        </div>
-                    </div>
-                    <div class="products">
-                        <div class="products__items products-3">
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                    <li><a href="#" style="background-color: #27262C;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                    <del class="product__old">1 299 ₽</del>
-                                    <span class="product__sale">-30%</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                    <span class="product__sale">-30%</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                    <li><a href="#" style="background-color: #27262C;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                    <li><a href="#" style="background-color: #27262C;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                    <del class="product__old">1 299 ₽</del>
-                                    <span class="product__sale">-30%</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                            <div class="product">
-                                <div class="product__img">
-                                    <div class="product__img_slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__row">
-                                    <span class="product__cost">1 299 ₽</span>
-                                    <span class="product__sale">-30%</span>
-                                </div>
-                                <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                                <ul class="product__colors">
-                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                    <li><a href="#" style="background-color: #27262C;"></a></li>
-                                </ul>
-                                <div class="product__hidden">
-                                    <button class="product__addtocart btn-primary" type="button">
-                                        <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                        В корзину
-                                    </button>
-                                    <div class="product__sizes">Размеры: XS S M L</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination__list">
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link pagination__next" href="#">Далее <img src="./img/icons/arrow-right-2.svg" alt="" width="24" height="24"></a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+                {{ include('store/category/filter.html.twig') }}
+                {{ include('store/category/catalog.html.twig') }}
             </div>
         </div>
     </section>
