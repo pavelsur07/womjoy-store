@@ -22,7 +22,7 @@ class ProductEditForm extends AbstractType
     {
         $builder
             ->add('name', Type\TextType::class)
-            ->add('status', Type\ChoiceType::class, ['choices' => [
+/*            ->add('status', Type\ChoiceType::class, ['choices' => [
                 'Draft' => ProductStatus::DRAFT,
                 'Development' => ProductStatus::DEVELOPMENT,
                 'Ready development' => ProductStatus::READY_DEVELOPMENT,
@@ -30,7 +30,14 @@ class ProductEditForm extends AbstractType
                 'Ready sale' => ProductStatus::READY_SALE,
                 'Sale' => ProductStatus::SALE,
                 'Archived' => ProductStatus::ARCHIVED,
-            ], ]);
+            ], ])*/
+            ->add('status', Type\ChoiceType::class, [
+                'choices' => array_combine(ProductStatus::list(), ProductStatus::list()),
+                //'required' => false,
+                //'expanded' => true,
+                'translation_domain' => 'matrix_language',
+            ]);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

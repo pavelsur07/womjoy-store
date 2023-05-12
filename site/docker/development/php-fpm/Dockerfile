@@ -10,6 +10,8 @@ RUN apk add --no-cache autoconf g++ make rabbitmq-c-dev \
 RUN apk add --no-cache postgresql-dev fcgi git \
     libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev  \
     jpegoptim optipng pngquant gifsicle \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     #&& git clone --branch $XDEBUG_VERSION --depth 1 https://github.com/xdebug/xdebug.git /usr/src/php/ext/xdebug \
     #&& docker-php-ext-configure xdebug --enable-xdebug-dev \
