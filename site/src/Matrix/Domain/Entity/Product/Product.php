@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Domain\Entity;
+namespace App\Matrix\Domain\Entity\Product;
 
+use App\Matrix\Domain\Entity\Color;
+use App\Matrix\Domain\Entity\Model;
+use App\Matrix\Domain\Entity\Subject;
 use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
 use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;
@@ -45,9 +48,14 @@ class Product
     #[ORM\Embedded(class: ProductStatus::class, columnPrefix: 'status_')]
     private ProductStatus $status;
 
-    /** @var ArrayCollection<array-key, Variant */
+    /** @var ArrayCollection<array-key, Variant> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'])]
     private Collection $variants;
+
+    /** @var ArrayCollection<array-key, Image> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\OrderBy(['sort' => 'ASC'])]
+    private Collection $images;
 
     public function __construct(
         DateTimeImmutable $createdAt,
@@ -65,6 +73,80 @@ class Product
         $this->name = $name;
         $this->status = new ProductStatus(ProductStatus::DRAFT);
         $this->variants = new ArrayCollection();
+        $this->images = new ArrayCollection();
+    }
+
+    public function imageUp(int $sortNumber): void
+    {
+        if ($sortNumber === 0) {
+            throw new MatrixException('Error sort number 0.');
+        }
+
+        $up = $sortNumber;
+        $down = $sortNumber-1;
+
+        $imageUp = $this->findImageBySortNumber($up);
+        $imageDown = $this->findImageBySortNumber($down);
+
+        $imageUp->setSort($up-1);
+        $imageDown->setSort($down+1);
+    }
+
+    public function imageDown(int $sortNumber): void
+    {
+        $count = $this->images->count()-1;
+        if ($sortNumber === $count) {
+            throw new MatrixException('Error sort number max.' . $count);
+        }
+
+        $down = $sortNumber;
+        $up = $sortNumber+1;
+
+        $imageDown = $this->findImageBySortNumber($down);
+        $imageUp = $this->findImageBySortNumber($up);
+
+        $imageDown->setSort($down+1);
+        $imageUp->setSort($up-1);
+    }
+
+    public function findImageBySortNumber(int $sortNumber): Image
+    {
+        foreach ($this->images as $image) {
+            if ($image->getSort() === $sortNumber) {
+                return $image;
+            }
+        }
+
+        throw new MatrixException('Image not found this sort number ' . $sortNumber);
+    }
+
+    public function addImage(string $path, string $fileName, int $size): void
+    {
+        $count = \count($this->images);
+        $this->images->add(
+            new Image(
+                product: $this,
+                sort: $count++,
+                path: $path,
+                fileName: $fileName,
+                size: $size,
+            )
+        );
+    }
+
+    public function removeImage(int $imageId): void
+    {
+        $this->images->first();
+
+        foreach ($this->images as $image) {
+            if ($image->isEqualToId($imageId)) {
+                $this->images->removeElement($image);
+                $this->sortable();
+                return;
+            }
+        }
+
+        throw new MatrixException('Image not found.');
     }
 
     public function addVariant(VariantBarcode $barcode, VariantValue $value): void
@@ -136,5 +218,31 @@ class Product
     public function getVariants(): Collection
     {
         return $this->variants;
+    }
+
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function getImage(int $imageId): Image
+    {
+        foreach ($this->images as $image) {
+            if ($image->isEqualToId($imageId)) {
+                return $image;
+            }
+        }
+
+        throw new MatrixException('Image not found');
+    }
+
+    private function sortable(): void
+    {
+        $this->images->first();
+        $number = 0;
+        foreach ($this->images as $image) {
+            $image->setSort($number);
+            ++$number;
+        }
     }
 }

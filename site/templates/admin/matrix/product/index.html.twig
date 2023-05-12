@@ -42,15 +42,16 @@
                     <td>{{ product.id }}</td>
                     <td>{{matrix_product_status(product.status) }}</td>
                     <td>
-                        {#{% if product.images.count > 0 %}
-                            #}{# {% set file = product.images.first.name %}#}{##}{#
-                            #}{# {% set file_url = storage_path(file.url) %}#}{##}{#
-                            #}{# {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}#}{##}{#
+                        {% if product.images.count > 0 %}
+                            {% set file = product.images.first %}
+                            {% set file_url = storage_path(file.path ~'/'~ file.fileName) %}
 
-                            #}{# <a href="#" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">#}{##}{#
-                            <img class="avatar avatar-sm" src=" {{ storage_path(product.images.first.patch~'/'~product.images.first.name) }} " alt="{{ product.name }}">
-                            #}{# </a>#}{#
-                        {% endif %}#}
+                            {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}
+
+                            <a href="{{ file_url }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">
+                                <img class="avatar avatar-sm" src="{{ file_url }}" alt="{{ product.name }}">
+                            </a>
+                        {% endif %}
                     </td>
                     <td>
                         {{ product.article }}
@@ -63,7 +64,6 @@
                     <td>{{ product.model.name }}</td>
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
-                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">show</a>
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('matrix.admin.product.edit',{'id': product.id}) }}">edit</a>
                             {% include 'admin/matrix/product/_delete_form.html.twig' %}
                         </div>

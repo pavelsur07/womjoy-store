@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Domain\Entity;
+namespace App\Matrix\Domain\Entity\Product;
 
 use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;

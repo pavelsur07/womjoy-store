@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Controller\Product;
 
-use App\Matrix\Domain\Entity\Product;
+use App\Matrix\Domain\Entity\Product\Product;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\ProductEditForm;
 use DateTimeImmutable;

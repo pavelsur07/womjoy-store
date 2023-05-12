@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Repository;
 
-use App\Matrix\Domain\Entity\Product;
+use App\Matrix\Domain\Entity\Product\Product;
 use App\Matrix\Domain\Exception\MatrixException;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
