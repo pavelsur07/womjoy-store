@@ -32,7 +32,8 @@
             <p>{{ product.name }}</p>
             {{ form_start(form) }}
             {{ form_widget(form) }}
-
+            <button class="btn btn-bitbucket">{{ button_label|default('Upload') }}</button>
+            {{ form_end(form) }}
 
             <div class="row row-cols-6 mb-3 g-2 mt-5">
             {% for image in product.images %}
@@ -56,8 +57,6 @@
                 </div>
             {% endfor %}
             </div>
-            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
-            {{ form_end(form) }}
         </div>
     </div>
 
