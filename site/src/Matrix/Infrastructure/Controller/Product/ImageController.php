@@ -50,6 +50,7 @@ class ImageController extends AbstractController
                     size: $file->getSize()
                 );
             }
+
             $flusher->flush();
         }
         return $this->render(

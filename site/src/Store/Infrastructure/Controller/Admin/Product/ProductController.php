@@ -12,15 +12,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/product', name: 'admin.product')]
+#[Route('/admin/product', name: 'store.admin.product')]
 class ProductController extends AbstractController
 {
-    public const PER_PAGE= 5;
+    public const PER_PAGE= 15;
 
     #[Route('/', name: '.index', methods: ['GET'])]
     public function index(Request $request, ProductRepository $productRepository): Response
     {
-        return $this->render('admin/product/index.html.twig', [
+        return $this->render('store/admin/product/index.html.twig', [
             'pagination' => $productRepository->list(
                 page: $request->query->getInt('page', 1),
                 size: $request->query->getInt('size', self::PER_PAGE),
@@ -38,20 +38,12 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
 
-            return $this->redirectToRoute('admin.product.index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
-        ]);
-    }
-
-    #[Route('/{id}', name: '.show', methods: ['GET'])]
-    public function show(Product $product): Response
-    {
-        return $this->render('admin/product/show.html.twig', [
-            'product' => $product,
         ]);
     }
 
@@ -64,10 +56,10 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
 
-            return $this->redirectToRoute('admin.product.index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/product/edit.html.twig', [
+        return $this->render('store/admin/product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);
@@ -80,6 +72,6 @@ class ProductController extends AbstractController
             $productRepository->remove($product, true);
         }
 
-        return $this->redirectToRoute('admin.product.index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -72,3 +72,6 @@ services:
 
     App\Matrix\Infrastructure\Menu\ProductActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: matrix_product_action } ]
+    
+    App\Store\Infrastructure\Menu\Admin\Product\ProductActionMenu:
+        tags: [ { name: knp_menu.menu_builder, method: build, alias: store_product_action } ]

@@ -17,27 +17,37 @@ class Image
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
-    private ?Product $product = null;
+    private Product $product;
 
     #[ORM\Column(length: 255)]
-    private ?string $patch = null;
+    private string $path;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $name;
 
     #[ORM\Column]
-    private ?int $sort = 0;
+    private int $sort = 0;
 
     #[ORM\Column]
     private ?int $size = null;
 
-    public function __construct(Product $product, ?string $patch, ?string $name, ?int $size, ?int $sort)
+    public function __construct(Product $product, ?string $path, string $name, int $size, int $sort)
     {
         $this->product = $product;
-        $this->patch = $patch;
+        $this->path = $path;
         $this->name = $name;
         $this->sort = $sort;
         $this->size = $size;
+    }
+
+    public function isEqualToId(int $imageId): bool
+    {
+        return $this->id === $imageId;
+    }
+
+    public function changeName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public function getId(): ?int
@@ -50,23 +60,9 @@ class Image
         return $this->product;
     }
 
-    public function setProduct(?Product $product): self
+    public function getPath(): ?string
     {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    public function getPatch(): ?string
-    {
-        return $this->patch;
-    }
-
-    public function setPatch(string $patch): self
-    {
-        $this->patch = $patch;
-
-        return $this;
+        return $this->path;
     }
 
     public function getName(): ?string
@@ -74,14 +70,7 @@ class Image
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSort(): ?int
+    public function getSort(): int
     {
         return $this->sort;
     }
@@ -96,12 +85,5 @@ class Image
     public function getSize(): ?int
     {
         return $this->size;
-    }
-
-    public function setSize(int $size): self
-    {
-        $this->size = $size;
-
-        return $this;
     }
 }

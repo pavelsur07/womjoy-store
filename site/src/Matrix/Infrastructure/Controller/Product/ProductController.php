@@ -98,6 +98,7 @@ class ProductController extends AbstractController
             $product->getStatus()->setStatus($data['status']);
 
             $flusher->flush();
+            $this->addFlash('danger', 'Supper success.');
         }
 
         return $this->render(

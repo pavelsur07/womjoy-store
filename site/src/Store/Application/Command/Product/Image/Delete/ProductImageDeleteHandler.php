@@ -27,7 +27,7 @@ final readonly class ProductImageDeleteHandler
         $product = $image->getProduct();
 
         $product->removeImage($image);
-        $this->uploader->remove($image->getPatch(), $image->getName());
+        $this->uploader->remove($image->getPath(), $image->getName());
         $this->flusher->flush();
     }
 }

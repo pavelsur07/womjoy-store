@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,6 +41,7 @@ class Product
 
     /** @var ArrayCollection<array-key, Image> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, cascade: ['all'], orphanRemoval: true)]
+    #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $images;
 
     /** @var ArrayCollection<array-key, Variant> */
@@ -50,6 +52,79 @@ class Product
     {
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
+    }
+
+    public function imageUp(int $sortNumber): void
+    {
+        if ($sortNumber === 0) {
+            throw new StoreProductException('Error sort number 0.');
+        }
+
+        $up = $sortNumber;
+        $down = $sortNumber-1;
+
+        $imageUp = $this->findImageBySortNumber($up);
+        $imageDown = $this->findImageBySortNumber($down);
+
+        $imageUp->setSort($up-1);
+        $imageDown->setSort($down+1);
+    }
+
+    public function imageDown(int $sortNumber): void
+    {
+        $count = $this->images->count()-1;
+        if ($sortNumber === $count) {
+            throw new StoreProductException('Error sort number max.' . $count);
+        }
+
+        $down = $sortNumber;
+        $up = $sortNumber+1;
+
+        $imageDown = $this->findImageBySortNumber($down);
+        $imageUp = $this->findImageBySortNumber($up);
+
+        $imageDown->setSort($down+1);
+        $imageUp->setSort($up-1);
+    }
+
+    public function findImageBySortNumber(int $sortNumber): Image
+    {
+        foreach ($this->images as $image) {
+            if ($image->getSort() === $sortNumber) {
+                return $image;
+            }
+        }
+
+        throw new StoreProductException('Image not found this sort number ' . $sortNumber);
+    }
+
+    public function addImage(string $path, string $fileName, int $size): void
+    {
+        $count = \count($this->images);
+        $this->images->add(
+            new Image(
+                product: $this,
+                path: $path,
+                name: $fileName,
+                size: $size,
+                sort: $count,
+            )
+        );
+    }
+
+    public function removeImage(int $imageId): void
+    {
+        $this->images->first();
+
+        foreach ($this->images as $image) {
+            if ($image->isEqualToId($imageId)) {
+                $this->images->removeElement($image);
+                $this->sortable();
+                return;
+            }
+        }
+
+        throw new StoreProductException('Image not found.');
     }
 
     public function getId(): ?int
@@ -137,26 +212,15 @@ class Product
         return $this->images;
     }
 
-    public function addImage(Image $image): self
+    public function getImage(int $imageId): Image
     {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            // $image->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getProduct() === $this) {
-                $image->setProduct(null);
+        foreach ($this->images as $image) {
+            if ($image->isEqualToId($imageId)) {
+                return $image;
             }
         }
 
-        return $this;
+        throw new StoreProductException('Image not found');
     }
 
     /**
@@ -186,5 +250,15 @@ class Product
         }
 
         return $this;
+    }
+
+    private function sortable(): void
+    {
+        $this->images->first();
+        $number = 0;
+        foreach ($this->images as $image) {
+            $image->setSort($number);
+            ++$number;
+        }
     }
 }
