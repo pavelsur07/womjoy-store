@@ -1,7 +1,15 @@
 {% if status == 'draft' %}
     <span class="badge badge-secondary">Draft</span>
-{% elseif status == 'active' %}
-    <span class="badge badge-primary">Active</span>
+{% elseif status == 'development' %}
+    <span class="badge bg-indigo">Ready development</span>
+{% elseif status == 'ready-development' %}
+    <span class="badge bg-purple">Development</span>
+{% elseif status == 'wait-sale' %}
+    <span class="badge bg-pink">Wait sale</span>
+{% elseif status == 'ready-sale' %}
+    <span class="badge bg-yellow">Ready sale</span>
+{% elseif status == 'sale' %}
+    <span class="badge bg-green">Sale</span>
 {% elseif status == 'archived' %}
-    <span class="badge badge-danger">Archives</span>
+    <span class="badge bg-orange">Archives</span>
 {% endif %}

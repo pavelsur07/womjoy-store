@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Controller\Product;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Matrix\Domain\Entity\Product\Product;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
+use App\Matrix\Infrastructure\Form\ProductCreatedForm;
 use App\Matrix\Infrastructure\Form\ProductEditForm;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
@@ -31,7 +33,7 @@ class ProductController extends AbstractController
     #[Route(path: '/admin/matrix/products/create', name: 'matrix.admin.product.create')]
     public function create(Request $request, ProductRepositoryInterface $products): Response
     {
-        $form = $this->createForm(ProductEditForm::class, []);
+        $form = $this->createForm(ProductCreatedForm::class, []);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,14 +77,34 @@ class ProductController extends AbstractController
     }
 
     #[Route(path: '/admin/matrix/products/{id}/edit', name: 'matrix.admin.product.edit')]
-    public function edit(int $id, Request $request, ProductRepositoryInterface $products): Response
+    public function edit(int $id, Request $request, ProductRepositoryInterface $products, Flusher $flusher): Response
     {
         $product = $products->get($id);
+
+        $form = $this->createForm(
+            ProductEditForm::class,
+            [
+                'name'=> $product->getName(),
+                'status' => $product->getStatus()->value(),
+            ]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $product->changeName(trim($data['name']));
+            $product->getStatus()->setStatus($data['status']);
+
+            $flusher->flush();
+        }
 
         return $this->render(
             'admin/matrix/product/edit.html.twig',
             [
                 'product' => $product,
+                'form' => $form->createView(),
             ]
         );
     }

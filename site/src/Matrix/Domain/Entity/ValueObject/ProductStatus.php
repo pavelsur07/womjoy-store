@@ -12,18 +12,14 @@ use Webmozart\Assert\Assert;
 class ProductStatus extends StringValueObject
 {
     public const DRAFT = 'draft';
-    public const ACTIVE = 'active';
-    public const MODEL_DESIGN = 'model_design';
     public const DEVELOPMENT = 'development';
-    public const DEVELOPED = 'developed';
-    public const READY_TO_SALE = 'ready_to_output';
-    // Ready to output
-    public const INITIAL_SALE = 'initial_sale';
+    public const READY_DEVELOPMENT = 'ready-development';
+    public const WAIT_SALE = 'wait-sale';
+    public const READY_SALE = 'ready-sale';
     public const SALE = 'sale';
-    // Withdrawal
     public const ARCHIVED = 'archived';
 
-    #[ORM\Column(type: 'string', length: 16, options: ['default'=> self::DRAFT])]
+    #[ORM\Column(type: 'string', length: 30, options: ['default'=> self::DRAFT])]
     protected $value;
 
     public function __construct($value)
@@ -33,12 +29,52 @@ class ProductStatus extends StringValueObject
         parent::__construct($value);
     }
 
+    public function development(): void
+    {
+        $this->value = self::DEVELOPMENT;
+    }
+
+    public function readyDevelopment(): void
+    {
+        $this->value = self::READY_DEVELOPMENT;
+    }
+
+    public function waitSale(): void
+    {
+        $this->value = self::WAIT_SALE;
+    }
+
+    public function readySale(): void
+    {
+        $this->value = self::READY_SALE;
+    }
+
+    public function sale(): void
+    {
+        $this->value = self::SALE;
+    }
+
+    public function archived(): void
+    {
+        $this->value = self::ARCHIVED;
+    }
+
+    public function setStatus(string $value): void
+    {
+        Assert::oneOf($value, self::list());
+        $this->value = $value;
+    }
+
     public static function list(): array
     {
         return [
             self::DRAFT,
-            self::ACTIVE,
             self::ARCHIVED,
+            self::DEVELOPMENT,
+            self::READY_DEVELOPMENT,
+            self::WAIT_SALE,
+            self::READY_SALE,
+            self::SALE,
         ];
     }
 }

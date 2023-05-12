@@ -195,6 +195,11 @@ class Product
         return $this->subject;
     }
 
+    public function changeName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function getName(): string
     {
         return $this->name;

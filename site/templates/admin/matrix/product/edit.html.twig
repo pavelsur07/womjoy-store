@@ -27,9 +27,15 @@
         {% include 'admin/matrix/product/_tabs.html.twig' %}
         </div>
         <div class="card-body">
-        <p><strong>Name: </strong> {{ product.name }} </p>
-        <p><strong>Article: </strong> {{ product.article }} </p>
-        <p><strong>Subject: </strong> {{ product.subject.name }} </p>
+            <p><strong>Name: </strong> {{ product.name }} </p>
+            <p><strong>Article: </strong> {{ product.article }} </p>
+            <p><strong>Subject: </strong> {{ product.subject.name }} </p>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+
         {#<div class="pagination mt-3">
             {{ knp_pagination_render(pagination) }}
         </div>#}

@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Form;
 
-use App\Matrix\Domain\Entity\Color;
-use App\Matrix\Domain\Entity\Model;
-use App\Matrix\Domain\Entity\Subject;
+use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
 use App\Matrix\Domain\Repository\ProductRepositoryInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,40 +21,16 @@ class ProductEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('article')
-            ->add('name')
-            ->add(
-                'subject',
-                EntityType::class,
-                [
-                    'class' => Subject::class,
-                    'choice_label' => 'name',
-                ]
-            )
-            ->add(
-                'model',
-                EntityType::class,
-                [
-                    'class' => Model::class,
-                    'choice_label' => 'name',
-                ]
-            )
-
-            ->add(
-                'color',
-                EntityType::class,
-                [
-                    'class' => Color::class,
-                    'choice_label' => 'name',
-                ]
-            )
-            ->add(
-                'createdAt',
-                Type\DateType::class,
-                [
-                    'widget' => 'single_text',
-                ]
-            );
+            ->add('name', Type\TextType::class)
+            ->add('status', Type\ChoiceType::class, ['choices' => [
+                'Draft' => ProductStatus::DRAFT,
+                'Development' => ProductStatus::DEVELOPMENT,
+                'Ready development' => ProductStatus::READY_DEVELOPMENT,
+                'Wait sale' => ProductStatus::WAIT_SALE,
+                'Ready sale' => ProductStatus::READY_SALE,
+                'Sale' => ProductStatus::SALE,
+                'Archived' => ProductStatus::ARCHIVED,
+            ], ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
