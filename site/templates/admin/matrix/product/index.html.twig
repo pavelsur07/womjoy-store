@@ -40,7 +40,7 @@
             {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
-                    <td>{{matrix_product_status(product.status) }}</td>
+                    <td>{{matrix_product_status(product.status) }} <br> <strong>{{ product.createdAt| date('Y')}} </strong></td>
                     <td>
                         {% if product.images.count > 0 %}
                             {% set file = product.images.first %}
