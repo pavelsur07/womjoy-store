@@ -35,7 +35,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function list(): array
     {
-        return $this->repo->findBy([],['id'=> 'ASC']);
+        return $this->repo->findBy([], ['id'=> 'ASC']);
     }
 
     public function save(Product $product, bool $flush = false): void

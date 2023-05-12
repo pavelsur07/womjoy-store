@@ -69,12 +69,12 @@ class ProductStatus extends StringValueObject
     {
         return [
             self::DRAFT,
-            self::ARCHIVED,
             self::DEVELOPMENT,
             self::READY_DEVELOPMENT,
             self::WAIT_SALE,
             self::READY_SALE,
             self::SALE,
+            self::ARCHIVED,
         ];
     }
 }

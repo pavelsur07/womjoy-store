@@ -1,15 +1,15 @@
 {% if status == 'draft' %}
-    <span class="badge badge-secondary">Draft</span>
+    <span class="badge badge-secondary">{{ 'draft'|trans|raw }}</span>
 {% elseif status == 'development' %}
-    <span class="badge bg-indigo">Ready development</span>
+    <span class="badge bg-indigo">{{ 'development'|trans|raw }}</span>
 {% elseif status == 'ready-development' %}
-    <span class="badge bg-purple">Development</span>
+    <span class="badge bg-purple">{{ 'ready-development'|trans|raw }}</span>
 {% elseif status == 'wait-sale' %}
-    <span class="badge bg-pink">Wait sale</span>
+    <span class="badge bg-pink">{{ 'wait-sale'|trans|raw }}</span>
 {% elseif status == 'ready-sale' %}
-    <span class="badge bg-yellow">Ready sale</span>
+    <span class="badge bg-yellow">{{ 'ready-sale'|trans|raw }}</span>
 {% elseif status == 'sale' %}
-    <span class="badge bg-green">Sale</span>
+    <span class="badge bg-green">{{ 'sale'|trans|raw }}</span>
 {% elseif status == 'archived' %}
-    <span class="badge bg-orange">Archives</span>
+    <span class="badge bg-orange">{{ 'archived'|trans|raw }}</span>
 {% endif %}

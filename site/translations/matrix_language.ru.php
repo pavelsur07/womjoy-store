@@ -6,10 +6,10 @@ use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
 
 return [
     ProductStatus::DRAFT => 'Черновик',
-    ProductStatus::DEVELOPMENT => 'Development',
-    ProductStatus::READY_DEVELOPMENT => 'Ready development',
-    ProductStatus::WAIT_SALE => 'Wait sale',
-    ProductStatus::READY_SALE => 'Ready sale',
-    ProductStatus::SALE =>'Sale',
-    ProductStatus::ARCHIVED => 'Archived',
+    ProductStatus::DEVELOPMENT => 'Разрабатывается',
+    ProductStatus::READY_DEVELOPMENT => 'Разработан',
+    ProductStatus::WAIT_SALE => 'Готовим к продаже',
+    ProductStatus::READY_SALE => 'Готов к продаже',
+    ProductStatus::SALE =>'Продаем',
+    ProductStatus::ARCHIVED => 'Архивный',
 ];

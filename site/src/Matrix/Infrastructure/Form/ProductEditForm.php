@@ -33,11 +33,10 @@ class ProductEditForm extends AbstractType
             ], ])*/
             ->add('status', Type\ChoiceType::class, [
                 'choices' => array_combine(ProductStatus::list(), ProductStatus::list()),
-                //'required' => false,
-                //'expanded' => true,
+                // 'required' => false,
+                // 'expanded' => true,
                 'translation_domain' => 'matrix_language',
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
