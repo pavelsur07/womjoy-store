@@ -21,8 +21,8 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         foreach ($this->listProducts() as $product) {
             $object = new Product(
                 createdAt: new DateTimeImmutable(),
-                article: $product['name'],
-                name: $product['article'],
+                article: $product['article'],
+                name: $product['name'],
                 subject: $subject,
                 model: $model,
                 color: $color
