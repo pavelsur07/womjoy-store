@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Infrastructure\Form;
+namespace App\Matrix\Infrastructure\Form\Product;
 
 use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
-use App\Matrix\Domain\Repository\ProductRepositoryInterface;
+use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;

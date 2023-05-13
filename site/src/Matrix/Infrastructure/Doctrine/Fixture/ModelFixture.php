@@ -15,8 +15,8 @@ class ModelFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $object = new Model('Classic');
-        $this->setReference(self::REFERENCE_MODEL_CLASSIC, $object);
         $manager->persist($object);
+        $this->setReference(self::REFERENCE_MODEL_CLASSIC, $object);
         $manager->flush();
     }
 }

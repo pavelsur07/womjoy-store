@@ -14,9 +14,9 @@ class SubjectFixture extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $subject = new Subject('Леггинсы');
-        $this->setReference(self::REFERENCE_SUBJECT_LEGGINGS, $subject);
-        $manager->persist($subject);
+        $object = new Subject('Леггинсы');
+        $manager->persist($object);
+        $this->setReference(self::REFERENCE_SUBJECT_LEGGINGS, $object);
         $manager->flush();
     }
 }

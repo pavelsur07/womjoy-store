@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Domain\Repository;
+namespace App\Matrix\Domain\Repository\Product;
 
 use App\Matrix\Domain\Entity\Product\Product;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
 interface ProductRepositoryInterface
 {
     public function get(int $id): Product;
+
+    public function index(int $page, int $size, ProductFilterInterface $filter): PaginationInterface;
 
     public function list(): array;
 

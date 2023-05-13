@@ -7,7 +7,7 @@ namespace App\Matrix\Infrastructure\Controller\Product;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;
-use App\Matrix\Domain\Repository\ProductRepositoryInterface;
+use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\VariantEditForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

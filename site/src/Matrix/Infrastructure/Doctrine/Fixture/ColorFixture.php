@@ -15,8 +15,8 @@ class ColorFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $object = new Color('Black');
-        $this->setReference(self::REFERENCE_COLOR_BLACK, $object);
         $manager->persist($object);
+        $this->setReference(self::REFERENCE_COLOR_BLACK, $object);
         $manager->flush();
     }
 }

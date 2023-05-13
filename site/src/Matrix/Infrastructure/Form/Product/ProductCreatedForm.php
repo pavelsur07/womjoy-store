@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Infrastructure\Form;
+namespace App\Matrix\Infrastructure\Form\Product;
 
 use App\Matrix\Domain\Entity\Color;
 use App\Matrix\Domain\Entity\Model;
 use App\Matrix\Domain\Entity\Subject;
-use App\Matrix\Domain\Repository\ProductRepositoryInterface;
+use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;

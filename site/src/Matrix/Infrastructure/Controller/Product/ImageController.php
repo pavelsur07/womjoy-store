@@ -6,7 +6,7 @@ namespace App\Matrix\Infrastructure\Controller\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Common\Infrastructure\Uploader\FileUploader;
-use App\Matrix\Domain\Repository\ProductRepositoryInterface;
+use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\ProductImageAddForm;
 use App\Store\Application\Command\Product\Image\Add\File;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

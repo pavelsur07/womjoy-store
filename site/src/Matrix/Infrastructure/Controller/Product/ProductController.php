@@ -6,9 +6,11 @@ namespace App\Matrix\Infrastructure\Controller\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Matrix\Domain\Entity\Product\Product;
-use App\Matrix\Domain\Repository\ProductRepositoryInterface;
-use App\Matrix\Infrastructure\Form\ProductCreatedForm;
-use App\Matrix\Infrastructure\Form\ProductEditForm;
+use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
+use App\Matrix\Infrastructure\Form\Product\ProductCreatedForm;
+use App\Matrix\Infrastructure\Form\Product\ProductEditForm;
+use App\Matrix\Infrastructure\Form\Product\ProductFilterListForm;
+use App\Matrix\Infrastructure\Repository\Product\ProductFilter;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use DomainException;
@@ -19,13 +21,37 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
+    public const PER_PAGE = 15;
+
     #[Route(path: '/admin/matrix/products/', name: 'matrix.admin.product.index')]
-    public function index(ProductRepositoryInterface $products): Response
+    public function index(Request $request, ProductRepositoryInterface $products): Response
     {
+        $form = $this->createForm(ProductFilterListForm::class, []);
+        $form->handleRequest($request);
+
+        $filter = new ProductFilter();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $filter->status = $data['status'];
+            $filter->subject = $data['subject'];
+            $filter->model = $data['model'];
+            $filter->color = $data['color'];
+            $filter->article = $data['article'];
+            $filter->name = $data['name'];
+        }
+
+        $pagination = $products->index(
+            page: $request->query->getInt('page', 1),
+            size: $request->query->getInt('size', self::PER_PAGE),
+            filter: $filter,
+        );
+
         return $this->render(
             'admin/matrix/product/index.html.twig',
             [
-                'pagination' => $products->list(),
+                'pagination' => $pagination,
+                'form' => $form->createView(),
             ]
         );
     }

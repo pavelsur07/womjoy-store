@@ -7,9 +7,10 @@ namespace App\Matrix\Infrastructure\Doctrine\Fixture;
 use App\Matrix\Domain\Entity\Product\Product;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ProductFixture extends Fixture
+class ProductFixture extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
