@@ -19,7 +19,7 @@ class SubjectController extends AbstractController
     public function index(SubjectRepositoryInterface $subjects): Response
     {
         return $this->render(
-            'admin/matrix/subject/index.html.twig',
+            'matrix/admin/subject/index.html.twig',
             [
                 'pagination' => $subjects->list(),
             ]
@@ -43,7 +43,7 @@ class SubjectController extends AbstractController
 
             return $this->redirectToRoute('matrix.admin.subject.index', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('admin/matrix/subject/create.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/subject/create.html.twig', ['form'=> $form->createView()]);
     }
 
     public function remove(): void
