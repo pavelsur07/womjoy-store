@@ -1,0 +1,157 @@
+version: "3.9"
+services:
+  traefik:
+    image: traefik:2.4
+    command:
+      --providers.docker=true
+      --providers.docker.watch=true
+      --providers.docker.swarmMode=true
+      --providers.docker.exposedByDefault=false
+      --entryPoints.http.address=:80
+      --entryPoints.https.address=:443
+      --certificatesresolvers.letsEncrypt.acme.httpChallenge=true
+      --certificatesresolvers.letsEncrypt.acme.httpChallenge.entryPoint=http
+      --certificatesresolvers.letsEncrypt.acme.email=mail@womjoy.ru
+      --certificatesresolvers.letsEncrypt.acme.storage=/certs/acme.json
+    ports:
+      -   target: 80
+          published: 80
+          protocol: tcp
+          mode: host
+      -   target: 443
+          published: 443
+          protocol: tcp
+          mode: host
+    networks:
+      - traefik-public
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-public-certs:/certs
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        
+        - traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)
+        - traefik.http.routers.http-catchall.entryPoints=http
+        - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+        - traefik.http.services.http-catchall.loadBalancer.server.port=80
+        
+        - traefik.http.middlewares.redirect-to-https.redirectScheme.scheme=https
+        - traefik.http.middlewares.redirect-to-https.redirectScheme.permanent=true
+        
+        - traefik.http.middlewares.secure-headers.headers.sslRedirect=true
+        - traefik.http.middlewares.secure-headers.headers.stsSeconds=31536000
+        - traefik.http.middlewares.secure-headers.headers.contentSecurityPolicy=block-all-mixed-content
+      placement:
+        constraints: [ node.role == manager ]
+  
+  site:
+    image: ${REGISTRY}/site:${IMAGE_TAG}
+    networks:
+      - traefik-public
+      - default
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.http.routers.frontend.rule=Host(`staging.womjoy.ru`) || Host(`www.staging.womjoy.ru`)
+        - traefik.http.services.frontend.loadBalancer.server.port=80
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.staging.womjoy.ru/(.*)$$
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}staging.womjoy.ru/$${2}
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.permanent=true
+        - traefik.http.routers.frontend.middlewares=frontend-redirect,secure-headers
+        - traefik.http.routers.frontend.entryPoints=https
+        - traefik.http.routers.frontend.tls=true
+        - traefik.http.routers.frontend.tls.certResolver=letsEncrypt
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+
+  site-php-fpm:
+    image: ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
+      SENTRY_DSN: ${SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      STORAGE_BASE_URL: 'https://static.womjoy.ru'
+      STORAGE_FTP_HOST: 'storage-ftp'
+      STORAGE_FTP_USERNAME: 'app'
+      STORAGE_FTP_PASSWORD: 'secret'
+      STORAGE_FTP_ROOT: '/'
+      STORAGE_FTP_PASSIVE: 0
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+
+  site-migration:
+    image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
+      SENTRY_DSN: ${SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 120s
+      
+  site-postgres:
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: app
+    volumes:
+      - site-postgres:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints: [ node.labels.db == db ]
+      endpoint_mode: dnsrr
+  
+  site-redis:
+    image: redis:7.0-alpine
+    restart: always
+    volumes:
+      - site-redis:/data
+    command:
+      - 'redis-server'
+      - '--databases 2'
+      - '--save 900 1'
+      - '--save 300 10'
+      - '--save 60 10000'
+      - '--requirepass ${REDIS_PASSWORD}'
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
+volumes:
+  site-postgres:
+  traefik-public-certs:
+  site-redis:
+
+networks:
+  traefik-public:
+    external: true
+    driver: bridge
