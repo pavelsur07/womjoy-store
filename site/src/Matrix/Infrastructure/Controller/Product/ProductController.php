@@ -48,7 +48,7 @@ class ProductController extends AbstractController
         );
 
         return $this->render(
-            'admin/matrix/product/index.html.twig',
+            'matrix/admin/product/index.html.twig',
             [
                 'pagination' => $pagination,
                 'form' => $form->createView(),
@@ -87,7 +87,7 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('matrix.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('admin/matrix/product/create.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/product/create.html.twig', ['form'=> $form->createView()]);
     }
 
     #[Route(path: '/admin/matrix/products/{id}/remove', name: 'matrix.admin.product.remove')]
@@ -128,7 +128,7 @@ class ProductController extends AbstractController
         }
 
         return $this->render(
-            'admin/matrix/product/edit.html.twig',
+            'matrix/admin/product/edit.html.twig',
             [
                 'product' => $product,
                 'form' => $form->createView(),

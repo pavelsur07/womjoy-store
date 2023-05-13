@@ -49,9 +49,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Status</th>
                 <th>Image</th>
+                <th>Status</th>
                 <th>Article / Color</th>
                 <th>Name</th>
                 <th>Subject</th>
@@ -62,8 +61,6 @@
             <tbody>
             {% for product in pagination %}
                 <tr>
-                    <td>{{ product.id }}</td>
-                    <td>{{matrix_product_status(product.status) }} <br> <strong>{{ product.createdAt| date('Y')}} </strong></td>
                     <td>
                         {% if product.images.count > 0 %}
                             {% set file = product.images.first %}
@@ -76,6 +73,7 @@
                             </a>
                         {% endif %}
                     </td>
+                    <td>{{matrix_product_status(product.status) }} <br> <strong>{{ product.createdAt| date('Y')}} </strong></td>
                     <td>
                         {{ product.article }}
                         <br>
@@ -88,7 +86,7 @@
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('matrix.admin.product.edit',{'id': product.id}) }}">edit</a>
-                            {% include 'admin/matrix/product/_delete_form.html.twig' %}
+                            {% include 'matrix/admin/product/_delete_form.html.twig' %}
                         </div>
                     </td>
                 </tr>

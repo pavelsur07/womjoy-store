@@ -54,7 +54,7 @@ class ImageController extends AbstractController
             $flusher->flush();
         }
         return $this->render(
-            'admin/matrix/product/image/index.html.twig',
+            'matrix/admin/product/image/index.html.twig',
             [
                 'product'=> $product,
                 'form' => $form->createView(),

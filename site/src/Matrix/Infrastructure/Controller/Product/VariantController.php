@@ -40,7 +40,7 @@ class VariantController extends AbstractController
         }
 
         return $this->render(
-            'admin/matrix/product/variant/add.html.twig',
+            'matrix/admin/product/variant/add.html.twig',
             [
                 'form'=> $form->createView(),
                 'product' => $product,
