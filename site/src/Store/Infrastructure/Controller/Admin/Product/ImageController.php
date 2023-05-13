@@ -51,7 +51,12 @@ class ImageController extends AbstractController
             }
 
             $flusher->flush();
-            // TODO convert png
+
+            foreach ($product->getImages() as $image) {
+                $extension = explode('.', $image->getName())[1];
+                if ($extension === 'png') {
+                }
+            }
 
             // TODO optimize & thumbnails
 

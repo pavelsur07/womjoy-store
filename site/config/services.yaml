@@ -69,6 +69,9 @@ services:
         
     #App\Store\Domain\Repository\CategoryRepositoryInterface:
     #    class: App\Store\Infrastructure\Repository\CategoryRepository
+    
+    App\Common\Infrastructure\Service\Thumbnail\ThumbnailService:
+        arguments: [ '@default.storage.aws', '%env(STORAGE_BASE_URL)%' ]
 
     App\Matrix\Infrastructure\Menu\ProductActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: matrix_product_action } ]
