@@ -19,7 +19,7 @@ class ModelController extends AbstractController
     public function index(ModelRepositoryInterface $models): Response
     {
         return $this->render(
-            'admin/matrix/model/index.html.twig',
+            'matrix/admin/model/index.html.twig',
             [
                 'pagination' => $models->list(),
             ]
@@ -43,7 +43,7 @@ class ModelController extends AbstractController
 
             return $this->redirectToRoute('matrix.admin.model.index', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('admin/matrix/model/create.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/model/create.html.twig', ['form'=> $form->createView()]);
     }
 
     public function remove(): void
