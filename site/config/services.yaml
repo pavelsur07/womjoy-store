@@ -56,9 +56,6 @@ services:
     App\Common\Infrastructure\Doctrine\Flusher:
         class: App\Common\Infrastructure\Doctrine\Flusher
     
-    App\Menu\Admin\Product\MainMenu:
-        tags: [{ name: knp_menu.menu_builder, method: build, alias: admin_product }]
-    
     App\Store\Infrastructure\Repository\ProductRepository:
         class: App\Store\Infrastructure\Repository\ProductRepository
     

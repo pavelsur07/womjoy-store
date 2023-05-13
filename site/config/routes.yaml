@@ -1,6 +1,6 @@
-http:
-    resource: ../src/Http/
-    type: annotation
+#http:
+#    resource: ../src/Http/
+#    type: annotation
 #    prefix:
 #        en: '' # don't prefix URLs for English, the default locale
 #        ru: '/ru'
@@ -11,4 +11,8 @@ matrix:
 
 store:
     resource: ../src/Store/Infrastructure/Controller/
+    type: annotation
+    
+auth:
+    resource: ../src/Auth/Infrastructure/Controller/
     type: annotation

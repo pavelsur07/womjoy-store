@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Auth;
+namespace App\Auth\Infrastructure\Controller;
 
 use App\Auth\Domain\Entity\User;
 use App\Auth\Infrastructure\Form\UserRegistrationType;

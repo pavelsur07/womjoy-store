@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Auth\Admin;
+namespace App\Auth\Infrastructure\Controller\Admin;
 
 use App\Auth\Domain\Entity\User;
 use App\Auth\Infrastructure\Form\UserChangePasswordForm;

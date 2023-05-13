@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Store;
+namespace App\Store\Infrastructure\Controller;
 
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
