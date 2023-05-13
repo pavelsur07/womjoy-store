@@ -19,7 +19,7 @@ class ColorController extends AbstractController
     public function index(ColorRepositoryInterface $colors): Response
     {
         return $this->render(
-            'admin/matrix/color/index.html.twig',
+            'matrix/admin/color/index.html.twig',
             [
                 'pagination' => $colors->list(),
             ]
@@ -27,7 +27,7 @@ class ColorController extends AbstractController
     }
 
     #[Route(path: '/create', name: '.create')]
-    public function create(Request $request, ColorRepositoryInterface $colors)
+    public function create(Request $request, ColorRepositoryInterface $colors): Response
     {
         $form = $this->createForm(ColorlEditForm::class, []);
         $form->handleRequest($request);
@@ -43,7 +43,7 @@ class ColorController extends AbstractController
 
             return $this->redirectToRoute('matrix.admin.color.index', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('admin/matrix/color/create.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/color/create.html.twig', ['form'=> $form->createView()]);
     }
 
     public function remove(): void
