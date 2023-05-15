@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Application\Command\Product\Image\Add\File;
 use App\Store\Infrastructure\Form\Product\ProductImageAddForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
+use Gumlet\ImageResizeException;
 use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +22,16 @@ class ImageController extends AbstractController
 {
     /**
      * @throws FilesystemException
+     * @throws ImageResizeException
      */
     #[Route('/', name: '.index', methods: ['GET', 'POST'])]
-    public function index(Request $request, ProductRepository $products, FileUploader $uploader, Flusher $flusher): Response
-    {
+    public function index(
+        Request $request,
+        ProductRepository $products,
+        FileUploader $uploader,
+        Flusher $flusher,
+        ThumbnailService $thumbnails,
+    ): Response {
         $productId = (int)$request->get('product_id');
         $product = $products->get($productId);
 
@@ -49,14 +57,24 @@ class ImageController extends AbstractController
                     size: $file->getSize()
                 );
             }
-
             $flusher->flush();
 
             foreach ($product->getImages() as $image) {
                 $extension = explode('.', $image->getName())[1];
                 if ($extension === 'png') {
+                    $oldName = $image->getName();
+                    $file = $thumbnails->convertImagePngToJpeg(
+                        path: $image->getPath(),
+                        name: $image->getName()
+                    );
+
+                    $image->setName($file->getName());
+
+                    // $oldName = explode('.',$file->getName())[0].'.png';
+                    $uploader->remove(path: $image->getPath(), name: $oldName);
                 }
             }
+            $flusher->flush();
 
             // TODO optimize & thumbnails
 

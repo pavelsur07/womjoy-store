@@ -17,7 +17,7 @@ class ThumbnailService
     private const QUALITY = 90;
 
     public function __construct(
-        private readonly FilesystemOperator $storage,
+        private readonly FilesystemOperator $defaultStorage,
         private readonly string $baseUrl
     ) {
     }
@@ -32,7 +32,7 @@ class ThumbnailService
         $basePatch = $path;
 
         $tmp = tmpfile();
-        $file = $this->storage->read($fullName);
+        $file = $this->defaultStorage->read($fullName);
 
         fwrite($tmp, $file);
 
@@ -42,12 +42,12 @@ class ThumbnailService
         $name = explode('.', $name)[0] . '.jpg';
 
         $image->save($stream, IMAGETYPE_JPEG, 100);
-        $this->storage->writeStream($path . '/' . $name, $stream);
+        $this->defaultStorage->writeStream($path . '/' . $name, $stream);
 
         fclose($stream);
         fclose($tmp);
 
-        $fileSize = $this->storage->fileSize($path . '/' . $name);
+        $fileSize = $this->defaultStorage->fileSize($path . '/' . $name);
         return new File(
             path: $path,
             name: $name,
@@ -55,7 +55,11 @@ class ThumbnailService
         );
     }
 
-    public function createThumbnails(string $path, string $inputName, string $outputName): void
+    public function createThumbnailsJpeg(string $path, string $inputName, string $outputName, int $width = 0, int $height = 0): void
+    {
+    }
+
+    public function createThumbnailsWebp(string $path, string $inputName, string $outputName, int $width = 0, int $height = 0): void
     {
     }
 }
