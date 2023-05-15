@@ -55,11 +55,7 @@ class ThumbnailService
         );
     }
 
-    public function createThumbnailsJpeg(string $path, string $inputName, string $outputName, int $width = 0, int $height = 0): void
-    {
-    }
-
-    public function createThumbnailsWebp(string $path, string $inputName, string $outputName, int $width = 0, int $height = 0): void
+    public function createThumbnail(string $path, string $inputName, string $outputName, int $width = 0, int $height = 0): void
     {
     }
 }
