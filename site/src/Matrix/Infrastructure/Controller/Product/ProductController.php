@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Matrix\Infrastructure\Controller\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
-use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Matrix\Domain\Entity\Product\Product;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\Product\ProductCreatedForm;
@@ -15,8 +14,6 @@ use App\Matrix\Infrastructure\Repository\Product\ProductFilter;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use DomainException;
-use Gumlet\ImageResizeException;
-use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

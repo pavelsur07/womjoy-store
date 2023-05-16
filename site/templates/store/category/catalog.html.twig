@@ -26,15 +26,13 @@
                             {% if product.images.count > 0 %}
 
                                 {% set file = product.images.first %}
-                                {% set file_url = storage_path(file.path ~'/'~ file.name) %}
-
                                 <div class="product__img_slide swiper-slide active">
-                                    <img src="{{ file_url }}" alt="{{ product.name }} - imageNumber" width="289" height="384">
+                                    <img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ product.name }}" width="289" height="384">
                                 </div>
 
                             {% else %}
                                 <div class="product__img_slide swiper-slide active">
-                                    <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
+                                    <img src="{{ asset('./img/products/img-1.webp') }}" alt="Thumbnail loading" width="289" height="384">
                                 </div>
                             {% endif %}
 

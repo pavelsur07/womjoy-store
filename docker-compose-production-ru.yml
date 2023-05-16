@@ -82,6 +82,7 @@ services:
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
       STORAGE_BASE_URL: 'https://static.womjoy.ru'
+      CACHE_PATH_IMAGE: '/cache'
       STORAGE_FTP_HOST: 'storage-ftp'
       STORAGE_FTP_USERNAME: 'app'
       STORAGE_FTP_PASSWORD: 'secret'
@@ -105,6 +106,8 @@ services:
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
+      STORAGE_BASE_URL: 'https://static.womjoy.ru'
+      CACHE_PATH_IMAGE: '/cache'
       # TODO: Remove after installing CS Fixer for PHP 8.2
       PHP_CS_FIXER_IGNORE_ENV: 1
       REDIS_HOST: site-redis

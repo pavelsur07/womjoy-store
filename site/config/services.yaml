@@ -19,6 +19,7 @@ services:
             string $locales: '%app_locales%'
             string $defaultLocale: '%locale%'
             string $emailSender: '%app.notifications.email_sender%'
+            string $cachePathImages: '%env(CACHE_PATH_IMAGE)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -68,7 +69,7 @@ services:
     #    class: App\Store\Infrastructure\Repository\CategoryRepository
     
     App\Common\Infrastructure\Service\Thumbnail\ThumbnailService:
-        arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%' ]
+        arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%', '%env(CACHE_PATH_IMAGE)%']
 
     App\Matrix\Infrastructure\Menu\ProductActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: matrix_product_action } ]

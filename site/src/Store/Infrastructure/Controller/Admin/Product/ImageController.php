@@ -26,6 +26,10 @@ class ImageController extends AbstractController
         [300, 400],
     ];
 
+    public function __construct(private readonly string $cachePathImages)
+    {
+    }
+
     /**
      * @throws FilesystemException
      * @throws ImageResizeException
@@ -65,10 +69,9 @@ class ImageController extends AbstractController
             }
             $flusher->flush();
 
-            // If extension png, convert to jpeg
             foreach ($product->getImages() as $image) {
                 $extension = explode('.', $image->getName())[1];
-                if ($extension === 'png') {
+                if ($extension !== 'jpg') {
                     $oldName = $image->getName();
                     $file = $thumbnails->convertImagePngToJpeg(
                         path: $image->getPath(),
@@ -83,22 +86,34 @@ class ImageController extends AbstractController
 
             // Optimize & thumbnails Jpeg
             foreach ($product->getImages() as $image) {
-                try {
-                    foreach (self::THUMBNAILS as $thumbnail) {
-                        $outputPath = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
-                        $thumbnails->createThumbnail(
-                            path: $image->getPath(),
-                            inputName: $image->getName(),
-                            outputPath: $outputPath,
-                            width: $thumbnail[0],
-                            height: $thumbnail[1],
-                        );
-                    }
-                } catch (ImageResizeException $e) {
+                // try {
+                foreach (self::THUMBNAILS as $thumbnail) {
+                    $outputPath = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
+                    $thumbnails->createThumbnail(
+                        path: $image->getPath(),
+                        inputName: $image->getName(),
+                        outputPath: $outputPath,
+                        width: $thumbnail[0],
+                        height: $thumbnail[1],
+                    );
+                }
+
+                foreach (self::THUMBNAILS as $thumbnail) {
+                    $outputPath = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
+                    $thumbnails->createThumbnail(
+                        path: $image->getPath(),
+                        inputName: $image->getName(),
+                        outputPath: $outputPath,
+                        width: $thumbnail[0],
+                        height: $thumbnail[1],
+                        type: ThumbnailService::WEBP,
+                    );
+                }
+                /*} catch (ImageResizeException $e) {
                     $this->addFlash('warning', $e->getMessage());
                 } catch (FilesystemException $e) {
                     $this->addFlash('warning', $e->getMessage());
-                }
+                }*/
             }
 
             return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);

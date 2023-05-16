@@ -17,7 +17,8 @@ class ThumbnailService
 
     public function __construct(
         private readonly FilesystemOperator $defaultStorage,
-        private readonly string $baseUrl
+        private readonly string $baseUrl,
+        private readonly string $cachePathImages,
     ) {
     }
 
@@ -99,5 +100,15 @@ class ThumbnailService
             name: $name,
             size: $fileSize
         );
+    }
+
+    public function generateUrl(string $path, string $file, int $width = 0, int $height = 0): string
+    {
+        return $this->baseUrl . '/' . $path . $this->getCachePatch($width, $height) . $file;
+    }
+
+    private function getCachePatch($width = 0, int $height = 0): string
+    {
+        return $this->cachePathImages . '/' . $width . '-' . $height . '/';
     }
 }
