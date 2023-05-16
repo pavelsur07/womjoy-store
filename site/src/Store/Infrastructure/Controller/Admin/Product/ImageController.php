@@ -173,8 +173,21 @@ class ImageController extends AbstractController
         $imageId = (int)$request->attributes->get('image_id');
 
         $product = $products->get($productId);
-
         $image = $product->getImage($imageId);
+
+        foreach (self::THUMBNAILS as $thumbnail) {
+
+            $path = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
+            $uploader->remove(
+                path: $path,
+                name: $image->getName(),
+            );
+
+            $uploader->remove(
+                path: $path,
+                name: $image->getName().'.webp',
+            );
+        }
 
         $uploader->remove(
             path: $image->getPath(),
