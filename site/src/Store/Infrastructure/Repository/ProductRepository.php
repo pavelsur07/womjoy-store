@@ -48,6 +48,7 @@ class ProductRepository
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->from(Product::class, 'p');
+        $qb->orderBy('p.id', 'ASC');
 
         $qb->getQuery();
 

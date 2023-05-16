@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Admin\Product;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Product\Product;
+use App\Store\Infrastructure\Form\Product\ProductEditForm;
 use App\Store\Infrastructure\Form\Product\ProductType;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,13 +50,25 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function edit(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher): Response
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(
+            ProductEditForm::class,
+            [
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+                'price' => $product->getPrice(),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $productRepository->save($product, true);
+            $data = $form->getData();
+            $product->setName($data['name']);
+            $product->setDescription($data['description']);
+            $product->setPrice($data['price']);
+            $flusher->flush();
+            // $productRepository->save($product, true);
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }

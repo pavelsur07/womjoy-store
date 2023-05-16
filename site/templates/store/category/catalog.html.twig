@@ -40,16 +40,16 @@
                     </div>
                 </div>
                 <div class="product__row">
-                    <span class="product__cost">1 299 ₽</span>
+                    <span class="product__cost">{{ product.price|number_format(0, ',', ' ')}} р.</span>
                 </div>
                 <p class="product__name">{{ product.name }}</p>
-                <ul class="product__colors">
+{#                <ul class="product__colors">
                     <li><a href="#" style="background-color: #9EDFE5;"></a></li>
                     <li><a href="#" style="background-color: #6E72A8;"></a></li>
                     <li><a href="#" style="background-color: #3740B4;"></a></li>
                     <li><a href="#" style="background-color: #A8AAB6;"></a></li>
                     <li><a href="#" style="background-color: #27262C;"></a></li>
-                </ul>
+                </ul>#}
                 <div class="product__hidden">
                     <button class="product__addtocart btn-primary" type="button">
                         <img src="{{ asset('./img/icons/cart.svg') }}" alt="to cart" width="20" height="20">
