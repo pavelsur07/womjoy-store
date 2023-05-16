@@ -42,8 +42,20 @@
                 </div>
                 </a>
                 <div class="product__row">
-                    <span class="product__cost">{{ product.price|number_format(0, ',', ' ')}} р.</span>
+
+                    {% if product.price.listPrice == 0 %}
+                        <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
+                    {% else %}
+
+                        <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+                        <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
+                        <span class="product__sale">
+                                -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
+                            </span>
+                    {% endif %}
+
                 </div>
+
                 <p class="product__name">{{ product.name }}</p>
 {#                <ul class="product__colors">
                     <li><a href="#" style="background-color: #9EDFE5;"></a></li>

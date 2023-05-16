@@ -32,7 +32,7 @@
                     <th class="w-1">Status</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Price / <br> List Price</th>
                     <th class="w-25">Actions</th>
                 </tr>
             </thead>
@@ -54,7 +54,10 @@
                         {% endif %}
                     </td>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
+                    <td>
+                        {{ product.price.price|number_format(0, ',', ' ') }} <br>
+                        {{ product.price.listPrice|number_format(0, ',', ' ') }}
+                    </td>
 
                     <td>
                         <a class="btn btn-sm btn-bitbucket" href="{{ path('store.admin.product.edit', {'id': product.id}) }}">edit</a>

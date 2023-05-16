@@ -23,7 +23,7 @@ class ProductEditForm extends AbstractType
                 ]
             )
             ->add('price', Type\IntegerType::class)
-            ->add('newPrice', Type\IntegerType::class, ['required' => false])
+            ->add('listPrice', Type\IntegerType::class, ['required' => false])
             ->add('seoTitle', Type\TextType::class, ['required' => false])
             ->add('seoDescription', Type\TextType::class, ['required' => false]);
     }

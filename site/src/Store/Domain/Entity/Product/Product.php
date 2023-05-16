@@ -26,7 +26,7 @@ class Product
     private ?string $description = null;
 
     #[ORM\Embedded(class: ProductPrice::class, columnPrefix: false)]
-    private ProductPrice|null $price = null;
+    private ProductPrice $price;
 
     #[ORM\Column(length: 16)]
     private ?string $status = null;
@@ -49,8 +49,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
 
-    public function __construct()
+    public function __construct(ProductPrice $price)
     {
+        $this->price = $price;
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
     }
@@ -160,13 +161,6 @@ class Product
     public function getPrice(): ProductPrice
     {
         return $this->price;
-    }
-
-    public function setPrice(?int $price): self
-    {
-        $this->price = $price;
-
-        return $this;
     }
 
     public function getStatus(): ?string

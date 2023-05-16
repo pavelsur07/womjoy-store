@@ -57,7 +57,8 @@ class ProductController extends AbstractController
             [
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
-                'price' => $product->getPrice(),
+                'price' => $product->getPrice()->getPrice(),
+                'listPrice' => $product->getPrice()->getListPrice(),
             ]
         );
         $form->handleRequest($request);
@@ -66,7 +67,8 @@ class ProductController extends AbstractController
             $data = $form->getData();
             $product->setName($data['name']);
             $product->setDescription($data['description']);
-            $product->setPrice($data['price']);
+            $product->getPrice()->setPrice($data['price']);
+            $product->getPrice()->setListPrice($data['listPrice']);
             $flusher->flush();
             // $productRepository->save($product, true);
 

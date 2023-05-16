@@ -119,9 +119,15 @@
                         </div>
                     </div>
                     <div class="i-card__price">
-                        <span class="i-card__cost">1 299 ₽</span>
-                        <del class="i-card__oldcost">1 299 ₽</del>
-                        <span class="i-card__sale">-30%</span>
+                        {% if product.price.listPrice == 0 %}
+                            <span class="i-card__cost">{{ product.price.price|number_format(0, ',', ' ') }} р.</span>
+                        {% else %}
+                            <span class="i-card__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+                            <del class="i-card__oldcost">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
+                            <span class="i-card__sale">
+                                -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
+                            </span>
+                        {% endif %}
                     </div>
                     <div class="i-card__btns">
                         <button class="i-card__greenbtn btn-primary" type="button">
