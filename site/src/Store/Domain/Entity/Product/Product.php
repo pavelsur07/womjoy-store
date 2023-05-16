@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,8 +25,8 @@ class Product
     #[ORM\Column(length: 3000, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $price = null;
+    #[ORM\Embedded(class: ProductPrice::class, columnPrefix: false)]
+    private ProductPrice|null $price = null;
 
     #[ORM\Column(length: 16)]
     private ?string $status = null;
@@ -156,7 +157,7 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ProductPrice
     {
         return $this->price;
     }
