@@ -13,113 +13,38 @@
                 <div class="i-card__images">
                     <span class="i-card__sellout">Распродажа</span>
                     <a href="#" class="i-card__back">
-                        <img src="{{ asset('./img/icons/arrow-left-tail.svg') }}" alt="" width="24" height="24">
+                        <img src="{{ asset('./img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
                     </a>
                     <div class="i-card__slider">
                         <div class="i-card-swiper swiper">
                             <div class="swiper-wrapper">
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-1-lg.webp') }}" alt="" width="598" height="798">
+                                {% for image in product.images %}
+                                    <div class="i-card__slide swiper-slide">
+                                        <div class="i-card__slide_img">
+                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} imageNumber N " width="598" height="798">
+                                            {#<img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ product.name }}" width="289" height="384">#}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-2-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-3-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-4-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-5-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-6-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-4-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-5-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
-                                <div class="i-card__slide swiper-slide">
-                                    <div class="i-card__slide_img">
-                                        <img src="{{ asset('./img/i-card/img-6-lg.webp') }}" alt="" width="598" height="798">
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                     <div class="i-card__smslider">
                         <div class="i-card-smswiper swiper">
                             <div class="swiper-wrapper">
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-1-sm.webp') }}" alt="" width="83" height="111">
+                                {% for image in product.images %}
+                                    <div class="i-card__smslide swiper-slide">
+                                        <div class="i-card__smslide_img">
+                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="" width="83" height="111">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-2-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-3-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-4-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-5-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-6-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-4-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-5-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
-                                <div class="i-card__smslide swiper-slide">
-                                    <div class="i-card__smslide_img">
-                                        <img src="{{ asset('./img/i-card/img-6-sm.webp') }}" alt="" width="83" height="111">
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="i-card__main">
-                    <h1 class="i-card__title">Лонгслив спортивный Classic Logo Black</h1>
+                    <h1 class="i-card__title">{{ product.name }}</h1>
                     <div class="i-card__info">
                         <div class="rating">
                             <div class="rating__stars">
@@ -250,7 +175,7 @@
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Описание</div>
                             <div class="i-card__faq_answer">
-                                <p>Идеальный лонгслив, в котором совершенна каждая деталь, существует! И это – Womjoy Сlassic Logo Black. В нем продумана каждая мелочь, чтобы во время активных нагрузок в зале, на пробежке, на занятиях по фитнесу, йоге или пилатесу ты не ощущала ни малейшего дискомфорта. Эта модель изготовлена из спортивной эластичной ткани с плоскими швами, которая отводит влагу и позволяет коже дышать</p>
+                                <p>{{ product.description }}</p>
                             </div>
                         </div>
                         <div class="i-card__faq_item">

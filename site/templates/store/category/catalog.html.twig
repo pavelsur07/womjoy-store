@@ -19,6 +19,7 @@
         <div class="products__items products-3">
             {% for product in pagination %}
             <div class="product">
+                <a href="{{ path('store.product.show',{'id': product.id}) }}">
                 <div class="product__img">
                     <div class="product__img_slider swiper">
                         <div class="swiper-wrapper">
@@ -39,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
                 <div class="product__row">
                     <span class="product__cost">{{ product.price|number_format(0, ',', ' ')}} р.</span>
                 </div>
