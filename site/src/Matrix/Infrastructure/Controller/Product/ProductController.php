@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Matrix\Infrastructure\Controller\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Matrix\Domain\Entity\Product\Product;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\Product\ProductCreatedForm;
@@ -14,6 +15,8 @@ use App\Matrix\Infrastructure\Repository\Product\ProductFilter;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use DomainException;
+use Gumlet\ImageResizeException;
+use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -134,5 +137,32 @@ class ProductController extends AbstractController
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    #[Route(path: '/admin/matrix/products/image-optimize', name: 'matrix.admin.product.image_optimize')]
+    public function imageOptimize(ProductRepositoryInterface $products, Flusher $flusher, ThumbnailService $thumbnails): Response
+    {
+        foreach ($products->list() as $product) {
+            foreach ($product->getImages() as $image) {
+                if (!$image->isOptimize()) {
+                    try {
+                        $thumbnails->createThumbnail(
+                            path: $image->getPath(),
+                            inputName: $image->getFileName(),
+                            width: 300,
+                            height: 400,
+                        );
+
+                        $image->optimize();
+                    } catch (ImageResizeException $e) {
+                        $this->addFlash('warning', $e->getMessage());
+                    } catch (FilesystemException $e) {
+                        $this->addFlash('warning', $e->getMessage());
+                    }
+                }
+            }
+            $flusher->flush();
+        }
+        return $this->redirectToRoute('matrix.admin.product.index');
     }
 }
