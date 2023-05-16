@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace App\Matrix\Infrastructure\Controller\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Common\Infrastructure\Uploader\FileUploader;
+use App\Matrix\Domain\Entity\Product\Image;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\ProductImageAddForm;
 use App\Store\Application\Command\Product\Image\Add\File;
+use Gumlet\ImageResizeException;
+use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,8 +27,13 @@ class ImageController extends AbstractController
     ];
 
     #[Route(path: '/', name: '.index')]
-    public function index(Request $request, ProductRepositoryInterface $products, FileUploader $uploader, Flusher $flusher): Response
-    {
+    public function index(
+        Request $request,
+        ProductRepositoryInterface $products,
+        FileUploader $uploader,
+        Flusher $flusher,
+        ThumbnailService $thumbnails,
+    ): Response {
         $productId = (int)$request->attributes->get('product_id');
         $product = $products->get($productId);
 
@@ -50,7 +59,43 @@ class ImageController extends AbstractController
                     size: $file->getSize()
                 );
             }
+            $flusher->flush();
 
+            /** @var Image $image */
+            foreach ($product->getImages() as $image) {
+                $extension = explode('.', $image->getFileName())[1];
+                if ($extension === 'png') {
+                    $oldName = $image->getFileName();
+                    $file = $thumbnails->convertImagePngToJpeg(
+                        path: $image->getPath(),
+                        name: $image->getFileName(),
+                    );
+
+                    $image->setFileName($file->getName());
+
+                    $uploader->remove(path: $image->getPath(), name: $oldName);
+                }
+            }
+            $flusher->flush();
+
+            foreach ($product->getImages() as $image) {
+                if (!$image->isOptimize()) {
+                    try {
+                        $file = $thumbnails->createThumbnail(
+                            path: $image->getPath(),
+                            inputName: $image->getFileName(),
+                            width: 150,
+                            height: 200,
+                        );
+
+                        $image->optimize();
+                    } catch (ImageResizeException $e) {
+                        $this->addFlash('warning', $e->getMessage());
+                    } catch (FilesystemException $e) {
+                        $this->addFlash('warning', $e->getMessage());
+                    }
+                }
+            }
             $flusher->flush();
         }
         return $this->render(

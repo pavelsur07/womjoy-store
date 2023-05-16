@@ -157,7 +157,7 @@ services:
       /usr/bin/mc alias set myminio http://static-storage:9000 storage_app secret_key;
       /usr/bin/mc mb myminio/static;
       /usr/bin/mc policy set download myminio/static;
-      /usr/bin/mc policy set public myminio/static;
+      /usr/bin/mc --policy set public myminio/static;
       exit 0;
       "
     networks:

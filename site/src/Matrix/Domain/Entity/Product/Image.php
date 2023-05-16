@@ -30,6 +30,9 @@ class Image
     #[ORM\Column(type: Types::INTEGER)]
     private int $size;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => false])]
+    private bool $isOptimize = false;
+
     public function __construct(Product $product, int $sort, string $path, string $fileName, int $size)
     {
         $this->product = $product;
@@ -69,6 +72,11 @@ class Image
         return $this->path;
     }
 
+    public function setFileName(string $fileName): void
+    {
+        $this->fileName = $fileName;
+    }
+
     public function getFileName(): string
     {
         return $this->fileName;
@@ -77,5 +85,15 @@ class Image
     public function getSize(): int
     {
         return $this->size;
+    }
+
+    public function isOptimize(): bool
+    {
+        return $this->isOptimize;
+    }
+
+    public function optimize(): void
+    {
+        $this->isOptimize = true;
     }
 }

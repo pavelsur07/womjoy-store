@@ -39,6 +39,14 @@
             {% for image in product.images %}
                 <div class="col">
                     <div class="card">
+                        <div class="card-header">
+
+                                {% if image.isOptimize  %}
+                            <span class="badge bg-bitbucket">On</span>
+                            {% else %}
+                                <span class="badge bg-gray-50">Off</span>
+                                {% endif %}
+                        </div>
                         <img src=" {{ storage_path(image.path~'/'~image.fileName) }}" class="card-img-top" height="280">
                         <div class="card-footer p-0 mt-2">
                             <div class="btn-group w-100" role="group">

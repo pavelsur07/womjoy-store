@@ -13,7 +13,6 @@ class ThumbnailService
 {
     public const JPG = 1;
     public const WEBP = 2;
-
     private const QUALITY = 90;
 
     public function __construct(
@@ -55,7 +54,47 @@ class ThumbnailService
         );
     }
 
-    public function createThumbnail(string $path, string $inputName, string $outputName, int $width = 0, int $height = 0): void
-    {
+    /**
+     * @throws FilesystemException
+     * @throws ImageResizeException
+     */
+    public function createThumbnail(
+        string $path,
+        string $inputName,
+        int $width = 0,
+        int $height = 0,
+        int $type = self::JPG,
+    ): File {
+        $fullName = $path . '/' . $inputName;
+
+        $tmp = tmpfile();
+        $file = $this->defaultStorage->read($fullName);
+        fwrite($tmp, $file);
+
+        $image = new ImageResize(stream_get_meta_data($tmp)['uri']);
+        $image->resize($width, $height, true);
+        $stream = fopen('php://memory', 'wrb+');
+
+        $name = explode('.', $inputName)[0] . '.jpg';
+
+        switch ($type) {
+            case self::JPG:
+                $image->save($stream, IMAGETYPE_JPEG, self::QUALITY);
+                $this->defaultStorage->writeStream($path . '/' . $name, $stream);
+                break;
+            case self::WEBP:
+                $image->save($stream, IMAGETYPE_WEBP, self::QUALITY);
+                $this->defaultStorage->writeStream($path . '/' . $name . '.webp', $stream);
+        }
+
+        fclose($stream);
+        fclose($tmp);
+
+        $fileSize = $this->defaultStorage->fileSize($path . '/' . $name);
+        return new File(
+            path: $path,
+            name: $name,
+            size: $fileSize
+        );
     }
 }
