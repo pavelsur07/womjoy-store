@@ -61,6 +61,7 @@ class ThumbnailService
     public function createThumbnail(
         string $path,
         string $inputName,
+        string $outputPath,
         int $width = 0,
         int $height = 0,
         int $type = self::JPG,
@@ -80,17 +81,19 @@ class ThumbnailService
         switch ($type) {
             case self::JPG:
                 $image->save($stream, IMAGETYPE_JPEG, self::QUALITY);
-                $this->defaultStorage->writeStream($path . '/' . $name, $stream);
+                $this->defaultStorage->createDirectory($outputPath);
+                $this->defaultStorage->writeStream($outputPath . '/' . $name, $stream);
                 break;
             case self::WEBP:
                 $image->save($stream, IMAGETYPE_WEBP, self::QUALITY);
-                $this->defaultStorage->writeStream($path . '/' . $name . '.webp', $stream);
+                $this->defaultStorage->createDirectory($outputPath);
+                $this->defaultStorage->writeStream($outputPath . '/' . $name . '.webp', $stream);
         }
 
         fclose($stream);
         fclose($tmp);
 
-        $fileSize = $this->defaultStorage->fileSize($path . '/' . $name);
+        $fileSize = $this->defaultStorage->fileSize($outputPath . '/' . $name);
         return new File(
             path: $path,
             name: $name,

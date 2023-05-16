@@ -22,6 +22,7 @@ class ProductEditForm extends AbstractType
     {
         $builder
             ->add('name', Type\TextType::class)
+            ->add('path', Type\TextType::class, ['required' =>false])
 /*            ->add('status', Type\ChoiceType::class, ['choices' => [
                 'Draft' => ProductStatus::DRAFT,
                 'Development' => ProductStatus::DEVELOPMENT,

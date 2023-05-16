@@ -7,7 +7,6 @@ namespace App\Matrix\Infrastructure\Controller\Product;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Common\Infrastructure\Uploader\FileUploader;
-use App\Matrix\Domain\Entity\Product\Image;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\ProductImageAddForm;
 use App\Store\Application\Command\Product\Image\Add\File;
@@ -61,7 +60,6 @@ class ImageController extends AbstractController
             }
             $flusher->flush();
 
-            /** @var Image $image */
             foreach ($product->getImages() as $image) {
                 $extension = explode('.', $image->getFileName())[1];
                 if ($extension === 'png') {
@@ -84,6 +82,7 @@ class ImageController extends AbstractController
                         $file = $thumbnails->createThumbnail(
                             path: $image->getPath(),
                             inputName: $image->getFileName(),
+                            outputPath: $image->getPath(),
                             width: 300,
                             height: 400,
                         );

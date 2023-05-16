@@ -30,6 +30,10 @@
             <p><strong>Name: </strong> {{ product.name }} </p>
             <p><strong>Article: </strong> {{ product.article }} </p>
             <p><strong>Subject: </strong> {{ product.subject.name }} </p>
+            {% if product.pathExternalImage is not null %}
+                <p><strong>Ссылка на яднекс диск:</strong> <a href="{{ product.pathExternalImage }}" target="_blank">{{ product.pathExternalImage }}</a></p>
+            {% endif %}
+
 
             {{ form_start(form) }}
             {{ form_widget(form) }}

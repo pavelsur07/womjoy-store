@@ -20,6 +20,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/product/{product_id}/image', name: 'store.admin.product.image')]
 class ImageController extends AbstractController
 {
+    public const CACHE_PATCH = '/cache';
+    public const THUMBNAILS = [
+        [900, 1200],
+        [300, 400],
+    ];
+
     /**
      * @throws FilesystemException
      * @throws ImageResizeException
@@ -59,6 +65,7 @@ class ImageController extends AbstractController
             }
             $flusher->flush();
 
+            // If extension png, convert to jpeg
             foreach ($product->getImages() as $image) {
                 $extension = explode('.', $image->getName())[1];
                 if ($extension === 'png') {
@@ -69,14 +76,30 @@ class ImageController extends AbstractController
                     );
 
                     $image->setName($file->getName());
-
-                    // $oldName = explode('.',$file->getName())[0].'.png';
                     $uploader->remove(path: $image->getPath(), name: $oldName);
                 }
             }
             $flusher->flush();
 
-            // TODO optimize & thumbnails
+            // Optimize & thumbnails Jpeg
+            foreach ($product->getImages() as $image) {
+                try {
+                    foreach (self::THUMBNAILS as $thumbnail) {
+                        $outputPath = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
+                        $thumbnails->createThumbnail(
+                            path: $image->getPath(),
+                            inputName: $image->getName(),
+                            outputPath: $outputPath,
+                            width: $thumbnail[0],
+                            height: $thumbnail[1],
+                        );
+                    }
+                } catch (ImageResizeException $e) {
+                    $this->addFlash('warning', $e->getMessage());
+                } catch (FilesystemException $e) {
+                    $this->addFlash('warning', $e->getMessage());
+                }
+            }
 
             return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
         }
@@ -147,5 +170,10 @@ class ImageController extends AbstractController
         $flusher->flush();
 
         return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
+    }
+
+    private function getCachePatch($width = 0, int $height = 0): string
+    {
+        return self::CACHE_PATCH . '/' . $width . '-' . $height . '/';
     }
 }

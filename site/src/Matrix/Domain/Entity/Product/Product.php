@@ -57,6 +57,9 @@ class Product
     #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $images;
 
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $pathExternalImage = null;
+
     public function __construct(
         DateTimeImmutable $createdAt,
         string $article,
@@ -239,6 +242,16 @@ class Product
         }
 
         throw new MatrixException('Image not found');
+    }
+
+    public function getPathExternalImage(): ?string
+    {
+        return $this->pathExternalImage;
+    }
+
+    public function setPathExternalImage(string $pathExternalImage): void
+    {
+        $this->pathExternalImage = $pathExternalImage;
     }
 
     private function sortable(): void
