@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Product;
 
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
+use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +18,7 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column]
-    private ?int $id = null;
+    private ?int $id;
 
     #[ORM\Column(length: 60, nullable: true)]
     private ?string $name = null;
@@ -28,8 +29,8 @@ class Product
     #[ORM\Embedded(class: ProductPrice::class, columnPrefix: false)]
     private ProductPrice $price;
 
-    #[ORM\Column(length: 16)]
-    private ?string $status = null;
+    #[ORM\Embedded(class: ProductStatus::class, columnPrefix: 'status_')]
+    private ProductStatus $status;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $seoTitle = null;
@@ -52,6 +53,7 @@ class Product
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
+        $this->status = new ProductStatus(ProductStatus::DRAFT);
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
     }
@@ -163,16 +165,9 @@ class Product
         return $this->price;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ProductStatus
     {
         return $this->status;
-    }
-
-    public function setStatus(string $status): self
-    {
-        $this->status = $status;
-
-        return $this;
     }
 
     public function getSeoTitle(): ?string
@@ -245,6 +240,11 @@ class Product
         }
 
         return $this;
+    }
+
+    public function active(): void
+    {
+        $this->status = new ProductStatus(ProductStatus::ACTIVE);
     }
 
     private function sortable(): void

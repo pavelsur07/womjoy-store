@@ -9,21 +9,13 @@ use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductEditForm extends AbstractType
+class ProductSeoEditForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', Type\TextType::class)
-            ->add(
-                'description',
-                Type\TextareaType::class,
-                [
-                    'attr' => ['rows' => 8],
-                ]
-            )
-            ->add('price', Type\IntegerType::class)
-            ->add('listPrice', Type\IntegerType::class, ['required' => false]);
+            ->add('seoTitle', Type\TextType::class, ['required' => false])
+            ->add('seoDescription', Type\TextType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -4,21 +4,27 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product\ValueObject;
 
+use App\Common\Domain\Entity\ValueObject\StringValueObject;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
-class ProductStatus
+#[ORM\Embeddable]
+class ProductStatus extends StringValueObject
 {
     public const DRAFT = 'draft';
     public const ACTIVE = 'active';
     public const HIDE = 'hide';
     public const ARCHIVE = 'archive';
 
-    private string $value;
+    #[ORM\Column(type: Types::STRING, length: 20, options: ['default' => self::DRAFT])]
+    protected $value;
 
     public function __construct(string $value)
     {
         Assert::oneOf($value, self::list());
         $this->value = $value;
+        parent::__construct($value);
     }
 
     public function isDraft(): bool

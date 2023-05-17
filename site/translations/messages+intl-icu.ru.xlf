@@ -30,21 +30,9 @@
                 <source>draft</source>
                 <target>Черновик</target>
             </trans-unit>
-            <trans-unit id="note">
-                <source>note</source>
-                <target>ПРИМЕЧАНИЕ</target>
-            </trans-unit>
-            <trans-unit id="tip">
-                <source>tip</source>
-                <target>СОВЕТ</target>
-            </trans-unit>
-            <trans-unit id="not_available">
-                <source>not_available</source>
-                <target>Недоступно</target>
-            </trans-unit>
-            <trans-unit id="mit_license">
-                <source>mit_license</source>
-                <target>MIT Лицензия</target>
+            <trans-unit id="active">
+                <source>active</source>
+                <target>Продается</target>
             </trans-unit>
 
             <trans-unit id="http_error.name">

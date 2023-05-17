@@ -23,8 +23,6 @@
         <a class="btn btn-bitbucket" href="{{ path('store.admin.product.new') }}">Create new</a>
     </div>
     <div class="card card-body">
-        <h1>Product index</h1>
-
         <table class="table">
             <thead>
                 <tr>
@@ -40,7 +38,7 @@
             {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
-                    <td>{{ product.status }}</td>
+                    <td>{{ store_product_status(product.status) }}</td>
                     <td>
                         {% if product.images.count > 0 %}
                             {% set file = product.images.first %}

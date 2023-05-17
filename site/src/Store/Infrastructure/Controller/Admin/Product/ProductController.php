@@ -6,8 +6,9 @@ namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Product\Product;
+use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Infrastructure\Form\Product\ProductEditForm;
-use App\Store\Infrastructure\Form\Product\ProductType;
+use App\Store\Infrastructure\Form\Product\ProductSeoEditForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,13 +32,19 @@ class ProductController extends AbstractController
     }
 
     #[Route('/new', name: '.new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductRepository $productRepository): Response
+    public function new(Request $request, ProductRepository $productRepository, Flusher $flusher): Response
     {
-        $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
+        $product = new Product(new ProductPrice());
+        $form = $this->createForm(ProductEditForm::class, []);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $product = new Product(new ProductPrice($data['price']));
+            $product->setName($data['name']);
+            $product->setDescription($data['description']);
+
             $productRepository->save($product, true);
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
@@ -70,7 +77,6 @@ class ProductController extends AbstractController
             $product->getPrice()->setPrice($data['price']);
             $product->getPrice()->setListPrice($data['listPrice']);
             $flusher->flush();
-            // $productRepository->save($product, true);
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }
@@ -79,6 +85,46 @@ class ProductController extends AbstractController
             'product' => $product,
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
+    public function seo(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher): Response
+    {
+        $form = $this->createForm(
+            ProductSeoEditForm::class,
+            [
+                'seoTitle' => $product->getSeoTitle(),
+                'seoDescription' => $product->getSeoDescription(),
+            ]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $product->setSeoTitle($data['seoTitle']);
+            $product->setSeoDescription($data['seoDescription']);
+            $flusher->flush();
+
+            $this->addFlash('success', 'Success seo changed.');
+
+            return $this->redirectToRoute('store.admin.product.seo', ['id'=> $product->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('store/admin/product/seo.html.twig', [
+            'product' => $product,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/{id}/active', name: '.active', methods: ['GET', 'POST'])]
+    public function active(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher): Response
+    {
+        $product->active();
+        $flusher->flush();
+
+        return $this->redirectToRoute('store.admin.product.edit', ['id' => $product->getId()]);
     }
 
     #[Route('/{id}', name: '.delete', methods: ['POST'])]
