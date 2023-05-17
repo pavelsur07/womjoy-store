@@ -249,7 +249,7 @@ class Product
         return $this->pathExternalImage;
     }
 
-    public function setPathExternalImage(string $pathExternalImage): void
+    public function setPathExternalImage(?string $pathExternalImage): void
     {
         $this->pathExternalImage = $pathExternalImage;
     }

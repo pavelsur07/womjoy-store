@@ -26,12 +26,13 @@ class ProductController extends AbstractController
     #[Route(path: '/admin/matrix/products/', name: 'matrix.admin.product.index')]
     public function index(Request $request, ProductRepositoryInterface $products): Response
     {
-        $form = $this->createForm(ProductFilterListForm::class, []);
+        $filter = new ProductFilter();
+        $form = $this->createForm(ProductFilterListForm::class, $filter );
         $form->handleRequest($request);
 
-        $filter = new ProductFilter();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+
+/*        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $filter->status = $data['status'];
             $filter->subject = $data['subject'];
@@ -39,7 +40,7 @@ class ProductController extends AbstractController
             $filter->color = $data['color'];
             $filter->article = $data['article'];
             $filter->name = $data['name'];
-        }
+        }*/
 
         $pagination = $products->index(
             page: $request->query->getInt('page', 1),
@@ -112,7 +113,7 @@ class ProductController extends AbstractController
             [
                 'name'=> $product->getName(),
                 'status' => $product->getStatus()->value(),
-                'path' => $product->getPathExternalImage(),
+                'path' => $product->getPathExternalImage()??' ',
             ]
         );
 

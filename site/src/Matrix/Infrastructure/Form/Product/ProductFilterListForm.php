@@ -8,6 +8,7 @@ use App\Matrix\Domain\Entity\Color;
 use App\Matrix\Domain\Entity\Model;
 use App\Matrix\Domain\Entity\Subject;
 use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
+use App\Matrix\Infrastructure\Repository\Product\ProductFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
@@ -78,6 +79,8 @@ class ProductFilterListForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'data_class' => ProductFilter::class,
+        ]);
     }
 }
