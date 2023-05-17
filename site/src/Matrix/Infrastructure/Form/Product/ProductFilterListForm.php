@@ -81,6 +81,8 @@ class ProductFilterListForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ProductFilter::class,
+            'method' => 'GET',
+            'csrf_protection' => false,
         ]);
     }
 }
