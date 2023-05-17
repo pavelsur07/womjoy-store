@@ -16,7 +16,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -25,7 +24,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -34,7 +32,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -43,7 +40,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -52,7 +48,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -61,7 +56,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -70,7 +64,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -79,7 +72,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -88,7 +80,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -97,7 +88,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
@@ -106,7 +96,6 @@ class ProductFixture extends Fixture
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setStatus('draft');
         $product->setSeoTitle('seo title');
         $product->setSeoDescription('seo description');
         $manager->persist($product);
