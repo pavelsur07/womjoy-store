@@ -5,28 +5,54 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Repository;
 
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
+use Doctrine\ORM\EntityRepository;
+use DomainException;
 
-class CategoryRepository extends NestedTreeRepository
+class CategoryRepository implements CategoryRepositoryInterface
 {
+    private EntityManagerInterface $em;
+
+    /** @var EntityRepository<Category> */
+    private EntityRepository $repo;
+
     public function __construct(EntityManagerInterface $em)
     {
-        parent::__construct($em, 'App\Store\Domain\Entity\Category\Category');
+        $this->em = $em;
+        $this->repo = $this->em->getRepository(Category::class);
     }
 
     public function get(int $id): Category
     {
-        // TODO: Implement get() method.
+        $object = $this->repo->find($id);
+        if ($object === null) {
+            throw new DomainException('Product not fount');
+        }
+
+        return $object;
     }
 
-    public function save(Category $category): void
+    public function list(): array
     {
-        // TODO: Implement save() method.
+        return $this->repo->findAll();
     }
 
-    public function remove(Category $category): void
+    public function save(Category $category, bool $flush = false): void
     {
-        // TODO: Implement remove() method.
+        $this->em->persist($category);
+
+        if ($flush) {
+            $this->em->flush();
+        }
+    }
+
+    public function remove(Category $category, $flush = false): void
+    {
+        $this->em->remove($category);
+
+        if ($flush) {
+            $this->em->flush();
+        }
     }
 }

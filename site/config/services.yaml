@@ -59,6 +59,9 @@ services:
     
     App\Store\Infrastructure\Repository\ProductRepository:
         class: App\Store\Infrastructure\Repository\ProductRepository
+        
+    App\Store\Domain\Repository\CategoryRepositoryInterface:
+        class: App\Store\Infrastructure\Repository\CategoryRepository
     
 #    App\Common\Infrastructure\Uploader\FileUploader:
 #        arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]

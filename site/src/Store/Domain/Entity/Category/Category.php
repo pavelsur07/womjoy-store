@@ -6,10 +6,10 @@ namespace App\Store\Domain\Entity\Category;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
+#[ORM\Entity]
+#[ORM\Table(name: '`store_categories`')]
 class Category
 {
     #[ORM\Id]
@@ -20,24 +20,6 @@ class Category
     #[ORM\Column(type: 'string')]
     private string $name;
 
-    #[Gedmo\TreeLeft]
-    #[ORM\Column(name: 'lft', type: Types::INTEGER)]
-    private int|null $lft;
-
-    #[Gedmo\TreeLevel]
-    #[ORM\Column(name: 'lvl', type: Types::INTEGER)]
-    private int|null $lvl;
-
-    #[Gedmo\TreeRight]
-    #[ORM\Column(name: 'rgt', type: Types::INTEGER)]
-    private int|null $rgt;
-
-    #[Gedmo\TreeRoot]
-    #[ORM\ManyToOne(targetEntity: self::class)]
-    #[ORM\JoinColumn(name: 'tree_root', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private self|null $root;
-
-    #[Gedmo\TreeParent]
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private self|null $parent;
@@ -46,11 +28,46 @@ class Category
      * @var ArrayCollection<int, Category>
      */
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
-    #[ORM\OrderBy(['lft' => 'ASC'])]
+    #[ORM\OrderBy(['id' => 'ASC'])]
     private Collection $children;
 
     public function __construct()
     {
         $this->children = new ArrayCollection();
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): void
+    {
+        $this->parent = $parent;
+    }
+
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+
+    public function setChildren(Collection $children): void
+    {
+        $this->children = $children;
     }
 }

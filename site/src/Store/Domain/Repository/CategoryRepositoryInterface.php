@@ -10,6 +10,8 @@ interface CategoryRepositoryInterface
 {
     public function get(int $id): Category;
 
+    public function list(): array;
+
     public function save(Category $category): void;
 
     public function remove(Category $category): void;
