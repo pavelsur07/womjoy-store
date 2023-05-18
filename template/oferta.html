@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Womjoy</title>
+    <!-- <link rel="stylesheet" href="./libs/swiper/swiper.min.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="h-grid-12-col hidden">
+        <div class="h-grid-12-col-items">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <header class="header">
+		<div class="wrapper">
+			<div class="header__main">
+				<div class="header__left">
+					<a href="#" class="header__logo">
+						<img src="./img/logo.svg" alt="" width="205" height="36">
+					</a>
+					<div class="country">
+						<button class="country__crnt" type="button">
+							<img src="./img/countries/ru.svg" alt="" width="24" height="24" class="country__crnt_flag">
+							<img src="./img/icons/arrow-down.svg" alt="" width="20" height="20" class="country__crnt_arrow">
+						</button>
+						<form class="country__content">
+							<button class="country__close" type="button">
+								<img src="./img/icons/close.svg" alt="" width="24" height="24">
+							</button>
+							<div class="country__field sel-field">
+								<span class="sel-field__ph">Выберите страну</span>
+								<div class="sel-field__main">
+									<span class="sel-field__left">
+										<img src="./img/countries/ru.svg" alt="" width="24" height="24">
+									</span>
+									<select class="sel-field__sel">
+										<option value="" selected>Россия</option>
+										<option value="">Грузия</option>
+										<option value="">Казахстан</option>
+									</select>
+								</div>
+							</div>
+							<div class="country__field sel-field">
+								<span class="sel-field__ph">Валюта</span>
+								<div class="sel-field__main">
+									<span class="sel-field__left">
+										₽ <span>/</span>
+									</span>
+									<select class="sel-field__sel">
+										<option value="" selected>Рубль</option>
+										<option value="">Рубль</option>
+										<option value="">Рубль</option>
+									</select>
+								</div>
+							</div>
+							<button class="btn-primary" type="submit">Подтвердить</button>
+						</form>
+					</div>
+					<div class="burger">
+						<span class="burger__item"></span>
+						<span class="burger__item"></span>
+						<span class="burger__item"></span>
+					</div>
+				</div>
+				<form class="search">
+					<input type="text" class="search__inp" placeholder="Я хочу найти">
+					<button class="search__submit" type="submit">
+						<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43" fill-opacity="0.4"/>
+						</svg>
+					</button>
+				</form>
+				<ul class="header__actions">
+					<li>
+						<a href="#">
+							<img src="./img/icons/trace.svg" alt="" width="24" height="24">
+							Отследить
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/cabinet.svg" alt="" width="24" height="24">
+							Кабинет
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/favourite.svg" alt="" width="24" height="24">
+							Избранное
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/cart.svg" alt="" width="24" height="24">
+							Корзина
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="header__bottom">
+			<div class="wrapper">
+				<nav class="nav">
+					<ul class="nav__list">
+						<li class="nav__item menu-droper">
+							<a href="#" class="nav__link">Женщинам</a>
+							<div class="menu">
+								<div class="wrapper">
+									<div class="menu__content">
+										<div class="menu__cols">
+											<div class="menu__col">
+												<div class="menu__title">Щенщинам</div>
+												<ul class="menu__list">
+													<li><a href="#">Брюки</a></li>
+													<li><a href="#">Леггинсы</a></li>
+													<li><a href="#">Топы</a></li>
+													<li><a href="#">Рашгарды</a></li>
+													<li><a href="#">Футболки</a></li>
+													<li><a href="#">Худи</a></li>
+													<li><a href="#">Шорты</a></li>
+													<li><a href="#">Аксессуары</a></li>
+												</ul>
+											</div>
+											<div class="menu__col">
+												<div class="menu__title">Занятия</div>
+												<ul class="menu__list">
+													<li><a href="#">Йога</a></li>
+													<li><a href="#">Фитнес</a></li>
+													<li><a href="#">Бег</a></li>
+													<li><a href="#">Активный отдых</a></li>
+													<li><a href="#">Полиденс</a></li>
+												</ul>
+											</div>
+											<div class="menu__col">
+												<div class="menu__title">Спецпредложения</div>
+												<ul class="menu__list">
+													<li><a href="#">Весна 2023</a></li>
+													<li><a href="#">Новинки</a></li>
+													<li><a href="#">Распродажа</a></li>
+													<li><a href="#">Скоро в продаже</a></li>
+												</ul>
+											</div>
+										</div>
+										<a href="#" class="menu__banner">
+											<img src="./img/banners/menu-banner.webp" alt="" width="392" height="290">
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
+						<li class="nav__item drop">
+							<a href="#" class="nav__link">Покупателям</a>
+							<ul class="drop__list">
+								<li class="drop__item"><a href="#" class="drop__link">Доставка и оплата</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">Обмен и возврат</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">О компании</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">Личный кабинет</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</header>
+
+	<div class="burger-menu">
+		<div class="wrapper">
+			<form class="search">
+				<input type="text" class="search__inp" placeholder="Я хочу найти">
+				<button class="search__submit" type="submit">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
+					</svg>
+				</button>
+			</form>
+			<ul class="burger-menu__list">
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Щенщинам</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+						<li><a href="#">Рашгарды</a></li>
+						<li><a href="#">Футболки</a></li>
+						<li><a href="#">Худи</a></li>
+						<li><a href="#">Шорты</a></li>
+						<li><a href="#">Аксессуары</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Занятия</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Спецпредложения</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Покупателям</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="catalog-menu">
+		<div class="wrapper">
+			<form class="search">
+				<input type="text" class="search__inp" placeholder="Я хочу найти">
+				<button class="search__submit" type="submit">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
+					</svg>
+				</button>
+			</form>
+			<div class="cat__items">
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Брюки</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-1.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Леггинсы</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-2.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Топы</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-3.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Рашгарды</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-4.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Футболки</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-5.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Худи</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-6.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Шорты</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-7.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<div class="cat__item cat__sale">
+					<span class="cat__sale_alert">%</span>
+					<span class="cat__sale_name">Распродажа</span>
+				</div>
+			</div>
+
+			<ul class="catalog-menu__list">
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Щенщинам</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+						<li><a href="#">Рашгарды</a></li>
+						<li><a href="#">Футболки</a></li>
+						<li><a href="#">Худи</a></li>
+						<li><a href="#">Шорты</a></li>
+						<li><a href="#">Аксессуары</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Занятия</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Спецпредложения</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Покупателям</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+    <section class="typography">
+        <div class="wrapper">
+            <div class="typography__grid">
+                <div class="pages">
+                    <div class="pages__top">
+                        Разделы
+                    </div>
+                    <ul class="pages__list">
+                        <li><a href="#">Женщинам</a></li>
+                        <li><a href="#">Брюки</a></li>
+                        <li><a href="#">Леггинсы</a></li>
+                        <li><a href="#">Топы</a></li>
+                        <li><a href="#">Рашгарды</a></li>
+                        <li><a href="#">Футболки</a></li>
+                        <li><a href="#">Худи</a></li>
+                        <li><a href="#">Шорты</a></li>
+                    </ul>
+                </div>
+                <div class="typography__top">
+                    <h1 class="title-xl">Публичная оферта</h1>
+                </div>
+                <div class="typography__main">
+                    <div>
+                        <p>Настоящий документ – это публичная оферта (предложение) интернет-магазина <a href="https://womjoy.ru/">https://womjoy.ru/</a> (далее – Сайт) о продаже товаров.<br></p>
+                        <ol class="ol">
+                            <li>
+                                <h5 class="title-xs">Общие положения</h5>
+
+                                <ol>
+                                    <li>1.1. Настоящая публичная оферта (далее - Оферта) является официальным предложением ООО «Вумджой» в адрес любого физического лица заключить с ООО «Вумджой» договор розничной купли-продажи товара на Сайте дистанционным образом на условиях, определенных в настоящем Договоре и содержит все существенные условия Оферты.</li>
+                                    <li>1.2. Заказ Покупателем товара, размещенного на Сайте, означает, что Покупатель согласен со всеми условиями настоящей Оферты, Политики конфиденциальности и Пользовательского соглашения.</li>
+                                    <li>1.3. Сайт имеет право вносить изменения в Оферту без уведомления Покупателя.</li>
+                                    <li>1.4. Срок действия Оферты не ограничен, если иное не указано на Сайте</li>
+                                    <li>1.5. Сайт предоставляет Покупателю полную и достоверную информацию о товаре/услугах, включая информацию об основных потребительских свойствах товара, месте изготовления, а также информацию о гарантийном сроке и сроке годности товара на Сайте в разделе «Гарантия, обмен и возврат».</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Предмет Оферты</h5>
+
+                                <ol>
+                                    <li>2.1. Сайт обязуется передать Покупателю товар, предназначенный для личного, семейного, домашнего или иного использования, на основании размещенных Заказов, а Покупатель обязуется принять и оплатить Товар на условиях настоящей Оферты.</li>
+                                    <li>2.2. Наименование, цена, количество товара, а также прочие необходимые условия Оферты определяются на основании сведений, предоставленных Покупателем при оформлении заказа.</li>
+                                    <li>2.3. Право собственности на заказанные товары переходит к Покупателю с момента фактической передачи товара Покупателю и оплаты последним полной стоимости товара. Риск его случайной гибели или повреждения товара переходит к Покупателю с момента фактической передачи товара Покупателю.</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Стоимость товара</h5>
+
+                                <ol>
+                                    <li>3.1. Цены на товар определяются Продавцом в одностороннем бесспорном порядке и указываются на страницах интернет-магазина, расположенного по интернет-адресу: https://womjoy.ru/.</li>
+                                    <li>3.2. Цена товара указывается в рублях Российской Федерации и включает в себя налог на добавленную стоимость.</li>
+                                    <li>
+                                        3.3. Окончательная цена товара определяется последовательным действием на цену товара скидок по следующему порядку:
+                                        <ul class="ul">
+                                            <li>Акционная скидка;</li>
+                                            <li>Скидка по промокоду;</li>
+                                            <li>Скидка постоянного Покупателя;</li>
+                                        </ul>
+                                    </li>
+                                    <li>3.4. Расчеты между Сайтом и Покупателем за товар производятся способами, указанными на Сайте в разделе «Оплата и доставка».</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Момент заключения Оферты</h5>
+
+                                <ol>
+                                    <li>4.1. Акцептом настоящей Оферты (договора) является оформление Покупателем заказа на товар в соответствии с условиями настоящей Оферты. Оформление Покупателем заказа на товар производится через корзину Сайта.</li>
+                                    <li>
+                                        4.2. Акцептируя настоящую Оферту, Покупатель выражает согласие в том, что:
+                                        <ul class="ul">
+                                            <li>регистрационные данные (в том числе персональные данные) указаны им добровольно;</li>
+                                            <li>регистрационные данные (в том числе персональные данные) передаются в электронной форме по каналам связи сети «Интернет»;</li>
+                                            <li>регистрационные данные (в том числе персональные данные) переданы Сайту для реализации целей, указанных в настоящей Оферте, Политике конфиденциальности, Пользовательском соглашении и могут быть переданы третьим лицам, для реализации целей, указанных в настоящей Оферте;</li>
+                                            <li>регистрационные данные (в том числе персональные данные) могут быть использованы Сайтом в целях продвижения товаров и услуг, путем осуществления прямых контактов с Покупателем с помощью каналов связи;</li>
+                                            <li>в целях дополнительной защиты от мошеннических действий указанные Покупателем регистрационные данные (в том числе персональные данные) могут быть переданы банку, осуществляющему транзакции по оплате оформленных заказов;</li>
+                                            <li>данное Покупателем согласие на обработку его регистрационных данных (в том числе персональных данных) является бессрочным и может быть отозвано Покупателем или его законным представителем, подачей письменного заявления, переданного Сайту.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Возврат товара и денежных средств</h5>
+
+                                <ol>
+                                    <li>5.1. Возврат товара осуществляется в соответствии с Законом РФ «О защите прав потребителей».</li>
+                                    <li>
+                                        5.2. Возврат денежных средств осуществляется посредством возврата стоимости оплаченного товара на банковскую карту, наличными или почтовым переводом.&nbsp;
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Доставка товара</h5>
+
+                                <ol>
+                                    <li>6.1. Доставка товара Покупателю осуществляется в сроки, согласованные Сторонами при подтверждении заказа сотрудником Сайта.</li>
+                                    <li>
+                                        6.2. При курьерской доставке товара Покупатель в реестре доставки ставит свою подпись напротив тех позиций товара, которые Покупатель приобрел. Данная подпись служит подтверждением того, что Покупатель не имеет претензий к комплектации товара, к количеству и внешнему виду товара.&nbsp;
+                                    </li>
+                                    <li>
+                                        6.3. После получения товара претензии к&nbsp; количеству, комплектности и виду товара не принимаются.
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Срок действия Оферты</h5>
+
+                                <ol>
+                                    <li>7.1. Настоящая Оферта вступает в силу с момента ее акцепта Покупателем, и действует до момента отзыва акцепта публичной Оферты.</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Дополнительные условия</h5>
+
+                                <ol>
+                                    <li>8.1. Сайт вправе переуступать либо каким-либо иным способом передавать свои права и обязанности, вытекающие из его отношений с Покупателем, третьим лицам.</li>
+                                    <li>8.2. Сайт и предоставляемые сервисы могут временно частично или полностью недоступны по причине проведения профилактических или иных работ или по любым другим причинам технического характера. Техническая служба Сайта имеет право периодически проводить необходимые профилактические или иные работы с предварительным уведомлением Покупателей или без такового.</li>
+                                    <li>8.3. К отношениям между Покупателем и Сайтом применяются положения Российского законодательства.</li>
+                                    <li>8.4. В случае возникновения вопросов и претензий со стороны Покупателя он должен обратиться к Сайту по телефону или иным доступным способом. Все возникающее споры стороны будут стараться решить путем переговоров, при недостижении соглашения спор будет передан на рассмотрение в судебный орган в соответствии с действующим законодательством РФ.</li>
+                                    <li>8.5. Признание судом недействительности какого-либо положения настоящего Соглашения не влечет за собой недействительность остальных положений.</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <h5 class="title-xs">Реквизиты Сайта</h5>
+
+                                <ul class="ul">
+                                    <li>ООО "ВУМДЖОЙ"</li>
+                                    <li>ИНН: 6140011194</li>
+                                    <li>КПП: 614001001</li>
+                                    <li>ОГРН: 1196196036838</li>
+                                    <li>Р/С: 40702810726140001479</li>
+                                    <li>Банк: ФИЛИАЛ «РОСТОВСКИЙ» АО «АЛЬФА-БАНК»</li>
+                                    <li>БИК: 046015207</li>
+                                    <li>Кор. счёт: 30101810500000000207</li>
+                                    <li>Электронная почта для обращений - info@womjoy.ru.</li>
+                                    <li>Дата публикации: 01.11.2019 г.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+		<div class="wrapper">
+			<div class="footer__main">
+				<div class="footer__left">
+					<a href="#" class="footer__logo">
+						<img src="./img/logo.svg" alt="" width="205" height="36">
+					</a>
+					<div class="footer__phone">
+						<a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
+						<span class="footer__phone_descr">Звонок по РФ бесплатный</span>
+					</div>
+					<ul class="footer__socials">
+						<li><a href="#"><img src="./img/icons/vk.svg" alt="" width="40" height="40"></a></li>
+						<li><a href="#"><img src="./img/icons/tg.svg" alt="" width="40" height="40"></a></li>
+						<li><a href="#"><img src="./img/icons/wa.svg" alt="" width="40" height="40"></a></li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<div class="footer__title">Покупателям</div>
+					<ul class="footer__list">
+						<li><a href="#">Доставка и оплата</a></li>
+						<li><a href="#">Обмен и возврат</a></li>
+						<li><a href="#">Публичная оферта</a></li>
+						<li><a href="#">Политика конфиденциальности</a></li>
+						<li><a href="#">Отложенные товары</a></li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<div class="footer__title">Магазин</div>
+					<ul class="footer__list">
+						<li><a href="#">О нас</a></li>
+						<li><a href="#">Отзывы покупателей</a></li>
+						<li><a href="#">Бонусные баллы</a></li>
+						<li><a href="#">Карта сайта</a></li>
+						<li><a href="#">Личный кабинет</a></li>
+					</ul>
+				</div>
+				<div class="footer__right">
+					<div class="footer__marketplaces">
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/wb.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Wildberries</span>
+							</div>
+						</a>
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/ozon.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Ozon</span>
+							</div>
+						</a>
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/ym.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Яндекс Маркет</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer__bottom">
+			<div class="wrapper">
+				<div class="footer__bottom_row">
+					<span class="footer__copyright">© 2019 - 2023 ООО "Вумджой"</span>
+					<ul class="footer__pay">
+						<li><img src="./img/icons/visa.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/mc.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/mir.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/sbp.svg" alt="" width="58" height="40"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<ul class="mob-bar">
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link c-open">
+            	<span class="mob-bar__icon"><img src="./img/icons/catalog.svg" alt="" width="24" height="24"></span>
+                Каталог
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/trace.svg" alt="" width="24" height="24"></span>
+                Отследить
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/cabinet.svg" alt="" width="24" height="24"></span>
+                Кабинет
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/favourite.svg" alt="" width="24" height="24"></span>
+                Изрбранное
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/cart.svg" alt="" width="24" height="24"></span>
+                Корзина
+            </a>
+        </li>
+    </ul>
+    <script src="./libs/swiper/swiper.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

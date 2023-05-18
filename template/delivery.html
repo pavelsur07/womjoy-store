@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Womjoy</title>
+    <!-- <link rel="stylesheet" href="./libs/swiper/swiper.min.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="h-grid-12-col hidden">
+        <div class="h-grid-12-col-items">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <header class="header">
+		<div class="wrapper">
+			<div class="header__main">
+				<div class="header__left">
+					<a href="#" class="header__logo">
+						<img src="./img/logo.svg" alt="" width="205" height="36">
+					</a>
+					<div class="country">
+						<button class="country__crnt" type="button">
+							<img src="./img/countries/ru.svg" alt="" width="24" height="24" class="country__crnt_flag">
+							<img src="./img/icons/arrow-down.svg" alt="" width="20" height="20" class="country__crnt_arrow">
+						</button>
+						<form class="country__content">
+							<button class="country__close" type="button">
+								<img src="./img/icons/close.svg" alt="" width="24" height="24">
+							</button>
+							<div class="country__field sel-field">
+								<span class="sel-field__ph">Выберите страну</span>
+								<div class="sel-field__main">
+									<span class="sel-field__left">
+										<img src="./img/countries/ru.svg" alt="" width="24" height="24">
+									</span>
+									<select class="sel-field__sel">
+										<option value="" selected>Россия</option>
+										<option value="">Грузия</option>
+										<option value="">Казахстан</option>
+									</select>
+								</div>
+							</div>
+							<div class="country__field sel-field">
+								<span class="sel-field__ph">Валюта</span>
+								<div class="sel-field__main">
+									<span class="sel-field__left">
+										₽ <span>/</span>
+									</span>
+									<select class="sel-field__sel">
+										<option value="" selected>Рубль</option>
+										<option value="">Рубль</option>
+										<option value="">Рубль</option>
+									</select>
+								</div>
+							</div>
+							<button class="btn-primary" type="submit">Подтвердить</button>
+						</form>
+					</div>
+					<div class="burger">
+						<span class="burger__item"></span>
+						<span class="burger__item"></span>
+						<span class="burger__item"></span>
+					</div>
+				</div>
+				<form class="search">
+					<input type="text" class="search__inp" placeholder="Я хочу найти">
+					<button class="search__submit" type="submit">
+						<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43" fill-opacity="0.4"/>
+						</svg>
+					</button>
+				</form>
+				<ul class="header__actions">
+					<li>
+						<a href="#">
+							<img src="./img/icons/trace.svg" alt="" width="24" height="24">
+							Отследить
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/cabinet.svg" alt="" width="24" height="24">
+							Кабинет
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/favourite.svg" alt="" width="24" height="24">
+							Избранное
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="./img/icons/cart.svg" alt="" width="24" height="24">
+							Корзина
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="header__bottom">
+			<div class="wrapper">
+				<nav class="nav">
+					<ul class="nav__list">
+						<li class="nav__item menu-droper">
+							<a href="#" class="nav__link">Женщинам</a>
+							<div class="menu">
+								<div class="wrapper">
+									<div class="menu__content">
+										<div class="menu__cols">
+											<div class="menu__col">
+												<div class="menu__title">Щенщинам</div>
+												<ul class="menu__list">
+													<li><a href="#">Брюки</a></li>
+													<li><a href="#">Леггинсы</a></li>
+													<li><a href="#">Топы</a></li>
+													<li><a href="#">Рашгарды</a></li>
+													<li><a href="#">Футболки</a></li>
+													<li><a href="#">Худи</a></li>
+													<li><a href="#">Шорты</a></li>
+													<li><a href="#">Аксессуары</a></li>
+												</ul>
+											</div>
+											<div class="menu__col">
+												<div class="menu__title">Занятия</div>
+												<ul class="menu__list">
+													<li><a href="#">Йога</a></li>
+													<li><a href="#">Фитнес</a></li>
+													<li><a href="#">Бег</a></li>
+													<li><a href="#">Активный отдых</a></li>
+													<li><a href="#">Полиденс</a></li>
+												</ul>
+											</div>
+											<div class="menu__col">
+												<div class="menu__title">Спецпредложения</div>
+												<ul class="menu__list">
+													<li><a href="#">Весна 2023</a></li>
+													<li><a href="#">Новинки</a></li>
+													<li><a href="#">Распродажа</a></li>
+													<li><a href="#">Скоро в продаже</a></li>
+												</ul>
+											</div>
+										</div>
+										<a href="#" class="menu__banner">
+											<img src="./img/banners/menu-banner.webp" alt="" width="392" height="290">
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
+						<li class="nav__item drop">
+							<a href="#" class="nav__link">Покупателям</a>
+							<ul class="drop__list">
+								<li class="drop__item"><a href="#" class="drop__link">Доставка и оплата</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">Обмен и возврат</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">О компании</a></li>
+								<li class="drop__item"><a href="#" class="drop__link">Личный кабинет</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</header>
+
+	<div class="burger-menu">
+		<div class="wrapper">
+			<form class="search">
+				<input type="text" class="search__inp" placeholder="Я хочу найти">
+				<button class="search__submit" type="submit">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
+					</svg>
+				</button>
+			</form>
+			<ul class="burger-menu__list">
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Щенщинам</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+						<li><a href="#">Рашгарды</a></li>
+						<li><a href="#">Футболки</a></li>
+						<li><a href="#">Худи</a></li>
+						<li><a href="#">Шорты</a></li>
+						<li><a href="#">Аксессуары</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Занятия</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Спецпредложения</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<div class="burger-menu__title">Покупателям</div>
+					<ul class="burger-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="catalog-menu">
+		<div class="wrapper">
+			<form class="search">
+				<input type="text" class="search__inp" placeholder="Я хочу найти">
+				<button class="search__submit" type="submit">
+					<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
+					</svg>
+				</button>
+			</form>
+			<div class="cat__items">
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Брюки</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-1.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Леггинсы</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-2.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Топы</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-3.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Рашгарды</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-4.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-md">
+					<div class="cat__text">
+						<span class="cat__name">Футболки</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-5.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Худи</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-6.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<a href="#" class="cat__item cat__item-lg">
+					<div class="cat__text">
+						<span class="cat__name">Шорты</span>
+						<div class="cat__bottom">
+							<span class="cat__cnt">15 моделей</span>
+							<span class="cat__price">от 1 799 ₽</span>
+						</div>
+					</div>
+					<img src="./img/cats/img-7.webp" alt="" class="cat__img" width="250" height="250">
+				</a>
+				<div class="cat__item cat__sale">
+					<span class="cat__sale_alert">%</span>
+					<span class="cat__sale_name">Распродажа</span>
+				</div>
+			</div>
+
+			<ul class="catalog-menu__list">
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Щенщинам</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+						<li><a href="#">Рашгарды</a></li>
+						<li><a href="#">Футболки</a></li>
+						<li><a href="#">Худи</a></li>
+						<li><a href="#">Шорты</a></li>
+						<li><a href="#">Аксессуары</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Занятия</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Спецпредложения</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+				<li class="catalog-menu__item">
+					<div class="catalog-menu__title">Покупателям</div>
+					<ul class="catalog-menu__sublist">
+						<li><a href="#">Брюки</a></li>
+						<li><a href="#">Леггинсы</a></li>
+						<li><a href="#">Топы</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+    <section class="typography">
+        <div class="wrapper">
+            <div class="typography__grid">
+                <div class="pages">
+                    <div class="pages__top">
+                        Разделы
+                    </div>
+                    <ul class="pages__list">
+                        <li><a href="#">Женщинам</a></li>
+                        <li><a href="#">Брюки</a></li>
+                        <li><a href="#">Леггинсы</a></li>
+                        <li><a href="#">Топы</a></li>
+                        <li><a href="#">Рашгарды</a></li>
+                        <li><a href="#">Футболки</a></li>
+                        <li><a href="#">Худи</a></li>
+                        <li><a href="#">Шорты</a></li>
+                    </ul>
+                </div>
+                <div class="typography__top">
+                    <h1 class="title-xl">Доставка и Оплата</h1>
+                </div>
+                <div class="typography__main">
+                    <p class="mb-20">Быстрая доставка в <strong>5000</strong> населенных пунктов. Отправляем по всей территории РОССИИ и СНГ.</p>
+                    <h4 class="title-s mb-20">1. Бесплатная доставка на ПВЗ с примеркой.</h4>
+                    <div class="mb-20">
+                        <div class="table">
+                            <table>
+                                <tbody>
+                                    <tr class="top">
+                                        <td>
+                                            <p>&nbsp;
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>ПВЗ (Пункт выдачи заказов)
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Курьерская доставка
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Стоимость доставки
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>БЕСПЛАТНО
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Рассчитывается<span style="background-color: transparent;">&nbsp;калькулятором в корзине</span></p>
+                                            <p>от 421 – 621*
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Срок передачи груза в службу доставки
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>1-2 дня
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>1-2 дня.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Срок доставки
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>1-10 дней
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>1-12 дней
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Примерка
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Да
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Да
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Доставка до двери
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Нет
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Да
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Возможность оплаты банковской картой при получении
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Да
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>Нет
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Срок хранения посылки
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>7 дней
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>7 дней
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <p>* В зависимости от удаленности вашего региона.
+                        ** Доставка и возврат осуществляется сервисом СДЭК.</p>
+                    <p><br></p>
+                    <h4 class="title-s mb-10">2. Отслеживание отправления</h4>
+                    <p>Все заказы отправляются на следующий рабочий день после оплаты.<br>После отправки мы вышлем Вам трек-номер отправления, по нему можно будет отследить перемещение Вашей посылки.</p>
+                    <p><br></p>
+                    <h4 class="title-s mb-10">3. Оплата банковской картой при получении</h4>
+                    <p>Вы можете оплатить заказ банковской картой на ПВЗ (Пункт вывоза заказ) после примерки и проверки комплектности товара.</p>
+                    <p><br></p>
+                    <h4 class="title-s mb-10">4. Онлайн оплата банковской картой</h4>
+                    <p>Оплата банковскими картами осуществляется через АО «АЛЬФА-БАНК».<br></p>
+                    <p><img src="./img/icons/alfa.svg"><br></p>
+                    <p>К оплате принимаются карты VISA, MasterCard, МИР.
+                    </p>
+                    <p><img src="./img/icons/visa.svg" style="width: 190px; height: 71.9896px;" width="190" height="70"><img src="./img/icons/mc.svg" style="width: 101px; height: 70px;" width="101" height="77.9757"><img src="./img/icons/mir.svg" style="width: 220px; height: 63px;" width="220" height="70"></p>
+                    <p>Принимаем онлайн-платежи по банковским картам следующих платежных систем в любой валюте:</p>
+                    <p>К оплате не принимаются банковские карты без технологии 3D Secure (Для подтверждения операции вам приходит пароль по СМС ), выпущенные в России, а также Visa, MasterCard, JCB/UnionPay и МИР без кода CVV2 / CVC2. Оплата заказа производится через интернет непосредственно после его оформления. В случае, если Вы оплатили заказ банковской карточкой и затем отказались от него, возврат переведенных средств производится на Ваш банковский (карточный) счет.</p>
+                    <p>Оплата предоставляется без комиссии. Платежи осуществляются перечислением денежных средств с банковских карт VISA и MASTER CARD&nbsp; JCB/UnionPay и МИР при наличии возможности совершения интернет-платежей, предоставленных Вашим банком, выпустившим банковскую карту. О наличии возможности совершения интернет-платежей с использованием банковской карты, Вы можете узнать, обратившись в банк.</p>
+                    <p><br></p>
+                    <h4 class="title-s mb-10">Конфиденциальность</h4>
+                    <p>Услуга оплаты через интернет осуществляется в соответствии с Правилами международных платежных систем на принципах соблюдения конфиденциальности и безопасности совершения платежа, для чего используются самые современные методы проверки, шифрования и передачи данных по закрытым каналам связи. Ввод данных банковской карты осуществляется на защищенной платежной странице банка &mdash; партнера, предоставляющего Услугу. Нашим банком &mdash; партнером является ОАО «Альфа-Банк».<br>
+                    </p>
+                    <p><br></p>
+                    <h4 class="title-s mb-10">Случаи отказа в совершении платежа:</h4>
+                    <p>Банковская карта не предназначена для совершения платежей через интернет, о чем можно узнать, осведомившись в Вашем Банке;</p>
+                    <p>Данные банковской карты введены неверно. Для корректного ввода необходимо внимательно и точно, соблюдая последовательность цифр и букв, ввести данные так, как они указаны на Вашей карте:<br>Владелец карты (как правило, указан на лицевой стороне банковской карты на английском языке заглавными буквами. Например, IVANOV IVAN)</p>
+                    <p>Номер карты (как правило, указан на лицевой стороне банковской карты и состоит из 16-и цифр. Например: 0123 4567 8901 2345)</p>
+                    <p>Срок действия карты (как правило, указан на лицевой стороне банковской карты &mdash; месяц и год, до которого действительна карта. Срок действия карты вводится цифрами. Например, 12 (вводится в поле месяца) и 13 (вводится в поле года), что означает, что карта действительна до декабря 2013 года)</p>
+                    <p>CVV2 или CVC2 код карты (как правило, указан на обратной стороне банковской карты и состоит из 3-х цифр. Например, 123)</p>
+                    <p>Истек срок действия банковской карты. Срок действия карты, как правило, указан на лицевой стороне карты (это месяц и год, до которого действительна карта). Подробнее о сроке действия карты Вы можете узнать, обратившись в банк, выпустивший банковскую карту</p>
+                    <p>Недостаточно средств для оплаты на банковской карте. Подробнее о наличии средств на банковской карте Вы можете узнать, обратившись в банк, выпустивший банковскую карту</p>
+                    <p>Превышен установленный лимит операций за день. Сумма ежедневного лимита для всех операций определяется банком-партнером.</p>
+                    <p>SMS-пароль. Если Вам не приходит одноразовый SMS-пароль, необходимый для осуществления покупки в Интернете по технологии 3D Secure, то необходимо обратиться в службу поддержки банка, выпустившего Вашу карту.</p>
+                    <p><br></p>
+                    <h4 class="title-s mb-10">ООО "ВУМДЖОЙ"</h4>
+                    <ul class="ul">
+                        <li>ИНН: 6140011194</li>
+                        <li>КПП: 614001001</li>
+                        <li>ОГРН: 1196196036838</li>
+                        <li>Р/С: 40702810726140001479</li>
+                        <li>Банк: ФИЛИАЛ «РОСТОВСКИЙ» АО «АЛЬФА-БАНК»</li>
+                        <li>БИК: 046015207</li>
+                        <li>Кор. счёт: 30101810500000000207</li>
+                    </ul>
+                    <p><br>Контакты для связи с магазином по вопросам обмена или возврата товаров:<br></p>
+                    <p>Email: sales@womjoy.ru</p>
+                    <p>Телефон:+7(800)350-13-76 (многоканальный)<br>Адрес: 346781, г. Азов, ул. Севастопольская, дом 81 офис 76</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+		<div class="wrapper">
+			<div class="footer__main">
+				<div class="footer__left">
+					<a href="#" class="footer__logo">
+						<img src="./img/logo.svg" alt="" width="205" height="36">
+					</a>
+					<div class="footer__phone">
+						<a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
+						<span class="footer__phone_descr">Звонок по РФ бесплатный</span>
+					</div>
+					<ul class="footer__socials">
+						<li><a href="#"><img src="./img/icons/vk.svg" alt="" width="40" height="40"></a></li>
+						<li><a href="#"><img src="./img/icons/tg.svg" alt="" width="40" height="40"></a></li>
+						<li><a href="#"><img src="./img/icons/wa.svg" alt="" width="40" height="40"></a></li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<div class="footer__title">Покупателям</div>
+					<ul class="footer__list">
+						<li><a href="#">Доставка и оплата</a></li>
+						<li><a href="#">Обмен и возврат</a></li>
+						<li><a href="#">Публичная оферта</a></li>
+						<li><a href="#">Политика конфиденциальности</a></li>
+						<li><a href="#">Отложенные товары</a></li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<div class="footer__title">Магазин</div>
+					<ul class="footer__list">
+						<li><a href="#">О нас</a></li>
+						<li><a href="#">Отзывы покупателей</a></li>
+						<li><a href="#">Бонусные баллы</a></li>
+						<li><a href="#">Карта сайта</a></li>
+						<li><a href="#">Личный кабинет</a></li>
+					</ul>
+				</div>
+				<div class="footer__right">
+					<div class="footer__marketplaces">
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/wb.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Wildberries</span>
+							</div>
+						</a>
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/ozon.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Ozon</span>
+							</div>
+						</a>
+						<a href="#" class="footer__marketplace">
+							<img src="./img/icons/ym.png" alt="" class="footer__marketplace_img" width="40" height="40">
+							<div class="footer__marketplace_text">
+								<span class="footer__marketplace_descr">Наш магазин</span>
+								<span class="footer__marketplace_name">Яндекс Маркет</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer__bottom">
+			<div class="wrapper">
+				<div class="footer__bottom_row">
+					<span class="footer__copyright">© 2019 - 2023 ООО "Вумджой"</span>
+					<ul class="footer__pay">
+						<li><img src="./img/icons/visa.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/mc.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/mir.svg" alt="" width="58" height="40"></li>
+						<li><img src="./img/icons/sbp.svg" alt="" width="58" height="40"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<ul class="mob-bar">
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link c-open">
+            	<span class="mob-bar__icon"><img src="./img/icons/catalog.svg" alt="" width="24" height="24"></span>
+                Каталог
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/trace.svg" alt="" width="24" height="24"></span>
+                Отследить
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/cabinet.svg" alt="" width="24" height="24"></span>
+                Кабинет
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/favourite.svg" alt="" width="24" height="24"></span>
+                Изрбранное
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+            	<span class="mob-bar__icon"><img src="./img/icons/cart.svg" alt="" width="24" height="24"></span>
+                Корзина
+            </a>
+        </li>
+    </ul>
+    <script src="./libs/swiper/swiper.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
