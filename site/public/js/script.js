@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			filterTrigger.addEventListener('click', () => filter.classList.add('active'));
 			filterClose.addEventListener('click', () => filter.classList.remove('active'));
 		}
+
+		const pagesTrigger = document.querySelector('.pages__top');
+		const pagesList = document.querySelector('.pages__list');
+		if (pagesTrigger) {
+			pagesTrigger.addEventListener('click', () => {
+				toggleItem(pagesTrigger, pagesList);
+			});
+		}
 	}
 
 	const modalCallers = document.querySelectorAll('.call-modal');

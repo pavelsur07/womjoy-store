@@ -44,6 +44,7 @@ class ProductController extends AbstractController
             $product = new Product(new ProductPrice($data['price']));
             $product->setName($data['name']);
             $product->setDescription($data['description']);
+            $product->setMainCategory($data['mainCategory']);
 
             $productRepository->save($product, true);
 
@@ -64,6 +65,7 @@ class ProductController extends AbstractController
             [
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
+                'mainCategory' => $product->getMainCategory(),
                 'price' => $product->getPrice()->getPrice(),
                 'listPrice' => $product->getPrice()->getListPrice(),
             ]

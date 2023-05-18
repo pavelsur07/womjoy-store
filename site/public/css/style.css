@@ -31,6 +31,7 @@
 
 .typography {
   padding-top: 40px;
+  text-align: justify;
 }
 
 .typography__grid {
@@ -486,30 +487,34 @@ select {
           flex-grow: 1;
 }
 
+ul > li:not(:last-child),
+ol > li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
 .ol {
   counter-reset: myCounter;
 }
 
-.ol li {
+.ol > li {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
           align-items: flex-start;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 
-.ol li:not(:last-child) {
-  margin-bottom: 15px;
-}
-
-.ol li::before {
+.ol > li::before {
   font-family: 'Unbounded';
   font-weight: 500;
   margin-right: 15px;
   counter-increment: myCounter;
   content: counter(myCounter);
-  width: 22px;
+  -webkit-flex-basis: 22px;
+          flex-basis: 22px;
   height: 22px;
   background-color: #1A1E24;
   color: #fff;
@@ -520,21 +525,22 @@ select {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-shrink: 0;
-          flex-shrink: 0;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
-  -webkit-transform: translateY(2px);
-      -ms-transform: translateY(2px);
-          transform: translateY(2px);
   text-align: center;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
 }
 
-.ul li {
+.ol > li > *:not(ol, ul) {
+  width: calc(100% - 37px);
+}
+
+.ul > li {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -543,13 +549,8 @@ select {
           align-items: center;
 }
 
-.ul li:not(:last-child) {
-  margin-bottom: 15px;
-}
-
-.ul li::before {
+.ul > li::before {
   margin-right: 15px;
-  counter-increment: myCounter;
   content: '';
   width: 10px;
   height: 10px;
@@ -570,6 +571,32 @@ select {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
+}
+
+.table {
+  text-align: left;
+}
+
+.table table {
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table table tr td {
+  padding: 10px;
+}
+
+.table table tr:nth-child(2n) {
+  background-color: rgba(47, 43, 67, 0.04);
+}
+
+.table .top {
+  background-color: #2F2B43;
+  color: #fff;
+}
+
+.table p:last-child {
+  margin-bottom: 0;
 }
 
 .alert {
@@ -3570,14 +3597,34 @@ input:checked + .inform__check_sq img {
     font-size: 14px;
   }
 
-  .ol li::before {
-    font-size: 10px;
-    width: 16px;
-    height: 16px;
-    margin-right: 10px;
+  .table {
+    max-width: 100vw;
+    overflow-x: auto;
+    margin-left: -10px;
+    margin-right: -10px;
   }
 
-  .ul li::before {
+  .table table {
+    width: 550px;
+    font-size: 12px;
+  }
+
+  .ol > li::before {
+    font-size: 10px;
+    -webkit-flex-basis: 16px;
+            flex-basis: 16px;
+    height: 16px;
+    margin-right: 10px;
+    -webkit-transform: translateY(2px);
+        -ms-transform: translateY(2px);
+            transform: translateY(2px);
+  }
+
+  .ol > li > *:not(ol, ul) {
+    width: calc(100% - 26px);
+  }
+
+  .ul > li::before {
     width: 6px;
     height: 6px;
     margin-right: 10px;
