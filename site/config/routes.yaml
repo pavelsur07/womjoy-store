@@ -16,3 +16,7 @@ store:
 auth:
     resource: ../src/Auth/Infrastructure/Controller/
     type: annotation
+
+page:
+    resource: ../src/Page/Infrastructure/Controller/
+    type: annotation
