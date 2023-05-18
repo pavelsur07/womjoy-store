@@ -57,6 +57,9 @@ services:
     App\Common\Infrastructure\Doctrine\Flusher:
         class: App\Common\Infrastructure\Doctrine\Flusher
     
+    Cocur\Slugify\Slugify:
+        class: Cocur\Slugify\Slugify
+    
     App\Store\Infrastructure\Repository\ProductRepository:
         class: App\Store\Infrastructure\Repository\ProductRepository
         

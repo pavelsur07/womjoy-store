@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Category;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use App\Store\Infrastructure\Form\Category\CategoryEditForm;
@@ -31,7 +32,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/new', name: '.new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoryRepositoryInterface $categories): Response
+    public function new(Request $request, CategoryRepositoryInterface $categories, SlugifyService $service): Response
     {
         $form = $this->createForm(CategoryEditForm::class, []);
         $form->handleRequest($request);
@@ -41,6 +42,8 @@ class CategoryController extends AbstractController
 
             $category = new Category();
             $category->setName($data['name']);
+            $category->setSlug($service->generate($data['name']));
+            $category->setPrefixSlugProduct($service->generate($data['name']));
 
             $categories->save($category, true);
 
@@ -83,7 +86,8 @@ class CategoryController extends AbstractController
     public function seo(Request $request, Category $category, Flusher $flusher)
     {
         $form = $this->createForm(CategorySeoEditForm::class, [
-            'name' => $category->getName(),
+            'slug' => $category->getSlug(),
+            'prefixSlugProduct' => $category->getPrefixSlugProduct(),
         ]);
         $form->handleRequest($request);
 
