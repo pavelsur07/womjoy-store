@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Exception\StoreProductException;
@@ -50,12 +51,25 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
 
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    private Category|null $mainCategory = null;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
         $this->status = new ProductStatus(ProductStatus::DRAFT);
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
+    }
+
+    public function getMainCategory(): ?Category
+    {
+        return $this->mainCategory;
+    }
+
+    public function setMainCategory(?Category $mainCategory): void
+    {
+        $this->mainCategory = $mainCategory;
     }
 
     public function imageUp(int $sortNumber): void

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Form\Product;
 
+use App\Store\Domain\Entity\Category\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +22,14 @@ class ProductEditForm extends AbstractType
                 Type\TextareaType::class,
                 [
                     'attr' => ['rows' => 8],
+                ]
+            )
+            ->add(
+                'mainCategory',
+                EntityType::class,
+                [
+                    'class' => Category::class,
+                    'choice_label' => 'name',
                 ]
             )
             ->add('price', Type\IntegerType::class)
