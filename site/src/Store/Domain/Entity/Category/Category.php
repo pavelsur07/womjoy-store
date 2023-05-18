@@ -6,6 +6,7 @@ namespace App\Store\Domain\Entity\Category;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -30,6 +31,12 @@ class Category
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
     #[ORM\OrderBy(['id' => 'ASC'])]
     private Collection $children;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private string|null $slug = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private string|null $prefixSlugProduct = null;
 
     public function __construct()
     {
@@ -69,5 +76,25 @@ class Category
     public function setChildren(Collection $children): void
     {
         $this->children = $children;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): void
+    {
+        $this->slug = mb_strtolower(trim($slug));
+    }
+
+    public function getPrefixSlugProduct(): ?string
+    {
+        return $this->prefixSlugProduct;
+    }
+
+    public function setPrefixSlugProduct(?string $prefixSlugProduct): void
+    {
+        $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
     }
 }
