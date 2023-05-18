@@ -27,20 +27,18 @@ class ProductController extends AbstractController
     public function index(Request $request, ProductRepositoryInterface $products): Response
     {
         $filter = new ProductFilter();
-        $form = $this->createForm(ProductFilterListForm::class, $filter );
+        $form = $this->createForm(ProductFilterListForm::class, $filter);
         $form->handleRequest($request);
 
-
-
-/*        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $filter->status = $data['status'];
-            $filter->subject = $data['subject'];
-            $filter->model = $data['model'];
-            $filter->color = $data['color'];
-            $filter->article = $data['article'];
-            $filter->name = $data['name'];
-        }*/
+        /*        if ($form->isSubmitted() && $form->isValid()) {
+                    $data = $form->getData();
+                    $filter->status = $data['status'];
+                    $filter->subject = $data['subject'];
+                    $filter->model = $data['model'];
+                    $filter->color = $data['color'];
+                    $filter->article = $data['article'];
+                    $filter->name = $data['name'];
+                }*/
 
         $pagination = $products->index(
             page: $request->query->getInt('page', 1),

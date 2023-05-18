@@ -57,7 +57,7 @@ class CategoryController extends AbstractController
     public function edit(Request $request, Category $category, Flusher $flusher): Response
     {
         $form = $this->createForm(CategoryEditForm::class, [
-            'name' => $category->getName()
+            'name' => $category->getName(),
         ]);
         $form->handleRequest($request);
 
