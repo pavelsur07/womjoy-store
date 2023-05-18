@@ -8,6 +8,7 @@ use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use App\Store\Infrastructure\Form\Category\CategoryEditForm;
+use App\Store\Infrastructure\Form\Category\CategorySeoEditForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,6 +74,32 @@ class CategoryController extends AbstractController
             'store/admin/category/edit.html.twig',
             [
                 'form' => $form->createView(),
+                'category' => $category,
+            ]
+        );
+    }
+
+    #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
+    public function seo(Request $request, Category $category, Flusher $flusher)
+    {
+        $form = $this->createForm(CategorySeoEditForm::class, [
+            'name' => $category->getName(),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $category->setName($data['name']);
+            $flusher->flush();
+
+            return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render(
+            'store/admin/category/seo.html.twig',
+            [
+                'form' => $form->createView(),
+                'category' => $category,
             ]
         );
     }
