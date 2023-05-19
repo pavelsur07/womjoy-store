@@ -9,6 +9,9 @@ parameters:
     #app_locales: ar|en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl|hr|zh_CN|bg|tr|lt|bs|sr_Cyrl|sr_Latn|eu
     app_locales: ru|bg|en
     app.notifications.email_sender: anonymous@example.com
+    app_thumbnails: 900-1200|300-400
+    app_cache_image: '/cache'
+    
 
 services:
     # default configuration for services in *this* file
@@ -20,6 +23,8 @@ services:
             string $defaultLocale: '%locale%'
             string $emailSender: '%app.notifications.email_sender%'
             string $cachePathImages: '%env(CACHE_PATH_IMAGE)%'
+            #string $cachePathImages: '%app_cache_image%'
+            string $thumbnails: '%app_thumbnails%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Page\Infrastructure\Controller;
 
 use App\Store\Infrastructure\Repository\ProductRepository;

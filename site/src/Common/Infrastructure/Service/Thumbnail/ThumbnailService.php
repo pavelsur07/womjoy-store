@@ -29,7 +29,6 @@ class ThumbnailService
     public function convertImagePngToJpeg(string $path, string $name): File
     {
         $fullName = $path . '/' . $name;
-        $basePatch = $path;
 
         $tmp = tmpfile();
         $file = $this->defaultStorage->read($fullName);
@@ -100,6 +99,14 @@ class ThumbnailService
             name: $name,
             size: $fileSize
         );
+    }
+
+    /**
+     * @throws FilesystemException
+     */
+    public function remove(string $path, string $name): void
+    {
+        $this->defaultStorage->delete($path . '/' . $name);
     }
 
     public function generateUrl(string $path, string $file, int $width = 0, int $height = 0): string

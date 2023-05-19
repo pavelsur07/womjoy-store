@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
-use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Application\Command\Product\Image\Add\File;
 use App\Store\Infrastructure\Form\Product\ProductImageAddForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
+use App\Store\Infrastructure\Service\ProductImage\ProductImageService;
 use Gumlet\ImageResizeException;
 use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,7 +40,7 @@ class ImageController extends AbstractController
         ProductRepository $products,
         FileUploader $uploader,
         Flusher $flusher,
-        ThumbnailService $thumbnails,
+        ProductImageService $service,
     ): Response {
         $productId = (int)$request->get('product_id');
         $product = $products->get($productId);
@@ -69,51 +69,18 @@ class ImageController extends AbstractController
             }
             $flusher->flush();
 
+            // Check extension files
             foreach ($product->getImages() as $image) {
-                $extension = explode('.', $image->getName())[1];
-                if ($extension !== 'jpg') {
-                    $oldName = $image->getName();
-                    $file = $thumbnails->convertImagePngToJpeg(
-                        path: $image->getPath(),
-                        name: $image->getName()
-                    );
-
+                $file = $service->checkExtension($image->getPath(), $image->getName());
+                if ($file !== null) {
                     $image->setName($file->getName());
-                    $uploader->remove(path: $image->getPath(), name: $oldName);
                 }
             }
             $flusher->flush();
 
-            // Optimize & thumbnails Jpeg
+            // Optimize & create thumbnails
             foreach ($product->getImages() as $image) {
-                // try {
-                foreach (self::THUMBNAILS as $thumbnail) {
-                    $outputPath = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
-                    $thumbnails->createThumbnail(
-                        path: $image->getPath(),
-                        inputName: $image->getName(),
-                        outputPath: $outputPath,
-                        width: $thumbnail[0],
-                        height: $thumbnail[1],
-                    );
-                }
-
-                foreach (self::THUMBNAILS as $thumbnail) {
-                    $outputPath = $image->getPath() . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
-                    $thumbnails->createThumbnail(
-                        path: $image->getPath(),
-                        inputName: $image->getName(),
-                        outputPath: $outputPath,
-                        width: $thumbnail[0],
-                        height: $thumbnail[1],
-                        type: ThumbnailService::WEBP,
-                    );
-                }
-                /*} catch (ImageResizeException $e) {
-                    $this->addFlash('warning', $e->getMessage());
-                } catch (FilesystemException $e) {
-                    $this->addFlash('warning', $e->getMessage());
-                }*/
+                $service->optimize(path: $image->getPath(), name: $image->getName());
             }
 
             return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
