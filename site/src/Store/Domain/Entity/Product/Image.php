@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Store\Domain\Exception\StoreProductImageException;
 use App\Store\Infrastructure\Repository\ImageRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
@@ -31,6 +33,9 @@ class Image
     #[ORM\Column]
     private ?int $size = null;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default'=> false])]
+    private bool $isOptimize = false;
+
     public function __construct(Product $product, ?string $path, string $name, int $size, int $sort)
     {
         $this->product = $product;
@@ -38,6 +43,14 @@ class Image
         $this->name = $name;
         $this->sort = $sort;
         $this->size = $size;
+    }
+
+    public function optimize(): void
+    {
+        if ($this->isOptimize) {
+            throw new StoreProductImageException('Image already optimize.');
+        }
+        $this->isOptimize = true;
     }
 
     public function isEqualToId(int $imageId): bool
@@ -90,5 +103,10 @@ class Image
     public function getSize(): ?int
     {
         return $this->size;
+    }
+
+    public function isOptimize(): bool
+    {
+        return $this->isOptimize;
     }
 }
