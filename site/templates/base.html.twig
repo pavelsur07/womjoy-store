@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {#<link rel="stylesheet" href="{{ asset('./css/style.css') }}">#}
+        <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
         {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
         {#{% block stylesheets %}
             {{ encore_entry_link_tags('store') }}
         {% endblock %}#}
-        <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
+       {# <link rel="stylesheet" href="{{ asset('./css/style.css') }}">#}
     </head>
     <body>
 
-{#    <div class="h-grid-12-col hidden">
+    <div class="h-grid-12-col hidden">
         <div class="h-grid-12-col-items">
             <span></span>
             <span></span>
@@ -28,9 +28,9 @@
             <span></span>
             <span></span>
         </div>
-    </div>#}
+    </div>
 
-    <header class="header">
+    {#<header class="header">
         <div class="wrapper">
             <div class="header__main">
                 <div class="header__left">
@@ -190,7 +190,7 @@
             </div>
 
         </div>
-    </header>
+    </header>#}
 
     {% block body %}{% endblock %}
 
@@ -199,7 +199,7 @@
             <div class="footer__main">
                 <div class="footer__left">
                     <a href="#" class="footer__logo">
-                        <img src="{{ asset('./img/logo.svg') }}" alt="" width="205" height="36">
+                        <img src="{{ asset('./img/logo.svg') }}" alt="logo" width="205" height="36">
                     </a>
                     <div class="footer__phone">
                         <a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
@@ -306,60 +306,10 @@
         </li>
     </ul>
 
-    {#<div class="container-xxl">
-        <header class="d-flex justify-content-center py-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="{{ path('home') }}" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="{{ path('admin.dashboard.show') }}" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="{{ path('store.cart') }}" class="nav-link">Cart</a></li>
-                <li class="nav-item"><a href="{{ path('store.account') }}" class="nav-link">Account</a></li>
-                {% if is_granted('IS_AUTHENTICATED')  == false %}
-                    <li class="nav-item"><a href="{{ path('store.registration') }}" class="nav-link">Sign Up</a></li>
-                {% endif %}
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for locale in locales() %}
-                        <li
-                            {% if app.request.locale == locale.code %}
-                                aria-checked="true" class="active"
-                            {% else %}
-                                aria-checked="false"
-                            {% endif %}
-                            role="menuitem">
-                            <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
-                                {{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small>
-                            </a>
-                        </li>
-                        {% endfor %}
-                        #}{#
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        #}{#
-                    </ul>
-                </li>
-            </ul>
-        </header>
-    </div>
-        <div class="container-xxl">
-            {% block body %}{% endblock %}
-        </div>
-    <footer class="footer py-3 bg-light mt-3">
-        <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
-        </div>
-    </footer>#}
     </body>
-        {% block javascripts %}
-       {# {{ encore_entry_script_tags('store') }}#}
+
+    {% block javascripts %}
+            {# {{ encore_entry_script_tags('store') }}#}
             <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
             <script src="{{ asset('./js/script.js') }}"></script>
     {% endblock %}
