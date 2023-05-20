@@ -4,7 +4,7 @@
         <div class="wrapper">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
                     <li class="breadcrumb-item"><a href="#">Каталог</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Лонгслив</li>
                 </ol>
@@ -56,7 +56,7 @@
                             </div>
                             <span class="rating__crnt">25 отзывов</span>
                         </div>
-                        <span class="i-card__id">Арт: 2000779532052</span>
+                        <span class="i-card__id">Арт: {{ product.id }}</span>
                     </div>
                     <div class="i-card__size">
                         <div class="i-card__size_top">
@@ -202,9 +202,13 @@
             </div>
         </div>
 
+        {#
         {% include 'store/product/recommendations.html.twig' %}
+        #}
 
+        {#
         {% include 'store/product/review.html.twig' %}
+        #}
 
         <div class="modal" id="card-sizes">
             <div class="modal__bg"></div>
