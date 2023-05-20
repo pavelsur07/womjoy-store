@@ -10,6 +10,7 @@ use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -53,6 +54,9 @@ class Product
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     private Category|null $mainCategory = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private string|null $slug = null;
 
     public function __construct(ProductPrice $price)
     {
@@ -143,6 +147,24 @@ class Product
         }
 
         throw new StoreProductException('Image not found.');
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): void
+    {
+        if ($this->mainCategory === null) {
+            throw new StoreProductException('Main category not set.');
+        }
+
+        if ($this->slug !== null) {
+            throw new StoreProductException('Slug is not null.');
+        }
+
+        $this->slug = mb_strtolower(trim($slug));
     }
 
     public function getId(): ?int
@@ -258,6 +280,9 @@ class Product
 
     public function active(): void
     {
+        if ($this->mainCategory === null) {
+            throw new StoreProductException('Main category not set.');
+        }
         $this->status = new ProductStatus(ProductStatus::ACTIVE);
     }
 

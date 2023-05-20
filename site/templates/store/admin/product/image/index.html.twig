@@ -43,22 +43,16 @@
                 {% for image in product.images %}
                     <div class="col">
                     <div class="card">
-                        <div class="card-header">
-                            <p>sort <strong>{{ image.sort }}</strong></p>
-                        </div>
-                        <img src=" {{ storage_path(image.path~'/'~image.name) }}">
+                        {# {% if image.isOptimize == true %}#}
+                            <img src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}">
+                        {#{% else %}
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+                        {% endif %}#}
                         <div class="card-footer p-0 mt-2">
                             <div class="btn-group w-100" role="group">
                                 <a href="{{ path('store.admin.product.image.up',{'product_id': product.id, 'sort': image.sort}) }}" class="btn btn-bitbucket"><span class="fa fa-arrow-left"></span></a>
                                 <a href="{{ path('store.admin.product.image.remove',{'product_id': product.id, 'image_id': image.id}) }}" class="btn btn-danger"><span class="fa fa-trash"></span></a>
                                 <a href="{{ path('store.admin.product.image.down',{'product_id': product.id, 'sort': image.sort}) }}" class="btn btn-bitbucket"><span class="fa fa-arrow-right"></span></a>
-                                {#<button type="button" class="btn btn-primary"><span class="fa fa-arrow-left"></span></button>
-                                <a href="{{ path('store.admin.product.image.delete',{'id': product.id, 'image_id': image.id}) }}">
-                                <button type="button" class="btn btn-danger">
-                                    <span class="fa fa-trash"></span>
-                                </button>
-                                </a>
-                                <button type="button" class="btn btn-primary"><span class="fa fa-arrow-right"></span></button>#}
                             </div>
                         </div>
                     </div>
