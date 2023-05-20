@@ -20,3 +20,7 @@ auth:
 page:
     resource: ../src/Page/Infrastructure/Controller/
     type: annotation
+
+menu:
+    resource: ../src/Menu/Infrastructure/Controller/
+    type: annotation
