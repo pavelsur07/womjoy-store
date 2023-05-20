@@ -12,6 +12,8 @@ interface MenuRepositoryInterface
 
     public function list(): array;
 
+    public function menuTree(Menu $menu): array;
+
     public function save(Menu $object, bool $flush): void;
 
     public function remove(Menu $object, bool $flush): void;

@@ -32,10 +32,13 @@ class Menu
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private self|null $parent;
 
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private int|null $root = null;
+
     /**
      * @var ArrayCollection<int, Menu>
      */
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class, cascade: ['ALL'], orphanRemoval: true)]
     #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $children;
 
@@ -43,6 +46,17 @@ class Menu
     {
         $this->name = $name;
         $this->href = $href;
+        $this->children = new ArrayCollection();
+    }
+
+    public function setParent(self $parent): void
+    {
+        $this->parent = $parent;
+        if ($parent->root === null) {
+            $this->setRoot($parent->id);
+        } else {
+            $this->setRoot($parent->getRoot());
+        }
     }
 
     public function getId(): int
@@ -103,18 +117,18 @@ class Menu
         return $this->parent;
     }
 
-    public function setParent(?self $parent): void
-    {
-        $this->parent = $parent;
-    }
-
     public function getChildren(): Collection
     {
         return $this->children;
     }
 
-    public function setChildren(Collection $children): void
+    public function getRoot(): ?int
     {
-        $this->children = $children;
+        return $this->root;
+    }
+
+    public function setRoot(?int $root): void
+    {
+        $this->root = $root;
     }
 }
