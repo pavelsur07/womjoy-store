@@ -487,8 +487,8 @@ select {
           flex-grow: 1;
 }
 
-ul > li:not(:last-child),
-ol > li:not(:last-child) {
+.typography ul > li:not(:last-child),
+.typography ol > li:not(:last-child) {
   margin-bottom: 10px;
 }
 
@@ -536,6 +536,10 @@ ol > li:not(:last-child) {
           flex-shrink: 0;
 }
 
+.ol > li p {
+  margin-bottom: 0;
+}
+
 .ol > li > *:not(ol, ul) {
   width: calc(100% - 37px);
 }
@@ -571,6 +575,10 @@ ol > li:not(:last-child) {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
+}
+
+.ul > li p {
+  margin-bottom: 0;
 }
 
 .table {
@@ -1035,7 +1043,7 @@ input:checked + .check__sq {
   box-shadow: 0px 15px 24px rgba(47, 43, 67, 0.1);
   position: absolute;
   left: 0;
-  top: 100%;
+  top: 99%;
   width: 100%;
   z-index: 2;
   opacity: 0;
@@ -1124,7 +1132,7 @@ input:checked + .check__sq {
   opacity: 0;
 }
 
-.menu-droper:hover .nav__link::after {
+.nav__link:hover::after {
   opacity: 1;
 }
 
@@ -1165,6 +1173,7 @@ input:checked + .check__sq {
 .drop .nav__link::after {
   content: '';
   position: absolute;
+  left: unset;
   right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -1173,6 +1182,7 @@ input:checked + .check__sq {
   width: 20px;
   height: 20px;
   background-image: url('../img/icons/arrow-down.svg');
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1181,6 +1191,10 @@ input:checked + .check__sq {
 .drop:hover .drop__list {
   opacity: 1;
   pointer-events: auto;
+}
+
+.drop:hover .nav__link::after {
+  opacity: 1;
 }
 
 .search {
@@ -2285,10 +2299,6 @@ input:checked + .inform__check_sq img {
 
 /* Каталог */
 
-.i-cat {
-  margin-bottom: 40px;
-}
-
 .i-cat__slide {
   width: 130px;
   display: block;
@@ -2311,9 +2321,17 @@ input:checked + .inform__check_sq img {
   height: 100%;
 }
 
+.i-cat__slider {
+  margin-bottom: 40px;
+}
+
 .i-cat__name {
   display: block;
   text-align: center;
+}
+
+.catalog.section {
+  padding-top: 0;
 }
 
 .catalog__content {
@@ -4395,6 +4413,10 @@ input:checked + .inform__check_sq img {
     overflow: hidden;
     padding-top: 10px;
     margin-bottom: 0;
+  }
+
+  .i-cat__slider {
+    margin-bottom: 20px;
   }
 
   .i-cat__slide {
