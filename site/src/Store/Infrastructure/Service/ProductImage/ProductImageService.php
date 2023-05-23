@@ -12,7 +12,9 @@ use League\Flysystem\FilesystemException;
 readonly class ProductImageService
 {
     public const THUMBNAILS = [
+        [1170, 1560],
         [900, 1200],
+        [390, 520],
         [300, 400],
     ];
 
