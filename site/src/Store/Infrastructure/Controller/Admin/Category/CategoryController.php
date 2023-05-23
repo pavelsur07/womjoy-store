@@ -57,6 +57,35 @@ class CategoryController extends AbstractController
         );
     }
 
+    #[Route('/{id}/add-child', name: '.add.child', methods: ['GET', 'POST'])]
+    public function addChild(int $id, Category $category, Request $request, Flusher $flusher): Response
+    {
+        $form = $this->createForm(CategoryEditForm::class, []);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $category->addSubCategory($data['name']);
+            $flusher->flush();
+
+            /*$category = new Category();
+            $category->setName($data['name']);
+            $category->setSlug($service->generate($data['name']));
+            $category->setPrefixSlugProduct($service->generate($data['name']));
+
+            $categories->save($category, true);*/
+
+            return $this->redirectToRoute('store.admin.category.edit', ['id'=> $category->getId()], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render(
+            'store/admin/category/new.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, Flusher $flusher): Response
     {

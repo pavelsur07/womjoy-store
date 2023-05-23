@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Category;
 
+use App\Store\Domain\Exception\StoreCategoryException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -28,7 +29,7 @@ class Category
     /**
      * @var ArrayCollection<int, Category>
      */
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class, cascade: ['ALL'], orphanRemoval: true)]
     #[ORM\OrderBy(['id' => 'ASC'])]
     private Collection $children;
 
@@ -41,6 +42,27 @@ class Category
     public function __construct()
     {
         $this->children = new ArrayCollection();
+    }
+
+    public function addSubCategory(string $name): void
+    {
+        $newChild = new self();
+        $newChild->setName($name);
+        $newChild->setParent($this);
+
+        $this->children->add($newChild);
+    }
+
+    public function removeSubCategory(int $id): void
+    {
+        foreach ($this->children as $child) {
+            if ($id === $child->getId()) {
+                $this->children->removeElement($child);
+                return;
+            }
+        }
+
+        throw new StoreCategoryException('Sub category not found');
     }
 
     public function getId(): int

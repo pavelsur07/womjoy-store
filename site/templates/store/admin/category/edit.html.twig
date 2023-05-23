@@ -33,4 +33,13 @@
             {{ form_end(form) }}
         </div>
     </div>
+
+    <div class="mt-2 mb-2">
+        <a href="{{ path('store.admin.category.add.child', {'id': category.id}) }}" class="btn btn-bitbucket">Add child</a>
+    </div>
+    <div class="card card-body">
+        {% for child in category.children %}
+            <p> {{ child.name }}</p>
+        {% endfor %}
+    </div>
 {% endblock %}
