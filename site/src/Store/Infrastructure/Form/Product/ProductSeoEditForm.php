@@ -15,7 +15,8 @@ class ProductSeoEditForm extends AbstractType
     {
         $builder
             ->add('seoTitle', Type\TextType::class, ['required' => false])
-            ->add('seoDescription', Type\TextType::class, ['required' => false]);
+            ->add('seoDescription', Type\TextType::class, ['required' => false])
+            ->add('slug', Type\TextType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

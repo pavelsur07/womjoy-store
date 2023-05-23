@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Infrastructure\Form\Product\ProductEditForm;
@@ -78,6 +79,9 @@ class ProductController extends AbstractController
             $product->setDescription($data['description']);
             $product->getPrice()->setPrice($data['price']);
             $product->getPrice()->setListPrice($data['listPrice']);
+            if ($data['mainCategory'] !== null) {
+                $product->setMainCategory($data['mainCategory']);
+            }
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
@@ -90,13 +94,14 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
-    public function seo(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher): Response
+    public function seo(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher, SlugifyService $slug): Response
     {
         $form = $this->createForm(
             ProductSeoEditForm::class,
             [
                 'seoTitle' => $product->getSeoTitle(),
                 'seoDescription' => $product->getSeoDescription(),
+                'slug' => $product->getSlug(),
             ]
         );
 
@@ -107,6 +112,10 @@ class ProductController extends AbstractController
 
             $product->setSeoTitle($data['seoTitle']);
             $product->setSeoDescription($data['seoDescription']);
+
+            if ($data['slug'] !== null) {
+                $product->setSlug($slug->generate($data['slug']));
+            }
             $flusher->flush();
 
             $this->addFlash('success', 'Success seo changed.');

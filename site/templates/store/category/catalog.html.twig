@@ -19,7 +19,7 @@
         <div class="products__items products-3">
             {% for product in pagination %}
             <div class="product">
-                <a href="{{ path('store.product.show',{'id': product.id}) }}">
+                <a href="{{ path('store.product.show',{'slug': product.slug} ) }}">
                 <div class="product__img">
                     <div class="product__img_slider swiper">
                         <div class="swiper-wrapper">

@@ -11,7 +11,6 @@ use League\Flysystem\FilesystemException;
 
 readonly class ProductImageService
 {
-    // public const CACHE_PATCH = '/cache';
     public const THUMBNAILS = [
         [900, 1200],
         [300, 400],

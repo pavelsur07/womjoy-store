@@ -159,10 +159,11 @@ class Product
         if ($this->mainCategory === null) {
             throw new StoreProductException('Main category not set.');
         }
-
+        /*
         if ($this->slug !== null) {
             throw new StoreProductException('Slug is not null.');
         }
+        */
 
         $this->slug = mb_strtolower(trim($slug));
     }
