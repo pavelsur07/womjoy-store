@@ -14,8 +14,8 @@ class CategoryController extends AbstractController
 {
     public const PER_PAGE= 15;
 
-    #[Route(path: '/collections/test', name: 'store.collections')]
-    public function index(Request $request, ProductRepository $products): Response
+    #[Route(path: '/catalog/{slug}', name: 'store.collections')]
+    public function index(string $slug, Request $request, ProductRepository $products): Response
     {
         return $this->render(
             'store/category/show.html.twig',

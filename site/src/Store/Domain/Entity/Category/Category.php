@@ -119,4 +119,20 @@ class Category
     {
         $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return $this->generateBreadcrumbs($this);
+    }
+
+    private function generateBreadcrumbs(self $category, ?array $bread = null): array
+    {
+        $bread[] = $category;
+
+        if ($category->getParent() !== null) {
+            return $this->getBreadcrumbs($category->getParent(), $bread);
+        }
+
+        return array_reverse($bread);
+    }
 }

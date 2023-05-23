@@ -287,6 +287,14 @@ class Product
         $this->status = new ProductStatus(ProductStatus::ACTIVE);
     }
 
+    public function getBreadcrumbs(): array
+    {
+        if ($this->mainCategory === null) {
+            return [];
+        }
+        return $this->mainCategory->getBreadcrumbs();
+    }
+
     private function sortable(): void
     {
         $this->images->first();

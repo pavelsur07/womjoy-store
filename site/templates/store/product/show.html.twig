@@ -5,8 +5,10 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-                    <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Лонгслив</li>
+                    {% for breadcrumb in product.breadcrumbs %}
+                        <li class="breadcrumb-item"><a href="#">{{ breadcrumb.name }}</a></li>
+                    {% endfor %}
+                    <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
                 </ol>
             </nav>
             <div class="i-card__content">
