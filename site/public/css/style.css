@@ -4080,7 +4080,7 @@ input:checked + .inform__check_sq img {
     overflow: hidden;
   }
 
-  .products-4 {
+  .products__items {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
