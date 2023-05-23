@@ -5,17 +5,21 @@ RUN apk add --no-cache autoconf g++ make rabbitmq-c-dev \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable redis amqp
 
-RUN apk add --no-cache postgresql-dev \
-    libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev \
-    bash coreutils git \
-    jpegoptim optipng pngquant gifsicle \
+#RUN apk add --no-cache postgresql-dev \
+#    libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev \
+#    bash coreutils git \
+#    jpegoptim optipng pngquant gifsicle \
+#    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+#    && docker-php-ext-configure gd \
+#            --with-jpeg \
+#            --with-webp \
+#            --with-freetype \
+#    && docker-php-ext-install pdo_pgsql gd opcache bcmath \
+#    && apk del git
+
+RUN apk add --no-cache postgresql-dev bash coreutils \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-configure gd \
-            --with-jpeg \
-            --with-webp \
-            --with-freetype \
-    && docker-php-ext-install pdo_pgsql gd opcache bcmath \
-    && apk del git
+    && docker-php-ext-install pdo_pgsql \
 
 RUN apk add --no-cache unzip
 
@@ -36,9 +40,21 @@ FROM php:8.2-cli-alpine
 
 RUN apk add --no-cache autoconf g++ make
 
-RUN apk add --no-cache postgresql-dev bash coreutils \
+#RUN apk add --no-cache postgresql-dev bash coreutils \
+#    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+#    && docker-php-ext-install pdo_pgsql \
+
+RUN apk add --no-cache postgresql-dev \
+    libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev \
+    bash coreutils git \
+    jpegoptim optipng pngquant gifsicle \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo_pgsql
+    && docker-php-ext-configure gd \
+            --with-jpeg \
+            --with-webp \
+            --with-freetype \
+    && docker-php-ext-install pdo_pgsql gd opcache bcmath \
+    && apk del git
 
 RUN pecl install -o -f redis \
     && rm -rf /tmp/pear \
