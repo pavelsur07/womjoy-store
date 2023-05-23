@@ -7,6 +7,7 @@ namespace App\Store\Infrastructure\Controller\Admin\Product;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Application\Command\Product\Image\Add\File;
+use App\Store\Application\Command\Product\Image\Optimize\ProductImageOptimizeCommand;
 use App\Store\Infrastructure\Form\Product\ProductImageAddForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use App\Store\Infrastructure\Service\ProductImage\ProductImageService;
@@ -15,6 +16,7 @@ use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/product/{product_id}/image', name: 'store.admin.product.image')]
@@ -26,8 +28,10 @@ class ImageController extends AbstractController
         [300, 400],
     ];
 
-    public function __construct(private readonly string $cachePathImages)
-    {
+    public function __construct(
+        private readonly MessageBusInterface $bus,
+        private readonly string $cachePathImages,
+    ) {
     }
 
     /**
@@ -69,7 +73,10 @@ class ImageController extends AbstractController
             }
             $flusher->flush();
 
+            $this->bus->dispatch(new ProductImageOptimizeCommand($product->getId()));
+
             // Check extension files
+            /*
             foreach ($product->getImages() as $image) {
                 $file = $service->checkExtension($image->getPath(), $image->getName());
                 if ($file !== null) {
@@ -77,12 +84,14 @@ class ImageController extends AbstractController
                 }
             }
             $flusher->flush();
+            */
 
             // Optimize & create thumbnails
+            /*
             foreach ($product->getImages() as $image) {
                 $service->optimize(path: $image->getPath(), name: $image->getName());
             }
-
+            */
             return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
         }
         return $this->render(
