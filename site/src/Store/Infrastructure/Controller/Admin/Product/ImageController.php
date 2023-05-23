@@ -73,10 +73,9 @@ class ImageController extends AbstractController
             }
             $flusher->flush();
 
-            $this->bus->dispatch(new ProductImageOptimizeCommand($product->getId()));
+            // $this->bus->dispatch(new ProductImageOptimizeCommand($product->getId()));
 
             // Check extension files
-            /*
             foreach ($product->getImages() as $image) {
                 $file = $service->checkExtension($image->getPath(), $image->getName());
                 if ($file !== null) {
@@ -84,14 +83,12 @@ class ImageController extends AbstractController
                 }
             }
             $flusher->flush();
-            */
 
             // Optimize & create thumbnails
-            /*
             foreach ($product->getImages() as $image) {
                 $service->optimize(path: $image->getPath(), name: $image->getName());
             }
-            */
+
             return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
         }
         return $this->render(
