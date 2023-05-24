@@ -80,7 +80,11 @@
                         {{ product.color.name }}
 
                     </td>
-                    <td>{{ product.name }}</td>
+                    <td>{{ product.name }} <br>
+                        {% if product.pathExternalImage is not null %}
+                            <a href="{{ product.pathExternalImage }}" target="_blank">images</a>
+                        {% endif %}
+                    </td>
                     <td>{{ product.subject.name }}</td>
                     <td>{{ product.model.name }}</td>
                     <td class="w-5">
