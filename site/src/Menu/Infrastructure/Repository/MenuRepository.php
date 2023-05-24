@@ -37,6 +37,11 @@ class MenuRepository implements MenuRepositoryInterface
         return $object;
     }
 
+    public function findById(int $id): Menu|null
+    {
+        return $this->repo->find($id);
+    }
+
     /**
      * @throws Exception
      */
@@ -45,6 +50,7 @@ class MenuRepository implements MenuRepositoryInterface
         $qb = $this->connection->createQueryBuilder()
             ->select([
                 'p.id',
+                'p.root',
                 'p.sort',
                 'p.name',
                 'p.parent_id',
@@ -55,7 +61,7 @@ class MenuRepository implements MenuRepositoryInterface
             ->setParameter('rootId', $menu->getId())
             ->orderBy('sort', 'asc');
 
-        return $this->buildTree($qb->fetchAllAssociative());
+        return $this->buildTree($qb->fetchAllAssociative())[0]['children'];
     }
 
     public function list(): array
