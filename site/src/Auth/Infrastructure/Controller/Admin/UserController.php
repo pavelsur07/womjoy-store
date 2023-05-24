@@ -57,7 +57,7 @@ class UserController extends AbstractController
     public function setRoleAdmin(int $id, Request $request, UserRepository $users, Flusher $flusher): Response
     {
         $user = $users->get($id);
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_MANAGER']);
         $flusher->flush();
         return $this->redirectToRoute('app.user.index');
     }
