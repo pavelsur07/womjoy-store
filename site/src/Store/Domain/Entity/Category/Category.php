@@ -120,6 +120,7 @@ class Category
         $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
     }
 
+    /*
     public function getBreadcrumbs(): array
     {
         return $this->generateBreadcrumbs($this);
@@ -135,4 +136,5 @@ class Category
 
         return array_reverse($bread);
     }
+    */
 }

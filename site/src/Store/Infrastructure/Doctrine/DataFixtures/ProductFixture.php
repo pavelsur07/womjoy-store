@@ -20,7 +20,7 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $i = 1000;
-        $mainCategory = $this->getReference(CategoryFixture::REFERENCE_WOMAN);
+        $mainCategory = $this->getReference(CategoryFixture::REFERENCE_LEGGINGS);
 
         $product = new Product(new ProductPrice(1000));
         $product->setName($name = 'product name');
@@ -91,6 +91,8 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
         $manager->flush();
+
+        $mainCategory = $this->getReference(CategoryFixture::REFERENCE_PANTS);
 
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');

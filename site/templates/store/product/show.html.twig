@@ -5,7 +5,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-                    {% for breadcrumb in product.breadcrumbs %}
+                    {% for breadcrumb in breadcrumbs %}
                         <li class="breadcrumb-item"><a href="#">{{ breadcrumb.name }}</a></li>
                     {% endfor %}
                     <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>

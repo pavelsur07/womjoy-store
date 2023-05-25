@@ -53,7 +53,11 @@
                             {% endif %}
                         #}
                     </td>
-                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{{ path('store.category.show', {'slug': category.slug}) }}" target="_blank">
+                        {{ category.name }}
+                        </a>
+                    </td>
                     <td>
                         <a class="btn btn-sm btn-bitbucket" href="{{ path('store.admin.category.edit', {'id': category.id}) }}">edit</a>
                     </td>

@@ -6,6 +6,7 @@ namespace App\Common\Infrastructure\Controller;
 
 use App\Menu\Domain\Entity\Menu;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
+use App\Store\Domain\Entity\Category\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BaseController extends AbstractController
@@ -38,5 +39,18 @@ class BaseController extends AbstractController
         }
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
+    }
+
+    public function breadcrumbsCategoryGenerate(Category $category, ?array $bread = null): array
+    {
+        $bread[] = [
+            'name' =>$category->getName(),
+            'slug' => $category->getSlug(),
+        ];
+
+        if ($category->getParent() !== null) {
+            return $this->breadcrumbsCategoryGenerate($category->getParent(), $bread);
+        }
+        return array_reverse($bread);
     }
 }

@@ -20,6 +20,7 @@ class ProductController extends BaseController
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
+                'breadcrumbs'=> $this->breadcrumbsCategoryGenerate($product->getMainCategory()),
                 'product' => $product,
             ]
         );
