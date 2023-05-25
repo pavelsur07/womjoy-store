@@ -34,12 +34,6 @@ class Product
 
     #[ORM\Embedded(class: ProductStatus::class, columnPrefix: 'status_')]
     private ProductStatus $status;
-    /*
-        #[ORM\Column(length: 255, nullable: true)]
-        private ?string $seoTitle = null;
-
-        #[ORM\Column(length: 255, nullable: true)]
-        private ?string $seoDescription = null;*/
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $article = null;
@@ -210,30 +204,6 @@ class Product
     {
         return $this->status;
     }
-
-/*    public function getSeoTitle(): ?string
-    {
-        return $this->seoTitle;
-    }
-
-    public function setSeoTitle(?string $seoTitle): self
-    {
-        $this->seoTitle = $seoTitle;
-
-        return $this;
-    }*/
-/*
-    public function getSeoDescription(): ?string
-    {
-        return $this->seoDescription;
-    }
-
-    public function setSeoDescription(?string $seoDescription): self
-    {
-        $this->seoDescription = $seoDescription;
-
-        return $this;
-    }*/
 
     /**
      * @return Collection<int, Image>
