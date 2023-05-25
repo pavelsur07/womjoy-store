@@ -69,13 +69,6 @@ class CategoryController extends AbstractController
             $category->addSubCategory($data['name']);
             $flusher->flush();
 
-            /*$category = new Category();
-            $category->setName($data['name']);
-            $category->setSlug($service->generate($data['name']));
-            $category->setPrefixSlugProduct($service->generate($data['name']));
-
-            $categories->save($category, true);*/
-
             return $this->redirectToRoute('store.admin.category.edit', ['id'=> $category->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
@@ -112,9 +105,12 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
-    public function seo(Request $request, Category $category, Flusher $flusher)
+    public function seo(Request $request, Category $category, Flusher $flusher): Response
     {
         $form = $this->createForm(CategorySeoEditForm::class, [
+            'h1' => $category->getSeoMetadata()->getH1(),
+            'seoTitle' => $category->getSeoMetadata()->getSeoTitle(),
+            'seoDescription' => $category->getSeoMetadata()->getSeoDescription(),
             'slug' => $category->getSlug(),
             'prefixSlugProduct' => $category->getPrefixSlugProduct(),
         ]);
@@ -123,7 +119,9 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $category->setName($data['name']);
+            $category->getSeoMetadata()->setH1($data['h1']);
+            $category->getSeoMetadata()->setSeoTitle($data['seoTitle']);
+            $category->getSeoMetadata()->setSeoDescription($data['seoDescription']);
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);

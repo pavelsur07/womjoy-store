@@ -14,8 +14,11 @@ class CategorySeoEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('h1', Type\TextType::class, ['required' => false])
+            ->add('seoTitle', Type\TextType::class, ['required' => false])
+            ->add('seoDescription', Type\TextType::class, ['required' => false])
             ->add('slug', Type\TextType::class)
-            ->add('prefixSlugProduct', Type\TextType::class);
+            ->add('prefixSlugProduct', Type\TextType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
