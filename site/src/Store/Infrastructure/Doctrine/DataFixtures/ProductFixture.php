@@ -7,6 +7,7 @@ namespace App\Store\Infrastructure\Doctrine\DataFixtures;
 use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
+use App\Store\Domain\Entity\SeoMetadata;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -25,8 +26,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName($name = 'product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -35,8 +40,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -45,8 +54,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -55,8 +68,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -65,8 +82,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -75,8 +96,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -85,8 +110,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -97,8 +126,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -107,8 +140,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -117,8 +154,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
@@ -127,8 +168,12 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product = new Product(new ProductPrice(1000));
         $product->setName('product name');
         $product->setDescription('product description');
-        $product->setSeoTitle('seo title');
-        $product->setSeoDescription('seo description');
+        $product->setSeoMetadata(
+            new SeoMetadata(
+                title: 'seo title',
+                description: 'seo description',
+            )
+        );
         $product->setMainCategory($mainCategory);
         $product->setSlug($this->slug->generate($name . $i++));
         $manager->persist($product);
