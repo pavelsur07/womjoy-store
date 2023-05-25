@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Form\Product;
 
-use App\Store\Domain\Entity\Category\Category;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductEditForm extends AbstractType
 {
+    public function __construct(private readonly CategoryRepositoryInterface $categories)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -26,10 +29,12 @@ class ProductEditForm extends AbstractType
             )
             ->add(
                 'mainCategory',
-                EntityType::class,
+                Type\ChoiceType::class,
                 [
-                    'class' => Category::class,
-                    'choice_label' => 'name',
+                    // 'choices' => array_combine($this->categories->getCategoryTree(), $this->categories->getCategoryTree()),
+                    'choices' => $this->categories->getCategoryTree(),
+                    'choice_label' => 'label',
+                    'choice_value' => 'value',
                 ]
             )
             ->add('price', Type\IntegerType::class)

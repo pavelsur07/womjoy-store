@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Store\Infrastructure\Repository;
+namespace App\Store\Infrastructure\Repository\Category;
 
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Repository\CategoryRepositoryInterface;
@@ -27,7 +27,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $object = $this->repo->find($id);
         if ($object === null) {
-            throw new DomainException('Product not fount');
+            throw new DomainException('Category not fount - ' . $id);
         }
 
         return $object;
@@ -36,6 +36,21 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function list(): array
     {
         return $this->repo->findAll();
+    }
+
+    public function getCategoryTree(): array
+    {
+        $categories = [];
+
+        foreach ($this->getRootNodes() as $category) {
+            $categories = array_merge($categories, $this->normalizer($category));
+        }
+        return $categories;
+    }
+
+    public function getRootNodes(): array
+    {
+        return $this->repo->findBy(['parent' => null]);
     }
 
     public function save(Category $category, bool $flush = false): void
@@ -54,5 +69,22 @@ class CategoryRepository implements CategoryRepositoryInterface
         if ($flush) {
             $this->em->flush();
         }
+    }
+
+    private function normalizer(Category $category, int $depth = 0): array
+    {
+        $categories = [
+            new CategoryForChoice(
+                label: sprintf('%s %s', str_repeat('—', $depth), $category->getName()),
+                value: (string)$category->getId(),
+            ),
+        ];
+
+        if ($category->getChildren()) {
+            foreach ($category->getChildren() as $child) {
+                $categories = array_merge($categories, $this->normalizer($child, $depth + 1));
+            }
+        }
+        return $categories;
     }
 }

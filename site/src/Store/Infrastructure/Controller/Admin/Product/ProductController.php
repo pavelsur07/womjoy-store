@@ -8,8 +8,10 @@ use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
+use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use App\Store\Infrastructure\Form\Product\ProductEditForm;
 use App\Store\Infrastructure\Form\Product\ProductSeoEditForm;
+use App\Store\Infrastructure\Repository\Category\CategoryForChoice;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,14 +61,22 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher): Response
-    {
+    public function edit(
+        Request $request,
+        Product $product,
+        ProductRepository $productRepository,
+        Flusher $flusher,
+        CategoryRepositoryInterface $categories,
+    ): Response {
         $form = $this->createForm(
             ProductEditForm::class,
             [
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
-                'mainCategory' => $product->getMainCategory(),
+                'mainCategory' => $product->getMainCategory() ? new CategoryForChoice(
+                    label: $product->getMainCategory()->getName(),
+                    value: (string)$product->getMainCategory()->getId()
+                ) : null,
                 'price' => $product->getPrice()->getPrice(),
                 'listPrice' => $product->getPrice()->getListPrice(),
             ]
@@ -80,7 +90,7 @@ class ProductController extends AbstractController
             $product->getPrice()->setPrice($data['price']);
             $product->getPrice()->setListPrice($data['listPrice']);
             if ($data['mainCategory'] !== null) {
-                $product->setMainCategory($data['mainCategory']);
+                $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }
             $flusher->flush();
 

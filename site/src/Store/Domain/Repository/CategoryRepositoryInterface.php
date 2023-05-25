@@ -12,6 +12,8 @@ interface CategoryRepositoryInterface
 
     public function list(): array;
 
+    public function getCategoryTree(): array;
+
     public function save(Category $category): void;
 
     public function remove(Category $category): void;

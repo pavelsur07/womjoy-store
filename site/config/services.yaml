@@ -69,7 +69,7 @@ services:
         class: App\Store\Infrastructure\Repository\ProductRepository
         
     App\Store\Domain\Repository\CategoryRepositoryInterface:
-        class: App\Store\Infrastructure\Repository\CategoryRepository
+        class: App\Store\Infrastructure\Repository\Category\CategoryRepository
         
     App\Menu\Domain\Repository\MenuRepositoryInterface:
         class: App\Menu\Infrastructure\Repository\MenuRepository
@@ -81,7 +81,7 @@ services:
         arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%' ]
         
     #App\Store\Domain\Repository\CategoryRepositoryInterface:
-    #    class: App\Store\Infrastructure\Repository\CategoryRepository
+    #    class: App\Store\Infrastructure\Repository\Category\CategoryRepository
     
     App\Common\Infrastructure\Service\Thumbnail\ThumbnailService:
         arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%', '%env(CACHE_PATH_IMAGE)%']
