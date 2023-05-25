@@ -7,6 +7,7 @@ namespace App\Store\Domain\Entity\Product;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
+use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -33,12 +34,12 @@ class Product
 
     #[ORM\Embedded(class: ProductStatus::class, columnPrefix: 'status_')]
     private ProductStatus $status;
+    /*
+        #[ORM\Column(length: 255, nullable: true)]
+        private ?string $seoTitle = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $seoTitle = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $seoDescription = null;
+        #[ORM\Column(length: 255, nullable: true)]
+        private ?string $seoDescription = null;*/
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $article = null;
@@ -57,6 +58,9 @@ class Product
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private string|null $slug = null;
+
+    #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
+    private SeoMetadata $seoMetadata;
 
     public function __construct(ProductPrice $price)
     {
@@ -207,7 +211,7 @@ class Product
         return $this->status;
     }
 
-    public function getSeoTitle(): ?string
+/*    public function getSeoTitle(): ?string
     {
         return $this->seoTitle;
     }
@@ -217,8 +221,8 @@ class Product
         $this->seoTitle = $seoTitle;
 
         return $this;
-    }
-
+    }*/
+/*
     public function getSeoDescription(): ?string
     {
         return $this->seoDescription;
@@ -229,7 +233,7 @@ class Product
         $this->seoDescription = $seoDescription;
 
         return $this;
-    }
+    }*/
 
     /**
      * @return Collection<int, Image>
@@ -287,12 +291,24 @@ class Product
         $this->status = new ProductStatus(ProductStatus::ACTIVE);
     }
 
-    public function getBreadcrumbs(): array
+    public function getArticle(): ?string
     {
-        if ($this->mainCategory === null) {
-            return [];
-        }
-        return $this->mainCategory->getBreadcrumbs();
+        return $this->article;
+    }
+
+    public function setArticle(?string $article): void
+    {
+        $this->article = $article;
+    }
+
+    public function getSeoMetadata(): SeoMetadata
+    {
+        return $this->seoMetadata;
+    }
+
+    public function setSeoMetadata(SeoMetadata $seoMetadata): void
+    {
+        $this->seoMetadata = $seoMetadata;
     }
 
     private function sortable(): void
