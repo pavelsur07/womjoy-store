@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Category;
 
+use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreCategoryException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -39,6 +40,9 @@ class Category
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private string|null $prefixSlugProduct = null;
 
+    #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
+    private SeoMetadata $seoMetadata;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -63,6 +67,16 @@ class Category
         }
 
         throw new StoreCategoryException('Sub category not found');
+    }
+
+    public function getSeoMetadata(): SeoMetadata
+    {
+        return $this->seoMetadata;
+    }
+
+    public function setSeoMetadata(SeoMetadata $seoMetadata): void
+    {
+        $this->seoMetadata = $seoMetadata;
     }
 
     public function getId(): int
