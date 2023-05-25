@@ -109,8 +109,8 @@ class ProductController extends AbstractController
         $form = $this->createForm(
             ProductSeoEditForm::class,
             [
-                'seoTitle' => $product->getSeoTitle(),
-                'seoDescription' => $product->getSeoDescription(),
+                'seoTitle' => $product->getSeoMetadata()->getSeoTitle(),
+                'seoDescription' => $product->getSeoMetadata()->getSeoDescription(),
                 'slug' => $product->getSlug(),
             ]
         );
@@ -120,8 +120,8 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $product->setSeoTitle($data['seoTitle']);
-            $product->setSeoDescription($data['seoDescription']);
+            $product->getSeoMetadata()->setSeoTitle($data['seoTitle']);
+            $product->getSeoMetadata()->setSeoDescription($data['seoDescription']);
 
             if ($data['slug'] !== null) {
                 $product->setSlug($slug->generate($data['slug']));
