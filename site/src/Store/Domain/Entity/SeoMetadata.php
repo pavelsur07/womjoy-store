@@ -6,7 +6,6 @@ namespace App\Store\Domain\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\True_;
 
 #[ORM\Embeddable]
 class SeoMetadata

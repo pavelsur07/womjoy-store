@@ -105,7 +105,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
-    public function seo(Request $request, Category $category, Flusher $flusher): Response
+    public function seo(Request $request, Category $category, Flusher $flusher, SlugifyService $slugify): Response
     {
         $form = $this->createForm(CategorySeoEditForm::class, [
             'h1' => $category->getSeoMetadata()->getH1(),
@@ -122,6 +122,7 @@ class CategoryController extends AbstractController
             $category->getSeoMetadata()->setH1($data['h1']);
             $category->getSeoMetadata()->setSeoTitle($data['seoTitle']);
             $category->getSeoMetadata()->setSeoDescription($data['seoDescription']);
+            $category->setSlug($slugify->generate($data['slug']));
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);
