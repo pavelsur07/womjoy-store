@@ -63,11 +63,9 @@ class ProductRepository
             ->select('p')
             ->from(Product::class, 'p')
             ->andWhere('p.categoriesIds LIKE :ids')
-            ->setParameter('ids', $category->getIds() . '%');
-        /*
-        ->andWhere('p.status.value = :status_value')
-        ->setParameter('status_value', ProductStatus::ACTIVE)
-        */
+            ->setParameter('ids', $category->getIds() . '%')
+            ->andWhere('p.status.value = :status_value')
+            ->setParameter('status_value', ProductStatus::ACTIVE);
 
         $qb->orderBy('p.id', 'ASC');
 
