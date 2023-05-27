@@ -24,3 +24,7 @@ page:
 menu:
     resource: ../src/Menu/Infrastructure/Controller/
     type: annotation
+    
+guarantee:
+    resource: ../src/Guarantee/Infrastructure/Controller/
+    type: annotation

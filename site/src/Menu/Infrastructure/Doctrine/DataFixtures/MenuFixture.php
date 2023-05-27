@@ -39,11 +39,11 @@ class MenuFixture extends Fixture
             ],
             [
                 'name'=> 'Брюки',
-                'href'=> '/catalog/'.CategoryFixture::REFERENCE_PANTS,
+                'href'=> '/catalog/' . CategoryFixture::REFERENCE_PANTS,
             ],
             [
                 'name'=> 'Леггинсы',
-                'href'=> '/catalog/'.CategoryFixture::REFERENCE_LEGGINGS,
+                'href'=> '/catalog/' . CategoryFixture::REFERENCE_LEGGINGS,
             ],
             [
                 'name'=> 'Топы',

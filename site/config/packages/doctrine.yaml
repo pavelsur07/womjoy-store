@@ -31,6 +31,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Menu/Domain/Entity'
                 prefix: 'App\Menu\Domain\Entity'
                 alias: Menu
+            Guarantee:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Guarantee/Domain/Entity'
+                prefix: 'App\Guarantee\Domain\Entity'
+                alias: Guarantee
 
 when@test:
     doctrine:
