@@ -73,7 +73,9 @@ services:
         
     App\Menu\Domain\Repository\MenuRepositoryInterface:
         class: App\Menu\Infrastructure\Repository\MenuRepository
-    
+        
+    App\Store\Domain\Repository\HomeRepositoryInterface:
+        class: App\Store\Infrastructure\Repository\HomeRepository
     
     #    App\Common\Infrastructure\Uploader\FileUploader:
 #        arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]

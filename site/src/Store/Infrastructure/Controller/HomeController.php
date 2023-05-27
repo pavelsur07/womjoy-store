@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller;
 
 use App\Common\Infrastructure\Controller\BaseController;
-use App\Menu\Domain\Repository\MenuRepositoryInterface;
 use App\Store\Infrastructure\Repository\ProductRepository;
+use App\Store\Infrastructure\Service\Home\HomeService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,9 +16,12 @@ class HomeController extends BaseController
     public const PER_PAGE = 8;
 
     #[Route(path: '/', name: 'home', requirements: ['_locale' => 'en|ru|bg'])]
-    public function show(Request $request, ProductRepository $products, MenuRepositoryInterface $menus): Response
+    public function show(Request $request, ProductRepository $products, HomeService $homes): Response
     {
-        $this->metaData['title'] = 'Home page welcome';
+        $home = $homes->get();
+        $this->setTitle($home->getSeoMetadata()->getSeoTitle());
+        $this->setDescription($home->getSeoMetadata()->getSeoDescription());
+        $this->setH1($home->getSeoMetadata()->getH1());
 
         $locales = $request->getLocale();
         $pagination = $products->list(

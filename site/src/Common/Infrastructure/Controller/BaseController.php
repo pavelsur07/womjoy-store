@@ -20,6 +20,7 @@ class BaseController extends AbstractController
     public array $metaData =[
         'title' =>'Title base controller default',
         'description' => 'Description base controller default',
+        'h1' => 'default',
         'index' => false,
     ];
 
@@ -39,6 +40,21 @@ class BaseController extends AbstractController
         }
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->metaData['title'] = $title;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->metaData['description'] = $description;
+    }
+
+    public function setH1(string $h1): void
+    {
+        $this->metaData['h1'] = $h1;
     }
 
     public function breadcrumbsCategoryGenerate(Category $category, ?array $bread = null): array
