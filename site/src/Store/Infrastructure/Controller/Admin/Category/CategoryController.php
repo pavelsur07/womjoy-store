@@ -143,7 +143,7 @@ class CategoryController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categories->remove($category, true);
         }
-
+        //----//
         return $this->redirectToRoute('store.admin.category.index');
     }
 }
