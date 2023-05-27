@@ -136,4 +136,14 @@ class CategoryController extends AbstractController
             ]
         );
     }
+
+    #[Route('/{id}/remove', name: '.remove')]
+    public function remove(Request $request, Category $category, CategoryRepositoryInterface $categories): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+            $categories->remove($category, true);
+        }
+
+        return $this->redirectToRoute('store.admin.category.index');
+    }
 }
