@@ -56,6 +56,9 @@ class Product
     #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
     private SeoMetadata $seoMetadata;
 
+    #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
+    private string|null $categoriesIds = null;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -164,6 +167,21 @@ class Product
         */
 
         $this->slug = mb_strtolower(trim($slug));
+    }
+
+    public function getCategoriesIds(): ?string
+    {
+        return $this->categoriesIds;
+    }
+
+    public function setCategoriesIds(): void
+    {
+        /*if ($this->mainCategory === null) {
+            throw new StoreProductException('Not set main category');
+        }*/
+        if ($this->mainCategory !== null) {
+            $this->categoriesIds = $this->mainCategory->getIds();
+        }
     }
 
     public function getId(): ?int

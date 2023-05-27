@@ -91,6 +91,7 @@ class CategoryController extends AbstractController
             $data = $form->getData();
 
             $category->setName($data['name']);
+            $category->generateIds();
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);

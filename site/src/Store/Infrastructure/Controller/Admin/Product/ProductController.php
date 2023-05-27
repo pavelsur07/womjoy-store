@@ -92,6 +92,8 @@ class ProductController extends AbstractController
             if ($data['mainCategory'] !== null) {
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }
+            $product->setCategoriesIds();
+
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);

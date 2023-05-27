@@ -25,7 +25,8 @@ class CategoryController extends BaseController
                 'menu' => $this->menu,
                 'category' => $category,
                 'breadcrumbs'=> $this->breadcrumbsCategoryGenerate($category),
-                'pagination' => $products->list(
+                'pagination' => $products->listByCategory(
+                    category: $category,
                     page: $request->query->getInt('page', 1),
                     size: $request->query->getInt('size', self::PER_PAGE),
                 ),

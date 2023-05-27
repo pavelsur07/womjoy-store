@@ -43,6 +43,9 @@ class Category
     #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
     private SeoMetadata $seoMetadata;
 
+    #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
+    private string|null $ids = null;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -53,8 +56,8 @@ class Category
         $newChild = new self();
         $newChild->setName($name);
         $newChild->setParent($this);
-
         $this->children->add($newChild);
+        $this->generateIds();
     }
 
     public function removeSubCategory(int $id): void
@@ -67,6 +70,26 @@ class Category
         }
 
         throw new StoreCategoryException('Sub category not found');
+    }
+
+    public function generateIds(): void
+    {
+        if ($this->parent === null) {
+            $this->ids = (string)$this->id;
+        } else {
+            $this->ids = $this->parent->ids . '/' . (string)$this->id;
+        }
+
+        if (\count($this->getChildren()) > 0) {
+            foreach ($this->children as $child) {
+                $child->generateIds();
+            }
+        }
+    }
+
+    public function getIds(): ?string
+    {
+        return $this->ids;
     }
 
     public function getSeoMetadata(): SeoMetadata
@@ -133,22 +156,4 @@ class Category
     {
         $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
     }
-
-    /*
-    public function getBreadcrumbs(): array
-    {
-        return $this->generateBreadcrumbs($this);
-    }
-
-    private function generateBreadcrumbs(self $category, ?array $bread = null): array
-    {
-        $bread[] = $category;
-
-        if ($category->getParent() !== null) {
-            return $this->getBreadcrumbs($category->getParent(), $bread);
-        }
-
-        return array_reverse($bread);
-    }
-    */
 }

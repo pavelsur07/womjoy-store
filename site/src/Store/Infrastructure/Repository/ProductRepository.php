@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Repository;
 
+use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\Product;
+use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use DomainException;
@@ -48,6 +50,25 @@ class ProductRepository
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->from(Product::class, 'p');
+        $qb->orderBy('p.id', 'ASC');
+
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
+    }
+
+    public function listByCategory(Category $category, int $page, int $size): PaginationInterface
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Product::class, 'p')
+            ->andWhere('p.categoriesIds LIKE :ids')
+            ->setParameter('ids', $category->getIds() . '%');
+        /*
+        ->andWhere('p.status.value = :status_value')
+        ->setParameter('status_value', ProductStatus::ACTIVE)
+        */
+
         $qb->orderBy('p.id', 'ASC');
 
         $qb->getQuery();

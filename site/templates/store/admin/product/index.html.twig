@@ -51,7 +51,10 @@
                             </a>
                         {% endif %}
                     </td>
-                    <td>{{ product.name }}</td>
+                    <td>
+                        {{ product.name }}<br>
+                        <strong>{{ product.mainCategory ? product.mainCategory.name : '' }}</strong>
+                    </td>
                     <td>
                         {{ product.price.price|number_format(0, ',', ' ') }} <br>
                         {{ product.price.listPrice|number_format(0, ',', ' ') }}
