@@ -79,14 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const countryBtn = document.querySelector('.country__crnt');
 	const countryClose = document.querySelector(['.country__close'])
 	const countryContent = document.querySelector('.country__content');
-	countryBtn.addEventListener('click', () => {
-		countryBtn.classList.toggle('active');
-		countryContent.classList.toggle('active');
-	});
-	countryClose.addEventListener('click', () => {
-		countryBtn.classList.remove('active');
-		countryContent.classList.remove('active');
-	});
+	if (countryBtn) {
+		countryBtn.addEventListener('click', () => {
+			countryBtn.classList.toggle('active');
+			countryContent.classList.toggle('active');
+		});
+		countryClose.addEventListener('click', () => {
+			countryBtn.classList.remove('active');
+			countryContent.classList.remove('active');
+		});
+	}
 
 	if (document.querySelector('.hero-swiper')) {
 		new Swiper('.hero-swiper', {
@@ -280,7 +282,6 @@ function mobMenuInit(burgerClass, targetClass) {
 		target.classList.toggle('active');
 		burger.classList.toggle('active');
 	}));
-
 }
 
 function toggleItem(drop, list) {
