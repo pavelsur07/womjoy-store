@@ -1,0 +1,62 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Guarantee
+            </div>
+            <h2 class="page-title">
+                Guarantee index
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mb-2"><a href="{{ path('guarantee.admin.new') }}" class="btn btn-danger">Test</a></div>
+    <div class="card card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in pagination %}
+                <tr>
+                    <td class='w-5'>{{ item.id }}</td>
+                    <td>{{ item.createdAt|date('Y-m-d') }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.email }}</td>
+                    <td class="w-5">
+                        <div class="btn-group w-100" role="group">
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">show</a>
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
+                            <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {#<div class="pagination mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>#}
+    </div>
+{% endblock %}
