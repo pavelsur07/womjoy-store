@@ -33,7 +33,7 @@
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
             </div>
-            {% if category.image.name is not null %}
+            {% if category.image is not null %}
             <div class="mt-3">
                 <div class="card" style="width: 18rem;">
                     <img src="{{ storage_path(category.image.path ~'/'~ category.image.name) }}" class="card-img-top" alt="...">

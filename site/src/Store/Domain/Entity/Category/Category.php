@@ -13,6 +13,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Table(name: '`store_categories`')]
 class Category
 {
@@ -48,7 +49,7 @@ class Category
     private string|null $ids = null;
 
     #[ORM\Embedded(class: CategoryImage::class, columnPrefix: 'image_')]
-    private CategoryImage $image;
+    private CategoryImage|null $image;
 
     public function __construct()
     {
@@ -157,13 +158,26 @@ class Category
         return $this->prefixSlugProduct;
     }
 
-    public function getImage(): CategoryImage
+    public function getImage(): CategoryImage|null
     {
         return $this->image;
+    }
+
+    public function setImage(CategoryImage $image): void
+    {
+        $this->image = $image;
     }
 
     public function setPrefixSlugProduct(?string $prefixSlugProduct): void
     {
         $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
+    }
+
+    #[ORM\PostLoad()]
+    public function checkEmbeds(): void
+    {
+        if ($this->image->isEmpty()) {
+            $this->image = null;
+        }
     }
 }

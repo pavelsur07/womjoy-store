@@ -8,6 +8,7 @@ use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Domain\Entity\Category\ValueObject\CategoryImage;
 use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use App\Store\Infrastructure\Form\Category\CategoryEditForm;
 use App\Store\Infrastructure\Form\Category\CategoryImageForm;
@@ -163,11 +164,15 @@ class CategoryController extends AbstractController
             $file = $form->get('file')->getData();
             $uploaded = $uploader->upload($file, $path = 'category');
 
-            if ($category->getImage()->getName() !== null) {
+            if ($category->getImage() !== null) {
                 $uploader->remove(
                     path: $category->getImage()->getPath(),
                     name: $category->getImage()->getName()
                 );
+            }
+
+            if ($category->getImage() === null) {
+                $category->setImage(new CategoryImage());
             }
 
             $category->getImage()->update(

@@ -47,4 +47,9 @@ class CategoryImage
     {
         return $this->size;
     }
+
+    public function isEmpty(): bool
+    {
+        return empty($this->name);
+    }
 }
