@@ -23,9 +23,12 @@ class FileUploader
     /**
      * @throws FilesystemException
      */
-    public function upload(UploadedFile $file): File
+    public function upload(UploadedFile $file, string $path = null): File
     {
-        $path = date('Y/m/d');
+        if ($path === null) {
+            $path = date('Y/m/d');
+        }
+
         $name = Uuid::uuid4()->toString() . '.' . $file->getClientOriginalExtension();
 
         $this->storage->createDirectory($path);

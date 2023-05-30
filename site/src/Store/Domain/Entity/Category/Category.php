@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Category;
 
+use App\Store\Domain\Entity\Category\ValueObject\CategoryImage;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreCategoryException;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -46,6 +47,9 @@ class Category
     #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
     private string|null $ids = null;
 
+    #[ORM\Embedded(class: CategoryImage::class, columnPrefix: 'image_')]
+    private CategoryImage $image;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -57,6 +61,7 @@ class Category
         $newChild->setName($name);
         $newChild->setParent($this);
         $this->children->add($newChild);
+        $this->image = new CategoryImage();
         $this->generateIds();
     }
 
@@ -150,6 +155,11 @@ class Category
     public function getPrefixSlugProduct(): ?string
     {
         return $this->prefixSlugProduct;
+    }
+
+    public function getImage(): CategoryImage
+    {
+        return $this->image;
     }
 
     public function setPrefixSlugProduct(?string $prefixSlugProduct): void

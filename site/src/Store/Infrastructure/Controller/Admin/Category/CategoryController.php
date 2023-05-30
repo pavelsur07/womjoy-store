@@ -6,10 +6,13 @@ namespace App\Store\Infrastructure\Controller\Admin\Category;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Common\Infrastructure\Service\Slugify\SlugifyService;
+use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use App\Store\Infrastructure\Form\Category\CategoryEditForm;
+use App\Store\Infrastructure\Form\Category\CategoryImageForm;
 use App\Store\Infrastructure\Form\Category\CategorySeoEditForm;
+use League\Flysystem\FilesystemException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -138,12 +141,56 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}/remove', name: '.remove')]
-    public function remove(Request $request, Category $category, CategoryRepositoryInterface $categories): Response
+    public function remove(int $id, Request $request, Category $category, CategoryRepositoryInterface $categories): Response
     {
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categories->remove($category, true);
         }
-        // ----//
+        $categories->remove($categories->get($id), true);
         return $this->redirectToRoute('store.admin.category.index');
+    }
+
+    /**
+     * @throws FilesystemException
+     */
+    #[Route('/{id}/image', name: '.image')]
+    public function addImage(Category $category, Request $request, FileUploader $uploader, Flusher $flusher): Response
+    {
+        $form = $this->createForm(CategoryImageForm::class, []);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
+            $uploaded = $uploader->upload($file, $path = 'category');
+
+            if ($category->getImage()->getName() !== null) {
+                $uploader->remove(
+                    path: $category->getImage()->getPath(),
+                    name: $category->getImage()->getName()
+                );
+            }
+
+            $category->getImage()->update(
+                path: $uploaded->getPath(),
+                name: $uploaded->getName(),
+                size: $uploaded->getSize()
+            );
+
+            $flusher->flush();
+        }
+
+        return $this->render(
+            'store/admin/category/image/edit.html.twig',
+            [
+                'category'=> $category,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    #[Route('/{id}/image/remove', name: '.image.remove')]
+    public function removeImage(int $id, Category $category, Response $response): Response
+    {
+        return $this->redirectToRoute('store.admin.category.image', ['id'=> $id]);
     }
 }
