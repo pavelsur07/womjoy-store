@@ -44,7 +44,7 @@ class MenuFixture extends Fixture
                         'name'=> 'Леггинсы',
                         'href'=> '/catalog/' . CategoryFixture::REFERENCE_LEGGINGS,
                     ],
-                ]
+                ],
             ],
             [
                 'name'=> 'Брюки',
