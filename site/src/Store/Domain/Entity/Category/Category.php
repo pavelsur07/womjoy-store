@@ -54,6 +54,7 @@ class Category
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->image = new CategoryImage();
     }
 
     public function addSubCategory(string $name): void
@@ -63,7 +64,6 @@ class Category
         $newChild->setParent($this);
         $this->children->add($newChild);
         $this->image = new CategoryImage();
-        $this->generateIds();
     }
 
     public function removeSubCategory(int $id): void

@@ -54,9 +54,13 @@
                         #}
                     </td>
                     <td>
-                        <a href="{{ path('store.category.show', {'slug': category.slug}) }}" target="_blank">
-                        {{ category.name }}
-                        </a>
+                        {% if category.slug is not null %}
+                            <a href="{{ path('store.category.show', {'slug': category.slug}) }}" target="_blank">
+                                {{ category.name }}
+                            </a>
+                        {% else %}
+                            {{ category.name }}
+                        {% endif %}
                     </td>
                     <td>
                         <div class="btn-group">

@@ -30,7 +30,7 @@ class CategoryController extends AbstractController
         return $this->render(
             'store/admin/category/index.html.twig',
             [
-                'pagination' => $categories->list(),
+                'pagination' => $categories->getRootNodes(),
             ]
         );
     }

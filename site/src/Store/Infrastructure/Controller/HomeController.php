@@ -17,7 +17,6 @@ class HomeController extends BaseController
 {
     public const PER_PAGE = 8;
 
-
     #[Route(path: '/', name: 'home', requirements: ['_locale' => 'en|ru|bg'])]
     public function show(Request $request, ProductRepository $products, HomeService $homes): Response
     {
@@ -43,6 +42,12 @@ class HomeController extends BaseController
         );
     }
 
+    #[Route(path: '/locale/{locale}', name: 'locale', requirements: ['_locale' => 'en|ru|bg'])]
+    public function locale(Request $request): Response
+    {
+        return $this->redirectToRoute('home');
+    }
+
     private function categories(Home $home): array
     {
         $result = [];
@@ -51,16 +56,10 @@ class HomeController extends BaseController
             $result[] = [
                 'name' => $category->getCategory()->getName(),
                 'href' => $this->generateUrl('store.category.show', ['slug'=> $category->getCategory()->getSlug()]),
-                'imagePath' => $category->getCategory()->getImage()->getPath().'/'.$category->getCategory()->getImage()->getName()
+                'imagePath' => $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName(),
             ];
         }
 
         return $result;
-    }
-
-    #[Route(path: '/locale/{locale}', name: 'locale', requirements: ['_locale' => 'en|ru|bg'])]
-    public function locale(Request $request): Response
-    {
-        return $this->redirectToRoute('home');
     }
 }
