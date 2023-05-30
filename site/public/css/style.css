@@ -1145,9 +1145,6 @@ input:checked + .check__sq {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
 }
 
 .nav__link {
@@ -1172,6 +1169,10 @@ input:checked + .check__sq {
 
 .nav__link:hover::after {
   opacity: 1;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 30px;
 }
 
 .menu-droper:hover .menu {
@@ -1224,6 +1225,7 @@ input:checked + .check__sq {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  opacity: 1;
 }
 
 .drop:hover .drop__list {
@@ -3532,6 +3534,7 @@ input:checked + .inform__check_sq img {
   padding: 15px;
   background-color: #fff;
   margin-bottom: 20px;
+  color: #2F2B43;
 }
 
 .g-form__photo {

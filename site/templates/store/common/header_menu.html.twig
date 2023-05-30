@@ -4,7 +4,6 @@
             <ul class="nav__list">
                 {% for element in menu.header %}
                     {% if element.children is defined %}
-
                         <li class="nav__item menu-droper">
                             <a href="{{ element.href }}" class="nav__link">{{ element.name }}</a>
                             <div class="menu">
@@ -23,7 +22,6 @@
                                                     </ul>
                                                 </div>
                                             {% endfor %}
-
                                         </div>
                                         <a href="#" class="menu__banner">
                                             <img src="{{ asset('./img/banners/menu-banner.webp') }}" alt="banner menu" width="392" height="290">
@@ -32,81 +30,11 @@
                                 </div>
                             </div>
                         </li>
-
-
                     {% else %}
                         <li class="nav__item"><a href="{{ element.href }}" class="nav__link">{{ element.name }}</a></li>
                     {% endif %}
                 {% endfor %}
-
-                {#<li class="nav__item menu-droper">
-                    <a href="#" class="nav__link">Женщинам</a>
-                    <div class="menu">
-                        <div class="wrapper">
-                            <div class="menu__content">
-                                <div class="menu__cols">
-                                    <div class="menu__col">
-                                        <div class="menu__title">Женщинам</div>
-                                        <ul class="menu__list">
-                                            <li><a href="#">Брюки</a></li>
-                                            <li><a href="#">Леггинсы</a></li>
-                                            <li><a href="#">Топы</a></li>
-                                            <li><a href="#">Рашгарды</a></li>
-                                            <li><a href="#">Футболки</a></li>
-                                            <li><a href="#">Худи</a></li>
-                                            <li><a href="#">Шорты</a></li>
-                                            <li><a href="#">Аксессуары</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu__col">
-                                        <div class="menu__title">Занятия</div>
-                                        <ul class="menu__list">
-                                            <li><a href="#">Йога</a></li>
-                                            <li><a href="#">Фитнес</a></li>
-                                            <li><a href="#">Бег</a></li>
-                                            <li><a href="#">Активный отдых</a></li>
-                                            <li><a href="#">Полиденс</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu__col">
-                                        <div class="menu__title">Спецпредложения</div>
-                                        <ul class="menu__list">
-                                            <li><a href="#">Весна 2023</a></li>
-                                            <li><a href="#">Новинки</a></li>
-                                            <li><a href="#">Распродажа</a></li>
-                                            <li><a href="#">Скоро в продаже</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="#" class="menu__banner">
-                                    <img src="./img/banners/menu-banner.webp" alt="" width="392" height="290">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
-                <li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
-                <li class="nav__item drop">
-                    <a href="#" class="nav__link">Покупателям</a>
-                    <ul class="drop__list">
-                        <li class="drop__item"><a href="#" class="drop__link">Доставка и оплата</a></li>
-                        <li class="drop__item"><a href="#" class="drop__link">Обмен и возврат</a></li>
-                        <li class="drop__item"><a href="#" class="drop__link">О компании</a></li>
-                        <li class="drop__item"><a href="#" class="drop__link">Личный кабинет</a></li>
-                    </ul>
-                </li>#}
-
             </ul>
         </nav>
     </div>
-
 </div>

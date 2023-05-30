@@ -30,162 +30,6 @@
         </div>
     </div>
 
-    {#<header class="header">
-        <div class="wrapper">
-            <div class="header__main">
-                <div class="header__left">
-
-
-                    <div class="country">
-                        <button class="country__crnt" type="button">
-                            <img src="{{ asset('./img/countries/ru.svg') }}" alt="" width="24" height="24" class="country__crnt_flag">
-                            <img src="{{ asset('./img/icons/arrow-down.svg') }}" alt="" width="20" height="20" class="country__crnt_arrow">
-                        </button>
-                        <form class="country__content">
-                            <button class="country__close" type="button">
-                                <img src="{{ asset('./img/icons/close.svg') }}" alt="" width="24" height="24">
-                            </button>
-                            <div class="country__field sel-field">
-                                <span class="sel-field__ph">Выберите страну</span>
-                                <div class="sel-field__main">
-									<span class="sel-field__left">
-										<img src="{{ asset('./img/countries/ru.svg') }}" alt="" width="24" height="24">
-									</span>
-                                    <select class="sel-field__sel">
-                                        <option value="" selected>Россия</option>
-                                        <option value="">Грузия</option>
-                                        <option value="">Казахстан</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="country__field sel-field">
-                                <span class="sel-field__ph">Валюта</span>
-                                <div class="sel-field__main">
-									<span class="sel-field__left">
-										₽ <span>/</span>
-									</span>
-                                    <select class="sel-field__sel">
-                                        <option value="" selected>Рубль</option>
-                                        <option value="">Рубль</option>
-                                        <option value="">Рубль</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn-primary" type="submit">Подтвердить</button>
-                        </form>
-                    </div>
-                    <div class="burger">
-                        <span class="burger__item"></span>
-                        <span class="burger__item"></span>
-                        <span class="burger__item"></span>
-                    </div>
-                </div>
-                <form class="search">
-                    <input type="text" class="search__inp" placeholder="Я хочу найти">
-                    <button class="search__submit" type="submit">
-                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43" fill-opacity="0.4"/>
-                        </svg>
-                    </button>
-                </form>
-                <ul class="header__actions">
-                    <li>
-                        <a href="#">
-                            <img src="{{ asset('./img/icons/trace.svg') }}" alt="" width="24" height="24">
-                            Отследить
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="" width="24" height="24">
-                            Кабинет
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="" width="24" height="24">
-                            Избранное
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('store.cart') }}">
-                            <img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="24" height="24">
-                            Корзина
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="header__bottom">
-            <div class="wrapper">
-                <nav class="nav">
-                    <ul class="nav__list">
-                        <li class="nav__item menu-droper">
-                            <a href="#" class="nav__link">Каталог</a>
-                            <div class="menu">
-                                <div class="wrapper">
-                                    <div class="menu__content">
-                                        <div class="menu__cols">
-                                            <div class="menu__col">
-                                                <div class="menu__title">Женщинам</div>
-                                                <ul class="menu__list">
-                                                    <li><a href="#">Брюки</a></li>
-                                                    <li><a href="#">Леггинсы</a></li>
-                                                    <li><a href="#">Топы</a></li>
-                                                    <li><a href="#">Рашгарды</a></li>
-                                                    <li><a href="#">Футболки</a></li>
-                                                    <li><a href="#">Худи</a></li>
-                                                    <li><a href="#">Шорты</a></li>
-                                                    <li><a href="#">Аксессуары</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="menu__col">
-                                                <div class="menu__title">Занятия</div>
-                                                <ul class="menu__list">
-                                                    <li><a href="#">Йога</a></li>
-                                                    <li><a href="#">Фитнес</a></li>
-                                                    <li><a href="#">Бег</a></li>
-                                                    <li><a href="#">Активный отдых</a></li>
-                                                    <li><a href="#">Полиденс</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="menu__col">
-                                                <div class="menu__title">Спецпредложения</div>
-                                                <ul class="menu__list">
-                                                    <li><a href="#">Весна 2023</a></li>
-                                                    <li><a href="#">Новинки</a></li>
-                                                    <li><a href="#">Распродажа</a></li>
-                                                    <li><a href="#">Скоро в продаже</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="menu__banner">
-                                            <img src="{{ asset('./img/banners/menu-banner.webp') }}" alt="" width="392" height="290">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
-                        <li class="nav__item drop">
-                            <a href="#" class="nav__link">Покупателям</a>
-                            <ul class="drop__list">
-                                <li class="drop__item"><a href="#" class="drop__link">Доставка и оплата</a></li>
-                                <li class="drop__item"><a href="#" class="drop__link">Обмен и возврат</a></li>
-                                <li class="drop__item"><a href="#" class="drop__link">О компании</a></li>
-                                <li class="drop__item"><a href="#" class="drop__link">Личный кабинет</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-        </div>
-    </header>#}
-
     <header class="header">
         <div class="wrapper">
             <div class="header__main">
@@ -241,9 +85,9 @@
             </div>
         </div>
         {% include 'store/common/header_menu.html.twig' %}
-
     </header>
 
+    {#
     <div class="burger-menu">
         <div class="wrapper">
             <form class="search">
@@ -296,8 +140,11 @@
             </ul>
         </div>
     </div>
+    #}
+    {% include 'store/common/header_burger_menu.html.twig' %}
 
-    <div class="catalog-menu">
+
+    {#<div class="catalog-menu">
         <div class="wrapper">
             <form class="search">
                 <input type="text" class="search__inp" placeholder="Я хочу найти">
@@ -426,6 +273,8 @@
             </ul>
         </div>
     </div>
+    #}
+    {% include 'store/common/header_catalog_menu.html.twig' %}
 
     {% block body %}{% endblock %}
 

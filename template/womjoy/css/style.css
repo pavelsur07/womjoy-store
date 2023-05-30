@@ -427,6 +427,46 @@ select {
   width: 100%;
 }
 
+.field__sel {
+  display: block;
+  width: 100%;
+  color: #2F2B43;
+}
+
+.field-sel {
+  position: relative;
+  padding: 0;
+}
+
+.field-sel::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url('../img/icons/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #fff;
+  pointer-events: none;
+}
+
+.field-sel .field__sel {
+  padding: 24px 12px 8px 12px;
+}
+
+.field-sel .field__ph {
+  position: absolute;
+  left: 12px;
+  top: 5px;
+  pointer-events: none;
+}
+
 .sel-field__main {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1105,9 +1145,6 @@ input:checked + .check__sq {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
 }
 
 .nav__link {
@@ -1132,6 +1169,10 @@ input:checked + .check__sq {
 
 .nav__link:hover::after {
   opacity: 1;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 30px;
 }
 
 .menu-droper:hover .menu {
@@ -1184,6 +1225,7 @@ input:checked + .check__sq {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  opacity: 1;
 }
 
 .drop:hover .drop__list {
@@ -3447,6 +3489,159 @@ input:checked + .inform__check_sq img {
 
 /* / Отзывы о товаре */
 
+/* Гарантия */
+
+.guarant__title {
+  margin-bottom: 30px;
+}
+
+.guarant__title,
+.guarant__txt {
+  max-width: 1000px;
+}
+
+.guarant__txt {
+  margin-bottom: 50px;
+}
+
+.g-form {
+  background-color: #2F2B43;
+  color: #fff;
+  padding: 50px 30px;
+}
+
+.g-form__title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.g-form__please {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.g-form__main {
+  max-width: 804px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.g-form__textarea {
+  display: block;
+  width: 100%;
+  height: 180px;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  color: #2F2B43;
+}
+
+.g-form__photo {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.g-form__photo_main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.g-form__photo_descr {
+  max-width: 202px;
+}
+
+.g-form__submit {
+  color: #2F2B43;
+  width: 145px;
+}
+
+.g-form__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.g-form__row > *:not(:last-child) {
+  margin-right: 15px;
+}
+
+.g-form__field {
+  width: 29.35%;
+}
+
+.g-form__sel {
+  width: calc(100% - 145px - 29.35% - 29.35% - 15px - 15px);
+}
+
+.g-form__checks {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.g-form__check {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  max-width: 260px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.g-form__check:not(:last-child) {
+  margin-right: 15px;
+}
+
+.g-form__check span {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+}
+
+.g-form__check span img {
+  display: none;
+}
+
+.g-form__check input:checked + span img {
+  display: block;
+}
+
+/* / Гарантия */
+
 @media screen and (max-width: 480px) {
   /* Дизайн */
 
@@ -4980,6 +5175,81 @@ input:checked + .inform__check_sq img {
   }
 
   /* / Сео */
+
+  /* Гарантия */
+
+  .guarant__txt,
+  .guarant__title {
+    margin-bottom: 20px;
+  }
+
+  .g-form {
+    padding: 15px;
+  }
+
+  .g-form__title {
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .g-form__textarea {
+    height: 130px;
+    padding: 12px;
+  }
+
+  .g-form__photo_descr {
+    font-size: 12px;
+    max-width: 170px;
+  }
+
+  .g-form__photo_main {
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
+  }
+
+  .g-form__photo_main img {
+    max-width: 20px;
+  }
+
+  .g-form__row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .g-form__row > *:not(:last-child) {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .g-form__checks {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .g-form__check:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .g-form__sel {
+    width: 100%;
+  }
+
+  .g-form__field {
+    width: 100%;
+  }
+
+  .g-form__submit {
+    width: 100%;
+  }
+
+  /* / Гарантия */
 
   .typography__top {
     -ms-grid-row: 1;
