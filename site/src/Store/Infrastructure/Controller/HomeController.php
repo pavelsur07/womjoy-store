@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Store\Domain\Entity\Home\AssignCategory;
+use App\Store\Domain\Entity\Home\Home;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use App\Store\Infrastructure\Service\Home\HomeService;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends BaseController
 {
     public const PER_PAGE = 8;
+
 
     #[Route(path: '/', name: 'home', requirements: ['_locale' => 'en|ru|bg'])]
     public function show(Request $request, ProductRepository $products, HomeService $homes): Response
@@ -33,10 +36,26 @@ class HomeController extends BaseController
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
+                'categories' => $this->categories($home),
                 'pagination' => $pagination,
                 'locales' => $locales,
             ]
         );
+    }
+
+    private function categories(Home $home): array
+    {
+        $result = [];
+        /** @var AssignCategory $category */
+        foreach ($home->getCategories() as $category) {
+            $result[] = [
+                'name' => $category->getCategory()->getName(),
+                'href' => $this->generateUrl('store.category.show', ['slug'=> $category->getCategory()->getSlug()]),
+                'imagePath' => $category->getCategory()->getImage()->getPath().'/'.$category->getCategory()->getImage()->getName()
+            ];
+        }
+
+        return $result;
     }
 
     #[Route(path: '/locale/{locale}', name: 'locale', requirements: ['_locale' => 'en|ru|bg'])]

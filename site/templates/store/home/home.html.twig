@@ -72,17 +72,19 @@
             </div>
 
             <div class="cat__items">
-                <a href="/catalog/catalog-big-my" class="cat__item cat__item-lg">
+                {% for category in categories %}
+                <a href="{{ category.href }}" class="cat__item cat__item-lg">
                     <div class="cat__text">
-                        <span class="cat__name">Брюки</span>
+                        <span class="cat__name">{{ category.name }}</span>
                         <div class="cat__bottom">
                             <span class="cat__cnt">15 моделей</span>
                             <span class="cat__price">от 1 799 ₽</span>
                         </div>
                     </div>
-                    <img src="{{ asset('./img/cats/img-1.webp') }}" alt="" class="cat__img" width="250" height="250">
+                    <img src="{{ storage_path( category.imagePath ) }}" alt="{{ category.name }}" class="cat__img" width="250" height="250">
                 </a>
-                <a href="#" class="cat__item cat__item-lg">
+                {% endfor %}
+{#                <a href="#" class="cat__item cat__item-lg">
                     <div class="cat__text">
                         <span class="cat__name">Леггинсы</span>
                         <div class="cat__bottom">
@@ -141,7 +143,8 @@
                         </div>
                     </div>
                     <img src="{{ asset('./img/cats/img-7.webp') }}" alt="" class="cat__img" width="250" height="250">
-                </a>
+                </a>#}
+
                 <div class="cat__item cat__sale">
                     <span class="cat__sale_alert">%</span>
                     <span class="cat__sale_name">Распродажа</span>
