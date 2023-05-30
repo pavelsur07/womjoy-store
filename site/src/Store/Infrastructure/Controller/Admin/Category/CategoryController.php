@@ -84,7 +84,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Category $category, Flusher $flusher): Response
+    public function edit(int $id, Request $request, Category $category, Flusher $flusher): Response
     {
         $form = $this->createForm(CategoryEditForm::class, [
             'name' => $category->getName(),
@@ -98,7 +98,7 @@ class CategoryController extends AbstractController
             $category->generateIds();
             $flusher->flush();
 
-            return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('store.admin.category.edit', ['id'=> $id], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
             'store/admin/category/edit.html.twig',
@@ -111,7 +111,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
-    public function seo(Request $request, Category $category, Flusher $flusher, SlugifyService $slugify): Response
+    public function seo(int $id, Request $request, Category $category, Flusher $flusher, SlugifyService $slugify): Response
     {
         $form = $this->createForm(CategorySeoEditForm::class, [
             'h1' => $category->getSeoMetadata()->getH1(),
@@ -131,7 +131,7 @@ class CategoryController extends AbstractController
             $category->setSlug($slugify->generate($data['slug']));
             $flusher->flush();
 
-            return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('store.admin.category.seo', ['id'=> $id], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
             'store/admin/category/seo.html.twig',

@@ -55,7 +55,13 @@
                         <td>{{ child.id }}</td>
                         <td> status </td>
                         <td> image </td>
-                        <td> {{ child.name }}</td>
+                        <td>
+                            {% if child.slug is not null %}
+                                <a href="{{ path('store.category.show', {'slug': child.slug}) }}" target="_blank">{{ child.name }}</a>
+                            {% else %}
+                                {{ child.name }}
+                            {% endif %}
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-bitbucket rounded-2" href="{{ path('store.admin.category.edit', {'id': child.id}) }}"><i class="fa fa-pencil"></i></a>
