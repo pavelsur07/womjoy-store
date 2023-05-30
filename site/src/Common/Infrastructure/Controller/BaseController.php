@@ -7,7 +7,11 @@ namespace App\Common\Infrastructure\Controller;
 use App\Menu\Domain\Entity\Menu;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Domain\Entity\Home\AssignCategory;
+use App\Store\Domain\Entity\Home\Home;
+use App\Store\Domain\Service\HomeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class BaseController extends AbstractController
 {
@@ -15,6 +19,7 @@ class BaseController extends AbstractController
         'top' => [],
         'header' => [],
         'footer' => [],
+        'categories' => [],
     ];
 
     public array $metaData =[
@@ -24,8 +29,11 @@ class BaseController extends AbstractController
         'index' => false,
     ];
 
-    public function __construct(private readonly MenuRepositoryInterface $menus)
-    {
+    public function __construct(
+        private readonly MenuRepositoryInterface $menus,
+        private readonly HomeService $homeService,
+        private readonly UrlGeneratorInterface $generator,
+    ) {
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {
             $headerMenu = new Menu(name: 'Header menu', href: '/');
@@ -40,6 +48,9 @@ class BaseController extends AbstractController
         }
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
+
+        $home = $this->homeService->get();
+        $this->menu['categories'] = $this->menuCategories($home);
     }
 
     public function setTitle(string $title): void
@@ -68,5 +79,20 @@ class BaseController extends AbstractController
             return $this->breadcrumbsCategoryGenerate($category->getParent(), $bread);
         }
         return array_reverse($bread);
+    }
+
+    private function menuCategories(Home $home): array
+    {
+        $result = [];
+        /** @var AssignCategory $category */
+        foreach ($home->getCategories() as $category) {
+            $result[] = [
+                'name' => $category->getCategory()->getName(),
+                'href' => $this->generator->generate('store.category.show', ['slug' => $category->getCategory()->getSlug()]),
+                'imagePath' => $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName(),
+            ];
+        }
+
+        return $result;
     }
 }

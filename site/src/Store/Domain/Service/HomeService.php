@@ -6,12 +6,12 @@ namespace App\Store\Domain\Service;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Home\Home;
-use App\Store\Domain\Repository\HomeSettingRepositoryInterface;
+use App\Store\Domain\Repository\HomeRepositoryInterface;
 
 readonly class HomeService
 {
     public function __construct(
-        private HomeSettingRepositoryInterface $repo,
+        private HomeRepositoryInterface $repo,
         private Flusher $flusher,
     ) {
     }
