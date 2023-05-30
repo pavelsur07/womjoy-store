@@ -105,6 +105,7 @@ class CategoryController extends AbstractController
             [
                 'form' => $form->createView(),
                 'category' => $category,
+                'breadcrumbs' => $this->breadcrumbs($category),
             ]
         );
     }
@@ -137,6 +138,7 @@ class CategoryController extends AbstractController
             [
                 'form' => $form->createView(),
                 'category' => $category,
+                'breadcrumbs' => $this->breadcrumbs($category),
             ]
         );
     }
@@ -147,7 +149,7 @@ class CategoryController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categories->remove($category, true);
         }
-        $categories->remove($categories->get($id), true);
+
         return $this->redirectToRoute('store.admin.category.index');
     }
 
@@ -189,7 +191,19 @@ class CategoryController extends AbstractController
             [
                 'category'=> $category,
                 'form' => $form->createView(),
+                'breadcrumbs' => $this->breadcrumbs($category),
             ]
         );
+    }
+
+    private function breadcrumbs(Category $category, ?array $bread = null): array
+    {
+        $bread[] = $category;
+
+        if ($category->getParent() !== null) {
+            return $this->breadcrumbs($category->getParent(), $bread);
+        }
+
+        return array_reverse($bread);
     }
 }

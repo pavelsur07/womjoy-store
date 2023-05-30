@@ -27,6 +27,7 @@
             {% include 'store/admin/category/_tabs.html.twig' %}
         </div>
         <div class="card-body">
+            {% include 'store/admin/category/breadcrumbs.html.twig' %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
@@ -38,8 +39,35 @@
         <a href="{{ path('store.admin.category.add.child', {'id': category.id}) }}" class="btn btn-bitbucket">Add child</a>
     </div>
     <div class="card card-body">
-        {% for child in category.children %}
-            <p> {{ child.name }} -- parent -- {{ child.parent.id }}</p>
-        {% endfor %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="w-1">Id</th>
+                <th class="w-1">Status</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th class="w-25">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for child in category.children %}
+                    <tr>
+                        <td>{{ child.id }}</td>
+                        <td> status </td>
+                        <td> image </td>
+                        <td> {{ child.name }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-bitbucket rounded-2" href="{{ path('store.admin.category.edit', {'id': child.id}) }}"><i class="fa fa-pencil"></i></a>
+                                <form method="post" action="{{ path('store.admin.category.remove', {'id': child.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ child.id) }}">
+                                    <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

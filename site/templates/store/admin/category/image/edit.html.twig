@@ -27,12 +27,13 @@
             {% include 'store/admin/category/_tabs.html.twig' %}
         </div>
         <div class="card-body">
-            <div>
+            {% include 'store/admin/category/breadcrumbs.html.twig' %}
+
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
-            </div>
+
             {% if category.image is not null %}
             <div class="mt-3">
                 <div class="card" style="width: 18rem;">
