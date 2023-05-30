@@ -187,10 +187,4 @@ class CategoryController extends AbstractController
             ]
         );
     }
-
-    #[Route('/{id}/image/remove', name: '.image.remove')]
-    public function removeImage(int $id, Category $category, Response $response): Response
-    {
-        return $this->redirectToRoute('store.admin.category.image', ['id'=> $id]);
-    }
 }
