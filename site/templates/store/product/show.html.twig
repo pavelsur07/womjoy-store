@@ -6,7 +6,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
                     {% for breadcrumb in breadcrumbs %}
-                        <li class="breadcrumb-item"><a href="#">{{ breadcrumb.name }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}">{{ breadcrumb.name }}</a></li>
                     {% endfor %}
                     <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
                 </ol>

@@ -15,6 +15,9 @@ class ProductController extends BaseController
     #[Route(path: '/product/{slug}', name: 'store.product.show')]
     public function show(string $slug, Product $product, ProductRepository $products): Response
     {
+        $this->setTitle($product->getSeoMetadata()->getSeoTitle());
+        $this->setDescription($product->getSeoMetadata()->getSeoDescription());
+
         return $this->render(
             'store/product/show.html.twig',
             [
