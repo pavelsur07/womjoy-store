@@ -129,6 +129,7 @@ class CategoryController extends AbstractController
             $category->getSeoMetadata()->setSeoTitle($data['seoTitle']);
             $category->getSeoMetadata()->setSeoDescription($data['seoDescription']);
             $category->setSlug($slugify->generate($data['slug']));
+            $category->setPrefixSlugProduct($slugify->generate($data['prefixSlugProduct']));
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.category.seo', ['id'=> $id], Response::HTTP_SEE_OTHER);
