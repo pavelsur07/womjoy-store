@@ -176,7 +176,9 @@ class Category
 
     public function setPrefixSlugProduct(?string $prefixSlugProduct): void
     {
-        $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
+        if ($prefixSlugProduct !== null) {
+            $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
+        }
     }
 
     public function getTitleProductTemplate(): ?string

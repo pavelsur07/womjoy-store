@@ -18,6 +18,9 @@ class CategoryController extends BaseController
     #[Route(path: '/catalog/{slug}', name: 'store.category.show')]
     public function index(string $slug, Category $category, Request $request, ProductRepository $products): Response
     {
+        $this->setTitle($category->getSeoMetadata()->getSeoTitle());
+        $this->setDescription($category->getSeoMetadata()->getSeoDescription());
+
         return $this->render(
             'store/category/show.html.twig',
             [

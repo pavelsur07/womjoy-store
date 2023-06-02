@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{{ metaData.title }}{% endblock %}</title>
-
-        {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
+        <meta name="description" content="{% block description %}{{ metaData.description }}{% endblock %}">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('store') }}#}
             <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
@@ -65,19 +65,19 @@
 
                     <li>
                         <a href="#">
-                            <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="" width="24" height="24">
+                            <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24">
                             Кабинет
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="" width="24" height="24">
+                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="favourite" width="24" height="24">
                             Избранное
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="24" height="24">
+                            <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="24" height="24">
                             Корзина
                         </a>
                     </li>
