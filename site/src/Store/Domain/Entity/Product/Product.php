@@ -167,7 +167,7 @@ class Product
         return $this->slug;
     }
 
-    public function setSlug(string $slug): void
+    public function setSlug(?string $slug = null): void
     {
         if ($this->mainCategory === null) {
             throw new StoreProductException('Main category not set.');
@@ -177,9 +177,12 @@ class Product
             throw new StoreProductException('Slug is not null.');
         }
         */
-        $result = $this->mainCategory->getPrefixSlugProduct() . '-article-' . (int)$this->getId();
-
-        $this->slug = mb_strtolower(trim($result));
+        if ($slug === null) {
+            $result = $this->mainCategory->getPrefixSlugProduct() . '-article-' . (int)$this->getId();
+            $this->slug = mb_strtolower(trim($result));
+            return;
+        }
+        $this->slug = $slug;
     }
 
     public function getCategoriesIds(): ?string
