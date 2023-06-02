@@ -75,6 +75,7 @@ class Product
     public function setMainCategory(?Category $mainCategory): void
     {
         $this->mainCategory = $mainCategory;
+        $this->setCategoriesIds();
     }
 
     public function imageUp(int $sortNumber): void
