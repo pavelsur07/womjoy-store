@@ -28,6 +28,9 @@
         </div>
         <div class="card-body">
             {% include 'store/admin/category/breadcrumbs.html.twig' %}
+            <div class="mb-2">
+                <p>Category ids: <strong>{{ category.ids }}</strong></p>
+            </div>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
