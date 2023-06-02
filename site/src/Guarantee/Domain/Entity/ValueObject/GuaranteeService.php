@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Guarantee\Domain\Entity\ValueObject;
 
 use App\Common\Domain\Entity\ValueObject\StringValueObject;
-use App\Common\Infrastructure\Helper\ExternalService;
+use App\Common\Infrastructure\Helper\ExternalServiceHelper;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
@@ -18,7 +18,7 @@ class GuaranteeService extends StringValueObject
 
     public function __construct(string $value)
     {
-        Assert::oneOf($value, ExternalService::list());
+        Assert::oneOf($value, ExternalServiceHelper::list());
         parent::__construct($value);
     }
 }

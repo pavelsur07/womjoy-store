@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Guarantee\Infrastructure\Doctrine\Fixture;
 
-use App\Common\Infrastructure\Helper\ExternalService;
+use App\Common\Infrastructure\Helper\ExternalServiceHelper;
 use App\Guarantee\Domain\Entity\Guarantee;
 use App\Guarantee\Domain\Entity\ValueObject\GuaranteeService;
 use DateTimeImmutable;
@@ -19,7 +19,7 @@ class GuaranteeFixture extends Fixture
             phone: '+78889999990',
             email: '1-example@mail.com',
             message: 'new message',
-            serviceName: new GuaranteeService(ExternalService::WB),
+            serviceName: new GuaranteeService(ExternalServiceHelper::WB),
             createdAt: new DateTimeImmutable(),
         );
         $manager->persist($object);
@@ -28,7 +28,7 @@ class GuaranteeFixture extends Fixture
             phone: '+78889999991',
             email: '2-example@mail.com',
             message: 'new message',
-            serviceName: new GuaranteeService(ExternalService::WB),
+            serviceName: new GuaranteeService(ExternalServiceHelper::WB),
             createdAt: new DateTimeImmutable(),
         );
         $manager->persist($object);

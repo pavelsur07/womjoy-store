@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Placeholder\PlaceholderService;
 use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
@@ -108,11 +109,22 @@ class ProductController extends AbstractController
     #[Route('/{id}/seo', name: '.seo', methods: ['GET', 'POST'])]
     public function seo(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher, SlugifyService $slug): Response
     {
+        $category = $product->getMainCategory();
         $form = $this->createForm(
             ProductSeoEditForm::class,
             [
-                'seoTitle' => $product->getSeoMetadata()->getSeoTitle(),
-                'seoDescription' => $product->getSeoMetadata()->getSeoDescription(),
+                'seoTitle' => $category->getTitleProductTemplate() ?
+                    PlaceholderService::replacePlaceholders(
+                        $category->getTitleProductTemplate(),
+                        $product->getPlaceholders()
+                    ) :
+                    $product->getSeoMetadata()->getSeoTitle(),
+                'seoDescription' => $category->getDescriptionProductTemplate() ?
+                    PlaceholderService::replacePlaceholders(
+                        $category->getDescriptionProductTemplate(),
+                        $product->getPlaceholders()
+                    ) :
+                    $product->getSeoMetadata()->getSeoDescription(),
                 'slug' => $product->getSlug(),
             ]
         );

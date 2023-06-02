@@ -67,6 +67,17 @@ class Product
         $this->variants = new ArrayCollection();
     }
 
+    /**
+     * @return array{name: string, article: integer}
+     */
+    public function getPlaceholders(): array
+    {
+        return [
+            'name' => mb_strtolower($this->name),
+            'article' => (string)$this->id,
+        ];
+    }
+
     public function getMainCategory(): ?Category
     {
         return $this->mainCategory;
@@ -166,8 +177,9 @@ class Product
             throw new StoreProductException('Slug is not null.');
         }
         */
+        $result = $this->mainCategory->getPrefixSlugProduct() . '-article-' . (int)$this->getId();
 
-        $this->slug = mb_strtolower(trim($slug));
+        $this->slug = mb_strtolower(trim($result));
     }
 
     public function getCategoriesIds(): ?string

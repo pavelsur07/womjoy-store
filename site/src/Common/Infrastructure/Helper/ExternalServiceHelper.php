@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Infrastructure\Helper;
 
-class ExternalService
+class ExternalServiceHelper
 {
     public const WB = 'wb';
     public const OZON = 'ozon';
