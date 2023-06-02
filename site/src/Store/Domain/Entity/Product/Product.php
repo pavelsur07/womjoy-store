@@ -177,9 +177,6 @@ class Product
 
     public function setCategoriesIds(): void
     {
-        /*if ($this->mainCategory === null) {
-            throw new StoreProductException('Not set main category');
-        }*/
         if ($this->mainCategory !== null) {
             $this->categoriesIds = $this->mainCategory->getIds();
         }
