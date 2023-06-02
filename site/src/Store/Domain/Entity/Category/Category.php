@@ -51,6 +51,12 @@ class Category
     #[ORM\Embedded(class: CategoryImage::class, columnPrefix: 'image_')]
     private CategoryImage|null $image;
 
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private string|null $titleProductTemplate = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private string|null $descriptionProductTemplate = null;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -171,6 +177,26 @@ class Category
     public function setPrefixSlugProduct(?string $prefixSlugProduct): void
     {
         $this->prefixSlugProduct = mb_strtolower(trim($prefixSlugProduct));
+    }
+
+    public function getTitleProductTemplate(): ?string
+    {
+        return $this->titleProductTemplate;
+    }
+
+    public function setTitleProductTemplate(?string $titleProductTemplate): void
+    {
+        $this->titleProductTemplate = $titleProductTemplate;
+    }
+
+    public function getDescriptionProductTemplate(): ?string
+    {
+        return $this->descriptionProductTemplate;
+    }
+
+    public function setDescriptionProductTemplate(?string $descriptionProductTemplate): void
+    {
+        $this->descriptionProductTemplate = $descriptionProductTemplate;
     }
 
     #[ORM\PostLoad()]

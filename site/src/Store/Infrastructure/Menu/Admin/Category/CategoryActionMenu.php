@@ -55,6 +55,18 @@ class CategoryActionMenu
             ->setAttribute('data-bs-toggle', 'tabs')
             ->setLinkAttribute('class', 'nav-link');
 
+        $menu
+            ->addChild(
+                'Templates',
+                [
+                    'route' => 'store.admin.category.template.edit',
+                    'routeParameters' => ['id' => $options['category_id']],
+                ]
+            )
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('data-bs-toggle', 'tabs')
+            ->setLinkAttribute('class', 'nav-link');
+
         return $menu;
     }
 }
