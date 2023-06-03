@@ -303,6 +303,10 @@ class Product
         if ($this->mainCategory === null) {
             throw new StoreProductException('Main category not set.');
         }
+
+        if ($this->status->isDraft()) {
+            $this->publishedAt = new DateTimeImmutable();
+        }
         $this->status = new ProductStatus(ProductStatus::ACTIVE);
     }
 

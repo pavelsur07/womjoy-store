@@ -32,17 +32,24 @@ class HomeController extends BaseController
         }
 
         $locales = $request->getLocale();
-        $pagination = $products->list(
+        $newItems = $products->list(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
         );
+
+        $popularity = $products->list(
+            page: $request->query->getInt('page', 1),
+            size: $request->query->getInt('size', self::PER_PAGE),
+        );
+
         return $this->render(
             'store/home/home.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
                 'categories' => $this->categories($home),
-                'pagination' => $pagination,
+                'newItems' => $newItems,
+                'popularity' => $popularity,
                 'locales' => $locales,
             ]
         );
