@@ -9,12 +9,15 @@ use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreProductException;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\Index(columns: ['popularity'], name: 'popularity_idx')]
+#[ORM\Index(columns: ['published_at'], name: 'published_at_idx')]
 #[ORM\Table(name: '`store_products`')]
 class Product
 {
@@ -59,12 +62,23 @@ class Product
     #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
     private string|null $categoriesIds = null;
 
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
+    private DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
+    private DateTimeImmutable $publishedAt;
+
+    #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
+    private int $popularity = 0;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
         $this->status = new ProductStatus(ProductStatus::DRAFT);
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->publishedAt = new DateTimeImmutable();
     }
 
     /**
@@ -310,6 +324,16 @@ class Product
     public function setSeoMetadata(SeoMetadata $seoMetadata): void
     {
         $this->seoMetadata = $seoMetadata;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getPublishedAt(): DateTimeImmutable
+    {
+        return $this->publishedAt;
     }
 
     private function sortable(): void
