@@ -115,6 +115,7 @@ services:
       - '--save 300 10'
       - '--save 60 10000'
       - '--requirepass secret'
+  
   mailer:
     image: mailhog/mailhog
     networks:
@@ -126,8 +127,24 @@ services:
       - traefik.http.routers.mailer.rule=Host(`mailer.localhost`)
       - traefik.http.routers.mailer.entryPoints=http
       - traefik.http.services.mailer.loadBalancer.server.port=8025
+  
+  storage-nginx:
+    build:
+      context: ./storage/docker/development
+      dockerfile: Dockerfile
+    volumes:
+      - site-storage:/usr/share/nginx/html/data
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.storage.rule=Host(`storage.localhost`)
+      - traefik.http.routers.storage.entryPoints=http
+      - traefik.http.services.storage.loadBalancer.server.port=80
       
-  static-storage:
+  minio-s3:
     image: minio/minio
     environment:
       MINIO_ROOT_USER: storage_app
@@ -136,7 +153,7 @@ services:
       - "9000:9000"
       - "9090:9090"
     volumes:
-      - static-storage:/data
+      - site-storage:/data
     entrypoint: sh -c 'docker-entrypoint.sh minio server /data --console-address ":80"'
     networks:
       - traefik-public
@@ -144,20 +161,19 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.static-storage.rule=Host(`static-storage.localhost`)
-      - traefik.http.routers.static-storage.entryPoints=http
-      - traefik.http.services.static-storage.loadBalancer.server.port=80
+      - traefik.http.routers.minio-s3.rule=Host(`minio-s3.localhost`)
+      - traefik.http.routers.minio-s3.entryPoints=http
+      - traefik.http.services.minio-s3.loadBalancer.server.port=80
   
-  static-storage-create-buckets:
+  minio-s3-create-buckets:
     image: minio/mc
     depends_on:
-      - static-storage
+      - minio-s3
     entrypoint: >
       /bin/sh -c "
-      /usr/bin/mc alias set myminio http://static-storage:9000 storage_app secret_key;
+      /usr/bin/mc alias set myminio http://minio-s3:9000 storage_app secret_key;
       /usr/bin/mc mb myminio/static;
-      /usr/bin/mc policy set download myminio/static;
-      /usr/bin/mc --policy set public myminio/static;
+      /usr/bin/mc anonymous set public myminio/static;
       exit 0;
       "
     networks:
@@ -184,8 +200,9 @@ secrets:
 volumes:
   site-postgres:
   site-redis:
+  site-storage:
   composer:
-  static-storage:
+  
 
 networks:
   traefik-public:
