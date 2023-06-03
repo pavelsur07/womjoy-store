@@ -21,9 +21,15 @@ class HomeController extends BaseController
     public function show(Request $request, ProductRepository $products, HomeService $homes): Response
     {
         $home = $homes->get();
-        $this->setTitle($home->getSeoMetadata()->getSeoTitle());
-        $this->setDescription($home->getSeoMetadata()->getSeoDescription());
-        $this->setH1($home->getSeoMetadata()->getH1());
+        if ($home->getSeoMetadata()->getSeoTitle() !== null) {
+            $this->setTitle($home->getSeoMetadata()->getSeoTitle());
+        }
+        if ($home->getSeoMetadata()->getSeoDescription() !== null) {
+            $this->setDescription($home->getSeoMetadata()->getSeoDescription());
+        }
+        if ($home->getSeoMetadata()->getH1() !== null) {
+            $this->setH1($home->getSeoMetadata()->getH1());
+        }
 
         $locales = $request->getLocale();
         $pagination = $products->list(
