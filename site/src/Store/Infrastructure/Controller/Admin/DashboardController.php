@@ -20,6 +20,7 @@ class DashboardController extends AbstractController
     #[Route('/admin/dashboard/generate/yml', name: 'admin.dashboard.generate.yml', methods: ['GET'])]
     public function generateYml(YandexMarket $market): Response
     {
+        $market->setProperty(company: 'WOMJOY',name: 'ВУМДЖОЙ ООО',url: 'https://womjoy.ru');
         $market->generate();
         return $this->redirectToRoute('admin.dashboard.show');
     }
