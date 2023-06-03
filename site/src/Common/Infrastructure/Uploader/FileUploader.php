@@ -39,6 +39,21 @@ class FileUploader
         return new File($path, $name, $file->getSize());
     }
 
+    /**
+     * @throws FilesystemException
+     */
+    public function write(string $content, string $file, ?string $patch = null): void
+    {
+        if ($patch !== null) {
+            $location = $patch . '/' . $file;
+            $this->storage->createDirectory($location);
+        } else {
+            $location = $file;
+        }
+
+        $this->storage->write($location, $content);
+    }
+
     public function generateUrl(string $path): string
     {
         return $this->basUrl . '/' . $path;

@@ -340,6 +340,11 @@ class Product
         return $this->publishedAt;
     }
 
+    public function isAvailable(): bool
+    {
+        return $this->status->isActive();
+    }
+
     private function sortable(): void
     {
         $this->images->first();

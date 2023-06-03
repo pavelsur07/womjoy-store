@@ -33,7 +33,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $object;
     }
 
-    public function list(): array
+    public function getAll(): array
     {
         return $this->repo->findAll();
     }

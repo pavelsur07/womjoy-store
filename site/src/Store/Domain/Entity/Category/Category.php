@@ -72,6 +72,11 @@ class Category
         $this->image = new CategoryImage();
     }
 
+    public function isRoot(): bool
+    {
+        return $this->parent === null;
+    }
+
     public function removeSubCategory(int $id): void
     {
         foreach ($this->children as $child) {

@@ -32,12 +32,12 @@ class HomeController extends BaseController
         }
 
         $locales = $request->getLocale();
-        $newItems = $products->list(
+        $newItems = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
         );
 
-        $popularity = $products->list(
+        $popularity = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
         );

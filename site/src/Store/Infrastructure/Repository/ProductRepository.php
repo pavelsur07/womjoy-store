@@ -45,7 +45,7 @@ class ProductRepository
         return $object;
     }
 
-    public function list(int $page, int $size): PaginationInterface
+    public function getAll(int $page, int $size): PaginationInterface
     {
         $qb = $this->em->createQueryBuilder()
             ->select('p')
@@ -55,6 +55,16 @@ class ProductRepository
         $qb->getQuery();
 
         return $this->paginator->paginate($qb, $page, $size);
+    }
+
+    public function getAllIterator(): iterable
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Product::class, 'p');
+        $qb->orderBy('p.id', 'ASC');
+
+        return $qb->getQuery()->toIterable();
     }
 
     public function listByCategory(Category $category, int $page, int $size): PaginationInterface

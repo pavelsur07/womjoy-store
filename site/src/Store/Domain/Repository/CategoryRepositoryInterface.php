@@ -10,7 +10,7 @@ interface CategoryRepositoryInterface
 {
     public function get(int $id): Category;
 
-    public function list(): array;
+    public function getAll(): array;
 
     public function getCategoryTree(): array;
 

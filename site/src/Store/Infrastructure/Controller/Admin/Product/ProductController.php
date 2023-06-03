@@ -28,7 +28,7 @@ class ProductController extends AbstractController
     public function index(Request $request, ProductRepository $productRepository): Response
     {
         return $this->render('store/admin/product/index.html.twig', [
-            'pagination' => $productRepository->list(
+            'pagination' => $productRepository->getAll(
                 page: $request->query->getInt('page', 1),
                 size: $request->query->getInt('size', self::PER_PAGE),
             ),
