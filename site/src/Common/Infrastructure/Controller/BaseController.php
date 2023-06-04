@@ -27,7 +27,7 @@ class BaseController extends AbstractController
         'description' => 'Description base controller default',
         'h1' => 'default',
         'noindex' => true,
-        'nofollow' => true
+        'nofollow' => true,
     ];
 
     public function __construct(

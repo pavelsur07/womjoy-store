@@ -10,32 +10,32 @@
                         <a href="#" class="hero__slide swiper-slide">
 							<span class="hero__slide_img">
 								<picture>
-									<source srcset="./img/banners/hero-lg-mob.webp" media="(max-width: 480px)">
-									<img src="./img/banners/hero-lg.webp" alt="" width="1216" height="460">
+									<source srcset="{{ asset('./img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+									<img src="{{ asset('./img/banners/hero-lg.webp') }}" alt="hero lg" width="1216" height="460">
 								</picture>
 							</span>
                         </a>
                         <a href="#" class="hero__slide swiper-slide">
 							<span class="hero__slide_img">
 								<picture>
-									<source srcset="./img/banners/hero-lg-mob.webp" media="(max-width: 480px)">
-									<img src="./img/banners/hero-lg.webp" alt="" width="1216" height="460">
+									<source srcset="{{ asset('./img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+									<img src="{{ asset('./img/banners/hero-lg.webp') }}" alt="hero lg" width="1216" height="460">
 								</picture>
 							</span>
                         </a>
                         <a href="#" class="hero__slide swiper-slide">
 							<span class="hero__slide_img">
 								<picture>
-									<source srcset="./img/banners/hero-lg-mob.webp" media="(max-width: 480px)">
-									<img src="./img/banners/hero-lg.webp" alt="" width="1216" height="460">
+									<source srcset="{{ asset('./img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+									<img src="{{ asset('./img/banners/hero-lg.webp') }}" alt="hero lg" width="1216" height="460">
 								</picture>
 							</span>
                         </a>
                         <a href="#" class="hero__slide swiper-slide">
 							<span class="hero__slide_img">
 								<picture>
-									<source srcset="./img/banners/hero-lg-mob.webp" media="(max-width: 480px)">
-									<img src="./img/banners/hero-lg.webp" alt="" width="1216" height="460">
+									<source srcset="{{ asset('./img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+									<img src="{{ asset('./img/banners/hero-lg.webp') }}" alt="hero lg" width="1216" height="460">
 								</picture>
 							</span>
                         </a>
@@ -48,16 +48,16 @@
                 <a href="#" class="hero__banner">
 					<span class="hero__banner_img">
 						<picture>
-							<source srcset="./img/banners/hero-sm-1-mob.webp" media="(max-width: 480px)">
-							<img src="./img/banners/hero-sm-1.webp" alt="" width="598" height="150">
+							<source srcset="{{ asset('./img/banners/hero-sm-1-mob.webp') }}" media="(max-width: 480px)">
+							<img src="{{ asset('./img/banners/hero-sm-1.webp') }}" alt="hero sm" width="598" height="150">
 						</picture>
 					</span>
                 </a>
                 <a href="#" class="hero__banner">
 					<span class="hero__banner_img">
 						<picture>
-							<source srcset="./img/banners/hero-sm-2-mob.webp" media="(max-width: 480px)">
-							<img src="./img/banners/hero-sm-2.webp" alt="" width="598" height="150">
+							<source srcset="{{ asset('./img/banners/hero-sm-2-mob.webp') }}" media="(max-width: 480px)">
+							<img src="{{ asset('./img/banners/hero-sm-2.webp') }}" alt="hero sm" width="598" height="150">
 						</picture>
 					</span>
                 </a>
@@ -98,7 +98,7 @@
                 <h2 class="section-title">Новинки</h2>
                 <a href="#" class="section-checkall">
                     Смотреть все
-                    <img src="{{ asset('./img/icons/green-arrow-right.svg') }}" alt="" width="24" height="24">
+                    <img src="{{ asset('./img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
                 </a>
             </div>
 
@@ -107,56 +107,58 @@
                     <div class="swiper-wrapper">
                         {% for product in newItems %}
                             <div class="product swiper-slide">
-                            <div class="product__img">
-                                <div class="product__img_slider swiper">
-                                    <div class="swiper-wrapper">
-                                        {% if product.images.count > 0 %}
+                                <a href="{{ path('store.product.show',{'slug': product.slug} ) }}">
+                                    <div class="product__img">
+                                    <div class="product__img_slider swiper">
+                                        <div class="swiper-wrapper">
+                                            {% if product.images.count > 0 %}
 
-                                            {% set file = product.images.first %}
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img loading="lazy" src=" {{ thumbnail_path(file.path, file.name~'.webp', 390, 520 ) }}" alt="{{ product.name }}" width="289" height="384">
-                                            </div>
+                                                {% set file = product.images.first %}
+                                                <div class="product__img_slide swiper-slide active">
+                                                    <img loading="lazy" src=" {{ thumbnail_path(file.path, file.name~'.webp', 390, 520 ) }}" alt="{{ product.name }}" width="289" height="384">
+                                                </div>
 
-                                        {% else %}
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="{{ asset('./img/products/img-1.webp') }}" alt="Thumbnail loading" width="289" height="384">
-                                            </div>
-                                        {% endif %}
+                                            {% else %}
+                                                <div class="product__img_slide swiper-slide active">
+                                                    <img src="{{ asset('./img/products/img-1.webp') }}" alt="Thumbnail loading" width="289" height="384">
+                                                </div>
+                                            {% endif %}
 
+                                        </div>
                                     </div>
                                 </div>
+                                </a>
+                                <div class="product__row">
+                                    {% if product.price.listPrice == 0 %}
+                                        <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
+                                    {% else %}
+                                        <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+                                        <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
+                                        <span class="product__sale">
+                                            -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <p class="product__name">{{ product.name }}</p>
+                                <ul class="product__colors">
+                                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
+                                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
+                                    <li><a href="#" style="background-color: #3740B4;"></a></li>
+                                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
+                                    <li><a href="#" style="background-color: #27262C;"></a></li>
+                                </ul>
+                                <div class="product__hidden">
+                                    <button class="product__addtocart btn-primary" type="button">
+                                        <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="20" height="20">
+                                        В корзину
+                                    </button>
+                                    <div class="product__sizes">Размеры: XS S M L</div>
+                                </div>
                             </div>
-                            <div class="product__row">
-                                {% if product.price.listPrice == 0 %}
-                                    <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
-                                {% else %}
-                                    <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
-                                    <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
-                                    <span class="product__sale">
-                                        -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
-                                    </span>
-                                {% endif %}
-                            </div>
-                            <p class="product__name">{{ product.name }}</p>
-                            <ul class="product__colors">
-                                <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                                <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                                <li><a href="#" style="background-color: #3740B4;"></a></li>
-                                <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                                <li><a href="#" style="background-color: #27262C;"></a></li>
-                            </ul>
-                            <div class="product__hidden">
-                                <button class="product__addtocart btn-primary" type="button">
-                                    <img src="./img/icons/cart.svg" alt="cart" width="20" height="20">
-                                    В корзину
-                                </button>
-                                <div class="product__sizes">Размеры: XS S M L</div>
-                            </div>
-                        </div>
                         {% endfor %}
                     </div>
-                    <button class="slider-btn-prev" type="button"><img src="./img/icons/arrow-left.svg" alt="" width="24" height="24"></button>
-                    <button class="slider-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt="" width="24" height="24"></button>
+                    <button class="slider-btn-prev" type="button"><img src="{{ asset('./img/icons/arrow-left.svg') }}" alt="arrow left" width="24" height="24"></button>
+                    <button class="slider-btn-next" type="button"><img src="{{ asset('./img/icons/arrow-right.svg') }}" alt="arrow right" width="24" height="24"></button>
                 </div>
             </div>
         </div>
@@ -171,7 +173,7 @@
                     <span class="support__descr">Звонок по РФ бесплатный</span>
                 </div>
 
-                <img src="./img/icons/support-bg.svg" alt="" class="support__img" width="346" height="170">
+                <img src="{{ asset('./img/icons/support-bg.svg') }}" alt="support bg" class="support__img" width="346" height="170">
             </div>
         </div>
     </section>
@@ -182,325 +184,64 @@
                 <h2 class="section-title">Популярное</h2>
                 <a href="#" class="section-checkall">
                     Смотреть все
-                    <img src="./img/icons/green-arrow-right.svg" alt="" width="24" height="24">
+                    <img src="{{ asset('./img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
                 </a>
             </div>
 
             <div class="products__items products-4">
                 {% for product in popularity %}
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                {% if product.images.count > 0 %}
 
-                                    {% set file = product.images.first %}
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img loading="lazy" src=" {{ thumbnail_path(file.path, file.name~'.webp', 390, 520 ) }}" alt="{{ product.name }}" width="289" height="384">
-                                    </div>
+                    <div class="product">
+                        <a href="{{ path('store.product.show',{'slug': product.slug} ) }}">
+                            <div class="product__img">
+                                <div class="product__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        {% if product.images.count > 0 %}
 
-                                {% else %}
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="{{ asset('./img/products/img-1.webp') }}" alt="Thumbnail loading" width="289" height="384">
+                                            {% set file = product.images.first %}
+                                            <div class="product__img_slide swiper-slide active">
+                                                <img loading="lazy" src=" {{ thumbnail_path(file.path, file.name~'.webp', 390, 520 ) }}" alt="{{ product.name }}" width="289" height="384">
+                                            </div>
+
+                                        {% else %}
+                                            <div class="product__img_slide swiper-slide active">
+                                                <img src="{{ asset('./img/products/img-1.webp') }}" alt="thumbnail loading" width="289" height="384">
+                                            </div>
+                                        {% endif %}
                                     </div>
-                                {% endif %}
+                                </div>
                             </div>
+                        </a>
+                        <div class="product__row">
+                            {% if product.price.listPrice == 0 %}
+                                <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
+                            {% else %}
+
+                                <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+                                <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
+                                <span class="product__sale">
+                                    -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
+                                </span>
+                            {% endif %}
+                        </div>
+                        <p class="product__name">{{ product.name }}</p>
+                        <ul class="product__colors">
+                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
+                            <li><a href="#" style="background-color: #6E72A8;"></a></li>
+                            <li><a href="#" style="background-color: #3740B4;"></a></li>
+                            <li><a href="#" style="background-color: #A8AAB6;"></a></li>
+                            <li><a href="#" style="background-color: #27262C;"></a></li>
+                        </ul>
+                        <div class="product__hidden">
+                            <button class="product__addtocart btn-primary" type="button">
+                                <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="20" height="20">
+                                В корзину
+                            </button>
+                            <div class="product__sizes">Размеры: XS S M L</div>
                         </div>
                     </div>
-                    <div class="product__row">
-                        {% if product.price.listPrice == 0 %}
-                            <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
-                        {% else %}
-
-                            <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
-                            <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
-                            <span class="product__sale">
-                                -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
-                            </span>
-                        {% endif %}
-                    </div>
-                    <p class="product__name">{{ product.name }}</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                        <li><a href="#" style="background-color: #3740B4;"></a></li>
-                        <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                        <li><a href="#" style="background-color: #27262C;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="cart" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
                 {% endfor %}
 
-{#                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                        <li><a href="#" style="background-color: #3740B4;"></a></li>
-                        <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                        <li><a href="#" style="background-color: #3740B4;"></a></li>
-                        <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                        <li><a href="#" style="background-color: #27262C;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                        <li><a href="#" style="background-color: #3740B4;"></a></li>
-                        <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                        <li><a href="#" style="background-color: #27262C;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                        <li><a href="#" style="background-color: #3740B4;"></a></li>
-                        <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="product__img">
-                        <div class="product__img_slider swiper">
-                            <div class="swiper-wrapper">
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                </div>
-                                <div class="product__img_slide swiper-slide">
-                                    <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product__row">
-                        <span class="product__cost">1 299 ₽</span>
-                        <del class="product__old">1 299 ₽</del>
-                        <span class="product__sale">-30%</span>
-                    </div>
-                    <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                    <ul class="product__colors">
-                        <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                        <li><a href="#" style="background-color: #3740B4;"></a></li>
-                        <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                        <li><a href="#" style="background-color: #27262C;"></a></li>
-                    </ul>
-                    <div class="product__hidden">
-                        <button class="product__addtocart btn-primary" type="button">
-                            <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                            В корзину
-                        </button>
-                        <div class="product__sizes">Размеры: XS S M L</div>
-                    </div>
-                </div>#}
             </div>
         </div>
     </section>

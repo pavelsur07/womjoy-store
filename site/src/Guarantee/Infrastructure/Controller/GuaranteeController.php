@@ -37,17 +37,19 @@ class GuaranteeController extends BaseController
     }
 
     #[Route(path: '/guarantee/thank-you', name: 'guarantee.thank_you')]
-    public function thankYou(Request $request,ProductRepository $products,): Response
+    public function thankYou(Request $request, ProductRepository $products): Response
     {
         $popularity = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
         );
-        return $this->render('thank_you.html.twig',
+        return $this->render(
+            'thank_you.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
                 'popularity' => $popularity,
-            ]);
+            ]
+        );
     }
 }
