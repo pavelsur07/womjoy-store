@@ -1,135 +1,6 @@
 {% extends 'store/base.html.twig' %}
 
 {% block body %}
-    {#<div class="catalog-menu">
-        <div class="wrapper">
-            <form class="search">
-                <input type="text" class="search__inp" placeholder="Я хочу найти">
-                <button class="search__submit" type="submit">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43"/>
-                    </svg>
-                </button>
-            </form>
-            <div class="cat__items">
-                <a href="#" class="cat__item cat__item-lg">
-                    <div class="cat__text">
-                        <span class="cat__name">Брюки</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-1.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <a href="#" class="cat__item cat__item-lg">
-                    <div class="cat__text">
-                        <span class="cat__name">Леггинсы</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-2.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <a href="#" class="cat__item cat__item-md">
-                    <div class="cat__text">
-                        <span class="cat__name">Топы</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-3.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <a href="#" class="cat__item cat__item-md">
-                    <div class="cat__text">
-                        <span class="cat__name">Рашгарды</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-4.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <a href="#" class="cat__item cat__item-md">
-                    <div class="cat__text">
-                        <span class="cat__name">Футболки</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-5.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <a href="#" class="cat__item cat__item-lg">
-                    <div class="cat__text">
-                        <span class="cat__name">Худи</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-6.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <a href="#" class="cat__item cat__item-lg">
-                    <div class="cat__text">
-                        <span class="cat__name">Шорты</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="./img/cats/img-7.webp" alt="" class="cat__img" width="250" height="250">
-                </a>
-                <div class="cat__item cat__sale">
-                    <span class="cat__sale_alert">%</span>
-                    <span class="cat__sale_name">Распродажа</span>
-                </div>
-            </div>
-
-            <ul class="catalog-menu__list">
-                <li class="catalog-menu__item">
-                    <div class="catalog-menu__title">Щенщинам</div>
-                    <ul class="catalog-menu__sublist">
-                        <li><a href="#">Брюки</a></li>
-                        <li><a href="#">Леггинсы</a></li>
-                        <li><a href="#">Топы</a></li>
-                        <li><a href="#">Рашгарды</a></li>
-                        <li><a href="#">Футболки</a></li>
-                        <li><a href="#">Худи</a></li>
-                        <li><a href="#">Шорты</a></li>
-                        <li><a href="#">Аксессуары</a></li>
-                    </ul>
-                </li>
-                <li class="catalog-menu__item">
-                    <div class="catalog-menu__title">Занятия</div>
-                    <ul class="catalog-menu__sublist">
-                        <li><a href="#">Брюки</a></li>
-                        <li><a href="#">Леггинсы</a></li>
-                        <li><a href="#">Топы</a></li>
-                    </ul>
-                </li>
-                <li class="catalog-menu__item">
-                    <div class="catalog-menu__title">Спецпредложения</div>
-                    <ul class="catalog-menu__sublist">
-                        <li><a href="#">Брюки</a></li>
-                        <li><a href="#">Леггинсы</a></li>
-                        <li><a href="#">Топы</a></li>
-                    </ul>
-                </li>
-                <li class="catalog-menu__item">
-                    <div class="catalog-menu__title">Покупателям</div>
-                    <ul class="catalog-menu__sublist">
-                        <li><a href="#">Брюки</a></li>
-                        <li><a href="#">Леггинсы</a></li>
-                        <li><a href="#">Топы</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>#}
     <section class="typography">
         <div class="wrapper">
             <div class="typography__grid">
@@ -137,16 +8,7 @@
                     <div class="pages__top">
                         Разделы
                     </div>
-                    <ul class="pages__list">
-                        <li><a href="#">Женщинам</a></li>
-                        <li><a href="#">Брюки</a></li>
-                        <li><a href="#">Леггинсы</a></li>
-                        <li><a href="#">Топы</a></li>
-                        <li><a href="#">Рашгарды</a></li>
-                        <li><a href="#">Футболки</a></li>
-                        <li><a href="#">Худи</a></li>
-                        <li><a href="#">Шорты</a></li>
-                    </ul>
+                   {% include 'common/page_menu.html.twig' %}
                 </div>
                 <div class="typography__top">
                     <h1 class="title-xl">Доставка и Оплата</h1>
@@ -163,23 +25,13 @@
                                         <p>&nbsp;
                                         </p>
                                     </td>
-                                    <td>
-                                        <p>ПВЗ (Пункт выдачи заказов)
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>Курьерская доставка
-                                        </p>
-                                    </td>
+                                    <td><p>ПВЗ (Пункт выдачи заказов)</p></td>
+                                    <td><p>Курьерская доставка</p></td>
                                 </tr>
                                 <tr>
+                                    <td><p>Стоимость доставки</p></td>
                                     <td>
-                                        <p>Стоимость доставки
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>БЕСПЛАТНО
-                                        </p>
+                                        <p>БЕСПЛАТНО</p>
                                     </td>
                                     <td>
                                         <p>Рассчитывается<span style="background-color: transparent;">&nbsp;калькулятором в корзине</span></p>
@@ -286,7 +138,7 @@
                     <p><br></p>
                     <h4 class="title-s mb-10">4. Онлайн оплата банковской картой</h4>
                     <p>Оплата банковскими картами осуществляется через АО «АЛЬФА-БАНК».<br></p>
-                    <p><img src="{{ asset('./img/icons/alfa.svg') }}"><br></p>
+                    <p><img src="{{ asset('./img/icons/alfa.svg') }}" alt="alfa bank"><br></p>
                     <p>К оплате принимаются карты VISA, MasterCard, МИР.
                     </p>
                     <p>

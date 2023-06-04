@@ -119,12 +119,12 @@
                 <div class="footer__col">
                     <div class="footer__title">Покупателям</div>
                     <ul class="footer__list">
-                        <li><a href="{{ path('store.page.pay_delivery') }}">Доставка и оплата</a></li>
-                        <li><a href="#">Обмен и возврат</a></li>
-                        <li><a href="#">Публичная оферта</a></li>
-                        <li><a href="#">Политика конфиденциальности</a></li>
-                        <li><a href="#">Отложенные товары</a></li>
                         <li><a href="{{ path('guarantee.new') }}">Гарантия</a></li>
+                        <li><a href="{{ path('page.pay_delivery') }}">Доставка и оплата</a></li>
+                        <li><a href="#">Обмен и возврат</a></li>
+                        <li><a href="{{ path('page.terms_of_service') }}">Публичная оферта</a></li>
+                        <li><a href="{{ path('page.privacy') }}">Политика конфиденциальности</a></li>
+                        {#<li><a href="#">Отложенные товары</a></li>#}
                     </ul>
                 </div>
                 <div class="footer__col">

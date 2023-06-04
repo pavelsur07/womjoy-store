@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/pages', name: 'store.page')]
+#[Route(path: '/pages', name: 'page')]
 class PageController extends BaseController
 {
     public const PER_PAGE= 15;
@@ -19,7 +19,31 @@ class PageController extends BaseController
     public function payAndDelivery(Request $request, ProductRepository $products): Response
     {
         return $this->render(
-            'store/page/pay_delivery.html.twig',
+            'page/pay_delivery.html.twig',
+            [
+                'metaData' => $this->metaData,
+                'menu' => $this->menu,
+            ],
+        );
+    }
+
+    #[Route(path: '/privacy', name: '.privacy')]
+    public function privacy(): Response
+    {
+        return $this->render(
+            'page/privacy.html.twig',
+            [
+                'metaData' => $this->metaData,
+                'menu' => $this->menu,
+            ],
+        );
+    }
+
+    #[Route(path: '/terms-of-service', name: '.terms_of_service')]
+    public function termsOfService(): Response
+    {
+        return $this->render(
+            'page/terms_of_service.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
