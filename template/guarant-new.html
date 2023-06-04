@@ -160,14 +160,14 @@
 						</li>
 						<li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
-						<li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
+						<!-- <li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
-						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li> -->
 						<li class="nav__item drop">
 							<a href="#" class="nav__link">Покупателям</a>
 							<ul class="drop__list">
@@ -196,7 +196,7 @@
 				</button>
 			</form>
 			<ul class="burger-menu__list">
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Щенщинам</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
@@ -209,7 +209,7 @@
 						<li><a href="#">Аксессуары</a></li>
 					</ul>
 				</li>
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Занятия</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
@@ -217,7 +217,7 @@
 						<li><a href="#">Топы</a></li>
 					</ul>
 				</li>
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Спецпредложения</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
@@ -225,13 +225,16 @@
 						<li><a href="#">Топы</a></li>
 					</ul>
 				</li>
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Покупателям</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
 						<li><a href="#">Леггинсы</a></li>
 						<li><a href="#">Топы</a></li>
 					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<a href="#" class="burger-menu__title">Покупателям</a>
 				</li>
 			</ul>
 		</div>
@@ -405,11 +408,11 @@
                         </div>
                         <div class="g-form__field field">
                             <span class="field__ph">Электронная почта</span>
-                            <input type="text" class="field__inp" value="email@example.com">
+                            <input type="text" class="field__inp" placeholder="email@example.com">
                         </div>
                         <div class="g-form__field field">
                             <span class="field__ph">Телефон</span>
-                            <input type="text" class="field__inp" value="+7 911 658-74-85">
+                            <input type="text" class="field__inp phone-masked-field" placeholder="+7 911 658-74-85">
                         </div>
                         <button class="g-form__submit btn-primary" type="submit">Отправить</button>
                     </div>
@@ -543,6 +546,7 @@
     </ul>
 
     <script src="./libs/swiper/swiper.min.js"></script>
+    <script src="./libs/inputmask.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>

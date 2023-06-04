@@ -1,12 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const phoneFields = document.querySelectorAll('.phone-masked-field');
+	if (phoneFields.length > 0) {
+		phoneFields.forEach(field => {
+			let im = new Inputmask('+7 999 999-99-99');
+			im.mask(field);
+		});
+	}
+	
+	
 	if (window.innerWidth <= 480) {
 		mobMenuInit('.burger', '.burger-menu');
 		mobMenuInit('.c-open', '.catalog-menu');
 
-		const burgerItems = document.querySelectorAll('.burger-menu__item');
-		burgerItems.forEach(item => item.addEventListener('click', () => {
-			toggleItem(item.querySelector('.burger-menu__title'), item.querySelector('.burger-menu__sublist'));
-		}));
+		const burgerItems = document.querySelectorAll('.burger-menu__item.dropable');
+		burgerItems.forEach(item => {
+			item.querySelector('a').addEventListener('click', e => e.preventDefault());
+			item.addEventListener('click', () => {
+				toggleItem(item.querySelector('.burger-menu__title'), item.querySelector('.burger-menu__sublist'));
+			})
+		});
 		const catalogItems = document.querySelectorAll('.catalog-menu__item');
 		catalogItems.forEach(item => item.addEventListener('click', () => {
 			toggleItem(item.querySelector('.catalog-menu__title'), item.querySelector('.catalog-menu__sublist'));
