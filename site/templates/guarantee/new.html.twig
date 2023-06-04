@@ -21,6 +21,7 @@
                 <div class="g-form__main">
                     {{ form_start(form) }}
                     {{ form_widget(form.message, {'attr': {'class': 'g-form__textarea'}}) }}
+
                     <label class="g-form__photo">
                         {{ form_widget(form.files,{'attr': {'hidden': true, 'multiple': true }}) }}
                         <span class="g-form__photo_main">
@@ -45,8 +46,7 @@
                         </div>
                         <div class="g-form__field field">
                             <span class="field__ph">Телефон</span>
-                            {{ form_widget(form.phone,{'attr': {'class': 'field__inp', 'id': 'selector-mask' }}) }}
-                            {#<input type="text" class="field__inp" value="+7 911 658-74-85">#}
+                            {{ form_widget(form.phone,{'attr': {'class': 'field__inp phone-masked-field' }}) }}
                         </div>
                         <button class="g-form__submit btn-primary">{{ button_label|default('Отправить') }}</button>
                     </div>
@@ -57,7 +57,7 @@
                             Согласен с условиями Правил пользования торговой площадкой
                         </label>
                         <label class="g-form__check">
-                            {#<input type="checkbox" hidden checked>#}
+                            <input type="checkbox" hidden checked>
                             {{ form_widget(form.isSubscribe,{'attr': {'hidden': true}}) }}
                             <span><img src="{{ asset('./img/icons/check-white.svg') }}" alt="check white"></span>
                             Подпишитесь и получайте промокоды, акции и подборки товаров
@@ -68,51 +68,11 @@
                 </div>
             </div>
 
-           {# <form class="g-form">
-                <div class="g-form__title title-l">Напишите нам в гарантийный отдел</div>
-                <p class="g-form__please">Пожалуйста, заполните форму ниже, и мы с радостью окажем вам помощь по вопросам, связанным с гарантией.</p>
-                <div class="g-form__main">
-                    <textarea class="g-form__textarea" placeholder="Текст сообщения..."></textarea>
-                    <label class="g-form__photo">
-                        <input type="file" hidden multiple>
-                        <span class="g-form__photo_main">
-                            <img src="{{ asset('./img/icons/photo.svg') }}" alt="photo" width="24" height="24">
-                        </span>
-                        <span class="g-form__photo_descr">Прикрепите до 4 фотографий с дефектом</span>
-                    </label>
-                    <div class="g-form__row">
-                        <div class="g-form__sel field field-sel">
-                            <span class="field__ph">Место покупки</span>
-                            <select class="field__sel">
-                                <option value="">Ozon</option>
-                                <option value="">Я. Маркет</option>
-                                <option value="" selected>Wildberries</option>
-                            </select>
-                        </div>
-                        <div class="g-form__field field">
-                            <span class="field__ph">Электронная почта</span>
-                            <input type="text" class="field__inp" value="email@example.com">
-                        </div>
-                        <div class="g-form__field field">
-                            <span class="field__ph">Телефон</span>
-                            <input type="text" class="field__inp" value="+7 911 658-74-85">
-                        </div>
-                        <button class="g-form__submit btn-primary" type="submit">Отправить</button>
-                    </div>
-                    <div class="g-form__checks">
-                        <label class="g-form__check">
-                            <input type="checkbox" hidden checked>
-                            <span><img src="{{ asset('./img/icons/check-white.svg') }}" alt="check white"></span>
-                            Согласен с условиями Правил пользования торговой площадкой
-                        </label>
-                        <label class="g-form__check">
-                            <input type="checkbox" hidden checked>
-                            <span><img src="{{ asset('./img/icons/check-white.svg') }}" alt="check white"></span>
-                            Подпишитесь и получайте промокоды, акции и подборки товаров
-                        </label>
-                    </div>
-                </div>
-            </form>#}
         </div>
     </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('./libs/inputmask.min.js') }}"></script>
+    <script src="{{ asset('./js/script.js') }}"></script>
 {% endblock %}

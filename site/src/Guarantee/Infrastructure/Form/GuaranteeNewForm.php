@@ -15,7 +15,7 @@ class GuaranteeNewForm extends AbstractType
     {
         $builder
             ->add('message', Type\TextareaType::class)
-            ->add('files', Type\FileType::class)
+            ->add('files', Type\FileType::class, ['required'=> false])
             ->add(
                 'email',
                 Type\EmailType::class,
@@ -46,7 +46,7 @@ class GuaranteeNewForm extends AbstractType
                 'isSubscribe',
                 Type\CheckboxType::class,
                 [
-                    'required' => true,
+                    'required' => false,
                     'label_attr' => ['hidden'=> true],
                 ]
             );
