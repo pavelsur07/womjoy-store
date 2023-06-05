@@ -25,9 +25,9 @@ class BaseController extends AbstractController
     public array $metaData =[
         'title' =>'Title base controller default',
         'description' => 'Description base controller default',
-        'h1' => 'default',
-        'noindex' => true,
-        'nofollow' => true,
+        'h1' => 'H1 default',
+        'noindex' => false,
+        'nofollow' => false,
     ];
 
     public function __construct(

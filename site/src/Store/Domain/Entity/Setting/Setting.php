@@ -9,5 +9,4 @@ class Setting
     private int $id;
     private string $phone;
     private string $email;
-    private string $companyName;
 }
