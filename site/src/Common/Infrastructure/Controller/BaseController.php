@@ -69,6 +69,11 @@ class BaseController extends AbstractController
         $this->metaData['h1'] = $h1;
     }
 
+    public function jsonLdGenerator(array $data): string
+    {
+        return '<script type="application/ld+json">' . json_encode($data, JSON_UNESCAPED_SLASHES | JSON_HEX_APOS | JSON_UNESCAPED_UNICODE) . '</script>';
+    }
+
     public function breadcrumbsCategoryGenerate(Category $category, ?array $bread = null): array
     {
         $bread[] = [
