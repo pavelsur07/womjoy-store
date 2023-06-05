@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	if (document.querySelector('.hero-swiper')) {
+	/*if (document.querySelector('.hero-swiper')) {
 		new Swiper('.hero-swiper', {
 			slidesPerView: 1,
 			pagination: {
@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				bulletActiveClass: 'hero-pagination-bullet-active'
 			}
 		});
-	}
+	}*/
 
-	const products = document.querySelectorAll('.product');
+	/*const products = document.querySelectorAll('.product');
 
 	products.forEach((product, i) => {
 		const images = product.querySelectorAll('.product__img_slide');
@@ -147,9 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				checks[i].classList.add('active');
 			});
 		});
-	});
+	});*/
 
-	const productSliders = document.querySelectorAll('.products__slider');
+/*	const productSliders = document.querySelectorAll('.products__slider');
 	if (productSliders.length > 0) {
 		productSliders.forEach(productSlider => {
 			new Swiper(productSlider.querySelector('.products-swiper'), {
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			});
 		});
-	}
+	}*/
 
 	if (document.querySelector('.i-cat-swiper')) {
 		new Swiper('.i-cat-swiper', {
