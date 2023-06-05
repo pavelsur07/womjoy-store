@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /*
 Disallow: /*.php
 Disallow: /search
 Disallow: /login
