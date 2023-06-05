@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{{ metaData.title }}{% endblock %}</title>
         <meta name="description" content="{% block description %}{{ metaData.description }}{% endblock %}">
+        {% block openGraph %}{% endblock %}
         {% if metaData.noindex %}
             <meta name="robots" content="noindex">
         {% endif %}
