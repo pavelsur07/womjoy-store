@@ -13,7 +13,7 @@ class ThumbnailService
 {
     public const JPG = 1;
     public const WEBP = 2;
-    private const QUALITY = 90;
+    private const QUALITY = 100;
 
     public function __construct(
         private readonly FilesystemOperator $defaultStorage,
