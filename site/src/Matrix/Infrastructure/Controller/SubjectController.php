@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Controller;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Matrix\Domain\Entity\Subject;
 use App\Matrix\Domain\Repository\SubjectRepositoryInterface;
 use App\Matrix\Infrastructure\Form\SubjectEditForm;
@@ -50,7 +51,28 @@ class SubjectController extends AbstractController
     {
     }
 
-    public function edit(): void
+    #[Route(path: '/{id}/edit', name: '.edit')]
+    public function edit(int $id, Subject $subject, Request $request, Flusher $flusher): Response
     {
+        $form = $this->createForm(
+            SubjectEditForm::class,
+            [
+                'name' => $subject->getName(),
+                'code' => $subject->getCode(),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $subject->changeName($data['name']);
+            $subject->setCode($data['code']);
+
+            $flusher->flush();
+
+            $this->addFlash('success', 'Changed success!');
+            return $this->redirectToRoute('matrix.admin.subject.edit', ['id'=> $id], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('matrix/admin/subject/create.html.twig', ['form'=> $form->createView()]);
     }
 }

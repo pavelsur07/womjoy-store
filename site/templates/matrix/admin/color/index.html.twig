@@ -27,6 +27,7 @@
             <thead>
             <tr>
                 <th>Id</th>
+                <th>Code</th>
                 <th>Name</th>
                 <th>Actions</th>
             </tr>
@@ -35,11 +36,11 @@
             {% for color in pagination %}
                 <tr>
                     <td class='w-5'>{{ color.id }}</td>
+                    <td>{{ color.code }}</td>
                     <td>{{ color.name }}</td>
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
-                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">show</a>
-                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('matrix.admin.color.edit', {'id': color.id}) }}">edit</a>
                             <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
                         </div>
                     </td>

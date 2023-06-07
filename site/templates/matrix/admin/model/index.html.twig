@@ -26,7 +26,8 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
+                <th class="w-1">Id</th>
+                <th class="w-1">Code</th>
                 <th>Name</th>
                 <th>Actions</th>
             </tr>
@@ -35,11 +36,11 @@
             {% for model in pagination %}
                 <tr>
                     <td class='w-5'>{{ model.id }}</td>
+                    <td>{{ model.code }}</td>
                     <td>{{ model.name }}</td>
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
-                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">show</a>
-                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('matrix.admin.model.edit', {'id': model.id}) }}">edit</a>
                             <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
                         </div>
                     </td>

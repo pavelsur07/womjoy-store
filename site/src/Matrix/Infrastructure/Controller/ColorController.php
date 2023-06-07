@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Controller;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Matrix\Domain\Entity\Color;
 use App\Matrix\Domain\Repository\ColorRepositoryInterface;
 use App\Matrix\Infrastructure\Form\ColorlEditForm;
@@ -50,7 +51,27 @@ class ColorController extends AbstractController
     {
     }
 
-    public function edit(): void
+    #[Route(path: '/{id}/edit', name: '.edit')]
+    public function edit(int $id, Color $color, Request $request, Flusher $flusher): Response
     {
+        $form = $this->createForm(
+            ColorlEditForm::class,
+            [
+                'name'=> $color->getName(),
+                'code' => $color->getCode(),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $color->setName($data['name']);
+            $color->setCode($data['code']);
+
+            $flusher->flush();
+            $this->addFlash('success', 'Changed success!');
+            return $this->redirectToRoute('matrix.admin.color.edit', ['id'=>$id], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('matrix/admin/color/edit.html.twig', ['form'=> $form->createView()]);
     }
 }
