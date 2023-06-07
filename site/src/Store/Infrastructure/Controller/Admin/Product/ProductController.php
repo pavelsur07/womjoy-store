@@ -36,7 +36,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/new', name: '.new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductRepository $productRepository, Flusher $flusher): Response
+    public function new(Request $request, ProductRepository $productRepository, Flusher $flusher, CategoryRepositoryInterface $categories): Response
     {
         $product = new Product(new ProductPrice());
         $form = $this->createForm(ProductEditForm::class, []);
@@ -48,7 +48,9 @@ class ProductController extends AbstractController
             $product = new Product(new ProductPrice($data['price']));
             $product->setName($data['name']);
             $product->setDescription($data['description']);
-            $product->setMainCategory($data['mainCategory']);
+
+            $mainCategory = $categories->get((int)$data['mainCategory']->getValue());
+            $product->setMainCategory($mainCategory);
 
             $productRepository->save($product, true);
 
