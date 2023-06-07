@@ -181,21 +181,21 @@ class Product
         return $this->slug;
     }
 
-    public function setSlug(?string $slug = null): void
+    public function setSlug(string $slug): void
     {
         if ($this->mainCategory === null) {
             throw new StoreProductException('Main category not set.');
         }
-        /*
-        if ($this->slug !== null) {
+
+        /*if ($this->slug !== null) {
             throw new StoreProductException('Slug is not null.');
-        }
-        */
-        if ($slug === null) {
+        }*/
+
+        /*if ($slug === null) {
             $result = $this->mainCategory->getPrefixSlugProduct() . '-article-' . (int)$this->getId();
             $this->slug = mb_strtolower(trim($result));
             return;
-        }
+        }*/
         $this->slug = $slug;
     }
 

@@ -112,6 +112,8 @@ class ProductController extends AbstractController
     public function seo(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher, SlugifyService $slug): Response
     {
         $category = $product->getMainCategory();
+        $slug = $product->getMainCategory()->getPrefixSlugProduct() . '-article-' . $product->getId();
+
         $form = $this->createForm(
             ProductSeoEditForm::class,
             [
@@ -127,7 +129,8 @@ class ProductController extends AbstractController
                         $product->getPlaceholders()
                     ) :
                     $product->getSeoMetadata()->getSeoDescription(),
-                'slug' => $product->getSlug(),
+                // 'slug' => $product->getSlug(),
+                'slug' => $slug,
             ]
         );
 
@@ -140,8 +143,9 @@ class ProductController extends AbstractController
             $product->getSeoMetadata()->setSeoDescription($data['seoDescription']);
 
             if ($data['slug'] !== null) {
-                $product->setSlug($slug->generate($data['slug']));
+                $product->setSlug($slug);
             }
+
             $flusher->flush();
 
             $this->addFlash('success', 'Success seo changed.');

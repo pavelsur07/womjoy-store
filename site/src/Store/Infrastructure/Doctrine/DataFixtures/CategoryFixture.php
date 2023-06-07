@@ -30,9 +30,10 @@ class CategoryFixture extends Fixture
         $manager->flush();
 
         $levelOne = new Category();
-        $levelOne->setName('Леггинсы');
+        $levelOne->setName($name = 'Леггинсы');
         $levelOne->setParent($levelRoot);
         $levelOne->setSlug($this->slugify->generate(self::REFERENCE_LEGGINGS));
+        $levelOne->setPrefixSlugProduct($this->slugify->generate($name));
         $this->setReference(self::REFERENCE_LEGGINGS, $levelOne);
         $manager->persist($levelOne);
 
@@ -44,9 +45,10 @@ class CategoryFixture extends Fixture
         $manager->persist($levelTwo);
 
         $levelOne = new Category();
-        $levelOne->setName('Брюки');
+        $levelOne->setName($name = 'Брюки');
         $levelOne->setParent($levelRoot);
         $levelOne->setSlug($this->slugify->generate(self::REFERENCE_PANTS));
+        $levelOne->setPrefixSlugProduct($this->slugify->generate($name));
         $this->setReference(self::REFERENCE_PANTS, $levelOne);
         $manager->persist($levelOne);
 
