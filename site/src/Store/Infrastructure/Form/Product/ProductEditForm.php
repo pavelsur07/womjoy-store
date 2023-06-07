@@ -31,7 +31,6 @@ class ProductEditForm extends AbstractType
                 'mainCategory',
                 Type\ChoiceType::class,
                 [
-                    // 'choices' => array_combine($this->categories->getCategoryTree(), $this->categories->getCategoryTree()),
                     'choices' => $this->categories->getCategoryTree(),
                     'choice_label' => 'label',
                     'choice_value' => 'value',
