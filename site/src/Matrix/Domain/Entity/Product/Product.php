@@ -193,6 +193,14 @@ class Product
         return $this->article;
     }
 
+    public function setArticle(string $article): void
+    {
+        if (!$this->status->isDraft()) {
+            throw new MatrixException('Product status is not draft.');
+        }
+        $this->article = $article;
+    }
+
     public function getSubject(): Subject
     {
         return $this->subject;

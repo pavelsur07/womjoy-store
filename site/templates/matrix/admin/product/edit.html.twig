@@ -21,6 +21,9 @@
     </div>
     <div class="mt-3 mb-3">
         <a class="btn btn-bitbucket" href="{{ path('matrix.admin.product.index') }}">Back to list</a>
+        {% if product.status.isDraft %}
+        <a class="btn btn-bitbucket" href="{{ path('matrix.admin.product.regenerate.article', {'id': product.id}) }}">Regenerate article</a>
+        {% endif %}
     </div>
     <div class="card">
         <div class="card-header">

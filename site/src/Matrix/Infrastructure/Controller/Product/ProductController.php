@@ -126,4 +126,14 @@ class ProductController extends AbstractController
             ]
         );
     }
+
+    #[Route(path: '/admin/matrix/products/{id}/regenerate-article', name: 'matrix.admin.product.regenerate.article')]
+    public function regenerateArticle(int $id, Product $product, Request $request, Flusher $flusher): Response
+    {
+        $article = 'WJ' . $product->getModel()->getCode() . $product->getSubject()->getCode() . $product->getId() . '-' . $product->getColor()->getCode();
+        $product->setArticle($article);
+        $flusher->flush();
+        $this->addFlash('success', 'Changed article success!');
+        return $this->redirectToRoute('matrix.admin.product.edit', ['id'=>$id]);
+    }
 }

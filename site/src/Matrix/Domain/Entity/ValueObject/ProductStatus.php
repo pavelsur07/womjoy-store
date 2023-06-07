@@ -77,4 +77,9 @@ class ProductStatus extends StringValueObject
             self::ARCHIVED,
         ];
     }
+
+    public function isDraft(): bool
+    {
+        return $this->value === self::DRAFT;
+    }
 }
