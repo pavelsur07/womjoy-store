@@ -34,7 +34,9 @@ final readonly class ProductImageOptimizeHandler
         foreach ($product->getImages() as $image) {
             if (!$image->isOptimize()) {
                 $this->service->optimize(path: $image->getPath(), name: $image->getName());
+                $image->optimize();
             }
         }
+        $this->flusher->flush();
     }
 }
