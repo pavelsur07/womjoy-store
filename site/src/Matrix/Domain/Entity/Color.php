@@ -22,6 +22,9 @@ class Color
     #[ORM\Column(type: Types::STRING)]
     private string $name;
 
+    #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
+    private string $code;
+
     #[ORM\OneToMany(mappedBy: 'color', targetEntity: Product::class)]
     private Collection $products;
 
@@ -44,5 +47,15 @@ class Color
     public function getProducts(): Collection
     {
         return $this->products;
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
     }
 }

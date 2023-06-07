@@ -30,7 +30,7 @@ class Product
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: Types::STRING, unique: true)]
+    #[ORM\Column(type: Types::STRING, unique: true, nullable: true)]
     private string $article;
 
     #[ORM\ManyToOne(targetEntity: Subject::class, inversedBy: 'products')]
