@@ -183,6 +183,21 @@ class Product
         return $this->id;
     }
 
+    public function setSubject(Subject $subject): void
+    {
+        $this->subject = $subject;
+    }
+
+    public function setModel(Model $model): void
+    {
+        $this->model = $model;
+    }
+
+    public function setColor(Color $color): void
+    {
+        $this->color = $color;
+    }
+
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;

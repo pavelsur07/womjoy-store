@@ -73,6 +73,6 @@ class SubjectController extends AbstractController
             $this->addFlash('success', 'Changed success!');
             return $this->redirectToRoute('matrix.admin.subject.edit', ['id'=> $id], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('matrix/admin/subject/create.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/subject/edit.html.twig', ['form'=> $form->createView(), 'subject'=> $subject]);
     }
 }

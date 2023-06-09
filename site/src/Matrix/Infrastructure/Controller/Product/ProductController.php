@@ -48,7 +48,9 @@ class ProductController extends AbstractController
     #[Route(path: '/admin/matrix/products/create', name: 'matrix.admin.product.create')]
     public function create(Request $request, ProductRepositoryInterface $products): Response
     {
-        $form = $this->createForm(ProductCreatedForm::class, []);
+        $form = $this->createForm(ProductCreatedForm::class, [
+            'createdAt'=> new DateTimeImmutable(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -100,8 +102,12 @@ class ProductController extends AbstractController
             ProductEditForm::class,
             [
                 'name'=> $product->getName(),
+                'article'=> $product->getArticle(),
                 'status' => $product->getStatus()->value(),
                 'path' => $product->getPathExternalImage()??' ',
+                'subject' => $product->getSubject(),
+                'model' => $product->getModel(),
+                'color' => $product->getColor(),
             ]
         );
 
@@ -111,11 +117,14 @@ class ProductController extends AbstractController
             $data = $form->getData();
 
             $product->changeName(trim($data['name']));
+            $product->setArticle(trim($data['article']));
             $product->getStatus()->setStatus($data['status']);
             $product->setPathExternalImage($data['path']);
-
+            $product->setSubject($data['subject']);
+            $product->setModel($data['model']);
+            $product->setColor($data['color']);
             $flusher->flush();
-            $this->addFlash('danger', 'Supper success.');
+            $this->addFlash('success', 'Supper success.');
         }
 
         return $this->render(
@@ -130,7 +139,7 @@ class ProductController extends AbstractController
     #[Route(path: '/admin/matrix/products/{id}/regenerate-article', name: 'matrix.admin.product.regenerate.article')]
     public function regenerateArticle(int $id, Product $product, Request $request, Flusher $flusher): Response
     {
-        $article = 'WJ' . $product->getModel()->getCode() . $product->getSubject()->getCode() . $product->getId() . '-' . $product->getColor()->getCode();
+        $article = 'WJ' . date_format($product->getCreatedAt(), 'Y') . $product->getSubject()->getCode() . $product->getModel()->getCode() . $product->getId() . '-' . $product->getColor()->getCode();
         $product->setArticle($article);
         $flusher->flush();
         $this->addFlash('success', 'Changed article success!');

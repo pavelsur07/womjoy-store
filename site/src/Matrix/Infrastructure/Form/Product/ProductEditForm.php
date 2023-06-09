@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Form\Product;
 
+use App\Matrix\Domain\Entity\Color;
+use App\Matrix\Domain\Entity\Model;
+use App\Matrix\Domain\Entity\Subject;
 use App\Matrix\Domain\Entity\ValueObject\ProductStatus;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,16 +26,32 @@ class ProductEditForm extends AbstractType
     {
         $builder
             ->add('name', Type\TextType::class)
+            ->add('article', Type\TextType::class)
             ->add('path', Type\TextType::class, ['required' =>false])
-/*            ->add('status', Type\ChoiceType::class, ['choices' => [
-                'Draft' => ProductStatus::DRAFT,
-                'Development' => ProductStatus::DEVELOPMENT,
-                'Ready development' => ProductStatus::READY_DEVELOPMENT,
-                'Wait sale' => ProductStatus::WAIT_SALE,
-                'Ready sale' => ProductStatus::READY_SALE,
-                'Sale' => ProductStatus::SALE,
-                'Archived' => ProductStatus::ARCHIVED,
-            ], ])*/
+            ->add(
+                'subject',
+                EntityType::class,
+                [
+                    'class' => Subject::class,
+                    'choice_label' => 'name',
+                ]
+            )
+            ->add(
+                'model',
+                EntityType::class,
+                [
+                    'class' => Model::class,
+                    'choice_label' => 'name',
+                ]
+            )
+            ->add(
+                'color',
+                EntityType::class,
+                [
+                    'class' => Color::class,
+                    'choice_label' => 'name',
+                ]
+            )
             ->add('status', Type\ChoiceType::class, [
                 'choices' => array_combine(ProductStatus::list(), ProductStatus::list()),
                 // 'required' => false,

@@ -72,6 +72,6 @@ class ModelController extends AbstractController
             $this->addFlash('success', 'Changed success!');
             return $this->redirectToRoute('matrix.admin.model.edit', ['id'=> $id], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('matrix/admin/model/create.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/model/edit.html.twig', ['form'=> $form->createView(), 'model'=> $model]);
     }
 }

@@ -72,6 +72,6 @@ class ColorController extends AbstractController
             $this->addFlash('success', 'Changed success!');
             return $this->redirectToRoute('matrix.admin.color.edit', ['id'=>$id], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('matrix/admin/color/edit.html.twig', ['form'=> $form->createView()]);
+        return $this->render('matrix/admin/color/edit.html.twig', ['form'=> $form->createView(), 'color' => $color]);
     }
 }

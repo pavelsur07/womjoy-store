@@ -10,7 +10,7 @@
                 Matrix
             </div>
             <h2 class="page-title">
-                Edit color: {{ color.name }}
+                Edit model: {{ model.name }}
             </h2>
         </div>
         <!-- Page title actions -->
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="mt-3 mb-3">
-        <a class="btn btn-bitbucket" href="{{ path('matrix.admin.color.index') }}">Back to list</a>
+        <a class="btn btn-bitbucket" href="{{ path('matrix.admin.model.index') }}">Back to list</a>
     </div>
     <div class="card card-body">
         {{ form_start(form) }}
@@ -30,3 +30,4 @@
 
     </div>
 {% endblock %}
+
