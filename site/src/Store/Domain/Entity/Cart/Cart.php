@@ -16,14 +16,9 @@ class Cart
     private string $status;
     private Collection $items;
 
-    /**
-     * @param string            $customerId
-     * @param DateTimeImmutable $createdAt
-     */
     public function __construct(string $customerId, DateTimeImmutable $createdAt)
     {
         $this->customerId = $customerId;
         $this->createdAt = $createdAt;
     }
-
 }

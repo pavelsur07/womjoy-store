@@ -39,6 +39,16 @@ class ProductRepository implements ProductRepositoryInterface
         return $object;
     }
 
+    public function getAllIterable(): iterable
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Product::class, 'p');
+        $qb->orderBy('p.id', 'ASC');
+
+        return $qb->getQuery()->toIterable();
+    }
+
     public function index(int $page, int $size, ProductFilterInterface $filter): PaginationInterface
     {
         $qb = $this->em->createQueryBuilder()

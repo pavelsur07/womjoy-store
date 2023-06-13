@@ -11,6 +11,8 @@ interface ProductRepositoryInterface
 {
     public function get(int $id): Product;
 
+    public function getAllIterable(): iterable;
+
     public function index(int $page, int $size, ProductFilterInterface $filter): PaginationInterface;
 
     public function list(): array;
