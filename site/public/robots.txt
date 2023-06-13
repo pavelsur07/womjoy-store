@@ -14,9 +14,40 @@ Disallow: /users
 Disallow: /copyright
 Disallow: /privacy
 Disallow: /admin/dashboard
+Sitemap: https://static.womjoy.ru/s3/sitemap.xml
 
-User-agent: Mediapartners-Google
-Disallow:
+User-agent: Googlebot
+Disallow: /*.php
+Disallow: /search
+Disallow: /login
+Disallow: /logout
+Disallow: /registration
+Disallow: /remind
+Disallow: /error
+Disallow: /comment
+Disallow: /blog/date/
+Disallow: /blog/search
+Disallow: /search
+Disallow: /users
+Disallow: /copyright
+Disallow: /privacy
+Disallow: /admin/dashboard
+Sitemap: https://static.womjoy.ru/s3/sitemap.xml
 
-User-Agent: YaDirectBot
-Disallow:
+User-Agent: Yandex
+Disallow: /*.php
+Disallow: /search
+Disallow: /login
+Disallow: /logout
+Disallow: /registration
+Disallow: /remind
+Disallow: /error
+Disallow: /comment
+Disallow: /blog/date/
+Disallow: /blog/search
+Disallow: /search
+Disallow: /users
+Disallow: /copyright
+Disallow: /privacy
+Disallow: /admin/dashboard
+Sitemap: https://static.womjoy.ru/s3/sitemap.xml
