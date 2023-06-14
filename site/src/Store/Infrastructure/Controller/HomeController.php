@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Common\Infrastructure\JsonLd\JsonLdCompany;
+use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
 use App\Store\Domain\Entity\Home\AssignCategory;
 use App\Store\Domain\Entity\Home\Home;
 use App\Store\Infrastructure\Repository\ProductRepository;

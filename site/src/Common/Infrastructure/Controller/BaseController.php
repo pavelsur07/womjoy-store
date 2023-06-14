@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Common\Infrastructure\Controller;
 
+use App\Common\Infrastructure\JsonLd\JsonLdCompany;
+use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
 use App\Menu\Domain\Entity\Menu;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
 use App\Store\Domain\Entity\Category\Category;
@@ -23,11 +25,12 @@ class BaseController extends AbstractController
     ];
 
     public array $metaData =[
-        'title' =>'Title base controller default',
-        'description' => 'Description base controller default',
-        'h1' => 'H1 default',
+        'title' =>'Title default base controller',
+        'description' => 'Description default base controller',
+        'h1' => 'H1 default base controller',
         'noindex' => false,
         'nofollow' => false,
+        'jsonLdCompany' => null,
     ];
 
     public function __construct(
@@ -46,6 +49,7 @@ class BaseController extends AbstractController
             $item->setParent($headerMenu);
             $item->setSort($count++);
             $this->menus->save($item, true);
+            $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
         }
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
@@ -69,6 +73,7 @@ class BaseController extends AbstractController
         $this->metaData['h1'] = $h1;
     }
 
+    /** @deprecated  */
     public function jsonLdGenerator(array $data): string
     {
         return '<script type="application/ld+json">' . json_encode($data, JSON_UNESCAPED_SLASHES | JSON_HEX_APOS | JSON_UNESCAPED_UNICODE) . '</script>';
