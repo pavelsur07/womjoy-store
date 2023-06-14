@@ -85,17 +85,31 @@
     {% block body %}{% endblock %}
 
     <footer class="footer">
+        {{ metaData.jsonLdCompany|raw }}
         <div class="wrapper">
             <div class="footer__main">
                 <div class="footer__left">
                     <a href="#" class="footer__logo">
                         <img src="{{ asset('./img/logo.svg') }}" alt="logo" width="205" height="36">
                     </a>
-                    <div class="footer__phone">
-                        <a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
+                    <div itemscope="" itemtype="http://schema.org/Organization" class="footer__phone">
+                        <meta itemprop="name" content="ООО Вумджой">
+                        {#<meta itemprop="telephone" content="+7(800)301-67-53">#}
+                        <meta itemprop="email" content="info@womjoy.ru">
+                        {#<meta itemprop="address" content="Ваш адрес">#}
+                        {#
+                        <meta itemprop="streetAddress" content="Ростовская обл., г. Азов, ул. Ленина 53">
+                        <meta itemprop="postalCode" content="394016">
+                        <meta itemprop="addressLocality" content="Азов, Россия">
+                        <meta itemprop="logo" content="https://womjoy.ru/img/logo.svg">
+                        #}
+                        {#<meta itemprop="image" content="url к картинке офиса">#}
+                        {#<meta itemprop="description" content="Описание страницы">#}
+                        <meta itemprop="legalName" content="Женская одежда для спорта и путешествий.">
+                        {#<meta itemprop="sameAs" content="ссылка на соц сеть">#}
+                        <a itemprop="telephone" href="#" class="footer__phone_call">8 (800) 301-67-53</a>
                         <span class="footer__phone_descr">Звонок по РФ бесплатный</span>
                     </div>
-                    {{ metaData.jsonLdCompany|raw }}
                     <ul class="footer__socials">
                         <li><a href="#"><img src="{{ asset('./img/icons/vk.svg') }}" alt="VK" width="40" height="40"></a></li>
                         <li><a href="#"><img src="{{ asset('./img/icons/tg.svg') }}" alt="Telegram" width="40" height="40"></a></li>

@@ -49,13 +49,13 @@ class BaseController extends AbstractController
             $item->setParent($headerMenu);
             $item->setSort($count++);
             $this->menus->save($item, true);
-            $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
         }
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
 
         $home = $this->homeService->get();
         $this->menu['categories'] = $this->menuCategories($home);
+        $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
     }
 
     public function setTitle(string $title): void
