@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Common\Infrastructure\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CartController extends AbstractController
+class CartController extends BaseController
 {
     #[Route(path: '/cart/', name: 'store.cart')]
     public function cart(): Response
     {
-        return $this->render('store/cart/cart.html.twig');
+        return $this->render(
+            'store/cart/cart.html.twig',
+            [
+                'metaData' => $this->metaData,
+                'menu' => $this->menu,
+            ]
+        );
     }
 }

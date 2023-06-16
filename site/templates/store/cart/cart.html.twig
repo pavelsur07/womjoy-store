@@ -1,172 +1,202 @@
-{% extends 'base.html.twig' %}
+{% extends 'store/base.html.twig' %}
 {% block body %}
-    <!-- cart + summary -->
-
-        <div class="container">
-            <div class="row">
-                <!-- cart -->
-                <div class="col-lg-9">
-                    <div class="card border shadow-0">
-                        <div class="m-4">
-                            <h4 class="card-title mb-4">Your shopping cart</h4>
-                            <div class="row gy-3 mb-4">
-                                <div class="col-lg-5">
-                                    <div class="me-lg-5">
-                                        <div class="d-flex">
-                                            <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                            <div class="">
-                                                <a href="#" class="nav-link">Winter jacket for men and lady</a>
-                                                <p class="text-muted">Yellow, Jeans</p>
-                                            </div>
-                                        </div>
-                                    </div>
+    <section class="cart">
+        <div class="wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Корзина</li>
+                </ol>
+            </nav>
+            <div class="cart__top">
+                <h1 class="cart__title title-xl">Корзина</h1>
+                <button class="cart__clear" type="button">
+                    <img src="{{ asset('./img/icons/cart-remove.svg') }}" alt="cart remove" width="20" height="20">
+                    Очистить корзину
+                </button>
+            </div>
+            <div class="cart__content">
+                <div class="cart__left">
+                    <div class="cart__items">
+                        <div class="c-item">
+                            <a href="#" class="c-item__img">
+	                            <span class="c-item__img_in">
+	                                <img src="{{ asset('./img/cart-item-img.png') }}" alt="" width="83" height="110">
+	                            </span>
+                            </a>
+                            <div class="c-item__main">
+                                <div class="c-item__text">
+                                    <a href="#" class="c-item__name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                    <span class="c-item__size">Размер: М</span>
                                 </div>
-                                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                    <div class="">
-                                        <select style="width: 100px;" class="form-select me-4">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        <text class="h6">$1156.00</text> <br />
-                                        <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                                    </div>
+                                <div class="c-item__actions">
+                                    <button class="c-item__action c-item__minus" type="button">
+                                        <img src="{{ asset('./img/icons/minus.svg') }}" alt="minus" width="24" height="24">
+                                    </button>
+                                    <input type="text" class="c-item__inp" value="1">
+                                    <button class="c-item__action c-item__plus" type="button">
+                                        <img src="{{ asset('./img/icons/plus.svg') }}" alt="plus" width="24" height="24">
+                                    </button>
                                 </div>
-                                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                    <div class="float-md-end">
-                                        <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                        <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row gy-3 mb-4">
-                                <div class="col-lg-5">
-                                    <div class="me-lg-5">
-                                        <div class="d-flex">
-                                            <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                            <div class="">
-                                                <a href="#" class="nav-link">Mens T-shirt Cotton Base</a>
-                                                <p class="text-muted">Blue, Medium</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                    <div class="">
-                                        <select style="width: 100px;" class="form-select me-4">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        <text class="h6">$44.80</text> <br />
-                                        <small class="text-muted text-nowrap"> $12.20 / per item </small>
-                                    </div>
-                                </div>
-                                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                    <div class="float-md-end">
-                                        <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                        <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row gy-3">
-                                <div class="col-lg-5">
-                                    <div class="me-lg-5">
-                                        <div class="d-flex">
-                                            <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/13.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                            <div class="">
-                                                <a href="#" class="nav-link">Blazer Suit Dress Jacket for Men</a>
-                                                <p class="text-muted">XL size, Jeans, Blue</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                    <div class="">
-                                        <select style="width: 100px;" class="form-select me-4">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        <text class="h6">$1156.00</text> <br />
-                                        <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                                    </div>
-                                </div>
-                                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                    <div class="float-md-end">
-                                        <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                        <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                    </div>
+                                <div class="c-item__price">
+                                    <span class="c-item__cost">1 299 ₽</span>
+                                    <del class="c-item__disc">1 299 ₽</del>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="border-top pt-4 mx-4 mb-4">
-                            <p><i class="fas fa-truck text-muted fa-lg"></i> Free Delivery within 1-2 weeks</p>
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip
-                            </p>
+                        <div class="c-item">
+                            <a href="#" class="c-item__img">
+	                            <span class="c-item__img_in">
+	                                <img src="{{ asset('./img/cart-item-img.png') }}" alt="" width="83" height="110">
+	                            </span>
+                            </a>
+                            <div class="c-item__main">
+                                <div class="c-item__text">
+                                    <a href="#" class="c-item__name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                    <span class="c-item__size">Размер: М</span>
+                                </div>
+                                <div class="c-item__actions">
+                                    <button class="c-item__action c-item__minus" type="button">
+                                        <img src="{{ asset('./img/icons/minus.svg') }}" alt="minus" width="24" height="24">
+                                    </button>
+                                    <input type="text" class="c-item__inp" value="1">
+                                    <button class="c-item__action c-item__plus" type="button">
+                                        <img src="{{ asset('./img/icons/plus.svg') }}" alt="plus" width="24" height="24">
+                                    </button>
+                                </div>
+                                <div class="c-item__price">
+                                    <span class="c-item__cost">1 299 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-item">
+                            <a href="#" class="c-item__img">
+	                            <span class="c-item__img_in">
+	                                <img src="{{ asset('./img/cart-item-img.png') }}" alt="" width="83" height="110">
+	                            </span>
+                            </a>
+                            <div class="c-item__main">
+                                <div class="c-item__text">
+                                    <a href="#" class="c-item__name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                    <span class="c-item__size">Размер: М</span>
+                                </div>
+                                <div class="c-item__actions">
+                                    <button class="c-item__action c-item__minus" type="button">
+                                        <img src="{{ asset('./img/icons/minus.svg') }}" alt="minus" width="24" height="24">
+                                    </button>
+                                    <input type="text" class="c-item__inp" value="1">
+                                    <button class="c-item__action c-item__plus" type="button">
+                                        <img src="{{ asset('./img/icons/plus.svg') }}" alt="" width="24" height="24">
+                                    </button>
+                                </div>
+                                <div class="c-item__price">
+                                    <span class="c-item__cost">1 299 ₽</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- cart -->
-                <!-- summary -->
-                <div class="col-lg-3">
-                    <div class="card mb-3 border shadow-0">
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label class="form-label">Have coupon?</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control border" name="" placeholder="Coupon code" />
-                                        <button class="btn btn-light border">Apply</button>
+
+                    <div class="checkout">
+                        <div class="section-top">
+                            <h2 class="checkout__title title-l">Оформление заказа</h2>
+                        </div>
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Способ доставки</div>
+                            <div class="pvz-block">
+                                <div class="pvz-block__text">
+                                    <div class="pvz-block__title">Пункт выдачи СДЭК <img src="{{ asset('./img/icons/sdek-check.svg') }}" alt="sdek check" width="24" height="24"></div>
+                                    <div class="pvz-block__info">
+                                        <span class="pvz-block__cost">500 ₽</span>
+                                        <span>На Космонавтов 32</span>
                                     </div>
+                                </div>
+                                <button class="pvz-block__btn" type="button">Изменить</button>
+                            </div>
+                            <div class="pvz-block">
+                                <div class="pvz-block__text">
+                                    <div class="pvz-block__title">Пункт выдачи не выбран</div>
+                                    <div class="pvz-block__info">
+                                        <span>Доставка от 500 ₽</span>
+                                    </div>
+                                </div>
+                                <button class="btn-black" type="button">Выбрать пункт выдачи</button>
+                            </div>
+                        </div>
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Способ оплаты</div>
+                            <label class="pay-method">
+                                <input type="radio" name="pay_method" hidden checked>
+                                <span class="pay-method__rd"></span>
+                                <div class="pay-method__main">
+                                    <div class="pay-method__top">
+                                        <span class="pay-method__name">Картой онлайн</span>
+                                        <div class="pay-method__imgs">
+                                            <img src="{{ asset('./img/icons/mc.svg') }}" alt="mc" width="45" height="32">
+                                            <img src="{{ asset('./img/icons/mir.svg') }}" alt="mir" width="45" height="32">
+                                            <img src="{{ asset('./img/icons/visa.svg') }}" alt="visa" width="45" height="32">
+                                        </div>
+                                    </div>
+                                    <span class="gray">Без комиссии</span>
+                                </div>
+                            </label>
+                            <label class="pay-method">
+                                <input type="radio" name="pay_method" hidden>
+                                <span class="pay-method__rd"></span>
+                                <div class="pay-method__main">
+                                    <div class="pay-method__top">
+                                        <span class="pay-method__name">При получении</span>
+                                    </div>
+                                    <span class="gray">Оплата в пункте вывоза</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Данные получателя</div>
+                            <form class="field-list">
+                                <div class="field">
+                                    <span class="field__ph">Ваше имя</span>
+                                    <input type="text" class="field__inp" placeholder="Иванов Иван Иванович">
+                                </div>
+                                <div class="field">
+                                    <span class="field__ph">Номер телефона</span>
+                                    <input type="text" class="field__inp phone-masked-field" placeholder="+7 956 654-55-33">
+                                </div>
+                                <div class="field">
+                                    <span class="field__ph">Email для счёта</span>
+                                    <input type="text" class="field__inp" placeholder="email@example.com">
+                                </div>
+                                <div class="field field-text">
+                                    <span class="field__ph">Комментарий к заказу</span>
+                                    <textarea class="field__inp" placeholder="Текст комментария"></textarea>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="card shadow-0 border">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <p class="mb-2">Total price:</p>
-                                <p class="mb-2">$329.00</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="mb-2">Discount:</p>
-                                <p class="mb-2 text-success">-$60.00</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="mb-2">TAX:</p>
-                                <p class="mb-2">$14.00</p>
-                            </div>
-                            <hr />
-                            <div class="d-flex justify-content-between">
-                                <p class="mb-2">Total price:</p>
-                                <p class="mb-2 fw-bold">$283.00</p>
-                            </div>
 
-                            <div class="mt-3">
-                                <a href="{{ path('store.checkout') }}" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
-                                <a href="#" class="btn btn-light w-100 border mt-2"> Back to shop </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!-- summary -->
+                <div class="c-main">
+                    <div class="c-main__title">Ваш заказ</div>
+                    <ul class="c-main__list">
+                        <li><span>Товары, 3 шт.</span><span>2000 р</span></li>
+                        <li><span>Скидка</span><span>− 500 р</span></li>
+                        <li><span>Доставка</span><span>Бесплатно</span></li>
+                    </ul>
+                    <div class="c-main__final">
+                        Сумма заказа
+                        <span class="c-main__cost">2 000 р</span>
+                    </div>
+                    <button class="c-main__btn btn-primary" type="button">Оформить заказ</button>
+                    <label class="c-main__check f-check">
+                        <input type="checkbox" checked hidden>
+                        <span class="f-check__sq">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.08709 9.08709C2.72097 9.4532 2.72097 10.0468 3.08709 10.4129L6.08709 13.4129C6.4532 13.779 7.0468 13.779 7.41291 13.4129L14.9129 5.91291C15.279 5.5468 15.279 4.9532 14.9129 4.58709C14.5468 4.22097 13.9532 4.22097 13.5871 4.58709L6.75 11.4242L4.41291 9.08709C4.0468 8.72097 3.4532 8.72097 3.08709 9.08709Z" fill="#1A1E24" />
+                            </svg>
+                        </span>
+                        <span class="f-check__txt">Согласен с условиями <a href="#">Правил пользования торговой площадкой</a></span>
+                    </label>
+                </div>
             </div>
         </div>
-
-    <!-- cart + summary -->
+    </section>
 {% endblock %}

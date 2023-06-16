@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ path('store.cart') }}">
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="24" height="24">
                             Корзина
                         </a>
@@ -207,7 +207,7 @@
             </a>
         </li>
         <li class="mob-bar__item">
-            <a href="#" class="mob-bar__link">
+            <a href="{{ path('store.cart') }}" class="mob-bar__link">
                 <span class="mob-bar__icon"><img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="24" height="24"></span>
                 Корзина
             </a>
