@@ -33,7 +33,7 @@
 					<a href="#" class="header__logo">
 						<img src="./img/logo.svg" alt="" width="205" height="36">
 					</a>
-					<div class="country">
+					<!-- <div class="country">
 						<button class="country__crnt" type="button">
 							<img src="./img/countries/ru.svg" alt="" width="24" height="24" class="country__crnt_flag">
 							<img src="./img/icons/arrow-down.svg" alt="" width="20" height="20" class="country__crnt_arrow">
@@ -70,7 +70,7 @@
 							</div>
 							<button class="btn-primary" type="submit">Подтвердить</button>
 						</form>
-					</div>
+					</div> -->
 					<div class="burger">
 						<span class="burger__item"></span>
 						<span class="burger__item"></span>
@@ -87,17 +87,17 @@
 					</button>
 				</form>
 				<ul class="header__actions">
-					<li>
-						<a href="#">
-							<img src="./img/icons/trace.svg" alt="" width="24" height="24">
-							Отследить
-						</a>
-					</li>
-					<li>
+					<li class="drop">
 						<a href="#">
 							<img src="./img/icons/cabinet.svg" alt="" width="24" height="24">
 							Кабинет
 						</a>
+						<ul class="drop__list">
+							<li class="drop__item"><a href="#" class="drop__link">Мои данные</a></li>
+							<li class="drop__item"><a href="#" class="drop__link">История заказов</a></li>
+							<li class="drop__item"><a href="#" class="drop__link">Обратная связь</a></li>
+							<li class="drop__item"><a href="#" class="drop__link gray">Выйти</a></li>
+						</ul>
 					</li>
 					<li>
 						<a href="#">
@@ -166,14 +166,14 @@
 						</li>
 						<li class="nav__item"><a href="#" class="nav__link">Брюки</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Леггинсы</a></li>
-						<li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
+						<!-- <li class="nav__item"><a href="#" class="nav__link">Топы</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Рашгарды</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Футболки</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Худи</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Шорты</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Аксессуары</a></li>
 						<li class="nav__item"><a href="#" class="nav__link">Распродажа</a></li>
-						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li>
+						<li class="nav__item"><a href="#" class="nav__link">Новинки</a></li> -->
 						<li class="nav__item drop">
 							<a href="#" class="nav__link">Покупателям</a>
 							<ul class="drop__list">
@@ -202,7 +202,7 @@
 				</button>
 			</form>
 			<ul class="burger-menu__list">
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Щенщинам</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
@@ -215,7 +215,7 @@
 						<li><a href="#">Аксессуары</a></li>
 					</ul>
 				</li>
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Занятия</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
@@ -223,7 +223,7 @@
 						<li><a href="#">Топы</a></li>
 					</ul>
 				</li>
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Спецпредложения</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
@@ -231,13 +231,16 @@
 						<li><a href="#">Топы</a></li>
 					</ul>
 				</li>
-				<li class="burger-menu__item">
+				<li class="burger-menu__item dropable">
 					<div class="burger-menu__title">Покупателям</div>
 					<ul class="burger-menu__sublist">
 						<li><a href="#">Брюки</a></li>
 						<li><a href="#">Леггинсы</a></li>
 						<li><a href="#">Топы</a></li>
 					</ul>
+				</li>
+				<li class="burger-menu__item">
+					<a href="#" class="burger-menu__title">Покупателям</a>
 				</li>
 			</ul>
 		</div>
@@ -568,7 +571,6 @@
             </div>
         </div>
     </section>
-
     <footer class="footer">
 		<div class="wrapper">
 			<div class="footer__main">
@@ -661,11 +663,17 @@
                 Отследить
             </a>
         </li>
-        <li class="mob-bar__item">
-            <a href="#" class="mob-bar__link">
+        <li class="mob-bar__item mob-bar__drop">
+            <a href="#" class="mob-bar__link mob-bar__drop_trigger">
             	<span class="mob-bar__icon"><img src="./img/icons/cabinet.svg" alt="" width="24" height="24"></span>
                 Кабинет
             </a>
+            <ul class="mob-bar__drop_list">
+            	<li><a href="#">Мои данные</a></li>
+            	<li><a href="#">История заказов</a></li>
+            	<li><a href="#">Обратная связь</a></li>
+            	<li><a href="#" class="gray">Выйти</a></li>
+            </ul>
         </li>
         <li class="mob-bar__item">
             <a href="#" class="mob-bar__link">

@@ -6,11 +6,42 @@ document.addEventListener('DOMContentLoaded', () => {
 			im.mask(field);
 		});
 	}
+
+	const historyItemsBlock = document.querySelector('.history__items');
+	const historyBack = document.querySelector('.history__back');
+	const historyItems = document.querySelectorAll('.history__item');
+	const historyOrders = document.querySelectorAll('.order');
+	if (historyItems.length > 0) {
+		historyItems.forEach((item, i) => {
+			item.addEventListener('click', () => {
+				document.querySelector('.history__item.active')?.classList.remove('active');
+				document.querySelector('.history__back.active')?.classList.remove('active');
+				document.querySelector('.order.active')?.classList.remove('active');
+
+				if (window.innerWidth <= 500) {
+					historyItemsBlock.classList.add('hidden');
+					historyBack.classList.add('active');
+
+					historyBack.addEventListener('click', () => {
+						document.querySelector('.history__item.active')?.classList.remove('active');
+						document.querySelector('.history__back.active')?.classList.remove('active');
+						document.querySelector('.order.active')?.classList.remove('active');
+						historyItemsBlock.classList.remove('hidden');
+						historyBack.classList.remove('active');
+					})
+				}
+
+				item.classList.add('active');
+				historyOrders[i].classList.add('active');
+			});
+		});
+	}
 	
 	
-	if (window.innerWidth <= 480) {
+	if (window.innerWidth <= 500) {
 		mobMenuInit('.burger', '.burger-menu');
 		mobMenuInit('.c-open', '.catalog-menu');
+		mobMenuInit('.mob-bar__drop_trigger', '.mob-bar__drop_list');
 
 		const burgerItems = document.querySelectorAll('.burger-menu__item.dropable');
 		burgerItems.forEach(item => {
@@ -164,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						slidesPerView: 2.1,
 						spaceBetween: 10
 					},
-					480: {
+					500: {
 						slidesPerView: 4,
 						spaceBetween: 20
 					},
@@ -181,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				0: {
 					spaceBetween: 5,
 				},
-				480: {
+				500: {
 					spaceBetween: 20,
 				},
 			}
@@ -205,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					slidesPerView: 1.2,
 					spaceBetween: 5,
 				},
-				481: {
+				500: {
 					slidesPerView: 1,
 					spaceBetween: 10,
 				}
@@ -235,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				0: {
 					spaceBetween: 10,
 				},
-				481: {
+				500: {
 					spaceBetween: 15,
 				},
 			}
@@ -255,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					slidesPerView: 1.1,
 					spaceBetween: 10,
 				},
-				480: {
+				500: {
 					slidesPerView: 3,
 					spaceBetween: 20,
 				}
@@ -276,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					slidesPerView: 2.1,
 					spaceBetween: 10,
 				},
-				480: {
+				500: {
 					slidesPerView: 3,
 					spaceBetween: 20,
 				}
