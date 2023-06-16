@@ -1,0 +1,23 @@
+{% extends 'store/base.html.twig' %}
+{% block body %}
+    <section class="e404 section">
+        <div class="wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">404</li>
+                </ol>
+            </nav>
+            <div class="e404__content">
+                <div class="e404__text">
+                    <h1 class="e404__title title-xl">Страница не найдена</h1>
+                    <p class="e404__descr">Так уж получилось, что из множества страниц нашего сайта вы оказались как раз на той, которая уже не существует</p>
+                    <a href="{{ path('home') }}" class="e404__btn btn-primary">Перейти на главную</a>
+                </div>
+                <div class="e404__img">
+                    <img src="{{ asset('./img/e404.svg') }}" alt="404" width="598" height="400">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
