@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Common\Infrastructure\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
-class AccountController extends AbstractController
+class AccountController extends BaseController
 {
-    #[Route(path: '/account/', name: 'store.account')]
+    #[Route(path: '/account/history', name: 'store.account.history')]
     public function index(): Response
     {
-        return $this->render('store/account/dashboard.html.twig');
+        return $this->render('store/account/history.html.twig',
+            [
+                'metaData' => $this->metaData,
+                'menu' => $this->menu,
+            ]);
     }
 }
