@@ -253,6 +253,7 @@
         </div>
     </section>
 
+{# deprecated - remove
     <section class="subscribe section">
         <div class="wrapper">
             <div class="subscribe__content">
@@ -270,6 +271,9 @@
             </div>
         </div>
     </section>
+#}
+
+    <div id="subscriber_id"></div>
 
     <section class="seo section">
         <div class="wrapper">
@@ -301,3 +305,9 @@
     </section>
 
 {% endblock %}
+    {% block javascripts %}
+         {{ parent() }}
+         {{ encore_entry_script_tags('subscriber') }}
+       {# <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
+        <script src="{{ asset('./js/script.js') }}"></script>#}
+    {% endblock %}
