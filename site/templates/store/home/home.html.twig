@@ -171,19 +171,7 @@
         </div>
     </section>
 
-    <section class="support section">
-        <div class="wrapper">
-            <div class="support__content">
-                <h2 class="support__title section-title">Служба поддержки покупателей</h2>
-                <div class="support__text">
-                    <a href="#" class="support__call">8 (800) 301-67-53</a>
-                    <span class="support__descr">Звонок по РФ бесплатный</span>
-                </div>
-
-                <img src="{{ asset('./img/icons/support-bg.svg') }}" alt="support bg" class="support__img" width="346" height="170">
-            </div>
-        </div>
-    </section>
+    {% include 'store/common/support_section.html.twig' %}
 
     <section class="products section">
         <div class="wrapper">
@@ -252,26 +240,6 @@
             </div>
         </div>
     </section>
-
-{# deprecated - remove
-    <section class="subscribe section">
-        <div class="wrapper">
-            <div class="subscribe__content">
-                <div class="subscribe__text">
-                    <h2 class="subscribe__title section-title">Выгода с доставкой</h2>
-                    <p class="subscribe__descr">Подпишитесь и получайте промокоды, акции и подборки товаров</p>
-                </div>
-                <form class="subscribe__form">
-                    <div class="subscribe__field field">
-                        <span class="field__ph">Электронная почта</span>
-                        <input type="text" class="field__inp" value="email@example.com">
-                    </div>
-                    <button class="subscribe__btn btn-primary" type="submit">Подписаться</button>
-                </form>
-            </div>
-        </div>
-    </section>
-#}
 
     <div id="subscriber_id"></div>
 
