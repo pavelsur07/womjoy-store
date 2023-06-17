@@ -15,10 +15,12 @@ class AccountController extends BaseController
     #[Route(path: '/account/history', name: 'store.account.history')]
     public function index(): Response
     {
-        return $this->render('store/account/history.html.twig',
+        return $this->render(
+            'store/account/history.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
-            ]);
+            ]
+        );
     }
 }
