@@ -19,7 +19,7 @@ class Cart
     #[ORM\Column]
     private int $id;
 
-    #[ORM\Column(type: Types::INTEGER,nullable: true)]
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private int|null $customerId = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
@@ -38,6 +38,11 @@ class Cart
         $this->updatedAt = $createdAt;
 
         $this->items = new ArrayCollection();
+    }
+
+    public function getAmount(): int
+    {
+        return \count($this->items);
     }
 
     public function getId(): int
@@ -64,5 +69,12 @@ class Cart
     public function getItems(): Collection
     {
         return $this->items;
+    }
+
+    public function clear(): void
+    {
+        foreach ($this->items as $item) {
+            $this->items->removeElement($item);
+        }
     }
 }
