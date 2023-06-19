@@ -28,3 +28,7 @@ menu:
 guarantee:
     resource: ../src/Guarantee/Infrastructure/Controller/
     type: annotation
+
+subscriber:
+    resource: ../src/Subscriber/Infrastructure/Controller/
+    type: annotation

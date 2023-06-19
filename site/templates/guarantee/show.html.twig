@@ -15,18 +15,21 @@
             <p>И еще одно: если вы заметите, что цветные вещи начали линять после покупки, просто свяжитесь с нами, и мы решим эту проблему вместе.</p>
             <p>А если вдруг швы разойдутся после начала использования, не беспокойтесь! Просто дайте нам знать.</p>
         </div>
-        <form class="g-form" action="{{ path('guarantee.create') }}" method="post">
+
+        <div id="guarantee_id"></div>
+
+        {#<form class="g-form" action="{{ path('guarantee.create') }}" method="post">
             <div class="g-form__title title-l">Напишите нам в гарантийный отдел</div>
             <p class="g-form__please">Пожалуйста, заполните форму ниже, и мы с радостью окажем вам помощь по вопросам, связанным с гарантией.</p>
             <div class="g-form__main">
                 <textarea class="g-form__textarea" name="message" placeholder="Текст сообщения..."></textarea>
-                {#<label class="g-form__photo">
+                #}{#<label class="g-form__photo">
                     <input type="file" name="files" hidden multiple>
                     <span class="g-form__photo_main">
                             <img src="{{ asset('./img/icons/photo.svg') }}" alt="photo" width="24" height="24">
                     </span>
                     <span class="g-form__photo_descr">Прикрепите до 4 фотографий с дефектом</span>
-                </label>#}
+                </label>#}{#
                 <div class="g-form__row">
                     <div class="g-form__sel field field-sel">
                         <span class="field__ph">Место покупки</span>
@@ -59,7 +62,7 @@
                     </label>
                 </div>
             </div>
-        </form>
+        </form>#}
     </div>
 </section>
 {% endblock %}
@@ -67,4 +70,5 @@
     <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
     <script src="{{ asset('./libs/inputmask.min.js') }}"></script>
     <script src="{{ asset('./js/script.js') }}"></script>
+    {{ encore_entry_script_tags('guarantee') }}
 {% endblock %}

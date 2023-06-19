@@ -76,6 +76,9 @@ services:
         
     App\Guarantee\Domain\Repository\GuaranteeRepositoryInterface:
         class: App\Guarantee\Infrastructure\Repository\GuaranteeRepository
+
+    App\Subscriber\Domain\Repository\SubscriberRepository:
+        class: App\Subscriber\Domain\Repository\SubscriberRepository
     
     #    App\Common\Infrastructure\Uploader\FileUploader:
 #        arguments: [ '@default.storage', '%env(STORAGE_BASE_URL)%' ]

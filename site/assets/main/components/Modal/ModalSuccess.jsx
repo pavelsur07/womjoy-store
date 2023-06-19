@@ -11,14 +11,14 @@ function ModalSuccess({active, setActive, children}) {
                         onClick={()=> setActive(false)}
                     >
                         <img
-                            src='./img/icons/close-black.svg'
+                            src='../img/icons/close-black.svg'
                             alt="Success"
                             width="24"
                             height="24"
                         />
                     </button>
                     <div className="success">
-                        <img src="./img/icons/success.svg" alt="" width="70" height="70"/>
+                        <img src="../img/icons/success.svg" alt="" width="70" height="70"/>
                         <div className="success__title">Успешное действие</div>
                         <p className="success__descr">Тут место для описания выполненного действия</p>
                         {children}

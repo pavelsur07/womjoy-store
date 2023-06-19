@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useForm } from "react-hook-form";
 import ModalSuccess from "../components/Modal/ModalSuccess";
+import {postNewSubscriber} from "./api/PostNewSubscriber";
 
 function App() {
     const {
@@ -13,6 +14,10 @@ function App() {
     const [modalActive, setModalActive] = useState(false)
     const onSubmit = data => {
         setModalActive(true)
+        const res = postNewSubscriber(data).then(resp => {
+            console.log(resp)})
+
+        console.log(res.data)
         console.log(data)
     };
 
