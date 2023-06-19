@@ -210,9 +210,11 @@ class Product
 
     public function setArticle(string $article): void
     {
+        /*
         if (!$this->status->isDraft()) {
             throw new MatrixException('Product status is not draft.');
         }
+        */
         $this->article = $article;
     }
 
