@@ -63,85 +63,85 @@ final class ProductControllerTest extends WebTestCase
         self::assertSame($originalNumObjectsInRepository + 1, \count($this->repository->findAll()));
     }
 
-   /* public function testShow(): void
-    {
-        $this->markTestIncomplete();
-        $fixture = new Product();
-        $fixture->setName('My Title');
-        $fixture->setDescription('My Title');
-        $fixture->setPrice('My Title');
-        $fixture->setStatus('My Title');
-        $fixture->setSeoTitle('My Title');
-        $fixture->setSeoDescription('My Title');
+    /* public function testShow(): void
+     {
+         $this->markTestIncomplete();
+         $fixture = new Product();
+         $fixture->setName('My Title');
+         $fixture->setDescription('My Title');
+         $fixture->setPrice('My Title');
+         $fixture->setStatus('My Title');
+         $fixture->setSeoTitle('My Title');
+         $fixture->setSeoDescription('My Title');
 
-        $this->repository->save($fixture, true);
+         $this->repository->save($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
 
-        self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Product');
+         self::assertResponseStatusCodeSame(200);
+         self::assertPageTitleContains('Product');
 
-        // Use assertions to check that the properties are properly displayed.
-    }*/
+         // Use assertions to check that the properties are properly displayed.
+     }*/
 
-   /* public function testEdit(): void
-    {
-        $this->markTestIncomplete();
-        $fixture = new Product();
-        $fixture->setName('My Title');
-        $fixture->setDescription('My Title');
-        $fixture->setPrice('My Title');
-        $fixture->setStatus('My Title');
-        $fixture->setSeoTitle('My Title');
-        $fixture->setSeoDescription('My Title');
+    /* public function testEdit(): void
+     {
+         $this->markTestIncomplete();
+         $fixture = new Product();
+         $fixture->setName('My Title');
+         $fixture->setDescription('My Title');
+         $fixture->setPrice('My Title');
+         $fixture->setStatus('My Title');
+         $fixture->setSeoTitle('My Title');
+         $fixture->setSeoDescription('My Title');
 
-        $this->repository->save($fixture, true);
+         $this->repository->save($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
+         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
-        $this->client->submitForm('Update', [
-            'product[name]' => 'Something New',
-            'product[description]' => 'Something New',
-            'product[price]' => 'Something New',
-            'product[status]' => 'Something New',
-            'product[seoTitle]' => 'Something New',
-            'product[seoDescription]' => 'Something New',
-        ]);
+         $this->client->submitForm('Update', [
+             'product[name]' => 'Something New',
+             'product[description]' => 'Something New',
+             'product[price]' => 'Something New',
+             'product[status]' => 'Something New',
+             'product[seoTitle]' => 'Something New',
+             'product[seoDescription]' => 'Something New',
+         ]);
 
-        self::assertResponseRedirects('/admin/product/');
+         self::assertResponseRedirects('/admin/product/');
 
-        $fixture = $this->repository->findAll();
+         $fixture = $this->repository->findAll();
 
-        self::assertSame('Something New', $fixture[0]->getName());
-        self::assertSame('Something New', $fixture[0]->getDescription());
-        self::assertSame('Something New', $fixture[0]->getPrice());
-        self::assertSame('Something New', $fixture[0]->getStatus());
-        self::assertSame('Something New', $fixture[0]->getSeoTitle());
-        self::assertSame('Something New', $fixture[0]->getSeoDescription());
-    }*/
+         self::assertSame('Something New', $fixture[0]->getName());
+         self::assertSame('Something New', $fixture[0]->getDescription());
+         self::assertSame('Something New', $fixture[0]->getPrice());
+         self::assertSame('Something New', $fixture[0]->getStatus());
+         self::assertSame('Something New', $fixture[0]->getSeoTitle());
+         self::assertSame('Something New', $fixture[0]->getSeoDescription());
+     }*/
 
-   /* public function testRemove(): void
-    {
-        $this->markTestIncomplete();
+    /* public function testRemove(): void
+     {
+         $this->markTestIncomplete();
 
-        $originalNumObjectsInRepository = count($this->repository->findAll());
+         $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $fixture = new Product();
-        $fixture->setName('My Title');
-        $fixture->setDescription('My Title');
-        $fixture->setPrice('My Title');
-        $fixture->setStatus('My Title');
-        $fixture->setSeoTitle('My Title');
-        $fixture->setSeoDescription('My Title');
+         $fixture = new Product();
+         $fixture->setName('My Title');
+         $fixture->setDescription('My Title');
+         $fixture->setPrice('My Title');
+         $fixture->setStatus('My Title');
+         $fixture->setSeoTitle('My Title');
+         $fixture->setSeoDescription('My Title');
 
-        $this->repository->save($fixture, true);
+         $this->repository->save($fixture, true);
 
-        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
+         self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
-        $this->client->submitForm('Delete');
+         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+         $this->client->submitForm('Delete');
 
-        self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
-        self::assertResponseRedirects('/admin/product/');
-    }*/
+         self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
+         self::assertResponseRedirects('/admin/product/');
+     }*/
 }
