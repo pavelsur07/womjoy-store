@@ -9,6 +9,7 @@ use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\VariantEditForm;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,17 @@ class VariantController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            try {
+                $product->addVariant(
+                    barcode: new VariantBarcode($data['barcode']),
+                    value: new VariantValue($data['value'])
+                );
 
-            $product->addVariant(
-                barcode: new VariantBarcode($data['barcode']),
-                value: new VariantValue($data['value'])
-            );
-
-            $flusher->flush();
+                $flusher->flush();
+                $this->addFlash('success', 'Success added variant product.');
+            } catch (Exception $e) {
+                $this->addFlash('warning', $e->getMessage());
+            }
 
             return $this->redirectToRoute('matrix.admin.product.edit', ['id' => $productId]);
         }

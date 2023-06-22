@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Embeddable]
 class VariantBarcode extends StringValueObject
 {
-    #[ORM\Column(type: 'string', length: 30)]
+    #[ORM\Column(type: 'string', length: 50)]
     protected $value;
 
     public function __construct($value)
