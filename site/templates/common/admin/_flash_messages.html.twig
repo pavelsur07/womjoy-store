@@ -15,13 +15,10 @@
    https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
 #}
 
-<div class="alert bottom-0 end-0 mb-4 me-3">
+<div class="position-absolute bottom-0 end-0 mb-4 me-3">
     {% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
         {% for message in messages %}
             <div class="alert alert-{{ label }} " role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'action.close'|trans }}">
-                    <span aria-hidden="true">&times;</span>
-                </button>
                 <h4 class="alert-title">{{ label|capitalize }}</h4>
                 <div class="text-muted">{{ message }}</div>
             </div>
@@ -29,13 +26,31 @@
     {% endfor %}
 </div>
 
+
+
 {#{% if app.request.hasPreviousSession %}
+    <div class="alert bottom-0 end-0 mb-4 me-3">
+        {% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} " role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'action.close'|trans }}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-title">{{ label|capitalize }}</h4>
+                    <div class="text-muted">{{ message }}</div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}#}
+
+{% if app.request.hasPreviousSession %}
 
 
     <div class="messages">
         {% for type, messages in app.flashes %}
             {% for message in messages %}
-                #}{# Bootstrap alert, see https://getbootstrap.com/docs/3.4/components/#alerts #}{#
+                 Bootstrap alert, see https://getbootstrap.com/docs/3.4/components/#alerts
                 <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'action.close'|trans }}">
                         <span aria-hidden="true">&times;</span>
@@ -46,4 +61,4 @@
             {% endfor %}
         {% endfor %}
     </div>
-{% endif %}#}
+{% endif %}

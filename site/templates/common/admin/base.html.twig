@@ -146,10 +146,10 @@
         </header>
         <div class="page-body">
             <div class="container-xl">
-            {% block body %}{% endblock %}
-            </div>
+                {% block body %}{% endblock %}
 
+            </div>
         </div>
-        {% include 'admin/_flash_messages.html.twig' %}
+        {% include 'common/admin/alerts.html.twig' %}
     </body>
 </html>

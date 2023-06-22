@@ -144,13 +144,13 @@
                 </div>
             </div>
         </header>
-        {% include 'admin/alerts.html.twig' %}
         <div class="page-body">
             <div class="container-xl">
+                {% include 'common/admin/alerts.html.twig' %}
             {% block body %}{% endblock %}
             </div>
 
         </div>
-        {% include 'admin/_flash_messages.html.twig' %}
+
     </body>
 </html>
