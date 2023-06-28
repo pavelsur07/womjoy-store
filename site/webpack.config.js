@@ -23,6 +23,10 @@ Encore
     .addEntry('admin', './assets/admin.js')
     .addEntry('subscriber', './assets/main/subscriber/index.js')
     .addEntry('guarantee', './assets/main/guarantee/index.js')
+    .addEntry('store_cart', './assets/store/cart/index.js')
+    .addEntry('store_product', './assets/store/product/index.js')
+
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

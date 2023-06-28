@@ -124,6 +124,10 @@ site-yarn-eslint-fix:
 site-yarn-pretty:
 	docker-compose run --rm site-node-cli yarn prettier
 
+site-yarn-stylelint-fix:
+	docker-compose run --rm site-node-cli yarn stylelint-fix
+
+
 validate-jenkins:
 	curl --user ${USER} -X POST -F "jenkinsfile=<Jenkinsfile" ${HOST}/pipeline-model-converter/validate
 

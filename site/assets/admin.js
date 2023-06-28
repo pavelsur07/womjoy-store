@@ -1,10 +1,10 @@
-import './styles/admin.scss';
+import './styles/admin.scss'
 import '@tabler/core'
 
-import './bootstrap';
+import './bootstrap'
 
-const $ = require('jquery');
-global.$ = global.jQuery = $;
+const $ = require('jquery')
+global.$ = global.jQuery = $
 $(document).ready(function () {
-    $('[data-toggle="popover"]').popover()
+  $('[data-toggle="popover"]').popover()
 })

@@ -132,7 +132,7 @@
                         {% endif %}
                     </div>
                     <div class="i-card__btns">
-                        <button class="i-card__greenbtn btn-primary call-modal" type="button" data-target="card-success">
+                        <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary call-modal" type="button" data-target="card-success">
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
                             В корзину
                         </button>
@@ -169,15 +169,6 @@
                             В избранное
                         </button>
                     </div>
-
-                    {#<div class="i-card__marketplace">
-                        <p class="i-card__marketplace_title">Купить на маркетплейсах</p>
-                        <div class="i-card__marketplace_list">
-                            <a href="#" class="i-card__marketplace_item"><img src="{{ asset('./img/icons/wb.png') }}" alt="wb" width="40" height="40">Wildberries</a>
-                            <a href="#" class="i-card__marketplace_item"><img src="{{ asset('./img/icons/ozon.png') }}" alt="ozon" width="40" height="40">Ozon</a>
-                            <a href="#" class="i-card__marketplace_item"><img src="{{ asset('./img/icons/ym.png') }}" alt="ym" width="40" height="40">Яндекс Маркет</a>
-                        </div>
-                    </div>#}
 
                     <div class="i-card__faq">
                         <div class="i-card__faq_item">
@@ -373,4 +364,8 @@
             </div>
         </div>
     </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_product') }}
 {% endblock %}
