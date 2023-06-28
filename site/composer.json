@@ -7,6 +7,7 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-xmlwriter": "*",
         "cocur/slugify": "^4.3",
         "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.8",
@@ -23,6 +24,7 @@
         "ramsey/uuid": "^4.7",
         "sensio/framework-extra-bundle": "^6.1",
         "sentry/sentry-symfony": "^4.8",
+        "stripe/stripe-php": "^10.15",
         "symfony/asset": "6.2.*",
         "symfony/console": "6.2.*",
         "symfony/doctrine-messenger": "6.2.*",
@@ -53,8 +55,7 @@
         "symfony/webpack-encore-bundle": "^1.16",
         "symfony/yaml": "6.2.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0",
-      "ext-xmlwriter": "*"
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
