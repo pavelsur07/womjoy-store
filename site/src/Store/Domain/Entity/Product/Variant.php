@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -23,6 +24,9 @@ class Variant
 
     #[ORM\ManyToOne(inversedBy: 'variants')]
     private ?Product $product = null;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 0])]
+    private int $quantity = 0;
 
     public function getId(): ?int
     {
@@ -51,5 +55,33 @@ class Variant
         $this->product = $product;
 
         return $this;
+    }
+
+    public function canBeCheckout($quantity): bool
+    {
+        return $quantity <= $this->quantity;
+    }
+
+    public function checkout(int $quantity): void
+    {
+        if ($quantity > $this->quantity) {
+            throw new StoreProductException('Only ' . $this->quantity . ' items are available.');
+        }
+        $this->setQuantity($this->quantity - $quantity);
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    private function setQuantity($quantity): void
+    {
+        $this->quantity = $quantity;
     }
 }

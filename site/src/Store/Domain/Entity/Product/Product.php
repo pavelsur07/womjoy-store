@@ -16,6 +16,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Index(columns: ['popularity'], name: 'popularity_idx')]
 #[ORM\Index(columns: ['published_at'], name: 'published_at_idx')]
 #[ORM\Table(name: '`store_products`')]
@@ -46,6 +47,9 @@ class Product
     #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $images;
 
+    #[ORM\Column]
+    private bool $isHasVariation = false;
+
     /** @var ArrayCollection<array-key, Variant> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
@@ -65,11 +69,17 @@ class Product
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
     private DateTimeImmutable $createdAt;
 
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true, options: ['default'=> '2023-06-03 06:16:11'])]
+    private DateTimeImmutable|null $publishedAt = null;
+
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
-    private DateTimeImmutable $publishedAt;
+    private DateTimeImmutable $updatedAt;
 
     #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
     private int $popularity = 0;
+
+    #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
+    private int $weight = 0;
 
     public function __construct(ProductPrice $price)
     {
@@ -78,18 +88,8 @@ class Product
         $this->images = new ArrayCollection();
         $this->variants = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
-        $this->publishedAt = new DateTimeImmutable();
-    }
-
-    /**
-     * @return array{name: string, article: integer}
-     */
-    public function getPlaceholders(): array
-    {
-        return [
-            'name' => mb_strtolower($this->name),
-            'article' => (string)$this->id,
-        ];
+        $this->updatedAt = $this->createdAt;
+        $this->publishedAt = $this->createdAt;
     }
 
     public function getMainCategory(): ?Category
@@ -196,6 +196,7 @@ class Product
             $this->slug = mb_strtolower(trim($result));
             return;
         }*/
+
         $this->slug = $slug;
     }
 
@@ -335,14 +336,41 @@ class Product
         return $this->createdAt;
     }
 
-    public function getPublishedAt(): DateTimeImmutable
+    public function getPublishedAt(): DateTimeImmutable|null
     {
         return $this->publishedAt;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
     }
 
     public function isAvailable(): bool
     {
         return $this->status->isActive();
+    }
+
+    public function getWeight(): int
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @return array{name: string, article: integer}
+     */
+    public function getPlaceholders(): array
+    {
+        return [
+            'name' => mb_strtolower($this->name),
+            'article' => (string)$this->id,
+        ];
+    }
+
+    #[ORM\PreFlush]
+    public function preFlush(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     private function sortable(): void

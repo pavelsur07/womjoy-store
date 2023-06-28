@@ -33,6 +33,9 @@ class ProductPrice
 
     public function getListPrice(): int
     {
+        if ($this->listPrice === 0) {
+            return $this->price;
+        }
         return $this->listPrice;
     }
 

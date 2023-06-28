@@ -21,11 +21,20 @@ class CartRepository
         $this->repo = $this->em->getRepository(Cart::class);
     }
 
-    public function findById(int $id, string $status): ?Cart
+    public function findById(int $id, string $status = ''): ?Cart
     {
         return $this->repo->findOneBy(
             [
                 'id'=> $id,
+            ]
+        );
+    }
+
+    public function findByOwner(int $customerId): Cart|null
+    {
+        return $this->repo->findOneBy(
+            [
+                'customerId' => $customerId,
             ]
         );
     }

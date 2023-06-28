@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Cart;
 
+use App\Store\Domain\Entity\Product\Variant;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +12,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Table(name: '`store_carts`')]
 class Cart
 {
@@ -42,14 +44,39 @@ class Cart
         $this->items = new ArrayCollection();
     }
 
+    public function add(Variant $variant, int $quantity): void
+    {
+    }
+
+    public function remove(int $variantId): void
+    {
+    }
+
+    public function setQuantity(int $variantId, int $quantity): void
+    {
+    }
+
+    public function getWeight(): int
+    {
+        return 0;
+    }
+
     public function getAmount(): int
     {
         return \count($this->items);
     }
 
+    public function getCost(): void
+    {
+    }
+
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setCustomerId(int $customerId): void
+    {
     }
 
     public function getCustomerId(): int
@@ -78,5 +105,11 @@ class Cart
         foreach ($this->items as $item) {
             $this->items->removeElement($item);
         }
+    }
+
+    #[ORM\PreFlush]
+    public function preFlush(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 }

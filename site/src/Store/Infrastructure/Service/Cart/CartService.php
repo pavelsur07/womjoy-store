@@ -8,11 +8,11 @@ use App\Store\Domain\Entity\Cart\Cart;
 use App\Store\Infrastructure\Repository\CartRepository;
 use DateTimeImmutable;
 
-class CartService
+readonly class CartService
 {
     public function __construct(
-        private readonly CartSessionStorage $storage,
-        private readonly CartRepository $carts,
+        private CartSessionStorage $storage,
+        private CartRepository $carts,
     ) {
     }
 
@@ -21,8 +21,9 @@ class CartService
         $cart = $this->storage->getCart();
 
         if (!$cart) {
-            // $cart = $this->cartFactory->create();
             $cart = new Cart(createdAt: new DateTimeImmutable());
+            $this->save($cart);
+            $this->storage->setCart($cart);
         }
 
         return $cart;
