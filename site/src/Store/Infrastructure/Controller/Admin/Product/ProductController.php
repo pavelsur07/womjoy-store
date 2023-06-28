@@ -74,6 +74,7 @@ class ProductController extends AbstractController
         $form = $this->createForm(
             ProductEditForm::class,
             [
+                'article'=> $product->getArticle(),
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
                 'mainCategory' => $product->getMainCategory() ? new CategoryForChoice(
@@ -89,6 +90,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $product->setName($data['name']);
+            $product->setArticle($data['article']);
             $product->setDescription($data['description']);
             $product->getPrice()->setPrice($data['price']);
             $product->getPrice()->setListPrice($data['listPrice']);

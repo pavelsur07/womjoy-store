@@ -69,13 +69,27 @@
                             </div>
                         </div>
                         <div class="i-card__size_items">
-                            <label class="i-card__size_item">
-                                <input type="radio" name="card-size" checked hidden>
-                                <span class="i-card__size_visual">
-									XS
-									<span>40-42</span>
-								</span>
-                            </label>
+                            {% for variant in product.variants %}
+                                {% if variant.canBeAddToCart %}
+                                    <label class="i-card__size_item">
+                                        <input type="radio" name="card-size" checked hidden>
+                                        <span class="i-card__size_visual">
+                                            {{ variant.value }}
+                                            {#<span>40-42</span>#}
+                                        </span>
+                                    </label>
+                                {% else %}
+                                    <label class="i-card__size_item disabled">
+                                        <input type="radio" name="card-size" hidden>
+                                        <span class="i-card__size_visual">
+                                            {{ variant.value }}
+									      {#  <span>40-42</span>#}
+								        </span>
+                                    </label>
+                                {% endif %}
+                            {% endfor %}
+
+                            {#
                             <label class="i-card__size_item">
                                 <input type="radio" name="card-size" hidden>
                                 <span class="i-card__size_visual">
@@ -97,6 +111,7 @@
 									<span>40-42</span>
 								</span>
                             </label>
+                            #}
                         </div>
                     </div>
                     <div class="i-card__color">

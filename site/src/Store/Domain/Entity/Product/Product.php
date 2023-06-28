@@ -92,6 +92,20 @@ class Product
         $this->publishedAt = $this->createdAt;
     }
 
+    public function addVariant(string $value): void
+    {
+        $this->variants->add(new Variant(
+            product: $this,
+            article: $this->article . '-' . $value,
+            value: $value
+        ));
+    }
+
+    /*    public function removeVariant(int $variantId): void
+        {
+
+        }*/
+
     public function getMainCategory(): ?Category
     {
         return $this->mainCategory;
@@ -278,7 +292,7 @@ class Product
         return $this->variants;
     }
 
-    public function addVariant(Variant $variant): self
+    /*public function addVariant(Variant $variant): void
     {
         if (!$this->variants->contains($variant)) {
             $this->variants->add($variant);
@@ -286,7 +300,7 @@ class Product
         }
 
         return $this;
-    }
+    }*/
 
     public function removeVariant(Variant $variant): self
     {

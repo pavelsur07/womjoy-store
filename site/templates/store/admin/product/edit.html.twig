@@ -54,7 +54,46 @@
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
         </div>
-
     </div>
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.product.variant.add', {'id': product.id }) }}">Add variant</a>
+    </div>
+    <div class="card card-body">
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Article</th>
+                <th>Value</th>
+                <th>Barcode</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for variant in product.variants %}
+                <tr>
+                    <td class="w-1">{{ variant.id }}</td>
+                    <td>{{ variant.article}}</td>
+                    <td>{{ variant.value }}</td>
+                    <td>----</td>
+
+                    <td class="w-5">
+                        <div class="btn-group w-100" role="group">
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
+                            <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
+                            {# {% include 'admin/matrix/product/_delete_form.html.twig' %}#}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}
 

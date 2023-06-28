@@ -28,6 +28,13 @@ class Variant
     #[ORM\Column(type: 'integer', options: ['default' => 0])]
     private int $quantity = 0;
 
+    public function __construct(Product $product, string $article, string $value)
+    {
+        $this->article = $article;
+        $this->value = $value;
+        $this->product = $product;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,6 +62,11 @@ class Variant
         $this->product = $product;
 
         return $this;
+    }
+
+    public function canBeAddToCart(): bool
+    {
+        return 1 <= $this->quantity;
     }
 
     public function canBeCheckout($quantity): bool
