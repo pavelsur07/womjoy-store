@@ -16,6 +16,8 @@ class ProductPrice
     #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
     private int $listPrice = 0;
 
+    private string $currency;
+
     public function __construct(int $price = 0)
     {
         $this->price = $price;
