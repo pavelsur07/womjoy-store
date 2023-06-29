@@ -6,7 +6,7 @@
         <div class="wrapper">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}"> {{ 'home'|trans|raw }}</a></li>
                     {% for breadcrumb in breadcrumbs %}
                         {% if breadcrumb.slug == category.slug %}
                             <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name }}</li>

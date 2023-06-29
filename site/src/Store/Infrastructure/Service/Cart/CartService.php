@@ -16,13 +16,22 @@ readonly class CartService
     ) {
     }
 
-    public function getCurrentCart(): Cart
+    public function getCurrentCart(int|null $userId = null): Cart
     {
-        $cart = $this->storage->getCart();
+        if ($userId === null) {
+            $cart = $this->storage->getCart();
+        } else {
+            $cart = $this->carts->findByOwner($userId);
+        }
 
         if (!$cart) {
             $cart = new Cart(createdAt: new DateTimeImmutable());
             $this->save($cart);
+
+            if ($userId !== null) {
+                $cart->setCustomerId($userId);
+            }
+
             $this->storage->setCart($cart);
         }
 

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Store\Infrastructure\Service\Cart\CartService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,11 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends BaseController
 {
     #[Route(path: '/', name: '.index')]
-    public function cart(): Response
+    public function cart(Request $request, CartService $service): Response
     {
+        $user = $this->getUser();
+        $userId = null;
+
+        if ($user !== null) {
+            $userId = $user->getId();
+        }
+
         return $this->render(
             'store/cart/cart.html.twig',
             [
+                'cart' => $service->getCurrentCart($userId),
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
             ]

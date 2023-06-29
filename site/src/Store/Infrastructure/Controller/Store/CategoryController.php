@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Store\Infrastructure\Controller;
+namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Store\Domain\Entity\Category\Category;
@@ -15,7 +15,7 @@ class CategoryController extends BaseController
 {
     public const PER_PAGE= 15;
 
-    #[Route(path: '/catalog/{slug}', name: 'store.category.show')]
+    #[Route(path: '/collections/{slug}', name: 'store.category.show')]
     public function index(string $slug, Category $category, Request $request, ProductRepository $products): Response
     {
         if ($category->getSeoMetadata()->getSeoTitle() !== null) {

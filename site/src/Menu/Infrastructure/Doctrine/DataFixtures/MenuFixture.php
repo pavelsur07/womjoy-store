@@ -34,26 +34,26 @@ class MenuFixture extends Fixture
         return [
             [
                 'name'=> 'Женщинам',
-                'href'=> '/catalog/' . CategoryFixture::REFERENCE_WOMAN,
+                'href'=> '/collections/' . CategoryFixture::REFERENCE_WOMAN,
                 'children'=> [
                     [
                         'name'=> 'Брюки',
-                        'href'=> '/catalog/' . CategoryFixture::REFERENCE_PANTS,
+                        'href'=> '/collections/' . CategoryFixture::REFERENCE_PANTS,
                     ],
                     [
                         'name'=> 'Леггинсы',
-                        'href'=> '/catalog/' . CategoryFixture::REFERENCE_LEGGINGS,
+                        'href'=> '/collections/' . CategoryFixture::REFERENCE_LEGGINGS,
                     ],
                 ],
             ],
             [
                 'name'=> 'Брюки',
-                'href'=> '/catalog/' . CategoryFixture::REFERENCE_PANTS,
+                'href'=> '/collections/' . CategoryFixture::REFERENCE_PANTS,
                 'children'=> null,
             ],
             [
                 'name'=> 'Леггинсы',
-                'href'=> '/catalog/' . CategoryFixture::REFERENCE_LEGGINGS,
+                'href'=> '/collections/' . CategoryFixture::REFERENCE_LEGGINGS,
                 'children'=> null,
             ],
             [

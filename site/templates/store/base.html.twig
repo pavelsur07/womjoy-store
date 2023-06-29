@@ -25,15 +25,6 @@
         <div class="wrapper">
             <div class="header__main">
                 <div class="header__left">
-                    {#
-                    {% if app.request.pathInfo == '/' %}
-                        <img src="{{ asset('./img/logo.svg') }}" alt="{{ app.request.baseUrl }}" width="205" height="36">
-                    {% else %}
-                        <a href="{{ path('home') }}" class="header__logo">
-                            <img src="{{ asset('./img/logo.svg') }}" alt="{{ app.request.baseUrl }}" width="205" height="36">
-                        </a>
-                    {% endif %}
-                    #}
                     <a href="{{ path('home') }}" class="header__logo">
                         <img src="{{ asset('./img/logo.svg') }}" alt="logo" width="205" height="36">
                     </a>
@@ -57,7 +48,7 @@
                     <li>
                         <a href="{{ path('store.account.history') }}">
                             <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24">
-                            Кабинет
+                            {{ 'header.account'|trans|raw }}
                         </a>
                     </li>
                     <li>
@@ -69,7 +60,7 @@
                     <li>
                         <a href="{{ path('store.cart.index') }}">
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="24" height="24">
-                            Корзина
+                            {{ 'header.cart'|trans|raw }}
                         </a>
                     </li>
                 </ul>

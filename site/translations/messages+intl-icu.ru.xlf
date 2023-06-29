@@ -2,6 +2,22 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>Главная</target>
+            </trans-unit>
+            <trans-unit id="header.cart">
+                <source>header.cart</source>
+                <target>Корзина</target>
+            </trans-unit>
+            <trans-unit id="header.account">
+                <source>header.account</source>
+                <target>Кабинет</target>
+            </trans-unit>
+            <trans-unit id="favorites">
+                <source>favorites</source>
+                <target>Избранное</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

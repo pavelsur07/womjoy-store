@@ -22,6 +22,11 @@ class OrderRepository
         $this->repo = $this->em->getRepository(Order::class);
     }
 
+    public function getAll(): array
+    {
+        return $this->repo->findAll();
+    }
+
     public function get(int $id): Order
     {
         $object = $this->repo->find($id);

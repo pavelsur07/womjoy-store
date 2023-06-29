@@ -7,7 +7,6 @@ namespace App\Store\Infrastructure\Controller\Payment;
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
-use App\Store\Domain\Entity\Order\OrderItem;
 use App\Store\Domain\Service\HomeService;
 use App\Store\Infrastructure\Repository\OrderRepository;
 use Omnipay\Omnipay;
@@ -41,9 +40,6 @@ class StripeController extends BaseController
                 'currency' => 'USD',
                 'card' => $formData],
         )->send();
-
-
-
     }
 
     #[Route('/{reference}/success', name: '.success')]

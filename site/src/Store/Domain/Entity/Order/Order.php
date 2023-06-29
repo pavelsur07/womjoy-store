@@ -67,9 +67,6 @@ class Order
     #[ORM\Column(type: 'string', nullable: true)]
     private string|null $cancelReason = null;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private string|null $stripeSession = null;
-
     public function __construct(
         int $customerId,
         DateTimeImmutable $createdAt,
@@ -254,16 +251,6 @@ class Order
     public function preFlush(): void
     {
         $this->updatedAt = new DateTimeImmutable();
-    }
-
-    public function getStripeSession(): ?string
-    {
-        return $this->stripeSession;
-    }
-
-    public function setStripeSession(?string $stripeSession): void
-    {
-        $this->stripeSession = $stripeSession;
     }
 
     private function addStatus(string $status): void

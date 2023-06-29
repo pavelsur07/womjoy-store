@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Store\Infrastructure\Controller;
+namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Store\Domain\Entity\Product\Product;
@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends BaseController
 {
-    #[Route(path: '/product/{slug}', name: 'store.product.show')]
+    #[Route(path: '/products/{slug}', name: 'store.product.show')]
     public function show(string $slug, Product $product, ProductRepository $products): Response
     {
         if ($product->getSeoMetadata()->getSeoTitle() !== null) {
