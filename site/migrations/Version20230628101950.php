@@ -27,7 +27,7 @@ final class Version20230628101950 extends AbstractMigration
         $this->addSql('ALTER TABLE store_orders ADD client_id_yandex VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE store_orders ADD client_id_google VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE store_product_variants ADD quantity INT DEFAULT 0 NOT NULL');
-        $this->addSql('ALTER TABLE store_products ADD is_has_variation BOOLEAN NOT NULL');
+        $this->addSql('ALTER TABLE store_products ADD is_has_variation BOOLEAN DEFAULT true NOT NULL');
         $this->addSql('ALTER TABLE store_products ADD updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT \'2023-06-03 06:16:11\' NOT NULL');
         $this->addSql('ALTER TABLE store_products ADD weight INT DEFAULT 0 NOT NULL');
         $this->addSql('ALTER TABLE store_products ALTER published_at DROP NOT NULL');
