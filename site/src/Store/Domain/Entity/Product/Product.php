@@ -47,9 +47,6 @@ class Product
     #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $images;
 
-    #[ORM\Column]
-    private bool $isHasVariation = false;
-
     /** @var ArrayCollection<array-key, Variant> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
