@@ -54,6 +54,7 @@
                 <th>Id</th>
                 <th>Article</th>
                 <th>Barcode</th>
+                <th>Int. Barcode</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -63,11 +64,18 @@
                     <td class="w-1">{{ variant.id }}</td>
                     <td>{{ variant.article}}</td>
                     <td>{{ variant.barcode }}</td>
+                    <td>{{ variant.getInternalBarcode }}</td>
 
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
                             <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
+                            <a class="btn btn-sm btn-green rounded-4"
+                               href="{{ path('matrix.admin.product.variant.barcode.generate', {
+                                    'product_id': product.id,
+                                    'id': variant.id})
+                               }}">gen. barcode
+                            </a>
                            {# {% include 'admin/matrix/product/_delete_form.html.twig' %}#}
                         </div>
                     </td>

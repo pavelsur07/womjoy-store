@@ -7,8 +7,10 @@ namespace App\Matrix\Infrastructure\Controller\Product;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;
+use App\Matrix\Domain\Exception\MatrixException;
 use App\Matrix\Domain\Repository\Product\ProductRepositoryInterface;
 use App\Matrix\Infrastructure\Form\VariantEditForm;
+use DomainException;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,6 +53,23 @@ class VariantController extends AbstractController
                 'product' => $product,
             ]
         );
+    }
+
+    #[Route(path: '/{id}/barcode/generate', name: '.barcode.generate')]
+    public function generateBarcode(int $id, Request $request, ProductRepositoryInterface $products, Flusher $flusher): Response
+    {
+        $productId = (int)$request->attributes->get('product_id');
+        try {
+            $product = $products->get($productId);
+            $variant = $product->getVariant(variantId: $id);
+            $variant->generateInternalBarcode();
+            $flusher->flush();
+            $this->addFlash('success', 'Success generate barcode.');
+        } catch (MatrixException|DomainException $e) {
+            $this->addFlash('warning', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('matrix.admin.product.edit', ['id'=> $productId]);
     }
 
     public function remove(): void

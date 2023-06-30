@@ -178,6 +178,17 @@ class Product
         throw new MatrixException('Variant not fount.');
     }
 
+    public function getVariant(int $variantId): Variant
+    {
+        foreach ($this->variants as $variant) {
+            if ($variant->getId() === $variantId) {
+                return $variant;
+            }
+        }
+
+        throw new MatrixException('Variant not fount.');
+    }
+
     public function getId(): int
     {
         return $this->id;

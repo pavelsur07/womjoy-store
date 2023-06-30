@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Matrix\Domain\Entity\Product;
 
+use App\Matrix\Domain\Entity\Barcode\Barcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;
+use App\Matrix\Domain\Exception\MatrixException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,6 +31,9 @@ class Variant
     #[ORM\Column(type: Types::STRING)]
     private string $article;
 
+    #[ORM\OneToOne(mappedBy: 'variant', targetEntity: Barcode::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Barcode|null $internalBarcode = null;
+
     public function __construct(Product $product, VariantBarcode $barcode, VariantValue $value)
     {
         $this->product = $product;
@@ -45,6 +50,14 @@ class Variant
     public function isEquivalentToBarcode(VariantBarcode $barcode): bool
     {
         return $this->getBarcode()->value() === $barcode->value();
+    }
+
+    public function generateInternalBarcode(): void
+    {
+        if ($this->internalBarcode !== null) {
+            throw new MatrixException('Barcode is not null.');
+        }
+        $this->internalBarcode = new Barcode($this);
     }
 
     public function getId(): int
@@ -70,5 +83,13 @@ class Variant
     public function getArticle(): string
     {
         return $this->article;
+    }
+
+    public function getInternalBarcode(): string
+    {
+        if ($this->internalBarcode) {
+            return $this->internalBarcode->getValue();
+        }
+        return '';
     }
 }
