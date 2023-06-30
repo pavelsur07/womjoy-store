@@ -78,6 +78,9 @@ class Product
     #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
     private int $weight = 0;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => true])]
+    private bool $isHasVariation = false;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
