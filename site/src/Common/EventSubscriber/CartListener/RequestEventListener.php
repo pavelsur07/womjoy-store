@@ -25,6 +25,8 @@ readonly class RequestEventListener implements EventSubscriberInterface
 
         if ($event->getRequest()->cookies->has(SessionHelper::CART_KEY)) {
             $cartId = (int)$event->getRequest()->cookies->get(SessionHelper::CART_KEY);
+            $this->session->getSession()->set(SessionHelper::CART_KEY, $cartId);
+            return;
         }
 
         if (

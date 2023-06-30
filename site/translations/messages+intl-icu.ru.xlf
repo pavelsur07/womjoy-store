@@ -6,17 +6,21 @@
                 <source>home</source>
                 <target>Главная</target>
             </trans-unit>
-            <trans-unit id="header.cart">
-                <source>header.cart</source>
+            <trans-unit id="icon.cart">
+                <source>icon.cart</source>
                 <target>Корзина</target>
             </trans-unit>
-            <trans-unit id="header.account">
-                <source>header.account</source>
+            <trans-unit id="icon.account">
+                <source>icon.account</source>
                 <target>Кабинет</target>
             </trans-unit>
-            <trans-unit id="favorites">
-                <source>favorites</source>
+            <trans-unit id="icon.favorites">
+                <source>icon.favorites</source>
                 <target>Избранное</target>
+            </trans-unit>
+            <trans-unit id="placeholder.search">
+                <source>placeholder.search</source>
+                <target>Я хочу найти</target>
             </trans-unit>
         </body>
     </file>

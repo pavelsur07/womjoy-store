@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Service\Cart;
 
+use App\Common\Infrastructure\Helper\SessionHelper;
 use App\Store\Domain\Entity\Cart\Cart;
 use App\Store\Infrastructure\Repository\CartRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CartSessionStorage
+readonly class CartSessionStorage
 {
-    public const CART_KEY_NAME = 'cart_id';
-
     public function __construct(
-        private readonly RequestStack $requestStack,
-        private readonly CartRepository $cartRepository,
+        private RequestStack $requestStack,
+        private CartRepository $cartRepository,
     ) {
     }
 
@@ -28,12 +27,12 @@ class CartSessionStorage
 
     public function setCart(Cart $cart): void
     {
-        $this->getSession()->set(self::CART_KEY_NAME, $cart->getId());
+        $this->getSession()->set(SessionHelper::CART_KEY, $cart->getId());
     }
 
     private function getCartId(): ?int
     {
-        return $this->getSession()->get(self::CART_KEY_NAME);
+        return $this->getSession()->get(SessionHelper::CART_KEY);
     }
 
     private function getSession(): SessionInterface

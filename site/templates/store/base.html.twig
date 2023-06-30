@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <form class="search">
-                    <input type="text" class="search__inp" placeholder="Я хочу найти">
+                    <input type="text" class="search__inp" placeholder="{{ 'placeholder.search'|trans|raw }}">
                     <button class="search__submit" type="submit">
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
@@ -48,19 +48,19 @@
                     <li>
                         <a href="{{ path('store.account.history') }}">
                             <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24">
-                            {{ 'header.account'|trans|raw }}
+                            {{ 'icon.account'|trans|raw }}
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <img src="{{ asset('./img/icons/favourite.svg') }}" alt="favourite" width="24" height="24">
-                            Избранное
+                            {{ 'icon.favorites'|trans|raw }}
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('store.cart.index') }}">
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="24" height="24">
-                            {{ 'header.cart'|trans|raw }}
+                            {{ 'icon.cart'|trans|raw }}
                         </a>
                     </li>
                 </ul>

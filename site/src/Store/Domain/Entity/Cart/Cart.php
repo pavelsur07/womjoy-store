@@ -36,11 +36,11 @@ class Cart
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartItem::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $items;
 
-    public function __construct(DateTimeImmutable $createdAt)
+    public function __construct(DateTimeImmutable $createdAt, int|null $customerId = null)
     {
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
-
+        $this->customerId = $customerId;
         $this->items = new ArrayCollection();
     }
 
@@ -77,9 +77,10 @@ class Cart
 
     public function setCustomerId(int $customerId): void
     {
+        $this->customerId = $customerId;
     }
 
-    public function getCustomerId(): int
+    public function getCustomerId(): int|null
     {
         return $this->customerId;
     }

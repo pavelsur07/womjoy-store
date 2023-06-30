@@ -16,17 +16,15 @@ class CartController extends BaseController
     #[Route(path: '/', name: '.index')]
     public function cart(Request $request, CartService $service): Response
     {
-        $user = $this->getUser();
         $userId = null;
-
-        if ($user !== null) {
-            $userId = $user->getId();
-        }
+        $user = $this->getUser();
+        $userId = $user?->getId();
 
         return $this->render(
             'store/cart/cart.html.twig',
             [
-                'cart' => $service->getCurrentCart($userId),
+                'user' => $userId,
+                'cart' => $service->getCurrentCart(customerId: $userId),
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
             ]
