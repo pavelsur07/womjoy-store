@@ -47,6 +47,7 @@
                 </div>
                 <div class="i-card__main">
                     <h1 class="i-card__title">{{ product.name }}</h1>
+                    <div id="cart_count_id"></div> {# -- Добавить счетчик количества товаров в header -- #}
                     <div class="i-card__info">
                         <div class="rating">
                             <div class="rating__stars">
@@ -68,52 +69,31 @@
                                 Таблица размеров
                             </div>
                         </div>
+
                         <div class="i-card__size_items">
                             {% for variant in product.variants %}
-                                {% if variant.canBeAddToCart %}
+                                {#{% if variant.canBeAddToCart %}#}
                                     <label class="i-card__size_item">
-                                        <input type="radio" name="card-size" checked hidden>
+                                        <input type="radio" name="card-size" value="{{ variant.id }}" checked hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
                                             {#<span>40-42</span>#}
                                         </span>
                                     </label>
-                                {% else %}
+                              {#  {% else %}
                                     <label class="i-card__size_item disabled">
                                         <input type="radio" name="card-size" hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
-									      {#  <span>40-42</span>#}
+									      #}{#  <span>40-42</span>#}{#
 								        </span>
                                     </label>
-                                {% endif %}
+                                {% endif %}#}
                             {% endfor %}
 
-                            {#
-                            <label class="i-card__size_item">
-                                <input type="radio" name="card-size" hidden>
-                                <span class="i-card__size_visual">
-									XS
-									<span>40-42</span>
-								</span>
-                            </label>
-                            <label class="i-card__size_item disabled">
-                                <input type="radio" name="card-size" hidden>
-                                <span class="i-card__size_visual">
-									XS
-									<span>40-42</span>
-								</span>
-                            </label>
-                            <label class="i-card__size_item">
-                                <input type="radio" name="card-size" hidden>
-                                <span class="i-card__size_visual">
-									XS
-									<span>40-42</span>
-								</span>
-                            </label>
-                            #}
                         </div>
                     </div>
+
                     <div class="i-card__color">
                         <span class="i-card__color_title">Цвет</span>
                         <div class="i-card__color_items">
