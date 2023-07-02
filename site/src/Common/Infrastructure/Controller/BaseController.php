@@ -8,6 +8,7 @@ use App\Common\Infrastructure\JsonLd\JsonLdCompany;
 use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
 use App\Menu\Domain\Entity\Menu;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
+use App\Menu\Infrastructure\Service\MenuSettingService;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Home\AssignCategory;
 use App\Store\Domain\Entity\Home\Home;
@@ -37,6 +38,7 @@ class BaseController extends AbstractController
         private readonly MenuRepositoryInterface $menus,
         private readonly HomeService $homeService,
         private readonly UrlGeneratorInterface $generator,
+        private readonly MenuSettingService $menuService,
     ) {
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {
@@ -52,6 +54,8 @@ class BaseController extends AbstractController
         }
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
+        $footerMenu = $this->menuService->getSetting()->getFooterMenu();
+        $this->menu['footer'] =  $footerMenu !== null ? $this->menus->menuTree($footerMenu) : [];
 
         $home = $this->homeService->get();
         $this->menu['categories'] = $this->menuCategories($home);

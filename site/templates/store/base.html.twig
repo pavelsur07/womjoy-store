@@ -85,19 +85,8 @@
                     </a>
                     <div itemscope="" itemtype="http://schema.org/Organization" class="footer__phone">
                         <meta itemprop="name" content="ООО Вумджой">
-                        {#<meta itemprop="telephone" content="+7(800)301-67-53">#}
                         <meta itemprop="email" content="info@womjoy.ru">
-                        {#<meta itemprop="address" content="Ваш адрес">#}
-                        {#
-                        <meta itemprop="streetAddress" content="Ростовская обл., г. Азов, ул. Ленина 53">
-                        <meta itemprop="postalCode" content="394016">
-                        <meta itemprop="addressLocality" content="Азов, Россия">
-                        <meta itemprop="logo" content="https://womjoy.ru/img/logo.svg">
-                        #}
-                        {#<meta itemprop="image" content="url к картинке офиса">#}
-                        {#<meta itemprop="description" content="Описание страницы">#}
                         <meta itemprop="legalName" content="Женская одежда для спорта и путешествий.">
-                        {#<meta itemprop="sameAs" content="ссылка на соц сеть">#}
                         <a itemprop="telephone" href="tel:+78003016753" class="footer__phone_call">8 (800) 301-67-53</a>
                         <span class="footer__phone_descr">Звонок по РФ бесплатный</span>
                     </div>
@@ -107,27 +96,20 @@
                         <li><a href="#"><img src="{{ asset('./img/icons/wa.svg') }}" alt="WhatsApp" width="40" height="40"></a></li>
                     </ul>
                 </div>
-                <div class="footer__col">
-                    <div class="footer__title">Покупателям</div>
-                    <ul class="footer__list">
-                        <li><a href="{{ path('guarantee.new') }}">Гарантия</a></li>
-                        <li><a href="{{ path('page.pay_delivery') }}">Доставка и оплата</a></li>
-                        <li><a href="#">Обмен и возврат</a></li>
-                        <li><a href="{{ path('page.terms_of_service') }}">Публичная оферта</a></li>
-                        <li><a href="{{ path('page.privacy') }}">Политика конфиденциальности</a></li>
-                        {#<li><a href="#">Отложенные товары</a></li>#}
-                    </ul>
-                </div>
-                <div class="footer__col">
-                    <div class="footer__title">Магазин</div>
-                    <ul class="footer__list">
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="#">Отзывы покупателей</a></li>
-                        <li><a href="#">Бонусные баллы</a></li>
-                        <li><a href="#">Карта сайта</a></li>
-                        <li><a href="#">Личный кабинет</a></li>
-                    </ul>
-                </div>
+
+                {% for item in menu.footer %}
+                    <div class="footer__col">
+                        <div class="footer__title">{{ item.name }}</div>
+                        {% if item.children is defined %}
+                            <ul class="footer__list">
+                                {% for element in item.children  %}
+                                    <li><a href="{{ element.href }}">{{ element.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
                 <div class="footer__right">
                     <noindex>
                         <div class="footer__marketplaces">
@@ -157,6 +139,7 @@
                 </div>
             </div>
         </div>
+
         <div class="footer__bottom">
             <div class="wrapper">
                 <div class="footer__bottom_row">

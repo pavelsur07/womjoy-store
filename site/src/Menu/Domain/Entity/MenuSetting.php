@@ -36,6 +36,11 @@ class MenuSetting
 
     public function getFooterMenu(): ?Menu
     {
+        if ($this->footerMenu !== null) {
+            if (\count($this->footerMenu->getChildren()) === 0) {
+                return null;
+            }
+        }
         return $this->footerMenu;
     }
 }
