@@ -46,7 +46,7 @@ class MenuSettingRepository
         );
     }
 
-    public function save(MenuSetting $object, bool $flush): void
+    public function save(MenuSetting $object, bool $flush = false): void
     {
         $this->em->persist($object);
 

@@ -64,6 +64,16 @@ class MenuRepository implements MenuRepositoryInterface
         return $this->buildTree($qb->fetchAllAssociative())[0]['children'];
     }
 
+    public function getRootAll(): array
+    {
+        $result = [];
+        foreach ($this->repo->findBy(['parent' => null]) as $item) {
+            $result[] = new MenuForChoice(label: $item->getName(), value: (string)$item->getId());
+        }
+
+        return $result;
+    }
+
     public function list(): array
     {
         return $this->repo->findBy(

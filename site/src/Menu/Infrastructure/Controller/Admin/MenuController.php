@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Menu\Infrastructure\Controller;
+namespace App\Menu\Infrastructure\Controller\Admin;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Menu\Domain\Entity\Menu;

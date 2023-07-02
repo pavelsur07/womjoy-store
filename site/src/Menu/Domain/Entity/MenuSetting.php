@@ -19,7 +19,7 @@ class MenuSetting
     private Menu|null $footerMenu;
 
     public function __construct(
-        Menu $footerMenu,
+        Menu|null $footerMenu = null,
     ) {
         $this->footerMenu = $footerMenu;
     }
