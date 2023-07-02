@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Setting\Domain\Entity;
 
+use App\Setting\Domain\Entity\ValueObject\SettingCompany;
+use App\Setting\Domain\Entity\ValueObject\SettingSeoDefault;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -21,9 +23,31 @@ class Setting
     #[ORM\Column(nullable: true)]
     private string|null $email = null;
 
+    #[ORM\Embedded(class: SettingSeoDefault::class, columnPrefix: 'seo_')]
+    private SettingSeoDefault $seoDefault;
+
+    #[ORM\Embedded(class: SettingCompany::class, columnPrefix: 'company_')]
+    private SettingCompany $company;
+
+    public function __construct()
+    {
+        $this->company = new SettingCompany();
+        $this->seoDefault = new SettingSeoDefault();
+    }
+
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getSeoDefault(): SettingSeoDefault
+    {
+        return $this->seoDefault;
+    }
+
+    public function getCompany(): SettingCompany
+    {
+        return $this->company;
     }
 
     public function getPhone(): ?string

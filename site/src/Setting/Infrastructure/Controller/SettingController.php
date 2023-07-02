@@ -30,6 +30,14 @@ class SettingController extends AbstractController
             [
                 'phone' => $setting->getPhone(),
                 'email' => $setting->getEmail(),
+                'h1' => $setting->getSeoDefault()->getH1(),
+                'title' => $setting->getSeoDefault()->getTitle(),
+                'description' => $setting->getSeoDefault()->getDescription(),
+                'companyName' => $setting->getCompany()->getName(),
+                'postalCode' => $setting->getCompany()->getPostalCode(),
+                'addressCountry' => $setting->getCompany()->getAddressCountry(),
+                'addressLocality' => $setting->getCompany()->getAddressLocality(),
+                'streetAddress' => $setting->getCompany()->getStreetAddress(),
             ]
         );
 
@@ -39,6 +47,17 @@ class SettingController extends AbstractController
 
             $setting->setPhone($data['phone']);
             $setting->setEmail($data['email']);
+
+            $setting->getSeoDefault()->setH1($data['h1']);
+            $setting->getSeoDefault()->setTitle($data['title']);
+            $setting->getSeoDefault()->setDescription($data['description']);
+
+            $setting->getCompany()->setName($data['companyName']);
+            $setting->getCompany()->setPostalCode($data['postalCode']);
+            $setting->getCompany()->setAddressCountry($data['addressCountry']);
+            $setting->getCompany()->setAddressLocality($data['addressLocality']);
+            $setting->getCompany()->setStreetAddress($data['streetAddress']);
+
             $this->flusher->flush();
         }
 

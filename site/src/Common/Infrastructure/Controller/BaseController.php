@@ -63,10 +63,11 @@ class BaseController extends AbstractController
 
         $home = $this->homeService->get();
         $this->menu['categories'] = $this->menuCategories($home);
-        $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
+
         $setting = $this->settingService->get();
         $this->metaData['phone'] = $setting->getPhone();
         $this->metaData['email'] = $setting->getEmail();
+        $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
     }
 
     public function setTitle(string $title): void
