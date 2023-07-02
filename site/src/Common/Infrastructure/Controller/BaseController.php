@@ -9,6 +9,7 @@ use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
 use App\Menu\Domain\Entity\Menu;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
 use App\Menu\Infrastructure\Service\MenuSettingService;
+use App\Setting\Infrastructure\Service\SettingService;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Home\AssignCategory;
 use App\Store\Domain\Entity\Home\Home;
@@ -32,6 +33,8 @@ class BaseController extends AbstractController
         'noindex' => false,
         'nofollow' => false,
         'jsonLdCompany' => null,
+        'phone'=> null,
+        'email'=> null,
     ];
 
     public function __construct(
@@ -39,6 +42,7 @@ class BaseController extends AbstractController
         private readonly HomeService $homeService,
         private readonly UrlGeneratorInterface $generator,
         private readonly MenuSettingService $menuService,
+        private readonly SettingService $settingService,
     ) {
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {
@@ -60,6 +64,9 @@ class BaseController extends AbstractController
         $home = $this->homeService->get();
         $this->menu['categories'] = $this->menuCategories($home);
         $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
+        $setting = $this->settingService->get();
+        $this->metaData['phone'] = $setting->getPhone();
+        $this->metaData['email'] = $setting->getEmail();
     }
 
     public function setTitle(string $title): void

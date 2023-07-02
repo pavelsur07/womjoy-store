@@ -46,6 +46,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Page/Domain/Entity'
                 prefix: 'App\Page\Domain\Entity'
                 alias: Page
+            Setting:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Setting/Domain/Entity'
+                prefix: 'App\Setting\Domain\Entity'
+                alias: Setting
 
 when@test:
     doctrine:
