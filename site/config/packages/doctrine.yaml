@@ -41,6 +41,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Subscriber/Domain/Entity'
                 prefix: 'App\Subscriber\Domain\Entity'
                 alias: Subscriber
+            Page:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Page/Domain/Entity'
+                prefix: 'App\Page\Domain\Entity'
+                alias: Page
 
 when@test:
     doctrine:

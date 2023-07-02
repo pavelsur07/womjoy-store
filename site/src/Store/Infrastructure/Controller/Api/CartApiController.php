@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Infrastructure\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -7,10 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/api/v1/cart',name: 'store.cart.api')]
+#[Route(path: '/api/v1/cart', name: 'store.cart.api')]
 class CartApiController extends AbstractController
 {
-    #[Route(path: '/',name: '.get',methods: ['GET'])]
+    #[Route(path: '/', name: '.get', methods: ['GET'])]
     public function get(Request $request): Response
     {
         return $this->json(
