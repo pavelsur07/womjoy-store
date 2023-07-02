@@ -106,3 +106,6 @@ services:
         
     App\Store\Infrastructure\Menu\Admin\Home\HomeActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: store_home_action } ]
+        
+    App\Page\Infrastructure\Menu\Admin\PageActionMenu:
+        tags: [ { name: knp_menu.menu_builder, method: build, alias: page_page_action } ]

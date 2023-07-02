@@ -1,0 +1,22 @@
+{% extends 'store/base.html.twig' %}
+
+{% block body %}
+    <section class="typography">
+        <div class="wrapper">
+            <div class="typography__grid">
+                <div class="pages">
+                    <div class="pages__top">
+                        Разделы
+                    </div>
+                    {% include 'common/page_menu.html.twig' %}
+                </div>
+                <div class="typography__top">
+                    <h1 class="title-xl">{{ page.h1 }}</h1>
+                </div>
+                <div class="typography__main">
+                    {{ page.value|raw }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

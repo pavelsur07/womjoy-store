@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Page\Infrastructure\Controller;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Page\Domain\Entity\Page;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends BaseController
 {
     public const PER_PAGE= 15;
+
+    #[Route(path: '/{slug}', name: '.page.show')]
+    public function show(string $slug, Page $page): Response
+    {
+        return $this->render(
+            'page/page/show.html.twig',
+            [
+                'metaData' => $this->metaData,
+                'menu' => $this->menu,
+                'page'=>$page,
+            ]
+        );
+    }
 
     #[Route(path: '/pay-and-delivery', name: '.pay_delivery')]
     public function payAndDelivery(Request $request, ProductRepository $products): Response

@@ -10,7 +10,7 @@
                 Page
             </div>
             <h2 class="page-title">
-                Page new
+                Page seo edit: {{ page.name }}
             </h2>
         </div>
         <!-- Page title actions -->
@@ -23,6 +23,9 @@
         <a class="btn btn-bitbucket" href="{{ path('page.admin.page.index') }}">back to list</a>
     </div>
     <div class="card">
+        <div class="card-header">
+            {{ include('page/page/_tabs.html.twig') }}
+        </div>
         <div class="card-body">
             {{ form_start(form) }}
             {{ form_widget(form) }}
@@ -30,4 +33,9 @@
             {{ form_end(form) }}
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}
