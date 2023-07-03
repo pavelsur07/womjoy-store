@@ -4,7 +4,6 @@ import {CartTotal} from "./CartTotal";
 import {CartDeliveryMethod} from "./CartDeliveryMethod";
 import {CartPayMethod} from "./CartPayMethod";
 
-
 export function Cart() {
 
     return (
@@ -20,8 +19,6 @@ export function Cart() {
             <div className="cart__content">
                 <div className="cart__left">
                     <div className="cart__items">
-                        <CartItem />
-                        <CartItem />
                         <CartItem />
                     </div>
 
