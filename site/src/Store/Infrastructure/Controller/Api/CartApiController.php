@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Api;
 
+use App\Store\Infrastructure\Controller\DeserializerCart;
+use App\Store\Infrastructure\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartApiController extends AbstractController
 {
     #[Route(path: '/', name: '.get', methods: ['GET'])]
-    public function get(Request $request): Response
+    public function get(Request $request, CartService $service, DeserializerCart $deserialize): Response
     {
         return $this->json(
             [
@@ -21,6 +23,7 @@ class CartApiController extends AbstractController
                 'cost' => null,
                 'amount' => 10,
                 'items' => [],
+                'cart' => $deserialize->deserialize($service->getCurrentCart()),
             ]
         );
     }

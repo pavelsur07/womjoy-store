@@ -22,7 +22,7 @@ final readonly class OrderService
     ) {
     }
 
-    public function checkout(int $customerId, Cart $cart): void
+    public function checkout(int|null $customerId, Cart $cart): void
     {
         $user = $this->customers->get($customerId);
 
@@ -32,6 +32,7 @@ final readonly class OrderService
             customerData: new CustomerData(
                 phone: 'phone',
                 name: 'name',
+                email: 'email',
             )
         );
 

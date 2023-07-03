@@ -7,6 +7,8 @@ namespace App\Store\Infrastructure\Controller\Payment;
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
+use App\Menu\Infrastructure\Service\MenuSettingService;
+use App\Setting\Infrastructure\Service\SettingService;
 use App\Store\Domain\Service\HomeService;
 use App\Store\Infrastructure\Repository\OrderRepository;
 use Omnipay\Omnipay;
@@ -14,16 +16,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-#[Route(path: '/cart/checkout/stripe', name: 'store.checkout.stripe')]
+#[Route(path: '/cart/checkout/pay/stripe', name: 'store.checkout.pay.stripe')]
 class StripeController extends BaseController
 {
     public function __construct(
         MenuRepositoryInterface $menus,
         HomeService $homeService,
         UrlGeneratorInterface $generator,
-        private readonly string $siteUrl,
+        private readonly MenuSettingService $menuService,
+        private readonly SettingService $settingService,
     ) {
-        parent::__construct($menus, $homeService, $generator);
+        parent::__construct(
+            $menus,
+            $homeService,
+            $generator,
+            $this->menuService,
+            $this->settingService,
+        );
     }
 
     #[Route('/{reference}', name: '.pay')]

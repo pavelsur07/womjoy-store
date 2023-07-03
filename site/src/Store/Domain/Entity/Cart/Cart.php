@@ -66,8 +66,13 @@ class Cart
         return \count($this->items);
     }
 
-    public function getCost(): void
+    public function getSubtotal(): int
     {
+        $result = 0;
+        foreach ($this->items as $item) {
+            $result = $result + $item->getQuantity()*$item->getPrice();
+        }
+        return $result;
     }
 
     public function getId(): int
