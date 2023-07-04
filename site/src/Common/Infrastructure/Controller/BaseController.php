@@ -43,6 +43,7 @@ class BaseController extends AbstractController
         private readonly UrlGeneratorInterface $generator,
         private readonly MenuSettingService $menuService,
         private readonly SettingService $settingService,
+        private readonly string $siteUrl,
     ) {
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {
@@ -70,7 +71,19 @@ class BaseController extends AbstractController
         $this->metaData['h1'] = $setting->getSeoDefault()->getH1();
         $this->metaData['phone'] = $setting->getPhone();
         $this->metaData['email'] = $setting->getEmail();
-        $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
+        $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(
+            JsonLdCompany::get(
+                name: $setting->getCompany() ? $setting->getCompany()->getName() : '',
+                url: $this->siteUrl,
+                logo: $this->siteUrl . '/img/logo.svg',
+                postalCode: $setting->getCompany() ? $setting->getCompany()->getPostalCode() : '',
+                addressCountry: $setting->getCompany() ? $setting->getCompany()->getAddressCountry() : '',
+                addressLocality: $setting->getCompany() ? $setting->getCompany()->getAddressLocality() : '',
+                streetAddress: $setting->getCompany() ? $setting->getCompany()->getStreetAddress() : '',
+                telephone: $setting->getPhone() !== null ? $setting->getPhone() : '',
+                email: $setting->getEmail() !== null ? $setting->getEmail() : '',
+            )
+        );
     }
 
     public function setTitle(string $title): void

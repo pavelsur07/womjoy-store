@@ -6,29 +6,39 @@ namespace App\Common\Infrastructure\JsonLd;
 
 class JsonLdCompany
 {
-    public static function get(): array
-    {
+    public static function get(
+        string $name = '',
+        string $url = '',
+        string $logo = '',
+        string $postalCode = '',
+        string $addressCountry = '',
+        string $addressLocality = '',
+        string $streetAddress = '',
+        string $telephone = '',
+        string $email = '',
+    ): array {
         return [
             '@context' => 'http://schema.org',
             '@type' => 'Organization',
-            'name' => 'WomJoy - женская одежда для спорта и отдыха',
-            'url' => 'https://womjoy.ru',
-            'logo' => 'https://womjoy.ru/img/logo.svg',
+            'name' => $name,
+            'url' => $url,
+            'logo' => $logo,
             'address' => [
                 '@type' => 'PostalAddress',
-                'postalCode' => '346780',
-                'addressCountry' => 'Российская Федерация',
-                'addressLocality' => 'г. Азов',
-                'streetAddress' => 'ул. Ленина 53',
+                'postalCode' => $postalCode,
+                'addressCountry' => $addressCountry,
+                'addressLocality' => $addressLocality,
+                'streetAddress' => $streetAddress,
             ],
-            'telephone' => '8(800)301-67-53',
-            'email' => 'info@womjoy.ru',
+            'telephone' => $telephone,
+            'email' => $email,
             /*'sameAs' =>
                 [
                     'http://www.facebook.com/your-profile',
                     'http://www.twitter.com/yourProfile',
                     'http://plus.google.com/your_profile'
-                ],*/
+                ],
+            */
         ];
     }
 }
