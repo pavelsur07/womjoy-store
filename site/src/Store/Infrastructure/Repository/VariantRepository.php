@@ -5,39 +5,52 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Repository;
 
 use App\Store\Domain\Entity\Product\Variant;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Store\Domain\Exception\StoreProductException;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends ServiceEntityRepository<Variant>
- *
- * @method Variant|null find($id, $lockMode = null, $lockVersion = null)
- * @method Variant|null findOneBy(array $criteria, array $orderBy = null)
- * @method Variant[]    findAll()
- * @method Variant[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class VariantRepository extends ServiceEntityRepository
+class VariantRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private EntityManagerInterface $em;
+
+    /** @var EntityRepository<Variant> */
+    private EntityRepository $repo;
+
+    public function __construct(EntityManagerInterface $em)
     {
-        parent::__construct($registry, Variant::class);
+        $this->em = $em;
+        $this->repo = $this->em->getRepository(Variant::class);
+    }
+
+    public function get(int $id): Variant
+    {
+        $object = $this->repo->find($id);
+        if ($object === null) {
+            throw new StoreProductException('Variant not found.');
+        }
+        return $object;
+    }
+
+    public function findById(int $id): Variant|null
+    {
+        return $this->repo->find($id);
     }
 
     public function save(Variant $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->persist($entity);
+        $this->em->persist($entity);
 
         if ($flush) {
-            $this->getEntityManager()->flush();
+            $this->em->flush();
         }
     }
 
     public function remove(Variant $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->remove($entity);
+        $this->em->remove($entity);
 
         if ($flush) {
-            $this->getEntityManager()->flush();
+            $this->em->flush();
         }
     }
 

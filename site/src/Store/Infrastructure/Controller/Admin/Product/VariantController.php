@@ -6,7 +6,9 @@ namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Infrastructure\Form\Product\ProductVariantAddForm;
+use App\Store\Infrastructure\Form\Product\ProductVariantEditForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
+use App\Store\Infrastructure\Repository\VariantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +37,35 @@ class VariantController extends AbstractController
             [
                 'form' => $form->createView(),
                 'product' => $product,
+            ]
+        );
+    }
+
+    #[Route(path: '/{id}/variant/{variantId}/edit', name: '.edit')]
+    public function edit(int $id, int $variantId, Request $request, VariantRepository $variants, Flusher $flusher): Response
+    {
+        $variant = $variants->get($variantId);
+        $form = $this->createForm(
+            ProductVariantEditForm::class,
+            [
+                'value' => $variant->getValue(),
+                'quantity' => $variant->getQuantity(),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $variant->changeQuantity($data['quantity']);
+
+            $flusher->flush();
+            return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
+        }
+        return $this->render(
+            'store/admin/product/variant/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'variant' => $variant,
             ]
         );
     }

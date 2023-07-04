@@ -81,6 +81,9 @@ class Product
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => true])]
     private bool $isHasVariation = false;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => true])]
+    private bool $isPreSale = true;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -212,6 +215,16 @@ class Product
         }*/
 
         $this->slug = $slug;
+    }
+
+    public function isPreSaleActive(): void
+    {
+        $this->isPreSale = true;
+    }
+
+    public function isPreSaleDisable(): void
+    {
+        $this->isPreSale = false;
     }
 
     public function getCategoriesIds(): ?string
@@ -380,6 +393,21 @@ class Product
             'name' => mb_strtolower($this->name),
             'article' => (string)$this->id,
         ];
+    }
+
+    public function getPopularity(): int
+    {
+        return $this->popularity;
+    }
+
+    public function isHasVariation(): bool
+    {
+        return $this->isHasVariation;
+    }
+
+    public function isPreSale(): bool
+    {
+        return $this->isPreSale;
     }
 
     #[ORM\PreFlush]

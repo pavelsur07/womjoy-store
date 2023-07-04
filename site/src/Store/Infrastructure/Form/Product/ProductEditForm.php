@@ -38,7 +38,9 @@ class ProductEditForm extends AbstractType
                 ]
             )
             ->add('price', Type\IntegerType::class)
-            ->add('listPrice', Type\IntegerType::class, ['required' => false]);
+            ->add('listPrice', Type\IntegerType::class, ['required' => false])
+            ->add('isPreSale', Type\CheckboxType::class, ['required' => false])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

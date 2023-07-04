@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Store\Infrastructure\Repository\VariantRepository;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,10 +33,19 @@ class CartController extends BaseController
     }
 
     #[Route(path: '/add', name: '.add', methods: ['POST'])]
-    public function add(Request $request): Response
+    public function add(Request $request, CartService $service, VariantRepository $variants): Response
     {
-        $product = null;
+        $product = (int)$request->get('variant_id');
         $quantity = null;
+
+        $userId = null;
+        $user = $this->getUser();
+        $userId = $user?->getId();
+
+        $cart = $service->getCurrentCart(customerId: $userId);
+
+        $cart->add(variant: $variants->get($product), quantity: 1);
+
         return $this->json([]);
     }
 

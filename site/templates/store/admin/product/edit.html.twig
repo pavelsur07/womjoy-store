@@ -67,6 +67,7 @@
                 <th>Article</th>
                 <th>Value</th>
                 <th>Barcode</th>
+                <th>Quantity</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -77,10 +78,10 @@
                     <td>{{ variant.article}}</td>
                     <td>{{ variant.value }}</td>
                     <td>----</td>
-
+                    <td>{{ variant.quantity }}</td>
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
-                            <a class="btn btn-sm btn-bitbucket rounded-4" href="#">edit</a>
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('store.admin.product.variant.edit', {'id': product.id, 'variantId': variant.id}) }}">edit</a>
                             <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
                             {# {% include 'admin/matrix/product/_delete_form.html.twig' %}#}
                         </div>

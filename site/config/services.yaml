@@ -73,6 +73,9 @@ services:
     App\Store\Infrastructure\Repository\ProductRepository:
         class: App\Store\Infrastructure\Repository\ProductRepository
         
+    App\Store\Infrastructure\Repository\VariantRepository:
+        class: App\Store\Infrastructure\Repository\VariantRepository
+        
     App\Store\Domain\Repository\CategoryRepositoryInterface:
         class: App\Store\Infrastructure\Repository\Category\CategoryRepository
         

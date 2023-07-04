@@ -83,6 +83,7 @@ class ProductController extends AbstractController
                 ) : null,
                 'price' => $product->getPrice()->getPrice(),
                 'listPrice' => $product->getPrice()->getListPrice(),
+                'isPreSale' => $product->isPreSale(),
             ]
         );
         $form->handleRequest($request);
@@ -98,6 +99,16 @@ class ProductController extends AbstractController
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }
             $product->setCategoriesIds();
+
+            if ($product->isPreSale()) {
+                if (!$data['isPreSale']) {
+                    $product->isPreSaleDisable();
+                }
+            } else {
+                if ($data['isPreSale']) {
+                    $product->isPreSaleActive();
+                }
+            }
 
             $flusher->flush();
 

@@ -35,6 +35,15 @@ class Variant
         $this->product = $product;
     }
 
+    public function changeQuantity(int $value): void
+    {
+        $this->quantity = $value;
+    }
+
+    public function changeBarcode(string $barcode): void
+    {
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,6 +66,7 @@ class Variant
         return $this->product;
     }
 
+    /** @deprecated  */
     public function setProduct(?Product $product): self
     {
         $this->product = $product;

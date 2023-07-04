@@ -72,23 +72,26 @@
 
                         <div class="i-card__size_items">
                             {% for variant in product.variants %}
-                                {#{% if variant.canBeAddToCart %}#}
+
+                                {% if variant.canBeAddToCart or product.isPreSale  %}
                                     <label class="i-card__size_item">
                                         <input type="radio" name="card-size" value="{{ variant.id }}" checked hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
                                             {#<span>40-42</span>#}
+                                            {#<span>{{ variant.quantity }}</span>#}
                                         </span>
                                     </label>
-                              {#  {% else %}
+                                {% else %}
                                     <label class="i-card__size_item disabled">
                                         <input type="radio" name="card-size" hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
-									      #}{#  <span>40-42</span>#}{#
+									         {#  <span>40-42</span>#}
 								        </span>
                                     </label>
-                                {% endif %}#}
+                                {% endif %}
+
                             {% endfor %}
 
                         </div>
