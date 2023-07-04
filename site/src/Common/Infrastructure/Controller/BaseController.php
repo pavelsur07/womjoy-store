@@ -65,6 +65,9 @@ class BaseController extends AbstractController
         $this->menu['categories'] = $this->menuCategories($home);
 
         $setting = $this->settingService->get();
+        $this->metaData['title'] = $setting->getSeoDefault()->getTitle();
+        $this->metaData['description'] = $setting->getSeoDefault()->getDescription();
+        $this->metaData['h1'] = $setting->getSeoDefault()->getH1();
         $this->metaData['phone'] = $setting->getPhone();
         $this->metaData['email'] = $setting->getEmail();
         $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(JsonLdCompany::get());
