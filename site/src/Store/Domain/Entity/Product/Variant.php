@@ -76,20 +76,30 @@ class Variant
 
     public function canBeAddToCart(): bool
     {
+        if ($this->product->isPreSale()) {
+            return true;
+        }
+
         return 1 <= $this->quantity;
     }
 
     public function canBeCheckout($quantity): bool
     {
+        if ($this->product->isPreSale()) {
+            return true;
+        }
+
         return $quantity <= $this->quantity;
     }
 
     public function checkout(int $quantity): void
     {
-        if ($quantity > $this->quantity) {
-            throw new StoreProductException('Only ' . $this->quantity . ' items are available.');
+        if (!$this->product->isPreSale()) {
+            if ($quantity > $this->quantity) {
+                throw new StoreProductException('Only ' . $this->quantity . ' items are available.');
+            }
+            $this->setQuantity($this->quantity - $quantity);
         }
-        $this->setQuantity($this->quantity - $quantity);
     }
 
     public function getValue(): ?string
