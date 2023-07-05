@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import './ProductCard.css';
+
+const ProductCard = ({ productId, name, price }) => {
+  const [quantity, setQuantity] = useState(1);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [modalError, setModalError] = useState(false);
+
+  const handleQuantityChange = (e) => {
+    setQuantity(Number(e.target.value));
+  };
+
+  const handleAddToCart = () => {
+    // Выполнение запроса на бэкэнд
+    fetch('/api/addToCart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId, quantity }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Обработка ответа от сервера
+        if (data.success) {
+          setModalMessage('Товар успешно добавлен в корзину.');
+          setModalError(false);
+        } else {
+          setModalMessage('Ошибка при добавлении товара в корзину.');
+          setModalError(true);
+        }
+        setIsModalVisible(true);
+      })
+      .catch((error) => {
+        // Обработка ошибки
+        console.error(error);
+        setModalMessage('Произошла ошибка при выполнении запроса.');
+        setModalError(true);
+        setIsModalVisible(true);
+      });
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
+  return (
+    <div className="product-card">
+      <h2>{name}</h2>
+      <p>Цена: ${price}</p>
+      <label>
+        Количество:
+        <input type="number" min="1" value={quantity} onChange={handleQuantityChange} />
+      </label>
+      <button id="addToCart" onClick={handleAddToCart}>
+        Добавить в корзину
+      </button>
+
+      {isModalVisible && (
+        <div className={modal ${modalError ? 'error' : ''}}>
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <p>{modalMessage}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductCard;

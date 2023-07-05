@@ -11,18 +11,42 @@ const variants = document.querySelectorAll('input[name="card-size"]')
 function renderCartCount(count) {
   const container = document.getElementById('cart_count_id')
 
-/*  if (container && !isRenderedCartCount) {
-    isRenderedCartCount = true*/
+  if (container && !isRenderedCartCount) {
+    isRenderedCartCount = true
     const root = createRoot(container)
 
     root.render(<span>{count}</span>)
- /* }*/
+  }
 }
 
 addToCartBtn.addEventListener('click', () => {
   for (const f of variants) {
     if (f.checked) {
       console.log(f.value)
+
+      fetch('/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          variant_id: f.value,
+          quantity: 1
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Обработка ответа от сервера
+          if (data.message) {
+            console.log(data)
+          } else {
+            console.log(data.success)
+          }
+        })
+        .catch((error) => {
+          // Обработка ошибки
+          console.error(error);
+        });
     }
   }
 })

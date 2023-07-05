@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Cart;
 
 use App\Store\Domain\Entity\Product\Variant;
+use App\Store\Domain\Exception\StoreCartException;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -46,10 +47,24 @@ class Cart
 
     public function add(Variant $variant, int $quantity): void
     {
+        foreach ($this->items as $item) {
+            if ($item->getVariant()->getId() === $variant->getId()) {
+                $item->plus($quantity);
+                return;
+            }
+        }
+        $this->items->add(new CartItem(cart: $this, variant: $variant, quantity: $quantity));
     }
 
     public function remove(int $variantId): void
     {
+        foreach ($this->items as $item) {
+            if ($item->getVariant()->getId() === $variantId) {
+                $this->items->removeElement($item);
+                return;
+            }
+        }
+        throw new StoreCartException('Item Cart is not found.');
     }
 
     public function setQuantity(int $variantId, int $quantity): void

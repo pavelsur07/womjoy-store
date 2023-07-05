@@ -36,6 +36,17 @@ class CartItem
         $this->variant = $variant;
     }
 
+    public function plus(int $quantity): void
+    {
+        if (!$this->variant->getProduct()->isPreSale()) {
+            if (!$this->variant->canBeCheckout($this->quantity+$quantity)) {
+                throw new StoreCartException('Quantity is too big.');
+            }
+        }
+
+        $this->quantity = $this->quantity+$quantity;
+    }
+
     public function getId(): int
     {
         return $this->id;

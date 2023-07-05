@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Infrastructure\Repository\VariantRepository;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,10 +34,11 @@ class CartController extends BaseController
     }
 
     #[Route(path: '/add', name: '.add', methods: ['POST'])]
-    public function add(Request $request, CartService $service, VariantRepository $variants): Response
+    public function add(Request $request, CartService $service, VariantRepository $variants, Flusher $flusher): Response
     {
-        $product = (int)$request->get('variant_id');
-        $quantity = null;
+        $data = json_decode($request->getContent(), true);
+        $variantId = (int)$data['variant_id']; // $request->get('variant_id');
+        $quantity = (int)$data['quantity'];
 
         $userId = null;
         $user = $this->getUser();
@@ -44,9 +46,14 @@ class CartController extends BaseController
 
         $cart = $service->getCurrentCart(customerId: $userId);
 
-        $cart->add(variant: $variants->get($product), quantity: 1);
+        $cart->add(variant: $variants->get($variantId), quantity: $quantity);
+        $flusher->flush();
 
-        return $this->json([]);
+        return $this->json([
+            'message' => 'ok',
+            'amount' => $cart->getAmount(),
+            'variant_id'=>$variantId,
+        ]);
     }
 
     #[Route(path: '/quantity', name: '.quantity', methods: ['POST'])]
