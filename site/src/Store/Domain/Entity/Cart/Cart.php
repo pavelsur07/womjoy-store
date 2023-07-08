@@ -69,6 +69,13 @@ class Cart
 
     public function setQuantity(int $variantId, int $quantity): void
     {
+        foreach ($this->items as $item) {
+            if ($item->getVariant()->getId() === $variantId) {
+                $item->changeQuantity($quantity);
+                return;
+            }
+        }
+        throw new StoreCartException('Item Cart is not found.');
     }
 
     public function getWeight(): int
@@ -78,7 +85,38 @@ class Cart
 
     public function getAmount(): int
     {
-        return \count($this->items);
+        $result = 0;
+        foreach ($this->items as $item) {
+            $result = $result + $item->getQuantity();
+        }
+        return $result;
+    }
+
+    public function getCost(): int
+    {
+        $result = 0;
+        foreach ($this->items as $item) {
+            $result = $result + $item->getCost();
+        }
+        return $result;
+    }
+
+    public function getCostDiscount(): int
+    {
+        $result = 0;
+        foreach ($this->items as $item) {
+            $result = $result + $item->getDiscount();
+        }
+        return $result;
+    }
+
+    public function getDiscount(): int
+    {
+        $result = 0;
+        foreach ($this->items as $item) {
+            $result = $result + $item->getDiscount();
+        }
+        return $result;
     }
 
     public function getSubtotal(): int

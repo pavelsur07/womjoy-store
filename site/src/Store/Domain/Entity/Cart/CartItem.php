@@ -69,12 +69,37 @@ class CartItem
 
     public function getCost(): int
     {
+        return $this->variant->getProduct()->getPrice()->getPrice() * $this->quantity;
+    }
+
+    public function getCostDiscount(): int
+    {
         return $this->getPrice() * $this->quantity;
+    }
+
+    public function changeQuantity($quantity): void
+    {
+        if ($quantity < 0) {
+            return;
+        }
+
+        if (!$this->getVariant()->canBeCheckout($quantity)) {
+            throw new StoreCartException('Quantity is too big.');
+        }
+        $this->quantity = $quantity;
     }
 
     public function getPrice(): int
     {
         return $this->variant->getProduct()->getPrice()->getListPrice();
+    }
+
+    public function getDiscount(): int
+    {
+        return (
+            $this->variant->getProduct()->getPrice()->getPrice() -
+            $this->variant->getProduct()->getPrice()->getListPrice()
+        ) * $this->quantity;
     }
 
     public function getWeight(): int

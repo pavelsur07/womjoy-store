@@ -10,7 +10,7 @@
                 Store
             </div>
             <h2 class="page-title">
-                Cart_1 index
+                Cart Show
             </h2>
         </div>
         <!-- Page title actions -->
@@ -32,12 +32,12 @@
             </tr>
             </thead>
             <tbody>
-            {% for cart in carts %}
+            {% for item in cart.items %}
                 <tr>
-                    <td>{{ cart.id }}</td>
-                    <td>{{ cart.customerId }}</td>
-                    <td><a href="{{ path('store.cart.admin.show', {'id': cart.id}) }}" class="btn btn-sm rounded-2">show</a></td>
-                    <td></td>
+                    <td>{{ item.variant.id }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.variant.product.name }}</td>
+                    <td>{{ item.variant.value }}</td>
                     <td></td>
                 </tr>
             {% else %}
@@ -49,3 +49,5 @@
         </table>
     </div>
 {% endblock %}
+
+

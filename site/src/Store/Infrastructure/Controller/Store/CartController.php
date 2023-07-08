@@ -8,6 +8,7 @@ use App\Common\Infrastructure\Controller\BaseController;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Infrastructure\Repository\VariantRepository;
 use App\Store\Infrastructure\Service\Cart\CartService;
+use DomainException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,14 +46,19 @@ class CartController extends BaseController
         $userId = $user?->getId();
 
         $cart = $service->getCurrentCart(customerId: $userId);
-
-        $cart->add(variant: $variants->get($variantId), quantity: $quantity);
-        $flusher->flush();
+        try {
+            $cart->add(variant: $variants->get($variantId), quantity: $quantity);
+            $flusher->flush();
+            $message = 'success';
+        } catch (DomainException $e) {
+            $message = $e->getMessage();
+        }
 
         return $this->json([
-            'message' => 'ok',
+            'message' => $message,
             'amount' => $cart->getAmount(),
             'variant_id'=>$variantId,
+            'items' => [],
         ]);
     }
 
