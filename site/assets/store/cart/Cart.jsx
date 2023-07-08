@@ -113,13 +113,43 @@ const Cart = () => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    /*<div key={item.id} className='c-item'>
-
-                                    </div>*/
-
-
                                 ))}
+                            </div>
+
+                            <div className="checkout">
+                                <div className="checkout__row">
+                                    <div className="checkout__subtitle">Данные получателя</div>
+                                    <div className="field-list">
+                                        <div className="field">
+                                            <span className="field__ph">Ваше имя</span>
+                                            <input
+                                                type="text"
+                                                className="field__inp"
+                                                placeholder="Nataliy"
+                                                value={contactInfo.name}
+                                                onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
+                                            />
+                                        </div>
+                                        <div className="field">
+                                            <span className="field__ph">Номер телефона</span>
+                                            <input
+                                                type="text"
+                                                className="field__inp phone-masked-field"
+                                                placeholder="+7 956 654-55-33"
+                                                value={contactInfo.phone}
+                                                onChange={(e) => setContactInfo({ ...contactInfo, phone: e.target.value })}
+                                            />
+                                        </div>
+                                        <div className="field">
+                                            <span className="field__ph">Email для счёта</span>
+                                            <input type="text" className="field__inp" placeholder="email@example.com"/>
+                                        </div>
+                                        <div className="field field-text">
+                                            <span className="field__ph">Комментарий к заказу</span>
+                                            <textarea className="field__inp" placeholder="Текст комментария"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {/*<div>
@@ -179,7 +209,13 @@ const Cart = () => {
                                 Сумма заказа
                                 <span className="c-main__cost">{cart.costDiscount} р</span>
                             </div>
-                            <button className="c-main__btn btn-primary" type="button">Оформить заказ</button>
+                            <button
+                                className="c-main__btn btn-primary"
+                                type="button"
+                                disabled={!isOrderReady}
+                            >
+                                Оформить заказ
+                            </button>
                             <label className="c-main__check f-check">
                                 <input type="checkbox" checked hidden/>
                             <span className="f-check__sq">
@@ -190,7 +226,7 @@ const Cart = () => {
                                           fill="#1A1E24"/>
                                 </svg>
                             </span>
-                                    <span className="f-check__txt">Согласен с условиями <a href="#">Правил пользования торговой площадкой</a></span>
+                                <span className="f-check__txt">Согласен с условиями <a href="#">Правил пользования торговой площадкой</a></span>
                             </label>
                         </div>
                     </div>

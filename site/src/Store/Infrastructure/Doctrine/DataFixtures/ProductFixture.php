@@ -32,23 +32,11 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
             number: $i
         );
 
-        /*
-        $product = new Product(new ProductPrice(1000));
-        $product->setArticle('ARTICLE-' . $i);
-        $product->setName($name = 'product name');
-        $product->setDescription('product description');
-        $product->setSeoMetadata(
-            new SeoMetadata(
-                title: 'seo title',
-                description: 'seo description',
-            )
-        );
-        $product->setMainCategory($mainCategory);
-        $product->setSlug($this->slug->generate($name . $i++));
-        */
-
         $manager->persist($product);
+        $product->addVariant('XL');
+        $product->addVariant('XXL');
         $manager->flush();
+
 
         $product = new Product(new ProductPrice(1000));
         $product->setArticle('ARTICLE-' . $i);
