@@ -1,7 +1,7 @@
 import React from 'react'
-import store from './store/index';
-import {fetchCart} from "./store/cartSlice";
-import {createRoot} from "react-dom/client";
+import store from './store/index'
+import { fetchCart } from './store/cartSlice'
+import { createRoot } from 'react-dom/client'
 
 let isRenderedCartCount = false
 
@@ -31,7 +31,7 @@ addToCartBtn.addEventListener('click', () => {
         },
         body: JSON.stringify({
           variant_id: f.value,
-          quantity: 1
+          quantity: 1,
         }),
       })
         .then((response) => response.json())
@@ -45,13 +45,13 @@ addToCartBtn.addEventListener('click', () => {
         })
         .catch((error) => {
           // Обработка ошибки
-          console.error(error);
-        });
+          console.error(error)
+        })
     }
   }
 })
 
-store.subscribe(()=> {
+store.subscribe(() => {
   const state = store.getState()
   const cart = state.cart.cart
   if (cart !== null) {
