@@ -105,7 +105,7 @@ class Cart
     {
         $result = 0;
         foreach ($this->items as $item) {
-            $result = $result + $item->getDiscount();
+            $result = $result + $item->getCostDiscount();
         }
         return $result;
     }
