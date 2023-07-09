@@ -11,16 +11,18 @@
                     <li class="breadcrumb-item">
                         <a href="{{ path('store.cart.index') }}">Корзина</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Оформление заказа</li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="javascript:void(0);">Оформление заказа</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Заказ успешно оформлен</li>
                 </ol>
             </nav>
 
-            <div id="checkout-id"></div>
+            <p>Checkout success!</p>
         </div>
     </section>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('store_checkout') }}
 {% endblock %}

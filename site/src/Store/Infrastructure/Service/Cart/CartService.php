@@ -27,7 +27,7 @@ readonly class CartService
         $cart = $this->storage->getCart();
 
         // Если корзина найдена и пользователь не null
-        if ($cart !==null && $customerId !==null) {
+        if ($cart !== null && $customerId !== null) {
             // Если пользователь у текущей корзины не установлены
             if ($cart->getCustomerId() === null) {
                 // Устанавливаем значение customerId
@@ -63,7 +63,11 @@ readonly class CartService
     {
     }
 
-    public function clear(): void
+    public function clear(?int $customerId = null): void
     {
+        $cart = $this->getCurrentCart($customerId);
+        $cart->clear();
+
+        $this->flusher->flush();
     }
 }

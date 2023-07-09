@@ -20,7 +20,7 @@ readonly class OrderService
     {
         $order = $this->orders->find($id);
         if ($order === null) {
-            $order = new Order();
+            $order = new Order(null);
             $this->flusher->flush();
         }
 

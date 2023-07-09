@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Order;
 
 use App\Store\Domain\Entity\Order\ValueObject\ClientId;
-use App\Store\Domain\Entity\Order\ValueObject\CustomerData;
-use App\Store\Domain\Entity\Order\ValueObject\DeliveryData;
+use App\Store\Domain\Entity\Order\ValueObject\OrderCustomer;
+use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
 use App\Store\Domain\Entity\Order\ValueObject\OrderItemPrice;
+use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Entity\Order\ValueObject\OrderStatus;
 use App\Store\Domain\Entity\Order\ValueObject\ProductData;
 use App\Store\Domain\Entity\Product\Variant;
@@ -34,17 +35,20 @@ class Order
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $updatedAt;
 
-    #[ORM\Column(type: 'integer')]
-    private int $customerId;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $customerId;
 
-    #[ORM\Embedded(class: CustomerData::class, columnPrefix: 'customer_')]
-    private CustomerData $customerData;
+    #[ORM\Embedded(class: OrderCustomer::class, columnPrefix: 'customer_')]
+    private ?OrderCustomer $customer;
 
-    #[ORM\Embedded(class: DeliveryData::class, columnPrefix: 'delivery_')]
-    private DeliveryData $deliveryData;
+    #[ORM\Embedded(class: OrderDelivery::class, columnPrefix: 'delivery_')]
+    private ?OrderDelivery $delivery;
+
+    #[ORM\Embedded(class: OrderPayment::class, columnPrefix: 'payment_')]
+    private ?OrderPayment $payment;
 
     #[ORM\Embedded(class: ClientId::class, columnPrefix: 'client_id_')]
-    private ClientId|null $clientId = null;
+    private ?ClientId $clientId = null;
 
     /** @var ArrayCollection<array-key, OrderItem> */
     #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderItem::class, cascade: ['ALL'], orphanRemoval: true)]
@@ -52,6 +56,7 @@ class Order
 
     #[ORM\Column(type: 'json')]
     private array $statuses;
+
     #[ORM\Column(type: 'string')]
     private string $currentStatus;
 
@@ -62,22 +67,25 @@ class Order
     private int $deliveryCost = 0;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private string|null $paymentMethod = null;
-
-    #[ORM\Column(type: 'string', nullable: true)]
     private string|null $cancelReason = null;
 
     public function __construct(
-        int $customerId,
-        DateTimeImmutable $createdAt,
-        CustomerData $customerData,
+        OrderCustomer $customer,
+        OrderDelivery $delivery,
+        OrderPayment $payment,
+        ?int $customerId,
     ) {
+        $this->customer = $customer;
+        $this->delivery = $delivery;
+        $this->payment = $payment;
+
         $this->customerId = $customerId;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $createdAt;
-        $this->customerData = $customerData;
+
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
 
         $this->items = new ArrayCollection();
+
         $this->addStatus(OrderStatus::NEW);
     }
 
@@ -104,12 +112,12 @@ class Order
         }
     }
 
-    public function pay(string $method): void
+    public function pay(): void
     {
         if ($this->isPaid()) {
             throw new StoreOrderException('Order is already paid.');
         }
-        $this->paymentMethod = $method;
+
         $this->addStatus(OrderStatus::PAID);
     }
 
@@ -203,14 +211,19 @@ class Order
         return $this->customerId;
     }
 
-    public function getCustomerData(): CustomerData
+    public function getCustomer(): OrderCustomer
     {
-        return $this->customerData;
+        return $this->customer;
     }
 
-    public function getDeliveryData(): DeliveryData
+    public function getDelivery(): OrderDelivery
     {
-        return $this->deliveryData;
+        return $this->delivery;
+    }
+
+    public function getPayment(): ?OrderPayment
+    {
+        return $this->payment;
     }
 
     public function getClientId(): ?ClientId
@@ -236,11 +249,6 @@ class Order
     public function getDeliveryCost(): int
     {
         return $this->deliveryCost;
-    }
-
-    public function getPaymentMethod(): ?string
-    {
-        return $this->paymentMethod;
     }
 
     public function getCancelReason(): ?string

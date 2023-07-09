@@ -17,9 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends BaseController
 {
     #[Route(path: '/', name: '.index')]
-    public function cart(Request $request, CartService $service): Response
+    public function cart(CartService $service): Response
     {
-        $userId = null;
         $user = $this->getUser();
         $userId = $user?->getId();
 

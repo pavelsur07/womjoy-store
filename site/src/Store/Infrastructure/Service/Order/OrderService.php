@@ -7,11 +7,12 @@ namespace App\Store\Infrastructure\Service\Order;
 use App\Auth\Infrastructure\Repository\UserRepository;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Cart\Cart;
-use App\Store\Domain\Entity\Cart\CartItem;
 use App\Store\Domain\Entity\Order\Order;
-use App\Store\Domain\Entity\Order\ValueObject\CustomerData;
+use App\Store\Domain\Entity\Order\ValueObject\OrderCustomer;
+use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
+use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Infrastructure\Repository\OrderRepository;
-use DateTimeImmutable;
+use App\Store\Infrastructure\Request\Api\CheckoutDto;
 
 final readonly class OrderService
 {
@@ -22,29 +23,53 @@ final readonly class OrderService
     ) {
     }
 
-    public function checkout(int|null $customerId, Cart $cart): void
+    public function checkout(Cart $cart, CheckoutDto $checkoutDto): Order
     {
-        $user = $this->customers->get($customerId);
+        if ($cart->getCustomerId()) {
+            $customerId = $this->customers->get($cart->getCustomerId())?->getId();
+        } else {
+            $customerId = null;
+        }
 
-        $order = new Order(
-            customerId: $user->getId(),
-            createdAt: new DateTimeImmutable(),
-            customerData: new CustomerData(
-                phone: 'phone',
-                name: 'name',
-                email: 'email',
-            )
+        $customer = new OrderCustomer(
+            phone: $checkoutDto->customer->phone,
+            name: $checkoutDto->customer->name,
+            email: $checkoutDto->customer->email,
+            comment: $checkoutDto->customer->comment
         );
 
-        /** @var CartItem $item */
+        $delivery = new OrderDelivery(
+            address: $checkoutDto->delivery->address,
+        );
+
+        $payment = match ($checkoutDto->payment) {
+            OrderPayment::PAYMENT_METHOD_COD => OrderPayment::cod(),
+            OrderPayment::PAYMENT_METHOD_ONLINE => OrderPayment::online(
+                OrderPayment::PAYMENT_STATUS_WAITING,
+            ),
+        };
+
+        $order = new Order(
+            customer: $customer,
+            delivery: $delivery,
+            payment: $payment,
+            customerId: $customerId
+        );
+
         foreach ($cart->getItems() as $item) {
-            $item->getVariant()->checkout($item->getQuantity());
-            $order->addItem(variant: $item, quantity: $item->getQuantity());
+            // checkout quantity
+            $item->getVariant()->checkout(
+                $item->getQuantity()
+            );
+
+            // add variant item to order and quantity
+            $order->addItem(variant: $item->getVariant(), quantity: $item->getQuantity());
         }
 
         $this->orders->save($order);
-        $cart->clear();
 
         $this->flusher->flush();
+
+        return $order;
     }
 }
