@@ -9,8 +9,8 @@ use App\Store\Infrastructure\Request\Api\CheckoutDto;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use App\Store\Infrastructure\Service\Order\OrderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/api/v1/checkout', name: 'store.checkout.api')]
@@ -22,7 +22,6 @@ class OrderApiController extends AbstractController
         OrderService $orderService,
         #[MapRequestPayload] CheckoutDto $checkoutDto,
     ): Response {
-
         $cart = $cartService->getCurrentCart(
             $userId = $this->getUser()?->getId()
         );
@@ -31,10 +30,10 @@ class OrderApiController extends AbstractController
 
         return $this->json(
             [
-                'redirect_url' => match($order->getPayment()->getMethod()) {
+                'redirect_url' => match ($order->getPayment()->getMethod()) {
                     OrderPayment::PAYMENT_METHOD_COD => $this->generateUrl('store.checkout.finish'),
                     OrderPayment::PAYMENT_METHOD_ONLINE => $this->generateUrl('store.checkout.finish'),
-                }
+                },
             ]
         );
     }

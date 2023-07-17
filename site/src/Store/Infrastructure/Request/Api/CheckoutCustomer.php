@@ -11,13 +11,10 @@ class CheckoutCustomer
     public function __construct(
         #[Assert\NotBlank]
         public string $name,
-
         #[Assert\NotBlank]
         public string $phone,
-
         #[Assert\NotBlank]
         public string $email,
-
         public ?string $comment = null,
     ) {
     }

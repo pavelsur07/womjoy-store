@@ -37,7 +37,6 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $product->addVariant('XXL');
         $manager->flush();
 
-
         $product = new Product(new ProductPrice(1000));
         $product->setArticle('ARTICLE-' . $i);
         $product->setName($name = 'product name');
