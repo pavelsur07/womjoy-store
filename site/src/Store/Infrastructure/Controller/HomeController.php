@@ -40,6 +40,7 @@ class HomeController extends BaseController
         $popularity = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
+            direction: 'asc'
         );
 
         return $this->render(

@@ -45,13 +45,17 @@ class ProductRepository
         return $object;
     }
 
-    public function getAll(int $page, int $size): PaginationInterface
+    public function getAll(int $page, int $size, string $sort = 'createdAt', string $direction = 'desc'): PaginationInterface
     {
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->from(Product::class, 'p');
-        $qb->orderBy('p.id', 'ASC');
-        $qb->orderBy('p.createdAt', 'DESC');
+
+        if (!\in_array($sort, ['createdAt', 'id'], true)) {
+            throw new \UnexpectedValueException('Cannot sort by ' . $sort);
+        }
+
+        $qb->orderBy('p.'.$sort, $direction === 'desc' ? 'desc' : 'asc');
 
         $qb->getQuery();
 
