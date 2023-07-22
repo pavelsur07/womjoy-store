@@ -43,7 +43,7 @@
                 </a>
                 <div class="product__row">
 
-                    {% if product.price.listPrice == 0 %}
+                    {% if product.price.listPrice == product.price.price %}
                         <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
                     {% else %}
 

@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="i-card__price">
-                        {% if product.price.listPrice == 0 %}
+                        {% if product.price.listPrice == product.price.listPrice %}
                             <span class="i-card__cost">{{ product.price.price|number_format(0, ',', ' ') }} р.</span>
                         {% else %}
                             <span class="i-card__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
