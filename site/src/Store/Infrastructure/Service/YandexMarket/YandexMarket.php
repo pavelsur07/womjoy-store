@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Service\YandexMarket;
 
+use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\Product;
@@ -25,6 +26,7 @@ class YandexMarket
         private readonly CategoryRepositoryInterface $categories,
         private readonly ProductRepository $products,
         private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly ThumbnailService $thumbnails,
     ) {
     }
 
@@ -115,6 +117,14 @@ class YandexMarket
             $writer->writeElement('model', (string)$product->getId());
             $writer->writeElement('description', strip_tags($product->getDescription()));
 
+            foreach ($product->getImages() as $image) {
+                $writer->writeElement('picture', $this->thumbnails->generateUrl(
+                    path: $image->getPath(),
+                    file: $image->getName(),
+                    width: 900,
+                    height: 1200
+                ));
+            }
             /*foreach ($product->values as $value) {
                 if (!empty($value->value)) {
                     $writer->startElement('param');

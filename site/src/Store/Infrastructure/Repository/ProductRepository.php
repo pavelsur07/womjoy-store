@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use DomainException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use UnexpectedValueException;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -52,10 +53,10 @@ class ProductRepository
             ->from(Product::class, 'p');
 
         if (!\in_array($sort, ['createdAt', 'id'], true)) {
-            throw new \UnexpectedValueException('Cannot sort by ' . $sort);
+            throw new UnexpectedValueException('Cannot sort by ' . $sort);
         }
 
-        $qb->orderBy('p.'.$sort, $direction === 'desc' ? 'desc' : 'asc');
+        $qb->orderBy('p.' . $sort, $direction === 'desc' ? 'desc' : 'asc');
 
         $qb->getQuery();
 
