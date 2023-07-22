@@ -51,6 +51,7 @@ class ProductRepository
             ->select('p')
             ->from(Product::class, 'p');
         $qb->orderBy('p.id', 'ASC');
+        $qb->orderBy('p.createdAt', 'DESC');
 
         $qb->getQuery();
 
