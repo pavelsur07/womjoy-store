@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Api;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Store\Domain\Entity\Cart\CartItem;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use DomainException;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class CartApiController extends AbstractController
 {
     #[Route(path: '/', name: '.get', methods: ['GET'])]
-    public function get(Request $request, CartService $service, UrlGeneratorInterface $generator): Response
+    public function get(Request $request, CartService $service, UrlGeneratorInterface $generator, ThumbnailService $thumbnails): Response
     {
         $userId = null;
         $user = $this->getUser();
@@ -32,7 +33,7 @@ class CartApiController extends AbstractController
                 'costDiscount' => $cart->getCostDiscount(),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
-                'items' => array_map(static function (CartItem $item) use ($generator) {
+                'items' => array_map(static function (CartItem $item) use ($generator, $thumbnails) {
                     return [
                         'id' => $item->getVariant()->getId(),
                         'href' => $generator->generate('store.product.show', ['slug' => $item->getVariant()->getProduct()->getSlug()]),
@@ -42,6 +43,12 @@ class CartApiController extends AbstractController
                         'price_old' =>$item->getVariant()->getProduct()->getPrice()->getPrice(),
                         'price_list' =>$item->getVariant()->getProduct()->getPrice()->getListPrice(),
                         'currency' => 'р.',
+                        'thumbnail' => $thumbnails->generateUrl(
+                            path: $item->getVariant()->getProduct()->getImages()->first()->getPath(),
+                            file: $item->getVariant()->getProduct()->getImages()->first()->getName(),
+                            width: 390,
+                            height: 520,
+                        ),
                     ];
                 }, $cart->getItems()->toArray()),
             ]
@@ -49,7 +56,7 @@ class CartApiController extends AbstractController
     }
 
     #[Route(path: '/quantity', name: '.quantity', methods: ['POST'])]
-    public function quantity(Request $request, CartService $service, Flusher $flusher, UrlGeneratorInterface $generator): Response
+    public function quantity(Request $request, CartService $service, Flusher $flusher, UrlGeneratorInterface $generator, ThumbnailService $thumbnails): Response
     {
         $data = json_decode($request->getContent(), true);
         $variantId = (int)$data['productId']; // $request->get('variant_id');
@@ -75,7 +82,7 @@ class CartApiController extends AbstractController
                 'costDiscount' => $cart->getCostDiscount(),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
-                'items' => array_map(static function (CartItem $item) use ($generator) {
+                'items' => array_map(static function (CartItem $item) use ($generator, $thumbnails) {
                     return [
                         'id' => $item->getVariant()->getId(),
                         'href' => $generator->generate('store.product.show', ['slug' => $item->getVariant()->getProduct()->getSlug()]),
@@ -85,6 +92,12 @@ class CartApiController extends AbstractController
                         'price_old' =>$item->getVariant()->getProduct()->getPrice()->getPrice(),
                         'price_list' =>$item->getVariant()->getProduct()->getPrice()->getListPrice(),
                         'currency' => 'р.',
+                        'thumbnail' => $thumbnails->generateUrl(
+                            path: $item->getVariant()->getProduct()->getImages()->first()->getPath(),
+                            file: $item->getVariant()->getProduct()->getImages()->first()->getName(),
+                            width: 390,
+                            height: 520,
+                        ),
                     ];
                 }, $cart->getItems()->toArray()),
             ]

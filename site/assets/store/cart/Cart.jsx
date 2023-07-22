@@ -83,7 +83,7 @@ const Cart = () => {
                                         <a href={item.href} className="c-item__img">
                                             <span className="c-item__img_in">
                                                 <img
-                                                    src="/img/cart-item-img.png"
+                                                    src={item.thumbnail}
                                                     alt={item.name}
                                                     width="83"
                                                     height="110"
