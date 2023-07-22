@@ -1,19 +1,3 @@
-{#{% extends 'admin/base.html.twig' %}
-
-{% block title %}Edit Product{% endblock %}
-
-{% block body %}
-    <div class="card card-body">
-        <h1>Edit Product</h1>
-
-        {{ include('admin/product/_form.html.twig', {'button_label': 'Update'}) }}
-
-        <a href="{{ path('admin.product.index') }}">back to list</a>
-
-        {{ include('admin/product/_delete_form.html.twig') }}
-    </div>
-{% endblock %}#}
-
 {% extends 'admin/base.html.twig' %}
 
 {% block title %}Product index{% endblock %}

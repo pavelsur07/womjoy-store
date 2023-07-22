@@ -15,6 +15,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class ProductFixture extends Fixture implements DependentFixtureInterface
 {
+    public const REFERENCE_PRODUCT = 'reference-product';
+
     public function __construct(private readonly SlugifyService $slug)
     {
     }
@@ -35,7 +37,10 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
         $manager->persist($product);
         $product->addVariant('XL');
         $product->addVariant('XXL');
+        $this->setReference(self::REFERENCE_PRODUCT, $product);
         $manager->flush();
+
+        // ----------------------------------
 
         $product = new Product(new ProductPrice(1000));
         $product->setArticle('ARTICLE-' . $i);

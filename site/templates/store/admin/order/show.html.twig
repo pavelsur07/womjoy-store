@@ -1,0 +1,75 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Order show{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Store
+            </div>
+            <h2 class="page-title">
+                Order
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.index') }}">Back to list</a>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+            <p><strong>Number: </strong> {{ order.id }}</p>
+            <p><strong>Data: </strong> {{ order.createdAt| date('Y-m-d') }}</p>
+            <p><strong>Name: </strong> {{ order.customer.name }}</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name / Article</th>
+                    <th>Sale price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in order.items %}
+                    <tr>
+                        <td>
+                            {% if item.productVariant.product.images.count > 0 %}
+                                {% set file = item.productVariant.product.images.first %}
+                                {% set file_url = storage_path(file.path ~'/'~ file.name) %}
+
+                                {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ item.productData.name ~ '"/>' %}
+
+                                <a href="{{ file_url }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">
+                                    <img class="avatar avatar-sm" src="{{ file_url }}" alt="{{ item.productData.name }}">
+                                </a>
+                            {% endif %}
+
+                        </td>
+                        <td> {{ item.productData.name }}<br> <strong>{{ item.productData.article }}</strong> </td>
+                        <td> {{ item.price.salePrice |number_format(0, ',', ' ')}}</td>
+                        <td> status </td>
+                        <td><a href="#">action</a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
+

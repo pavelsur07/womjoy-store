@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Order index{% endblock %}
 
 {% block body %}
     <div class="row g-2 align-items-center">
@@ -20,25 +20,31 @@
         </div>
     </div>
 
-    <div class="card card-body">
+    <div class="card card-body mt-2">
         <table class="table">
             <thead>
             <tr>
-                <th class="w-1">Id</th>
-                <th class="w-1">Status</th>
-                <th>Image</th>
+                <th class="w-1">Number</th>
+                <th>Date</th>
+                <th>Status</th>
                 <th>Name</th>
+                <th>Phone</th>
+                <th>Address <br> Type delivery</th>
+                <th>Cost</th>
                 <th class="w-25">Actions</th>
             </tr>
             </thead>
             <tbody>
             {% for order in orders %}
                 <tr>
-                    <td>{{ order.id }}</td>
-                    <td> status </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td> {{ order.id }} </td>
+                    <td> {{ order.createdAt| date('Y-m-d') }} </td>
+                    <td> {{ order.currentStatus }}  </td>
+                    <td> {{ order.customer.name }}  </td>
+                    <td> {{ order.customer.phone }} </td>
+                    <td> {{ order.delivery.address }} <br> <strong>PVZ</strong> </td>
+                    <td> {{ order.cost }} </td>
+                    <td><a class="btn btn-sm rounded-2 btn-bitbucket" href="{{ path('store.order.admin.show', {'id': order.id}) }}">show</a></td>
                 </tr>
             {% else %}
                 <tr>

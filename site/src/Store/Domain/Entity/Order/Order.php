@@ -73,7 +73,7 @@ class Order
         OrderCustomer $customer,
         OrderDelivery $delivery,
         OrderPayment $payment,
-        ?int $customerId,
+        ?int $customerId = null,
     ) {
         $this->customer = $customer;
         $this->delivery = $delivery;
