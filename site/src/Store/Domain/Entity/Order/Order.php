@@ -7,7 +7,9 @@ namespace App\Store\Domain\Entity\Order;
 use App\Store\Domain\Entity\Order\ValueObject\ClientId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderCustomer;
 use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
+use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderItemPrice;
+use App\Store\Domain\Entity\Order\ValueObject\OrderNumber;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Entity\Order\ValueObject\OrderStatus;
 use App\Store\Domain\Entity\Order\ValueObject\ProductData;
@@ -25,9 +27,11 @@ use Webmozart\Assert\Assert;
 class Order
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'SEQUENCE')]
-    #[ORM\Column]
-    private int $id;
+    #[ORM\Column(type: 'store_order_uuid')]
+    private OrderId $id;
+
+    #[ORM\Embedded(class: OrderNumber::class, columnPrefix: false)]
+    private ?OrderNumber $orderNumber = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
@@ -75,6 +79,7 @@ class Order
         OrderPayment $payment,
         ?int $customerId = null,
     ) {
+        $this->id = OrderId::generate();
         $this->customer = $customer;
         $this->delivery = $delivery;
         $this->payment = $payment;
@@ -191,9 +196,21 @@ class Order
         return $this->items;
     }
 
-    public function getId(): int
+    public function getId(): OrderId
     {
         return $this->id;
+    }
+
+    public function getOrderNumber(): ?OrderNumber
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(?OrderNumber $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
+
+        return $this;
     }
 
     public function getCreatedAt(): DateTimeImmutable

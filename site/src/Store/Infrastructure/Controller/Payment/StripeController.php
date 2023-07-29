@@ -4,62 +4,133 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Payment;
 
-use App\Common\Infrastructure\Controller\BaseController;
 use App\Common\Infrastructure\Doctrine\Flusher;
-use App\Menu\Domain\Repository\MenuRepositoryInterface;
-use App\Menu\Infrastructure\Service\MenuSettingService;
-use App\Setting\Infrastructure\Service\SettingService;
-use App\Store\Domain\Service\HomeService;
-use App\Store\Infrastructure\Repository\OrderRepository;
-use Omnipay\Omnipay;
+use App\Store\Domain\Entity\Order\OrderItem;
+use App\Store\Domain\Entity\Order\ValueObject\OrderId;
+use App\Store\Domain\Exception\StoreOrderException;
+use App\Store\Infrastructure\Service\Order\OrderService;
+use Stripe\Stripe;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 
-#[Route(path: '/cart/checkout/pay/stripe', name: 'store.checkout.pay.stripe')]
-class StripeController extends BaseController
+#[Route(path: '/cart/checkout/payment/stripe', name: 'store.checkout.payment.stripe')]
+class StripeController extends AbstractController
 {
     public function __construct(
-        MenuRepositoryInterface $menus,
-        HomeService $homeService,
-        UrlGeneratorInterface $generator,
-        private readonly MenuSettingService $menuService,
-        private readonly SettingService $settingService,
+        private readonly string $stripeApiKey,
+        private readonly OrderService $orderService,
+        private readonly Flusher $flusher,
     ) {
-        parent::__construct(
-            $menus,
-            $homeService,
-            $generator,
-            $this->menuService,
-            $this->settingService,
+        Stripe::setApiKey($this->stripeApiKey);
+    }
+
+    #[Route('/{orderId}', name: '.purchase')]
+    public function purchase(string $orderId): Response
+    {
+        $order = $this->orderService->get(
+            new OrderId($orderId)
+        );
+
+        $lineItems = [];
+
+        /** @var OrderItem $item */
+        foreach ($order->getItems() as $item) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'bgn',
+                    // @TODO переключить на получение кода валюты.
+//                    'currency' => $item->getPrice()->getCurrency(),
+                    'product_data' => [
+                        'name' => $item->getProductData()->getName(),
+                    ],
+                    'unit_amount' => $item->getPrice()->getSalePrice(),
+                ],
+                'quantity' => $item->getQuantity(),
+            ];
+        }
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items' => $lineItems,
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl(
+                'store.checkout.payment.stripe.success',
+                ['orderId' => $orderId],
+                UrlGenerator::ABSOLUTE_URL
+            ),
+            'cancel_url' => $this->generateUrl(
+                'store.checkout.payment.stripe.fail',
+                ['orderId' => $orderId],
+                UrlGenerator::ABSOLUTE_URL
+            ),
+        ]);
+
+        $order->getPayment()->setTransactionId($session->id);
+        $order->getPayment()->setTransaction(
+            $session->toArray()
+        );
+
+        $this->flusher->flush();
+
+        return $this->redirect($session->url);
+    }
+
+    #[Route('/{orderId}/success', name: '.success')]
+    public function success(string $orderId): Response
+    {
+        $order = $this->orderService->get(
+            new OrderId($orderId)
+        );
+
+        $order->pay();
+        $order->getPayment()->setStatusSucceeded();
+
+        $this->flusher->flush();
+
+        return $this->redirectToRoute(
+            'store.checkout.finish', ['orderId' => $orderId]
         );
     }
 
-    #[Route('/{reference}', name: '.pay')]
-    public function payment(int $reference, OrderRepository $orders, Flusher $flusher): Response
+    #[Route('/{orderId}/fail', name: '.fail')]
+    public function fail(string $orderId): Response
     {
-        $order = $orders->get($reference);
-        $gateway = Omnipay::create('Stripe');
-        $gateway->setApiKey('abc123');
-        $formData = [];
+        $order = $this->orderService->get(
+            new OrderId($orderId)
+        );
 
-        $response = $gateway->purchase(
-            [
-                'amount' => '10.00',
-                'currency' => 'USD',
-                'card' => $formData],
-        )->send();
+        try {
+            $order->cancel('Payment fail.');
+            $order->getPayment()->setStatusCancelled();
+
+            $this->flusher->flush();
+        } catch (StoreOrderException $exception) {
+            // @todo если нужен лог то он будет тут
+        }
+
+        return $this->redirectToRoute(
+            'store.checkout.fail', ['orderId' => $orderId]
+        );
     }
 
-    #[Route('/{reference}/success', name: '.success')]
-    public function paymentSuccess(string $reference): void
+    #[Route('/{orderId}/transaction', name: '.transaction')]
+    public function transaction(string $orderId): void
     {
-        // TODO Cart - clear
-        // TODO Order status - pay
-    }
+        $order = $this->orderService->get(
+            new OrderId($orderId)
+        );
 
-    #[Route('/{reference}/fail', name: '.fail')]
-    public function paymentFail(string $reference): void
-    {
+        if ($order->getPayment()->getTransactionId()) {
+            $session = \Stripe\Checkout\Session::retrieve(
+                $order->getPayment()->getTransactionId()
+            );
+
+            dump($session);
+            die;
+        }
+
+        dump($order);
+        die;
     }
 }

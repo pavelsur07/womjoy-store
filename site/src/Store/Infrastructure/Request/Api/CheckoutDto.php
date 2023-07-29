@@ -14,8 +14,10 @@ class CheckoutDto
     public function __construct(
         #[Assert\Valid]
         public readonly CheckoutCustomer $customer,
+
         #[Assert\Valid]
         public readonly CheckoutDelivery $delivery,
+
         #[Assert\Choice([self::PAYMENT_TYPE_COD, self::PAYMENT_TYPE_ONLINE])]
         public readonly string $payment
     ) {
