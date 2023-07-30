@@ -73,7 +73,7 @@ class StripeController extends AbstractController
 
         $this->flusher->flush();
 
-        return $this->redirect($session->url);
+        return $this->redirect($session->url, 303);
     }
 
     #[Route('/{orderId}/success', name: '.success')]

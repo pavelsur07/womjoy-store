@@ -47,10 +47,6 @@ class StripeCheckStatusCommand extends Command
                 $order->getPayment()->getTransactionId()
             );
 
-            dump(
-                sprintf('- status session: %s %s- status payment: %s %s', $session->status, PHP_EOL, $session->payment_status, PHP_EOL)
-            );
-
             // Если статус открыт, то пропускаем проверку
             if($session->status === $session::STATUS_OPEN) {
                 continue;
@@ -61,12 +57,18 @@ class StripeCheckStatusCommand extends Command
                 'unpaid' => OrderPayment::PAYMENT_STATUS_CANCELLED,
             };
 
-            dump(
-                sprintf('status womjoy: %s', $status)
-            );
+            if($status === OrderPayment::PAYMENT_STATUS_SUCCEEDED) {
+                $order->pay();
+                $order->getPayment()->setStatusSucceeded();
+            }
+
+            if($status === OrderPayment::PAYMENT_STATUS_CANCELLED) {
+                $order->cancel('Payment fail.');
+                $order->getPayment()->setStatusCancelled();
+            }
         }
 
-        // @todo Реализовать механизм проверки статуса платежа на стороне провайдера.
+        $this->flusher->flush();
 
         return Command::SUCCESS;
     }
