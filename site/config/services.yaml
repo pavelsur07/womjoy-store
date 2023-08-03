@@ -95,6 +95,9 @@ services:
     App\Setting\Infrastructure\Repository\SettingRepository:
         class: App\Setting\Infrastructure\Repository\SettingRepository
         
+    App\Store\Infrastructure\Repository\AttributeRepository:
+        class: App\Store\Infrastructure\Repository\AttributeRepository
+        
     App\Common\Infrastructure\Uploader\FileUploader:
         arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%' ]
         

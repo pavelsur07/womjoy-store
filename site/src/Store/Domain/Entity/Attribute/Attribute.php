@@ -8,11 +8,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Webmozart\Assert\Assert;
 
 #[ORM\Entity]
 #[ORM\Table(name: '`store_attributes`')]
 class Attribute
 {
+    public const TYPE_SINGLE_CHOICE = 'single_choice';
+    public const TYPE_MULTI_CHOICE = 'multi_choice';
+    public const TYPE_CUSTOMER_VALUE = 'customer_value';
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column]
@@ -30,9 +35,15 @@ class Attribute
 
     public function __construct(string $name, string $type)
     {
+        Assert::oneOf($type, self::getTypeList());
         $this->name = $name;
         $this->type = $type;
         $this->variants = new ArrayCollection();
+    }
+
+    public function editName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public function getId(): int
@@ -53,5 +64,14 @@ class Attribute
     public function getVariants(): Collection
     {
         return $this->variants;
+    }
+
+    public static function getTypeList(): array
+    {
+        return [
+            self::TYPE_CUSTOMER_VALUE,
+            self::TYPE_MULTI_CHOICE,
+            self::TYPE_SINGLE_CHOICE,
+        ];
     }
 }
