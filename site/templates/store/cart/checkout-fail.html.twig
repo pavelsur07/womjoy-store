@@ -14,13 +14,15 @@
                     <li class="breadcrumb-item" aria-current="page">
                         <a href="javascript:void(0);">Оформление заказа</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Заказ успешно оформлен</li>
+                    <li class="breadcrumb-item active" aria-current="page">Оформление заказа отменено</li>
                 </ol>
             </nav>
 
-            <h1>Заказ #{{ order.orderNumber.value }} успешно оформлен</h1>
+            <h1>Заказ № {{ order.orderNumber.value }} отменён.</h1>
 
-            <p>Checkout success!</p>
+            {% if  order.cancelReason %}
+                <p>Причина: {{ order.cancelReason }}</p>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

@@ -10,7 +10,7 @@ parameters:
     app_thumbnails: 900-1200|300-400
     app_cache_image: '/cache'
     app_url: '%env(SITE_URL)%'
-    
+    stripe_api_key: '%env(STRIPE_API_KEY)%'
 
 services:
     # default configuration for services in *this* file
@@ -24,6 +24,7 @@ services:
             string $cachePathImages: '%env(CACHE_PATH_IMAGE)%'
             string $thumbnails: '%app_thumbnails%'
             string $siteUrl: '%app_url%'
+            string $stripeApiKey: '%stripe_api_key%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -115,3 +116,6 @@ services:
         
     App\Page\Infrastructure\Menu\Admin\PageActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: page_page_action } ]
+
+    App\Store\Infrastructure\Service\Payment\PaymentProvider:
+        arguments: [ '%env(PAYMENT_PROVIDER_NAME)%' ]

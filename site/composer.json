@@ -26,6 +26,7 @@
         "ramsey/uuid": "^4.7",
         "sensio/framework-extra-bundle": "^6.1",
         "sentry/sentry-symfony": "^4.8",
+        "stripe/stripe-php": "^10.19",
         "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/doctrine-messenger": "6.3.*",

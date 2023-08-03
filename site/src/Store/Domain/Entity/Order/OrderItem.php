@@ -17,6 +17,7 @@ class OrderItem
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column]
     private int $id;
+
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'items')]
     #[ORM\JoinColumn(name: 'order_id', referencedColumnName: 'id', nullable: false)]
     private Order $order;

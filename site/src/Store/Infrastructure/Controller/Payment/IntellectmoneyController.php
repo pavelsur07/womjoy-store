@@ -9,8 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/cart/checkout/payment/alfa', name: 'store.checkout.payment.alfa')]
-class AlfaController extends AbstractController
+#[Route(path: '/cart/checkout/payment/intellectmoney', name: 'store.checkout.payment.intellectmoney')]
+class IntellectmoneyController extends AbstractController
 {
     #[Route('/{orderId}', name: '.purchase')]
     public function purchase(string $orderId): Response
