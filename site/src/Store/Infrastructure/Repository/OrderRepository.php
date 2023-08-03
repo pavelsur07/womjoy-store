@@ -74,7 +74,7 @@ class OrderRepository implements OrderRepositoryInterface
                 ->getQuery()->getSingleScalarResult();
         } catch (NoResultException|NonUniqueResultException $e) {
             $nextOrderNumber = 1;
-        };
+        }
 
         return new OrderNumber(
             (int)$nextOrderNumber

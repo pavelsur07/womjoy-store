@@ -26,43 +26,6 @@ class CartApiController extends AbstractController
     ) {
     }
 
-    protected function transformCartItem(CartItem $item): array
-    {
-        /** @var Image|null $firstImage */
-        $firstImage = $item->getVariant()->getProduct()?->getImages()->first();
-
-        if ($firstImage) {
-            $thumbnail = $this->thumbnails->generateUrl(
-                path: $firstImage->getPath(),
-                file: $firstImage->getName(),
-                width: 390,
-                height: 520,
-            );
-        } else {
-            $thumbnail = '/img/e404.svg';
-        }
-
-        return [
-            'id' => $item->getVariant()->getId(),
-            'href' => $this->generator->generate('store.product.show', [
-                    'slug' => $item->getVariant()->getProduct()->getSlug()
-                ]
-            ),
-            'name' => $item->getVariant()->getProduct()->getName(),
-            'quantity' => $item->getQuantity(),
-            'value' => $item->getVariant()->getValue(),
-            'price_old' => $item->getVariant()->getProduct()->getPrice()->getPrice(),
-            'price_list' => $item->getVariant()->getProduct()->getPrice()->getListPrice(),
-            'currency' => 'р.',
-            'thumbnail' => $thumbnail,
-        ];
-    }
-
-    protected function getCartItems(Cart $cart): array
-    {
-        return array_map([$this, 'transformCartItem'], $cart->getItems()->toArray());
-    }
-
     #[Route(path: '/', name: '.get', methods: ['GET'])]
     public function get(CartService $service): Response
     {
@@ -129,5 +92,44 @@ class CartApiController extends AbstractController
                 'items' => $this->getCartItems($cart),
             ]
         );
+    }
+
+    protected function transformCartItem(CartItem $item): array
+    {
+        /** @var Image|null $firstImage */
+        $firstImage = $item->getVariant()->getProduct()?->getImages()->first();
+
+        if ($firstImage) {
+            $thumbnail = $this->thumbnails->generateUrl(
+                path: $firstImage->getPath(),
+                file: $firstImage->getName(),
+                width: 390,
+                height: 520,
+            );
+        } else {
+            $thumbnail = '/img/e404.svg';
+        }
+
+        return [
+            'id' => $item->getVariant()->getId(),
+            'href' => $this->generator->generate(
+                'store.product.show',
+                [
+                    'slug' => $item->getVariant()->getProduct()->getSlug(),
+                ]
+            ),
+            'name' => $item->getVariant()->getProduct()->getName(),
+            'quantity' => $item->getQuantity(),
+            'value' => $item->getVariant()->getValue(),
+            'price_old' => $item->getVariant()->getProduct()->getPrice()->getPrice(),
+            'price_list' => $item->getVariant()->getProduct()->getPrice()->getListPrice(),
+            'currency' => 'р.',
+            'thumbnail' => $thumbnail,
+        ];
+    }
+
+    protected function getCartItems(Cart $cart): array
+    {
+        return array_map([$this, 'transformCartItem'], $cart->getItems()->toArray());
     }
 }

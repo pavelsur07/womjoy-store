@@ -41,7 +41,7 @@ class StripeController extends AbstractController
                 'price_data' => [
                     'currency' => 'bgn',
                     // @TODO переключить на получение кода валюты.
-//                    'currency' => $item->getPrice()->getCurrency(),
+                    //                    'currency' => $item->getPrice()->getCurrency(),
                     'product_data' => [
                         'name' => $item->getProductData()->getName(),
                     ],
@@ -89,7 +89,8 @@ class StripeController extends AbstractController
         $this->flusher->flush();
 
         return $this->redirectToRoute(
-            'store.checkout.finish', ['orderId' => $orderId]
+            'store.checkout.finish',
+            ['orderId' => $orderId]
         );
     }
 
@@ -110,7 +111,8 @@ class StripeController extends AbstractController
         }
 
         return $this->redirectToRoute(
-            'store.checkout.fail', ['orderId' => $orderId]
+            'store.checkout.fail',
+            ['orderId' => $orderId]
         );
     }
 
@@ -127,10 +129,10 @@ class StripeController extends AbstractController
             );
 
             dump($session);
-            die;
+            exit;
         }
 
         dump($order);
-        die;
+        exit;
     }
 }

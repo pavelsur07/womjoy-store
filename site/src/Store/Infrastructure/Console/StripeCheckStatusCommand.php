@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Console;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
-use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Domain\Entity\Order\Order;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
@@ -42,27 +41,26 @@ class StripeCheckStatusCommand extends Command
 
         /** @var Order $order */
         foreach ($orders as $order) {
-
             $session = \Stripe\Checkout\Session::retrieve(
                 $order->getPayment()->getTransactionId()
             );
 
             // Если статус открыт, то пропускаем проверку
-            if($session->status === $session::STATUS_OPEN) {
+            if ($session->status === $session::STATUS_OPEN) {
                 continue;
             }
 
-            $status = match($session->payment_status) {
+            $status = match ($session->payment_status) {
                 'paid' => OrderPayment::PAYMENT_STATUS_SUCCEEDED,
                 'unpaid' => OrderPayment::PAYMENT_STATUS_CANCELLED,
             };
 
-            if($status === OrderPayment::PAYMENT_STATUS_SUCCEEDED) {
+            if ($status === OrderPayment::PAYMENT_STATUS_SUCCEEDED) {
                 $order->pay();
                 $order->getPayment()->setStatusSucceeded();
             }
 
-            if($status === OrderPayment::PAYMENT_STATUS_CANCELLED) {
+            if ($status === OrderPayment::PAYMENT_STATUS_CANCELLED) {
                 $order->cancel('Payment fail.');
                 $order->getPayment()->setStatusCancelled();
             }
