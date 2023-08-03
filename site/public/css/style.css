@@ -263,7 +263,8 @@ body {
   overflow: hidden;
 }
 
-html {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -1100,11 +1101,9 @@ input:checked + .f-check__sq svg {
 }
 
 .header__actions {
-  width: calc(100% / 12 * 2.5 - 20px);
+  width: calc(100% / 12 * 1.5 - 20px);
   margin-left: 10px;
   margin-right: 10px;
-  -webkit-align-self: end;
-          align-self: end;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -1135,7 +1134,6 @@ input:checked + .f-check__sq svg {
 
 .header__actions > li > a img {
   display: block;
-  margin-bottom: 10px;
 }
 
 .header__bottom {
@@ -1355,7 +1353,7 @@ input:checked + .f-check__sq svg {
 }
 
 .search {
-  width: calc(100% / 12 * 7.1 - 20px);
+  width: calc(100% / 12 * 8.1 - 20px);
   margin-left: 10px;
   margin-right: 10px;
   display: -webkit-box;
@@ -1367,13 +1365,22 @@ input:checked + .f-check__sq svg {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  padding: 13px 20px;
+  padding: 11px 20px;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(47, 43, 67, 0.4);
 }
 
 .search__inp {
   width: calc(100% - 40px);
+}
+
+.search__submit {
+  display: block;
+}
+
+.search__submit img,
+.search__submit svg {
+  display: block;
 }
 
 .country {
