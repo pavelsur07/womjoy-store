@@ -153,7 +153,7 @@ class Order
 
     public function getTotalCost(): int
     {
-        return $this->cost + $this->deliveryCost;
+        return $this->getCost() + $this->deliveryCost;
     }
 
     public function canBePaid(): bool
@@ -260,7 +260,11 @@ class Order
 
     public function getCost(): int
     {
-        return $this->cost;
+        $result = 0;
+        foreach ($this->items as $item) {
+            $result = $result + $item->getPrice()->getSalePrice() * $item->getQuantity();
+        }
+        return $result;
     }
 
     public function getDeliveryCost(): int
@@ -276,6 +280,14 @@ class Order
     public function preFlush(): void
     {
         $this->updatedAt = new DateTimeImmutable();
+    }
+
+    #[ORM\PostLoad()]
+    public function checkEmbeds(): void
+    {
+        if ($this->orderNumber->isEmpty()) {
+            $this->orderNumber = null;
+        }
     }
 
     private function addStatus(string $status): void

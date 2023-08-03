@@ -24,7 +24,7 @@ class OrderController extends AbstractController
     }
 
     #[Route(path: '/admin/orders/{id}/show', name: 'store.order.admin.show')]
-    public function show(int $id, Order $order): Response
+    public function show(string $id, Order $order): Response
     {
         return $this->render(
             'store/admin/order/show.html.twig',

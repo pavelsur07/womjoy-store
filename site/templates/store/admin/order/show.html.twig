@@ -26,7 +26,8 @@
     <div class="card">
 
         <div class="card-body">
-            <p><strong>Number: </strong> {{ order.id }}</p>
+            <p><strong>Id: </strong> {{ order.id }}</p>
+            <p><strong>Number: </strong> {{ order.orderNumber }}</p>
             <p><strong>Data: </strong> {{ order.createdAt| date('Y-m-d') }}</p>
             <p><strong>Name: </strong> {{ order.customer.name }}</p>
             <table class="table">

@@ -13,4 +13,9 @@ class OrderNumber extends IntegerValueObject
 {
     #[ORM\Column(name: 'order_number', type: Types::INTEGER, nullable: true)]
     protected ?int $value = null;
+
+    public function isEmpty(): bool
+    {
+        return empty($this->value);
+    }
 }
