@@ -1,7 +1,7 @@
 <div class="header__bottom">
     <div class="wrapper">
         <nav class="nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
-            <meta itemprop="name" content="Catalog">
+
             <ul class="nav__list" itemprop="about" itemscope="" itemtype="https://schema.org/ItemList">
                 {% for element in menu.header %}
                     {% if element.children is defined %}
@@ -49,6 +49,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+
         </nav>
     </div>
 </div>
