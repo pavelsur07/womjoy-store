@@ -63,7 +63,7 @@
                         <span class="i-card__id">Арт: {{ product.id }}</span>
 
                         <meta itemprop="mpn" content={{ product.id }} />
-                        <meta itemprop="sku" content="0446310786" />
+                        <meta itemprop="sku" content={{ product.article }} />
 
                         <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
                             <meta itemprop="name" content="WOMJOY" />
@@ -133,7 +133,7 @@
 
                         <meta itemprop="priceCurrency" content={{ product.price.currency}} />
 
-                        {% if product.price.listPrice == product.price.listPrice %}
+                        {% if product.price.listPrice == product.price.price %}
                             <span class="i-card__cost" itemprop="price" content={{ product.price.price }}>
                                 {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
                             </span>
@@ -151,7 +151,7 @@
                             </span>
                         {% endif %}
 
-                        <link itemprop="availability" href="https://schema.org/InStock" />In stock
+                        <link itemprop="availability" href="https://schema.org/InStock" /> In stock
 
                     </div>
 
