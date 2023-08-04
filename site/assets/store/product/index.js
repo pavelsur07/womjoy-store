@@ -15,7 +15,7 @@ function renderCartCount(count) {
     isRenderedCartCount = true
     const root = createRoot(container)
 
-    root.render(<span>{count}</span>)
+    root.render(<span className="cart-currentcnt">{count}</span>)
   }
 }
 
@@ -54,6 +54,7 @@ addToCartBtn.addEventListener('click', () => {
 store.subscribe(() => {
   const state = store.getState()
   const cart = state.cart.cart
+
   if (cart !== null) {
     if (cart.amount > 0) {
       renderCartCount(cart.amount.toString())
