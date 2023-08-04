@@ -10,7 +10,7 @@
                 Store
             </div>
             <h2 class="page-title">
-                Product edit aggregate rating: {{ product.name  }}
+                Product edit aggregate rating
             </h2>
         </div>
         <!-- Page title actions -->
@@ -27,6 +27,7 @@
             {{ include('store/admin/product/_tabs.html.twig') }}
         </div>
         <div class="card-body">
+            <h2> {{ product.name  }}</h2>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
