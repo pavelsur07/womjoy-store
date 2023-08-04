@@ -1,6 +1,7 @@
 {% set counter = 1 %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+
         <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <a itemprop="item" href="{{ path('home') }}">Главная</a>
             <meta itemprop="name" content="Главная" />
@@ -23,8 +24,7 @@
         {% set counter = counter + 1 %}
         <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             {{ product.name }}
-
-            <meta itemprop="item" content={{ path('store.product.show', {'slug': product.slug}) }} />
+            <meta itemprop="item" content={{ metaData.base_url ~ path('store.product.show', {'slug': product.slug}) }} />
             <meta itemprop="name" content={{ product.name }} />
             <meta itemprop="position" content= {{ counter }}>
         </li>
