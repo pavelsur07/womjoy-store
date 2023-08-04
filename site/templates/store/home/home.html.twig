@@ -1,7 +1,7 @@
 {% extends 'store/base.html.twig' %}
 {% block openGraph %}
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content= "https://womjoy.ru" />
+    <meta property="og:url" content= {{ metaData.base_url }} />
     <meta property="og:title" content="{{ metaData.title }}"/>
     <meta property="og:description" content="{{ metaData.description }} "/>
     <meta property="og:image" content="{{ asset('./img/womjoy.svg') }}"/>

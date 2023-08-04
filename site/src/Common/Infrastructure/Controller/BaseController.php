@@ -27,6 +27,7 @@ class BaseController extends AbstractController
     ];
 
     public array $metaData =[
+        'base_url' => '',
         'title' =>'Title default base controller',
         'description' => 'Description default base controller',
         'h1' => 'H1 default base controller',
@@ -66,6 +67,7 @@ class BaseController extends AbstractController
         $this->menu['categories'] = $this->menuCategories($home);
 
         $setting = $this->settingService->get();
+        $this->metaData['base_url'] = $this->siteUrl;
         $this->metaData['title'] = $setting->getSeoDefault()->getTitle();
         $this->metaData['description'] = $setting->getSeoDefault()->getDescription();
         $this->metaData['h1'] = $setting->getSeoDefault()->getH1();
