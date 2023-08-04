@@ -2,14 +2,15 @@
     <div class="wrapper">
         <nav class="nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
 
-            <ul class="nav__list" itemprop="about" itemscope="" itemtype="https://schema.org/ItemList">
+            <ul class="nav__list" itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+
                 {% for element in menu.header %}
                     {% if element.children is defined %}
-                        <li class="nav__item menu-droper" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-                            <a href="{{ element.href }}" class="nav__link" itemprop="url">
-                                <span itemprop="name">{{ element.name }}</span>
-                                <meta itemprop="name" content={{ element.name }} />
-                            </a>
+                        <li class="nav__item menu-droper" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+
+                            <a href="{{ element.href }}" class="nav__link" itemprop="url"><span itemprop="name">{{ element.name }}</span></a>
+                            <meta itemprop="name" content={{ element.name }} />
+
                             <div class="menu">
                                 <div class="wrapper">
                                     <div class="menu__content">
@@ -17,18 +18,20 @@
                                             {% for subMenu in element.children %}
                                                 <div class="menu__col">
                                                     <div class="menu__title">{{ subMenu.name }}</div>
-                                                    <ul class="menu__list" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
+
+                                                    <ul class="menu__list" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                                         {% if subMenu.children is defined %}
                                                             {% for item in subMenu.children %}
-                                                                <li temprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
+                                                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
                                                                     <a href="{{ item.href }}" itemprop="url">
                                                                         {{ item.name }}
-                                                                        <meta itemprop="name" content={{ item.name }} />
                                                                     </a>
+                                                                    <meta itemprop="name" content={{ item.name }} />
                                                                 </li>
                                                             {% endfor %}
                                                         {% endif %}
                                                     </ul>
+
                                                 </div>
                                             {% endfor %}
                                         </div>
@@ -43,8 +46,8 @@
                         <li class="nav__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                             <a href="{{ element.href }}" class="nav__link" itemprop="url">
                                 {{ element.name }}
-                                <meta itemprop="name" content={{ element.name }} />
                             </a>
+                            <meta itemprop="name" content={{ element.name }} />
                         </li>
                     {% endif %}
                 {% endfor %}

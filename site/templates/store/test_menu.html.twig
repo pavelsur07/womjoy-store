@@ -1,89 +1,28 @@
-<div itemscope itemtype="http://schema.org/SiteNavigationElement">
-    <menu itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-            <a href="url" itemprop="url">Пункт 1</a>
-            <meta itemprop="name" content="Пункт_1" />
-        </li>
-        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт_2<meta itemprop="name" content="Пункт_2" /></a></li>
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт_3</a>
-            <meta itemprop="name" content="Пункт_3" />
-            <menu>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                    <a href="url" itemprop="url">Под_пункт_3_1
-                        <meta itemprop="name" content="Пункт_3_1" />
-                    </a>
-                </li>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Под_пункт_3_2<meta itemprop="name" content="Пункт_3_2" /></a></li>
-            </menu>
-        </li>
-        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт_4<meta itemprop="name" content="Пункт_4" /></a></li>
-    </menu>
-</div>
+<nav itemscope itemtype="http://schema.org/SiteNavigationElement">
 
+    <ul itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+        <?php foreach ($menu as $menu_item) { ?>
 
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+            <a itemprop="url" href="{Ссылка}">{Анкор ссылки}</a>
+            <meta itemprop="name" content="{Анкор ссылки}" />
 
+            <?php if (($menu_item["children"])) { ?>
+            <ul itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                <?php foreach ($menu_item["children"] as $child) { ?>
 
-<div itemscope="" itemtype="https://schema.org/SiteNavigationElement">
-
-    <ul itemprop="about" itemscope="" itemtype="https://schema.org/ItemList">
-
-        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-
-            <a href="https://ics-media.ru/o-kompanii/" itemprop="url">О компании</a>
-
-            <meta itemprop="name" content="О компании" />
-
-        </li>
-
-        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-
-            <a href="https://ics-media.ru/uslugi/" itemprop="url">Услуги</a>
-
-            <meta itemprop="name" content="Услуги" />
-
-            <ul itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-                    <a href="https://ics-media.ru/uslugi/seo/" itemprop="url">SEO</a>
-                    <meta itemprop="name" content="SEO" />
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
+                    <a itemprop="url" href="{Дочерняя ссылка}">{Анкор дочерней ссылки}</a>
+                    <meta itemprop="name" content="{Анкор дочерней ссылки}" />
                 </li>
 
-                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-
-                    <a href="https://ics-media.ru/uslugi/seo/pozicii/" itemprop="url">По позициям</a>
-
-                    <meta itemprop="name" content="По позициям" />
-
-                </li>
-
-                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-
-                    <a href="https://ics-media.ru/uslugi/seo/trafik/" itemprop="url">По трафику</a>
-
-                    <meta itemprop="name" content="По трафику" />
-
-                </li>
-
-                <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-
-                    <a href="https://ics-media.ru/uslugi/seo/redizajn/" itemprop="url">Редизайн</a>
-
-                    <meta itemprop="name" content="Редизайн" />
-
-                </li>
-
+                <?php } ?>
             </ul>
-
+            <?php } ?>
         </li>
 
-        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ItemList">
-
-            <a href="https://ics-media.ru/kontaktyi/" itemprop="url">Контакты</a>
-
-            <meta itemprop="name" content="Контакты" />
-
-        </li>
-
+        <?php } ?>
     </ul>
 
-</div>
+</nav>
 
