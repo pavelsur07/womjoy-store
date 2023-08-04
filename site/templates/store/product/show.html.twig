@@ -2,15 +2,9 @@
 {% block body %}
     <section class="i-card">
         <div class="wrapper">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
-                    {% for breadcrumb in breadcrumbs %}
-                        <li class="breadcrumb-item"><a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}">{{ breadcrumb.name }}</a></li>
-                    {% endfor %}
-                    <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
-                </ol>
-            </nav>
+
+            {% include 'store/product/breadcrumb.html.twig' %}
+
             <div class="i-card__content">
                 <div class="i-card__images">
                     <span class="i-card__sellout">Распродажа</span>
