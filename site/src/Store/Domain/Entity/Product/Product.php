@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Product;
 
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Entity\SeoMetadata;
@@ -72,6 +73,9 @@ class Product
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
     private DateTimeImmutable $updatedAt;
 
+    #[ORM\Embedded(class: ProductAggregateRating::class, columnPrefix: false)]
+    private ProductAggregateRating $rating;
+
     #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
     private int $popularity = 0;
 
@@ -93,6 +97,7 @@ class Product
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = $this->createdAt;
         $this->publishedAt = $this->createdAt;
+        $this->rating = new ProductAggregateRating();
     }
 
     public function addVariant(string $value): void
@@ -105,9 +110,14 @@ class Product
     }
 
     /*    public function removeVariant(int $variantId): void
-        {
+    {
 
-        }*/
+    }*/
+
+    public function getRating(): ProductAggregateRating
+    {
+        return $this->rating;
+    }
 
     public function getMainCategory(): ?Category
     {

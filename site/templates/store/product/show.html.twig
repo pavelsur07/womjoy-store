@@ -47,8 +47,8 @@
 
                         <div class="rating" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
 
-                            <meta itemprop="reviewCount" content="89" />
-                            <meta itemprop="ratingValue" content="4.9" />
+                            <meta itemprop="reviewCount" content={{ product.rating.reviewCount }} />
+                            <meta itemprop="ratingValue" content={{ product.rating.ratingValue }} />
 
                             <div class="rating__stars">
                                 <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
@@ -57,7 +57,7 @@
                                 <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
                                 <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
                             </div>
-                            <span class="rating__crnt">25 отзывов</span>
+                            <span class="rating__crnt">{{ product.rating.reviewCount }} отзывов</span>
                         </div>
 
                         <span class="i-card__id">Арт: {{ product.id }}</span>
