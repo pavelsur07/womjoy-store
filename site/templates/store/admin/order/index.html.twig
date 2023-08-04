@@ -37,7 +37,11 @@
             <tbody>
             {% for order in orders %}
                 <tr>
-                    <td> {{ order.orderNumber }} </td>
+                    <td>
+                        {% if order.orderNumber is not null %}
+                            {{ order.orderNumber.value }}
+                        {% endif %}
+                    </td>
                     <td> {{ order.createdAt| date('Y-m-d') }} </td>
                     <td> {{ order.currentStatus }}  </td>
                     <td> {{ order.customer.name }}  </td>
