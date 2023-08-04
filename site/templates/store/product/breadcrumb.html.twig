@@ -23,9 +23,8 @@
 
         {% set counter = counter + 1 %}
         <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            {{ product.name }}
+            <span itemprop='name'>{{ product.name }}</span>
             <meta itemprop="item" content={{ metaData.base_url ~ path('store.product.show', {'slug': product.slug}) }} />
-            <meta itemprop="name" content={{ product.name }} />
             <meta itemprop="position" content= {{ counter }}>
         </li>
 
