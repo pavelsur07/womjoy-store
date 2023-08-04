@@ -1,6 +1,6 @@
 {% extends 'store/base.html.twig' %}
 {% block body %}
-    <section class="i-card">
+    <section class="i-card" itemscope itemtype="https://schema.org/Product">
         <div class="wrapper">
 
             {% include 'store/product/breadcrumb.html.twig' %}
@@ -17,7 +17,7 @@
                                 {% for image in product.images %}
                                     <div class="i-card__slide swiper-slide">
                                         <div class="i-card__slide_img">
-                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} imageNumber N " width="598" height="798">
+                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} imageNumber N " width="598" height="798">
                                             {#<img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ product.name }}" width="289" height="384">#}
                                         </div>
                                     </div>
@@ -40,9 +40,16 @@
                     </div>
                 </div>
                 <div class="i-card__main">
-                    <h1 class="i-card__title">{{ product.name }}</h1>
+
+                    <h1 class="i-card__title" itemprop="name">{{ product.name }}</h1>
+
                     <div class="i-card__info">
-                        <div class="rating">
+
+                        <div class="rating" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+
+                            <meta itemprop="reviewCount" content="89" />
+                            <meta itemprop="ratingValue" content="4.9" />
+
                             <div class="rating__stars">
                                 <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
                                 <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
@@ -52,8 +59,18 @@
                             </div>
                             <span class="rating__crnt">25 отзывов</span>
                         </div>
+
                         <span class="i-card__id">Арт: {{ product.id }}</span>
+
+                        <meta itemprop="mpn" content={{ product.id }} />
+                        <meta itemprop="sku" content="0446310786" />
+
+                        <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                            <meta itemprop="name" content="WOMJOY" />
+                        </div>
+
                     </div>
+
                     <div class="i-card__size">
                         <div class="i-card__size_top">
                             <span class="gray">Размер</span>
@@ -111,17 +128,33 @@
                             </label>
                         </div>
                     </div>
-                    <div class="i-card__price">
+
+                    <div class="i-card__price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
+
+                        <meta itemprop="priceCurrency" content={{ product.price.currency}} />
+
                         {% if product.price.listPrice == product.price.listPrice %}
-                            <span class="i-card__cost">{{ product.price.price|number_format(0, ',', ' ') }} р.</span>
+                            <span class="i-card__cost" itemprop="price" content={{ product.price.price }}>
+                                {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+                            </span>
                         {% else %}
-                            <span class="i-card__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
-                            <del class="i-card__oldcost">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
+                            <span class="i-card__cost" itemprop="lowPrice" content={{ product.price.listPrice }}>
+                                {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+                            </span>
+
+                            <del class="i-card__oldcost" itemprop="highPrice" content={{ product.price.price }}>
+                                {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+                            </del>
+
                             <span class="i-card__sale">
                                 -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
                             </span>
                         {% endif %}
+
+                        <link itemprop="availability" href="https://schema.org/InStock" />In stock
+
                     </div>
+
                     <div class="i-card__btns">
                         <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary call-modal" type="button" data-target="card-success">
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
@@ -164,7 +197,7 @@
                     <div class="i-card__faq">
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Описание</div>
-                            <div class="i-card__faq_answer">
+                            <div class="i-card__faq_answer" itemprop="description">
                                 <p>{{ product.description }}</p>
                             </div>
                         </div>

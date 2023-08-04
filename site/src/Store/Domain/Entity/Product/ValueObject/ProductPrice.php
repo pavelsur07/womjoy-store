@@ -16,7 +16,9 @@ class ProductPrice
     #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
     private int $listPrice = 0;
 
-    private string $currency;
+    private string $currency = 'RUB';
+
+    private string $currencySymbol = 'р.';
 
     public function __construct(int $price = 0)
     {
@@ -44,5 +46,15 @@ class ProductPrice
     public function setListPrice(int $listPrice): void
     {
         $this->listPrice = $listPrice;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function getCurrencySymbol(): string
+    {
+        return $this->currencySymbol;
     }
 }
