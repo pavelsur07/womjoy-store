@@ -1,11 +1,15 @@
 <div class="header__bottom">
     <div class="wrapper">
-        <nav class="nav">
+        <nav class="nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+            <meta itemprop="name" content="Catalog">
             <ul class="nav__list">
                 {% for element in menu.header %}
                     {% if element.children is defined %}
-                        <li class="nav__item menu-droper">
-                            <a href="{{ element.href }}" class="nav__link">{{ element.name }}</a>
+                        <li class="nav__item menu-droper" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                            <a href="{{ element.href }}" class="nav__link" itemprop="url">
+                                <span itemprop="name">{{ element.name }}</span>
+                                <meta itemprop="name" content={{ element.name }} />
+                            </a>
                             <div class="menu">
                                 <div class="wrapper">
                                     <div class="menu__content">
@@ -16,7 +20,12 @@
                                                     <ul class="menu__list">
                                                         {% if subMenu.children is defined %}
                                                             {% for item in subMenu.children %}
-                                                                <li><a href="{{ item.href }}">{{ item.name }}</a></li>
+                                                                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                                                                    <a href="{{ item.href }}" itemprop="url">
+                                                                        {{ item.name }}
+                                                                        <meta itemprop="name" content={{ item.name }} />
+                                                                    </a>
+                                                                </li>
                                                             {% endfor %}
                                                         {% endif %}
                                                     </ul>
@@ -31,7 +40,12 @@
                             </div>
                         </li>
                     {% else %}
-                        <li class="nav__item"><a href="{{ element.href }}" class="nav__link">{{ element.name }}</a></li>
+                        <li class="nav__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                            <a href="{{ element.href }}" class="nav__link" itemprop="url">
+                                {{ element.name }}
+                                <meta itemprop="name" content={{ element.name }} />
+                            </a>
+                        </li>
                     {% endif %}
                 {% endfor %}
             </ul>
