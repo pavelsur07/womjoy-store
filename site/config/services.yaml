@@ -119,6 +119,9 @@ services:
         
     App\Page\Infrastructure\Menu\Admin\PageActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: page_page_action } ]
-
+    
+    App\Store\Infrastructure\Menu\Admin\Attribute\AttributeActionMenu:
+        tags: [ { name: knp_menu.menu_builder, method: build, alias: store_attribute_action } ]
+    
     App\Store\Infrastructure\Service\Payment\PaymentProvider:
         arguments: [ '%env(PAYMENT_PROVIDER_NAME)%' ]

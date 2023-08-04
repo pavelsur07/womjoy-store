@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Attribute;
 
+use App\Store\Domain\Exception\StoreAttributeException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -41,6 +42,18 @@ class Attribute
         $this->variants = new ArrayCollection();
     }
 
+    public function addVariant(string $variantName): void
+    {
+        $this->variants->add(
+            new Variant(
+                attribute: $this,
+                name: strip_tags(
+                    trim($variantName)
+                )
+            )
+        );
+    }
+
     public function editName(string $name): void
     {
         $this->name = $name;
@@ -73,5 +86,17 @@ class Attribute
             self::TYPE_MULTI_CHOICE,
             self::TYPE_SINGLE_CHOICE,
         ];
+    }
+
+    public function removeVariant(int $variantId): void
+    {
+        foreach ($this->variants as $variant) {
+            if ($variantId === $variant->getId()) {
+                $this->variants->removeElement($variant);
+                return;
+            }
+        }
+
+        throw new StoreAttributeException('Variant not found');
     }
 }

@@ -74,7 +74,7 @@ class AttributeController extends AbstractController
         return $this->render(
             'store/admin/attribute/edit.html.twig',
             [
-                'pagination' => $attributes->list(),
+                'attribute' => $attribute,
                 'form' => $form->createView(),
             ]
         );
