@@ -84,7 +84,7 @@ class ProductController extends AbstractController
                 'price' => $product->getPrice()->getPrice(),
                 'listPrice' => $product->getPrice()->getListPrice(),
                 'isPreSale' => $product->isPreSale(),
-                'popularity' => $product->getPopularity()
+                'popularity' => $product->getPopularity(),
             ]
         );
         $form->handleRequest($request);

@@ -43,6 +43,7 @@ class CartApiController extends AbstractController
             ]
         );
     }
+
     #[Route(path: '/add', name: '.add', methods: ['POST'])]
     public function add(Request $request, CartService $service, VariantRepository $variants, Flusher $flusher): Response
     {
@@ -105,7 +106,7 @@ class CartApiController extends AbstractController
     }
 
     #[Route(path: '/remove', name: '.remove', methods: ['POST'])]
-    public function remove(Request $request,CartService $service, Flusher $flusher): Response
+    public function remove(Request $request, CartService $service, Flusher $flusher): Response
     {
         $data = $request->toArray();
 
