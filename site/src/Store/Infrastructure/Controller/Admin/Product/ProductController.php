@@ -84,6 +84,7 @@ class ProductController extends AbstractController
                 'price' => $product->getPrice()->getPrice(),
                 'listPrice' => $product->getPrice()->getListPrice(),
                 'isPreSale' => $product->isPreSale(),
+                'popularity' => $product->getPopularity()
             ]
         );
         $form->handleRequest($request);
@@ -99,6 +100,8 @@ class ProductController extends AbstractController
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }
             $product->setCategoriesIds();
+
+            $product->setPopularity($data['popularity']);
 
             if ($product->isPreSale()) {
                 if (!$data['isPreSale']) {

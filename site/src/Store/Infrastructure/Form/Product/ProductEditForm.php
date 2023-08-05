@@ -37,6 +37,7 @@ class ProductEditForm extends AbstractType
                     'choice_value' => 'value',
                 ]
             )
+            ->add('popularity', Type\IntegerType::class)
             ->add('price', Type\IntegerType::class)
             ->add('listPrice', Type\IntegerType::class, ['required' => false])
             ->add('isPreSale', Type\CheckboxType::class, ['required' => false]);

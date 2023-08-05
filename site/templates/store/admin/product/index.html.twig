@@ -27,7 +27,7 @@
             <thead>
                 <tr>
                     <th class="w-1">Id</th>
-                    <th class="w-1">Status</th>
+                    <th class="w-1">Status,<br>Popularity</th>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price / <br> List Price</th>
@@ -38,7 +38,7 @@
             {% for product in pagination %}
                 <tr>
                     <td>{{ product.id }}</td>
-                    <td>{{ store_product_status(product.status) }}</td>
+                    <td>{{ store_product_status(product.status) }}<br>{{ product.getPopularity }}</td>
                     <td>
                         {% if product.images.count > 0 %}
                             {% set file = product.images.first %}

@@ -346,6 +346,11 @@ class Product
         throw new StoreProductException('Image not found');
     }
 
+    public function setPopularity(int $popularity): void
+    {
+        $this->popularity = $popularity;
+    }
+
     /**
      * @return Collection<int, Variant>
      */
