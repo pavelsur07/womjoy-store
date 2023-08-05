@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Category;
 
 use App\Store\Domain\Entity\Category\ValueObject\CategoryImage;
+use App\Store\Domain\Entity\Category\ValueObject\CategoryStatus;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreCategoryException;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -57,10 +58,14 @@ class Category
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private string|null $descriptionProductTemplate = null;
 
+    #[ORM\Embedded(class: CategoryStatus::class, columnPrefix: 'status_')]
+    private CategoryStatus $status;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->image = new CategoryImage();
+        $this->status = new CategoryStatus(CategoryStatus::DRAFT);
     }
 
     public function addSubCategory(string $name): void
@@ -102,6 +107,11 @@ class Category
                 $child->generateIds();
             }
         }
+    }
+
+    public function getStatus(): CategoryStatus
+    {
+        return $this->status;
     }
 
     public function getIds(): ?string
