@@ -59,7 +59,7 @@ class AlfaController extends AbstractController
 
         try {
             $alfaOrder = $this->acquiringClient->registerOrder(
-            // Уникальный номер заказа
+                // Уникальный номер заказа
                 orderId: $order->getOrderNumber()->value(),
 
                 // Конвертируем в копейки
@@ -69,21 +69,22 @@ class AlfaController extends AbstractController
                 returnUrl: $this->generateUrl(
                     route: 'store.checkout.payment.alfa.result',
                     parameters: [
-                        'orderId' => $orderId
+                        'orderId' => $orderId,
                     ],
                     referenceType: UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 data: [
                     'orderBundle' => [
                         'cartItems' => [
-                            'items' => $orderItems
+                            'items' => $orderItems,
                         ],
                     ],
                 ],
             );
         } catch (SberbankAcquiringException $exception) {
             return $this->redirectToRoute(
-                'store.checkout.payment.alfa.fail', ['orderId' => $orderId, 'reason' => $exception->getMessage()]
+                'store.checkout.payment.alfa.fail',
+                ['orderId' => $orderId, 'reason' => $exception->getMessage()]
             );
         }
 

@@ -15,11 +15,13 @@ class RelatedAssignmentController extends AbstractController
     #[Route(path: '/{id}/related-assignment/', name: '.index')]
     public function index(int $id, Product $product): Response
     {
-        return $this->render('store/admin/product/related/index.html.twig',
+        return $this->render(
+            'store/admin/product/related/index.html.twig',
             [
                 'product' => $product,
                 'items' => $product->getRelatedAssignments()->toArray(),
-            ]);
+            ]
+        );
     }
 
     #[Route(path: '/{id}/related-assignment/assign', name: '.assign')]
