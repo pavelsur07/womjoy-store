@@ -10,7 +10,14 @@ parameters:
     app_thumbnails: 900-1200|300-400
     app_cache_image: '/cache'
     app_url: '%env(SITE_URL)%'
+
+    # Параметры платёжной системы Stripe
     stripe_api_key: '%env(STRIPE_API_KEY)%'
+
+    # Параметры платёжной системы Alfabank
+    alfabank_username: '%env(ALFABANK_USERNAME)%'
+    alfabank_password: '%env(ALFABANK_PASSWORD)%'
+
 
 services:
     # default configuration for services in *this* file
@@ -25,6 +32,8 @@ services:
             string $thumbnails: '%app_thumbnails%'
             string $siteUrl: '%app_url%'
             string $stripeApiKey: '%stripe_api_key%'
+            string $alfabankUsername: '%alfabank_username%'
+            string $alfabankPassword: '%alfabank_password%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
