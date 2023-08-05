@@ -71,6 +71,16 @@ class CategoryRepository implements CategoryRepositoryInterface
         }
     }
 
+    public function getAllIterator(): iterable
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Category::class, 'p');
+        $qb->orderBy('p.id', 'ASC');
+
+        return $qb->getQuery()->toIterable();
+    }
+
     private function normalizer(Category $category, int $depth = 0): array
     {
         $categories = [

@@ -21,6 +21,12 @@
     </div>
     <div class="mt-3 mb-3">
         <a class="btn btn-bitbucket" href="{{ path('store.admin.category.index') }}">Back to list</a>
+        {% if category.status.isDraft or category.status.isDisable %}
+            <a href="{{ path('store.admin.category.status.active', {'id': category.id}) }}" class="btn btn-bitbucket">Active</a>
+        {% endif %}
+        {% if category.status.isActive %}
+            <a href="{{ path('store.admin.category.status.disable', {'id': category.id}) }}" class="btn btn-bitbucket">Disable</a>
+        {% endif %}
     </div>
     <div class="card">
         <div class="card-header">
@@ -40,6 +46,7 @@
 
     <div class="mt-2 mb-2">
         <a href="{{ path('store.admin.category.add.child', {'id': category.id}) }}" class="btn btn-bitbucket">Add child</a>
+
     </div>
     <div class="card card-body">
         <table class="table">

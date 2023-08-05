@@ -68,6 +68,20 @@ class Category
         $this->status = new CategoryStatus(CategoryStatus::DRAFT);
     }
 
+    public function active(): void
+    {
+        if ($this->slug === null) {
+            throw new StoreCategoryException('Slug is not setting.');
+        }
+
+        $this->status->active();
+    }
+
+    public function disable(): void
+    {
+        $this->status->disable();
+    }
+
     public function addSubCategory(string $name): void
     {
         $newChild = new self();

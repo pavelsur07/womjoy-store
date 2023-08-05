@@ -12,6 +12,8 @@ interface CategoryRepositoryInterface
 
     public function getAll(): array;
 
+    public function getAllIterator(): iterable;
+
     public function getCategoryTree(): array;
 
     public function getRootNodes(): array;
