@@ -76,7 +76,7 @@ class OrderRepository implements OrderRepositoryInterface
             $nextOrderNumber = 1;
         }
 
-        if($nextOrderNumber === null) {
+        if ($nextOrderNumber === null) {
             $nextOrderNumber = 1;
         }
 

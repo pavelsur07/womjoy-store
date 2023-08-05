@@ -88,6 +88,10 @@ class Product
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => true])]
     private bool $isPreSale = true;
 
+    /** @var ArrayCollection<array-key, RelatedAssignment> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: RelatedAssignment::class, cascade: ['all'], orphanRemoval: true)]
+    private Collection $relatedAssignments;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -98,6 +102,41 @@ class Product
         $this->updatedAt = $this->createdAt;
         $this->publishedAt = $this->createdAt;
         $this->rating = new ProductAggregateRating();
+        $this->relatedAssignments = new ArrayCollection();
+    }
+
+    public function assignRelatedProduct(self $product): void
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $assignment) {
+            if ($assignment->isForProduct($product->getId())) {
+                return;
+            }
+        }
+
+        $this->relatedAssignments->add(
+            new RelatedAssignment(
+                product: $this,
+                related: $product
+            )
+        );
+    }
+
+    public function revokeRelatedProduct(int $id): void
+    {
+        $assignments = $this->relatedAssignments;
+        foreach ($assignments as $i => $assignment) {
+            if ($assignment->isForProduct($id)) {
+                $this->relatedAssignments->removeElement($assignment);
+                return;
+            }
+        }
+        throw new StoreProductException('Assignment is not found.');
+    }
+
+    public function getRelatedAssignments(): Collection
+    {
+        return $this->relatedAssignments;
     }
 
     public function addVariant(string $value): void
