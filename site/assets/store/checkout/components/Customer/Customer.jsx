@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setCustomer} from "../redux/actions";
+import {setCustomer} from "../../../redux/actions/checkout";
 
 const Customer = () => {
     const dispatch = useDispatch();

@@ -3052,7 +3052,7 @@ input:checked + .inform__check_sq img {
 
 .i-card__size_table img {
   display: block;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .i-card__size_items {

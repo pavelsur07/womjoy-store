@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changePayment} from "../redux/actions";
+import {changePayment} from "../../../redux/actions/checkout";
 
 const Payment = () => {
     const dispatch = useDispatch();

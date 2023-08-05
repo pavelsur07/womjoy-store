@@ -17,6 +17,32 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
         {% endblock %}
+
+        <style>
+            .c-item__disc {
+                margin-top: 0;
+            }
+            .cart__left {
+                width: calc(100% - 400px);
+                max-width: 100%;
+            }
+            .add-to-cart-action {
+                -webkit-transition: none;
+                transition: none;
+                border-radius: 3px;
+                border: 4px solid #54EE46;
+            }
+            .add-to-cart-action.active {
+                border: 4px solid #24d413;
+                border-radius: 3px;
+                background: #54ee461f;
+            }
+            .add-to-cart-action:hover {
+                background: #54ee461f;
+                border: 4px solid #24d413;
+                border-radius: 3px;
+            }
+        </style>
     </head>
     <body>
 
@@ -57,9 +83,7 @@
                     <li>
                         <a href="{{ path('store.cart.index') }}">
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="24" height="24">
-                            <div id="cart_count_id">
-                            </div>
-
+                            <div id="cart-badge"></div>
                         </a>
                     </li>
                 </ul>
@@ -224,6 +248,8 @@
     </body>
 
     {% block javascripts %}
+        {{ encore_entry_script_tags('store_cart_badge') }}
+
         <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
         <script src="{{ asset('./widget/widjet.js') }}"></script>
         <script src="{{ asset('./js/script.js') }}"></script>

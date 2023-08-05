@@ -1,14 +1,20 @@
-import React from 'react'
+// Корневой компонент приложения
+import React from 'react';
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import {Provider} from "react-redux";
+
+// Импортируем store
+import store from '../redux/store';
+
+// Имортируем комопненты
+import App from './components/App/App'
 
 const element = document.getElementById('cart-id')
 
 if (element) {
-  const root = ReactDOM.createRoot(element)
-  root.render(
-    <>
-      <App />
-    </>
-  )
+    ReactDOM.createRoot(element).render(
+        <Provider store={store}>
+            <App />
+        </Provider>
+    )
 }

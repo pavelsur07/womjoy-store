@@ -1,4 +1,5 @@
 {% extends 'store/base.html.twig' %}
+
 {% block body %}
     <section class="i-card" itemscope itemtype="https://schema.org/Product">
         <div class="wrapper">
@@ -82,10 +83,9 @@
 
                         <div class="i-card__size_items">
                             {% for variant in product.variants %}
-
-                                {% if variant.canBeAddToCart or product.isPreSale  %}
+                                {% if variant.canBeAddToCart or product.isPreSale %}
                                     <label class="i-card__size_item">
-                                        <input type="radio" name="card-size" value="{{ variant.id }}" checked hidden>
+                                        <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
                                             {#<span>40-42</span>#}
@@ -130,7 +130,6 @@
                     </div>
 
                     <div class="i-card__price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
-
                         <meta itemprop="priceCurrency" content={{ product.price.currency}} />
 
                         {% if product.price.listPrice == product.price.price %}
@@ -152,17 +151,16 @@
                         {% endif %}
 
                         <link itemprop="availability" href="https://schema.org/InStock" /> In stock
-
                     </div>
 
                     <div class="i-card__btns">
-                        <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary call-modal" type="button" data-target="card-success">
+                        <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary {#call-modal#} add-to-cart-action" type="button" data-target="card-success" data-product-id>
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
-                            В корзину
+                            <span>В корзину</span>
                         </button>
                         <button class="i-card__graybtn" type="button">
                             <img src="{{ asset('./img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
-                            В избранное
+                            <span>В избранное</span>
                         </button>
                     </div>
                     {#   <div class="i-card__btns">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import DeliveryCDEKPickUpPoint from "./DeliveryCDEKPickUpPoint";
-import {setDelivery} from "../redux/actions";
+import {setDelivery} from "../../../redux/actions/checkout";
 
 const Delivery = () => {
     const dispatch = useDispatch();

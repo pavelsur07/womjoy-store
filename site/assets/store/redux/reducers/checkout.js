@@ -23,12 +23,6 @@ const defaultState = {
             description: 'Оплата в пункте вывоза',
             value: 'cod', // cash on delivery ()
         },
-    },
-    cart: {
-        amount: 0,
-        cost: 0,
-        discount: 0,
-        discount_cost: 0,
     }
 };
 
@@ -49,12 +43,6 @@ export default function checkout(state = defaultState, action) {
                 ...state,
                 customer: action.customer,
             }
-        case types.RECEIVE_CART_INFO:
-            return  {
-                ...state,
-                cart: action.cart
-            };
-
         default:
             return state
     }

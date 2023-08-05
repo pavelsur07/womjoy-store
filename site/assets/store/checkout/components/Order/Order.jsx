@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {getCartInfo, checkout as checkoutAction} from "../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
+import {getCartInfo} from "../../../redux/actions/cart";
+import {checkout as checkoutAction} from "../../../redux/actions/checkout";
 
 const Order = () => {
     const dispatch = useDispatch();

@@ -1,65 +1,49 @@
-import React from 'react'
-import store from './store/index'
-import { fetchCart } from './store/cartSlice'
-import { createRoot } from 'react-dom/client'
+// Корневой компонент приложения
+import React from 'react';
 
-let isRenderedCartCount = false
+// Импортируем store
+import store from '../redux/store';
 
-const addToCartBtn = document.getElementById('add_to_cart_btn')
-const variants = document.querySelectorAll('input[name="card-size"]')
+// Импортируем действие
+import {addCartItem} from "../redux/actions/cart";
 
-function renderCartCount(count) {
-  const container = document.getElementById('cart_count_id')
+const buttonNodeList = document.querySelectorAll('.add-to-cart-action');
+const variantsNodeList = document.querySelectorAll('.i-card__size_items input[name=card-size]');
 
-  if (container && !isRenderedCartCount) {
-    isRenderedCartCount = true
-    const root = createRoot(container)
-
-    root.render(<span className="cart-currentcnt">{count}</span>)
-  }
-}
-
-addToCartBtn.addEventListener('click', () => {
-  for (const f of variants) {
-    if (f.checked) {
-      console.log(f.value)
-
-      fetch('/cart/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          variant_id: f.value,
-          quantity: 1,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Обработка ответа от сервера
-          if (data.message) {
-            console.log(data)
-          } else {
-            console.log(data.success)
-          }
-        })
-        .catch((error) => {
-          // Обработка ошибки
-          console.error(error)
-        })
+variantsNodeList.forEach((node) => {
+    // проверякм выбранный элемент
+    if (node.checked) {
+        // устанавливаем ID товара на кнопку
+        document.querySelector('.add-to-cart-action').dataset.productId = node.value;
     }
-  }
+
+    node.addEventListener('change', ({ currentTarget }) => {
+      // устанавливаем ID товара на кнопку
+      document.querySelector('.add-to-cart-action').dataset.productId = currentTarget.value;
+
+        buttonNodeList.forEach((buttonNode) => {
+            buttonNode.querySelector('span').innerText = 'В корзину';
+
+            if(buttonNode.classList.contains('active')) {
+                buttonNode.classList.remove('active');
+            }
+        })
+    });
 })
 
-store.subscribe(() => {
-  const state = store.getState()
-  const cart = state.cart.cart
+buttonNodeList.forEach((node) => {
+    node.addEventListener('click', ({ currentTarget }) => {
+        // создаём действие
+        const action = addCartItem(currentTarget.dataset.productId, 1);
 
-  if (cart !== null) {
-    if (cart.amount > 0) {
-      renderCartCount(cart.amount.toString())
-    }
-  }
-})
+        // выполняем действие через стор
+        store.dispatch(action);
 
-store.dispatch(fetchCart())
+        node.querySelector('span').innerText = 'В корзине';
+
+        if(!node.classList.contains('active')) {
+            node.classList.add('active');
+        }
+    })
+});
+
