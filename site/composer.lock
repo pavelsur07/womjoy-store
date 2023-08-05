@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73c15e734270992d63af74abaefa85f4",
+    "content-hash": "71ef171a765a79faf2683c3a0b42872c",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -10801,6 +10801,60 @@
                 }
             ],
             "time": "2023-07-26T07:16:09+00:00"
+        },
+        {
+            "name": "voronkovich/sberbank-acquiring-client",
+            "version": "v2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voronkovich/sberbank-acquiring-client.git",
+                "reference": "75552f553aab27e78925ad2bc96ad4f3039647af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voronkovich/sberbank-acquiring-client/zipball/75552f553aab27e78925ad2bc96ad4f3039647af",
+                "reference": "75552f553aab27e78925ad2bc96ad4f3039647af",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.1||^8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Voronkovich\\SberbankAcquiring\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg Voronkovich",
+                    "email": "oleg-voronkovich@yandex.ru"
+                }
+            ],
+            "description": "Client for working with Sberbank's acquiring REST API",
+            "homepage": "https://github.com/voronkovich/sberbank-acquiring-client",
+            "keywords": [
+                "acquiring",
+                "client",
+                "credit card",
+                "sberbank"
+            ],
+            "support": {
+                "issues": "https://github.com/voronkovich/sberbank-acquiring-client/issues",
+                "source": "https://github.com/voronkovich/sberbank-acquiring-client/tree/v2.8"
+            },
+            "funding": [
+                {
+                    "url": "https://ko-fi.com/voronkovich",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2022-02-04T14:10:38+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -57,7 +57,8 @@
         "symfony/webpack-encore-bundle": "^1.16",
         "symfony/yaml": "6.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "voronkovich/sberbank-acquiring-client": "^2.8"
     },
     "config": {
         "allow-plugins": {

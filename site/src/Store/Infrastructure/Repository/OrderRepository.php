@@ -76,6 +76,10 @@ class OrderRepository implements OrderRepositoryInterface
             $nextOrderNumber = 1;
         }
 
+        if($nextOrderNumber === null) {
+            $nextOrderNumber = 1;
+        }
+
         return new OrderNumber(
             (int)$nextOrderNumber
         );
@@ -91,6 +95,9 @@ class OrderRepository implements OrderRepositoryInterface
             )
             ->andWhere(
                 $expr->eq('orders.payment.status', ':payment_status')
+            )
+            ->andWhere(
+                $expr->isNotNull('orders.payment.transactionId')
             )
             ->andWhere(
                 $expr->eq('orders.payment.provider', ':payment_provider')
