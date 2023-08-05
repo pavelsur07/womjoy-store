@@ -28,54 +28,97 @@
         </div>
         <div class="card-body">
             <h2> {{ product.name  }}</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="w-1">Id</th>
-                    <th class="w-1">Status</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price / <br> List Price</th>
-                    <th class="w-25">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>{{ item.id }}</td>
-                        <td>{{ store_product_status(item.status) }}</td>
-                        <td>
-                            {% if item.images.count > 0 %}
-                                {% set file = item.images.first %}
-                                {% set file_url = storage_path(file.path ~'/'~ file.name) %}
+            <div class="row">
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="w-1">Id</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th class="w-25">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in pagination %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>
+                                    {% if item.images.count > 0 %}
+                                        {% set file = item.images.first %}
+                                        {% set file_url = storage_path(file.path ~'/'~ file.name) %}
 
-                                {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ item.name ~ '"/>' %}
+                                        {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ item.name ~ '"/>' %}
 
-                                <a href="{{ file_url }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">
-                                    <img class="avatar avatar-sm" src="{{ file_url }}" alt="{{ item.name }}">
-                                </a>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {{ item.name }}<br>
-                            <strong>{{ item.mainCategory ? item.mainCategory.name : '' }}</strong>
-                        </td>
-                        <td>
-                            {{ item.price.price|number_format(0, ',', ' ') }} <br>
-                            {{ item.price.listPrice|number_format(0, ',', ' ') }}
-                        </td>
+                                        <a href="{{ file_url }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">
+                                            <img class="avatar" src="{{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ item.name }}">
+                                        </a>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ item.name }}<br>
+                                    <strong>{{ item.mainCategory ? item.mainCategory.name : '' }}</strong>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.product.related_assignment.assign', {'id': product.id, 'assign_id': item.id}) }}">assign</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
-                        <td>
-                            <a class="btn btn-sm btn-bitbucket" href="#">revoke</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="8">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    <div class="pagination mt-3">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="w-1">Id</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th class="w-25">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in product.relatedAssignments %}
+                            <tr>
+                                <td>{{ item.getRelated.id }}</td>
+                                <td>
+                                    {% if item.getRelated.images.count > 0 %}
+                                        {% set file = item.getRelated.images.first %}
+                                        {% set file_url = storage_path(file.path ~'/'~ file.name) %}
+
+                                        {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ item.getRelated.name ~ '"/>' %}
+
+                                        <a href="{{ file_url }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">
+                                            <img class="avatar" src="{{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ item.getRelated.name }}">
+                                        </a>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ item.getRelated.name }}<br>
+                                    <strong>{{ item.getRelated.mainCategory ? item.getRelated.mainCategory.name : '' }}</strong>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-yellow rounded-2" href="{{ path('store.admin.product.related_assignment.revoke', {'id': product.id, 'revoke_id': item.getRelated.id}) }}">revoke</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
 {#            <h2> {{ product.name  }}</h2>
             {{ form_start(form) }}
             {{ form_widget(form) }}

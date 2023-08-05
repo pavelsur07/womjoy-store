@@ -47,7 +47,7 @@
                             {% set preview = '<img src="' ~ file_url ~ '" alt="' ~ product.name ~ '"/>' %}
 
                             <a href="{{ file_url }}" data-bs-toggle="tooltip" data-bs-html="true" title="{{ preview }}">
-                                <img class="avatar avatar-sm" src="{{ file_url }}" alt="{{ product.name }}">
+                                <img class="avatar" src="{{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ product.name }}">
                             </a>
                         {% endif %}
                     </td>
