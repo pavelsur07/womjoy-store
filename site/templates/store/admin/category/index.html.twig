@@ -38,7 +38,7 @@
                 {% for category in pagination %}
                 <tr>
                     <td>{{ category.id }}</td>
-                    <td> {{ category.status }} </td>
+                    <td> {{ store_category_status(category.status) }} </td>
                     <td>
                         {#
                             {% if product.images.count > 0 %}
