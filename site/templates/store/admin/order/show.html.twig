@@ -27,7 +27,11 @@
 
         <div class="card-body">
             <p><strong>Id: </strong> {{ order.id }}</p>
-            <p><strong>Number: </strong> {{ order.orderNumber }}</p>
+            <p><strong>Number: </strong>
+                {% if order.orderNumber is not null %}
+                    {{ order.orderNumber.value }}
+                {% endif %}
+            </p>
             <p><strong>Data: </strong> {{ order.createdAt| date('Y-m-d') }}</p>
             <p><strong>Name: </strong> {{ order.customer.name }}</p>
             <table class="table">
