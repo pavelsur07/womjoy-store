@@ -56,7 +56,7 @@
                 {% for child in category.children %}
                     <tr>
                         <td>{{ child.id }}</td>
-                        <td> status </td>
+                        <td> {{ store_category_status(category.status) }} </td>
                         <td> image </td>
                         <td>
                             {% if child.slug is not null %}
