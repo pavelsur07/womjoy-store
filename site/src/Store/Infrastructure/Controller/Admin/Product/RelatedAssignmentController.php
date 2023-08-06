@@ -6,6 +6,7 @@ namespace App\Store\Infrastructure\Controller\Admin\Product;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Product\Product;
+use App\Store\Domain\Exception\StoreProductException;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,8 +38,14 @@ class RelatedAssignmentController extends AbstractController
     public function assign(int $id, Request $request, ProductRepository $products, Flusher $flusher): Response
     {
         $product = $products->get($id);
-        $product->assignRelatedProduct($products->get((int)$request->get('assign_id')));
-        $flusher->flush();
+
+        try {
+            $product->assignRelatedProduct($products->get((int)$request->get('assign_id')));
+            $flusher->flush();
+            $this->addFlash('success', 'Success related assignment - ' . $product->getName() . '.');
+        } catch (StoreProductException $e) {
+            $this->addFlash('danger', 'Error related assignment. ' . $e->getMessage() . $product->getName() . '.');
+        }
 
         return $this->redirectToRoute('store.admin.product.related_assignment.index', ['id' => $id]);
     }
@@ -47,9 +54,14 @@ class RelatedAssignmentController extends AbstractController
     public function revoke(int $id, Request $request, ProductRepository $products, Flusher $flusher): Response
     {
         $product = $products->get($id);
-        $product->revokeRelatedProduct((int)$request->get('revoke_id'));
-        $flusher->flush();
 
+        try {
+            $product->revokeRelatedProduct((int)$request->get('revoke_id'));
+            $flusher->flush();
+            $this->addFlash('success', 'Success related revoke - ' . $product->getName() . '.');
+        } catch (StoreProductException $e) {
+            $this->addFlash('danger', 'Error related revoke. ' . $e->getMessage() . ' ' . $product->getName() . '.');
+        }
         return $this->redirectToRoute('store.admin.product.related_assignment.index', ['id' => $id]);
     }
 }
