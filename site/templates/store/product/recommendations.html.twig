@@ -7,237 +7,56 @@
         <div class="products__slider">
             <div class="products-swiper swiper">
                 <div class="swiper-wrapper">
-                    <div class="product swiper-slide">
-                        <div class="product__img">
-                            <div class="product__img_slider swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="{{ asset('./img/products/img-2.webp') }}" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="{{ asset('./img/products/img-2.webp') }}" alt="" width="289" height="384">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product__row">
-                            <span class="product__cost">1 299 ₽</span>
-                            <del class="product__old">1 299 ₽</del>
-                            <span class="product__sale">-30%</span>
-                        </div>
-                        <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                        <ul class="product__colors">
-                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                            <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                            <li><a href="#" style="background-color: #3740B4;"></a></li>
-                            <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                            <li><a href="#" style="background-color: #27262C;"></a></li>
-                        </ul>
-                        <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
-                                <img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="20" height="20">
-                                В корзину
-                            </button>
-                            <div class="product__sizes">Размеры: XS S M L</div>
-                        </div>
-                    </div>
-                    <div class="product swiper-slide">
-                        <div class="product__img">
-                            <div class="product__img_slider swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
+                    {% for item in product.relatedAssignments %}
+                        <div class="product swiper-slide">
+                            <a href="{{ path('store.product.show',{'slug': item.getRelated.slug} ) }}">
+                                <div class="product__img">
+                                    <div class="product__img_slider swiper">
+                                        <div class="swiper-wrapper">
+                                            <div class="product__img_slide swiper-slide active">
+                                                <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
+                                            </div>
+                                            <div class="product__img_slide swiper-slide">
+                                                <img src="{{ asset('./img/products/img-2.webp') }}" alt="" width="289" height="384">
+                                            </div>
+                                            <div class="product__img_slide swiper-slide">
+                                                <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
+                                            </div>
+                                            <div class="product__img_slide swiper-slide">
+                                                <img src="{{ asset('./img/products/img-2.webp') }}" alt="" width="289" height="384">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </a>
+                            <div class="product__row">
+                                {% if item.getRelated.price.listPrice == item.getRelated.price.price %}
+                                    <span class="product__cost">{{ item.getRelated.price.price|number_format(0, ',', ' ')}} р.</span>
+                                {% else %}
+                                    <span class="product__cost">{{ item.getRelated.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+                                    <del class="product__old">{{ item.getRelated.price.price|number_format(0, ',', ' ') }} р.</del>
+                                    <span class="product__sale">
+                                            -{{ ((item.getRelated.price.listPrice / item.getRelated.price.price) * 100)|number_format(0, ',', ' ') }}%
+                                        </span>
+                                {% endif %}
+                            </div>
+                            <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+                            <ul class="product__colors">
+                                <li><a href="#" style="background-color: #9EDFE5;"></a></li>
+                                <li><a href="#" style="background-color: #6E72A8;"></a></li>
+                                <li><a href="#" style="background-color: #3740B4;"></a></li>
+                                <li><a href="#" style="background-color: #A8AAB6;"></a></li>
+                                <li><a href="#" style="background-color: #27262C;"></a></li>
+                            </ul>
+                            <div class="product__hidden">
+                                {#<button class="product__addtocart btn-primary" type="button">
+                                    <img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="20" height="20">
+                                    В корзину
+                                </button>#}
+                                <div class="product__sizes">Размеры: XS S M L</div>
                             </div>
                         </div>
-                        <div class="product__row">
-                            <span class="product__cost">1 299 ₽</span>
-                            <del class="product__old">1 299 ₽</del>
-                            <span class="product__sale">-30%</span>
-                        </div>
-                        <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black Classic Logo Black</p>
-                        <ul class="product__colors">
-                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                            <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                            <li><a href="#" style="background-color: #3740B4;"></a></li>
-                            <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                        </ul>
-                        <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
-                                <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                В корзину
-                            </button>
-                            <div class="product__sizes">Размеры: XS S M L</div>
-                        </div>
-                    </div>
-                    <div class="product swiper-slide">
-                        <div class="product__img">
-                            <div class="product__img_slider swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product__row">
-                            <span class="product__cost">1 299 ₽</span>
-                            <del class="product__old">1 299 ₽</del>
-                            <span class="product__sale">-30%</span>
-                        </div>
-                        <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                        <ul class="product__colors">
-                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        </ul>
-                        <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
-                                <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                В корзину
-                            </button>
-                            <div class="product__sizes">Размеры: XS S M L</div>
-                        </div>
-                    </div>
-                    <div class="product swiper-slide">
-                        <div class="product__img">
-                            <div class="product__img_slider swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product__row">
-                            <span class="product__cost">1 299 ₽</span>
-                            <del class="product__old">1 299 ₽</del>
-                            <span class="product__sale">-30%</span>
-                        </div>
-                        <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                        <ul class="product__colors">
-                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                            <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                            <li><a href="#" style="background-color: #3740B4;"></a></li>
-                            <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                            <li><a href="#" style="background-color: #27262C;"></a></li>
-                        </ul>
-                        <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
-                                <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                В корзину
-                            </button>
-                            <div class="product__sizes">Размеры: XS S M L</div>
-                        </div>
-                    </div>
-                    <div class="product swiper-slide">
-                        <div class="product__img">
-                            <div class="product__img_slider swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product__row">
-                            <span class="product__cost">1 299 ₽</span>
-                            <del class="product__old">1 299 ₽</del>
-                            <span class="product__sale">-30%</span>
-                        </div>
-                        <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                        <ul class="product__colors">
-                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                        </ul>
-                        <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
-                                <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                В корзину
-                            </button>
-                            <div class="product__sizes">Размеры: XS S M L</div>
-                        </div>
-                    </div>
-                    <div class="product swiper-slide">
-                        <div class="product__img">
-                            <div class="product__img_slider swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="product__img_slide swiper-slide active">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-1.webp" alt="" width="289" height="384">
-                                    </div>
-                                    <div class="product__img_slide swiper-slide">
-                                        <img src="./img/products/img-2.webp" alt="" width="289" height="384">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product__row">
-                            <span class="product__cost">1 299 ₽</span>
-                            <del class="product__old">1 299 ₽</del>
-                            <span class="product__sale">-30%</span>
-                        </div>
-                        <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
-                        <ul class="product__colors">
-                            <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                            <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                            <li><a href="#" style="background-color: #3740B4;"></a></li>
-                            <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                            <li><a href="#" style="background-color: #27262C;"></a></li>
-                        </ul>
-                        <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
-                                <img src="./img/icons/cart.svg" alt="" width="20" height="20">
-                                В корзину
-                            </button>
-                            <div class="product__sizes">Размеры: XS S M L</div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <button class="slider-btn-prev" type="button"><img src="{{ asset('./img/icons/arrow-left.svg') }}" alt="" width="24" height="24"></button>
                 <button class="slider-btn-next" type="button"><img src="{{ asset('./img/icons/arrow-right.svg') }}" alt="" width="24" height="24"></button>

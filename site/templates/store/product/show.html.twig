@@ -217,9 +217,9 @@
             </div>
         </div>
 
-        {#
-        {% include 'store/product/recommendations.html.twig' %}
-        #}
+        {% if product.relatedAssignments.count > 0 %}
+            {% include 'store/product/recommendations.html.twig' %}
+        {% endif %}
 
         {#
         {% include 'store/product/review.html.twig' %}
