@@ -1,7 +1,7 @@
 {% extends 'store/base.html.twig' %}
 
 {% block title %}
-    {{ metaData.title }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
+    {{ metaData.title }}{% if page not in '1' %}&nbsp;|&nbsp;{{ 'pagination.page' | trans}} {{ page }} {% endif %}
 {% endblock %}
 {% block description %}
     {{ metaData.description }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}

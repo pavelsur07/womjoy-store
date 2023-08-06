@@ -42,6 +42,16 @@
                 <source>home.new.arrivals</source>
                 <target>Новинки</target>
             </trans-unit>
+
+            <trans-unit id="cart.title">
+                <source>cart.title</source>
+                <target>Корзина</target>
+            </trans-unit>
+
+            <trans-unit id="cart.description">
+                <source>cart.description</source>
+                <target>Корзина интернет магазина</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

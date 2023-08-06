@@ -43,6 +43,16 @@
                 <target>New arrivals</target>
             </trans-unit>
 
+            <trans-unit id="cart.title">
+                <source>cart.title</source>
+                <target>Cart</target>
+            </trans-unit>
+
+            <trans-unit id="cart.description">
+                <source>cart.description</source>
+                <target>Cart</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
