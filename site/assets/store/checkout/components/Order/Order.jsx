@@ -5,7 +5,7 @@ import {checkout as checkoutAction} from "../../../redux/actions/checkout";
 
 const Order = () => {
     const dispatch = useDispatch();
-    const checkout = useSelector((state) => state.checkout);
+    const cart = useSelector((state) => state.cart);
     const [isOfferAccept, setOfferAccept] = useState(true);
 
     useEffect(() => {
@@ -27,14 +27,14 @@ const Order = () => {
             <div className="c-main__title">Ваш заказ</div>
             <ul className="c-main__list">
                 <li>
-                    <span>Товары, {checkout.cart.amount} шт.</span>
-                    <span>{checkout.cart.cost} р</span>
+                    <span>Товары, {cart.amount} шт.</span>
+                    <span>{cart.cost} р</span>
                 </li>
                 {
-                    (checkout.cart.discount > 0) && (
+                    (cart.discount > 0) && (
                         <li>
                             <span>Скидка</span>
-                            <span>− {checkout.cart.discount} р</span>
+                            <span>− {cart.discount} р</span>
                         </li>
                     )
                 }
@@ -44,7 +44,7 @@ const Order = () => {
                 </li>
             </ul>
             <div className="c-main__final">
-                Сумма заказа <span className="c-main__cost">{checkout.cart.discount_cost} р</span>
+                Сумма заказа <span className="c-main__cost">{cart.discount_cost} р</span>
             </div>
 
             <button className="c-main__btn btn-primary" onClick={ handleCheckoutClick } type="button">Оформить заказ</button>
