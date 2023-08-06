@@ -125,7 +125,7 @@ class Product
     public function revokeRelatedProduct(int $id): void
     {
         foreach ($this->relatedAssignments as $assignment) {
-            if ($assignment->isForProduct($id)) {
+            if ($assignment->isForRelated($id)) {
                 $this->relatedAssignments->removeElement($assignment);
                 return;
             }

@@ -33,6 +33,11 @@ class RelatedAssignment
         return $this->product->getId() === $id;
     }
 
+    public function isForRelated(int $id): bool
+    {
+        return $this->related->getId() === $id;
+    }
+
     public function getId(): int
     {
         return $this->id;
