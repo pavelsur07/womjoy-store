@@ -23,6 +23,7 @@ Encore
     .addEntry('admin', './assets/admin.js')
     .addEntry('subscriber', './assets/main/subscriber/index.js')
     .addEntry('guarantee', './assets/main/guarantee/index.js')
+    .addEntry('store_main', './assets/store.js')
     .addEntry('store_cart', './assets/store/cart/index.js')
     .addEntry('store_cart_badge', './assets/store/cart-badge/index.js')
     .addEntry('store_checkout', './assets/store/checkout/index.js')

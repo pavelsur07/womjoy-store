@@ -5,11 +5,21 @@
 
         {% if number == 1 %}
             <div class="product__img_slide swiper-slide active">
-                <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                <img class="b-lazy"
+                     src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                     data-src=="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
+                     alt="Thumbnail {{ product.name }} image {{ number }}"
+                     width="289" height="384"
+                >
             </div>
         {% else %}
             <div class="product__img_slide swiper-slide">
-                <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                <img class="b-lazy"
+                     src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                     data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
+                     alt="Thumbnail {{ product.name }} image {{ number }}"
+                     width="289" height="384"
+                >
             </div>
         {% endif %}
 

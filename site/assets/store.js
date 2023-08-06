@@ -15,3 +15,7 @@
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 }); */
+
+import Blazy from 'blazy'
+
+const bLazy = new Blazy()
