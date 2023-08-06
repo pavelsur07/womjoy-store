@@ -7,6 +7,7 @@ namespace App\Store\Infrastructure\Controller;
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Store\Domain\Entity\Home\AssignCategory;
 use App\Store\Domain\Entity\Home\Home;
+use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use App\Store\Infrastructure\Service\Home\HomeService;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,12 +36,14 @@ class HomeController extends BaseController
         $newItems = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
+            status: ProductStatus::ACTIVE,
         );
 
         $popularity = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
-            direction: 'asc'
+            direction: 'asc',
+            status: ProductStatus::ACTIVE,
         );
 
         return $this->render(

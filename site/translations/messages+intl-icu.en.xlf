@@ -28,6 +28,21 @@
                 <target>Page</target>
             </trans-unit>
 
+            <trans-unit id="home.view.all">
+                <source>home.view.all</source>
+                <target>View all</target>
+            </trans-unit>
+
+            <trans-unit id="home.popular.products">
+                <source>home.popular.products</source>
+                <target>Popular products</target>
+            </trans-unit>
+
+            <trans-unit id="home.new.arrivals">
+                <source>home.new.arrivals</source>
+                <target>New arrivals</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

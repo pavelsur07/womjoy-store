@@ -27,6 +27,21 @@
                 <source>pagination.page</source>
                 <target>Страница</target>
             </trans-unit>
+
+            <trans-unit id="home.view.all">
+                <source>home.view.all</source>
+                <target>Смотреть все</target>
+            </trans-unit>
+
+            <trans-unit id="home.popular.products">
+                <source>home.popular.products</source>
+                <target>Популярное</target>
+            </trans-unit>
+
+            <trans-unit id="home.new.arrivals">
+                <source>home.new.arrivals</source>
+                <target>Новинки</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
