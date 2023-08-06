@@ -36,6 +36,7 @@ class BaseController extends AbstractController
         'jsonLdCompany' => null,
         'phone'=> null,
         'email'=> null,
+        'company' => null,
     ];
 
     public function __construct(
@@ -73,6 +74,7 @@ class BaseController extends AbstractController
         $this->metaData['h1'] = $setting->getSeoDefault()->getH1();
         $this->metaData['phone'] = $setting->getPhone();
         $this->metaData['email'] = $setting->getEmail();
+        $this->metaData['company'] = $setting->getCompany() ? $setting->getCompany()->getName() : '';
         $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(
             JsonLdCompany::get(
                 name: $setting->getCompany() ? $setting->getCompany()->getName() : '',
