@@ -14,7 +14,11 @@ Disallow: /users
 Disallow: /copyright
 Disallow: /privacy
 Disallow: /admin/dashboard
+Disallow: */checkout/
+Disallow: *?page=1
+Disallow: *?sort=price-asc&*
 Sitemap: https://static.womjoy.ru/s3/sitemap.xml
+Clean-param: from&clid&pclid&promo&utm&utm_referrer&utm_medium&utm_source&utm_campaign&utm_term&utm_content&gclid&openstat&cpc&test&dev&sort&order&tip&tsvet&brend&brand&strana&price_min&price_max&showall&frommarket&nomobile&mobile&crcy&promo_id
 
 User-agent: Googlebot
 Disallow: /*.php
@@ -32,6 +36,9 @@ Disallow: /users
 Disallow: /copyright
 Disallow: /privacy
 Disallow: /admin/dashboard
+Disallow: */checkout/
+Disallow: *?page=1
+Disallow: *?sort=price-asc&*
 Sitemap: https://static.womjoy.ru/s3/sitemap.xml
 
 User-Agent: Yandex
@@ -50,4 +57,7 @@ Disallow: /users
 Disallow: /copyright
 Disallow: /privacy
 Disallow: /admin/dashboard
+Disallow: */checkout/
+Disallow: *?page=1
+Disallow: *?sort=price-asc&*
 Sitemap: https://static.womjoy.ru/s3/sitemap.xml
