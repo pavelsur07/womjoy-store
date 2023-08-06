@@ -1,13 +1,20 @@
+{# Получение атрибутов текущего роута  #}
+{% set _route = app.request.attributes.get('_route') %}
+{% set _route_params = app.request.attributes.get('_route_params') %}
+
+{# Получаем GET параметр сортировки #}
+{% set _current_sort = app.request.query.get('sort', 'popularity') %}
+
 <div class="catalog__main">
     <div class="catalog__top">
         <div class="sort">
             <div class="sort__trigger">По популярности</div>
             <ul class="sort__list">
-                <li class="active">По популярности</li>
-                <li>По рейтингу</li>
-                <li>По возрастанию цены</li>
-                <li>По убыванию цены</li>
-                <li>По скидкам</li>
+                {% for _sorting_rule ,_sorting_rule_title in sorting_rules %}
+                    <li class="{{ _sorting_rule == _current_sort ? 'active' }}">
+                        <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" rel="nofollow">{{ _sorting_rule_title }}</a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="filter-trigger">
@@ -24,17 +31,8 @@
             {% endfor %}
         </div>
     </div>
-    <div class="pagination">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination__list">
-                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link pagination__next" href="#">Далее <img src="{{ asset('./img/icons/arrow-right-2.svg') }}" alt="arrow right" width="24" height="24"></a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+
+    {{ pagerfanta(pagination) }}
+
+
 </div>

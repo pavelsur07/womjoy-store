@@ -7,13 +7,25 @@ namespace App\Store\Infrastructure\Controller\Store;
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Infrastructure\Repository\ProductRepository;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends BaseController
 {
-    public const PER_PAGE= 15;
+    public const PER_PAGE = 15;
+
+    public const SORTING_RULE_POPULARITY = 'popularity';
+    public const SORTING_RULE_PRICE_ASC = 'price-asc';
+    public const SORTING_RULE_PRICE_DESC = 'price-desc';
+
+    public const SORTING_RULES = [
+        self::SORTING_RULE_POPULARITY => 'По популярности',
+        self::SORTING_RULE_PRICE_ASC => 'По возрастанию цены',
+        self::SORTING_RULE_PRICE_DESC => 'По убыванию цены',
+    ];
 
     #[Route(path: '/collections/{slug}', name: 'store.category.show')]
     public function index(string $slug, Category $category, Request $request, ProductRepository $products): Response
@@ -25,18 +37,42 @@ class CategoryController extends BaseController
             $this->setDescription($category->getSeoMetadata()->getSeoDescription());
         }
 
+        // Получаем правило сортировки
+        $currentSorting = $request->query->get('sort');
+
+        // Мапим правило на поле
+        $sort = match ($currentSorting) {
+            self::SORTING_RULE_PRICE_ASC, self::SORTING_RULE_PRICE_DESC => 'p.price.listPrice',
+            default => null,
+        };
+
+        // Мапим правило на направление сортирови
+        $direction = match ($currentSorting) {
+            self::SORTING_RULE_PRICE_DESC => 'desc',
+            default => 'asc',
+        };
+
+        $listCategoryQueryBuilder = $products->listByCategoryQueryBuilder(
+            category: $category,
+            sort: $sort,
+            direction: $direction,
+        );
+
+        $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            adapter: new QueryAdapter($listCategoryQueryBuilder),
+            currentPage: $request->query->getInt('page', 1),
+            maxPerPage: $request->query->getInt('size', self::PER_PAGE)
+        );
+
         return $this->render(
             'store/category/show.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
                 'category' => $category,
-                'breadcrumbs'=> $this->breadcrumbsCategoryGenerate($category),
-                'pagination' => $products->listByCategory(
-                    category: $category,
-                    page: $request->query->getInt('page', 1),
-                    size: $request->query->getInt('size', self::PER_PAGE),
-                ),
+                'breadcrumbs' => $this->breadcrumbsCategoryGenerate($category),
+                'pagination' => $pagerfanta,
+                'sorting_rules' => self::SORTING_RULES,
             ]
         );
     }

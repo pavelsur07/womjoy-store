@@ -9,6 +9,7 @@ use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use DomainException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -73,7 +74,27 @@ class ProductRepository
         return $qb->getQuery()->toIterable();
     }
 
-    public function listByCategory(Category $category, int $page, int $size): PaginationInterface
+    public function listByCategoryQueryBuilder(Category $category, ?string $sort, ?string $direction = 'asc'): QueryBuilder
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Product::class, 'p')
+            ->andWhere('p.categoriesIds LIKE :ids')
+            ->setParameter('ids', $category->getIds() . '%')
+            ->andWhere('p.status.value = :status_value')
+            ->setParameter('status_value', ProductStatus::ACTIVE);
+
+
+        if ($sort) {
+            $qb->orderBy($sort, $direction);
+        }
+
+        $qb->addOrderBy('p.id', 'DESC');
+
+        return $qb;
+    }
+
+    public function listByCategoryWithPagination(Category $category, int $page, int $size): PaginationInterface
     {
         $qb = $this->em->createQueryBuilder()
             ->select('p')
@@ -84,7 +105,6 @@ class ProductRepository
             ->setParameter('status_value', ProductStatus::ACTIVE);
 
         $qb->orderBy('p.id', 'ASC');
-
         $qb->getQuery();
 
         return $this->paginator->paginate($qb, $page, $size);
