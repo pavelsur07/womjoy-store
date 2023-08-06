@@ -13,18 +13,31 @@
                                 <div class="product__img">
                                     <div class="product__img_slider swiper">
                                         <div class="swiper-wrapper">
-                                            <div class="product__img_slide swiper-slide active">
-                                                <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="{{ asset('./img/products/img-2.webp') }}" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
-                                            </div>
-                                            <div class="product__img_slide swiper-slide">
-                                                <img src="{{ asset('./img/products/img-2.webp') }}" alt="" width="289" height="384">
-                                            </div>
+
+                                            {% if item.getRelated.images.count > 0 %}
+
+                                                {% set number=1 %}
+                                                {% for image in item.getRelated.images | slice(0, 4) %}
+
+                                                    {% if number == 1 %}
+                                                        <div class="product__img_slide swiper-slide active">
+                                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="product__img_slide swiper-slide">
+                                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                                                        </div>
+                                                    {% endif %}
+
+                                                    {% set number=number+1 %}
+                                                {% endfor %}
+
+                                            {% else %}
+                                                <div class="product__img_slide swiper-slide active">
+                                                    <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
+                                                </div>
+                                            {% endif %}
+
                                         </div>
                                     </div>
                                 </div>

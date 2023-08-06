@@ -26,10 +26,21 @@
 
                             {% if product.images.count > 0 %}
 
-                                {% set file = product.images.first %}
-                                <div class="product__img_slide swiper-slide active">
-                                    <img loading="lazy" src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ product.name }}" width="289" height="384">
-                                </div>
+                                {% set number=1 %}
+                                {% for image in product.images | slice(0, 4) %}
+
+                                    {% if number == 1 %}
+                                        <div class="product__img_slide swiper-slide active">
+                                            <img loading="lazy" src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                                        </div>
+                                    {% else %}
+                                        <div class="product__img_slide swiper-slide">
+                                            <img loading="lazy" src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                                        </div>
+                                    {% endif %}
+
+                                    {% set number=number+1 %}
+                                {% endfor %}
 
                             {% else %}
                                 <div class="product__img_slide swiper-slide active">
@@ -65,10 +76,10 @@
                     <li><a href="#" style="background-color: #27262C;"></a></li>
                 </ul>
                 <div class="product__hidden">
-                    <button class="product__addtocart btn-primary" type="button">
+                    {#<button class="product__addtocart btn-primary" type="button">
                         <img src="{{ asset('./img/icons/cart.svg') }}" alt="to cart" width="20" height="20">
                         В корзину
-                    </button>
+                    </button>#}
                     <div class="product__sizes">Размеры: XS S M L</div>
                 </div>
             </div>

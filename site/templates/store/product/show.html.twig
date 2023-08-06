@@ -12,33 +12,45 @@
                     <a href="#" class="i-card__back">
                         <img src="{{ asset('./img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
                     </a>
+
                     <div class="i-card__slider">
                         <div class="i-card-swiper swiper">
                             <div class="swiper-wrapper">
+                                {% set number=1 %}
                                 {% for image in product.images %}
+
                                     <div class="i-card__slide swiper-slide">
                                         <div class="i-card__slide_img">
-                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} imageNumber N " width="598" height="798">
-                                            {#<img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="{{ product.name }}" width="289" height="384">#}
+
+                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} image N {{ number }} " width="598" height="798">
+
                                         </div>
                                     </div>
+
+                                    {% set number=number+1 %}
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
+
                     <div class="i-card__smslider">
                         <div class="i-card-smswiper swiper">
                             <div class="swiper-wrapper">
+                                {% set number=1 %}
                                 {% for image in product.images %}
+
                                     <div class="i-card__smslide swiper-slide">
                                         <div class="i-card__smslide_img">
-                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="" width="83" height="111">
+                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt=" Thumbnail {{ product.name }} image N {{ number }} " width="83" height="111">
                                         </div>
                                     </div>
+
+                                    {% set number=number+1 %}
                                 {% endfor %}
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="i-card__main">
 
