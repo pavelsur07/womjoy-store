@@ -84,7 +84,6 @@ class ProductRepository
             ->andWhere('p.status.value = :status_value')
             ->setParameter('status_value', ProductStatus::ACTIVE);
 
-
         if ($sort) {
             $qb->orderBy($sort, $direction);
         }
