@@ -18,71 +18,9 @@
     <div class="products">
         <div class="products__items products-3">
             {% for product in pagination %}
-            <div class="product">
-                <a href="{{ path('store.product.show',{'slug': product.slug} ) }}">
-                <div class="product__img">
-                    <div class="product__img_slider swiper">
-                        <div class="swiper-wrapper">
-
-                            {% if product.images.count > 0 %}
-
-                                {% set number=1 %}
-                                {% for image in product.images | slice(0, 4) %}
-
-                                    {% if number == 1 %}
-                                        <div class="product__img_slide swiper-slide active">
-                                            <img loading="lazy" src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
-                                        </div>
-                                    {% else %}
-                                        <div class="product__img_slide swiper-slide">
-                                            <img loading="lazy" src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
-                                        </div>
-                                    {% endif %}
-
-                                    {% set number=number+1 %}
-                                {% endfor %}
-
-                            {% else %}
-                                <div class="product__img_slide swiper-slide active">
-                                    <img src="{{ asset('./img/products/img-1.webp') }}" alt="Thumbnail loading" width="289" height="384">
-                                </div>
-                            {% endif %}
-
-                        </div>
-                    </div>
+                <div class="product">
+                    {% include 'store/common/product/item_product_card.html.twig' %}
                 </div>
-                </a>
-                <div class="product__row">
-
-                    {% if product.price.listPrice == product.price.price %}
-                        <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
-                    {% else %}
-
-                        <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
-                        <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
-                        <span class="product__sale">
-                                -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
-                            </span>
-                    {% endif %}
-
-                </div>
-
-                <p class="product__name">{{ product.name }}</p>
-                <ul class="product__colors">
-                    <li><a href="#" style="background-color: #9EDFE5;"></a></li>
-                    <li><a href="#" style="background-color: #6E72A8;"></a></li>
-                    <li><a href="#" style="background-color: #3740B4;"></a></li>
-                    <li><a href="#" style="background-color: #A8AAB6;"></a></li>
-                    <li><a href="#" style="background-color: #27262C;"></a></li>
-                </ul>
-                <div class="product__hidden">
-                    {#<button class="product__addtocart btn-primary" type="button">
-                        <img src="{{ asset('./img/icons/cart.svg') }}" alt="to cart" width="20" height="20">
-                        В корзину
-                    </button>#}
-                    <div class="product__sizes">Размеры: XS S M L</div>
-                </div>
-            </div>
             {% endfor %}
         </div>
     </div>

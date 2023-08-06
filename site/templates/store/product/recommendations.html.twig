@@ -8,6 +8,7 @@
             <div class="products-swiper swiper">
                 <div class="swiper-wrapper">
                     {% for item in product.relatedAssignments %}
+
                         <div class="product swiper-slide">
                             <a href="{{ path('store.product.show',{'slug': item.getRelated.slug} ) }}">
                                 <div class="product__img">

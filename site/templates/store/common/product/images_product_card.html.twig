@@ -1,0 +1,23 @@
+{% if product.images.count > 0 %}
+
+    {% set number=1 %}
+    {% for image in product.images | slice(0, 4) %}
+
+        {% if number == 1 %}
+            <div class="product__img_slide swiper-slide active">
+                <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+            </div>
+        {% else %}
+            <div class="product__img_slide swiper-slide">
+                <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+            </div>
+        {% endif %}
+
+        {% set number=number+1 %}
+    {% endfor %}
+
+{% else %}
+    <div class="product__img_slide swiper-slide active">
+        <img src="{{ asset('./img/products/img-1.webp') }}" alt="" width="289" height="384">
+    </div>
+{% endif %}
