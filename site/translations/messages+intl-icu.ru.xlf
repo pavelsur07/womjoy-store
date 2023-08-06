@@ -22,6 +22,11 @@
                 <source>placeholder.search</source>
                 <target>Я хочу найти</target>
             </trans-unit>
+
+            <trans-unit id="pagination.page">
+                <source>pagination.page</source>
+                <target>Страница</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

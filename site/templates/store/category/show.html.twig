@@ -1,5 +1,15 @@
 {% extends 'store/base.html.twig' %}
 
+{% block title %}
+    {{ metaData.title }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
+{% endblock %}
+{% block description %}
+    {{ metaData.description }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
+{% endblock %}
+{% block linkCanonical %}
+    <link rel="canonical" href= {{ path('store.category.show', {'slug': category.slug})}}{% if page not in '1' %}?page={{ page }}{% endif %}>
+{% endblock %}
+
 {% block body %}
 
     <section class="i-cat">
@@ -16,7 +26,12 @@
                     {% endfor %}
                 </ol>
             </nav>
-            <h1 class="in-title">{{ category.seoMetadata.h1 }}</h1>
+            <h1 class="in-title">
+                {{ category.seoMetadata.h1 }}
+                {% if page not in '1' %}
+                    | {{ 'pagination.page' | trans }} {{ page }}
+                {% endif %}
+            </h1>
             {#<div class="i-cat__slider">
                 <div class="i-cat-swiper swiper">
                     <div class="swiper-wrapper">

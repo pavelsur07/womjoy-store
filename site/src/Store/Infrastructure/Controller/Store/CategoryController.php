@@ -58,6 +58,9 @@ class CategoryController extends BaseController
             direction: $direction,
         );
 
+        // Получаем номер страници
+        $page = $request->get('page') !== null ? (int)$request->get('page') : 1;
+
         $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
             adapter: new QueryAdapter($listCategoryQueryBuilder),
             currentPage: $request->query->getInt('page', 1),
@@ -68,6 +71,7 @@ class CategoryController extends BaseController
             'store/category/show.html.twig',
             [
                 'metaData' => $this->metaData,
+                'page' => $page,
                 'menu' => $this->menu,
                 'category' => $category,
                 'breadcrumbs' => $this->breadcrumbsCategoryGenerate($category),
