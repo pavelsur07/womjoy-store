@@ -148,8 +148,14 @@ build-site:
 	docker --log-level=debug build --pull --file=site/docker/production/php-fpm/Dockerfile --tag=${REGISTRY}/site-php-fpm:${IMAGE_TAG} site
 	docker --log-level=debug build --pull --file=site/docker/production/php-cli/Dockerfile --tag=${REGISTRY}/site-php-cli:${IMAGE_TAG} site
 
+build-storage:
+	docker --log-level=debug build --pull --file=storage/docker/production/Dockerfile --tag=${REGISTRY}/storage-nginx:${IMAGE_TAG} site
+
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make build
+
+try-build-storage:
+	REGISTRY=localhost IMAGE_TAG=0 make build-storage
 
 push: push-site
 
