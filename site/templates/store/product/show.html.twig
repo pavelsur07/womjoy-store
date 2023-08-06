@@ -58,17 +58,14 @@
 
                     <div class="i-card__info">
 
-                        <div class="rating" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                        <div class="rating" {% if product.rating.reviewCount > 0 %} itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope{% endif %}>
 
-                            <meta itemprop="reviewCount" content={{ product.rating.reviewCount }} />
-                            <meta itemprop="ratingValue" content={{ product.rating.ratingValue }} />
-
+                            {% if product.rating.reviewCount > 0 %}
+                                <meta itemprop="reviewCount" content={{ product.rating.reviewCount }} />
+                                <meta itemprop="ratingValue" content={{ product.rating.ratingValue }} />
+                            {% endif %}
                             <div class="rating__stars">
-                                <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                                <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                                <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                                <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                                <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
+                                {{ rating_star(product.rating.ratingValue) }}
                             </div>
                             <span class="rating__crnt">{{ product.rating.reviewCount }} отзывов</span>
                         </div>
@@ -233,8 +230,9 @@
             {% include 'store/product/recommendations.html.twig' %}
         {% endif %}
 
-        {% include 'store/product/review.html.twig' %}
-
+        {% if product.reviews.count > 0 %}
+            {% include 'store/product/review.html.twig' %}
+        {% endif %}
         <div class="modal" id="card-sizes">
             <div class="modal__bg"></div>
             <div class="modal__content">
