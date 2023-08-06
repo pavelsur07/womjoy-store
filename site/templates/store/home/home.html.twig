@@ -72,6 +72,7 @@
         </div>
     </section>
 
+{#
     <section class="cat section">
         <div class="wrapper">
             <div class="section-top">
@@ -98,6 +99,7 @@
             </div>
         </div>
     </section>
+#}
 
     <section class="products section">
         <div class="wrapper">
@@ -136,7 +138,7 @@
                                 </div>
                                 </a>
                                 <div class="product__row">
-                                    {% if product.price.listPrice == 0 %}
+                                    {% if product.price.listPrice == product.price.price %}
                                         <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
                                     {% else %}
                                         <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
@@ -155,10 +157,12 @@
                                     <li><a href="#" style="background-color: #27262C;"></a></li>
                                 </ul>
                                 <div class="product__hidden">
+                                    {#
                                     <button class="product__addtocart btn-primary" type="button">
                                         <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="20" height="20">
                                         В корзину
                                     </button>
+                                    #}
                                     <div class="product__sizes">Размеры: XS S M L</div>
                                 </div>
                             </div>
@@ -208,7 +212,7 @@
                             </div>
                         </a>
                         <div class="product__row">
-                            {% if product.price.listPrice == 0 %}
+                            {% if product.price.listPrice == product.price.price %}
                                 <span class="product__cost">{{ product.price.price|number_format(0, ',', ' ')}} р.</span>
                             {% else %}
 
@@ -228,10 +232,12 @@
                             <li><a href="#" style="background-color: #27262C;"></a></li>
                         </ul>
                         <div class="product__hidden">
-                            <button class="product__addtocart btn-primary" type="button">
+                           {#
+                           <button class="product__addtocart btn-primary" type="button">
                                 <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="20" height="20">
                                 В корзину
                             </button>
+                           #}
                             <div class="product__sizes">Размеры: XS S M L</div>
                         </div>
                     </div>
