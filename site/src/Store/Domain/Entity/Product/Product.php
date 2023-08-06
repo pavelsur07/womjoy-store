@@ -92,6 +92,10 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: RelatedAssignment::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $relatedAssignments;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class, cascade: ['all'], orphanRemoval: true)]
+    #[ORM\OrderBy(['createdAt' => 'DESC'])]
+    private Collection $reviews;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -103,8 +107,43 @@ class Product
         $this->publishedAt = $this->createdAt;
         $this->rating = new ProductAggregateRating();
         $this->relatedAssignments = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
+    // Review
+
+    public function addReview(int $vote, string $text, string $customerName): void
+    {
+        $this->reviews->add(
+            new Review(
+                product: $this,
+                createdAt: new DateTimeImmutable(),
+                vote: $vote,
+                text: $text,
+                customerName: $customerName,
+            )
+        );
+    }
+
+    public function removeReview(int $id): void
+    {
+        /** @var Review $review */
+        foreach ($this->reviews as $review) {
+            if ($review->getId() === $id) {
+                $this->reviews->removeElement($review);
+                return;
+            }
+        }
+
+        throw new StoreProductException('Review not found.');
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    // Related
     public function assignRelatedProduct(self $product): void
     {
         $assignments = $this->relatedAssignments;

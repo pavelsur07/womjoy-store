@@ -3,7 +3,7 @@
         <div class="section-top">
             <h2 class="section-title">Отзывы о товаре</h2>
         </div>
-        <div class="p-review__photos">
+{#        <div class="p-review__photos">
             <span class="p-review__photos_title">Фотографии покупателей (234)</span>
             <div class="p-review__slider">
                 <div class="p-review-swiper swiper">
@@ -81,78 +81,44 @@
                     </svg>
                 </button>
             </div>
-        </div>
+        </div>#}
 
         <div class="p-review__items">
-            <div class="p-review__item">
-                <div class="p-review__top">
-                    <div class="p-review__info">
-                        <span class="p-review__name">Наталья</span>
-                        <span class="p-review__dt">02 декабря 2022</span>
-                    </div>
-                    <div class="rating">
-                        <div class="rating__stars">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
+            {% for review in product.reviews %}
+                <div class="p-review__item" itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                    <div class="p-review__top">
+                        <div class="p-review__info">
+
+                            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                <span class="p-review__name" itemprop="name">{{ review.customerName }}</span>
+                            </div>
+
+                            <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+                                <meta itemprop="ratingValue" content={{ review.vote}} />
+                                <meta itemprop="bestRating" content="5" />
+                            </div>
+
+                            <span class="p-review__dt">{{ review.createdAt | date('d-m-Y') }}</span>
+                            <meta itemprop="datePublished" content={{ review.createdAt }}>
+
                         </div>
-                    </div>
-                </div>
-                <p class="p-review__text">Отличная футболка по качеству. Цвет тёмно-синий насыщенный,как хотела. Идёт в размер, ношу 46, всё супер. Думаю закажу ещё</p>
-            </div>
-            <div class="p-review__item">
-                <div class="p-review__top">
-                    <div class="p-review__info">
-                        <span class="p-review__name">Евгения</span>
-                        <span class="p-review__dt">Вчера</span>
-                    </div>
-                    <div class="rating">
-                        <div class="rating__stars">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
+
+                        <div class="rating">
+                            <div class="rating__stars">
+                                {{ rating_star(review.vote) }}
+                            </div>
                         </div>
+
                     </div>
+                    <p class="p-review__text" itemprop="reviewBody">
+                        {{ review.text }}
+                    </p>
                 </div>
-                <p class="p-review__text">Хорошая футболка. Цена супер. Хороша к телу. Цвет глубокий синий</p>
-                <div class="p-review__imgs">
-                    <div class="p-review__img">
-                        <div class="p-review__img_in"><img src="{{ asset('./img/review-imgs/img-1.png') }}" alt="" width="80" height="100"></div>
-                    </div>
-                    <div class="p-review__img">
-                        <div class="p-review__img_in"><img src="{{ asset('./img/review-imgs/img-2.png') }}" alt="" width="80" height="100"></div>
-                    </div>
-                    <div class="p-review__img">
-                        <div class="p-review__img_in"><img src="{{ asset('./img/review-imgs/img-3.png') }}" alt="" width="80" height="100"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="p-review__item">
-                <div class="p-review__top">
-                    <div class="p-review__info">
-                        <span class="p-review__name">Наталья</span>
-                        <span class="p-review__dt">02 декабря 2022</span>
-                    </div>
-                    <div class="rating">
-                        <div class="rating__stars">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
-                            <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
-                        </div>
-                    </div>
-                </div>
-                <p class="p-review__text">Отличная футболка по качеству. Цвет тёмно-синий насыщенный,как хотела. Идёт в размер, ношу 46, всё супер. Думаю закажу ещё</p>
-            </div>
+            {% endfor %}
         </div>
-        <button class="p-review__btn" type="button">
+        {#<button class="p-review__btn" type="button">
             Показать ещё
             <img src="{{ asset('./img/icons/arrow-down-tail.svg') }}" alt="arrow down tail" width="20" height="20">
-        </button>
+        </button>#}
     </div>
 </section>
