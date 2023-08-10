@@ -118,7 +118,7 @@
         <div class="wrapper">
             <div class="footer__main">
                 <div class="footer__left">
-                    <a href="#" class="footer__logo">
+                    <a href="{{ path('home') }}" class="footer__logo">
                         <img src="{{ asset('./img/logo.svg') }}" alt="logo" width="205" height="36">
                     </a>
                     <div itemscope="" itemtype="http://schema.org/Organization" class="footer__phone">
@@ -181,10 +181,8 @@
         <div class="footer__bottom">
             <div class="wrapper">
                 <div class="footer__bottom_row">
-                    <span class="footer__copyright" itemscope itemtype="r">
+                    <span class="footer__copyright">
                         <a href="{{ path('admin.dashboard.show') }}" class="nav-link">© 2019 - {{ 'now'|date('Y') }} {{ metaData.company }}</a>
-                        <meta itemprop="copyrightYear" content={{ 'now'|date('Y') }}>
-                        <meta itemprop="copyrightHolder" content={{ metaData.company }}>
                     </span>
                     <ul class="footer__pay">
                         <li><img src="{{ asset('./img/icons/visa.svg') }}" alt="visa" width="58" height="40"></li>
