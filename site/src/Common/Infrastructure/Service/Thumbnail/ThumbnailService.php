@@ -80,7 +80,7 @@ class ThumbnailService
 
         $image = new ImageResize(stream_get_meta_data($tmp)['uri']);
         /*$image->resize($width, $height, true);*/
-        $image->crop($width, $height, true);
+        $image->crop($width, $height);
         $stream = fopen('php://memory', 'wrb+');
 
         $name = explode('.', $inputName)[0] . '.jpg';
