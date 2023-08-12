@@ -79,7 +79,7 @@ class ThumbnailService
         fwrite($tmp, $file);
 
         $image = new ImageResize(stream_get_meta_data($tmp)['uri']);
-        /*$image->resize($width, $height, true);*/
+        // $image->resize($width, $height, true);
         $image->crop($width, $height);
         $stream = fopen('php://memory', 'wrb+');
 

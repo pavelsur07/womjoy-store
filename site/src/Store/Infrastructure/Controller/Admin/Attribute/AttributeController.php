@@ -64,6 +64,15 @@ class AttributeController extends AbstractController
             try {
                 $data = $form->getData();
                 $attribute->editName($data['name']);
+
+                if ($data['type'] === Attribute::TYPE_BRAND) {
+                    $attribute->brandTypeActive();
+                }
+
+                if ($data['type'] === Attribute::TYPE_COLOR) {
+                    $attribute->colorTypeActive();
+                }
+
                 $flusher->flush();
                 $this->addFlash('success', 'Success attribute edit');
             } catch (Exception $e) {

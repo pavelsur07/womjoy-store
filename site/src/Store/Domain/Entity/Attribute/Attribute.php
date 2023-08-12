@@ -19,6 +19,10 @@ class Attribute
     public const TYPE_MULTI_CHOICE = 'multi_choice';
     public const TYPE_CUSTOMER_VALUE = 'customer_value';
 
+    public const TYPE_BRAND = 'type_brand';
+
+    public const TYPE_COLOR = 'type_color';
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column]
@@ -33,12 +37,6 @@ class Attribute
     /** @var ArrayCollection<array-key, Variant> */
     #[ORM\OneToMany(mappedBy: 'attribute', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default'=> false])]
-    private bool $isBrand = false;
-
-    #[ORM\Column(type: Types::BOOLEAN, options: ['default'=> false])]
-    private bool $isColor = false;
 
     public function __construct(string $name, string $type)
     {
@@ -60,7 +58,7 @@ class Attribute
         );
     }
 
-    public function isBrandActive(bool $isBrand): void
+    public function brandTypeActive(): void
     {
         if ($this->isColor()) {
             throw new StoreAttributeException('Error this attributes is Brand.');
@@ -70,10 +68,10 @@ class Attribute
             throw new StoreAttributeException('Error already active brand.');
         }
 
-        $this->isBrand = true;
+        $this->type = self::TYPE_BRAND;
     }
 
-    public function isColorActive(bool $isColor): void
+    public function colorTypeActive(): void
     {
         if ($this->isColor()) {
             throw new StoreAttributeException('Error already active Color.');
@@ -83,9 +81,8 @@ class Attribute
             throw new StoreAttributeException('Error this attributes is Brand.');
         }
 
-        $this->isColor = true;
+        $this->type = self::TYPE_COLOR;
     }
-
 
     public function editName(string $name): void
     {
@@ -94,12 +91,12 @@ class Attribute
 
     public function isBrand(): bool
     {
-        return $this->isBrand;
+        return $this->type === self::TYPE_BRAND;
     }
 
     public function isColor(): bool
     {
-        return $this->isColor;
+        return $this->type === self::TYPE_COLOR;
     }
 
     public function getId(): int
@@ -128,6 +125,8 @@ class Attribute
             self::TYPE_CUSTOMER_VALUE,
             self::TYPE_MULTI_CHOICE,
             self::TYPE_SINGLE_CHOICE,
+            self::TYPE_BRAND,
+            self::TYPE_COLOR,
         ];
     }
 

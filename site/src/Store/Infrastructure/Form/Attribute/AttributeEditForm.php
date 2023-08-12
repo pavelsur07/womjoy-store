@@ -19,6 +19,8 @@ class AttributeEditForm extends AbstractType
             ->add('type', Type\ChoiceType::class, ['choices' => [
                 'Single choice' => Attribute::TYPE_SINGLE_CHOICE,
                 'Multi choice' => Attribute::TYPE_MULTI_CHOICE,
+                'Brand/Manufacture' =>Attribute::TYPE_BRAND,
+                'Color' => Attribute::TYPE_COLOR,
             ]]);
     }
 
