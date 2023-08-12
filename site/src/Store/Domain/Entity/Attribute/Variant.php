@@ -22,6 +22,9 @@ class Variant
     #[ORM\Column(type: Types::STRING)]
     private string $name;
 
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private string $customerValue;
+
     public function __construct(Attribute $attribute, string $name)
     {
         $this->attribute = $attribute;
@@ -41,5 +44,15 @@ class Variant
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getCustomerValue(): string
+    {
+        return $this->customerValue;
+    }
+
+    public function setCustomerValue(string $customerValue): void
+    {
+        $this->customerValue = $customerValue;
     }
 }
