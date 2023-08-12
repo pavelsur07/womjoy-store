@@ -34,6 +34,12 @@ class Attribute
     #[ORM\OneToMany(mappedBy: 'attribute', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default'=> false])]
+    private bool $isBrand = false;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default'=> false])]
+    private bool $isColor = false;
+
     public function __construct(string $name, string $type)
     {
         Assert::oneOf($type, self::getTypeList());
@@ -54,9 +60,46 @@ class Attribute
         );
     }
 
+    public function isBrandActive(bool $isBrand): void
+    {
+        if ($this->isColor()) {
+            throw new StoreAttributeException('Error this attributes is Brand.');
+        }
+
+        if ($this->isBrand()) {
+            throw new StoreAttributeException('Error already active brand.');
+        }
+
+        $this->isBrand = true;
+    }
+
+    public function isColorActive(bool $isColor): void
+    {
+        if ($this->isColor()) {
+            throw new StoreAttributeException('Error already active Color.');
+        }
+
+        if ($this->isBrand()) {
+            throw new StoreAttributeException('Error this attributes is Brand.');
+        }
+
+        $this->isColor = true;
+    }
+
+
     public function editName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function isBrand(): bool
+    {
+        return $this->isBrand;
+    }
+
+    public function isColor(): bool
+    {
+        return $this->isColor;
     }
 
     public function getId(): int
