@@ -31,6 +31,28 @@ class AttributeRepository
         return $object;
     }
 
+    public function hasBrandAttribute(): bool
+    {
+        $result = $this->repo->findBy(
+            [
+                'type'=> Attribute::TYPE_BRAND,
+            ]
+        );
+
+        return $result !== null;
+    }
+
+    public function hasColorAttribute(): bool
+    {
+        $result = $this->repo->findBy(
+            [
+                'type'=> Attribute::TYPE_COLOR,
+            ]
+        );
+
+        return $result !== null;
+    }
+
     public function list(): array
     {
         return $this->repo->findAll();

@@ -6,6 +6,7 @@ namespace App\Store\Infrastructure\Controller\Admin\Attribute;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Attribute\Attribute;
+use App\Store\Domain\Exception\StoreAttributeException;
 use App\Store\Infrastructure\Form\Attribute\AttributeEditForm;
 use App\Store\Infrastructure\Repository\AttributeRepository;
 use Exception;
@@ -66,17 +67,27 @@ class AttributeController extends AbstractController
                 $attribute->editName($data['name']);
 
                 if ($data['type'] === Attribute::TYPE_BRAND) {
-                    $attribute->brandTypeActive();
+                    if ($attribute->isBrand() === false) {
+                        if ($attributes->hasBrandAttribute()) {
+                            throw new StoreAttributeException('Brande already added attribute.');
+                        }
+                        $attribute->brandTypeActive();
+                    }
                 }
 
                 if ($data['type'] === Attribute::TYPE_COLOR) {
-                    $attribute->colorTypeActive();
+                    if ($attribute->isColor() === false) {
+                        if ($attributes->hasColorAttribute() !== null) {
+                            throw new StoreAttributeException('Color already added attribute.');
+                        }
+                        $attribute->colorTypeActive();
+                    }
                 }
 
                 $flusher->flush();
                 $this->addFlash('success', 'Success attribute edit');
             } catch (Exception $e) {
-                $this->addFlash('danger', 'Error attribute edit ' . $e->getMessage());
+                $this->addFlash('danger', 'Error - ' . $e->getMessage());
             }
         }
 
