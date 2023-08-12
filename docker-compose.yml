@@ -128,6 +128,21 @@ services:
       - traefik.http.routers.mailer.entryPoints=http
       - traefik.http.services.mailer.loadBalancer.server.port=8025
   
+  imgproxy:
+    image: darthsim/imgproxy:latest
+#    environment:
+#      IMGPROXY_KEY: 'hex-encoded-key'
+#      IMGPROXY_SALT: 'hex-encoded-salt'
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.mailer.rule=Host(`imgproxy.localhost`)
+      - traefik.http.routers.mailer.entryPoints=http
+      - traefik.http.services.mailer.loadBalancer.server.port=8080
+  
   storage-nginx:
     build:
       context: ./storage/docker/development

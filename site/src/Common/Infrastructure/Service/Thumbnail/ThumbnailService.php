@@ -8,6 +8,7 @@ use Gumlet\ImageResize;
 use Gumlet\ImageResizeException;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
+use League\Glide\ServerFactory;
 
 class ThumbnailService
 {
@@ -28,6 +29,11 @@ class ThumbnailService
      */
     public function convertImagePngToJpeg(string $path, string $name): File
     {
+        $serverLeague = ServerFactory::create([
+            'source' => $this->defaultStorage,
+            'cache' => $this->defaultStorage,
+        ]);
+
         $fullName = $path . '/' . $name;
 
         $tmp = tmpfile();
@@ -73,7 +79,8 @@ class ThumbnailService
         fwrite($tmp, $file);
 
         $image = new ImageResize(stream_get_meta_data($tmp)['uri']);
-        $image->resize($width, $height, true);
+        /*$image->resize($width, $height, true);*/
+        $image->crop($width, $height, true);
         $stream = fopen('php://memory', 'wrb+');
 
         $name = explode('.', $inputName)[0] . '.jpg';
