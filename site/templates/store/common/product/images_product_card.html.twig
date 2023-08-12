@@ -6,11 +6,11 @@
         {% if number == 1 %}
             <div class="product__img_slide swiper-slide active">
                 <picture>
-                    <source srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
-                    <source srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
                     <img class="b-lazy"
                          src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-                         data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
+                         data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
                          alt="Thumbnail {{ product.name }} image {{ number }}"
                          width="289" height="384"
                     >
@@ -19,11 +19,11 @@
         {% else %}
             <div class="product__img_slide swiper-slide">
                 <picture>
-                    <source srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
-                    <source srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
                     <img class="b-lazy"
                          src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-                         data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
+                         data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
                          alt="Thumbnail {{ product.name }} image {{ number }}"
                          width="289" height="384"
                     >
