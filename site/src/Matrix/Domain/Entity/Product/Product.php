@@ -60,6 +60,11 @@ class Product
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $pathExternalImage = null;
 
+    /** @var ArrayCollection<array-key, Cost> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Cost::class,cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\OrderBy(['createdAt' => 'ASC'])]
+    private Collection $costs;
+
     public function __construct(
         DateTimeImmutable $createdAt,
         string $article,
@@ -77,6 +82,12 @@ class Product
         $this->status = new ProductStatus(ProductStatus::DRAFT);
         $this->variants = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->costs = new ArrayCollection();
+    }
+
+    public function getCosts(): Collection
+    {
+        return $this->costs;
     }
 
     public function imageUp(int $sortNumber): void
