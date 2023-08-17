@@ -150,4 +150,4 @@ services:
         class: App\Matrix\Infrastructure\Repository\ColorRepository
 
     App\Matrix\Infrastructure\Repository\Finance\SaleRepository:
-        calls:App\Matrix\Infrastructure\Repository\Finance\SaleRepository
+        class: App\Matrix\Infrastructure\Repository\Finance\SaleRepository
