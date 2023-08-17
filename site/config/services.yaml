@@ -134,3 +134,20 @@ services:
     
     App\Store\Infrastructure\Service\Payment\PaymentProvider:
         arguments: [ '%env(PAYMENT_PROVIDER_NAME)%' ]
+    
+    
+    #---------------------- Matrix ----------------------------------------------#
+    App\Matrix\Domain\Repository\Product\ProductRepositoryInterface:
+        class: App\Matrix\Infrastructure\Repository\Product\ProductRepository
+    
+    App\Matrix\Domain\Repository\SubjectRepositoryInterface:
+        class: App\Matrix\Infrastructure\Repository\SubjectRepository
+    
+    App\Matrix\Domain\Repository\ModelRepositoryInterface:
+        class: App\Matrix\Infrastructure\Repository\ModelRepository
+    
+    App\Matrix\Domain\Repository\ColorRepositoryInterface:
+        class: App\Matrix\Infrastructure\Repository\ColorRepository
+
+    App\Matrix\Infrastructure\Repository\Finance\SaleRepository:
+        calls:App\Matrix\Infrastructure\Repository\Finance\SaleRepository
