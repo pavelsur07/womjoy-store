@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Store\Domain\Entity\Attribute\Attribute;
+use App\Store\Domain\Entity\Attribute\Variant as AttributeVariant;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
 use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
@@ -97,6 +99,10 @@ class Product
     #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private Collection $reviews;
 
+    /** @var ArrayCollection<array-key, AttributeAssignment> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: AttributeAssignment::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Collection $attributes;
+
     #[ORM\Embedded(class: ProductExport::class, columnPrefix: 'export_')]
     private ProductExport $export;
 
@@ -112,6 +118,45 @@ class Product
         $this->rating = new ProductAggregateRating();
         $this->relatedAssignments = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->attributes = new ArrayCollection();
+    }
+
+    // Attributes
+
+    public function assignAttribute(
+        Attribute $attribute,
+        ?AttributeVariant $variant,
+        ?string $customerValue = null
+    ): void {
+        if ($variant !== null) {
+            if ($attribute->getId() !== $variant->getAttribute()->getId()) {
+                throw new StoreProductException('Attribute not parent variant.');
+            }
+
+            foreach ($this->attributes as $item) {
+                if ($item->getVariant()->getId() === $variant->getId()) {
+                    return;
+                }
+            }
+
+            $this->variants->add(
+                new AttributeAssignment(
+                    product: $this,
+                    attribute: $attribute,
+                    variant: $variant,
+                    customerValue: null
+                )
+            );
+        }
+    }
+
+    public function revokeAttribute(int $id): void
+    {
+    }
+
+    public function getAttributes(): Collection
+    {
+        return $this->attributes;
     }
 
     // Review

@@ -101,6 +101,18 @@ class ProductActionMenu
             ->setAttribute('data-bs-toggle', 'tabs')
             ->setLinkAttribute('class', 'nav-link');
 
+        $menu
+            ->addChild(
+                'Attributes',
+                [
+                    'route' => 'store.admin.product.attribute.edit',
+                    'routeParameters' => ['id' => $options['product_id']],
+                ]
+            )
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('data-bs-toggle', 'tabs')
+            ->setLinkAttribute('class', 'nav-link');
+
         return $menu;
     }
 }

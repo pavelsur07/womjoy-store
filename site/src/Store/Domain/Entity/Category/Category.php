@@ -61,12 +61,33 @@ class Category
     #[ORM\Embedded(class: CategoryStatus::class, columnPrefix: 'status_')]
     private CategoryStatus $status;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: AttributeAssignment::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Collection $attributes;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->image = new CategoryImage();
         $this->status = new CategoryStatus(CategoryStatus::DRAFT);
+        $this->attributes = new ArrayCollection();
     }
+
+    // Attribute
+
+    public function assignAttribute(): void
+    {
+    }
+
+    public function revokeAttribute(int $id): void
+    {
+    }
+
+    public function getAttributes(): Collection
+    {
+        return $this->attributes;
+    }
+
+    // Status
 
     public function active(): void
     {
