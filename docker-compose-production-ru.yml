@@ -89,11 +89,6 @@ services:
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
       STORAGE_BASE_URL: 'https://static.womjoy.ru/s3'
       CACHE_PATH_IMAGE: '/cache'
-      STORAGE_FTP_HOST: 'storage-ftp'
-      STORAGE_FTP_USERNAME: 'app'
-      STORAGE_FTP_PASSWORD: 'secret'
-      STORAGE_FTP_ROOT: '/'
-      STORAGE_FTP_PASSIVE: 0
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
     deploy:
