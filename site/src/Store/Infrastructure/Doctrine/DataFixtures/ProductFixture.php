@@ -9,6 +9,7 @@ use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\SeoMetadata;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Category\CategoryFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

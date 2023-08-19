@@ -1,10 +1,8 @@
-import cart from './reducers/cart'
-import checkout from './reducers/checkout'
+import attributes from './reducers/attributeSlice'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 const reducers = combineReducers({
-  cart,
-  checkout,
+  attributes,
 })
 
 export default configureStore({ reducer: reducers })

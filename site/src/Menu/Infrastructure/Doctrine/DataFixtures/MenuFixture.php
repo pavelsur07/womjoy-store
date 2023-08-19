@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Menu\Infrastructure\Doctrine\DataFixtures;
 
 use App\Menu\Domain\Entity\Menu;
-use App\Store\Infrastructure\Doctrine\DataFixtures\CategoryFixture;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Category\CategoryFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

@@ -28,6 +28,7 @@ Encore
     .addEntry('store_cart_badge', './assets/store/cart-badge/index.js')
     .addEntry('store_checkout', './assets/store/checkout/index.js')
     .addEntry('store_product', './assets/store/product/index.js')
+    .addEntry('store_admin_product','./assets/admin/store/product/attribute/index.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

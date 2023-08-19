@@ -65,6 +65,7 @@
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.44.3",
         "react-redux": "^8.1.1",
+        "react-select": "^5.7.4",
         "redux-thunk": "^2.4.2",
         "swiper": "^9.3.2"
     }

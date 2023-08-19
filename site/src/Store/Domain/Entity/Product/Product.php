@@ -565,6 +565,11 @@ class Product
         $this->updatedAt = new DateTimeImmutable();
     }
 
+    public function clearAttributes(): void
+    {
+        $this->attributes->clear();
+    }
+
     private function sortable(): void
     {
         $this->images->first();

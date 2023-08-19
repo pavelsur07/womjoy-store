@@ -29,7 +29,13 @@
         </div>
 
         <div class="card-body">
-
+            <div id="product_attribute_edit" data-product="{{ product.id }}">
+            </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin') }}
+    {{ encore_entry_script_tags('store_admin_product') }}
 {% endblock %}

@@ -2,14 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Store\Infrastructure\Doctrine\DataFixtures;
+namespace App\Store\Infrastructure\Doctrine\DataFixtures\Category;
 
 use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Attribute\BrandFixture;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Attribute\ColorFixture;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Attribute\SizeFixture;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Attribute\TypeSubjectFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CategoryFixture extends Fixture
+class CategoryFixture extends Fixture implements DependentFixtureInterface
 {
     public const REFERENCE_WOMAN = 'reference-woman';
     public const REFERENCE_LEGGINGS = 'reference-leggings';
@@ -34,7 +39,14 @@ class CategoryFixture extends Fixture
         $levelOne->setParent($levelRoot);
         $levelOne->setSlug($this->slugify->generate(self::REFERENCE_LEGGINGS));
         $levelOne->setPrefixSlugProduct($this->slugify->generate($name));
+
         $this->setReference(self::REFERENCE_LEGGINGS, $levelOne);
+
+        $levelOne->assignAttribute($this->getReference(SizeFixture::REFERENCE_ATTRIBUTE_SIZE));
+        $levelOne->assignAttribute($this->getReference(BrandFixture::REFERENCE_ATTRIBUTE_BRAND));
+        $levelOne->assignAttribute($this->getReference(ColorFixture::REFERENCE_ATTRIBUTE_COLOR));
+        $levelOne->assignAttribute($this->getReference(TypeSubjectFixture::REFERENCE_ATTRIBUTE_TYPE_SUBJECT));
+
         $manager->persist($levelOne);
 
         $levelTwo = new Category();
@@ -53,5 +65,15 @@ class CategoryFixture extends Fixture
         $manager->persist($levelOne);
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            BrandFixture::class,
+            ColorFixture::class,
+            SizeFixture::class,
+            TypeSubjectFixture::class,
+        ];
     }
 }
