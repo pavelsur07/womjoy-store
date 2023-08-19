@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Category;
 
+use App\Store\Domain\Entity\Attribute\Attribute;
 use App\Store\Domain\Entity\Category\ValueObject\CategoryImage;
 use App\Store\Domain\Entity\Category\ValueObject\CategoryStatus;
 use App\Store\Domain\Entity\SeoMetadata;
@@ -74,12 +75,29 @@ class Category
 
     // Attribute
 
-    public function assignAttribute(): void
+    public function assignAttribute(Attribute $attribute): void
     {
+        /** @var AttributeAssignment $item */
+        foreach ($this->attributes as $item) {
+            if ($item->getAttribute()->getId() === $attribute->getId()) {
+                throw new StoreCategoryException('Already assign attribute.');
+            }
+        }
+
+        $this->attributes->add(new AttributeAssignment($this, $attribute));
     }
 
     public function revokeAttribute(int $id): void
     {
+        /** @var AttributeAssignment $item */
+        foreach ($this->attributes as $item) {
+            if ($item->getAttribute()->getId() === $id) {
+                $this->attributes->removeElement($item);
+                return;
+            }
+        }
+
+        throw new StoreCategoryException('Not found attribute.');
     }
 
     public function getAttributes(): Collection

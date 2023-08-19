@@ -8,6 +8,9 @@ use App\Store\Domain\Entity\Attribute\Attribute;
 use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use UnexpectedValueException;
 
 class AttributeRepository
 {
@@ -16,8 +19,10 @@ class AttributeRepository
     /** @var EntityRepository<Attribute> */
     private EntityRepository $repo;
 
-    public function __construct(EntityManagerInterface $em)
-    {
+    public function __construct(
+        private readonly PaginatorInterface $paginator,
+        EntityManagerInterface $em
+    ) {
         $this->em = $em;
         $this->repo = $this->em->getRepository(Attribute::class);
     }
@@ -29,6 +34,23 @@ class AttributeRepository
             throw new StoreProductException('Attribute not found.');
         }
         return $object;
+    }
+
+    public function getAll(int $page, int $size, string $sort = 'name', string $direction = 'desc'): PaginationInterface
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Attribute::class, 'p');
+
+        if (!\in_array($sort, ['name', 'id'], true)) {
+            throw new UnexpectedValueException('Cannot sort by ' . $sort);
+        }
+
+        $qb->orderBy('p.' . $sort, $direction === 'desc' ? 'desc' : 'asc');
+
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
     }
 
     public function hasBrandAttribute(): bool

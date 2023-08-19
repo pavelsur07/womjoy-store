@@ -29,7 +29,78 @@
         </div>
 
         <div class="card-body">
+            <h2> {{ category.name  }}</h2>
+            <div class="row">
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="w-1">Id</th>
+                            <th>Name</th>
+                            <th class="w-25">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in pagination %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>
+                                    {{ item.name }}<br>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-bitbucket rounded-2"
+                                       href="{{ path('store.admin.category.attribute.assign', {'id': category.id, 'attributeId': item.id}) }}"
+                                    >
+                                        assign
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
+                    <div class="pagination mt-3">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="w-1">Id</th>
+                            <th>Name</th>
+                            <th class="w-25">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in category.attributes %}
+                            <tr>
+                                <td>{{ item.attribute.id }}</td>
+                                <td>
+                                    {{ item.attribute.name }}<br>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-bitbucket rounded-2"
+                                       href="{{ path('store.admin.category.attribute.revoke', {'id': category.id, 'attributeId': item.attribute.id}) }}"
+                                    >
+                                        revoke
+                                    </a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
