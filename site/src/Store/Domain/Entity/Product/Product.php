@@ -6,6 +6,7 @@ namespace App\Store\Domain\Entity\Product;
 
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
+use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Entity\SeoMetadata;
@@ -96,6 +97,9 @@ class Product
     #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private Collection $reviews;
 
+    #[ORM\Embedded(class: ProductExport::class, columnPrefix: 'export_')]
+    private ProductExport $export;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -141,6 +145,13 @@ class Product
     public function getReviews(): Collection
     {
         return $this->reviews;
+    }
+
+    // Export
+
+    public function getExport(): ProductExport
+    {
+        return $this->export;
     }
 
     // Related

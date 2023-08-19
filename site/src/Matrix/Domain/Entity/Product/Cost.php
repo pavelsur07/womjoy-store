@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Matrix\Domain\Entity\Product;
 
 use DateTimeImmutable;
@@ -16,19 +18,13 @@ class Cost
     #[ORM\Column(type: 'datetime')]
     private DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToOne(targetEntity: Product::class,inversedBy: 'costs')]
+    #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'costs')]
     private Product $product;
     #[ORM\Column(type: 'integer')]
     private int $value = 0;
     #[ORM\Column(type: 'string')]
     private string $currency = 'RUB';
 
-    /**
-     * @param DateTimeImmutable $createdAt
-     * @param Product           $product
-     * @param int               $value
-     * @param string            $currency
-     */
     public function __construct(DateTimeImmutable $createdAt, Product $product, int $value, string $currency = 'RUB')
     {
         $this->createdAt = $createdAt;

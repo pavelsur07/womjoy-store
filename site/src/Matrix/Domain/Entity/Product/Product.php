@@ -61,7 +61,7 @@ class Product
     private ?string $pathExternalImage = null;
 
     /** @var ArrayCollection<array-key, Cost> */
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Cost::class,cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Cost::class, cascade: ['ALL'], orphanRemoval: true)]
     #[ORM\OrderBy(['createdAt' => 'ASC'])]
     private Collection $costs;
 

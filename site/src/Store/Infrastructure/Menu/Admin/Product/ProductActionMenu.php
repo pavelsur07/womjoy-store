@@ -89,6 +89,17 @@ class ProductActionMenu
             ->setAttribute('class', 'nav-item')
             ->setAttribute('data-bs-toggle', 'tabs')
             ->setLinkAttribute('class', 'nav-link');
+        $menu
+            ->addChild(
+                'Export',
+                [
+                    'route' => 'store.admin.product.export.edit',
+                    'routeParameters' => ['id' => $options['product_id']],
+                ]
+            )
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('data-bs-toggle', 'tabs')
+            ->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }
