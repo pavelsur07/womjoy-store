@@ -119,6 +119,7 @@ class Product
         $this->relatedAssignments = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->attributes = new ArrayCollection();
+        $this->export = new ProductExport();
     }
 
     // Attributes
