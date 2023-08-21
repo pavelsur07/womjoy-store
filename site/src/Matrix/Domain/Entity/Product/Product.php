@@ -65,6 +65,15 @@ class Product
     #[ORM\OrderBy(['createdAt' => 'ASC'])]
     private Collection $costs;
 
+    /** @var ArrayCollection<array-key, Event> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Event::class, cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\OrderBy(['createdAt' => 'ASC'])]
+    private Collection $events;
+
+    /** @var ArrayCollection<array-key, ProductIdentity> */
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductIdentity::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Collection $identifiers;
+
     public function __construct(
         DateTimeImmutable $createdAt,
         string $article,
@@ -83,13 +92,31 @@ class Product
         $this->variants = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->costs = new ArrayCollection();
+        $this->events = new ArrayCollection();
+        $this->identifiers = new ArrayCollection();
     }
 
+    // Identity
+
+    public function getIdentifiers(): Collection
+    {
+        return $this->identifiers;
+    }
+
+    // Event
+
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    // Cost
     public function getCosts(): Collection
     {
         return $this->costs;
     }
 
+    // Image
     public function imageUp(int $sortNumber): void
     {
         if ($sortNumber === 0) {
