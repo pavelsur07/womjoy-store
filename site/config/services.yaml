@@ -151,3 +151,6 @@ services:
 
     App\Matrix\Infrastructure\Repository\Finance\SaleRepository:
         class: App\Matrix\Infrastructure\Repository\Finance\SaleRepository
+    
+    App\Matrix\Infrastructure\Repository\Syncing\KeyRepository:
+        class: App\Matrix\Infrastructure\Repository\Syncing\KeyRepository
