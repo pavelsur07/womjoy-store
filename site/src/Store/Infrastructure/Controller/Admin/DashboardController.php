@@ -37,7 +37,6 @@ class DashboardController extends AbstractController
      * @throws RequestConflictException
      * @throws InvalidParameterException
      * @throws AccessDeniedException
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      * @throws ResponseNotFoundException
      */
     #[Route('/admin/dashboard/wb', name: 'admin.dashboard.wb', methods: ['GET'])]
@@ -66,13 +65,19 @@ class DashboardController extends AbstractController
             );
 
             foreach ($response as $item) {
-                $report = $this->denormalize->denormalize(
+               /* $report = $this->denormalize->denormalize(
                     data: $item,
                     type: ReportDetailByPeriod::class,
-                );
-
+                );*/
+                $report = new ReportDetailByPeriod();
                 $report->setKeyId(100);
-                $report->setRawData($item);
+                $report->setRealizationreportId((string)$item['realizationreport_id']);
+                $report->setDateFrom(new DateTimeImmutable($item['date_from']));
+                $report->setDateTo(new DateTimeImmutable($item['date_to']));
+                $report->setCreateDt(new DateTimeImmutable($item['create_dt']));
+                $report->setRrdId((string)$item['rrd_id']);
+                $report->setRawData((array)$item);
+
                 $bus->dispatch($report);
             }
         }

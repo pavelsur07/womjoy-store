@@ -9,7 +9,7 @@ use DateTimeImmutable;
 class ReportDetailByPeriod
 {
     private int $keyId;
-    private ?int $realizationreport_id = null; // ": 1234567,
+    private ?string $realizationreport_id = null; // ": 1234567,
 
     private ?DateTimeImmutable $date_from = null; // : "2022-10-17T00:00:00Z",
 
@@ -17,7 +17,7 @@ class ReportDetailByPeriod
 
     private ?DateTimeImmutable $create_dt = null;  // ": "2022-10-24T14:40:32",
 
-    private ?int $rrd_id = null; // ": 1232610467,
+    private ?string $rrd_id = null; // ": 1232610467,
 
     private array $rawData;
 
@@ -31,12 +31,12 @@ class ReportDetailByPeriod
         $this->keyId = $keyId;
     }
 
-    public function getRealizationreportId(): ?int
+    public function getRealizationreportId(): ?string
     {
         return $this->realizationreport_id;
     }
 
-    public function setRealizationreportId(?int $realizationreport_id): void
+    public function setRealizationreportId(?string $realizationreport_id): void
     {
         $this->realizationreport_id = $realizationreport_id;
     }
@@ -71,12 +71,12 @@ class ReportDetailByPeriod
         $this->create_dt = $create_dt;
     }
 
-    public function getRrdId(): ?int
+    public function getRrdId(): ?string
     {
         return $this->rrd_id;
     }
 
-    public function setRrdId(?int $rrd_id): void
+    public function setRrdId(?string $rrd_id): void
     {
         $this->rrd_id = $rrd_id;
     }

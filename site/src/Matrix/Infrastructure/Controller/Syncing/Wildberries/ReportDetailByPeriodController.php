@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Infrastructure\Controller\Syncing;
+namespace App\Matrix\Infrastructure\Controller\Syncing\Wildberries;
 
+use App\Matrix\Domain\Entity\Syncing\Wildberries\ReportDetailByPeriod;
 use App\Matrix\Infrastructure\Repository\Syncing\ReportDetailByPeriodRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,5 +28,19 @@ class ReportDetailByPeriodController extends AbstractController
                 ),
             ]
         );
+    }
+
+
+    #[Route(path: '/{id}', name: '.show')]
+    public function show(int $id, ReportDetailByPeriod $report, Request $request, ReportDetailByPeriodRepository $reports): Response
+    {
+        $object = (array) $report->getRawData();
+        $subject = $object['subject_name'];
+
+        return $this->render('admin/matrix/syncing/report_detail_by_period/show.html.twig',
+            [
+                'report'=> $report,
+                'subject' => $subject,
+            ]);
     }
 }

@@ -10,7 +10,7 @@
                 Matrix
             </div>
             <h2 class="page-title">
-                Report Detail By Period index
+                Wildberries Report Detail By Period index
             </h2>
         </div>
         <!-- Page title actions -->
@@ -25,6 +25,10 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Data start <br>/ finish</th>
+                <th>Number report</th>
+                <th>Number rrd</th>
+                <th>Number rrd</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -34,9 +38,21 @@
 
                     <td>{{ report.id }}</td>
                     <td>
+                        {{ report.dateFrom | date('Y-m-d')}} <br>
+                        {{ report.dateTo | date('Y-m-d') }}
                         {#<a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('matrix.admin.syncing.key.edit', {'id': key.id}) }}">edit</a>
                         <a class="btn btn-sm btn-danger rounded-2" href="{{ path('matrix.admin.syncing.key.remove', {'id': key.id}) }}">remove</a>#}
                     </td>
+                    <td>{{ report.realizationreportId }}</td>
+                    <td>{{ report.rrdId }}</td>
+                    <td>
+                        {{ report.rawData.subject_name | json_encode }}
+                    </td>
+
+                    <td>
+                        <a href="{{ path('matrix.admin.syncing.report_detail_by_period.show', {'id': report.id}) }}">show</a>
+                    </td>
+
                 </tr>
             {% else %}
                 <tr>

@@ -19,8 +19,8 @@ class ReportDetailByPeriod
     #[ORM\Column(type: 'integer')]
     private int $keyId;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $realizationreportId = null;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $realizationreportId = null;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?DateTimeImmutable $dateFrom = null;
@@ -31,14 +31,21 @@ class ReportDetailByPeriod
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private ?DateTimeImmutable $createDt = null;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $rrdId = null;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $rrdId = null;
 
     #[ORM\Column(type: 'json', nullable: true)]
     private ?array $rawData = null;
 
-    public function __construct(int $keyId, ?int $realizationreportId, ?DateTimeImmutable $dateFrom, ?DateTimeImmutable $dateTo, ?DateTimeImmutable $createDt, ?int $rrdId, ?array $rawData)
-    {
+    public function __construct(
+        int $keyId,
+        ?string $realizationreportId,
+        ?DateTimeImmutable $dateFrom,
+        ?DateTimeImmutable $dateTo,
+        ?DateTimeImmutable $createDt,
+        ?string $rrdId,
+        ?array $rawData
+    ) {
         $this->keyId = $keyId;
         $this->realizationreportId = $realizationreportId;
         $this->dateFrom = $dateFrom;
@@ -58,11 +65,6 @@ class ReportDetailByPeriod
         return $this->keyId;
     }
 
-    public function getRealizationreportId(): ?int
-    {
-        return $this->realizationreportId;
-    }
-
     public function getDateFrom(): ?DateTimeImmutable
     {
         return $this->dateFrom;
@@ -78,13 +80,18 @@ class ReportDetailByPeriod
         return $this->createDt;
     }
 
-    public function getRrdId(): ?int
-    {
-        return $this->rrdId;
-    }
-
     public function getRawData(): ?array
     {
         return $this->rawData;
+    }
+
+    public function getRealizationreportId(): ?string
+    {
+        return $this->realizationreportId;
+    }
+
+    public function getRrdId(): ?string
+    {
+        return $this->rrdId;
     }
 }
