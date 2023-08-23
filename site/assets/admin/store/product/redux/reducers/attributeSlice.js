@@ -23,10 +23,13 @@ const attributeSlice  = createSlice({
     reducers: {
         changeValueCharacteristic(state, action) {
             const { attributeId, values } = action.payload
-            const attr = state.items.find(
-                (attribute) => attribute.attribute_id === attributeId
+
+            const item = state.items.find(
+                (item) => item.attribute_id === attributeId
             )
-            attr.values = values
+            item.values = values
+
+            console.log(state.items)
         },
     },
     extraReducers: {
