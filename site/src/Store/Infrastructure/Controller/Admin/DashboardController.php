@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Admin;
 
-use App\ImportProduct\Infrastructure\Wildberries\Exception\AccessDeniedException;
-use App\ImportProduct\Infrastructure\Wildberries\Exception\InternalServerErrorException;
-use App\ImportProduct\Infrastructure\Wildberries\Exception\InvalidParameterException;
-use App\ImportProduct\Infrastructure\Wildberries\Exception\RequestConflictException;
-use App\ImportProduct\Infrastructure\Wildberries\Exception\ResponseNotFoundException;
 use App\Matrix\Domain\Entity\Syncing\Key\Key;
 use App\Matrix\Infrastructure\Repository\Syncing\KeyRepository;
 use App\Matrix\Infrastructure\Wildberries\HttpRequest;
@@ -32,13 +27,6 @@ class DashboardController extends AbstractController
     ) {
     }
 
-    /**
-     * @throws InternalServerErrorException
-     * @throws RequestConflictException
-     * @throws InvalidParameterException
-     * @throws AccessDeniedException
-     * @throws ResponseNotFoundException
-     */
     #[Route('/admin/dashboard/wb', name: 'admin.dashboard.wb', methods: ['GET'])]
     public function getWb(MessageBusInterface $bus, KeyRepository $keys): Response
     {
