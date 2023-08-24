@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ImportProduct\Infrastructure\Wildberries\Exception;
+namespace App\Matrix\Infrastructure\Wildberries\Exception;
 
 use Exception;
 use Psr\Http\Message\RequestInterface;
