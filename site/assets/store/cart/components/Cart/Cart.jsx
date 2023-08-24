@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {clearCart, getCartInfo} from "../../../redux/actions/cart";
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {clearCart, getCartInfo} from "../../../redux/actions/cart"
 import CartItem from "./CartItem";
+import { useTranslation } from 'react-i18next'
 
 // Компонент корзины
 const Cart = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
 
@@ -29,7 +31,7 @@ const Cart = () => {
     return (
         <>
             <div className="cart__top">
-                <h1 className="cart__title title-xl">Корзина</h1>
+                <h1 className="cart__title title-xl">{t('Cart')}</h1>
 
                 <button className="cart__clear" type="button" onClick={handleClearCart}>
                     <img src="/img/icons/cart-remove.svg" alt="cart remove" width="20" height="20" />

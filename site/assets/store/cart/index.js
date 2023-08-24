@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 // Импортируем store
 import store from '../redux/store'
+import '../i18n'
 
 // Имортируем комопненты
 import App from './components/App/App'
