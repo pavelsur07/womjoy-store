@@ -8,8 +8,6 @@ use App\Matrix\Domain\Entity\Barcode\Barcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantBarcode;
 use App\Matrix\Domain\Entity\ValueObject\VariantValue;
 use App\Matrix\Domain\Exception\MatrixException;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,23 +34,12 @@ class Variant
     #[ORM\OneToOne(mappedBy: 'variant', targetEntity: Barcode::class, cascade: ['ALL'], orphanRemoval: true)]
     private Barcode|null $internalBarcode = null;
 
-    #[ORM\OneToMany( mappedBy: 'variant', targetEntity: VariantIdentity::class, cascade: ['ALL'], orphanRemoval: true)]
-    private Collection $identifiers;
-
     public function __construct(Product $product, VariantBarcode $barcode, VariantValue $value)
     {
         $this->product = $product;
         $this->barcode = $barcode;
         $this->value = $value;
         $this->article = $product->getArticle() . '-' . mb_strtoupper($value->value());
-        $this->identifiers = new ArrayCollection();
-    }
-
-    // Identity
-
-    public function getIdentifiers(): Collection
-    {
-        return $this->identifiers;
     }
 
     public function isEquivalentTo(self $variant): bool

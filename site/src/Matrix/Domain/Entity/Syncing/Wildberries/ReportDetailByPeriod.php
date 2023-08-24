@@ -7,8 +7,8 @@ namespace App\Matrix\Domain\Entity\Syncing\Wildberries;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table(name: '`matrix_syncing_report_details`')]
+/*#[ORM\Entity]
+#[ORM\Table(name: '`matrix_syncing_report_details`')]*/
 class ReportDetailByPeriod
 {
     #[ORM\Id]

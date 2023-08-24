@@ -65,10 +65,10 @@ class DashboardController extends AbstractController
             );
 
             foreach ($response as $item) {
-               /* $report = $this->denormalize->denormalize(
-                    data: $item,
-                    type: ReportDetailByPeriod::class,
-                );*/
+                /* $report = $this->denormalize->denormalize(
+                     data: $item,
+                     type: ReportDetailByPeriod::class,
+                 );*/
                 $report = new ReportDetailByPeriod();
                 $report->setKeyId(100);
                 $report->setRealizationreportId((string)$item['realizationreport_id']);

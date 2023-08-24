@@ -60,20 +60,6 @@ class Product
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $pathExternalImage = null;
 
-    /** @var ArrayCollection<array-key, Cost> */
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Cost::class, cascade: ['ALL'], orphanRemoval: true)]
-    #[ORM\OrderBy(['createdAt' => 'ASC'])]
-    private Collection $costs;
-
-    /** @var ArrayCollection<array-key, Event> */
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Event::class, cascade: ['ALL'], orphanRemoval: true)]
-    #[ORM\OrderBy(['createdAt' => 'ASC'])]
-    private Collection $events;
-
-    /** @var ArrayCollection<array-key, ProductIdentity> */
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductIdentity::class, cascade: ['ALL'], orphanRemoval: true)]
-    private Collection $identifiers;
-
     public function __construct(
         DateTimeImmutable $createdAt,
         string $article,
@@ -91,29 +77,6 @@ class Product
         $this->status = new ProductStatus(ProductStatus::DRAFT);
         $this->variants = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->costs = new ArrayCollection();
-        $this->events = new ArrayCollection();
-        $this->identifiers = new ArrayCollection();
-    }
-
-    // Identity
-
-    public function getIdentifiers(): Collection
-    {
-        return $this->identifiers;
-    }
-
-    // Event
-
-    public function getEvents(): Collection
-    {
-        return $this->events;
-    }
-
-    // Cost
-    public function getCosts(): Collection
-    {
-        return $this->costs;
     }
 
     // Image

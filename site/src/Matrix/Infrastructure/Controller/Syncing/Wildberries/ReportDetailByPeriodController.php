@@ -30,17 +30,18 @@ class ReportDetailByPeriodController extends AbstractController
         );
     }
 
-
     #[Route(path: '/{id}', name: '.show')]
     public function show(int $id, ReportDetailByPeriod $report, Request $request, ReportDetailByPeriodRepository $reports): Response
     {
-        $object = (array) $report->getRawData();
+        $object = (array)$report->getRawData();
         $subject = $object['subject_name'];
 
-        return $this->render('admin/matrix/syncing/report_detail_by_period/show.html.twig',
+        return $this->render(
+            'admin/matrix/syncing/report_detail_by_period/show.html.twig',
             [
                 'report'=> $report,
                 'subject' => $subject,
-            ]);
+            ]
+        );
     }
 }
