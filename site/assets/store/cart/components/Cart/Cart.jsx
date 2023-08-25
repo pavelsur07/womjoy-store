@@ -79,7 +79,7 @@ const Cart = () => {
                         type="button"
                         onClick={() => handleCheckoutClick()}
                         className="c-main__btn btn-primary">
-                        Оформить заказ
+                        {t('Checkout')}
                     </button>
                 </div>
             </div>
