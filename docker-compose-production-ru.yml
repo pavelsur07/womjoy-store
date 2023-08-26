@@ -44,6 +44,26 @@ services:
         - traefik.http.middlewares.secure-headers.headers.contentSecurityPolicy=block-all-mixed-content
       placement:
         constraints: [ node.role == manager ]
+        
+  imgproxy:
+    image: darthsim/imgproxy:latest
+    #    environment:
+    #      IMGPROXY_KEY: 'hex-encoded-key'
+    #      IMGPROXY_SALT: 'hex-encoded-salt'
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.imgproxy.rule=Host(`imgproxy.localhost`)
+      - traefik.http.routers.imgproxy.rule=Host(`imgproxy.womjoy.ru`)
+      - traefik.http.services.imgproxy.loadBalancer.server.port=8080
+      - traefik.http.routers.imgproxy.entryPoints=https
+      - traefik.http.routers.imgproxy.tls=true
+      - traefik.http.routers.imgproxy.tls.certResolver=letsEncrypt
+    placement:
+      constraints: [ node.role == manager ]
   
   site:
     image: ${REGISTRY}/site:${IMAGE_TAG}
