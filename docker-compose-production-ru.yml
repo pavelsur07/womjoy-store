@@ -56,7 +56,6 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.imgproxy.rule=Host(`imgproxy.localhost`)
       - traefik.http.routers.imgproxy.rule=Host(`imgproxy.womjoy.ru`)
       - traefik.http.services.imgproxy.loadBalancer.server.port=8080
       - traefik.http.routers.imgproxy.entryPoints=https
