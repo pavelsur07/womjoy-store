@@ -61,8 +61,9 @@ services:
       - traefik.http.routers.imgproxy.entryPoints=https
       - traefik.http.routers.imgproxy.tls=true
       - traefik.http.routers.imgproxy.tls.certResolver=letsEncrypt
-    placement:
-      constraints: [ node.role == manager ]
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
   
   site:
     image: ${REGISTRY}/site:${IMAGE_TAG}
