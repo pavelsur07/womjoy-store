@@ -9,7 +9,8 @@
                     <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
                     <source data-srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
                     <img class="b-lazy"
-                         src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                         {#src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==#}
+                         src="{{ asset('./img/thumbnail/loading-300-400.svg') }}"
                          data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
                          alt="Thumbnail {{ product.name }} image {{ number }}"
                          width="289" height="384"
@@ -22,7 +23,8 @@
                     <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
                     <source data-srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
                     <img class="b-lazy"
-                         src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                         {#src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==#}
+                         src="{{ asset('./img/thumbnail/loading-300-400.svg') }}"
                          data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
                          alt="Thumbnail {{ product.name }} image {{ number }}"
                          width="289" height="384"
