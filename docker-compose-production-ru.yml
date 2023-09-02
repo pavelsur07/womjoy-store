@@ -207,6 +207,23 @@ services:
     deploy:
       placement:
         constraints: [ node.role == manager ]
+        
+  storage-nginx:
+    image: ${REGISTRY}/storage-nginx:${IMAGE_TAG}
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.storage.rule=Host(`cdn.womjoy.ru`)
+      - traefik.http.services.storage.loadBalancer.server.port=8080
+      - traefik.http.routers.storage.entryPoints=https
+      - traefik.http.routers.storage.tls=true
+      - traefik.http.routers.storage.tls.certResolver=letsEncrypt
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
 volumes:
   site-postgres:
   traefik-public-certs:
