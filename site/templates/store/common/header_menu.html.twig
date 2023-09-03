@@ -36,7 +36,12 @@
                                             {% endfor %}
                                         </div>
                                         <a href="#" class="menu__banner">
-                                            <img src="{{ asset('./img/banners/menu-banner.webp') }}" alt="banner menu" width="392" height="290">
+                                            <img class="b-lazy"
+                                                src="{{ asset('./img/thumbnail/banner-menu.svg') }}"
+                                                data-src="{{ asset('./img/banners/menu-banner.webp') }}"
+                                                alt="banner menu"
+                                                width="392" height="290"
+                                            >
                                         </a>
                                     </div>
                                 </div>
