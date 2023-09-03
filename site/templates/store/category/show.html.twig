@@ -9,7 +9,7 @@
 
 {% block linkCanonical %}
     {#<link rel="canonical" href= {{  url('store.category.show', {'slug': category.slug})}} {% if page not in '1' %}?page={{ page }}{% endif %}>#}
-    <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}{% if page not in '1' %}?page={{ page }}{% endif %}">
+    <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}">
 {% endblock %}
 
 {% block body %}
