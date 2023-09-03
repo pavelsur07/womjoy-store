@@ -22,7 +22,26 @@
 
         {% block linkCanonical %}{% endblock %}
 
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/favicon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/favicon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/favicon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/favicon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/favicon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/favicon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/favicon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/favicon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/favicon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/favicon-192x192.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ asset('') }}/favicon-144x144.png">
+        <meta name="msapplication-config" content="{{ asset('/browserconfig.xml') }}">
+
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
         {% endblock %}
@@ -58,6 +77,16 @@
                 border-radius: 0px;
             }
         </style>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW13DRWRCX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MW13DRWRCX');
+        </script>
     </head>
     <body>
 
