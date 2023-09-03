@@ -7,7 +7,7 @@
     {{ metaData.description }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
 {% endblock %}
 {% block linkCanonical %}
-    <link rel="canonical" href= {{ path('store.category.show', {'slug': category.slug})}}{% if page not in '1' %}?page={{ page }}{% endif %}>
+    <link rel="canonical" href= {{ path('store.category.show', {'slug': category.slug}, 1 )}} {% if page not in '1' %}?page={{ page }}{% endif %}>
 {% endblock %}
 
 {% block body %}
