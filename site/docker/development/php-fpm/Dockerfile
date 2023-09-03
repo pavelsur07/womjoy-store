@@ -20,7 +20,7 @@ RUN apk add --no-cache postgresql-dev fcgi git \
         --with-webp \
         --with-freetype \
     #&& docker-php-ext-install pdo_pgsql gd xdebug bcmath \
-    && docker-php-ext-install pdo_pgsql gd bcmath \
+    && docker-php-ext-install exif pdo_pgsql gd bcmath \
     && apk del git
 
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
