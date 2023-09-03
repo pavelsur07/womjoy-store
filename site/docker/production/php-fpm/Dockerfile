@@ -13,7 +13,7 @@ RUN apk add --no-cache postgresql-dev fcgi git \
         --with-jpeg \
         --with-webp \
         --with-freetype \
-    && docker-php-ext-install pdo_pgsql gd opcache bcmath \
+    && docker-php-ext-install exif pdo_pgsql gd opcache bcmath \
     && apk del git
 
 RUN apk add --no-cache unzip
