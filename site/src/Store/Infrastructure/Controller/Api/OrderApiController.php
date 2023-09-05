@@ -26,7 +26,8 @@ class OrderApiController extends AbstractController
 
     #[Route(path: '/', name: '.index', methods: ['POST'], format: 'json')]
     public function index(
-        #[MapRequestPayload] CheckoutDto $checkoutDto,
+        #[MapRequestPayload]
+        CheckoutDto $checkoutDto,
     ): Response {
         // Получаем текущую корзину
         $cart = $this->cartService->getCurrentCart(
