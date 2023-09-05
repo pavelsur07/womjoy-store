@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Matrix\Domain\Entity\Company;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -19,10 +21,6 @@ class Company
     #[ORM\Column(type: 'string')]
     private string $inn;
 
-    /**
-     * @param string $name
-     * @param string $inn
-     */
     public function __construct(string $name, string $inn)
     {
         $this->name = $name;
@@ -48,7 +46,4 @@ class Company
     {
         $this->inn = $inn;
     }
-
-
-
 }
