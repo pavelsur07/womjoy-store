@@ -57,6 +57,9 @@ class Product
     #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $images;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductIdentity::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Collection $identity;
+
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $pathExternalImage = null;
 
