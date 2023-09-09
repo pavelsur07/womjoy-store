@@ -1,43 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const phoneFields = document.querySelectorAll('.phone-masked-field');
-	if (phoneFields.length > 0) {
-		phoneFields.forEach(field => {
-			let im = new Inputmask('+7 999 999-99-99');
-			im.mask(field);
-		});
-	}
-
-	const historyItemsBlock = document.querySelector('.history__items');
-	const historyBack = document.querySelector('.history__back');
-	const historyItems = document.querySelectorAll('.history__item');
-	const historyOrders = document.querySelectorAll('.order');
-	if (historyItems.length > 0) {
-		historyItems.forEach((item, i) => {
-			item.addEventListener('click', () => {
-				document.querySelector('.history__item.active')?.classList.remove('active');
-				document.querySelector('.history__back.active')?.classList.remove('active');
-				document.querySelector('.order.active')?.classList.remove('active');
-
-				if (window.innerWidth <= 500) {
-					historyItemsBlock.classList.add('hidden');
-					historyBack.classList.add('active');
-
-					historyBack.addEventListener('click', () => {
-						document.querySelector('.history__item.active')?.classList.remove('active');
-						document.querySelector('.history__back.active')?.classList.remove('active');
-						document.querySelector('.order.active')?.classList.remove('active');
-						historyItemsBlock.classList.remove('hidden');
-						historyBack.classList.remove('active');
-					})
-				}
-
-				item.classList.add('active');
-				historyOrders[i].classList.add('active');
-			});
-		});
-	}
-	
-	
 	if (window.innerWidth <= 500) {
 		mobMenuInit('.burger', '.burger-menu');
 		mobMenuInit('.c-open', '.catalog-menu');
@@ -89,6 +50,45 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+
+	const phoneFields = document.querySelectorAll('.phone-masked-field');
+	if (phoneFields.length > 0) {
+		phoneFields.forEach(field => {
+			let im = new Inputmask('+7 999 999-99-99');
+			im.mask(field);
+		});
+	}
+
+	const historyItemsBlock = document.querySelector('.history__items');
+	const historyBack = document.querySelector('.history__back');
+	const historyItems = document.querySelectorAll('.history__item');
+	const historyOrders = document.querySelectorAll('.order');
+	if (historyItems.length > 0) {
+		historyItems.forEach((item, i) => {
+			item.addEventListener('click', () => {
+				document.querySelector('.history__item.active')?.classList.remove('active');
+				document.querySelector('.history__back.active')?.classList.remove('active');
+				document.querySelector('.order.active')?.classList.remove('active');
+
+				if (window.innerWidth <= 500) {
+					historyItemsBlock.classList.add('hidden');
+					historyBack.classList.add('active');
+
+					historyBack.addEventListener('click', () => {
+						document.querySelector('.history__item.active')?.classList.remove('active');
+						document.querySelector('.history__back.active')?.classList.remove('active');
+						document.querySelector('.order.active')?.classList.remove('active');
+						historyItemsBlock.classList.remove('hidden');
+						historyBack.classList.remove('active');
+					})
+				}
+
+				item.classList.add('active');
+				historyOrders[i].classList.add('active');
+			});
+		});
+	}
+
 	const modalCallers = document.querySelectorAll('.call-modal');
 	modalCallers.forEach(modalCaller => modalCaller.addEventListener('click', () => {
 		const modal = document.querySelector('#' + modalCaller.dataset.target);
@@ -111,13 +111,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	const faqItems = document.querySelectorAll('.faq__item');
-	faqItems.forEach(item => item.querySelector('.faq__ask').addEventListener('click', () => {
-		toggleItem(item.querySelector('.faq__ask'), item.querySelector('.faq__answer'));
-	}));
+	if (faqItems.length > 0) {
+		faqItems.forEach(item => item.querySelector('.faq__ask').addEventListener('click', () => {
+			toggleItem(item.querySelector('.faq__ask'), item.querySelector('.faq__answer'));
+		}));
+	}
+	const filterItems = document.querySelectorAll('.filter__row');
+	if (filterItems.length > 0) {
+		filterItems.forEach(item => item.querySelector('.filter__name').addEventListener('click', () => {
+			toggleItem(item.querySelector('.filter__name'), item.querySelector('.filter__list'));
+		}));
+	}
 	const cardFaqItems = document.querySelectorAll('.i-card__faq_item');
-	cardFaqItems.forEach(item => item.querySelector('.i-card__faq_ask').addEventListener('click', () => {
-		toggleItem(item.querySelector('.i-card__faq_ask'), item.querySelector('.i-card__faq_answer'));
-	}));
+	if (cardFaqItems.length > 0) {
+		cardFaqItems.forEach(item => item.querySelector('.i-card__faq_ask').addEventListener('click', () => {
+			toggleItem(item.querySelector('.i-card__faq_ask'), item.querySelector('.i-card__faq_answer'));
+		}));
+	}
 
 	const countryBtn = document.querySelector('.country__crnt');
 	const countryClose = document.querySelector(['.country__close'])

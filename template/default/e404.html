@@ -10,6 +10,22 @@
 </head>
 
 <body>
+    <div class="h-grid-12-col hidden">
+        <div class="h-grid-12-col-items">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
     <header class="header">
 		<div class="wrapper">
 			<div class="header__main">
@@ -74,7 +90,6 @@
 					<li class="drop">
 						<a href="#">
 							<img src="./img/icons/cabinet.svg" alt="" width="24" height="24">
-							Кабинет
 						</a>
 						<ul class="drop__list">
 							<li class="drop__item"><a href="#" class="drop__link">Мои данные</a></li>
@@ -86,13 +101,12 @@
 					<li>
 						<a href="#">
 							<img src="./img/icons/favourite.svg" alt="" width="24" height="24">
-							Избранное
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<img src="./img/icons/cart.svg" alt="" width="24" height="24">
-							Корзина
+							<span class="cart-currentcnt">5</span>
 						</a>
 					</li>
 				</ul>
@@ -392,6 +406,7 @@
 						<a href="#" class="footer__phone_call">8 (800) 301-67-53</a>
 						<span class="footer__phone_descr">Звонок по РФ бесплатный</span>
 					</div>
+					<a href="#" class="footer__mail">contact@womjoy.ru</a>
 					<ul class="footer__socials">
 						<li><a href="#"><img src="./img/icons/vk.svg" alt="" width="40" height="40"></a></li>
 						<li><a href="#"><img src="./img/icons/tg.svg" alt="" width="40" height="40"></a></li>
@@ -494,13 +509,18 @@
         <li class="mob-bar__item">
             <a href="#" class="mob-bar__link">
             	<span class="mob-bar__icon"><img src="./img/icons/cart.svg" alt="" width="24" height="24"></span>
+            	<span class="cart-currentcnt">5</span>
                 Корзина
             </a>
         </li>
     </ul>
-    <script src="./libs/swiper/swiper.min.js"></script>
-    <script src="./libs/inputmask.min.js"></script>
-    <script src="./js/script.js"></script>
+
+
+    <script src="./libs/blazy.min.js"></script>
+	<script src="./libs/swiper/swiper.min.js"></script>
+	<script src="./libs/inputmask.min.js"></script>
+	<script src="./js/script.js"></script>
+	<script src="./js/lazy_imgs.js"></script>
 </body>
 
 </html>
