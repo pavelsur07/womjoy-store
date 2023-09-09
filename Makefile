@@ -164,6 +164,7 @@ push-site:
 	docker push ${REGISTRY}/site:${IMAGE_TAG}
 	docker push ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
 	docker push ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+	docker push ${REGISTRY}/storage-nginx:${IMAGE_TAG}
 
 #---------------------  Deploy COM PROD ----------------------------------
 deploy-com:
