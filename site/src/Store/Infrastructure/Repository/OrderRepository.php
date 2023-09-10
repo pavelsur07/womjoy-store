@@ -14,18 +14,24 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use UnexpectedValueException;
 
 class OrderRepository implements OrderRepositoryInterface
 {
+    private PaginatorInterface $paginator;
+
     private EntityManagerInterface $em;
 
     /** @var EntityRepository<Order> */
     private EntityRepository $repo;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, PaginatorInterface $paginator)
     {
         $this->em = $em;
         $this->repo = $this->em->getRepository(Order::class);
+        $this->paginator = $paginator;
     }
 
     public function find(string $id): ?Order
@@ -33,9 +39,32 @@ class OrderRepository implements OrderRepositoryInterface
         return $this->repo->find($id);
     }
 
-    public function getAll(): array
-    {
-        return $this->repo->findAll();
+    public function getAll(
+        int $page,
+        int $size,
+        string $sort = 'createdAt',
+        string $direction = 'asc',
+        ?string $status = null
+    ): PaginationInterface {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Order::class, 'p');
+
+        /*if ($status !== null) {
+            $qb->andWhere('p.status.value = :status_value');
+            $qb->setParameter('status_value', $status);
+        }*/
+
+        if (!\in_array($sort, ['createdAt', 'id'], true)) {
+            throw new UnexpectedValueException('Cannot sort by ' . $sort);
+        }
+
+        // $qb->orderBy('p.' . $sort, $direction === 'asc' ? 'asc' : 'desc');
+        $qb->orderBy('p.id', 'ASC');
+
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
     }
 
     public function get(OrderId $id): Order
