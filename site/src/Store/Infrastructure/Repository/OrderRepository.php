@@ -61,7 +61,7 @@ class OrderRepository implements OrderRepositoryInterface
 
         // $qb->orderBy('p.' . $sort, $direction === 'asc' ? 'asc' : 'desc');
         // $qb->orderBy('p.id', 'ASC');
-        $qb->orderBy('p.createdAt', 'ASC');
+        $qb->orderBy('p.createdAt', 'DESC');
 
         $qb->getQuery();
 
