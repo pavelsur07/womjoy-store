@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Store\Domain\Entity\Attribute\Variant;
+use App\Store\Domain\Entity\Category\AttributeAssignment;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -67,6 +69,25 @@ class CategoryController extends BaseController
             maxPerPage: $request->query->getInt('size', self::PER_PAGE)
         );
 
+        $filters = [];
+
+        /** @var AttributeAssignment $attribute */
+        foreach ($category->getAttributes() as $attribute) {
+            $filters[] = [
+                'id' => $attribute->getAttribute()->getId(),
+                'name' => $attribute->getAttribute()->getName(),
+                'items' => array_map(
+                    static function (Variant $value) {
+                        return [
+                            'id' => $value->getId(),
+                            'name' =>  $value->getName(),
+                        ];
+                    },
+                    $attribute->getAttribute()->getVariants()->toArray()
+                ),
+            ];
+        }
+
         return $this->render(
             'store/category/show.html.twig',
             [
@@ -77,6 +98,7 @@ class CategoryController extends BaseController
                 'breadcrumbs' => $this->breadcrumbsCategoryGenerate($category),
                 'pagination' => $pagerfanta,
                 'sorting_rules' => self::SORTING_RULES,
+                'filters' => $filters,
             ]
         );
     }
