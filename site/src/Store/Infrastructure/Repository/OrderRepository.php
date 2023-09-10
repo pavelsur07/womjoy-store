@@ -50,17 +50,10 @@ class OrderRepository implements OrderRepositoryInterface
             ->select('p')
             ->from(Order::class, 'p');
 
-        /*if ($status !== null) {
-            $qb->andWhere('p.status.value = :status_value');
-            $qb->setParameter('status_value', $status);
-        }*/
-
         if (!\in_array($sort, ['createdAt', 'id'], true)) {
             throw new UnexpectedValueException('Cannot sort by ' . $sort);
         }
 
-        // $qb->orderBy('p.' . $sort, $direction === 'asc' ? 'asc' : 'desc');
-        // $qb->orderBy('p.id', 'ASC');
         $qb->orderBy('p.createdAt', 'DESC');
 
         $qb->getQuery();
