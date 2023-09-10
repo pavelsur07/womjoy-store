@@ -7,23 +7,38 @@ namespace App\Store\Infrastructure\Repository;
 use App\Store\Domain\Entity\Cart\Cart;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class CartRepository
 {
+    private PaginatorInterface $paginator;
     private EntityManagerInterface $em;
 
     /** @var EntityRepository<Cart> */
     private EntityRepository $repo;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, PaginatorInterface $paginator)
     {
         $this->em = $em;
         $this->repo = $this->em->getRepository(Cart::class);
+        $this->paginator = $paginator;
     }
 
-    public function getAll(): array
-    {
-        return $this->repo->findAll();
+    public function getAll(
+        int $page,
+        int $size,
+    ): PaginationInterface {
+        // return $this->repo->findAll();
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Cart::class, 'p');
+
+        $qb->orderBy('p.id', 'ASC');
+
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
     }
 
     public function findById(int|null $id, string $status = ''): ?Cart
