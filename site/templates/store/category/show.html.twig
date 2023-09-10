@@ -28,11 +28,15 @@
                     {% endfor %}
                 </ol>
             </nav>
-            <h1 class="in-title">
+            {#<h1 class="in-title">
                 {{ category.seoMetadata.h1 }}
                 {% if page not in '1' %}
                     | {{ 'pagination.page' | trans }} {{ page }}
                 {% endif %}
+            </h1>#}
+
+            <h1 class="in-title">
+                {{ category.seoMetadata.h1 }}
             </h1>
             {#<div class="i-cat__slider">
                 <div class="i-cat-swiper swiper">
