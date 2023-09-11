@@ -3,7 +3,7 @@
     {% set number=1 %}
     {% for image in product.images | slice(0, 4) %}
 
-        {% if number == 1 %}
+        {% if number == 2 %}
             <div class="product__img_slide swiper-slide active">
                 <picture>
                     <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
