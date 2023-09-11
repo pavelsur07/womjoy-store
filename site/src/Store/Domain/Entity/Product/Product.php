@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product;
 
+use App\Common\Infrastructure\Service\String\StringHelper;
 use App\Store\Domain\Entity\Attribute\Attribute;
 use App\Store\Domain\Entity\Attribute\Variant as AttributeVariant;
 use App\Store\Domain\Entity\Category\Category;
@@ -539,8 +540,11 @@ class Product
     public function getPlaceholders(): array
     {
         return [
+            'Name' => StringHelper::formatString($this->name),
             'name' => mb_strtolower($this->name),
             'article' => (string)$this->id,
+            'listPrice' => (string)$this->getPrice()->getListPrice(),
+            'price' => (string)$this->getPrice()->getPrice(),
         ];
     }
 
