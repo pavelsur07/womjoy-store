@@ -97,6 +97,7 @@ services:
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
       SITE_URL: 'https://womjoy.ru'
+      MAILER_DSN: smtp://info@womjoy.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -156,6 +157,7 @@ services:
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
       SITE_URL: 'https://womjoy.ru'
+      MAILER_DSN: smtp://info@womjoy.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
