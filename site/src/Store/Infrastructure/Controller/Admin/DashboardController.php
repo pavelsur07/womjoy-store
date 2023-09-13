@@ -11,14 +11,19 @@ use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
 use DateTimeImmutable;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Exception\ExceptionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+
 
 class DashboardController extends AbstractController
 {
@@ -27,6 +32,9 @@ class DashboardController extends AbstractController
     ) {
     }
 
+    /**
+     * @throws \Exception
+     */
     #[Route('/admin/dashboard/wb', name: 'admin.dashboard.wb', methods: ['GET'])]
     public function getWb(MessageBusInterface $bus, KeyRepository $keys): Response
     {
@@ -77,6 +85,38 @@ class DashboardController extends AbstractController
     public function dashboard(): Response
     {
         return $this->render('store/admin/dashboard/show.html.twig');
+    }
+
+    #[Route(path: '/admin/dashboard/send-email', name: 'admin.dashboard.send_email')]
+    public function sendMail(MailerInterface $mailer): Response
+    {
+        $email = (new TemplatedEmail())
+            ->from('info@womjoy.ru')
+            ->to(new Address('pavelsur07@gmail.com'))
+            ->subject('Thanks for signing up!')
+
+            // path of the Twig template to render
+            ->htmlTemplate('emails/signup.html.twig')
+
+            // pass variables (name => value) to the template
+            ->context([
+                'user' => 'user name'
+            ]);
+       /* $email = (new Email())
+            ->from('hello@example.com')
+            ->to('you@example.com')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+        */
+
+        $mailer->send($email);
+
+        return $this->redirectToRoute('admin.dashboard.show');
     }
 
     #[Route('/admin/dashboard/generate/yml', name: 'admin.dashboard.generate.yml', methods: ['GET'])]
