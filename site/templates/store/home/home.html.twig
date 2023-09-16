@@ -7,6 +7,11 @@
     <meta property="og:image" content="{{ asset('./img/womjoy.svg') }}"/>
     <meta property="og:site_name" content="WOMJOY" />
 {% endblock %}
+
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('home') }}">
+{% endblock %}
+
 {% block body %}
 
     <section class="hero">
