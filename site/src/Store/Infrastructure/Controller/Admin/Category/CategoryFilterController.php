@@ -60,15 +60,6 @@ class CategoryFilterController extends AbstractController
         $category->updateFilters($filters);
         $flusher->flush();
 
-        /*return $this->render(
-            'store/admin/category/filter/index.html.twig',
-            [
-                'category' => $category,
-                'filters' => array_values($filters),
-            ]
-        );*/
-
-        // return $this->json(array_values($filters));
-        return $this->redirectToRoute('store.admin.category.edit',['id' => $id] );
+        return $this->redirectToRoute('store.admin.category.edit', ['id' => $id]);
     }
 }
