@@ -6,6 +6,7 @@
         </button>
     </div>
     <div class="filter__rows">
+
         {% for filter in filters %}
             <div class="filter__row">
                 <span class="filter__name">{{ filter.name }}</span>
@@ -26,6 +27,29 @@
                 </ul>
             </div>
         {% endfor %}
+
+        {% for filter in category.filters %}
+            <div class="filter__row">
+                <span class="filter__name">{{ filter.attribute_name }}</span>
+                <ul class="filter__list">
+                    {%  for value in filter.items %}
+                        <li>
+                            <label class="check">
+                                <input type="checkbox" hidden value="{{ value.value_id }}">
+                                <span class="check__sq">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 9L10.3636 16L6 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                <span class="check__txt">{{ value.value }}</span>
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+
+
     </div>
     <button class="filter__btn btn-primary" type="button">Применить</button>
 </div>

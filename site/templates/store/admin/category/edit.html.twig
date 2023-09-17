@@ -27,6 +27,7 @@
         {% if category.status.isActive %}
             <a href="{{ path('store.admin.category.status.disable', {'id': category.id}) }}" class="btn btn-bitbucket">Disable</a>
         {% endif %}
+        <a href="{{ path('store.admin.category.filter.update', {'id': category.id}) }}" class="btn btn-bitbucket">Update Filters</a>
     </div>
     <div class="card">
         <div class="card-header">

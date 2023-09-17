@@ -11,6 +11,7 @@ use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
 use DateTimeImmutable;
+use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Exception\ExceptionInterface;
@@ -24,7 +25,6 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
-
 class DashboardController extends AbstractController
 {
     public function __construct(
@@ -33,7 +33,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     #[Route('/admin/dashboard/wb', name: 'admin.dashboard.wb', methods: ['GET'])]
     public function getWb(MessageBusInterface $bus, KeyRepository $keys): Response
@@ -100,19 +100,19 @@ class DashboardController extends AbstractController
 
             // pass variables (name => value) to the template
             ->context([
-                'user' => 'user name'
+                'user' => 'user name',
             ]);
-       /* $email = (new Email())
-            ->from('hello@example.com')
-            ->to('you@example.com')
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
-        */
+        /* $email = (new Email())
+             ->from('hello@example.com')
+             ->to('you@example.com')
+             //->cc('cc@example.com')
+             //->bcc('bcc@example.com')
+             //->replyTo('fabien@example.com')
+             //->priority(Email::PRIORITY_HIGH)
+             ->subject('Time for Symfony Mailer!')
+             ->text('Sending emails is fun again!')
+             ->html('<p>See Twig integration for better HTML integration!</p>');
+         */
 
         $mailer->send($email);
 

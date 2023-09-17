@@ -65,12 +65,28 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: AttributeAssignment::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $attributes;
 
+    #[ORM\Column(type: 'json', options: ['default'=>'{}'])]
+    private array $filters = [];
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->image = new CategoryImage();
         $this->status = new CategoryStatus(CategoryStatus::DRAFT);
         $this->attributes = new ArrayCollection();
+        $this->filters = [];
+    }
+
+    // Filter
+
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
+
+    public function updateFilters(array $filters): void
+    {
+        $this->filters = $filters;
     }
 
     // Attribute

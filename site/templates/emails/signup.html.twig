@@ -1,4 +1,5 @@
-{#{% extends 'emails/base.html.twig' %}#}
+{% extends 'emails/base.html.twig' %}
+{% block body %}
 
 {# templates/emails/signup.html.twig #}
 <h1>Welcome !</h1>
@@ -12,3 +13,5 @@
     <a href="#">Click here to activate your account</a>
     {#(this link is valid until {{ expiration_date|date('F jS') }})#}
 </p>
+
+{% endblock  %}
