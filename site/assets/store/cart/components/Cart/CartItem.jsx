@@ -60,7 +60,7 @@ const CartItem = ({ item }) => {
                 </div>
                 <div className="c-item__remove">
                     <button type="button" className="cart__clear" onClick={() => handleRemoveFromCart(item.id)}>
-                        <img src="/img/icons/cart-remove.svg" alt="plus" width="24" height="24" />
+                        <img src="/img/icons/remove.svg" alt="remove item" width="24" height="24" />
                     </button>
                 </div>
             </div>
