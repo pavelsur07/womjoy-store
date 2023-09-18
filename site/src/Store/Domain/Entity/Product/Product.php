@@ -413,6 +413,7 @@ class Product
         return $this;
     }
 
+    // Price
     public function getPrice(): ProductPrice
     {
         return $this->price;

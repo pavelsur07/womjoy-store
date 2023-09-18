@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Product\ValueObject;
 
+use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +24,15 @@ class ProductPrice
     public function __construct(int $price = 0)
     {
         $this->price = $price;
+    }
+
+    public function changePrice(int $oldPrice, int $listPrice = null): void
+    {
+        if ($oldPrice < $listPrice) {
+            throw new StoreProductException('Error old price < list price.');
+        }
+        $this->listPrice = $listPrice === null ? $oldPrice : $listPrice;
+        $this->price = $oldPrice;
     }
 
     public function getPrice(): int

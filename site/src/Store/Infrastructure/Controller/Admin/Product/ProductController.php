@@ -94,8 +94,13 @@ class ProductController extends AbstractController
             $product->setName($data['name']);
             $product->setArticle($data['article']);
             $product->setDescription($data['description']);
+
+            $product->getPrice()->changePrice($data['price'], $data['listPrice']);
+
+            /** @deprecated
             $product->getPrice()->setPrice($data['price']);
             $product->getPrice()->setListPrice($data['listPrice']);
+             */
             if ($data['mainCategory'] !== null) {
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }

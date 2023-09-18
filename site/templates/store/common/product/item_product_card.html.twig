@@ -14,7 +14,7 @@
         <span class="product__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
         <del class="product__old">{{ product.price.price|number_format(0, ',', ' ') }} р.</del>
         <span class="product__sale">
-            -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
+            -{{ ((1-(product.price.listPrice / product.price.price)) * 100)|number_format(0, ',', ' ') }}%
         </span>
     {% endif %}
 </div>

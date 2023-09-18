@@ -8,7 +8,7 @@
 
             <div class="i-card__content">
                 <div class="i-card__images">
-                    <span class="i-card__sellout">Распродажа</span>
+                    {#<span class="i-card__sellout">Распродажа</span>#}
                     <a href="#" class="i-card__back">
                         <img src="{{ asset('./img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
                     </a>
@@ -85,7 +85,7 @@
                         <div class="i-card__size_top">
                             <span class="gray">Размер</span>
                             <div class="i-card__size_table call-modal" data-target="card-sizes">
-                                <img src="{{ asset('./img/icons/ruler.svg') }}" alt="" width="20" height="20">
+                                <img src="{{ asset('./img/icons/ruler.svg') }}" alt="ruler size" width="20" height="20">
                                 Таблица размеров
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             </del>
 
                             <span class="i-card__sale">
-                                -{{ ((product.price.listPrice / product.price.price) * 100)|number_format(0, ',', ' ') }}%
+                                -{{ ((1- (product.price.listPrice / product.price.price)) * 100)|number_format(0, ',', ' ') }}%
                             </span>
                         {% endif %}
 
@@ -202,12 +202,14 @@
                     </div>
 
                     <div class="i-card__faq">
+
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Описание</div>
                             <div class="i-card__faq_answer" itemprop="description">
                                 <p>{{ product.description }}</p>
                             </div>
                         </div>
+
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Состав и уход</div>
                             <div class="i-card__faq_answer">
@@ -236,7 +238,7 @@
 
         <div class="modal" id="card-sizes">
             <div class="modal__bg"></div>
-            <div class="modal__content">
+            <div class="modal__content modal__content-lg">
                 <button class="modal__close" type="button"><img src="{{ asset('./img/icons/close-black.svg') }}" alt="close black" width="24" height="24"></button>
                 <div class="size-table">
                     <div class="size-table__titles">
@@ -367,7 +369,7 @@
 
         <div class="modal modal-dark" id="card-inform">
             <div class="modal__bg"></div>
-            <div class="modal__content">
+            <div class="modal__content modal__content-lg">
                 <button class="modal__close" type="button"><img src="{{ asset('./img/icons/close-white.svg') }}" alt="close white" width="24" height="24"></button>
                 <div class="inform">
                     <div class="inform__top">
