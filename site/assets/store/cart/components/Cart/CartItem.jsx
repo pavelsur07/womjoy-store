@@ -55,7 +55,7 @@ const CartItem = ({ item }) => {
                     </button>
                 </div>
                 <div className="c-item__price">
-                    <span className="c-item__cost">{item.price_list} {item.currency}</span>
+                    <span className="c-item__cost"> {new Intl.NumberFormat('ru-RU').format(item.price_list)} {item.currency}</span>
                     <del className="c-item__disc">{item.price_old} {item.currency}</del>
                 </div>
                 <div className="c-item__remove">
