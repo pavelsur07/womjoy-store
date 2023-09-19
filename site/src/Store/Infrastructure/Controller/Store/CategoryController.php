@@ -39,6 +39,9 @@ class CategoryController extends BaseController
             $this->setDescription($category->getSeoMetadata()->getSeoDescription());
         }
 
+        // Получение спсика установленных фильтров
+        $filterSettingIds = $request->query->get('filter_ids');
+
         // Получаем правило сортировки
         $currentSorting = $request->query->get('sort');
 
@@ -99,7 +102,15 @@ class CategoryController extends BaseController
                 'pagination' => $pagerfanta,
                 'sorting_rules' => self::SORTING_RULES,
                 'filters' => $filters,
+                'filter_setting_ids' => ($filterSettingIds !== null) ? $this->decodeFilterIdsToArray($filterSettingIds) : [null],
             ]
         );
+    }
+
+    private function decodeFilterIdsToArray(string $hash): array
+    {
+        $result = explode('_', $hash);
+        sort($result);
+        return array_map('intval', $result);
     }
 }

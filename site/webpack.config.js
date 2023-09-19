@@ -25,6 +25,7 @@ Encore
     .addEntry('guarantee', './assets/main/guarantee/index.js')
     .addEntry('store_main', './assets/store.js')
     .addEntry('store_cart', './assets/store/cart/index.js')
+    .addEntry('store_category', './assets/store/category/index.js')
     .addEntry('store_cart_badge', './assets/store/cart-badge/index.js')
     .addEntry('store_checkout', './assets/store/checkout/index.js')
     .addEntry('store_product', './assets/store/product/index.js')
