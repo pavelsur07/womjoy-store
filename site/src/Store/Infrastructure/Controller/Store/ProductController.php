@@ -30,6 +30,9 @@ class ProductController extends BaseController
                 'menu' => $this->menu,
                 'breadcrumbs'=> $this->breadcrumbsCategoryGenerate($product->getMainCategory()),
                 'product' => $product,
+                'jsProduct' => [
+                    'name'=> 'Test name product',
+                ],
             ]
         );
     }

@@ -6,7 +6,8 @@
 
             {% include 'store/product/breadcrumb.html.twig' %}
 
-            <div class="i-card__content">
+            <div class="i-card__content js-product" data-product="{{ jsProduct|serialize(format = 'json') }}">
+
                 <div class="i-card__images">
                     {#<span class="i-card__sellout">Распродажа</span>#}
                     <a href="#" class="i-card__back">
@@ -400,4 +401,36 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('store_product') }}
+
+    <script type="text/javascript">
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const productData = document.querySelector('.js-product')
+            const product = JSON.parse(productData.dataset.product)
+
+        })
+        // Используем метод push для добавления Ecommerce-объекта
+        window.dataLayer.push(
+            // Ecommerce-объект
+            {
+                "ecommerce": {
+                    "currencyCode": "RUB",
+                    "detail": {
+                        "products": [
+                            {
+                                "id": "P15432",
+                                "name" : "Футболка",
+                                "price": 477.60,
+                                "brand": "Яндекс / Яndex",
+                                "category": "Одежда/Мужская одежда/Футболки",
+                                "variant" : "Красный цвет",
+                                "list": "Результаты поиска",
+                                "position": 1
+                            }
+                        ]
+                    }
+                }
+            }
+        );
+    </script>
 {% endblock %}
