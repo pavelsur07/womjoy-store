@@ -165,6 +165,7 @@ class CartApiController extends AbstractController
 
         return [
             'id' => $item->getVariant()->getId(),
+            'product_id' => $item->getVariant()->getProduct()->getId(),
             'href' => $this->generator->generate(
                 'store.product.show',
                 [

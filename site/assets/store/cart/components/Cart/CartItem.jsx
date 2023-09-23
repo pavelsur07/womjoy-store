@@ -21,7 +21,7 @@ const CartItem = ({ item }) => {
 
 
     return (
-        <div key={item.id} className="c-item">
+        <div key={item.id} className="c-item" data-product-id={item.product_id}>
             <a href={item.href} className="c-item__img">
                 <span className="c-item__img_in">
                     <img

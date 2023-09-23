@@ -25,14 +25,25 @@
     <div class="products">
         <div class="products__items products-3">
             {% for product in pagination %}
-                <div class="product">
+                <div class="product" data-product-id="{{ product.id }}">
                     {% include 'store/common/product/item_product_card.html.twig' %}
                 </div>
             {% endfor %}
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Доступные события:
+            //
+            // impression — просмотр списка товаров;
+            // detail — просмотр товара;
+            // add — добавление товара в корзину;
+            // remove — удаление товара из корзины;
+            // purchase — покупка;
+            pushStoreMetrika('impression', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
+        })
+    </script>
+
     {{ pagerfanta(pagination) }}
-
-
 </div>

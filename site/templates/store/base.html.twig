@@ -259,6 +259,20 @@
     </ul>
     <div id="modal-id"></div>
 
+    <script>
+        function pushStoreMetrika(action, productIds, orderId) {
+            const options = {
+                method: 'POST',
+                body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
+            };
+
+            fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+                console.log({ "ecommerce": data });
+                window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+            });
+        }
+    </script>
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

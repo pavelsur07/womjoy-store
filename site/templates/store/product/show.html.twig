@@ -6,7 +6,7 @@
 
             {% include 'store/product/breadcrumb.html.twig' %}
 
-            <div class="i-card__content js-product" data-product="{{ jsProduct|serialize(format = 'json') }}">
+            <div class="i-card__content js-product" data-product-id="{{ product.id }}" data-product="{{ jsProduct|serialize(format = 'json') }}">
 
                 <div class="i-card__images">
                     {#<span class="i-card__sellout">Распродажа</span>#}
@@ -164,7 +164,7 @@
                     </div>
 
                     <div class="i-card__btns">
-                        <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary {#call-modal#} add-to-cart-action" type="button" data-target="card-success" data-product-id>
+                        <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary {#call-modal#} add-to-cart-action" type="button" data-target="card-success" data-variant-id>
                             <img src="{{ asset('./img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
                             <span>В корзину</span>
                         </button>
@@ -403,34 +403,60 @@
     {{ encore_entry_script_tags('store_product') }}
 
     <script type="text/javascript">
+        // function pushStoreMetrika(action, productIds) {
+        //     const options = {
+        //         method: 'POST',
+        //         body: JSON.stringify({ action: action, products: productIds })
+        //     };
+        //
+        //     fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+        //         window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+        //     });
+        // }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const productData = document.querySelector('.js-product')
-            const product = JSON.parse(productData.dataset.product)
-
+        document.addEventListener('DOMContentLoaded', function () {
+            // Доступные события:
+            //
+            // impression — просмотр списка товаров;
+            // detail — просмотр товара;
+            // add — добавление товара в корзину;
+            // remove — удаление товара из корзины;
+            // purchase — покупка;
+            pushStoreMetrika('detail', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
         })
+
+        // Нужные события
+        // impression — просмотр списка товаров;
+        // detail — просмотр товара;
+        // add — добавление товара в корзину;
+        // remove — удаление товара из корзины;
+        // purchase — покупка;
+
+        // _ym_uid
+
+        // ...
         // Используем метод push для добавления Ecommerce-объекта
-        window.dataLayer.push(
-            // Ecommerce-объект
-            {
-                "ecommerce": {
-                    "currencyCode": "RUB",
-                    "detail": {
-                        "products": [
-                            {
-                                "id": "P15432",
-                                "name" : "Футболка",
-                                "price": 477.60,
-                                "brand": "Яндекс / Яndex",
-                                "category": "Одежда/Мужская одежда/Футболки",
-                                "variant" : "Красный цвет",
-                                "list": "Результаты поиска",
-                                "position": 1
-                            }
-                        ]
-                    }
-                }
-            }
-        );
+        // window.dataLayer.push(
+        //     // Ecommerce-объект
+        //     {
+        //         "ecommerce": {
+        //             "currencyCode": "RUB",
+        //             "detail": {
+        //                 "products": [
+        //                     {
+        //                         "id": "P15432",
+        //                         "name" : "Футболка",
+        //                         "price": 477.60,
+        //                         "brand": "Яндекс / Яndex",
+        //                         "category": "Одежда/Мужская одежда/Футболки",
+        //                         "variant" : "Красный цвет",
+        //                         "list": "Результаты поиска",
+        //                         "position": 1
+        //                     }
+        //                 ]
+        //             }
+        //         }
+        //     }
+        // );
     </script>
 {% endblock %}

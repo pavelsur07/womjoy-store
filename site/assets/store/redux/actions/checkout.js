@@ -15,6 +15,15 @@ export const checkout = () => (dispatch, getState) => {
     .then((result) => {
       dispatch({ type: types.CHECKOUT_SUCCESS })
 
+      // Доступные события:
+      //
+      // impression — просмотр списка товаров;
+      // detail — просмотр товара;
+      // add — добавление товара в корзину;
+      // remove — удаление товара из корзины;
+      // purchase — покупка;
+      pushStoreMetrika('purchase', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)), result.order_id)
+
       console.log('Ответ при оформлении заказа:', result)
 
       if (result.redirect_url !== undefined) {

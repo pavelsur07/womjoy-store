@@ -16,12 +16,12 @@ variantsNodeList.forEach((node) => {
   // проверякм выбранный элемент
   if (node.checked) {
     // устанавливаем ID товара на кнопку
-    document.querySelector('.add-to-cart-action').dataset.productId = node.value
+    document.querySelector('.add-to-cart-action').dataset.variantId = node.value
   }
 
   node.addEventListener('change', ({ currentTarget }) => {
     // устанавливаем ID товара на кнопку
-    document.querySelector('.add-to-cart-action').dataset.productId =
+    document.querySelector('.add-to-cart-action').dataset.variantId =
       currentTarget.value
 
     buttonNodeList.forEach((buttonNode) => {
@@ -37,7 +37,7 @@ variantsNodeList.forEach((node) => {
 buttonNodeList.forEach((node) => {
   node.addEventListener('click', ({ currentTarget }) => {
     // создаём действие
-    const action = addCartItem(currentTarget.dataset.productId, 1)
+    const action = addCartItem(currentTarget.dataset.variantId, 1)
 
     // выполняем действие через стор
     store.dispatch(action)

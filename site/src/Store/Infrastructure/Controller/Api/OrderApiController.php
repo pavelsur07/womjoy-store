@@ -51,6 +51,7 @@ class OrderApiController extends AbstractController
 
         return $this->json(
             [
+                'order_id' => $order->getId()->value(),
                 'redirect_url' => $redirectUrl,
             ]
         );
