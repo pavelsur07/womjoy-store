@@ -53,7 +53,7 @@ class ImageController extends AbstractController
 
             foreach ($files as $file) {
                 $product->addImage(
-                    path: $file->getPatch(),
+                    path: $file->getPath(),
                     fileName: $file->getName(),
                     size: $file->getSize()
                 );

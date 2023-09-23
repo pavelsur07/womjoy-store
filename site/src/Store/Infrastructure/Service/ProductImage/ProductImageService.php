@@ -53,7 +53,7 @@ readonly class ProductImageService
         try {
             foreach ($this->thumbnailsTemplate as $thumbnail) {
                 $outputPath = $path . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
-                $this->thumbnails->createThumbnail(
+                $this->thumbnails->createThumbnailImgproxy(
                     path: $path,
                     inputName: $name,
                     outputPath: $outputPath,
@@ -64,7 +64,7 @@ readonly class ProductImageService
 
             foreach ($this->thumbnailsTemplate as $thumbnail) {
                 $outputPath = $path . $this->getCachePatch($thumbnail[0], $thumbnail[1]);
-                $this->thumbnails->createThumbnail(
+                $this->thumbnails->createThumbnailImgproxy(
                     path: $path,
                     inputName: $name,
                     outputPath: $outputPath,

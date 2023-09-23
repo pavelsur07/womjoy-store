@@ -7,15 +7,15 @@ namespace App\Store\Application\Command\Product\Image\Add;
 final readonly class File
 {
     public function __construct(
-        private string $pach,
+        private string $path,
         private string $name,
         private int $size,
     ) {
     }
 
-    public function getPatch(): string
+    public function getPath(): string
     {
-        return $this->pach;
+        return $this->path;
     }
 
     public function getName(): string
