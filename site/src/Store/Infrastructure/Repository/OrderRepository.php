@@ -10,6 +10,7 @@ use App\Store\Domain\Entity\Order\ValueObject\OrderNumber;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Exception\StoreOrderException;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
+use App\Store\Infrastructure\Form\Order\Admin\OrderFilter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -42,6 +43,7 @@ class OrderRepository implements OrderRepositoryInterface
     public function getAll(
         int $page,
         int $size,
+        OrderFilter $filter,
         string $sort = 'createdAt',
         string $direction = 'asc',
         ?string $status = null
@@ -52,6 +54,11 @@ class OrderRepository implements OrderRepositoryInterface
 
         if (!\in_array($sort, ['createdAt', 'id'], true)) {
             throw new UnexpectedValueException('Cannot sort by ' . $sort);
+        }
+        if ($filter->getStatus() !== null) {
+            /*$qb
+                ->andWhere('p.status.value = :status ')
+                ->setParameter('status', $filter->getStatus());*/
         }
 
         $qb->orderBy('p.createdAt', 'DESC');

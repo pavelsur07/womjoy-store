@@ -31,7 +31,14 @@ class ProductController extends BaseController
                 'breadcrumbs'=> $this->breadcrumbsCategoryGenerate($product->getMainCategory()),
                 'product' => $product,
                 'jsProduct' => [
-                    'name'=> 'Test name product',
+                    'id' => (string)$product->getId(),
+                    'name' => $product->getName(),
+                    'price' => $product->getPrice()->getListPrice(),
+                    'brand' => 'Яндекс / Яndex',
+                    'category' => 'Одежда/Мужская одежда/Футболки',
+                    'variant' => 'Красный цвет',
+                    'list' => 'Результаты поиска',
+                    'position' => 1,
                 ],
             ]
         );
