@@ -28,9 +28,9 @@ class MetricaApiController extends AbstractController
         $orderId = $request->getPayload()->get('orderId');
         $productsIds = $request->getPayload()->all('products');
 
-        $makeCategoryName = function (Category $category) use (&$makeCategoryName) {
+        $makeCategoryName = static function (Category $category) use (&$makeCategoryName) {
             $categoryName = [
-                $category->getName()
+                $category->getName(),
             ];
 
             if ($category->getParent()) {
@@ -45,21 +45,16 @@ class MetricaApiController extends AbstractController
             $product = $productRepository->get($productsId);
 
             // ищим харакетристику бренд
-            $brands = $product->getAttributes()->filter(function ($value) {
-                return $value->getAttribute()->isBrand();
-            });
+            $brands = $product->getAttributes()->filter(static fn ($value) => $value->getAttribute()->isBrand());
 
             // получаем бренд
             $brand = !$brands->isEmpty() ? $brands->first()->getVariant()->getName() : null;
 
             // ищим харакетристику цвета
-            $colors = $product->getAttributes()->filter(function ($value) {
-                return $value->getAttribute()->isColor();
-            });
+            $colors = $product->getAttributes()->filter(static fn ($value) => $value->getAttribute()->isColor());
 
             // получаем цвет
             $color = !$colors->isEmpty() ? $colors->first()->getVariant()->getName() : null;
-
 
             // собираем список категорий
             $categoryName = $product->getMainCategory() ? array_reverse(
@@ -69,26 +64,25 @@ class MetricaApiController extends AbstractController
             // конвертим в строку
             $categoryName = implode(' / ', $categoryName);
 
-
             $results[] = [
-                "id" => $product->getArticle(),
-                "name" => $product->getName(),
-                "price" => $product->getPrice()->getListPrice(),
-                "brand" => $brand,
-                "category" => $categoryName,
-                "variant" => $color,
-                "position" => $position + 1,
+                'id' => $product->getArticle(),
+                'name' => $product->getName(),
+                'price' => $product->getPrice()->getListPrice(),
+                'brand' => $brand,
+                'category' => $categoryName,
+                'variant' => $color,
+                'position' => $position + 1,
             ];
         }
 
         $data = match ($action) {
             'impression', 'remove', 'add', 'detail' => [
                 'currencyCode' => 'RUB',
-                $action => ['products' => $results]
+                $action => ['products' => $results],
             ],
-             'purchase'  => [
+            'purchase'  => [
                 'currencyCode' => 'RUB',
-                $action => ['actionField' => ['id' => $orderId], 'products' => $results]
+                $action => ['actionField' => ['id' => $orderId], 'products' => $results],
             ],
         };
 
