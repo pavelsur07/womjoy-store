@@ -7,7 +7,7 @@ namespace App\Store\Domain\Entity\Home\ValueObject;
 class WidgetSeoDescription
 {
     private bool $isActive = false;
-    private string $href = '';
+    private string $description = '';
 
     public function isActive(): bool
     {
@@ -19,13 +19,13 @@ class WidgetSeoDescription
         $this->isActive = $isActive;
     }
 
-    public function getHref(): string
+    public function getDescription(): string
     {
-        return $this->href;
+        return $this->description;
     }
 
-    public function setHref(string $href): void
+    public function setDescription(string $description): void
     {
-        $this->href = $href;
+        $this->description = $description;
     }
 }
