@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Embeddable]
 class ProductSeoDescription
 {
-    #[ORM\Column(type: 'boolean', options: ['default'=>false])]
+    #[ORM\Column(type: 'boolean', nullable: true, options: ['default'=>false])]
     private bool $isActive = false;
 
     #[ORM\Column(type: 'text', nullable: true)]
