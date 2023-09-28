@@ -16,7 +16,15 @@ class HomeEditForm extends AbstractType
         $builder
             ->add('h1', Type\TextType::class)
             ->add('title', Type\TextType::class)
-            ->add('description', Type\TextType::class);
+            ->add('description', Type\TextType::class)
+            ->add('isActiveDescription', Type\CheckboxType::class, ['required' => false])
+            ->add(
+                'seoDescription',
+                Type\TextareaType::class,
+                [
+                    'attr' => ['rows' => 8],
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

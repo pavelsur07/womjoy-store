@@ -55,6 +55,7 @@ class HomeController extends BaseController
                 'newItems' => $newItems,
                 'popularity' => $popularity,
                 'locales' => $locales,
+                'seoDescription' => $home->getSeoTextDescription(),
             ]
         );
     }

@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Home\ValueObject;
 
-class WidgetSeoDescription
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Embeddable]
+class ProductSeoDescription
 {
+    #[ORM\Column(type: 'boolean', options: ['default'=>false])]
     private bool $isActive = false;
-    private string $description = '';
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $description = null;
 
     public function isActive(): bool
     {
@@ -19,7 +25,7 @@ class WidgetSeoDescription
         $this->isActive = $isActive;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
