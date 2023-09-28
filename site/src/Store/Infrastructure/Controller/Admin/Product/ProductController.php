@@ -98,8 +98,8 @@ class ProductController extends AbstractController
             $product->getPrice()->changePrice($data['price'], $data['listPrice']);
 
             /** @deprecated
-            $product->getPrice()->setPrice($data['price']);
-            $product->getPrice()->setListPrice($data['listPrice']);
+             * $product->getPrice()->setPrice($data['price']);
+             * $product->getPrice()->setListPrice($data['listPrice']);
              */
             if ($data['mainCategory'] !== null) {
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
@@ -120,7 +120,9 @@ class ProductController extends AbstractController
 
             $flusher->flush();
 
-            return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Success changed.');
+
+            return $this->redirectToRoute('store.admin.product.edit', ['id'=> $product->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('store/admin/product/edit.html.twig', [
