@@ -23,27 +23,27 @@
         {% block linkCanonical %}{% endblock %}
 
         {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
-        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/favicon-57x57.png') }}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/favicon-60x60.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/favicon-72x72.png') }}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/favicon-76x76.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/favicon-114x114.png') }}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/favicon-120x120.png') }}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/favicon-144x144.png') }}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/favicon-152x152.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/favicon-180x180.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/favicon-96x96.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/favicon-192x192.png') }}">
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
-        <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/default/favicon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/default/favicon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/default/favicon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/default/favicon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/default/favicon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/default/favicon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/default/favicon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/default/favicon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/default/favicon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/default/favicon-16x16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/default/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/default/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/default/favicon-192x192.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('') }}/favicon-144x144.png">
-        <meta name="msapplication-config" content="{{ asset('/browserconfig.xml') }}">
+        <meta name="msapplication-config" content="{{ asset('/default/browserconfig.xml') }}">
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('./css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('./default/css/style.css') }}">
         {% endblock %}
 
         <style>
@@ -95,7 +95,7 @@
             <div class="header__main">
                 <div class="header__left">
                     <a href="{{ path('home') }}" class="header__logo">
-                        <img src="{{ asset('./img/logo.svg') }}" alt="logo" width="205" height="36">
+                        <img src="{{ asset('./default/img/logo.svg') }}" alt="logo" width="205" height="36">
                     </a>
                     <div class="burger">
                         <span class="burger__item"></span>
@@ -116,17 +116,17 @@
 
                     <li>
                         <a href="{{ path('store.account.history') }}">
-                            <img src="{{ asset('./img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24">
+                            <img src="{{ asset('./default/img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24">
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="favourite" width="24" height="24">
+                            <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="favourite" width="24" height="24">
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('store.cart.index') }}">
-                            <img src="{{ asset('./img/icons/cart.svg') }}" alt="cart" width="24" height="24">
+                            <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="cart" width="24" height="24">
                             <div id="cart-badge"></div>
                         </a>
                     </li>
@@ -148,7 +148,7 @@
             <div class="footer__main">
                 <div class="footer__left">
                     <a href="{{ path('home') }}" class="footer__logo">
-                        <img src="{{ asset('./img/logo.svg') }}" alt="logo" width="205" height="36">
+                        <img src="{{ asset('./default/img/logo.svg') }}" alt="logo" width="205" height="36">
                     </a>
                     <div itemscope="" itemtype="http://schema.org/Organization" class="footer__phone">
                         <meta itemprop="name" content="ООО Вумджой">
@@ -159,9 +159,9 @@
                     </div>
                     <a href="mailto:info@womjoy.ru" class="footer__mail">info@womjoy.ru</a>
                     <ul class="footer__socials">
-                        <li><a href="https://vk.com/womjoy" target="_blank"><img src="{{ asset('./img/icons/vk.svg') }}" alt="VK" width="40" height="40"></a></li>
-                        <li><a href="https://t.me/womjoy_chat" target="_blank"><img src="{{ asset('./img/icons/tg.svg') }}" alt="Telegram" width="40" height="40"></a></li>
-                        <li><a href="#"><img src="{{ asset('./img/icons/wa.svg') }}" alt="WhatsApp" width="40" height="40"></a></li>
+                        <li><a href="https://vk.com/womjoy" target="_blank"><img src="{{ asset('./default/img/icons/vk.svg') }}" alt="VK" width="40" height="40"></a></li>
+                        <li><a href="https://t.me/womjoy_chat" target="_blank"><img src="{{ asset('./default/img/icons/tg.svg') }}" alt="Telegram" width="40" height="40"></a></li>
+                        <li><a href="#"><img src="{{ asset('./default/img/icons/wa.svg') }}" alt="WhatsApp" width="40" height="40"></a></li>
                     </ul>
                 </div>
 
@@ -182,21 +182,21 @@
                     <noindex>
                         <div class="footer__marketplaces">
                             <a href="https://www.wildberries.ru/brands/womjoy" class="footer__marketplace" rel="nofollow" target="_blank">
-                                <img src="{{ asset('./img/icons/wb.png') }}" alt="wb" class="footer__marketplace_img" width="40" height="40">
+                                <img src="{{ asset('./default/img/icons/wb.png') }}" alt="wb" class="footer__marketplace_img" width="40" height="40">
                                 <div class="footer__marketplace_text">
                                     <span class="footer__marketplace_descr">Наш магазин</span>
                                     <span class="footer__marketplace_name">Wildberries</span>
                                 </div>
                             </a>
                             <a href="https://www.ozon.ru/seller/ooo-vumdzhoy-25218/products/?miniapp=seller_25218" class="footer__marketplace" rel="nofollow" target="_blank">
-                                <img src="{{ asset('./img/icons/ozon.png') }}" alt="ozon" class="footer__marketplace_img" width="40" height="40">
+                                <img src="{{ asset('./default/img/icons/ozon.png') }}" alt="ozon" class="footer__marketplace_img" width="40" height="40">
                                 <div class="footer__marketplace_text">
                                     <span class="footer__marketplace_descr">Наш магазин</span>
                                     <span class="footer__marketplace_name">Ozon</span>
                                 </div>
                             </a>
                             <a href="#" class="footer__marketplace" rel="nofollow">
-                                <img src="{{ asset('./img/icons/ym.png') }}" alt="yandex" class="footer__marketplace_img" width="40" height="40">
+                                <img src="{{ asset('./default/img/icons/ym.png') }}" alt="yandex" class="footer__marketplace_img" width="40" height="40">
                                 <div class="footer__marketplace_text">
                                     <span class="footer__marketplace_descr">Наш магазин</span>
                                     <span class="footer__marketplace_name">Яндекс Маркет</span>
@@ -215,10 +215,10 @@
                         <a href="{{ path('admin.dashboard.show') }}" class="nav-link">© 2019 - {{ 'now'|date('Y') }} {{ metaData.company }}</a>
                     </span>
                     <ul class="footer__pay">
-                        <li><img src="{{ asset('./img/icons/visa.svg') }}" alt="visa" width="58" height="40"></li>
-                        <li><img src="{{ asset('./img/icons/mc.svg') }}" alt="mc" width="58" height="40"></li>
-                        <li><img src="{{ asset('./img/icons/mir.svg') }}" alt="mir" width="58" height="40"></li>
-                        <li><img src="{{ asset('./img/icons/sbp.svg') }}" alt="sbp" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/visa.svg') }}" alt="visa" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/mc.svg') }}" alt="mc" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/mir.svg') }}" alt="mir" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/sbp.svg') }}" alt="sbp" width="58" height="40"></li>
                     </ul>
                 </div>
             </div>
@@ -228,31 +228,31 @@
     <ul class="mob-bar">
         <li class="mob-bar__item">
             <a href="#" class="mob-bar__link c-open">
-                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/catalog.svg') }}" alt="catalog" width="24" height="24"></span>
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/catalog.svg') }}" alt="catalog" width="24" height="24"></span>
                 Каталог
             </a>
         </li>
         <li class="mob-bar__item">
             <a href="#" class="mob-bar__link">
-                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/trace.svg') }}" alt="trace" width="24" height="24"></span>
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/trace.svg') }}" alt="trace" width="24" height="24"></span>
                 Отследить
             </a>
         </li>
         <li class="mob-bar__item">
             <a href="{{ path('store.account.history') }}" class="mob-bar__link">
-                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24"></span>
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24"></span>
                 Кабинет
             </a>
         </li>
         <li class="mob-bar__item">
             <a href="#" class="mob-bar__link">
-                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/favourite.svg') }}" alt="favourite" width="24" height="24"></span>
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="favourite" width="24" height="24"></span>
                 Изрбранное
             </a>
         </li>
         <li class="mob-bar__item">
             <a href="{{ path('store.cart.index') }}" class="mob-bar__link">
-                <span class="mob-bar__icon"><img src="{{ asset('./img/icons/cart.svg') }}" alt="" width="24" height="24"></span>
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/cart.svg') }}" alt="" width="24" height="24"></span>
                 Корзина
             </a>
         </li>
@@ -312,9 +312,9 @@
         {{ encore_entry_script_tags('store_main') }}
         {{ encore_entry_script_tags('store_cart_badge') }}
 
-        <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
-        <script src="{{ asset('./widget/widjet.js') }}" async defer></script>
-        <script src="{{ asset('./js/script.js') }}"></script>
+        <script src="{{ asset('./default/libs/swiper/swiper.min.js') }}"></script>
+        <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
+        <script src="{{ asset('./default/js/script.js') }}"></script>
         <script src="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.js" async defer>
         </script><link rel="preconnect" href="https://i.msearch.space">
         <link href="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.css" rel="stylesheet">
