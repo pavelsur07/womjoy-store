@@ -39,6 +39,8 @@ class BaseController extends AbstractController
         'company' => null,
     ];
 
+    private string $template = 'default';
+
     public function __construct(
         private readonly MenuRepositoryInterface $menus,
         private readonly HomeService $homeService,
@@ -122,6 +124,16 @@ class BaseController extends AbstractController
             return $this->breadcrumbsCategoryGenerate($category->getParent(), $bread);
         }
         return array_reverse($bread);
+    }
+
+    public function getTemplate(): string
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(string $template): void
+    {
+        $this->template = $template;
     }
 
     private function menuCategories(Home $home): array
