@@ -92,7 +92,7 @@ class Home
         return $this->seoMetadata;
     }
 
-    public function isActiveNewProduct(): bool
+    public function isActiveNewArrivals(): bool
     {
         return $this->isActiveNewProduct;
     }

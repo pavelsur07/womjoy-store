@@ -125,40 +125,42 @@
         </div>
     </section>
 #}
+    {% if widget.isNewArrivals %}
+        <section class="products section">
+            <div class="wrapper">
+                <div class="section-top">
+                    <h2 class="section-title">{{ 'home.new.arrivals' | trans }}</h2>
+                    <a href="{{ widget.hrefNewArrivals }}" class="section-checkall">
+                        {{ 'home.view.all' | trans }}
+                        <img src="{{ asset('./default/img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
+                    </a>
+                </div>
 
-    <section class="products section">
-        <div class="wrapper">
-            <div class="section-top">
-                <h2 class="section-title">{{ 'home.new.arrivals' | trans }}</h2>
-                <a href="#" class="section-checkall">
-                    {{ 'home.view.all' | trans }}
-                    <img src="{{ asset('./default/img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
-                </a>
-            </div>
-
-            <div class="products__slider">
-                <div class="products-swiper swiper">
-                    <div class="swiper-wrapper">
-                        {% for product in newItems %}
-                            <div class="product swiper-slide">
-                                {% include 'store/common/product/item_product_card.html.twig' %}
-                            </div>
-                        {% endfor %}
+                <div class="products__slider">
+                    <div class="products-swiper swiper">
+                        <div class="swiper-wrapper">
+                            {% for product in newItems %}
+                                <div class="product swiper-slide">
+                                    {% include 'store/common/product/item_product_card.html.twig' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="slider-btn-prev" type="button"><img src="{{ asset('./default/img/icons/arrow-left.svg') }}" alt="arrow left" width="24" height="24"></button>
+                        <button class="slider-btn-next" type="button"><img src="{{ asset('./default/img/icons/arrow-right.svg') }}" alt="arrow right" width="24" height="24"></button>
                     </div>
-                    <button class="slider-btn-prev" type="button"><img src="{{ asset('./default/img/icons/arrow-left.svg') }}" alt="arrow left" width="24" height="24"></button>
-                    <button class="slider-btn-next" type="button"><img src="{{ asset('./default/img/icons/arrow-right.svg') }}" alt="arrow right" width="24" height="24"></button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
     {% include 'store/common/support_section.html.twig' %}
 
+    {% if widget.isActiveBestseller %}
     <section class="products section">
         <div class="wrapper">
             <div class="section-top">
                 <h2 class="section-title">{{ 'home.popular.products' | trans }}</h2>
-                <a href="#" class="section-checkall">
+                <a href="{{ widget.hrefBestseller }}" class="section-checkall">
                     {{ 'home.view.all' | trans }}
                     <img src="{{ asset('./default/img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
                 </a>
@@ -175,16 +177,19 @@
             </div>
         </div>
     </section>
+    {% endif %}
 
     <div id="subscriber_id"></div>
 
-    {#<section class="seo section">
-        <div class="wrapper">
-            {% if seoDescription.active %}
-                {{ seoDescription.description | raw }}
-            {% endif %}
-        </div>
-    </section>#}
+    {% if widget.isActiveSeoText %}
+        <section class="seo section">
+            <div class="wrapper">
+
+                    {{ widget.seoText | raw }}
+
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}
     {% block javascripts %}

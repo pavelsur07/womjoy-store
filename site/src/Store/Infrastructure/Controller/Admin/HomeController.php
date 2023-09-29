@@ -35,7 +35,7 @@ class HomeController extends AbstractController
             'seoText' => $home->getSeoText(),
             'isActiveBestseller' =>$home->isActiveBestseller(),
             'hrefBestseller' => $home->getHrefBestseller(),
-            'isActiveNewProduct' => $home->isActiveNewProduct(),
+            'isActiveNewProduct' => $home->isActiveNewArrivals(),
             'hrefNewProduct' => $home->getHrefNewArrivals(),
         ]);
         $form->handleRequest($request);

@@ -56,6 +56,14 @@ class HomeController extends BaseController
                 'popularity' => $popularity,
                 'locales' => $locales,
                 'template' => $this->getTemplate(),
+                'widget' => [
+                    'isNewArrivals' => $home->isActiveNewArrivals(),
+                    'hrefNewArrivals' => $home->getHrefNewArrivals(),
+                    'isActiveBestseller' => $home->isActiveBestseller(),
+                    'hrefBestseller' => $home->getHrefBestseller(),
+                    'isActiveSeoText' => $home->isActiveSeoText(),
+                    'seoText' => $home->getSeoText(),
+                ],
             ]
         );
     }
