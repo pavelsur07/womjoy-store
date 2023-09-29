@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Home;
 
 use App\Store\Domain\Entity\Category\Category;
-use App\Store\Domain\Entity\Home\ValueObject\ProductSeoDescription;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreHomeException;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -29,9 +28,6 @@ class Home
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $isActiveBestseller = false;
-
-    #[ORM\Embedded(class: ProductSeoDescription::class, columnPrefix: false)]
-    private ProductSeoDescription $seoTextDescription;
 
     /** @var ArrayCollection<AssignCategory> */
     #[ORM\OneToMany(mappedBy: 'home', targetEntity: AssignCategory::class, cascade: ['ALL'], orphanRemoval: true)]
@@ -92,10 +88,5 @@ class Home
     public function isActiveBestseller(): bool
     {
         return $this->isActiveBestseller;
-    }
-
-    public function getSeoTextDescription(): ProductSeoDescription
-    {
-        return $this->seoTextDescription;
     }
 }

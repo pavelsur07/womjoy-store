@@ -31,8 +31,6 @@ class HomeController extends AbstractController
             'h1'=> $home->getSeoMetadata()->getH1(),
             'title' => $home->getSeoMetadata()->getSeoTitle(),
             'description' => $home->getSeoMetadata()->getSeoDescription(),
-            'isActiveDescription' => $home->getSeoTextDescription()->isActive(),
-            'seoDescription' => $home->getSeoTextDescription()->getDescription(),
         ]);
         $form->handleRequest($request);
 
@@ -42,8 +40,6 @@ class HomeController extends AbstractController
             $home->getSeoMetadata()->setH1($data['h1']);
             $home->getSeoMetadata()->setSeoTitle($data['title']);
             $home->getSeoMetadata()->setSeoDescription($data['description']);
-            $home->getSeoTextDescription()->setIsActive($data['isActiveDescription']);
-            $home->getSeoTextDescription()->setDescription($data['seoDescription']);
 
             $flusher->flush();
 
