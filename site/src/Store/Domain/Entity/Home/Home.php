@@ -33,6 +33,18 @@ class Home
     #[ORM\OneToMany(mappedBy: 'home', targetEntity: AssignCategory::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $categories;
 
+    #[ORM\Column(type: 'text', options: ['default' => ''])]
+    private string $seoText = '';
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isActiveSeoText = false;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $hrefNewProduct = null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $hrefBestseller = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -88,5 +100,55 @@ class Home
     public function isActiveBestseller(): bool
     {
         return $this->isActiveBestseller;
+    }
+
+    public function getSeoText(): string
+    {
+        return $this->seoText;
+    }
+
+    public function setSeoText(string $seoText): void
+    {
+        $this->seoText = $seoText;
+    }
+
+    public function isActiveSeoText(): bool
+    {
+        return $this->isActiveSeoText;
+    }
+
+    public function setIsActiveSeoText(bool $isActiveSeoText): void
+    {
+        $this->isActiveSeoText = $isActiveSeoText;
+    }
+
+    public function getHrefNewArrivals(): ?string
+    {
+        return $this->hrefNewProduct;
+    }
+
+    public function setHrefNewArrivals(?string $hrefNewProduct): void
+    {
+        $this->hrefNewProduct = $hrefNewProduct;
+    }
+
+    public function getHrefBestseller(): ?string
+    {
+        return $this->hrefBestseller;
+    }
+
+    public function setHrefBestseller(?string $hrefBestseller): void
+    {
+        $this->hrefBestseller = $hrefBestseller;
+    }
+
+    public function setIsActiveNewArrivals(bool $isActiveNewProduct): void
+    {
+        $this->isActiveNewProduct = $isActiveNewProduct;
+    }
+
+    public function setIsActiveBestseller(bool $isActiveBestseller): void
+    {
+        $this->isActiveBestseller = $isActiveBestseller;
     }
 }

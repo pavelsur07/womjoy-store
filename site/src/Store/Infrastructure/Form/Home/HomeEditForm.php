@@ -17,14 +17,18 @@ class HomeEditForm extends AbstractType
             ->add('h1', Type\TextType::class)
             ->add('title', Type\TextType::class)
             ->add('description', Type\TextType::class)
-            ->add('isActiveDescription', Type\CheckboxType::class, ['required' => false])
+            ->add('isActiveSeoText', Type\CheckboxType::class, ['required' => false])
             ->add(
-                'seoDescription',
+                'seoText',
                 Type\TextareaType::class,
                 [
                     'attr' => ['rows' => 8],
                 ]
-            );
+            )
+            ->add('isActiveBestseller', Type\CheckboxType::class, ['required' => false])
+            ->add('hrefBestseller', Type\TextType::class)
+            ->add('isActiveNewProduct', Type\CheckboxType::class, ['required' => false])
+            ->add('hrefNewProduct', Type\TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
