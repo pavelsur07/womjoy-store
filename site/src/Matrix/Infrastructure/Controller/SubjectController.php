@@ -47,9 +47,7 @@ class SubjectController extends AbstractController
         return $this->render('matrix/admin/subject/create.html.twig', ['form'=> $form->createView()]);
     }
 
-    public function remove(): void
-    {
-    }
+    public function remove(): void {}
 
     #[Route(path: '/{id}/edit', name: '.edit')]
     public function edit(int $id, Subject $subject, Request $request, Flusher $flusher): Response

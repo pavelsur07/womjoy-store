@@ -12,8 +12,7 @@ final readonly class HomeService
 {
     public function __construct(
         private HomeRepositoryInterface $homes,
-    ) {
-    }
+    ) {}
 
     public function get(): Home
     {

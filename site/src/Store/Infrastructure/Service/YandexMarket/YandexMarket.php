@@ -27,8 +27,7 @@ class YandexMarket
         private readonly ProductRepository $products,
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly ThumbnailService $thumbnails,
-    ) {
-    }
+    ) {}
 
     public function setProperty(string $company, string $name, string $url): void
     {

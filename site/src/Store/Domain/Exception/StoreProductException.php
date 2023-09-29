@@ -6,6 +6,4 @@ namespace App\Store\Domain\Exception;
 
 use DomainException;
 
-class StoreProductException extends DomainException
-{
-}
+class StoreProductException extends DomainException {}

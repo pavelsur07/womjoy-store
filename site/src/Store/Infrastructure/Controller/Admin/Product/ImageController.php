@@ -31,8 +31,7 @@ class ImageController extends AbstractController
     public function __construct(
         private readonly MessageBusInterface $bus,
         private readonly string $cachePathImages,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws FilesystemException

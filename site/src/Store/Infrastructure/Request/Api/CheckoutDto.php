@@ -18,6 +18,5 @@ class CheckoutDto
         public readonly CheckoutDelivery $delivery,
         #[Assert\Choice([self::PAYMENT_TYPE_COD, self::PAYMENT_TYPE_ONLINE])]
         public readonly string $payment
-    ) {
-    }
+    ) {}
 }

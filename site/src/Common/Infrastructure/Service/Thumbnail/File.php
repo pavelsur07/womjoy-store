@@ -10,8 +10,7 @@ final class File
         private readonly string $path,
         private readonly string $name,
         private readonly int $size,
-    ) {
-    }
+    ) {}
 
     public function getPath(): string
     {

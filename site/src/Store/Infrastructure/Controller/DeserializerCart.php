@@ -14,8 +14,7 @@ final readonly class DeserializerCart
     public function __construct(
         private FileUploader $uploader,
         private UrlGeneratorInterface $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function deserialize(Cart $cart): array
     {

@@ -80,9 +80,7 @@ readonly class ProductImageService
         }
     }
 
-    public function remove(string $path, string $name): void
-    {
-    }
+    public function remove(string $path, string $name): void {}
 
     private function getCachePatch($width = 0, int $height = 0): string
     {

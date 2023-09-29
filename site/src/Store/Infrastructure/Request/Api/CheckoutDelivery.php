@@ -12,6 +12,5 @@ class CheckoutDelivery
         #[Assert\NotBlank]
         public string $address,
         public ?float $price = 0,
-    ) {
-    }
+    ) {}
 }

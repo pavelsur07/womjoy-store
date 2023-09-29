@@ -22,8 +22,7 @@ class PaymentProvider
 
     public function __construct(
         private readonly string $providerName,
-    ) {
-    }
+    ) {}
 
     public function getProviderName(): string
     {

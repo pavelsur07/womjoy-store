@@ -14,8 +14,7 @@ class MenuSettingEditForm extends AbstractType
 {
     public function __construct(
         private readonly MenuRepositoryInterface $menus,
-    ) {
-    }
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

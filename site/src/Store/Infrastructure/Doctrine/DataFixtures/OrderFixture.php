@@ -18,8 +18,7 @@ class OrderFixture extends Fixture implements DependentFixtureInterface
 {
     public function __construct(
         private readonly OrderRepository $orders,
-    ) {
-    }
+    ) {}
 
     public function load(ObjectManager $manager): void
     {

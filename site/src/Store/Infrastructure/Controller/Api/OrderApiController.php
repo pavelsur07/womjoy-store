@@ -21,8 +21,7 @@ class OrderApiController extends AbstractController
         private readonly CartService $cartService,
         private readonly OrderService $orderService,
         private readonly PaymentProvider $paymentProvider,
-    ) {
-    }
+    ) {}
 
     #[Route(path: '/', name: '.index', methods: ['POST'], format: 'json')]
     public function index(

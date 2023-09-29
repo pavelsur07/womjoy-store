@@ -6,6 +6,4 @@ namespace App\Menu\Infrastructure\Repository;
 
 use App\Common\Infrastructure\Repository\EntityForChoice;
 
-class MenuForChoice extends EntityForChoice
-{
-}
+class MenuForChoice extends EntityForChoice {}

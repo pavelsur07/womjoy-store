@@ -13,8 +13,7 @@ final readonly class ReportDetailByPeriodCreateSyncingTask
         private string $keyValue,
         private DateTimeImmutable $dateFrom,
         private DateTimeImmutable $dateTo,
-    ) {
-    }
+    ) {}
 
     public function getKeyId(): int
     {

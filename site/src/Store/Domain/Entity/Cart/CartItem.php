@@ -44,7 +44,7 @@ class CartItem
             }
         }
 
-        $this->quantity = $this->quantity+$quantity;
+        $this->quantity += $quantity;
     }
 
     public function getId(): int

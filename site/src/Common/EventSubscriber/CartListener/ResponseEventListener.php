@@ -15,8 +15,7 @@ readonly class ResponseEventListener implements EventSubscriberInterface
 {
     public function __construct(
         private RequestStack $session
-    ) {
-    }
+    ) {}
 
     public function onKernelResponse(ResponseEvent $event): void
     {

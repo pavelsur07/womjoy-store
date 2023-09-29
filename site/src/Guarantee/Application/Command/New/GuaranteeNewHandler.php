@@ -13,8 +13,7 @@ final readonly class GuaranteeNewHandler
 {
     public function __construct(
         private GuaranteeRepositoryInterface $guarantees,
-    ) {
-    }
+    ) {}
 
     public function __invoke(GuaranteeNewCommand $command): void
     {

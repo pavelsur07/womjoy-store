@@ -12,8 +12,7 @@ final readonly class ProductImageHandler
     public function __construct(
         private ProductRepository $products,
         private Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     public function __invoke(ProductImageAddCommand $command): void
     {

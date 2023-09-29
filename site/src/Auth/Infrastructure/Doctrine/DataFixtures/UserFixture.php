@@ -14,9 +14,7 @@ class UserFixture extends Fixture
     public const REFERENCE_ADMIN = 'user_user_admin';
     public const REFERENCE_USER = 'user_user_user';
 
-    public function __construct(private readonly UserPasswordHasherInterface $hasher)
-    {
-    }
+    public function __construct(private readonly UserPasswordHasherInterface $hasher) {}
 
     public function load(ObjectManager $manager): void
     {

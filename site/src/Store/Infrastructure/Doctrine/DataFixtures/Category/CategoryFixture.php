@@ -21,9 +21,7 @@ class CategoryFixture extends Fixture implements DependentFixtureInterface
     public const REFERENCE_LEGGINGS_BLACK = 'reference-leggings-black';
     public const REFERENCE_PANTS = 'reference-pants';
 
-    public function __construct(private readonly SlugifyService $slugify)
-    {
-    }
+    public function __construct(private readonly SlugifyService $slugify) {}
 
     public function load(ObjectManager $manager): void
     {

@@ -14,8 +14,7 @@ final readonly class UserChangePasswordHandler
         private UserRepository $users,
         private Flusher $flusher,
         private UserPasswordHasherInterface $hasher
-    ) {
-    }
+    ) {}
 
     public function __invoke(UserChangePasswordCommand $command): void
     {

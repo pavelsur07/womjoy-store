@@ -15,8 +15,7 @@ readonly class CartService
         private CartSessionStorage $storage,
         private CartRepository $carts,
         private Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     public function getCurrentCart(int|null $customerId = null): Cart
     {
@@ -51,17 +50,11 @@ readonly class CartService
         $this->carts->save($cart, true);
     }
 
-    public function add(): void
-    {
-    }
+    public function add(): void {}
 
-    public function set(): void
-    {
-    }
+    public function set(): void {}
 
-    public function remove(): void
-    {
-    }
+    public function remove(): void {}
 
     public function clear(?int $customerId = null): void
     {

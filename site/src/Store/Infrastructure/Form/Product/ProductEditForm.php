@@ -12,9 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductEditForm extends AbstractType
 {
-    public function __construct(private readonly CategoryRepositoryInterface $categories)
-    {
-    }
+    public function __construct(private readonly CategoryRepositoryInterface $categories) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

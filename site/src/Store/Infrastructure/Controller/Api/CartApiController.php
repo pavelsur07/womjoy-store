@@ -24,8 +24,7 @@ class CartApiController extends AbstractController
     public function __construct(
         private readonly UrlGeneratorInterface $generator,
         private readonly ThumbnailService $thumbnails
-    ) {
-    }
+    ) {}
 
     #[Route(path: '/', name: '.get', methods: ['GET'])]
     public function get(CartService $service): Response

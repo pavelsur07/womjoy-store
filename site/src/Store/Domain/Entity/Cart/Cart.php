@@ -87,7 +87,7 @@ class Cart
     {
         $result = 0;
         foreach ($this->items as $item) {
-            $result = $result + $item->getQuantity();
+            $result += $item->getQuantity();
         }
         return $result;
     }
@@ -96,7 +96,7 @@ class Cart
     {
         $result = 0;
         foreach ($this->items as $item) {
-            $result = $result + $item->getCost();
+            $result += $item->getCost();
         }
         return $result;
     }
@@ -105,7 +105,7 @@ class Cart
     {
         $result = 0;
         foreach ($this->items as $item) {
-            $result = $result + $item->getCostDiscount();
+            $result += $item->getCostDiscount();
         }
         return $result;
     }
@@ -114,7 +114,7 @@ class Cart
     {
         $result = 0;
         foreach ($this->items as $item) {
-            $result = $result + $item->getDiscount();
+            $result += $item->getDiscount();
         }
         return $result;
     }

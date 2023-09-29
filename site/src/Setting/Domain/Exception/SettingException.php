@@ -6,6 +6,4 @@ namespace App\Setting\Domain\Exception;
 
 use DomainException;
 
-class SettingException extends DomainException
-{
-}
+class SettingException extends DomainException {}

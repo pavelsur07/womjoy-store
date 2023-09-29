@@ -10,8 +10,7 @@ final readonly class SlugifyService
 {
     public function __construct(
         private Slugify $slugify
-    ) {
-    }
+    ) {}
 
     public function generate(string $slug): string
     {

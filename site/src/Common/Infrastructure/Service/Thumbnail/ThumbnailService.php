@@ -20,8 +20,7 @@ class ThumbnailService
         private readonly FilesystemOperator $defaultStorage,
         private readonly string $baseUrl,
         private readonly string $cachePathImages,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws FilesystemException

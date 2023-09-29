@@ -22,8 +22,7 @@ final readonly class GuaranteeNewCommand
         #[Assert\IsTrue]
         private bool $isConfirmed,
         private bool|null $isSubscribe = null,
-    ) {
-    }
+    ) {}
 
     public function isConfirmed(): bool
     {

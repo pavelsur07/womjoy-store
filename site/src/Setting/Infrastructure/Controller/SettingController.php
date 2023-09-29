@@ -17,8 +17,7 @@ class SettingController extends AbstractController
     public function __construct(
         private readonly SettingService $service,
         private readonly Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     #[Route(path: '/admin/setting/base', name: 'setting.base')]
     public function edit(Request $request): Response

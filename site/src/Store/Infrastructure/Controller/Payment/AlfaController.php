@@ -25,8 +25,7 @@ class AlfaController extends AbstractController
         private readonly AlfaAcquiringClient $acquiringClient,
         private readonly OrderService $orderService,
         private readonly Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     #[Route('/{orderId}', name: '.purchase')]
     public function purchase(string $orderId): Response

@@ -24,8 +24,7 @@ final readonly class OrderService
         private UserRepository $customers,
         private OrderRepository $orders,
         private Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     public function get(OrderId $orderId): Order
     {

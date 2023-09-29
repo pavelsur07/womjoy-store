@@ -18,9 +18,7 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
 {
     public const REFERENCE_PRODUCT = 'reference-product';
 
-    public function __construct(private readonly SlugifyService $slug)
-    {
-    }
+    public function __construct(private readonly SlugifyService $slug) {}
 
     public function load(ObjectManager $manager): void
     {

@@ -12,8 +12,7 @@ final class ThumbnailPathExtension extends AbstractExtension
 {
     public function __construct(
         private readonly ThumbnailService $thumbnail
-    ) {
-    }
+    ) {}
 
     public function getFunctions(): array
     {

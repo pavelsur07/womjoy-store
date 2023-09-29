@@ -16,8 +16,7 @@ readonly class RequestEventListener implements EventSubscriberInterface
     public function __construct(
         private RequestStack $session,
         private CartService $service,
-    ) {
-    }
+    ) {}
 
     public function onKernelRequest(RequestEvent $event): void
     {

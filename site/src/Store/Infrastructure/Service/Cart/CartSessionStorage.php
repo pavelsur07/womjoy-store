@@ -15,8 +15,7 @@ readonly class CartSessionStorage
     public function __construct(
         private RequestStack $requestStack,
         private CartRepository $cartRepository,
-    ) {
-    }
+    ) {}
 
     public function getCart(): ?Cart
     {

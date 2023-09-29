@@ -6,6 +6,4 @@ namespace App\Subscriber\Domain\Exception;
 
 use DomainException;
 
-class SubscriberException extends DomainException
-{
-}
+class SubscriberException extends DomainException {}

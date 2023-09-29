@@ -25,9 +25,7 @@ class ProductAggregateRating
         $this->ratingValue = $ratingValue;
     }
 
-    public function recalculation(): void
-    {
-    }
+    public function recalculation(): void {}
 
     public function getReviewCount(): int
     {

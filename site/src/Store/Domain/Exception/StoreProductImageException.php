@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Exception;
 
-class StoreProductImageException extends StoreProductException
-{
-}
+class StoreProductImageException extends StoreProductException {}

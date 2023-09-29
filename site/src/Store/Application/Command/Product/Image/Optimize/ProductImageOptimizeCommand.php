@@ -8,8 +8,7 @@ readonly class ProductImageOptimizeCommand
 {
     public function __construct(
         private int $productId,
-    ) {
-    }
+    ) {}
 
     public function getProductId(): int
     {

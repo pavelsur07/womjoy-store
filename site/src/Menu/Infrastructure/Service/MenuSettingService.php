@@ -11,8 +11,7 @@ readonly class MenuSettingService
 {
     public function __construct(
         private MenuSettingRepository $repo,
-    ) {
-    }
+    ) {}
 
     public function getSetting(): MenuSetting
     {

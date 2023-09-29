@@ -6,6 +6,4 @@ namespace App\Matrix\Domain\Exception;
 
 use DomainException;
 
-class MatrixException extends DomainException
-{
-}
+class MatrixException extends DomainException {}

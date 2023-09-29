@@ -6,6 +6,4 @@ namespace App\Menu\Domain\Exception;
 
 use DomainException;
 
-class MenuException extends DomainException
-{
-}
+class MenuException extends DomainException {}

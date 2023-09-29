@@ -6,6 +6,4 @@ namespace App\Page\Domain\Exception;
 
 use DomainException;
 
-class PageException extends DomainException
-{
-}
+class PageException extends DomainException {}

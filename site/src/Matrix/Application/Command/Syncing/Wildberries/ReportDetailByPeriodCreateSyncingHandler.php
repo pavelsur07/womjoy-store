@@ -14,8 +14,7 @@ final readonly class ReportDetailByPeriodCreateSyncingHandler
 {
     public function __construct(
         private MessageBusInterface $bus,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Exception

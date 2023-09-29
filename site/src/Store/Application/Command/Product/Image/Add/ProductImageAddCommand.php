@@ -12,8 +12,7 @@ class ProductImageAddCommand
          * @var File[]
          */
         private array $files,
-    ) {
-    }
+    ) {}
 
     public function getProductId(): int
     {

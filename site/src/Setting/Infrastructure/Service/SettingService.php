@@ -11,8 +11,7 @@ readonly class SettingService
 {
     public function __construct(
         private SettingRepository $repo,
-    ) {
-    }
+    ) {}
 
     public function get(): Setting
     {

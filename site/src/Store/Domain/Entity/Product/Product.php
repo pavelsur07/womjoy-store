@@ -152,9 +152,7 @@ class Product
         }
     }
 
-    public function revokeAttribute(int $id): void
-    {
-    }
+    public function revokeAttribute(int $id): void {}
 
     public function getAttributes(): Collection
     {

@@ -20,8 +20,7 @@ class HomeController extends AbstractController
     public function __construct(
         private readonly HomeService $homeService,
         private readonly Flusher $flusher
-    ) {
-    }
+    ) {}
 
     #[Route(path: '/edit', name: '.edit')]
     public function edit(Request $request, Flusher $flusher): Response

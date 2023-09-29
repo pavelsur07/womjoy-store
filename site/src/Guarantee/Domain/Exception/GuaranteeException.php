@@ -6,6 +6,4 @@ namespace App\Guarantee\Domain\Exception;
 
 use DomainException;
 
-class GuaranteeException extends DomainException
-{
-}
+class GuaranteeException extends DomainException {}

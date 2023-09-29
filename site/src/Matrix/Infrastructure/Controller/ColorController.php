@@ -47,9 +47,7 @@ class ColorController extends AbstractController
         return $this->render('matrix/admin/color/create.html.twig', ['form'=> $form->createView()]);
     }
 
-    public function remove(): void
-    {
-    }
+    public function remove(): void {}
 
     #[Route(path: '/{id}/edit', name: '.edit')]
     public function edit(int $id, Color $color, Request $request, Flusher $flusher): Response

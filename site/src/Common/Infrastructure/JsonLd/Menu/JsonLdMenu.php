@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace App\Common\Infrastructure\JsonLd\Menu;
 
-class JsonLdMenu
-{
-}
+class JsonLdMenu {}

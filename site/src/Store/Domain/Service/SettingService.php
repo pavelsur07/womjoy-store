@@ -13,8 +13,7 @@ readonly class SettingService
     public function __construct(
         private SettingRepositoryInterface $repo,
         private Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     public function get(): Setting
     {

@@ -15,8 +15,7 @@ final readonly class ProductImageOptimizeHandler
         private ProductRepository $products,
         private ProductImageService $service,
         private Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     #[AsMessageHandler]
     public function __invoke(ProductImageOptimizeCommand $command): void

@@ -72,7 +72,5 @@ class VariantController extends AbstractController
         return $this->redirectToRoute('matrix.admin.product.edit', ['id'=> $productId]);
     }
 
-    public function remove(): void
-    {
-    }
+    public function remove(): void {}
 }

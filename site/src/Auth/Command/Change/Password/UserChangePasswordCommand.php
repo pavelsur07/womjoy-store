@@ -9,8 +9,7 @@ final readonly class UserChangePasswordCommand
     public function __construct(
         private string $email,
         private string $password,
-    ) {
-    }
+    ) {}
 
     public function getEmail(): string
     {

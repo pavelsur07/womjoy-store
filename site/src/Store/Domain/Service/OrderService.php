@@ -13,8 +13,7 @@ readonly class OrderService
     public function __construct(
         private OrderRepositoryInterface $orders,
         private Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     public function get(string $id): Order
     {

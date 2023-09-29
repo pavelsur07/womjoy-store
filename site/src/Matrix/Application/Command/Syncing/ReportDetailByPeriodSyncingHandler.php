@@ -13,8 +13,7 @@ readonly class ReportDetailByPeriodSyncingHandler
 {
     public function __construct(
         private ReportDetailByPeriodRepository $reports,
-    ) {
-    }
+    ) {}
 
     #[AsMessageHandler]
     public function __invoke(Message $message): void

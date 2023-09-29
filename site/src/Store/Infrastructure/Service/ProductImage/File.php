@@ -10,8 +10,7 @@ class File
         public string $path,
         public string $name,
         public int $size,
-    ) {
-    }
+    ) {}
 
     public function getPath(): string
     {

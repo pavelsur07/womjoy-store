@@ -6,6 +6,4 @@ namespace App\Common\Infrastructure\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ApiBaseController extends AbstractController
-{
-}
+class ApiBaseController extends AbstractController {}

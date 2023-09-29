@@ -18,8 +18,7 @@ class ProductCreatedForm extends AbstractType
 {
     public function __construct(
         private readonly ProductRepositoryInterface $products,
-    ) {
-    }
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
