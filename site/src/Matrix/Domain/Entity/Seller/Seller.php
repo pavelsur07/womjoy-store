@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Matrix\Domain\Entity\Company;
+namespace App\Matrix\Domain\Entity\Seller;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: '`matrix_company`')]
-class Company
+#[ORM\Table(name: '`matrix_seller`')]
+class Seller
 {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
