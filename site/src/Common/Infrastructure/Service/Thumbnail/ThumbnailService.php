@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Common\Infrastructure\Service\Thumbnail;
 
+use App\Common\Infrastructure\Service\Imgproxy\Enum\Gravity;
+use App\Common\Infrastructure\Service\Imgproxy\Enum\ResizingType;
+use App\Common\Infrastructure\Service\Imgproxy\UrlBuilder;
 use Gumlet\ImageResize;
 use Gumlet\ImageResizeException;
 use League\Flysystem\FilesystemException;
@@ -20,7 +23,9 @@ class ThumbnailService
         private readonly FilesystemOperator $defaultStorage,
         private readonly string $baseUrl,
         private readonly string $cachePathImages,
-    ) {}
+        private readonly UrlBuilder $imgproxyUrlBuilder
+    ) {
+    }
 
     /**
      * @throws FilesystemException
@@ -52,6 +57,7 @@ class ThumbnailService
         fclose($tmp);
 
         $fileSize = $this->defaultStorage->fileSize($path . '/' . $name);
+
         return new File(
             path: $path,
             name: $name,
@@ -100,6 +106,7 @@ class ThumbnailService
         fclose($tmp);
 
         $fileSize = $this->defaultStorage->fileSize($outputPath . '/' . $name);
+
         return new File(
             path: $path,
             name: $name,
@@ -119,40 +126,58 @@ class ThumbnailService
         int $height = 0,
         int $type = self::JPG,
     ): File {
-        $fullName = $path . '/' . $inputName;
 
-        $tmp = tmpfile();
-        $file = $this->defaultStorage->read($fullName);
-        fwrite($tmp, $file);
+        // собираем путь до оригинальной загруженной картинки
+        $url = sprintf('%s/%s/%s', $this->baseUrl, $path, $inputName);
 
-        $image = new ImageResize(stream_get_meta_data($tmp)['uri']);
-        // $image->resize($width, $height, true);
+        // собираем ссылку на imgproxy
+        $imgproxy = $this->imgproxyUrlBuilder->build(
+            url: $url,
+            width: $width,
+            height: $height,
+            resizingType: ResizingType::Fit,
+            gravity: Gravity::Smart,
+            extension: match ($type) {
+                self::JPG => 'jpg',
+                self::WEBP => 'webp',
+                default => null,
+            },
+        );
 
-        $image->crop($width, $height);
-        $stream = fopen('php://memory', 'wrb+');
+        // Получаем содержимое изображения по URL
+        $data = file_get_contents(
+            $url = $imgproxy->getUrl()
+        );
 
-        $name = explode('.', $inputName)[0] . '.jpg';
+        // открываем и пишем содержимое в tmpfile
+        fwrite($tmp = tmpfile(), $data);
 
-        switch ($type) {
-            case self::JPG:
-                $image->save($stream, IMAGETYPE_JPEG, self::QUALITY);
-                $this->defaultStorage->createDirectory($outputPath);
-                $this->defaultStorage->writeStream($outputPath . '/' . $name, $stream);
-                break;
-            case self::WEBP:
-                $image->save($stream, IMAGETYPE_WEBP, self::QUALITY);
-                $this->defaultStorage->createDirectory($outputPath);
-                $this->defaultStorage->writeStream($outputPath . '/' . $name . '.webp', $stream);
+        // собираем имя
+        $filename = sprintf(
+            '%s.%s',
+            $name = pathinfo($inputName, PATHINFO_FILENAME),
+            pathinfo($url, PATHINFO_EXTENSION)
+        );
+
+        if ($type === self::WEBP) {
+            $filename = sprintf('%s.webp', $inputName);
         }
 
-        fclose($stream);
+        $this->defaultStorage->createDirectory($outputPath);
+        $this->defaultStorage->writeStream(
+            sprintf('%s/%s', $outputPath, $filename), $tmp
+        );
+
+        $filesize = $this->defaultStorage->fileSize(
+            sprintf('%s/%s', $outputPath, $filename)
+        );
+
         fclose($tmp);
 
-        $fileSize = $this->defaultStorage->fileSize($outputPath . '/' . $name);
         return new File(
             path: $path,
             name: $name,
-            size: $fileSize
+            size: $filesize
         );
     }
 
@@ -178,8 +203,10 @@ class ThumbnailService
             if (file_put_contents($filePath, $imageData)) {
                 return $filePath; // Возвращаем путь сохраненного файла
             }
+
             return false; // В случае ошибки возвращаем false
         }
+
         return false; // В случае ошибки загрузки изображения возвращаем false
     }
 

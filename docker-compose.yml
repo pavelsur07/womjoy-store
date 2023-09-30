@@ -10,7 +10,15 @@ services:
       - "80:80"
       - "8080:8080"
     networks:
-      - traefik-public
+      traefik-public:
+        aliases:
+          - imgproxy.localhost
+          - storage.localhost
+      default:
+        aliases:
+          - imgproxy.localhost
+          - storage.localhost
+
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
