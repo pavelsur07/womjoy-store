@@ -2,18 +2,18 @@
 {% else %}
     {% if rating == 0 %}
         {% for i in 1..5 %}
-            <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
+            <img src="{{ asset('./default/img/icons/star.svg') }}" alt="star" width="16" height="16">
         {% endfor %}
     {% else %}
         {% set dis = 5-rating %}
         {% for i in 1..rating %}
-            <img src="{{ asset('./img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
+            <img src="{{ asset('./default/img/icons/star-active.svg') }}" alt="star active" width="16" height="16">
 
 
         {% endfor %}
         {% if dis > 0 %}
             {% for i in 1..dis %}
-                <img src="{{ asset('./img/icons/star.svg') }}" alt="star" width="16" height="16">
+                <img src="{{ asset('./default/img/icons/star.svg') }}" alt="star" width="16" height="16">
             {% endfor %}
         {% endif %}
     {% endif %}

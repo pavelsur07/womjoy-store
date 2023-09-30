@@ -43,7 +43,7 @@ const CartItem = ({ item }) => {
                         type="button"
                         onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                     >
-                        <img src="/img/icons/minus.svg" alt="minus" width="24" height="24" />
+                        <img src="/img_/icons/minus.svg" alt="minus" width="24" height="24" />
                     </button>
                     <input type="text" className="c-item__inp" readOnly={true} value={item.quantity} />
                     <button
@@ -51,7 +51,7 @@ const CartItem = ({ item }) => {
                         type="button"
                         onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                     >
-                        <img src="/img/icons/plus.svg" alt="plus" width="24" height="24" />
+                        <img src="/img_/icons/plus.svg" alt="plus" width="24" height="24" />
                     </button>
                 </div>
                 <div className="c-item__price">
@@ -60,7 +60,7 @@ const CartItem = ({ item }) => {
                 </div>
                 <div className="c-item__remove">
                     <button type="button" className="cart__clear" onClick={() => handleRemoveFromCart(item.id)}>
-                        <img src="/img/icons/remove.svg" alt="remove item" width="24" height="24" />
+                        <img src="/img_/icons/remove.svg" alt="remove item" width="24" height="24" />
                     </button>
                 </div>
             </div>

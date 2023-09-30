@@ -61,7 +61,7 @@
                         {{ order.createdAt| date('d-m-Y') }} <br>
                         {{ order.createdAt| date('H:i:s') }}
                     </td>
-                    <td> {{ order.currentStatus }}  </td>
+                    <td> {{  store_order_status(order.currentStatus) }}  </td>
                     <td> {{ order.customer.name }}  </td>
                     <td> {{ order.customer.email }} </td>
                     <td> {{ order.delivery.address }} <br> <strong>PVZ</strong> </td>

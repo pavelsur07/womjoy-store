@@ -30,7 +30,7 @@
                     <label class="g-form__photo">
                         {{ form_widget(form.files,{'attr': {'hidden': true, 'multiple': true }}) }}
                         <span class="g-form__photo_main">
-                                <img src="{{ asset('./img/icons/photo.svg') }}" alt="photo" width="24" height="24">
+                                <img src="{{ asset('./default/img/icons/photo.svg') }}" alt="photo" width="24" height="24">
                             </span>
                         <span class="g-form__photo_descr">Прикрепите до 4 фотографий с дефектом</span>
                     </label>
@@ -58,13 +58,13 @@
                     <div class="g-form__checks">
                         <label class="g-form__check">
                             {{ form_widget(form.isConfirm,{'attr': {'hidden': true}}) }}
-                            <span><img src="{{ asset('./img/icons/check-white.svg') }}" alt="check white"></span>
+                            <span><img src="{{ asset('./default/img/icons/check-white.svg') }}" alt="check white"></span>
                             Согласен с условиями Правил пользования торговой площадкой
                         </label>
                         <label class="g-form__check">
                             <input type="checkbox" hidden checked>
                             {{ form_widget(form.isSubscribe,{'attr': {'hidden': true}}) }}
-                            <span><img src="{{ asset('./img/icons/check-white.svg') }}" alt="check white"></span>
+                            <span><img src="{{ asset('./default/img/icons/check-white.svg') }}" alt="check white"></span>
                             Подпишитесь и получайте промокоды, акции и подборки товаров
                         </label>
                     </div>

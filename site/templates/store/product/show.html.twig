@@ -11,7 +11,7 @@
                 <div class="i-card__images">
                     {#<span class="i-card__sellout">Распродажа</span>#}
                     <a href="#" class="i-card__back">
-                        <img src="{{ asset('./img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
+                        <img src="{{ asset('./default/img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
                     </a>
 
                     <div class="i-card__slider">
@@ -86,7 +86,7 @@
                         <div class="i-card__size_top">
                             <span class="gray">Размер</span>
                             <div class="i-card__size_table call-modal" data-target="card-sizes">
-                                <img src="{{ asset('./img/icons/ruler.svg') }}" alt="ruler size" width="20" height="20">
+                                <img src="{{ asset('./default/img/icons/ruler.svg') }}" alt="ruler size" width="20" height="20">
                                 Таблица размеров
                             </div>
                         </div>
@@ -165,11 +165,11 @@
 
                     <div class="i-card__btns">
                         <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary {#call-modal#} add-to-cart-action" type="button" data-target="card-success" data-variant-id>
-                            <img src="{{ asset('./img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
+                            <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
                             <span>В корзину</span>
                         </button>
                         <button class="i-card__graybtn" type="button">
-                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
+                            <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
                             <span>В избранное</span>
                         </button>
                     </div>
@@ -193,11 +193,11 @@
                     </div>#}
                     <div class="i-card__more">
                         <div class="i-card__delivery">
-                            <img src="{{ asset('./img/icons/trace.svg') }}" alt="delivery" width="24" height="24">
+                            <img src="{{ asset('./default/img/icons/trace.svg') }}" alt="delivery" width="24" height="24">
                             Доставка 1-2 дня
                         </div>
                         <button class="i-card__mobfav" type="button">
-                            <img src="{{ asset('./img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
+                            <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
                             В избранное
                         </button>
                     </div>
@@ -216,10 +216,10 @@
                             <div class="i-card__faq_answer">
                                 <p>Состав: полиэстер, эластан</p>
                                 <ul class="i-card__faq_icons">
-                                    <li><img src="{{ asset('./img/icons/card-faq-icon-1.svg') }}" alt="" width="32" height="32"></li>
-                                    <li><img src="{{ asset('./img/icons/card-faq-icon-2.svg') }}" alt="" width="32" height="32"></li>
-                                    <li><img src="{{ asset('./img/icons/card-faq-icon-3.svg') }}" alt="" width="32" height="32"></li>
-                                    <li><img src="{{ asset('./img/icons/card-faq-icon-4.svg') }}" alt="" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-1.svg') }}" alt="" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-2.svg') }}" alt="" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-3.svg') }}" alt="" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-4.svg') }}" alt="" width="32" height="32"></li>
                                 </ul>
                                 <p>Бережная стирка при 30 градусах, отбеливание запрещено, глажка запрещена, химическая чистка запрещена</p>
                             </div>
@@ -240,7 +240,7 @@
         <div class="modal" id="card-sizes">
             <div class="modal__bg"></div>
             <div class="modal__content modal__content-lg">
-                <button class="modal__close" type="button"><img src="{{ asset('./img/icons/close-black.svg') }}" alt="close black" width="24" height="24"></button>
+                <button class="modal__close" type="button"><img src="{{ asset('./default/img/icons/close-black.svg') }}" alt="close black" width="24" height="24"></button>
                 <div class="size-table">
                     <div class="size-table__titles">
                         <p class="size-table__title active">Подберите свой <br>точный размер</p>
@@ -371,7 +371,7 @@
         <div class="modal modal-dark" id="card-inform">
             <div class="modal__bg"></div>
             <div class="modal__content modal__content-lg">
-                <button class="modal__close" type="button"><img src="{{ asset('./img/icons/close-white.svg') }}" alt="close white" width="24" height="24"></button>
+                <button class="modal__close" type="button"><img src="{{ asset('./default/img/icons/close-white.svg') }}" alt="close white" width="24" height="24"></button>
                 <div class="inform">
                     <div class="inform__top">
                         <p class="inform__title">Будем держать в курсе</p>
@@ -388,7 +388,7 @@
                         <label class="inform__check">
                             <input type="checkbox" checked hidden>
                             <span class="inform__check_sq">
-                            <img src="{{ asset('./img/icons/check-black.svg') }}" alt="check black" width="18" height="18">
+                            <img src="{{ asset('./default/img/icons/check-black.svg') }}" alt="check black" width="18" height="18">
                         </span>
                             Согласен с условиями Правил пользования торговой площадкой
                         </label>

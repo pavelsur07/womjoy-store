@@ -46,7 +46,7 @@ const Delivery = () => {
                     <div className="pvz-block">
                         <div className="pvz-block__text">
                             <div className="pvz-block__title">
-                                Пункт выдачи СДЭК <img src="/img/icons/sdek-check.svg" alt="" width="24" height="24" />
+                                Пункт выдачи СДЭК <img src="/img_/icons/sdek-check.svg" alt="" width="24" height="24" />
                             </div>
                             <div className="pvz-block__info">
                                 {/*<span className="pvz-block__cost">500 ₽</span>*/}
@@ -75,7 +75,7 @@ const Delivery = () => {
                     <div className="modal__bg"></div>
                     <div className="modal__content" style={{ width: '80%' }}>
                         <button className="modal__close" type="button"  onClick={() => hideChoicePickupPoint()}>
-                            <img src="/img/icons/close-black.svg" alt="" width="24" height="24"/>
+                            <img src="/img_/icons/close-black.svg" alt="" width="24" height="24"/>
                         </button>
 
                         <h2 className="modal__title">

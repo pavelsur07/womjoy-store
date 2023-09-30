@@ -34,7 +34,7 @@ const Cart = () => {
                 <h1 className="cart__title title-xl">{t('Cart')}</h1>
 
                 <button className="cart__clear" type="button" onClick={handleClearCart}>
-                    <img src="/img/icons/cart-remove.svg" alt="cart remove" width="20" height="20" />
+                    <img src="/img_/icons/cart-remove.svg" alt="cart remove" width="20" height="20" />
                     Очистить корзину
                 </button>
             </div>

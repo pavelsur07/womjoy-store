@@ -21,7 +21,7 @@
 {%- block previous_page_link -%}
     <li class="page-item">
         <a class="page-link pagination__prev" href="{{- path -}}" rel="prev">
-            <img src="{{ asset('./img/icons/arrow-left-tail.svg') }}" alt="arrow left" width="24" height="24">
+            <img src="{{ asset('./default/img/icons/arrow-left-tail.svg') }}" alt="arrow left" width="24" height="24">
             {#{{- block('previous_page_message') -}}#}
         </a>
     </li>
@@ -37,7 +37,7 @@
     <li class="page-item">
         <a class="page-link pagination__next" href="{{- path -}}" rel="next">
             {#{{- block('next_page_message') -}}#}
-            <img src="{{ asset('./img/icons/arrow-right-2.svg') }}" alt="arrow right" width="24" height="24">
+            <img src="{{ asset('./default/img/icons/arrow-right-2.svg') }}" alt="arrow right" width="24" height="24">
         </a>
     </li>
 {%- endblock next_page_link -%}

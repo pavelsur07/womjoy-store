@@ -26,9 +26,9 @@ const Payment = () => {
                     <div className="pay-method__top">
                         <span className="pay-method__name">{payment_list.online.name}</span>
                         <div className="pay-method__imgs">
-                            <img src="/img/icons/mc.svg" alt="" width="45" height="32" />
-                            <img src="/img/icons/mir.svg" alt="" width="45" height="32"/>
-                            <img src="/img/icons/visa.svg" alt="" width="45" height="32"/>
+                            <img src="/img_/icons/mc.svg" alt="" width="45" height="32" />
+                            <img src="/img_/icons/mir.svg" alt="" width="45" height="32"/>
+                            <img src="/img_/icons/visa.svg" alt="" width="45" height="32"/>
                         </div>
                     </div>
                     <span className="gray">{payment_list.online.description}</span>
