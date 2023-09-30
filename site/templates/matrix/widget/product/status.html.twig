@@ -1,15 +1,15 @@
 {% if status == 'draft' %}
-    <span class="badge badge-secondary">{{ 'draft'|trans|raw }}</span>
+    <span class="badge badge-secondary text-secondary-fg">{{ 'draft'|trans|raw }}</span>
 {% elseif status == 'development' %}
-    <span class="badge bg-indigo">{{ 'development'|trans|raw }}</span>
+    <span class="badge bg-indigo text-indigo-fg">{{ 'development'|trans|raw }}</span>
 {% elseif status == 'ready-development' %}
-    <span class="badge bg-purple">{{ 'ready-development'|trans|raw }}</span>
+    <span class="badge bg-purple text-purple-fg">{{ 'ready-development'|trans|raw }}</span>
 {% elseif status == 'wait-sale' %}
-    <span class="badge bg-pink">{{ 'wait-sale'|trans|raw }}</span>
+    <span class="badge bg-pink text-pink-fg">{{ 'wait-sale'|trans|raw }}</span>
 {% elseif status == 'ready-sale' %}
-    <span class="badge bg-yellow">{{ 'ready-sale'|trans|raw }}</span>
+    <span class="badge bg-yellow text-yellow-fg">{{ 'ready-sale'|trans|raw }}</span>
 {% elseif status == 'sale' %}
-    <span class="badge bg-green">{{ 'sale'|trans|raw }}</span>
+    <span class="badge bg-green text-green-fg">{{ 'sale'|trans|raw }}</span>
 {% elseif status == 'archived' %}
-    <span class="badge bg-orange">{{ 'archived'|trans|raw }}</span>
+    <span class="badge bg-orange text-orange-fg">{{ 'archived'|trans|raw }}</span>
 {% endif %}

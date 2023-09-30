@@ -42,6 +42,29 @@ class FileUploader
     /**
      * @throws FilesystemException
      */
+    public function uploadByUrl(string $url, string $path, string $extension): ?File
+    {
+        $content = file_get_contents($url);
+
+        if ($content) {
+            $fileName = FilenameGenerator::generate($path, $extension);
+            $baseName = $fileName . '.' . $extension;
+
+            $orig = $path . '/' . $baseName;
+
+            $f = fopen($orig, 'wb');
+            $this->storage->writeStream($path . '/' . $fileName, $f);
+            fclose($f);
+
+            return new File($path, $fileName, 0 /*$file->getSize()*/);
+        }
+        return null;
+    }
+
+
+    /**
+     * @throws FilesystemException
+     */
     public function write(string $content, string $file, ?string $patch = null): void
     {
         if ($patch !== null) {
