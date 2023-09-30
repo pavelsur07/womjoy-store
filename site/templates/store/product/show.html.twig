@@ -207,7 +207,7 @@
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Описание</div>
                             <div class="i-card__faq_answer" itemprop="description">
-                                <p>{{ product.description }}</p>
+                                <p>{{ product.description | raw }}</p>
                             </div>
                         </div>
 
@@ -403,60 +403,9 @@
     {{ encore_entry_script_tags('store_product') }}
 
     <script type="text/javascript">
-        // function pushStoreMetrika(action, productIds) {
-        //     const options = {
-        //         method: 'POST',
-        //         body: JSON.stringify({ action: action, products: productIds })
-        //     };
-        //
-        //     fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
-        //         window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
-        //     });
-        // }
-
         document.addEventListener('DOMContentLoaded', function () {
-            // Доступные события:
-            //
-            // impression — просмотр списка товаров;
-            // detail — просмотр товара;
-            // add — добавление товара в корзину;
-            // remove — удаление товара из корзины;
-            // purchase — покупка;
             pushStoreMetrika('detail', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
         })
-
-        // Нужные события
-        // impression — просмотр списка товаров;
-        // detail — просмотр товара;
-        // add — добавление товара в корзину;
-        // remove — удаление товара из корзины;
-        // purchase — покупка;
-
-        // _ym_uid
-
-        // ...
-        // Используем метод push для добавления Ecommerce-объекта
-        // window.dataLayer.push(
-        //     // Ecommerce-объект
-        //     {
-        //         "ecommerce": {
-        //             "currencyCode": "RUB",
-        //             "detail": {
-        //                 "products": [
-        //                     {
-        //                         "id": "P15432",
-        //                         "name" : "Футболка",
-        //                         "price": 477.60,
-        //                         "brand": "Яндекс / Яndex",
-        //                         "category": "Одежда/Мужская одежда/Футболки",
-        //                         "variant" : "Красный цвет",
-        //                         "list": "Результаты поиска",
-        //                         "position": 1
-        //                     }
-        //                 ]
-        //             }
-        //         }
-        //     }
-        // );
     </script>
+
 {% endblock %}
