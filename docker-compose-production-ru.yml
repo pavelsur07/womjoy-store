@@ -49,8 +49,8 @@ services:
     image: darthsim/imgproxy:latest
     environment:
 #      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
-      IMGPROXY_KEY: 'hex-encoded-key'
-      IMGPROXY_SALT: 'hex-encoded-salt'
+#      IMGPROXY_KEY: 'hex-encoded-key'
+#      IMGPROXY_SALT: 'hex-encoded-salt'
     networks:
       - traefik-public
       - default
