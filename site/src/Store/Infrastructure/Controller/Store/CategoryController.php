@@ -74,21 +74,24 @@ class CategoryController extends BaseController
 
         $filters = [];
 
+        /** @deprecated  */
         /** @var AttributeAssignment $attribute */
         foreach ($category->getAttributes() as $attribute) {
-            $filters[] = [
-                'id' => $attribute->getAttribute()->getId(),
-                'name' => $attribute->getAttribute()->getName(),
-                'items' => array_map(
-                    static function (Variant $value) {
-                        return [
-                            'id' => $value->getId(),
-                            'name' =>  $value->getName(),
-                        ];
-                    },
-                    $attribute->getAttribute()->getVariants()->toArray()
-                ),
-            ];
+            if ($attribute->getAttribute()->isVisibleFilter()) {
+                $filters[] = [
+                    'id' => $attribute->getAttribute()->getId(),
+                    'name' => $attribute->getAttribute()->getName(),
+                    'items' => array_map(
+                        static function (Variant $value) {
+                            return [
+                                'id' => $value->getId(),
+                                'name' =>  $value->getName(),
+                            ];
+                        },
+                        $attribute->getAttribute()->getVariants()->toArray()
+                    ),
+                ];
+            }
         }
 
         return $this->render(

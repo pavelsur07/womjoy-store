@@ -8,6 +8,7 @@ use App\Matrix\Domain\Entity\Syncing\Key\Key;
 use App\Matrix\Infrastructure\Repository\Syncing\KeyRepository;
 use App\Matrix\Infrastructure\Wildberries\HttpRequest;
 use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
+use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
 use DateTimeImmutable;
@@ -123,6 +124,19 @@ class DashboardController extends AbstractController
     {
         $market->setProperty(company: 'WOMJOY', name: 'ВУМДЖОЙ ООО', url: 'https://womjoy.ru');
         $market->generate();
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
+
+    /**
+     * @throws ExceptionInterface
+     */
+    #[Route(path: '/admin/category/update-filter', name: 'admin.dashboard.category.update.filter', methods: ['GET'])]
+    public function updateFilter(CategoryUpdateFilterCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
         return $this->redirectToRoute('admin.dashboard.show');
     }
 

@@ -7,6 +7,7 @@
     </div>
     <div class="filter__rows">
 
+        {# Deprecated
         {% for filter in filters %}
             <div class="filter__row">
                 <span class="filter__name">{{ filter.name }}</span>
@@ -27,6 +28,7 @@
                 </ul>
             </div>
         {% endfor %}
+        #}
 
         {% for filter in category.filters %}
             <div class="filter__row">
