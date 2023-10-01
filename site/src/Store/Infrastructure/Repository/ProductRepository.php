@@ -79,7 +79,7 @@ class ProductRepository
         return $qb->getQuery()->toIterable();
     }
 
-    public function listByCategoryQueryBuilder(Category $category, ?string $sort, ?string $direction = 'asc'): QueryBuilder
+    public function listByCategoryQueryBuilder(Category $category, ?string $sort, ?string $direction = 'asc', array $filterIds = []): QueryBuilder
     {
         $qb = $this->em->createQueryBuilder()
             ->select('p')
@@ -88,6 +88,10 @@ class ProductRepository
             ->setParameter('ids', $category->getIds() . '%')
             ->andWhere('p.status.value = :status_value')
             ->setParameter('status_value', ProductStatus::ACTIVE);
+
+        if (count($filterIds) > 0 ) {
+            // Добавить фильтрацию товаров по характеристикам
+        }
 
         if ($sort) {
             $qb->orderBy($sort, $direction);
