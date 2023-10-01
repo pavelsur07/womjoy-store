@@ -138,9 +138,9 @@ services:
   
   imgproxy:
     image: darthsim/imgproxy:latest
-#    environment:
-#      IMGPROXY_KEY: 'hex-encoded-key'
-#      IMGPROXY_SALT: 'hex-encoded-salt'
+    environment:
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
     networks:
       - traefik-public
       - default
