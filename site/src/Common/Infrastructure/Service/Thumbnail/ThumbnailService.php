@@ -116,7 +116,6 @@ class ThumbnailService
 
     /**
      * @throws FilesystemException
-     * @throws ImageResizeException
      */
     public function createThumbnailImgproxy(
         string $path,

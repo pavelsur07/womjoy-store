@@ -11,48 +11,40 @@
                 <div class="i-card__images">
                     {#<span class="i-card__sellout">Распродажа</span>#}
                     <a href="#" class="i-card__back">
-                        <img src="{{ asset('./default/img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
+                        <img src="{{ asset('./default/img/icons/arrow-left-tail.svg') }}" alt="" width="24" height="24">
                     </a>
-
-                    <div class="i-card__slider">
-                        <div class="i-card-swiper swiper">
-                            <div class="swiper-wrapper">
-                                {% set number=1 %}
-                                {% for image in product.images %}
-
-                                    <div class="i-card__slide swiper-slide">
-                                        <div class="i-card__slide_img">
-
-                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} image N {{ number }} " width="598" height="798">
-
-                                        </div>
-                                    </div>
-
-                                    {% set number=number+1 %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="i-card__smslider">
-                        <div class="i-card-smswiper swiper">
-                            <div class="swiper-wrapper">
-                                {% set number=1 %}
-                                {% for image in product.images %}
-
-                                    <div class="i-card__smslide swiper-slide">
-                                        <div class="i-card__smslide_img">
+                    <div class="i-card__sliders">
+                        <div class="i-card__smslider">
+                            <div class="i-card-smswiper swiper">
+                                <div class="swiper-wrapper">
+                                    {% set number=1 %}
+                                    {% for image in product.images.toArray %}
+                                        <div class="i-card__smslide swiper-slide">
                                             <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt=" Thumbnail {{ product.name }} image N {{ number }} " width="83" height="111">
                                         </div>
-                                    </div>
-
-                                    {% set number=number+1 %}
-                                {% endfor %}
+                                        {% set number=number+1 %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="i-card__slider">
+                            <div class="i-card-swiper swiper">
+                                <div class="swiper-wrapper">
+                                    {% set number=1 %}
+                                    {% for image in product.images %}
+                                        <div class="i-card__slide swiper-slide">
+                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} image N {{ number }} " width="598" height="798">
+                                        </div>
+                                        {% set number=number+1 %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
+
+
                 <div class="i-card__main">
 
                     <h1 class="i-card__title" itemprop="name">{{ product.name }}</h1>
@@ -117,27 +109,6 @@
                         </div>
                     </div>
 
-                    {#<div class="i-card__color">
-                        <span class="i-card__color_title">Цвет</span>
-                        <div class="i-card__color_items">
-                            <label class="i-card__color_item">
-                                <input type="radio" name="card-color" checked hidden>
-                                <span style="background-color: #9EDFE5;"></span>
-                            </label>
-                            <label class="i-card__color_item">
-                                <input type="radio" name="card-color" hidden>
-                                <span style="background-color: #6E72A8;"></span>
-                            </label>
-                            <label class="i-card__color_item">
-                                <input type="radio" name="card-color" hidden>
-                                <span style="background-color: #3740B4;"></span>
-                            </label>
-                            <label class="i-card__color_item">
-                                <input type="radio" name="card-color" hidden>
-                                <span style="background-color: #A8AAB6;"></span>
-                            </label>
-                        </div>
-                    </div>#}
 
                     <div class="i-card__price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
                         <meta itemprop="priceCurrency" content={{ product.price.currency}} />
@@ -173,24 +144,7 @@
                             <span>В избранное</span>
                         </button>
                     </div>
-                    {#   <div class="i-card__btns">
-                        <button class="i-card__greenbtn btn-primary" type="button">
-                            Оформить предзаказ
-                        </button>
-                        <button class="i-card__graybtn" type="button">
-                            <img src="./img/icons/favourite.svg" alt="" width="20" height="20">
-                            В избранное
-                        </button>
-                    </div>
-                    <div class="i-card__btns">
-                        <button class="i-card__greenbtn btn-primary call-modal" type="button" data-target="card-inform">
-                            Сообщить о поступлении
-                        </button>
-                        <button class="i-card__graybtn" type="button">
-                            <img src="./img/icons/favourite.svg" alt="" width="20" height="20">
-                            В избранное
-                        </button>
-                    </div>#}
+
                     <div class="i-card__more">
                         <div class="i-card__delivery">
                             <img src="{{ asset('./default/img/icons/trace.svg') }}" alt="delivery" width="24" height="24">
