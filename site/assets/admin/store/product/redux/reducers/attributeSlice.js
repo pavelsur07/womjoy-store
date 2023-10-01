@@ -29,7 +29,7 @@ const attributeSlice  = createSlice({
             )
             item.values = values
 
-            console.log(state.items)
+            console.log(state)
         },
     },
     extraReducers: {

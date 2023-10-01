@@ -26,7 +26,13 @@ export function AttributeItem({id, name, type,defaultValue }) {
     const onChangeSelectHandler = (attributeId, values) => {
         dispatch(changeValueCharacteristic({attributeId: attributeId, values: values }))
 
-        console.log(attributeId + '  ' + values)
+        console.log(values)
+    }
+
+    const onChangeSelectSingleChoiceHandler = (attributeId, values) => {
+        dispatch(changeValueCharacteristic({attributeId: attributeId, values: [values] }))
+
+        console.log([values])
     }
 
 
@@ -57,7 +63,7 @@ export function AttributeItem({id, name, type,defaultValue }) {
                     classNamePrefix="select"
                     defaultValue={defaultValue}
                     onMenuOpen={() => onMenuOpenHandler(id)}
-                    onChange={(values)=>onChangeSelectHandler(id, values)}
+                    onChange={(values)=>onChangeSelectSingleChoiceHandler(id, values)}
                     name={id}
                     id={id}
                     options={selectOptions}
@@ -72,7 +78,7 @@ export function AttributeItem({id, name, type,defaultValue }) {
                     classNamePrefix="select"
                     defaultValue={defaultValue}
                     onMenuOpen={() => onMenuOpenHandler(id)}
-                    onChange={(values)=>onChangeSelectHandler(id, values)}
+                    onChange={(values)=>onChangeSelectSingleChoiceHandler(id, values)}
                     name={id}
                     id={id}
                     options={selectOptions}
@@ -87,7 +93,7 @@ export function AttributeItem({id, name, type,defaultValue }) {
                     classNamePrefix="select"
                     defaultValue={defaultValue}
                     onMenuOpen={() => onMenuOpenHandler(id)}
-                    onChange={(values)=>onChangeSelectHandler(id, values)}
+                    onChange={(values)=>onChangeSelectSingleChoiceHandler(id, values)}
                     name={id}
                     id={id}
                     options={selectOptions}

@@ -47,6 +47,27 @@ class AttributeController extends AbstractController
         $product = $products->get($id);
         $product->clearAttributes();
 
-        return $this->json([]);
+
+
+
+        $product = $products->get($id);
+        $result = [];
+
+        /** @var AttributeAssignment $item */
+        foreach ($product->getMainCategory()->getAttributes() as $item) {
+            $result[] = [
+                'attribute_id' => $item->getAttribute()->getId(),
+                'name' => $item->getAttribute()->getName(),
+                'type' => $item->getAttribute()->getType(),
+                'values' => [],
+            ];
+        }
+
+        return $this->json([
+            'message' => 'success',
+            'id' => $id,
+            'name' => 'Name',
+            'items' => $result,
+        ]);
     }
 }

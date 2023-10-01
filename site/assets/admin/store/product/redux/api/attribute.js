@@ -22,21 +22,17 @@ export const pushChangedAttributeProduct = createAsyncThunk(
     async function (productId, { rejectWithValue, dispatch, getState }) {
         const attributes = getState().attributes.items
 
-        try {
-            const result = {
-                product_id: productId,
-                attributes: attributes
-                    .map((attribute) =>
-                        attribute.values.map((value) => ({
-                            attribute_id: attribute.attribute_id,
-                            variant_id: value.value,
-                            custom_value: null,
-                        }))
-                    )
-                    .flat(),
+        const result = {
+            product_id: productId,
+            attributes: attributes.map((item) =>
+                item.values.map((value) =>  ({
+                    attribute_id: item.attribute_id,
+                    variant_id: value.value
+                }))).flat()
             }
 
-            const response = await fetch(`/api/v1/products/${productId}/attributes/edit`, {
+        try {
+            const response = await fetch(`/api/v1/product/${productId}/attribute/edit`, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -48,7 +44,10 @@ export const pushChangedAttributeProduct = createAsyncThunk(
                 throw new Error('Can\t changed attributes. Server error')
             }
 
-            /* const data = await response.json() */
+            const data = await response.json()
+            console.log(data)
+
+            return await response.json()
         } catch (e) {
             return rejectWithValue(e.message)
         }
