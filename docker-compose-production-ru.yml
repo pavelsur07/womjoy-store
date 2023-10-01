@@ -45,25 +45,26 @@ services:
       placement:
         constraints: [ node.role == manager ]
         
-#  imgproxy:
-#    image: darthsim/imgproxy:latest
-    #    environment:
-    #      IMGPROXY_KEY: 'hex-encoded-key'
-    #      IMGPROXY_SALT: 'hex-encoded-salt'
-#    networks:
-#      - traefik-public
-#      - default
-#    labels:
-#      - traefik.enable=true
-#      - traefik.docker.network=traefik-public
-#      - traefik.http.routers.imgproxy.rule=Host(`imgproxy.womjoy.ru`)
-#      - traefik.http.services.imgproxy.loadBalancer.server.port=8080
-#      - traefik.http.routers.imgproxy.entryPoints=https
-#      - traefik.http.routers.imgproxy.tls=true
-#      - traefik.http.routers.imgproxy.tls.certResolver=letsEncrypt
-#    deploy:
-#      placement:
-#        constraints: [ node.role == manager ]
+  imgproxy:
+    image: darthsim/imgproxy:latest
+    environment:
+#      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
+    networks:
+      - traefik-public
+      - default
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.http.routers.imgproxy.rule=Host(`imgproxy.womjoy.ru`)
+        - traefik.http.services.imgproxy.loadBalancer.server.port=8080
+        - traefik.http.routers.imgproxy.entryPoints=https
+        - traefik.http.routers.imgproxy.tls=true
+        - traefik.http.routers.imgproxy.tls.certResolver=letsEncrypt
+      placement:
+        constraints: [ node.role == manager ]
   
   site:
     image: ${REGISTRY}/site:${IMAGE_TAG}
@@ -113,6 +114,9 @@ services:
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
     deploy:
       mode: replicated
       replicas: 2
@@ -143,6 +147,9 @@ services:
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
     deploy:
       restart_policy:
@@ -175,6 +182,9 @@ services:
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
     deploy:
       mode: replicated
