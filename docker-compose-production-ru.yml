@@ -47,7 +47,7 @@ services:
         
   imgproxy:
     image: darthsim/imgproxy:latest
-    environment:
+#    environment:
 #      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
 #      IMGPROXY_KEY: 'hex-encoded-key'
 #      IMGPROXY_SALT: 'hex-encoded-salt'
@@ -183,8 +183,8 @@ services:
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
       IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
-      IMGPROXY_KEY: 'hex-encoded-key'
-      IMGPROXY_SALT: 'hex-encoded-salt'
+#      IMGPROXY_KEY: 'hex-encoded-key'
+#      IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
     deploy:
       mode: replicated
