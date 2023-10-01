@@ -56,11 +56,10 @@ class FileUploader
             $this->storage->writeStream($path . '/' . $fileName, $f);
             fclose($f);
 
-            return new File($path, $fileName, 0 /*$file->getSize()*/);
+            return new File($path, $fileName, 0 /* $file->getSize() */);
         }
         return null;
     }
-
 
     /**
      * @throws FilesystemException

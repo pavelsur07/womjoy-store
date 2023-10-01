@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Infrastructure\Twig;
 
 use Twig\Environment;
