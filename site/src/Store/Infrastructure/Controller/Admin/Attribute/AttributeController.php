@@ -57,6 +57,7 @@ class AttributeController extends AbstractController
             [
                 'name' => $attribute->getName(),
                 'type' => $attribute->getType(),
+                'isVisibleFilter' => $attribute->isVisibleFilter(),
             ]
         );
         $form->handleRequest($request);
@@ -84,6 +85,8 @@ class AttributeController extends AbstractController
                         $attribute->colorTypeActive();
                     }
                 }
+
+                $attribute->setIsVisibleFilter($data['isVisibleFilter']);
 
                 $flusher->flush();
                 $this->addFlash('success', 'Success attribute edit');

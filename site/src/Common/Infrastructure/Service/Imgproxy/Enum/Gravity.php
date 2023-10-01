@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Common\Infrastructure\Service\Imgproxy\Enum;
 
 /**
- * @link https://docs.imgproxy.net/generating_the_url?id=gravity
+ * @see https://docs.imgproxy.net/generating_the_url?id=gravity
  */
 enum Gravity: string
 {

@@ -21,7 +21,8 @@ class AttributeEditForm extends AbstractType
                 'Multi choice' => Attribute::TYPE_MULTI_CHOICE,
                 'Brand/Manufacture' =>Attribute::TYPE_BRAND,
                 'Color' => Attribute::TYPE_COLOR,
-            ]]);
+            ]])
+            ->add('isVisibleFilter', Type\CheckboxType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

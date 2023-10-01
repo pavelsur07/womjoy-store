@@ -11,16 +11,9 @@ use InvalidArgumentException;
 
 class OptionSet
 {
-    const TRANSPARENT_BG = "FF00FF";
+    public const TRANSPARENT_BG = 'FF00FF';
 
     private array $options = [];
-
-    private function set(string $name, ...$args): self
-    {
-        $this->options[$name] = $args;
-
-        return $this;
-    }
 
     public function unset(string $name): self
     {
@@ -29,26 +22,21 @@ class OptionSet
         return $this;
     }
 
-    private function get(string $name): ?array
-    {
-        return $this->options[$name] ?? null;
-    }
-
     public function toString(): string
     {
         $parts = [];
         foreach ($this->options as $name => $args) {
             $nameAndArgs = array_merge([$name], $args);
-            $parts[] = join(":", $nameAndArgs);// not using [$name, ...$args] to keep it 7.2 compatible
+            $parts[] = implode(':', $nameAndArgs); // not using [$name, ...$args] to keep it 7.2 compatible
         }
 
-        return join("/", $parts);
+        return implode('/', $parts);
     }
 
     public function withWidth(int $w): self
     {
         if ($w < 0) {
-            throw new InvalidArgumentException("width must be >= 0");
+            throw new InvalidArgumentException('width must be >= 0');
         }
 
         return $this->set(ProcessingOption::WIDTH->value, $w);
@@ -62,7 +50,7 @@ class OptionSet
     public function withHeight(int $h): self
     {
         if ($h < 0) {
-            throw new InvalidArgumentException("height must be >= 0");
+            throw new InvalidArgumentException('height must be >= 0');
         }
 
         return $this->set(ProcessingOption::HEIGHT->value, $h);
@@ -84,7 +72,7 @@ class OptionSet
                 name: ProcessingOption::RESIZING_TYPE->value,
                 args: $rt
             ),
-            default => throw new InvalidArgumentException("unknown resizing type $rt"),
+            default => throw new InvalidArgumentException("unknown resizing type {$rt}"),
         };
     }
 
@@ -93,11 +81,10 @@ class OptionSet
         return $this->firstValue(ProcessingOption::RESIZING_TYPE->value, 'string');
     }
 
-
     public function withDpr(int $v): self
     {
         if ($v <= 0) {
-            throw new InvalidArgumentException("dpr must be greater than 0");
+            throw new InvalidArgumentException('dpr must be greater than 0');
         }
 
         return $this->set(ProcessingOption::DPR->value, $v);
@@ -121,7 +108,7 @@ class OptionSet
     public function withExtend(string $gravityType = null, $gravityX = null, $gravityY = null): self
     {
         if ($gravityType === Gravity::Smart->value) {
-            throw new InvalidArgumentException("extend doesnt support smart gravity");
+            throw new InvalidArgumentException('extend doesnt support smart gravity');
         }
         $gravity = $this->gravityOptions($gravityType, [], $gravityX, $gravityY);
 
@@ -136,21 +123,11 @@ class OptionSet
     public function withGravity(string $type = null, $x = null, $y = null): self
     {
         $gravity = $this->gravityOptions($type, [], $x, $y);
-        if (count($gravity) === 0) {
-            throw new InvalidArgumentException("no gravity type specified");
+        if (\count($gravity) === 0) {
+            throw new InvalidArgumentException('no gravity type specified');
         }
 
         return $this->set(ProcessingOption::GRAVITY->value, ...$gravity);
-    }
-
-    private function validateFocusPointGravity(float $x, float $y): void
-    {
-        if (($x < 0) || ($x > 1)) {
-            throw new InvalidArgumentException("focus point gravity expects X in range 0-1");
-        }
-        if (($y < 0) || ($y > 1)) {
-            throw new InvalidArgumentException("focus point gravity expects Y in range 0-1");
-        }
     }
 
     public function gravity(): ?array
@@ -170,53 +147,22 @@ class OptionSet
         return $this->get(ProcessingOption::CROP->value);
     }
 
-    private function gravityOptions(string $type = null, array $defaults, $x = null, $y = null): array
-    {
-        switch ($type) {
-            case null:
-                return $defaults;
-            case Gravity::Smart->value:
-                return [$type];
-            case Gravity::North->value:
-            case Gravity::South->value:
-            case Gravity::East->value:
-            case Gravity::West->value:
-            case Gravity::NorthEast->value:
-            case Gravity::NorthWest->value:
-            case Gravity::SouthEast->value:
-            case Gravity::SouthWest->value:
-            case Gravity::Center->value:
-                $x = (int)$x;
-                $y = (int)$y;
-
-                return [$type, $x, $y];
-            case Gravity::FocusPoint->value:
-                $x = (float)$x;
-                $y = (float)$y;
-                $this->validateFocusPointGravity($x, $y);
-
-                return [$type, $x, $y];
-            default:
-                throw new InvalidArgumentException("unexpected gravity type $type");
-        }
-    }
-
     public function withPadding(int $t, int $r, int $b, int $l): self
     {
         if ($t < 0) {
-            throw new InvalidArgumentException("top padding must be >= 0");
+            throw new InvalidArgumentException('top padding must be >= 0');
         }
         if ($r < 0) {
-            throw new InvalidArgumentException("right padding must be >= 0");
+            throw new InvalidArgumentException('right padding must be >= 0');
         }
         if ($b < 0) {
-            throw new InvalidArgumentException("bottom padding must be >= 0");
+            throw new InvalidArgumentException('bottom padding must be >= 0');
         }
         if ($l < 0) {
-            throw new InvalidArgumentException("left padding must be >= 0");
+            throw new InvalidArgumentException('left padding must be >= 0');
         }
         if (($t === 0) && ($r === 0) && ($b === 0) && ($l === 0)) {
-            throw new InvalidArgumentException("at least one padding must be > 0");
+            throw new InvalidArgumentException('at least one padding must be > 0');
         }
 
         return $this->set(ProcessingOption::PADDING->value, $t, $r, $b, $l);
@@ -227,16 +173,16 @@ class OptionSet
         return $this->get(ProcessingOption::PADDING->value);
     }
 
-    public function withTrim(int $threshold, string $color = "", bool ...$equalHorVer): self
+    public function withTrim(int $threshold, string $color = '', bool ...$equalHorVer): self
     {
         $args = [];
-        if ((strlen($color) > 0) || (count($equalHorVer) > 0)) {
+        if (($color !== '') || (\count($equalHorVer) > 0)) {
             $args[] = $color;
         }
-        if (count($equalHorVer) > 0) {
+        if (\count($equalHorVer) > 0) {
             $args[] = (int)$equalHorVer[0];
         }
-        if (count($equalHorVer) > 1) {
+        if (\count($equalHorVer) > 1) {
             $args[] = (int)$equalHorVer[1];
         }
 
@@ -245,9 +191,6 @@ class OptionSet
 
     /**
      * @see https://docs.imgproxy.net/generating_the_url_advanced?id=trim - Note #2
-     * @param int $threshold
-     * @param bool $equalHor
-     * @param bool $equalVer
      * @return $this
      */
     public function withTrimTransparentBackground(int $threshold, bool $equalHor = false, bool $equalVer = false): self
@@ -263,7 +206,7 @@ class OptionSet
     public function withMaxBytes(int $bytes): self
     {
         if ($bytes <= 0) {
-            throw new InvalidArgumentException("max_bytes must be greater than 0");
+            throw new InvalidArgumentException('max_bytes must be greater than 0');
         }
 
         return $this->set(ProcessingOption::MAX_BYTES->value, $bytes);
@@ -277,22 +220,22 @@ class OptionSet
     public function withBackgroundRGB(int $r, int $g, int $b): self
     {
         if ($r < 0) {
-            throw new InvalidArgumentException("RGB color Red component must be >= 0");
+            throw new InvalidArgumentException('RGB color Red component must be >= 0');
         }
         if ($r > 255) {
-            throw new InvalidArgumentException("RGB color Red component must be <= 255");
+            throw new InvalidArgumentException('RGB color Red component must be <= 255');
         }
         if ($g < 0) {
-            throw new InvalidArgumentException("RGB color Green component must be >= 0");
+            throw new InvalidArgumentException('RGB color Green component must be >= 0');
         }
         if ($g > 255) {
-            throw new InvalidArgumentException("RGB color Green component must be <= 255");
+            throw new InvalidArgumentException('RGB color Green component must be <= 255');
         }
         if ($b < 0) {
-            throw new InvalidArgumentException("RGB color Blue component must be >= 0");
+            throw new InvalidArgumentException('RGB color Blue component must be >= 0');
         }
         if ($b > 255) {
-            throw new InvalidArgumentException("RGB color Blue component must be <= 255");
+            throw new InvalidArgumentException('RGB color Blue component must be <= 255');
         }
 
         return $this->set(ProcessingOption::BACKGROUND->value, $r, $g, $b);
@@ -300,8 +243,8 @@ class OptionSet
 
     public function withBackgroundHex(string $hexColor): self
     {
-        if (strlen($hexColor) != 6) {
-            throw new InvalidArgumentException("HEX color must be a string of 6 chars");
+        if (\strlen($hexColor) !== 6) {
+            throw new InvalidArgumentException('HEX color must be a string of 6 chars');
         }
 
         return $this->set(ProcessingOption::BACKGROUND->value, $hexColor);
@@ -315,7 +258,7 @@ class OptionSet
     public function withBackgroundAlpha(float $alpha): self
     {
         if (($alpha < 0) || ($alpha > 1)) {
-            throw new InvalidArgumentException("background_alpha must be between 0 and 1");
+            throw new InvalidArgumentException('background_alpha must be between 0 and 1');
         }
 
         return $this->set(ProcessingOption::BACKGROUND_ALPHA->value, $alpha);
@@ -329,7 +272,7 @@ class OptionSet
     public function withBrightness(int $v): self
     {
         if (($v < -255) || ($v > 255)) {
-            throw new InvalidArgumentException("brightness must be between -255 and 255");
+            throw new InvalidArgumentException('brightness must be between -255 and 255');
         }
 
         return $this->set(ProcessingOption::BRIGHTNESS->value, $v);
@@ -343,7 +286,7 @@ class OptionSet
     public function withContrast(float $v): self
     {
         if (($v < 0) || ($v > 1)) {
-            throw new InvalidArgumentException("contrast must be between 0 and 1");
+            throw new InvalidArgumentException('contrast must be between 0 and 1');
         }
 
         return $this->set(ProcessingOption::CONTRAST->value, $v);
@@ -357,7 +300,7 @@ class OptionSet
     public function withSaturation(float $v): self
     {
         if (($v < 0) || ($v > 1)) {
-            throw new InvalidArgumentException("saturation must be between 0 and 1");
+            throw new InvalidArgumentException('saturation must be between 0 and 1');
         }
 
         return $this->set(ProcessingOption::SATURATION->value, $v);
@@ -371,7 +314,7 @@ class OptionSet
     public function withBlur(float $sigma): self
     {
         if ($sigma <= 0) {
-            throw new InvalidArgumentException("sigma must be greater than 0");
+            throw new InvalidArgumentException('sigma must be greater than 0');
         }
 
         return $this->set(ProcessingOption::BLUR->value, $sigma);
@@ -385,7 +328,7 @@ class OptionSet
     public function withSharpen(float $sigma): self
     {
         if ($sigma <= 0) {
-            throw new InvalidArgumentException("sigma must be greater than 0");
+            throw new InvalidArgumentException('sigma must be greater than 0');
         }
 
         return $this->set(ProcessingOption::SHARPEN->value, $sigma);
@@ -399,7 +342,7 @@ class OptionSet
     public function withPixelate(int $size): self
     {
         if ($size <= 0) {
-            throw new InvalidArgumentException("size must be greater than 0");
+            throw new InvalidArgumentException('size must be greater than 0');
         }
 
         return $this->set(ProcessingOption::PIXELATE->value, $size);
@@ -429,7 +372,7 @@ class OptionSet
     {
         $encoded = $this->firstValue(ProcessingOption::WATERMARK_URL->value, 'string');
 
-        return $encoded ? base64_decode($encoded) : null;
+        return $encoded ? base64_decode($encoded, true) : null;
     }
 
     public function withSvgCssStyle(string $css): self
@@ -446,7 +389,7 @@ class OptionSet
     {
         $encoded = $this->firstValue(ProcessingOption::STYLE->value, 'string');
 
-        return $encoded ? base64_decode($encoded) : null;
+        return $encoded ? base64_decode($encoded, true) : null;
     }
 
     public function withJpegOptions(
@@ -458,7 +401,7 @@ class OptionSet
         int $quantTable = 0
     ): self {
         if (($quantTable < 0) || ($quantTable > 8)) {
-            throw new InvalidArgumentException("JPEG_QUANT_TABLE must be int 0-8");
+            throw new InvalidArgumentException('JPEG_QUANT_TABLE must be int 0-8');
         }
 
         return $this->set(
@@ -483,7 +426,7 @@ class OptionSet
         int $quantizationColors = 256
     ): self {
         if (($quantizationColors < 2) || ($quantizationColors > 256)) {
-            throw new InvalidArgumentException("PNG_QUANTIZATION_COLORS must be int 2-256");
+            throw new InvalidArgumentException('PNG_QUANTIZATION_COLORS must be int 2-256');
         }
 
         return $this->set(
@@ -518,7 +461,7 @@ class OptionSet
     public function withPage(int $n): self
     {
         if ($n <= 0) {
-            throw new InvalidArgumentException("page must be >= 0");
+            throw new InvalidArgumentException('page must be >= 0');
         }
 
         return $this->set(ProcessingOption::PAGE->value, $n);
@@ -532,7 +475,7 @@ class OptionSet
     public function withVideoThumbnailSecond(int $n): self
     {
         if ($n <= 0) {
-            throw new InvalidArgumentException("video thumbnail second must be >= 0");
+            throw new InvalidArgumentException('video thumbnail second must be >= 0');
         }
 
         return $this->set(ProcessingOption::VIDEO_THUMBNAIL_SECOND->value, $n);
@@ -619,7 +562,7 @@ class OptionSet
     public function withQuality(int $quality): self
     {
         if ($quality < 0 || $quality > 100) {
-            throw new InvalidArgumentException("quality must be >= 0 and <= 100");
+            throw new InvalidArgumentException('quality must be >= 0 and <= 100');
         }
 
         return $this->set(ProcessingOption::QUALITY->value, $quality);
@@ -633,7 +576,7 @@ class OptionSet
     protected function firstValue(string $name, string $type)
     {
         $o = $this->get($name);
-        if ((null === $o) || (count($o) === 0)) {
+        if ((null === $o) || (\count($o) === 0)) {
             return null;
         }
 
@@ -641,5 +584,58 @@ class OptionSet
         settype($val, $type);
 
         return $val;
+    }
+
+    private function set(string $name, ...$args): self
+    {
+        $this->options[$name] = $args;
+
+        return $this;
+    }
+
+    private function get(string $name): ?array
+    {
+        return $this->options[$name] ?? null;
+    }
+
+    private function validateFocusPointGravity(float $x, float $y): void
+    {
+        if (($x < 0) || ($x > 1)) {
+            throw new InvalidArgumentException('focus point gravity expects X in range 0-1');
+        }
+        if (($y < 0) || ($y > 1)) {
+            throw new InvalidArgumentException('focus point gravity expects Y in range 0-1');
+        }
+    }
+
+    private function gravityOptions(string $type = null, array $defaults, $x = null, $y = null): array
+    {
+        switch ($type) {
+            case null:
+                return $defaults;
+            case Gravity::Smart->value:
+                return [$type];
+            case Gravity::North->value:
+            case Gravity::South->value:
+            case Gravity::East->value:
+            case Gravity::West->value:
+            case Gravity::NorthEast->value:
+            case Gravity::NorthWest->value:
+            case Gravity::SouthEast->value:
+            case Gravity::SouthWest->value:
+            case Gravity::Center->value:
+                $x = (int)$x;
+                $y = (int)$y;
+
+                return [$type, $x, $y];
+            case Gravity::FocusPoint->value:
+                $x = (float)$x;
+                $y = (float)$y;
+                $this->validateFocusPointGravity($x, $y);
+
+                return [$type, $x, $y];
+            default:
+                throw new InvalidArgumentException("unexpected gravity type {$type}");
+        }
     }
 }

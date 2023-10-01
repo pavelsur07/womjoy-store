@@ -24,8 +24,7 @@ class ThumbnailService
         private readonly string $baseUrl,
         private readonly string $cachePathImages,
         private readonly UrlBuilder $imgproxyUrlBuilder
-    ) {
-    }
+    ) {}
 
     /**
      * @throws FilesystemException
@@ -125,7 +124,6 @@ class ThumbnailService
         int $height = 0,
         int $type = self::JPG,
     ): File {
-
         // собираем путь до оригинальной загруженной картинки
         $url = sprintf('%s/%s/%s', $this->baseUrl, $path, $inputName);
 
@@ -164,7 +162,8 @@ class ThumbnailService
 
         $this->defaultStorage->createDirectory($outputPath);
         $this->defaultStorage->writeStream(
-            sprintf('%s/%s', $outputPath, $filename), $tmp
+            sprintf('%s/%s', $outputPath, $filename),
+            $tmp
         );
 
         $filesize = $this->defaultStorage->fileSize(

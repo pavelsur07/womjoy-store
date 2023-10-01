@@ -38,6 +38,9 @@ class Attribute
     #[ORM\OneToMany(mappedBy: 'attribute', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $variants;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isVisibleFilter = false;
+
     public function __construct(string $name, string $type)
     {
         Assert::oneOf($type, self::getTypeList());
@@ -140,5 +143,15 @@ class Attribute
         }
 
         throw new StoreAttributeException('Variant not found');
+    }
+
+    public function isVisibleFilter(): bool
+    {
+        return $this->isVisibleFilter;
+    }
+
+    public function setIsVisibleFilter(bool $isVisibleFilter): void
+    {
+        $this->isVisibleFilter = $isVisibleFilter;
     }
 }

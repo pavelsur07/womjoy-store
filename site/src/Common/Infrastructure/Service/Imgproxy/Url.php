@@ -48,7 +48,7 @@ class Url
             $path = sprintf('/insecure%s', $path);
         }
 
-        return sprintf('%s%s.%s', $this->builder->getBaseUrl(), $path, ($this->extension ?: $this->resolveExtension()));
+        return sprintf('%s%s.%s', $this->builder->getBaseUrl(), $path, $this->extension ?: $this->resolveExtension());
     }
 
     public function getOptions(): OptionSet
@@ -97,23 +97,23 @@ class Url
         return $this->extension;
     }
 
-    protected function resolveExtension(): string
-    {
-        if (str_starts_with($this->url, "local://")) {
-            $path = substr($this->url, 8);
-        } else {
-            $path = parse_url($this->url, PHP_URL_PATH);
-        }
-
-        $ext = $path ? strtolower(pathinfo($path, PATHINFO_EXTENSION)) : "";
-
-        return $ext ?: '';
-    }
-
     public function setExtension(?string $extension): self
     {
         $this->extension = $extension;
 
         return $this;
+    }
+
+    protected function resolveExtension(): string
+    {
+        if (str_starts_with($this->url, 'local://')) {
+            $path = substr($this->url, 8);
+        } else {
+            $path = parse_url($this->url, PHP_URL_PATH);
+        }
+
+        $ext = $path ? strtolower(pathinfo($path, PATHINFO_EXTENSION)) : '';
+
+        return $ext ?: '';
     }
 }

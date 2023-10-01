@@ -15,13 +15,12 @@ class Signature
     public function __construct(
         #[Autowire('%env(IMGPROXY_KEY)%')]
         private string $key,
-
         #[Autowire('%env(IMGPROXY_SALT)%')]
         private string $salt,
         private readonly int $signatureSize = 0,
     ) {
-        $this->key = @pack("H*", $key) ?: throw new Exception('Key expected to be hex-encoded string');
-        $this->salt = @pack("H*", $salt) ?: throw new Exception('Salt expected to be hex-encoded string');
+        $this->key = @pack('H*', $key) ?: throw new Exception('Key expected to be hex-encoded string');
+        $this->salt = @pack('H*', $salt) ?: throw new Exception('Salt expected to be hex-encoded string');
     }
 
     public function sing(string $path): string

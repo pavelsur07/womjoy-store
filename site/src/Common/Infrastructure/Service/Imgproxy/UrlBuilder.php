@@ -13,10 +13,8 @@ readonly class UrlBuilder
     public function __construct(
         #[Autowire('%env(IMGPROXY_BASE_URL)%')]
         private string $baseUrl,
-
         private ?Signature $signature = null,
-    ) {
-    }
+    ) {}
 
     public function build(
         string $url,
