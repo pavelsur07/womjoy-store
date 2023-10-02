@@ -1,5 +1,7 @@
 {% extends 'store/base.html.twig' %}
-
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('page.page.show', {'slug': page.slug}, true)}}">
+{% endblock %}
 {% block body %}
     <section class="typography">
         <div class="wrapper">
