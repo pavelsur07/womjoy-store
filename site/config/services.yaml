@@ -7,7 +7,7 @@ parameters:
     locale: '%env(SITE_LOCALE)%'
     app_locales: ru|bg|en
     app.notifications.email_sender: anonymous@example.com
-    app_thumbnails: 900-1200|300-400
+    app_thumbnails: 900-1200|360-480|300-400
     app_cache_image: '/cache'
     app_url: '%env(SITE_URL)%'
 

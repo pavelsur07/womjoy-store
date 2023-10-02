@@ -173,6 +173,14 @@ class ImageController extends AbstractController
         return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
     }
 
+    #[Route('/update-cache', name: '.update.cache', methods: ['GET', 'POST'])]
+    public function updateCacheImage(Request $request): Response
+    {
+        $productId = (int)$request->attributes->get('product_id');
+        $this->bus->dispatch(new ProductImageOptimizeCommand($productId));
+        return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
+    }
+
     private function getCachePatch($width = 0, int $height = 0): string
     {
         return self::CACHE_PATCH . '/' . $width . '-' . $height . '/';

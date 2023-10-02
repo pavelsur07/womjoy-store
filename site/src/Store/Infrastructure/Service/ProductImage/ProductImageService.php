@@ -15,6 +15,7 @@ readonly class ProductImageService
         [1170, 1560],
         [900, 1200],
         [390, 520],
+        [360, 480],
         [300, 400],
     ];
 
