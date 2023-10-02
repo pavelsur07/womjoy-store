@@ -24,6 +24,7 @@
         {% if product.status.isDraft %}
             <a class="btn btn-bitbucket" href="{{ path('store.admin.product.active', {'id': product.id}) }}">Active</a>
         {% endif %}
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.product.image.update.cache', {'product_id': product.id}) }}">Update Image Cache</a>
     </div>
     <div class="card">
         <div class="card-header">
