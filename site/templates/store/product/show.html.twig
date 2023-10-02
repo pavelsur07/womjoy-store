@@ -1,5 +1,9 @@
 {% extends 'store/base.html.twig' %}
 
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('store.product.show', {'slug': product.slug}, true)}}">
+{% endblock %}
+
 {% block body %}
     <section class="i-card" itemscope itemtype="https://schema.org/Product">
         <div class="wrapper">
