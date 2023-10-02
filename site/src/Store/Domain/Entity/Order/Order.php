@@ -73,6 +73,9 @@ class Order
     #[ORM\Column(type: 'string', nullable: true)]
     private string|null $cancelReason = null;
 
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private string|null $status = null;
+
     public function __construct(
         OrderCustomer $customer,
         OrderDelivery $delivery,
@@ -277,6 +280,13 @@ class Order
         return $this->cancelReason;
     }
 
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+
+    #[ORM\PreFlush]
     public function preFlush(): void
     {
         $this->updatedAt = new DateTimeImmutable();
@@ -295,5 +305,6 @@ class Order
         Assert::oneOf($status, OrderStatus::list());
         $this->statuses[] = new OrderStatus($status, new DateTimeImmutable());
         $this->currentStatus = $status;
+        $this->status = $status;
     }
 }
