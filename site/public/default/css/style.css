@@ -263,8 +263,7 @@ body {
   overflow: hidden;
 }
 
-html,
-body {
+html {
   overflow-x: hidden;
 }
 
