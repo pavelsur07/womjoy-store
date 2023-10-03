@@ -89,7 +89,7 @@ class ProductRepository
             ->andWhere('p.status.value = :status_value')
             ->setParameter('status_value', ProductStatus::ACTIVE);
 
-        if (count($filterIds) > 0 ) {
+        if (\count($filterIds) > 0) {
             // Добавить фильтрацию товаров по характеристикам
         }
 

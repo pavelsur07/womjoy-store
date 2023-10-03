@@ -182,15 +182,6 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/active', name: '.active', methods: ['GET', 'POST'])]
-    public function active(Request $request, Product $product, ProductRepository $productRepository, Flusher $flusher): Response
-    {
-        $product->active();
-        $flusher->flush();
-
-        return $this->redirectToRoute('store.admin.product.edit', ['id' => $product->getId()]);
-    }
-
     #[Route('/{id}', name: '.delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {

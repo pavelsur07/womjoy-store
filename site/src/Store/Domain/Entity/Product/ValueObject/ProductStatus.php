@@ -47,6 +47,11 @@ class ProductStatus extends StringValueObject
         return $this->value === self::ARCHIVE;
     }
 
+    public function hide(): void
+    {
+        $this->value = self::HIDE;
+    }
+
     public function getValue(): string
     {
         return $this->value;

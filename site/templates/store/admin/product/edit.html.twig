@@ -21,8 +21,11 @@
     </div>
     <div class="mt-3 mb-3">
         <a class="btn btn-bitbucket" href="{{ path('store.admin.product.index') }}">Back to list</a>
-        {% if product.status.isDraft %}
-            <a class="btn btn-bitbucket" href="{{ path('store.admin.product.active', {'id': product.id}) }}">Active</a>
+        {% if product.status.isDraft or product.status.isHide %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.product.status.active', {'product_id': product.id}) }}">Active</a>
+        {% endif %}
+        {% if product.status.isActive %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.product.status.hide', {'product_id': product.id}) }}">Hide</a>
         {% endif %}
         <a class="btn btn-bitbucket" href="{{ path('store.admin.product.image.update.cache', {'product_id': product.id}) }}">Update Image Cache</a>
     </div>
