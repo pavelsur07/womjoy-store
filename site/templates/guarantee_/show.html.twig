@@ -1,0 +1,74 @@
+{% extends '../store_' %}
+{% block body %}
+<section class="guarant">
+    <div class="wrapper">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                <li class="breadcrumb-item"><a href="#">Каталог</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Гарантия</li>
+            </ol>
+        </nav>
+        <h1 class="guarant__title title-xl">Мы всегда здесь, чтобы помочь вам с вашими вопросами о гарантии!</h1>
+        <div class="guarant__txt">
+            <p>Если вы случайно не заметили какие-либо дефекты при примерке, не волнуйтесь! Мы с удовольствием поменяем или вернем вам товар в случае брака.</p>
+            <p>И еще одно: если вы заметите, что цветные вещи начали линять после покупки, просто свяжитесь с нами, и мы решим эту проблему вместе.</p>
+            <p>А если вдруг швы разойдутся после начала использования, не беспокойтесь! Просто дайте нам знать.</p>
+        </div>
+
+        <div id="guarantee_id"></div>
+
+        {#<form class="g-form" action="{{ path('guarantee.create') }}" method="post">
+            <div class="g-form__title title-l">Напишите нам в гарантийный отдел</div>
+            <p class="g-form__please">Пожалуйста, заполните форму ниже, и мы с радостью окажем вам помощь по вопросам, связанным с гарантией.</p>
+            <div class="g-form__main">
+                <textarea class="g-form__textarea" name="message" placeholder="Текст сообщения..."></textarea>
+                #}{#<label class="g-form__photo">
+                    <input type="file" name="files" hidden multiple>
+                    <span class="g-form__photo_main">
+                            <img src="{{ asset('./default/img/icons/photo.svg') }}" alt="photo" width="24" height="24">
+                    </span>
+                    <span class="g-form__photo_descr">Прикрепите до 4 фотографий с дефектом</span>
+                </label>#}{#
+                <div class="g-form__row">
+                    <div class="g-form__sel field field-sel">
+                        <span class="field__ph">Место покупки</span>
+                        <select class="field__sel" name="service">
+                            <option value="ozon" selected>Ozon</option>
+                            <option value="yandex">Я. Маркет</option>
+                            <option value="wb">Wildberries</option>
+                        </select>
+                    </div>
+                    <div class="g-form__field field">
+                        <span class="field__ph">Электронная почта</span>
+                        <input type="text" class="field__inp" name="email" placeholder="email@example.com">
+                    </div>
+                    <div class="g-form__field field">
+                        <span class="field__ph">Телефон</span>
+                        <input type="text" class="field__inp phone-masked-field" name="phone" placeholder="+7 911 658-74-85">
+                    </div>
+                    <button class="g-form__submit btn-primary" type="submit">Отправить</button>
+                </div>
+                <div class="g-form__checks">
+                    <label class="g-form__check">
+                        <input type="checkbox" hidden checked name="is_confirm">
+                        <span><img src="{{ asset('./default/img/icons/check-white.svg') }}" alt="check white"></span>
+                        Согласен с условиями Правил пользования торговой площадкой
+                    </label>
+                    <label class="g-form__check">
+                        <input type="checkbox" hidden checked name="is_subscribe">
+                        <span><img src="{{ asset('./default/img/icons/check-white.svg') }}" alt="check white"></span>
+                        Подпишитесь и получайте промокоды, акции и подборки товаров
+                    </label>
+                </div>
+            </div>
+        </form>#}
+    </div>
+</section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('./libs/inputmask.min.js') }}"></script>
+    <script src="{{ asset('./js/script.js') }}"></script>
+    {{ encore_entry_script_tags('guarantee') }}
+{% endblock %}

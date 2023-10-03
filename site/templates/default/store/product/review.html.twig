@@ -1,0 +1,124 @@
+<section class="p-review section">
+    <div class="wrapper">
+        <div class="section-top">
+            <h2 class="section-title">Отзывы о товаре</h2>
+        </div>
+{#        <div class="p-review__photos">
+            <span class="p-review__photos_title">Фотографии покупателей (234)</span>
+            <div class="p-review__slider">
+                <div class="p-review-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-1.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-2.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-3.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-4.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-1.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-2.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-3.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-4.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-1.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-2.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-3.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                        <div class="p-review__slide swiper-slide">
+                            <div class="p-review__slide_img">
+                                <img src="{{ asset('./default/img/i-card/review-photos/img-4.webp') }}" alt="" width="120" height="160">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="p-review-btn-next">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.46967 5.46967C8.17678 5.76256 8.17678 6.23744 8.46967 6.53033L13.9393 12L8.46967 17.4697C8.17678 17.7626 8.17678 18.2374 8.46967 18.5303C8.76256 18.8232 9.23744 18.8232 9.53033 18.5303L15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L9.53033 5.46967C9.23744 5.17678 8.76256 5.17678 8.46967 5.46967Z" fill="#A6AFC0"/>
+                    </svg>
+                </button>
+                <button class="p-review-btn-prev">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.46967 5.46967C8.17678 5.76256 8.17678 6.23744 8.46967 6.53033L13.9393 12L8.46967 17.4697C8.17678 17.7626 8.17678 18.2374 8.46967 18.5303C8.76256 18.8232 9.23744 18.8232 9.53033 18.5303L15.5303 12.5303C15.8232 12.2374 15.8232 11.7626 15.5303 11.4697L9.53033 5.46967C9.23744 5.17678 8.76256 5.17678 8.46967 5.46967Z" fill="#A6AFC0"/>
+                    </svg>
+                </button>
+            </div>
+        </div>#}
+
+        <div class="p-review__items">
+            {% for review in product.reviews %}
+                <div class="p-review__item" itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                    <div class="p-review__top">
+                        <div class="p-review__info">
+
+                            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                <span class="p-review__name" itemprop="name">{{ review.customerName }}</span>
+                            </div>
+
+                            <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+                                <meta itemprop="ratingValue" content={{ review.vote}} />
+                                <meta itemprop="bestRating" content="5" />
+                            </div>
+
+                            <span class="p-review__dt">{{ review.createdAt | date('d-m-Y') }}</span>
+                            <meta itemprop="datePublished" content={{ review.createdAt | date('d-m-Y') }}>
+
+                        </div>
+
+                        <div class="rating">
+                            <div class="rating__stars">
+                                {{ rating_star(review.vote) }}
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="p-review__text" itemprop="reviewBody">
+                        {{ review.text }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+        {#<button class="p-review__btn" type="button">
+            Показать ещё
+            <img src="{{ asset('./default/img/icons/arrow-down-tail.svg') }}" alt="arrow down tail" width="20" height="20">
+        </button>#}
+    </div>
+</section>

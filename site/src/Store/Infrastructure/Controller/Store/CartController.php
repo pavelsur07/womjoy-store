@@ -14,7 +14,7 @@ class CartController extends BaseController
     #[Route(path: '/', name: '.index')]
     public function cart(): Response
     {
-        return $this->render('store/cart/cart.html.twig', [
+        return $this->render('default/store/cart/cart.html.twig', [
             'menu' => $this->menu,
             'metaData' => $this->metaData,
         ]);

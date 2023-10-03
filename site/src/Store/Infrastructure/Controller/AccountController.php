@@ -16,7 +16,7 @@ class AccountController extends BaseController
     public function index(): Response
     {
         return $this->render(
-            'store/account/history.html.twig',
+            'default/store/account/history.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,

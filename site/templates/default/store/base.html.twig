@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.defaultLocale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                {{ metaData.title }}
+            {% endblock %}
+        </title>
+
+        <meta name="description" content="{% block description %}{{ metaData.description }}{% endblock %}">
+        {% block openGraph %}{% endblock %}
+
+        {% if metaData.noindex %}
+            <meta name="robots" content="noindex">
+        {% endif %}
+
+        {% if metaData.nofollow %}
+            <meta name="robots" content="nofollow">
+        {% endif %}
+
+        {% block linkCanonical %}{% endblock %}
+
+        {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/default/favicon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/default/favicon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/default/favicon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/default/favicon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/default/favicon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/default/favicon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/default/favicon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/default/favicon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/default/favicon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/default/favicon-16x16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/default/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/default/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/default/favicon-192x192.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ asset('') }}/favicon-144x144.png">
+        <meta name="msapplication-config" content="{{ asset('/default/browserconfig.xml') }}">
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('./default/css/style.css') }}">
+        {% endblock %}
+
+        <style>
+            .c-item__disc {
+                margin-top: 0;
+            }
+            .cart__left {
+                width: calc(100% - 400px);
+                max-width: 100%;
+            }
+            @media screen and (max-width: 500px) {
+                .cart__left {
+                    width: 100%;
+                }
+            }
+
+            .add-to-cart-action {
+                -webkit-transition: none;
+                transition: none;
+                border-radius: 0px;
+                border: 4px solid #54EE46;
+            }
+            .add-to-cart-action.active {
+                border: 4px solid #24d413;
+                border-radius: 0px;
+                background: #54ee461f;
+            }
+            .add-to-cart-action:hover {
+                background: #54ee461f;
+                border: 4px solid #24d413;
+                border-radius: 0px;
+            }
+        </style>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW13DRWRCX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MW13DRWRCX');
+        </script>
+    </head>
+    <body>
+
+    <header class="header">
+        <div class="wrapper">
+            <div class="header__main">
+                <div class="header__left">
+                    <a href="{{ path('home') }}" class="header__logo">
+                        <img src="{{ asset('./default/img/logo.svg') }}" alt="logo" width="205" height="36">
+                    </a>
+                    <div class="burger">
+                        <span class="burger__item"></span>
+                        <span class="burger__item"></span>
+                        <span class="burger__item"></span>
+                    </div>
+                </div>
+                <form class="search">
+                    <input type="text" class="search__inp" placeholder="{{ 'placeholder.search'|trans|raw }}">
+                    <button class="search__submit" type="submit">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4697 16.9697C16.7626 16.6768 17.2374 16.6768 17.5303 16.9697L21.5303 20.9697C21.8232 21.2626 21.8232 21.7374 21.5303 22.0303C21.2374 22.3232 20.7626 22.3232 20.4697 22.0303L16.4697 18.0303C16.1768 17.7374 16.1768 17.2626 16.4697 16.9697Z" fill="#2F2B43" fill-opacity="0.4"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 4.25C6.99594 4.25 3.75 7.49594 3.75 11.5C3.75 15.5041 6.99594 18.75 11 18.75C13.0057 18.75 14.82 17.9365 16.1333 16.6197C17.4421 15.3074 18.25 13.4988 18.25 11.5C18.25 7.49594 15.0041 4.25 11 4.25ZM2.25 11.5C2.25 6.66751 6.16751 2.75 11 2.75C15.8325 2.75 19.75 6.66751 19.75 11.5C19.75 13.9118 18.7732 16.097 17.1954 17.679C15.6121 19.2664 13.4202 20.25 11 20.25C6.16751 20.25 2.25 16.3325 2.25 11.5Z" fill="#2F2B43" fill-opacity="0.4"/>
+                        </svg>
+                    </button>
+                </form>
+                <ul class="header__actions">
+
+                    <li>
+                        <a href="{{ path('store.account.history') }}">
+                            <img src="{{ asset('./default/img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="favourite" width="24" height="24">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('store.cart.index') }}">
+                            <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="cart" width="24" height="24">
+                            <div id="cart-badge"></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% include 'default/store/common/header_menu.html.twig' %}
+    </header>
+
+    {% include 'default/store/common/header_burger_menu.html.twig' %}
+
+    {% include 'default/store/common/header_catalog_menu.html.twig' %}
+
+    {% block body %}{% endblock %}
+
+    <footer class="footer">
+        {{ metaData.jsonLdCompany|raw }}
+        <div class="wrapper">
+            <div class="footer__main">
+                <div class="footer__left">
+                    <a href="{{ path('home') }}" class="footer__logo">
+                        <img src="{{ asset('./default/img/logo.svg') }}" alt="logo" width="205" height="36">
+                    </a>
+                    <div itemscope="" itemtype="http://schema.org/Organization" class="footer__phone">
+                        <meta itemprop="name" content="ООО Вумджой">
+                        <meta itemprop="email" content="info@womjoy.ru">
+                        <meta itemprop="legalName" content="Женская одежда для спорта и путешествий.">
+                        <a itemprop="telephone" href="tel:{{ metaData.phone }}" class="footer__phone_call">{{ metaData.phone }}</a>
+                        <span class="footer__phone_descr">Звонок по РФ бесплатный</span>
+                    </div>
+                    <a href="mailto:info@womjoy.ru" class="footer__mail">info@womjoy.ru</a>
+                    <ul class="footer__socials">
+                        <li><a href="https://vk.com/womjoy" target="_blank"><img src="{{ asset('./default/img/icons/vk.svg') }}" alt="VK" width="40" height="40"></a></li>
+                        <li><a href="https://t.me/womjoy_chat" target="_blank"><img src="{{ asset('./default/img/icons/tg.svg') }}" alt="Telegram" width="40" height="40"></a></li>
+                        <li><a href="#"><img src="{{ asset('./default/img/icons/wa.svg') }}" alt="WhatsApp" width="40" height="40"></a></li>
+                    </ul>
+                </div>
+
+                {% for item in menu.footer %}
+                    <div class="footer__col">
+                        <div class="footer__title">{{ item.name }}</div>
+                        {% if item.children is defined %}
+                            <ul class="footer__list" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                                {% for element in item.children  %}
+                                    <li><a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="footer__right">
+                    <noindex>
+                        <div class="footer__marketplaces">
+                            <a href="https://www.wildberries.ru/brands/womjoy" class="footer__marketplace" rel="nofollow" target="_blank">
+                                <img src="{{ asset('./default/img/icons/wb.png') }}" alt="wb" class="footer__marketplace_img" width="40" height="40">
+                                <div class="footer__marketplace_text">
+                                    <span class="footer__marketplace_descr">Наш магазин</span>
+                                    <span class="footer__marketplace_name">Wildberries</span>
+                                </div>
+                            </a>
+                            <a href="https://www.ozon.ru/seller/ooo-vumdzhoy-25218/products/?miniapp=seller_25218" class="footer__marketplace" rel="nofollow" target="_blank">
+                                <img src="{{ asset('./default/img/icons/ozon.png') }}" alt="ozon" class="footer__marketplace_img" width="40" height="40">
+                                <div class="footer__marketplace_text">
+                                    <span class="footer__marketplace_descr">Наш магазин</span>
+                                    <span class="footer__marketplace_name">Ozon</span>
+                                </div>
+                            </a>
+                            <a href="#" class="footer__marketplace" rel="nofollow">
+                                <img src="{{ asset('./default/img/icons/ym.png') }}" alt="yandex" class="footer__marketplace_img" width="40" height="40">
+                                <div class="footer__marketplace_text">
+                                    <span class="footer__marketplace_descr">Наш магазин</span>
+                                    <span class="footer__marketplace_name">Яндекс Маркет</span>
+                                </div>
+                            </a>
+                        </div>
+                    </noindex>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <div class="wrapper">
+                <div class="footer__bottom_row">
+                    <span class="footer__copyright">
+                        <a href="{{ path('admin.dashboard.show') }}" class="nav-link">© 2019 - {{ 'now'|date('Y') }} {{ metaData.company }}</a>
+                    </span>
+                    <ul class="footer__pay">
+                        <li><img src="{{ asset('./default/img/icons/visa.svg') }}" alt="visa" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/mc.svg') }}" alt="mc" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/mir.svg') }}" alt="mir" width="58" height="40"></li>
+                        <li><img src="{{ asset('./default/img/icons/sbp.svg') }}" alt="sbp" width="58" height="40"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <ul class="mob-bar">
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link c-open">
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/catalog.svg') }}" alt="catalog" width="24" height="24"></span>
+                Каталог
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/trace.svg') }}" alt="trace" width="24" height="24"></span>
+                Отследить
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="{{ path('store.account.history') }}" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24"></span>
+                Кабинет
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="#" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="favourite" width="24" height="24"></span>
+                Изрбранное
+            </a>
+        </li>
+        <li class="mob-bar__item">
+            <a href="{{ path('store.cart.index') }}" class="mob-bar__link">
+                <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/cart.svg') }}" alt="" width="24" height="24"></span>
+                Корзина
+            </a>
+        </li>
+    </ul>
+    <div id="modal-id"></div>
+
+    <script>
+        function pushStoreMetrika(action, productIds, orderId) {
+            const options = {
+                method: 'POST',
+                body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
+            };
+
+            fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+                console.log({ "ecommerce": data });
+                window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+            });
+        }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(67287694, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            ecommerce:"dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/67287694" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Top.Mail.Ru counter -->
+    <script type="text/javascript">
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3350904", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+    <!-- /Top.Mail.Ru counter -->
+
+    </body>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('store_main') }}
+        {{ encore_entry_script_tags('store_cart_badge') }}
+
+        <script src="{{ asset('./default/libs/swiper/swiper.min.js') }}"></script>
+        <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
+        <script src="{{ asset('./default/js/script.js') }}"></script>
+        <script src="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.js" async defer>
+        </script><link rel="preconnect" href="https://i.msearch.space">
+        <link href="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.css" rel="stylesheet">
+    {% endblock %}
+</html>

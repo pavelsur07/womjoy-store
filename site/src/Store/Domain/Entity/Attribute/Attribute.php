@@ -154,4 +154,15 @@ class Attribute
     {
         $this->isVisibleFilter = $isVisibleFilter;
     }
+
+    public function getVariant(int $variantId): Variant
+    {
+        foreach ($this->variants as $variant) {
+            if ($variantId === $variant->getId()) {
+                return $variant;
+            }
+        }
+
+        throw new StoreAttributeException('Variant not found');
+    }
 }

@@ -1,0 +1,5 @@
+{% set menu = knp_menu_get('store_attribute_action', [], {
+    'id_attribute': attribute.id,
+} ) %}
+
+{{ knp_menu_render(menu, {'currentClass': 'active'}) }}

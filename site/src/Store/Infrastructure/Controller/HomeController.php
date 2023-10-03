@@ -47,7 +47,7 @@ class HomeController extends BaseController
         );
 
         return $this->render(
-            'store/home/home.html.twig',
+            'default/store/home/home.html.twig',
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,

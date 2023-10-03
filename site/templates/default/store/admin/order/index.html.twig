@@ -1,0 +1,83 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Order index{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Store
+            </div>
+            <h2 class="page-title">
+                Order index
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-body">
+
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-2">{{ form_widget(form.name) }}</div>
+                <div class="col-md-2">{{ form_widget(form.status) }}</div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-bitbucket">Filter</button>
+                    <a href="{{ path('store.order.admin.index') }}" class="btn btn-outline-secondary">Reset</a>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="card card-body mt-2">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="w-1">Number</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address <br> Type delivery</th>
+                <th>Total</th>
+                <th class="w-25">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in pagination %}
+                <tr>
+                    <td>
+                        {% if order.orderNumber is not null %}
+                            {{ order.orderNumber.value }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ order.createdAt| date('d-m-Y') }} <br>
+                        {{ order.createdAt| date('H:i:s') }}
+                    </td>
+                    <td> {{  store_order_status(order.currentStatus) }}  </td>
+                    <td> {{ order.customer.name }}  </td>
+                    <td> {{ order.customer.email }} </td>
+                    <td> {{ order.delivery.address }} <br> <strong>PVZ</strong> </td>
+                    <td> {{ order.totalCost }} </td>
+                    <td><a class="btn btn-sm rounded-2 btn-bitbucket" href="{{ path('store.order.admin.show', {'id': order.id}) }}">show</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

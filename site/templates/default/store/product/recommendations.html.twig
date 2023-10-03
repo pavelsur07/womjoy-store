@@ -1,0 +1,80 @@
+<section class="products section">
+    <div class="wrapper">
+        <div class="section-top">
+            <h2 class="section-title">Возможно, вам понравится</h2>
+        </div>
+
+        <div class="products__slider">
+            <div class="products-swiper swiper">
+                <div class="swiper-wrapper">
+                    {% for item in product.relatedAssignments %}
+
+                        <div class="product swiper-slide">
+                            <a href="{{ path('store.product.show',{'slug': item.getRelated.slug} ) }}">
+                                <div class="product__img">
+                                    <div class="product__img_slider swiper">
+                                        <div class="swiper-wrapper">
+
+                                            {% if item.getRelated.images.count > 0 %}
+
+                                                {% set number=1 %}
+                                                {% for image in item.getRelated.images | slice(0, 4) %}
+
+                                                    {% if number == 1 %}
+                                                        <div class="product__img_slide swiper-slide active">
+                                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="product__img_slide swiper-slide">
+                                                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt="Thumbnail {{ product.name }} image {{ number }}" width="289" height="384">
+                                                        </div>
+                                                    {% endif %}
+
+                                                    {% set number=number+1 %}
+                                                {% endfor %}
+
+                                            {% else %}
+                                                <div class="product__img_slide swiper-slide active">
+                                                    <img src="{{ asset('./default/img/products/img-1.webp') }}" alt="" width="289" height="384">
+                                                </div>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="product__row">
+                                {% if item.getRelated.price.listPrice == item.getRelated.price.price %}
+                                    <span class="product__cost">{{ item.getRelated.price.price|number_format(0, ',', ' ')}} р.</span>
+                                {% else %}
+                                    <span class="product__cost">{{ item.getRelated.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+                                    <del class="product__old">{{ item.getRelated.price.price|number_format(0, ',', ' ') }} р.</del>
+                                    <span class="product__sale">
+                                            -{{ ((item.getRelated.price.listPrice / item.getRelated.price.price) * 100)|number_format(0, ',', ' ') }}%
+                                        </span>
+                                {% endif %}
+                            </div>
+                            <p class="product__name">Рашгард женский с длинным рукавом, черный Classic Logo Black</p>
+                            <ul class="product__colors">
+                                <li><a href="#" style="background-color: #9EDFE5;"></a></li>
+                                <li><a href="#" style="background-color: #6E72A8;"></a></li>
+                                <li><a href="#" style="background-color: #3740B4;"></a></li>
+                                <li><a href="#" style="background-color: #A8AAB6;"></a></li>
+                                <li><a href="#" style="background-color: #27262C;"></a></li>
+                            </ul>
+                            <div class="product__hidden">
+                                {#<button class="product__addtocart btn-primary" type="button">
+                                    <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="" width="20" height="20">
+                                    В корзину
+                                </button>#}
+                                <div class="product__sizes">Размеры: XS S M L</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="slider-btn-prev" type="button"><img src="{{ asset('./default/img/icons/arrow-left.svg') }}" alt="" width="24" height="24"></button>
+                <button class="slider-btn-next" type="button"><img src="{{ asset('./default/img/icons/arrow-right.svg') }}" alt="" width="24" height="24"></button>
+            </div>
+        </div>
+    </div>
+</section>

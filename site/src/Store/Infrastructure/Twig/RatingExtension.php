@@ -19,7 +19,7 @@ class RatingExtension extends AbstractExtension
 
     public function rating(Environment $twig, int $rating): string
     {
-        return $twig->render('store/widget/common/rating.html.twig', [
+        return $twig->render('default/store/widget/common/rating.html.twig', [
             'rating' => $rating,
         ]);
     }

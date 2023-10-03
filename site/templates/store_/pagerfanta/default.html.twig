@@ -1,0 +1,53 @@
+{%- extends '@Pagerfanta/default.html.twig' -%}
+
+{%- block pager_widget -%}
+    <div class="pagination">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination__list">
+                {{- block('pager') -}}
+            </ul>
+        </nav>
+    </div>
+{%- endblock pager_widget -%}
+
+{%- block page_link -%}
+    <li class="page-item"><a class="page-link" href="{{- path -}}">{{- page -}}</a></li>
+{%- endblock page_link -%}
+
+{%- block current_page_link -%}
+    <li class="page-item" aria-current="page"><span class="page-link active">{{- page -}}</span></li>
+{%- endblock current_page_link -%}
+
+{%- block previous_page_link -%}
+    <li class="page-item">
+        <a class="page-link pagination__prev" href="{{- path -}}" rel="prev">
+            <img src="{{ asset('./default/img/icons/arrow-left-tail.svg') }}" alt="arrow left" width="24" height="24">
+            {#{{- block('previous_page_message') -}}#}
+        </a>
+    </li>
+{%- endblock previous_page_link -%}
+
+{%- block previous_page_link_disabled -%}
+{#    <li class="page-item disabled">
+        <span class="page-link">{{- block('previous_page_message') -}}</span>
+    </li>#}
+{%- endblock previous_page_link_disabled -%}
+
+{%- block next_page_link -%}
+    <li class="page-item">
+        <a class="page-link pagination__next" href="{{- path -}}" rel="next">
+            {#{{- block('next_page_message') -}}#}
+            <img src="{{ asset('./default/img/icons/arrow-right-2.svg') }}" alt="arrow right" width="24" height="24">
+        </a>
+    </li>
+{%- endblock next_page_link -%}
+
+{%- block next_page_link_disabled -%}
+{#    <li class="page-item disabled">
+        <span class="page-link pagination__next">{{- block('next_page_message') -}}</span>
+    </li>#}
+{%- endblock next_page_link_disabled -%}
+
+{%- block ellipsis -%}
+    {#<li class="page-item disabled"><span class="page-link">&hellip;</span></li>#}
+{%- endblock ellipsis -%}

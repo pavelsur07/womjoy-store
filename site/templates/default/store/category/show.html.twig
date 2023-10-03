@@ -1,0 +1,110 @@
+{% extends 'default/store/base.html.twig' %}
+
+{% block title %}
+    {{ metaData.title }}{% if page not in '1' %}&nbsp;|&nbsp;{{ 'pagination.page' | trans}} {{ page }} {% endif %}
+{% endblock %}
+{% block description %}
+    {{ metaData.description }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
+{% endblock %}
+
+{% block linkCanonical %}
+    {#<link rel="canonical" href= {{  url('store.category.show', {'slug': category.slug})}} {% if page not in '1' %}?page={{ page }}{% endif %}>#}
+    <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}">
+{% endblock %}
+
+{% block body %}
+
+    <section class="i-cat">
+        <div class="wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}"> {{ 'home'|trans|raw }}</a></li>
+                    {% for breadcrumb in breadcrumbs %}
+                        {% if breadcrumb.slug == category.slug %}
+                            <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name }}</li>
+                        {% else %}
+                            <li class="breadcrumb-item"><a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}">{{ breadcrumb.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </nav>
+            {#<h1 class="in-title">
+                {{ category.seoMetadata.h1 }}
+                {% if page not in '1' %}
+                    | {{ 'pagination.page' | trans }} {{ page }}
+                {% endif %}
+            </h1>#}
+
+            <h1 class="in-title">
+                {{ category.seoMetadata.h1 }}
+            </h1>
+            {#<div class="i-cat__slider">
+                <div class="i-cat-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./default/img/i-cat./default/img-1.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Брюки</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./default/img/i-cat./default/img-2.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Леггинсы</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./default/img/i-cats/img-3.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Топы</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./img/i-cats/img-4.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Рашгарды</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./img/i-cats/img-5.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Футболки</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./img/i-cats/img-6.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Худи</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./img/i-cats/img-7.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Шорты</span>
+                        </a>
+                        <a href="#" class="i-cat__slide swiper-slide">
+                            <span class="i-cat__img">
+                                <img src="./img/i-cats/img-7.png" alt="" width="130" height="130">
+                            </span>
+                            <span class="i-cat__name">Аксессуары</span>
+                        </a>
+                    </div>
+                </div>
+            </div>#}
+        </div>
+    </section>
+    <section class="catalog section">
+        <div class="wrapper">
+            <div class="catalog__content">
+                {{ include('default/store/category/filter.html.twig') }}
+                {{ include('default/store/category/catalog.html.twig') }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_category') }}
+{% endblock %}

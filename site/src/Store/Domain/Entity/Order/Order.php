@@ -285,7 +285,6 @@ class Order
         return $this->status;
     }
 
-
     #[ORM\PreFlush]
     public function preFlush(): void
     {

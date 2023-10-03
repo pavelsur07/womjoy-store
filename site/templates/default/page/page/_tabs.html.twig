@@ -1,0 +1,6 @@
+{% set menu = knp_menu_get('page_page_action', [], {
+    'page_id': page.id,
+} ) %}
+
+{{ knp_menu_render(menu, {'currentClass': 'active'}) }}
+

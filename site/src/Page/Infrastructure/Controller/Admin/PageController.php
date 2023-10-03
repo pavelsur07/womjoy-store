@@ -26,7 +26,7 @@ class PageController extends AbstractController
     public function index(PageRepository $pages): Response
     {
         return $this->render(
-            'page/page/index.html.twig',
+            'admin/page/page/index.html.twig',
             [
                 'pagination' => $pages->getAll(),
             ]
@@ -49,7 +49,7 @@ class PageController extends AbstractController
         }
 
         return $this->render(
-            'page/page/new.html.twig',
+            'admin/page/page/new.html.twig',
             [
                 'form' => $form->createView(),
             ]
@@ -76,11 +76,11 @@ class PageController extends AbstractController
             $flusher->flush();
 
             $this->addFlash('success', 'Success new page created.');
-            return $this->redirectToRoute('page.admin.page.index');
+            return $this->redirectToRoute('page.admin.page.edit', ['id'=>$id]);
         }
 
         return $this->render(
-            'page/page/edit.html.twig',
+            'admin/page/page/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'page' => $page,
@@ -122,7 +122,7 @@ class PageController extends AbstractController
         }
 
         return $this->render(
-            'page/page/seo/edit.html.twig',
+            'admin/page/page/seo/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'page' => $page,

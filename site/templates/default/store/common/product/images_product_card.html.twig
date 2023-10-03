@@ -1,0 +1,41 @@
+{% if product.images.count > 0 %}
+
+    {% set number=1 %}
+    {% for image in product.images | slice(0, 2) %}
+
+        {% if number == 1 %}
+            <div class="product__img_slide swiper-slide active">
+                <picture>
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
+                    <img class="b-lazy"
+                         src="{{ asset('./default/img/thumbnail/loading-300-400.svg') }}"
+                         data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
+                         alt="Thumbnail {{ product.name }} image {{ number }}"
+                         width="289" height="384"
+                    >
+                </picture>
+            </div>
+        {% else %}
+            <div class="product__img_slide swiper-slide">
+                <picture>
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" type="image/webp">
+                    <source data-srcset="{{ thumbnail_path(image.path, image.name, 300, 400 ) }}" type="image/jpeg">
+                    <img class="b-lazy"
+                         src="{{ asset('./default/img/thumbnail/loading-300-400.svg') }}"
+                         data-src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}"
+                         alt="Thumbnail {{ product.name }} image {{ number }}"
+                         width="289" height="384"
+                    >
+                </picture>
+            </div>
+        {% endif %}
+
+        {% set number=number+1 %}
+    {% endfor %}
+
+{% else %}
+    <div class="product__img_slide swiper-slide active">
+        <img src="{{ asset('./default/img/thumbnail/coming-soon.svg') }}" alt="{{ product.name }} not image" width="289" height="384">
+    </div>
+{% endif %}

@@ -1,0 +1,306 @@
+{% extends 'default/store/base.html.twig' %}
+
+{% block body %}
+    <section class="history">
+        <div class="wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Мои заказы</li>
+                </ol>
+            </nav>
+            <h1 class="in-title">История заказов</h1>
+            <p>Скоро появится</p>
+            <div class="history__content">
+                <div class="history__items">
+                    <div class="history__item">
+                        <div class="history__item_left">
+                            <span class="history__item_id">Заказ № 111</span>
+                            <span class="history__item_dt">30 сентября 17:50</span>
+                        </div>
+                        <div class="history__item_right">
+                            <span class="history__item_cost">800 ₽ </span>
+                            <span class="history__item_status history__item_status-delivering">В доставке</span>
+                        </div>
+                    </div>
+                    <div class="history__item">
+                        <div class="history__item_left">
+                            <span class="history__item_id">Заказ № 111</span>
+                            <span class="history__item_dt">30 сентября 17:50</span>
+                        </div>
+                        <div class="history__item_right">
+                            <span class="history__item_cost">800 ₽ </span>
+                            <span class="history__item_status history__item_status-process">В сборке</span>
+                        </div>
+                    </div>
+                    <div class="history__item">
+                        <div class="history__item_left">
+                            <span class="history__item_id">Заказ № 111</span>
+                            <span class="history__item_dt">30 сентября 17:50</span>
+                        </div>
+                        <div class="history__item_right">
+                            <span class="history__item_cost">800 ₽ </span>
+                            <span class="history__item_status history__item_status-canceled">Отменен</span>
+                        </div>
+                    </div>
+                    <div class="history__item">
+                        <div class="history__item_left">
+                            <span class="history__item_id">Заказ № 111</span>
+                            <span class="history__item_dt">30 сентября 17:50</span>
+                        </div>
+                        <div class="history__item_right">
+                            <span class="history__item_cost">800 ₽ </span>
+                            <span class="history__item_status history__item_status-delivered">Доставлен</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="history__main">
+                    <div class="history__back">
+                        <img src="{{ asset('./default/img/icons/arrow-left-tail.svg') }}" alt="arrow left tail" width="24" height="24">
+                        Назад
+                    </div>
+
+                    <div class="order">
+                        <div class="order__top">
+                            <span class="order__id">Заказ № 111</span>
+                            <span class="order__status order__status-delivering">В доставке</span>
+                        </div>
+                        <div class="order__items">
+                            <div class="order__item">
+                                <div class="order__img">
+                                    <span class="order__img_in"><img src="{{ asset('./default/img/cart-item-img.png') }}" alt="" width="83" height="110"></span>
+                                </div>
+                                <div class="order__item_main">
+                                    <div class="order__item_text">
+                                        <a href="#" class="order__item_name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                        <span class="order__item_size">Размер: М</span>
+                                    </div>
+                                    <div class="order__item_right">
+                                        <span class="order__item_cost">800 ₽ </span>
+                                        <span class="order__item_cnt">2 шт</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order__item">
+                                <div class="order__img">
+                                    <span class="order__img_in"><img src="{{ asset('./default/img/cart-item-img.png') }}" alt="" width="83" height="110"></span>
+                                </div>
+                                <div class="order__item_main">
+                                    <div class="order__item_text">
+                                        <a href="#" class="order__item_name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                        <span class="order__item_size">Размер: М</span>
+                                    </div>
+                                    <div class="order__item_right">
+                                        <span class="order__item_cost">800 ₽ </span>
+                                        <span class="order__item_cnt">2 шт</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Адрес доставки</span>
+                            <span class="order__row_val">Великий Новгород, ул. Большая Московская, 126</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Способ доставки</span>
+                            <span class="order__row_val">Почта России</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Оплата</span>
+                            <ul class="order__row_list">
+                                <li>
+                                    <span>Стоимость товаров</span>
+                                    <span>750 ₽</span>
+                                </li>
+                                <li>
+                                    <span>Доставка</span>
+                                    <span>149 ₽</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order__bottom">
+                            <span>Итого</span>
+                            <span>1 788 ₽</span>
+                        </div>
+                    </div>
+                    <div class="order">
+                        <div class="order__top">
+                            <span class="order__id">Заказ № 111</span>
+                            <span class="order__status order__status-process">В сборке</span>
+                        </div>
+                        <div class="order__items">
+                            <div class="order__item">
+                                <div class="order__img">
+                                    <span class="order__img_in"><img src="{{ asset('./default/img/cart-item-img.png') }}" alt="" width="83" height="110"></span>
+                                </div>
+                                <div class="order__item_main">
+                                    <div class="order__item_text">
+                                        <a href="#" class="order__item_name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                        <span class="order__item_size">Размер: М</span>
+                                    </div>
+                                    <div class="order__item_right">
+                                        <span class="order__item_cost">800 ₽ </span>
+                                        <span class="order__item_cnt">2 шт</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Адрес доставки</span>
+                            <span class="order__row_val">Великий Новгород, ул. Большая Московская, 126</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Способ доставки</span>
+                            <span class="order__row_val">Почта России</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Оплата</span>
+                            <ul class="order__row_list">
+                                <li>
+                                    <span>Стоимость товаров</span>
+                                    <span>750 ₽</span>
+                                </li>
+                                <li>
+                                    <span>Доставка</span>
+                                    <span>149 ₽</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order__bottom">
+                            <span>Итого</span>
+                            <span>1 788 ₽</span>
+                        </div>
+                    </div>
+                    <div class="order">
+                        <div class="order__top">
+                            <span class="order__id">Заказ № 111</span>
+                            <span class="order__status order__status-canceled">Отменен</span>
+                        </div>
+                        <div class="order__items">
+                            <div class="order__item">
+                                <div class="order__img">
+                                    <span class="order__img_in"><img src="{{ asset('./default/img/cart-item-img.png') }}" alt="" width="83" height="110"></span>
+                                </div>
+                                <div class="order__item_main">
+                                    <div class="order__item_text">
+                                        <a href="#" class="order__item_name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                        <span class="order__item_size">Размер: М</span>
+                                    </div>
+                                    <div class="order__item_right">
+                                        <span class="order__item_cost">800 ₽ </span>
+                                        <span class="order__item_cnt">2 шт</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order__item">
+                                <div class="order__img">
+                                    <span class="order__img_in">
+                                        <img src="{{ asset('./default/img/cart-item-img.png') }}" alt="" width="83" height="110">
+                                       </span>
+                                </div>
+                                <div class="order__item_main">
+                                    <div class="order__item_text">
+                                        <a href="#" class="order__item_name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                        <span class="order__item_size">Размер: М</span>
+                                    </div>
+                                    <div class="order__item_right">
+                                        <span class="order__item_cost">800 ₽ </span>
+                                        <span class="order__item_cnt">2 шт</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Адрес доставки</span>
+                            <span class="order__row_val">Великий Новгород, ул. Большая Московская, 126</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Способ доставки</span>
+                            <span class="order__row_val">Почта России</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Оплата</span>
+                            <ul class="order__row_list">
+                                <li>
+                                    <span>Стоимость товаров</span>
+                                    <span>750 ₽</span>
+                                </li>
+                                <li>
+                                    <span>Доставка</span>
+                                    <span>149 ₽</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order__bottom">
+                            <span>Итого</span>
+                            <span>1 788 ₽</span>
+                        </div>
+                    </div>
+                    <div class="order">
+                        <div class="order__top">
+                            <span class="order__id">Заказ № 111</span>
+                            <span class="order__status order__status-delivered">Доставлен</span>
+                        </div>
+                        <div class="order__items">
+                            <div class="order__item">
+                                <div class="order__img">
+                                    <span class="order__img_in"><img src="{{ asset('./default/img/cart-item-img.png') }}" alt="" width="83" height="110"></span>
+                                </div>
+                                <div class="order__item_main">
+                                    <div class="order__item_text">
+                                        <a href="#" class="order__item_name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
+                                        <span class="order__item_size">Размер: М</span>
+                                    </div>
+                                    <div class="order__item_right">
+                                        <span class="order__item_cost">800 ₽ </span>
+                                        <span class="order__item_cnt">2 шт</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Адрес доставки</span>
+                            <span class="order__row_val">Великий Новгород, ул. Большая Московская, 126</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Способ доставки</span>
+                            <span class="order__row_val">Почта России</span>
+                        </div>
+                        <div class="order__row">
+                            <span class="order__row_var">Оплата</span>
+                            <ul class="order__row_list">
+                                <li>
+                                    <span>Стоимость товаров</span>
+                                    <span>750 ₽</span>
+                                </li>
+                                <li>
+                                    <span>Доставка</span>
+                                    <span>149 ₽</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order__bottom">
+                            <span>Итого</span>
+                            <span>1 788 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="support section">
+        <div class="wrapper">
+            <div class="support__content">
+                <h2 class="support__title section-title">Служба поддержки покупателей</h2>
+                <div class="support__text">
+                    <a href="#" class="support__call">8 (800) 301-67-53</a>
+                    <span class="support__descr">Звонок по РФ бесплатный</span>
+                </div>
+
+                <img src="{{ asset('./default/img/icons/support-bg.svg') }}" alt="support" class="support__img" width="346" height="170">
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

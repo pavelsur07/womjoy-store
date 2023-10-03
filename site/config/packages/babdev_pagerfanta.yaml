@@ -3,7 +3,8 @@ babdev_pagerfanta:
     default_view: twig
 
     # The default Twig template to use when using the Twig Pagerfanta view
-    default_twig_template: 'store/pagerfanta/default.html.twig'
+    #default_twig_template: 'store/pagerfanta/default.html.twig' override/pagerfanta/default.html.twig
+    default_twig_template: 'override/pagerfanta/default.html.twig'
 
     exceptions_strategy:
         # The exception strategy if requesting a page outside the available pages in a paginated list; valid options are "custom" or "to_http_not_found"

@@ -1,0 +1,200 @@
+{% extends 'default/store/base.html.twig' %}
+{% block openGraph %}
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= {{ metaData.base_url }} />
+    <meta property="og:title" content="{{ metaData.title }}"/>
+    <meta property="og:description" content="{{ metaData.description }} "/>
+    <meta property="og:image" content="{{ asset('./default/img/womjoy.svg') }}"/>
+    <meta property="og:site_name" content="WOMJOY" />
+{% endblock %}
+
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('home',{},true) }}">
+{% endblock %}
+
+{% block body %}
+
+    <section class="hero">
+        <div class="wrapper">
+            <div class="hero__slider">
+                <div class="hero-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <a href="#" class="hero__slide swiper-slide">
+							<span class="hero__slide_img">
+								<picture>
+									<source srcset="{{ asset('./default/img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+									<img class="b-lazy"
+                                            src="{{ asset('./default/img/thumbnail/banner.svg') }}"
+                                            data-src="{{ asset('./default/img/banners/hero-lg.webp') }}"
+                                            alt="hero lg"
+                                            width="1216" height="460"
+                                    >
+								</picture>
+							</span>
+                        </a>
+                        <a href="#" class="hero__slide swiper-slide">
+							<span class="hero__slide_img">
+								<picture>
+									<source srcset="{{ asset('./default/img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+                                    <img class="b-lazy"
+                                         src="{{ asset('./default/img/thumbnail/banner.svg') }}"
+                                         data-src="{{ asset('./default/img/banners/hero-lg.webp') }}"
+                                         alt="hero lg"
+                                         width="1216" height="460"
+                                    >
+								</picture>
+							</span>
+                        </a>
+                        <a href="#" class="hero__slide swiper-slide">
+							<span class="hero__slide_img">
+								<picture>
+									<source srcset="{{ asset('./default/img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+                                    <img class="b-lazy"
+                                         src="{{ asset('./default/img/thumbnail/banner.svg') }}"
+                                         data-src="{{ asset('./default/img/banners/hero-lg.webp') }}"
+                                         alt="hero lg"
+                                         width="1216" height="460"
+                                    >
+                            </picture>
+							</span>
+                        </a>
+                        <a href="#" class="hero__slide swiper-slide">
+							<span class="hero__slide_img">
+								<picture>
+									<source srcset="{{ asset('./default/img/banners/hero-lg-mob.webp') }}" media="(max-width: 480px)">
+                                    <img class="b-lazy"
+                                         src="{{ asset('./default/img/thumbnail/banner.svg') }}"
+                                         data-src="{{ asset('./default/img/banners/hero-lg.webp') }}"
+                                         alt="hero lg"
+                                         width="1216" height="460"
+                                    >
+								</picture>
+							</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-pagination"></div>
+            </div>
+
+            {#<div class="hero__banners">
+                <a href="#" class="hero__banner">
+					<span class="hero__banner_img">
+						<picture>
+							<source srcset="{{ asset('./default/img/banners/hero-sm-1-mob.webp') }}" media="(max-width: 480px)">
+							<img src="{{ asset('./default/img/banners/hero-sm-1.webp') }}" alt="hero sm" width="598" height="150">
+						</picture>
+					</span>
+                </a>
+                <a href="#" class="hero__banner">
+					<span class="hero__banner_img">
+						<picture>
+							<source srcset="{{ asset('./default/img/banners/hero-sm-2-mob.webp') }}" media="(max-width: 480px)">
+							<img src="{{ asset('./default/img/banners/hero-sm-2.webp') }}" alt="hero sm" width="598" height="150">
+						</picture>
+					</span>
+                </a>
+            </div>#}
+        </div>
+    </section>
+
+{#
+    <section class="cat section">
+        <div class="wrapper">
+            <div class="section-top">
+                <h2 class="section-title">Категории</h2>
+            </div>
+
+            <div class="cat__items">
+                {% for category in categories %}
+                <a href="{{ category.href }}" class="cat__item cat__item-lg">
+                    <div class="cat__text">
+                        <span class="cat__name">{{ category.name }}</span>
+                        <div class="cat__bottom">
+                            <span class="cat__cnt">15 моделей</span>
+                            <span class="cat__price">от 1 799 ₽</span>
+                        </div>
+                    </div>
+                    <img src="{{ storage_path( category.imagePath ) }}" alt="{{ category.name }}" class="cat__img" width="250" height="250">
+                </a>
+                {% endfor %}
+                <div class="cat__item cat__sale">
+                    <span class="cat__sale_alert">%</span>
+                    <span class="cat__sale_name">Распродажа</span>
+                </div>
+            </div>
+        </div>
+    </section>
+#}
+    {% if widget.isNewArrivals %}
+        <section class="products section">
+            <div class="wrapper">
+                <div class="section-top">
+                    <h2 class="section-title">{{ 'home.new.arrivals' | trans }}</h2>
+                    <a href="{{ widget.hrefNewArrivals }}" class="section-checkall">
+                        {{ 'home.view.all' | trans }}
+                        <img src="{{ asset('./default/img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
+                    </a>
+                </div>
+
+                <div class="products__slider">
+                    <div class="products-swiper swiper">
+                        <div class="swiper-wrapper">
+                            {% for product in newItems %}
+                                <div class="product swiper-slide">
+                                    {% include 'default/store/common/product/item_product_card.html.twig' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="slider-btn-prev" type="button"><img src="{{ asset('./default/img/icons/arrow-left.svg') }}" alt="arrow left" width="24" height="24"></button>
+                        <button class="slider-btn-next" type="button"><img src="{{ asset('./default/img/icons/arrow-right.svg') }}" alt="arrow right" width="24" height="24"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    {% include 'default/store/common/support_section.html.twig' %}
+
+    {% if widget.isActiveBestseller %}
+    <section class="products section">
+        <div class="wrapper">
+            <div class="section-top">
+                <h2 class="section-title">{{ 'home.popular.products' | trans }}</h2>
+                <a href="{{ widget.hrefBestseller }}" class="section-checkall">
+                    {{ 'home.view.all' | trans }}
+                    <img src="{{ asset('./default/img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
+                </a>
+            </div>
+
+            <div class="products__items products-4">
+                {% for product in popularity %}
+
+                    <div class="product">
+                        {% include 'default/store/common/product/item_product_card.html.twig' %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <div id="subscriber_id"></div>
+
+    {% if widget.isActiveSeoText %}
+        <section class="seo section">
+            <div class="wrapper">
+
+                    {{ widget.seoText | raw }}
+
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}
+    {% block javascripts %}
+         {{ parent() }}
+         {{ encore_entry_script_tags('subscriber') }}
+       {# <script src="{{ asset('./libs/swiper/swiper.min.js') }}"></script>
+        <script src="{{ asset('./js/script.js') }}"></script>#}
+    {% endblock %}
