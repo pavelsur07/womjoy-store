@@ -1,0 +1,88 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Store
+            </div>
+            <h2 class="page-title">
+                Product edit
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.product.index') }}">Back to list</a>
+        {% if product.status.isDraft or product.status.isHide %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.product.status.active', {'product_id': product.id}) }}">Active</a>
+        {% endif %}
+        {% if product.status.isActive %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.product.status.hide', {'product_id': product.id}) }}">Hide</a>
+        {% endif %}
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.product.image.update.cache', {'product_id': product.id}) }}">Update Image Cache</a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            {{ include('admin/store/product/_tabs.html.twig') }}
+        </div>
+        <div class="card-body">
+            <div class="mb-2">
+                <p> <strong>Category Ids: </strong> {{ product.categoriesIds }}</p>
+            </div>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.product.variant.add', {'id': product.id }) }}">Add variant</a>
+    </div>
+    <div class="card card-body">
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Article</th>
+                <th>Value</th>
+                <th>Barcode</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for variant in product.variants %}
+                <tr>
+                    <td class="w-1">{{ variant.id }}</td>
+                    <td>{{ variant.article}}</td>
+                    <td>{{ variant.value }}</td>
+                    <td>----</td>
+                    <td>{{ variant.quantity }}</td>
+                    <td class="w-5">
+                        <div class="btn-group w-100" role="group">
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('store.admin.product.variant.edit', {'id': product.id, 'variantId': variant.id}) }}">edit</a>
+                            <a class="btn btn-sm btn-red rounded-4" href="#">remove</a>
+                            {# {% include 'admin/matrix/product/_delete_form.html.twig' %}#}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+

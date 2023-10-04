@@ -37,7 +37,7 @@ class CategoryTemplateController extends AbstractController
         }
 
         return $this->render(
-            'store/admin/category/template/edit.html.twig',
+            'admin/store/category/template/edit.html.twig',
             [
                 'category'=> $category,
                 'form' => $form->createView(),

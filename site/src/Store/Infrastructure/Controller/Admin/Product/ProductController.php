@@ -27,7 +27,7 @@ class ProductController extends AbstractController
     #[Route('/', name: '.index', methods: ['GET'])]
     public function index(Request $request, ProductRepository $productRepository): Response
     {
-        return $this->render('store/admin/product/index.html.twig', [
+        return $this->render('admin/store/product/index.html.twig', [
             'pagination' => $productRepository->getAll(
                 page: $request->query->getInt('page', 1),
                 size: $request->query->getInt('size', self::PER_PAGE),
@@ -57,7 +57,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('admin/product/new.html.twig', [
+        return $this->render('admin/store/product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);
@@ -125,7 +125,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('store.admin.product.edit', ['id'=> $product->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('store/admin/product/edit.html.twig', [
+        return $this->render('admin/store/product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);
@@ -176,7 +176,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('store.admin.product.seo', ['id'=> $product->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('store/admin/product/seo.html.twig', [
+        return $this->render('admin/store/product/seo.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);

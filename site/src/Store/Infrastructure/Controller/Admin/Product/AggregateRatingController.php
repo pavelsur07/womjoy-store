@@ -40,7 +40,7 @@ class AggregateRatingController extends AbstractController
             }
         }
         return $this->render(
-            'store/admin/product/rating/edit.html.twig',
+            'admin/store/product/rating/edit.html.twig',
             [
                 'product' => $product,
                 'form' => $form->createView(),

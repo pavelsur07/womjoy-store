@@ -1,9 +1,8 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}New Category{% endblock %}
 
 {% block body %}
-
     <div class="row g-2 align-items-center">
         <div class="col">
             <!-- Page pre-title -->
@@ -11,7 +10,7 @@
                 Store
             </div>
             <h2 class="page-title">
-                Product attributes
+                Category filters index: {{ category.name }}
             </h2>
         </div>
         <!-- Page title actions -->
@@ -21,21 +20,17 @@
         </div>
     </div>
     <div class="mt-3 mb-3">
-        <a class="btn btn-bitbucket" href="{{ path('store.admin.product.index') }}">Back to list</a>
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.category.index') }}">Back to list</a>
     </div>
-    <div class="card card">
+    <div class="card">
         <div class="card-header">
-            {{ include('admin/store/product/_tabs.html.twig') }}
+            {% include 'store/admin/category/_tabs.html.twig' %}
         </div>
-
         <div class="card-body">
-            <div id="product_attribute_edit" data-product="{{ product.id }}">
-            </div>
+            {{ category.filters|json_encode }}
         </div>
     </div>
-{% endblock %}
 
-{% block javascripts %}
-    {{ encore_entry_script_tags('admin') }}
-    {{ encore_entry_script_tags('store_admin_product') }}
+
+
 {% endblock %}

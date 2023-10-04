@@ -26,7 +26,7 @@ class RelatedAssignmentController extends AbstractController
             size: $request->query->getInt('size', self::PER_PAGE),
         );
         return $this->render(
-            'store/admin/product/related/index.html.twig',
+            'admin/store/product/related/index.html.twig',
             [
                 'pagination' => $pagination,
                 'product' => $product,

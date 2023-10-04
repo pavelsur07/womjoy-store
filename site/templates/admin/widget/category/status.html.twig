@@ -1,0 +1,7 @@
+{% if status == 'draft' %}
+    <span class="badge badge-secondary">{{ 'draft'|trans|raw }}</span>
+{% elseif status == 'active' %}
+    <span class="badge bg-green">{{ 'active'|trans|raw }}</span>
+{% elseif status == 'disable' %}
+    <span class="badge bg-orange">{{ 'disable'|trans|raw }}</span>
+{% endif %}

@@ -93,7 +93,7 @@ class ImageController extends AbstractController
             return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
         }
         return $this->render(
-            'store/admin/product/image/index.html.twig',
+            'admin/store/product/image/index.html.twig',
             [
                 'product'=> $product,
                 'form' => $form->createView(),

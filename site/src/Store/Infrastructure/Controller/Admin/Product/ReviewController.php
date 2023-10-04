@@ -40,7 +40,7 @@ class ReviewController extends AbstractController
         }
 
         return $this->render(
-            'store/admin/product/review/index.html.twig',
+            'admin/store/product/review/index.html.twig',
             [
                 'product' => $product,
                 'form' => $form->createView(),

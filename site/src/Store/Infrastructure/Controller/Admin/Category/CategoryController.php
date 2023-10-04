@@ -28,7 +28,7 @@ class CategoryController extends AbstractController
     public function index(CategoryRepositoryInterface $categories): Response
     {
         return $this->render(
-            'store/admin/category/index.html.twig',
+            'admin/store/category/index.html.twig',
             [
                 'pagination' => $categories->getRootNodes(),
             ]
@@ -54,7 +54,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('store.admin.category.index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
-            'store/admin/category/new.html.twig',
+            'admin/store/category/new.html.twig',
             [
                 'form' => $form->createView(),
             ]
@@ -76,7 +76,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('store.admin.category.edit', ['id'=> $category->getId()], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
-            'store/admin/category/new.html.twig',
+            'admin/store/category/new.html.twig',
             [
                 'form' => $form->createView(),
             ]
@@ -101,7 +101,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('store.admin.category.edit', ['id'=> $id], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
-            'store/admin/category/edit.html.twig',
+            'admin/store/category/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'category' => $category,
@@ -135,7 +135,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('store.admin.category.seo', ['id'=> $id], Response::HTTP_SEE_OTHER);
         }
         return $this->render(
-            'store/admin/category/seo.html.twig',
+            'admin/store/category/seo.html.twig',
             [
                 'form' => $form->createView(),
                 'category' => $category,
@@ -188,7 +188,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'store/admin/category/image/edit.html.twig',
+            'admin/store/category/image/edit.html.twig',
             [
                 'category'=> $category,
                 'form' => $form->createView(),

@@ -24,14 +24,9 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class DashboardController extends AbstractController
 {
-    public function __construct(
-        private readonly DenormalizerInterface $denormalize,
-    ) {}
-
     /**
      * @throws Exception
      */
@@ -84,7 +79,7 @@ class DashboardController extends AbstractController
     #[Route('/admin/dashboard/', name: 'admin.dashboard.show', methods: ['GET'])]
     public function dashboard(): Response
     {
-        return $this->render('store/admin/dashboard/show.html.twig');
+        return $this->render('admin/store/dashboard/show.html.twig');
     }
 
     #[Route(path: '/admin/dashboard/send-email', name: 'admin.dashboard.send_email')]

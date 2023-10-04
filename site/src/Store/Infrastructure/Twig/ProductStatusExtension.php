@@ -27,7 +27,7 @@ class ProductStatusExtension extends AbstractExtension
      */
     public function status(Environment $twig, string $status): string
     {
-        return $twig->render('store/widget/product/status.html.twig', [
+        return $twig->render('admin/widget/product/status.html.twig', [
             'status' => $status,
         ]);
     }

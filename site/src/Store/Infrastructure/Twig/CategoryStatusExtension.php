@@ -27,7 +27,7 @@ class CategoryStatusExtension extends AbstractExtension
      */
     public function status(Environment $twig, string $status): string
     {
-        return $twig->render('store/widget/category/status.html.twig', [
+        return $twig->render('admin/widget/category/status.html.twig', [
             'status' => $status,
         ]);
     }
