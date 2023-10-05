@@ -24,6 +24,7 @@ class CategoryWidgetFixture extends Fixture
         $this->setReference(self::REFERENCE_NEW_ARRIVAL, $category);
 
         $manager->persist($category);
+        $manager->flush();
 
         $category = new Category();
         $category->setName($name = 'Popular products');
@@ -33,7 +34,6 @@ class CategoryWidgetFixture extends Fixture
 
         $this->setReference(self::REFERENCE_POPULAR_PRODUCTS, $category);
         $manager->persist($category);
-
         $manager->flush();
     }
 }
