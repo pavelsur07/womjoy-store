@@ -22,18 +22,14 @@ class CategoryWidgetFixture extends Fixture
         $category->setName('New arrivals');
         $category->setSlug($this->slugify->generate(self::REFERENCE_NEW_ARRIVAL));
         $this->setReference(self::REFERENCE_NEW_ARRIVAL, $category);
-
         $manager->persist($category);
-        $manager->flush();
 
         $category = new Category();
-        $category->setName($name = 'Popular products');
-        $category->setParent($category);
+        $category->setName('Popular products');
         $category->setSlug($this->slugify->generate(self::REFERENCE_POPULAR_PRODUCTS));
-        $category->setPrefixSlugProduct($this->slugify->generate($name));
-
         $this->setReference(self::REFERENCE_POPULAR_PRODUCTS, $category);
         $manager->persist($category);
+
         $manager->flush();
     }
 }
