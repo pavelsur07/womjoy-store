@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Infrastructure\Repository;
 
-use App\Store\Domain\Entity\Yml\Yml;
 use App\Matrix\Domain\Exception\MatrixException;
+use App\Store\Domain\Entity\Yml\Yml;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 

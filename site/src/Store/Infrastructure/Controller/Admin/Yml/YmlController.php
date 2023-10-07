@@ -19,20 +19,20 @@ class YmlController extends AbstractController
     #[Route(path: '/', name: '.index')]
     public function index(YmlRepository $ymls): Response
     {
-        return $this->render('admin/store/yml/index.html.twig',
-        [
-            'pagination' => $ymls->list(),
-        ]
+        return $this->render(
+            'admin/store/yml/index.html.twig',
+            [
+                'pagination' => $ymls->list(),
+            ]
         );
     }
 
     #[Route(path: '/new', name: '.new')]
     public function new(Request $request, YmlRepository $ymls): Response
     {
-        $form = $this->createForm(YmlNewForm::class,[]);
+        $form = $this->createForm(YmlNewForm::class, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $data = $form->getData();
 
             /*$yml = new Yml(
@@ -44,11 +44,12 @@ class YmlController extends AbstractController
             $ymls->save($yml, true);*/
         }
 
-        return $this->render('admin/store/yml/new.html.twig',
+        return $this->render(
+            'admin/store/yml/new.html.twig',
             [
                 'form' => $form->createView(),
-            ]);
-
+            ]
+        );
     }
 
     #[Route(path: '/remove/{id}', name: '.remove')]

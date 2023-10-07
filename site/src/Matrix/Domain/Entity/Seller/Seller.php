@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: '`matrix_seller`')]
-class Yml
+class Seller
 {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
