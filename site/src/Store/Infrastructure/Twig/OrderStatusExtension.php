@@ -27,7 +27,7 @@ class OrderStatusExtension extends AbstractExtension
      */
     public function status(Environment $twig, string $status): string
     {
-        return $twig->render('store/widget/order/status.html.twig', [
+        return $twig->render('admin/widget/order/status.html.twig', [
             'status' => $status,
         ]);
     }

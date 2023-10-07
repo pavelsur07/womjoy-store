@@ -26,7 +26,7 @@ class OrderController extends AbstractController
         $form->handleRequest($request);
 
         return $this->render(
-            'store/admin/order/index.html.twig',
+            'admin/store/order/index.html.twig',
             [
                 'pagination'=> $orders->getAll(
                     page: $request->query->getInt('page', 1),
@@ -42,7 +42,7 @@ class OrderController extends AbstractController
     public function show(string $id, Order $order): Response
     {
         return $this->render(
-            'store/admin/order/show.html.twig',
+            'admin/store/order/show.html.twig',
             [
                 'order'=> $order,
             ]
