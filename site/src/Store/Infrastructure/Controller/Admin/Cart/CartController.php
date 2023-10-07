@@ -19,7 +19,7 @@ class CartController extends AbstractController
     public function index(Request $request, CartRepository $carts): Response
     {
         return $this->render(
-            'store/admin/cart/index.html.twig',
+            'admin/store/cart/index.html.twig',
             [
                 'pagination' => $carts->getAll(
                     page: $request->query->getInt('page', 1),
@@ -33,7 +33,7 @@ class CartController extends AbstractController
     public function show(int $id, Cart $cart): Response
     {
         return $this->render(
-            'store/admin/cart/show.html.twig',
+            'admin/store/cart/show.html.twig',
             [
                 'cart' => $cart,
             ]
