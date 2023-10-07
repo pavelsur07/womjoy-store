@@ -134,6 +134,9 @@ services:
     
     App\Store\Infrastructure\Service\Payment\PaymentProvider:
         arguments: [ '%env(PAYMENT_PROVIDER_NAME)%' ]
+        
+    App\Store\Infrastructure\Repository\YmlRepository:
+        class: App\Store\Infrastructure\Repository\YmlRepository
     
     
     #---------------------- Matrix ----------------------------------------------#

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Domain\Entity\Syncing\Key;
 
-use App\Matrix\Domain\Entity\Seller\Seller;
+use App\Matrix\Domain\Entity\Seller\Yml;
 use App\Matrix\Domain\Entity\Syncing\Key\ValueObject\WildberriesKey;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,13 +20,13 @@ class Key
     #[ORM\Column(type: 'string')]
     private string $name;
 
-    #[ORM\ManyToOne(targetEntity: Seller::class)]
-    private ?Seller $seller;
+    #[ORM\ManyToOne(targetEntity: Yml::class)]
+    private ?Yml $seller;
 
     #[ORM\Embedded(class: WildberriesKey::class, columnPrefix: 'wb_')]
     private WildberriesKey $wildberriesKey;
 
-    public function __construct(string $name, Seller $seller, WildberriesKey $wildberriesKey)
+    public function __construct(string $name, Yml $seller, WildberriesKey $wildberriesKey)
     {
         $this->seller = $seller;
         $this->name = $name;
@@ -48,7 +48,7 @@ class Key
         return $this->wildberriesKey;
     }
 
-    public function getSeller(): ?Seller
+    public function getSeller(): ?Yml
     {
         return $this->seller;
     }

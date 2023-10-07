@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Matrix\Infrastructure\Controller\Seller;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
-use App\Matrix\Domain\Entity\Seller\Seller;
+use App\Matrix\Domain\Entity\Seller\Yml;
 use App\Matrix\Domain\Exception\MatrixException;
 use App\Matrix\Infrastructure\Form\Seller\SellerEditForm;
 use App\Matrix\Infrastructure\Repository\SellerRepository;
@@ -37,7 +37,7 @@ class SellerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             try {
-                $seller = new Seller(name: $data['name'], inn: $data['inn']);
+                $seller = new Yml(name: $data['name'], inn: $data['inn']);
                 $sellers->save($seller, true);
                 $this->addFlash('success', 'Succes added new seller - ' . $seller->getName());
                 return $this->redirectToRoute('matrix.admin.seller.index');
@@ -50,7 +50,7 @@ class SellerController extends AbstractController
     }
 
     #[Route(path: '/edit/{id}', name: '.edit')]
-    public function edit(int $id, Seller $seller, Request $request, Flusher $flusher): Response
+    public function edit(int $id, Yml $seller, Request $request, Flusher $flusher): Response
     {
         $form = $this->createForm(
             SellerEditForm::class,

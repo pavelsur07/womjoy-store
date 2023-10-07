@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Repository;
 
-use App\Matrix\Domain\Entity\Seller\Seller;
+use App\Matrix\Domain\Entity\Seller\Yml;
 use App\Matrix\Domain\Exception\MatrixException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -13,16 +13,16 @@ class SellerRepository
 {
     private EntityManagerInterface $em;
 
-    /** @var EntityRepository<Seller> */
+    /** @var EntityRepository<Yml> */
     private EntityRepository $repo;
 
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->repo = $this->em->getRepository(Seller::class);
+        $this->repo = $this->em->getRepository(Yml::class);
     }
 
-    public function get(int $id): Seller
+    public function get(int $id): Yml
     {
         $object = $this->repo->find($id);
         if ($object === null) {
@@ -37,7 +37,7 @@ class SellerRepository
         return $this->repo->findAll();
     }
 
-    public function save(Seller $object, bool $flush = false): void
+    public function save(Yml $object, bool $flush = false): void
     {
         $this->em->persist($object);
 
@@ -46,7 +46,7 @@ class SellerRepository
         }
     }
 
-    public function remove(Seller $object, bool $flush = false): void
+    public function remove(Yml $object, bool $flush = false): void
     {
         $this->em->remove($object);
 
