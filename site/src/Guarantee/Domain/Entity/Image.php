@@ -6,8 +6,7 @@ namespace App\Guarantee\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table(name: '`guarantee_guarantee_images`')]
+
 class Image
 {
     #[ORM\Id]

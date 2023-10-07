@@ -12,8 +12,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
-#[ORM\Entity]
-#[ORM\Table(name: '`guarantee_guarantees`')]
+
 class Guarantee
 {
     #[ORM\Id]
