@@ -177,7 +177,6 @@ class ImageController extends AbstractController
     public function updateCacheImage(Request $request): Response
     {
         $productId = (int)$request->attributes->get('product_id');
-        $this->bus->dispatch(new ProductImageOptimizeCommand($productId));
         return $this->redirectToRoute('store.admin.product.image.index', ['product_id'=> $productId]);
     }
 
