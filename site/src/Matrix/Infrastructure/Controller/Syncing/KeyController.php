@@ -40,6 +40,7 @@ class KeyController extends AbstractController
                 $keys->save(
                     new Key(
                         name: $data['name'],
+                        seller: $data['seller'],
                         wildberriesKey: new WildberriesKey(
                             value: $data['key'],
                             type: WildberriesKey::KEY_STATISTICS
@@ -70,6 +71,7 @@ class KeyController extends AbstractController
             KeyNewForm::class,
             [
                 'name' => $key->getName(),
+                'seller' => $key->getSeller(),
                 'key' => null,
             ]
         );
@@ -78,16 +80,17 @@ class KeyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             try {
-                $keys->save(
+                /*$keys->save(
                     new Key(
                         name: $data['name'],
+                        seller: $data['seller'],
                         wildberriesKey: new WildberriesKey(
                             value: $data['key'],
                             type: WildberriesKey::KEY_STATISTICS
                         )
                     ),
                     true
-                );
+                );*/
                 $this->addFlash('success', 'Success edit new key.');
             } catch (DomainException $e) {
                 $this->addFlash('danger', 'Error edit new key - ' . $e->getMessage());

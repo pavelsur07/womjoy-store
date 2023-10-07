@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Matrix\Infrastructure\Form\Syncing\Key;
 
+use App\Matrix\Domain\Entity\Seller\Seller;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +17,14 @@ class KeyNewForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add(
+                'seller',
+                EntityType::class,
+                [
+                    'class' => Seller::class,
+                    'choice_label' => 'name',
+                ]
+            )
             ->add('key', TextType::class);
     }
 
