@@ -24,7 +24,7 @@
         <a class="btn btn-bitbucket" href="{{ path('matrix.admin.seller.new') }}">New</a>
     </div>
     <div class="card card-body mt-2">
-        {# <table class="table">
+         <table class="table">
             <thead>
             <tr>
                 <th class="w-1">Data</th>
@@ -36,14 +36,14 @@
             </tr>
             </thead>
             <tbody>
-            {% for sale in pagination %}
+            {% for seller in pagination %}
                 <tr>
-                    <td>{{ sale.createdAt | date('d-m-Y') }}</td>
-                    <td>{{ sale.service }}</td>
-                    <td>{{ sale.productIdentity }}</td>
-                    <td>{{ sale.sale }}</td>
-                    <td>{{ sale.cost }}</td>
-                    <td><a href="#">edit</a></td>
+                    <td>--</td>
+                    <td>{{ seller.name }}</td>
+                    <td>{{ seller.inn }}</td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td><a href="{{ path('matrix.admin.seller.edit', {'id': seller.id}) }}">edit</a></td>
                 </tr>
             {% else %}
                 <tr>
@@ -51,7 +51,7 @@
                 </tr>
             {% endfor %}
             </tbody>
-        </table>#}
+        </table>
 
 
         <div class="pagination mt-3">
