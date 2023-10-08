@@ -19,7 +19,7 @@ RUN apk add --no-cache postgresql-dev \
             --with-webp \
             --with-freetype \
     #&& docker-php-ext-install pdo_pgsql gd xdebug bcmath \
-    && docker-php-ext-install exif pdo_pgsql gd bcmath \
+    && docker-php-ext-install exif pdo_pgsql gd bcmath pcntl \
     && apk del git
 
 RUN apk add --no-cache unzip
