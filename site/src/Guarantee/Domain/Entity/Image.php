@@ -6,7 +6,6 @@ namespace App\Guarantee\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 class Image
 {
     #[ORM\Id]
