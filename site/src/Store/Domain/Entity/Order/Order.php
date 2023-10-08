@@ -76,11 +76,11 @@ class Order
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private string|null $status = null;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $ymUid = null;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $ymUid = null;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $ymCounter = null;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $ymCounter = null;
 
     public function __construct(
         OrderCustomer $customer,
@@ -291,22 +291,22 @@ class Order
         return $this->status;
     }
 
-    public function getYmUid(): ?int
+    public function getYmUid(): ?string
     {
         return $this->ymUid;
     }
 
-    public function setYmUid(?int $ymUid): void
+    public function setYmUid(?string $ymUid): void
     {
         $this->ymUid = $ymUid;
     }
 
-    public function getYmCounter(): ?int
+    public function getYmCounter(): ?string
     {
         return $this->ymCounter;
     }
 
-    public function setYmCounter(?int $ymCounter): void
+    public function setYmCounter(?string $ymCounter): void
     {
         $this->ymCounter = $ymCounter;
     }

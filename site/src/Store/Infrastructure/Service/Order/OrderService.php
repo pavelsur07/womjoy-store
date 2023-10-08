@@ -31,7 +31,7 @@ final readonly class OrderService
         return $this->orders->get($orderId);
     }
 
-    public function checkout(Cart $cart, CheckoutDto $checkoutDto): Order
+    public function checkout(Cart $cart, CheckoutDto $checkoutDto, $ymUid = null, $ymCounter = null): Order
     {
         if ($cart->getCustomerId()) {
             $customerId = $this->customers->get($cart->getCustomerId())?->getId();
@@ -81,6 +81,10 @@ final readonly class OrderService
             // add variant item to order and quantity
             $order->addItem(variant: $item->getVariant(), quantity: $item->getQuantity());
         }
+
+
+        $order->setYmUid($ymUid ? (string)$ymUid : null);
+        $order->setYmCounter($ymCounter ? (string)$ymCounter : null);
 
         $this->orders->save($order);
 

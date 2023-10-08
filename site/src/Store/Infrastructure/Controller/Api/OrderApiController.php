@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Api;
 
+use App\Common\Infrastructure\Helper\SessionHelper;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Infrastructure\Request\Api\CheckoutDto;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use App\Store\Infrastructure\Service\Order\OrderService;
 use App\Store\Infrastructure\Service\Payment\PaymentProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,12 +23,14 @@ class OrderApiController extends AbstractController
         private readonly CartService $cartService,
         private readonly OrderService $orderService,
         private readonly PaymentProvider $paymentProvider,
-    ) {}
+    ) {
+    }
 
     #[Route(path: '/', name: '.index', methods: ['POST'], format: 'json')]
     public function index(
         #[MapRequestPayload]
         CheckoutDto $checkoutDto,
+        Request $request,
     ): Response {
         // Получаем текущую корзину
         $cart = $this->cartService->getCurrentCart(
@@ -34,7 +38,12 @@ class OrderApiController extends AbstractController
         );
 
         // Создаём заказ.
-        $order = $this->orderService->checkout($cart, $checkoutDto);
+        $order = $this->orderService->checkout(
+            $cart,
+            $checkoutDto,
+            $request->getSession()->get(SessionHelper::CLIENT_ID),
+            //  тут ID Счётчика яндекса
+        );
 
         // Получаем url перенаправления
         $redirectUrl = match ($order->getPayment()->getMethod()) {
