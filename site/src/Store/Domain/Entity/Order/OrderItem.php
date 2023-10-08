@@ -34,6 +34,9 @@ class OrderItem
     #[ORM\Column]
     private int $quantity = 1;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $chestnyznakValue = null;
+
     public function __construct(Order $order, Variant $productVariant, ProductData $productData, OrderItemPrice $price, int $quantity)
     {
         $this->order = $order;
@@ -71,5 +74,15 @@ class OrderItem
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    public function getChestnyznakValue(): ?string
+    {
+        return $this->chestnyznakValue;
+    }
+
+    public function setChestnyznakValue(?string $chestnyznakValue): void
+    {
+        $this->chestnyznakValue = $chestnyznakValue;
     }
 }
