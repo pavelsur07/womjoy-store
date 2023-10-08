@@ -12,11 +12,12 @@ class AlfaAcquiringClient extends AcquiringClient
     public const API_URI_TEST = 'https://alfa.rbsuat.com';
 
     public function __construct(
+        readonly string $alfabankApi,
         readonly string $alfabankUsername,
         readonly string $alfabankPassword,
     ) {
         parent::__construct(
-            ['apiUri' => self::API_URI_TEST, 'userName' => $alfabankUsername, 'password' => $alfabankPassword]
+            ['apiUri' => $alfabankApi, 'userName' => $alfabankUsername, 'password' => $alfabankPassword]
         );
     }
 }

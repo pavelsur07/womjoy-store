@@ -15,6 +15,7 @@ parameters:
     stripe_api_key: '%env(STRIPE_API_KEY)%'
 
     # Параметры платёжной системы Alfabank
+    alfabank_api: '%env(ALFABANK_API)%'
     alfabank_username: '%env(ALFABANK_USERNAME)%'
     alfabank_password: '%env(ALFABANK_PASSWORD)%'
 
@@ -32,6 +33,7 @@ services:
             string $thumbnails: '%app_thumbnails%'
             string $siteUrl: '%app_url%'
             string $stripeApiKey: '%stripe_api_key%'
+            string $alfabankApi: '%alfabank_api%'
             string $alfabankUsername: '%alfabank_username%'
             string $alfabankPassword: '%alfabank_password%'
 
