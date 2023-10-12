@@ -82,7 +82,6 @@ final readonly class OrderService
             $order->addItem(variant: $item->getVariant(), quantity: $item->getQuantity());
         }
 
-
         $order->setYmUid($ymUid ? (string)$ymUid : null);
         $order->setYmCounter($ymCounter ? (string)$ymCounter : null);
 

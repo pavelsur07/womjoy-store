@@ -16,8 +16,7 @@ readonly class RequestEventListener implements EventSubscriberInterface
     public function __construct(
         private RequestStack $session,
         private CartService $service,
-    ) {
-    }
+    ) {}
 
     public function onKernelRequest(RequestEvent $event): void
     {
@@ -26,14 +25,12 @@ readonly class RequestEventListener implements EventSubscriberInterface
 
         // проверяем COOKIE яндекса и отсутствие метки в сессии
         if ($request->cookies->has('_ym_uid') && !$request->getSession()->has(SessionHelper::CLIENT_ID)) {
-
             // устанавливаем сессию с уникальным индификаторам клиента яднекса.
             $this->session->getSession()->set(SessionHelper::CLIENT_ID, $request->cookies->get('_ym_uid'));
         }
 
         // если есть id корзины
         if ($request->cookies->has(SessionHelper::CART_KEY)) {
-
             // получаем id корзины из cookie
             $cartId = (int)$request->cookies->get(SessionHelper::CART_KEY);
 

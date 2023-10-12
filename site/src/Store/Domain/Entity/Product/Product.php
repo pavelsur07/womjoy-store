@@ -13,6 +13,7 @@ use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Entity\SeoMetadata;
+use App\Store\Domain\Exception\StoreCategoryException;
 use App\Store\Domain\Exception\StoreProductException;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -104,6 +105,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: AttributeAssignment::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $attributes;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CategoryAssignment::class, cascade: ['ALL'], orphanRemoval: true)]
+    private Collection $categories;
+
     #[ORM\Embedded(class: ProductExport::class, columnPrefix: 'export_')]
     private ProductExport $export;
 
@@ -190,6 +194,37 @@ class Product
     public function getReviews(): Collection
     {
         return $this->reviews;
+    }
+
+    // Categories
+
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function assignCategory(Category $category): void
+    {
+        /** @var CategoryAssignment $item */
+        foreach ($this->categories as $item) {
+            if ($item->getCategory()->isEqualId($category->getId())) {
+                return;
+            }
+        }
+        $this->categories->add(new CategoryAssignment($this, $category));
+    }
+
+    public function revokeCategory(int $categoryId): void
+    {
+        /** @var CategoryAssignment $category */
+        foreach ($this->categories as $category) {
+            if ($category->getCategory()->isEqualId($categoryId)) {
+                $this->categories->removeElement($category);
+                return;
+            }
+        }
+
+        throw new StoreCategoryException('Error not found category.');
     }
 
     // Export

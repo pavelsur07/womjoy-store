@@ -203,6 +203,11 @@ class Category
         return $this->id;
     }
 
+    public function isEqualId(int $id): bool
+    {
+        return $this->id === $id;
+    }
+
     public function getName(): string
     {
         return $this->name;
