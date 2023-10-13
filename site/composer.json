@@ -10,6 +10,7 @@
         "ext-fileinfo": "*",
         "ext-iconv": "*",
         "ext-xmlwriter": "*",
+        "amocrm/amocrm-api-library": "^1.2",
         "babdev/pagerfanta-bundle": "^4.2",
         "cocur/slugify": "^4.3",
         "doctrine/annotations": "^2.0",
