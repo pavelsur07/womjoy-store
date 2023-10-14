@@ -21,6 +21,7 @@ class ColorFixture extends Fixture
         $band->addVariant('Black');
         $band->addVariant('White');
         $band->addVariant('Green');
+        $band->setIsVisibleFilter(true);
 
         $this->setReference(self::REFERENCE_ATTRIBUTE_COLOR, $band);
         $manager->persist($band);

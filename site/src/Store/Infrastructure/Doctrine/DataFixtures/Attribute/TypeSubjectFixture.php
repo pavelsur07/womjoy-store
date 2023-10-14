@@ -22,6 +22,7 @@ class TypeSubjectFixture extends Fixture
         $band->addVariant('Subject type 1');
         $band->addVariant('Subject type 2');
         $band->addVariant('Subject type 3');
+        $band->setIsVisibleFilter(true);
 
         $this->setReference(self::REFERENCE_ATTRIBUTE_TYPE_SUBJECT, $band);
         $manager->persist($band);

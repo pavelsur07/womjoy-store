@@ -22,7 +22,7 @@ class AttributeController extends AbstractController
     public function index(Request $request, AttributeRepository $attributes): Response
     {
         return $this->render(
-            'store/admin/attribute/index.html.twig',
+            'admin/store/attribute/index.html.twig',
             [
                 'pagination' => $attributes->list(),
             ]
@@ -41,7 +41,7 @@ class AttributeController extends AbstractController
         }
 
         return $this->render(
-            'store/admin/attribute/new.html.twig',
+            'admin/store/attribute/new.html.twig',
             [
                 'pagination' => $attributes->list(),
                 'form' => $form->createView(),
@@ -96,7 +96,7 @@ class AttributeController extends AbstractController
         }
 
         return $this->render(
-            'store/admin/attribute/edit.html.twig',
+            'admin/store/attribute/edit.html.twig',
             [
                 'attribute' => $attribute,
                 'form' => $form->createView(),

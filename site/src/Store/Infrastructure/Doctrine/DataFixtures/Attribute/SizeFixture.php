@@ -23,6 +23,7 @@ class SizeFixture extends Fixture
         $band->addVariant('S');
         $band->addVariant('M');
         $band->addVariant('L');
+        $band->setIsVisibleFilter(true);
 
         $this->setReference(self::REFERENCE_ATTRIBUTE_SIZE, $band);
         $manager->persist($band);

@@ -20,6 +20,7 @@ class BrandFixture extends Fixture
         );
         $band->addVariant('Adidas');
         $band->addVariant('Nike');
+        $band->setIsVisibleFilter(true);
 
         $this->setReference(self::REFERENCE_ATTRIBUTE_BRAND, $band);
         $manager->persist($band);

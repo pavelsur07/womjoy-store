@@ -30,7 +30,7 @@ class VariantController extends AbstractController
             $this->addFlash('success', 'Success variant added. - ' . $data['name']);
         }
         return $this->render(
-            'store/admin/attribute/variant/index.html.twig',
+            'admin/store/attribute/variant/index.html.twig',
             [
                 'attribute' => $attribute,
                 'form' => $form->createView(),
