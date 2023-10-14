@@ -29,7 +29,7 @@ class AttributeAssignment
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $customerValue = null;
 
-    public function __construct(Product $product, Attribute $attribute, ?AttributeVariant $variant, ?string $customerValue)
+    public function __construct(Product $product, Attribute $attribute, ?AttributeVariant $variant, ?string $customerValue = null)
     {
         $this->product = $product;
         $this->attribute = $attribute;

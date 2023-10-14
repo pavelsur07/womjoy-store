@@ -20,7 +20,7 @@ class AttributeController extends AbstractController
     public function index(int $id, ProductRepository $products): Response
     {
         $product = $products->get($id);
-        $result = [];
+        // $result = [];
 
         /** @var AttributeAssignment $item */
         foreach ($product->getMainCategory()->getAttributes() as $item) {
@@ -28,7 +28,7 @@ class AttributeController extends AbstractController
                 'attribute_id' => $item->getAttribute()->getId(),
                 'name' => $item->getAttribute()->getName(),
                 'type' => $item->getAttribute()->getType(),
-                'values' => [],
+                'values' => $product->getAttributeValues($item->getAttribute()->getId()),
             ];
         }
 
@@ -61,9 +61,8 @@ class AttributeController extends AbstractController
             $variant = $attribute->getVariant((int)$item['variant_id']);
 
             $product->assignAttribute(attribute: $attribute, variant: $variant);
+            $products->flush();
         }
-
-        $products->flush();
 
         $result = [];
 

@@ -134,7 +134,15 @@ class Product
         ?AttributeVariant $variant,
         ?string $customerValue = null
     ): void {
-        if ($variant !== null) {
+        $this->attributes->add(
+            new AttributeAssignment(
+                product: $this,
+                attribute: $attribute,
+                variant: $variant,
+            )
+        );
+
+        /*if ($variant !== null) {
             if ($attribute->getId() !== $variant->getAttribute()->getId()) {
                 throw new StoreProductException('Attribute not parent variant.');
             }
@@ -153,7 +161,7 @@ class Product
                     customerValue: null
                 )
             );
-        }
+        }*/
     }
 
     public function revokeAttribute(int $id): void {}
@@ -567,6 +575,22 @@ class Product
     public function getWeight(): int
     {
         return $this->weight;
+    }
+
+    public function getAttributeValues(int $attributeId): array
+    {
+        $result = [];
+        /** @var AttributeAssignment $attribute */
+        foreach ($this->attributes as $attribute) {
+            if ($attribute->getAttribute()->getId() === $attributeId) {
+                $result[] = [
+                    'value' => $attribute->getVariant()->getId(),
+                    'label' => $attribute->getVariant()->getName(),
+                ];
+            }
+        }
+
+        return $result;
     }
 
     /**

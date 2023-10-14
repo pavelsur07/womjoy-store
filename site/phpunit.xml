@@ -9,6 +9,7 @@
          verbose="true">
     <testsuites>
         <testsuite name="unit">
+            <directory>src/Store/Tests</directory>
             <directory>tests/Controller</directory>
         </testsuite>
         <testsuite name="functional">
