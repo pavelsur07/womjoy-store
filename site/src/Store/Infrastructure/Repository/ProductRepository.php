@@ -81,13 +81,24 @@ class ProductRepository
 
     public function listByCategoryQueryBuilder(Category $category, ?string $sort, ?string $direction = 'asc', array $filterIds = []): QueryBuilder
     {
+        $expr = $this->em->getExpressionBuilder();
+
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->from(Product::class, 'p')
-            ->andWhere('p.categoriesIds LIKE :ids')
+            ->leftJoin('p.categories', 'c')
+            ->leftJoin('c.category', 'cc')
+            ->andWhere(
+                $expr->orX(
+                    $expr->like('p.categoriesIds', ':ids'),
+                    $expr->in('cc.id', explode(',', $category->getIds()))
+                )
+            )
             ->setParameter('ids', $category->getIds() . '%')
             ->andWhere('p.status.value = :status_value')
-            ->setParameter('status_value', ProductStatus::ACTIVE);
+            ->setParameter('status_value', ProductStatus::ACTIVE)
+            ->groupBy('p.id')
+        ; 
 
         if (\count($filterIds) > 0) {
             // Добавить фильтрацию товаров по характеристикам
