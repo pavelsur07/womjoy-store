@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Repository;
 
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Domain\Entity\Product\AttributeAssignment;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,8 +50,13 @@ class ProductRepository
         return $object;
     }
 
-    public function getAll(int $page, int $size, string $sort = 'createdAt', string $direction = 'desc', ?string $status = null): PaginationInterface
-    {
+    public function getAll(
+        int $page,
+        int $size,
+        string $sort = 'createdAt',
+        string $direction = 'desc',
+        ?string $status = null
+    ): PaginationInterface {
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->from(Product::class, 'p');
@@ -81,32 +87,51 @@ class ProductRepository
         return $qb->getQuery()->toIterable();
     }
 
-    public function listByCategoryQueryBuilder(Category $category, ?string $sort, ?string $direction = 'asc', array $filterIds = []): QueryBuilder
-    {
+    public function listByCategoryQueryBuilder(
+        Category $category,
+        ?string $sort,
+        ?string $direction = 'asc',
+        array $filterIds = []
+    ): QueryBuilder {
         $expr = $this->em->getExpressionBuilder();
 
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->from(Product::class, 'p')
-            ->leftJoin('p.categories', 'c')
-            ->leftJoin('c.category', 'cc')
-            ->andWhere(
-                $expr->orX(
-                    $expr->like('p.categoriesIds', ':ids'),
-                    $expr->in('cc.id', explode('/', $category->getIds()))
-                )
-            )
-            ->setParameter('ids', $category->getIds() . '%')
-            ->andWhere('p.status.value = :status_value')
-            ->setParameter('status_value', ProductStatus::ACTIVE)
-            ->groupBy('p.id')
+//            ->leftJoin('p.categories', 'c')
+//            ->leftJoin('c.category', 'cc')
+//            ->andWhere(
+//                $expr->orX(
+//                    $expr->like('p.categoriesIds', ':ids'),
+//                    $expr->in('cc.id', explode('/', $category->getIds()))
+//                )
+//            )
+//            ->setParameter('ids', $category->getIds() . '%')
+//            ->andWhere('p.status.value = :status_value')
+//            ->setParameter('status_value', ProductStatus::ACTIVE)
+//            ->groupBy('p.id')
         ;
 
         if (count($filterIds) > 0) {
             // Добавить фильтрацию товаров по характеристикам
-            $qb->join('p.attributes', 'a')->andWhere(
-                $expr->in('a.variant', $filterIds)
-            );
+            foreach ($filterIds as $attributeId => $variantIds) {
+                // создаём алиас для подзапроса
+                $alias = sprintf('attr_%d', $attributeId);
+
+                $filterQb = $this->em->createQueryBuilder()->select($alias)
+                    ->from(AttributeAssignment::class, $alias);
+
+                $filterQb->where(
+                    $expr->eq($alias . '.attribute', $attributeId)
+                );
+                $filterQb->andWhere(
+                    $expr->in($alias . '.variant', $variantIds)
+                );
+
+                $qb->andWhere(
+                    $expr->exists($filterQb->getDQL())
+                );
+            }
         }
 
         if ($sort) {

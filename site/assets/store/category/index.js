@@ -53,10 +53,23 @@ function generateFilterString() {
     return filterParams
 }
 
+function getFilterForData() {
+   return  new FormData(
+        document.querySelector('form.filter__form')
+    )
+}
+
 function onFilterChange(event) {
     event.preventDefault()
-    const filterString = generateFilterString()
-    window.location.href = updateUrl(filterString.slice(1), 'filter_ids')
+
+    const filterString = generateFilterString();
+
+    const filterFormData =   new FormData(
+        document.querySelector('form.filter__form')
+    );
+
+    window.location.search = new URLSearchParams(filterFormData).toString();
+    // window.location.search = updateUrl(filterString, 'filter_ids')
 }
 
 const filterElements = document.querySelectorAll('.filter-checkbox')

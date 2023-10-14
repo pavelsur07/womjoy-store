@@ -40,7 +40,19 @@ class CategoryController extends BaseController
         }
 
         // Получение спсика установленных фильтров
-        $filterSettingIds = $request->query->get('filter_ids');
+        $filterValues = $request->query->all('filter');
+
+        $filterSettingIds = [];
+        foreach ($filterValues as $filters) {
+            foreach ($filters as $filterValue) {
+                $filterSettingIds[] = $filterValue;
+            }
+        }
+
+        $filterSettingIds = implode('_', $filterSettingIds);
+//
+//        // Получение спсика установленных фильтров
+//        $filterSettingIds = $request->query->get('filter_ids');
 
         // Получаем правило сортировки
         $currentSorting = $request->query->get('sort');
@@ -57,21 +69,11 @@ class CategoryController extends BaseController
             default => 'asc',
         };
 
-        if ($filterSettingIds) {
-            $filterIds = explode('_', $filterSettingIds);
-
-            if (!$filterIds) {
-                $filterIds = [];
-            }
-        } else {
-            $filterIds = [];
-        }
-
         $listCategoryQueryBuilder = $products->listByCategoryQueryBuilder(
             category: $category,
             sort: $sort,
             direction: $direction,
-            filterIds: $filterIds,
+            filterIds: $filterValues,
         );
 
         // Получаем номер страници
