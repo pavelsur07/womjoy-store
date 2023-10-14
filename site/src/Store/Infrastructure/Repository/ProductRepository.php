@@ -91,14 +91,14 @@ class ProductRepository
             ->andWhere(
                 $expr->orX(
                     $expr->like('p.categoriesIds', ':ids'),
-                    $expr->in('cc.id', explode(',', $category->getIds()))
+                    $expr->in('cc.id', explode('/', $category->getIds()))
                 )
             )
             ->setParameter('ids', $category->getIds() . '%')
             ->andWhere('p.status.value = :status_value')
             ->setParameter('status_value', ProductStatus::ACTIVE)
             ->groupBy('p.id')
-        ; 
+        ;
 
         if (\count($filterIds) > 0) {
             // Добавить фильтрацию товаров по характеристикам
