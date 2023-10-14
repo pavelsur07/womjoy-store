@@ -50,9 +50,9 @@ class CategoryController extends BaseController
         }
 
         $filterSettingIds = implode('_', $filterSettingIds);
-//
-//        // Получение спсика установленных фильтров
-//        $filterSettingIds = $request->query->get('filter_ids');
+        //
+        //        // Получение спсика установленных фильтров
+        //        $filterSettingIds = $request->query->get('filter_ids');
 
         // Получаем правило сортировки
         $currentSorting = $request->query->get('sort');

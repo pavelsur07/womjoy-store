@@ -16,8 +16,6 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use UnexpectedValueException;
 
-use function count;
-
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
  * @method Product|null findOneBy(array $criteria, array $orderBy = null)
@@ -109,10 +107,9 @@ class ProductRepository
             ->setParameter('ids', $category->getIds() . '%')
             ->andWhere('p.status.value = :status_value')
             ->setParameter('status_value', ProductStatus::ACTIVE)
-            ->groupBy('p.id')
-        ;
+            ->groupBy('p.id');
 
-        if (count($filterIds) > 0) {
+        if (\count($filterIds) > 0) {
             // Добавить фильтрацию товаров по характеристикам
             foreach ($filterIds as $attributeId => $variantIds) {
                 // создаём алиас для подзапроса
