@@ -25,6 +25,9 @@ class Variant
     #[ORM\ManyToOne(inversedBy: 'variants')]
     private ?Product $product = null;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $barcode = null;
+
     #[ORM\Column(type: 'integer', options: ['default' => 0])]
     private int $quantity = 0;
 
@@ -33,6 +36,20 @@ class Variant
         $this->article = $article;
         $this->value = $value;
         $this->product = $product;
+    }
+
+    public function getBarcode(): ?string
+    {
+        return $this->barcode;
+    }
+
+    public function setBarcode(?string $barcode): void
+    {
+        if ($this->barcode !== null) {
+            throw new StoreProductException('Barcode is not null.');
+        }
+
+        $this->barcode = $barcode;
     }
 
     public function changeQuantity(int $value): void

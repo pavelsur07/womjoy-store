@@ -31,6 +31,9 @@ class OrderItem
     #[ORM\Embedded(class: OrderItemPrice::class, columnPrefix: 'price_')]
     private OrderItemPrice $price;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $barcode = null;
+
     #[ORM\Column]
     private int $quantity = 1;
 
@@ -44,6 +47,16 @@ class OrderItem
         $this->productData = $productData;
         $this->price = $price;
         $this->quantity = $quantity;
+    }
+
+    public function getBarcode(): ?string
+    {
+        return $this->barcode;
+    }
+
+    public function setBarcode(?string $barcode): void
+    {
+        $this->barcode = $barcode;
     }
 
     public function getId(): int
