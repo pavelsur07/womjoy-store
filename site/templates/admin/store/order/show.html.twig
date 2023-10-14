@@ -34,6 +34,13 @@
             </p>
             <p><strong>Data: </strong> {{ order.createdAt| date('Y-m-d') }}</p>
             <p><strong>Name: </strong> {{ order.customer.name }}</p>
+
+            <div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+                {{ form_end(form) }}
+            </div>
             <table class="table">
                 <thead>
                 <tr>

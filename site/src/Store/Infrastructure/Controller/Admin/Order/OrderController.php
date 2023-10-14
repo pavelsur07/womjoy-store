@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Admin\Order;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Order\Order;
 use App\Store\Infrastructure\Form\Order\Admin\OrderFilter;
 use App\Store\Infrastructure\Form\Order\Admin\OrderFilterForm;
+use App\Store\Infrastructure\Form\Order\Admin\OrderStatusEditForm;
 use App\Store\Infrastructure\Repository\OrderRepository;
+use DomainException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,12 +42,36 @@ class OrderController extends AbstractController
     }
 
     #[Route(path: '/admin/orders/{id}/show', name: 'store.order.admin.show')]
-    public function show(string $id, Order $order): Response
+    public function show(string $id, Order $order, Request $request, Flusher $flusher): Response
     {
+        $form = $this->createForm(
+            OrderStatusEditForm::class,
+            [
+                'status' => $order->getStatus(),
+            ]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $data = $form->getData();
+                $order->addStatus($data['status']);
+
+                $flusher->flush();
+                $this->addFlash('success', 'Success status changed.');
+            } catch (DomainException $e) {
+                $this->addFlash('danger', 'Error status not changed.');
+            }
+
+            return $this->redirectToRoute('store.order.admin.show', ['id' => $id]);
+        }
+
         return $this->render(
             'admin/store/order/show.html.twig',
             [
                 'order'=> $order,
+                'form' =>$form->createView(),
             ]
         );
     }

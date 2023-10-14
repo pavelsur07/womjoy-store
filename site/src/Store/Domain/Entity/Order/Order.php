@@ -325,7 +325,7 @@ class Order
         }
     }
 
-    private function addStatus(string $status): void
+    public function addStatus(string $status): void
     {
         Assert::oneOf($status, OrderStatus::list());
         $this->statuses[] = new OrderStatus($status, new DateTimeImmutable());
