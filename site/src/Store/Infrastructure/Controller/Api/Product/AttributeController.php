@@ -72,7 +72,7 @@ class AttributeController extends AbstractController
                 'attribute_id' => $item->getAttribute()->getId(),
                 'name' => $item->getAttribute()->getName(),
                 'type' => $item->getAttribute()->getType(),
-                'values' => [],
+                'values' => $product->getAttributeValues($item->getAttribute()->getId()),
             ];
         }
 
