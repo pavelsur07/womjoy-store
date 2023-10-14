@@ -31,11 +31,12 @@ class Variant
     #[ORM\Column(type: 'integer', options: ['default' => 0])]
     private int $quantity = 0;
 
-    public function __construct(Product $product, string $article, string $value)
+    public function __construct(Product $product, string $article, string $value, ?string $barcode = null)
     {
         $this->article = $article;
         $this->value = $value;
         $this->product = $product;
+        $this->barcode = $barcode;
     }
 
     public function getBarcode(): ?string

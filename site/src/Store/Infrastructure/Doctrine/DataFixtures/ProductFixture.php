@@ -10,6 +10,7 @@ use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Infrastructure\Doctrine\DataFixtures\Category\CategoryFixture;
+use App\Store\Infrastructure\Doctrine\DataFixtures\Category\CategoryWidgetFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -24,6 +25,7 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
     {
         $i = 1000;
         $mainCategory = $this->getReference(CategoryFixture::REFERENCE_LEGGINGS);
+        $slaveCategory = $this->getReference(CategoryWidgetFixture::REFERENCE_NEW_ARRIVAL);
 
         $product = $this->productCreate(
             category: $mainCategory,
@@ -32,10 +34,11 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
             price: 1000,
             number: $i
         );
+        // $product->assignCategory($slaveCategory);
 
         $manager->persist($product);
-        $product->addVariant('XL');
-        $product->addVariant('XXL');
+        $product->addVariant('XL', 'BARCODE000000001');
+        $product->addVariant('XXL', 'BARCODE000000002');
         $this->setReference(self::REFERENCE_PRODUCT, $product);
         $manager->flush();
 
@@ -221,6 +224,7 @@ class ProductFixture extends Fixture implements DependentFixtureInterface
     {
         return [
             CategoryFixture::class,
+            CategoryWidgetFixture::class,
         ];
     }
 }

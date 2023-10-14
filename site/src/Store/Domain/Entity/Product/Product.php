@@ -268,12 +268,13 @@ class Product
         return $this->relatedAssignments;
     }
 
-    public function addVariant(string $value): void
+    public function addVariant(string $value, ?string $barcode = null): void
     {
         $this->variants->add(new Variant(
             product: $this,
             article: $this->article . '-' . $value,
-            value: $value
+            value: $value,
+            barcode: $barcode,
         ));
     }
 

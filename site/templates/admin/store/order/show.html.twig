@@ -46,6 +46,7 @@
                 <tr>
                     <th>Image</th>
                     <th>Name / Article</th>
+                    <th>Barcode</th>
                     <th>Sale price</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -68,6 +69,7 @@
 
                         </td>
                         <td> {{ item.productData.name }}<br> <strong>{{ item.productData.article }}</strong> </td>
+                        <td> {{ item.productVariant.barcode }}</td>
                         <td> {{ item.price.salePrice |number_format(0, ',', ' ')}}</td>
                         <td> status </td>
                         <td><a href="#">action</a></td>
