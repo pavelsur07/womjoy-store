@@ -44,8 +44,11 @@ export const pushChangedAttributeProduct = createAsyncThunk(
                 throw new Error('Can\t changed attributes. Server error')
             }
 
+            /*
             const data = await response.json()
             console.log(data)
+            return await response.json()
+            */
 
             return await response.json()
         } catch (e) {

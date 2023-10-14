@@ -48,7 +48,11 @@ const attributeSlice  = createSlice({
             state.error = null
             state.message = null
         },
-        [pushChangedAttributeProduct.fulfilled]: setMessage,
+        [pushChangedAttributeProduct.fulfilled]: (state, action) => {
+            state.status = 'resolved'
+            state.id = action.payload.id
+            state.items = action.payload.items
+        },
         [pushChangedAttributeProduct.rejected]: setError,
     }
 })
