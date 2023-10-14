@@ -15,6 +15,8 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use UnexpectedValueException;
 
+use function count;
+
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
  * @method Product|null findOneBy(array $criteria, array $orderBy = null)
@@ -100,8 +102,11 @@ class ProductRepository
             ->groupBy('p.id')
         ;
 
-        if (\count($filterIds) > 0) {
+        if (count($filterIds) > 0) {
             // Добавить фильтрацию товаров по характеристикам
+            $qb->join('p.attributes', 'a')->andWhere(
+                $expr->in('a.variant', $filterIds)
+            );
         }
 
         if ($sort) {

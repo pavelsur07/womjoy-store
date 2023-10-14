@@ -57,10 +57,21 @@ class CategoryController extends BaseController
             default => 'asc',
         };
 
+        if ($filterSettingIds) {
+            $filterIds = explode('_', $filterSettingIds);
+
+            if (!$filterIds) {
+                $filterIds = [];
+            }
+        } else {
+            $filterIds = [];
+        }
+
         $listCategoryQueryBuilder = $products->listByCategoryQueryBuilder(
             category: $category,
             sort: $sort,
             direction: $direction,
+            filterIds: $filterIds,
         );
 
         // Получаем номер страници
@@ -74,7 +85,7 @@ class CategoryController extends BaseController
 
         $filters = [];
 
-        /** @deprecated  */
+        /** @deprecated */
         /** @var AttributeAssignment $attribute */
         foreach ($category->getAttributes() as $attribute) {
             if ($attribute->getAttribute()->isVisibleFilter()) {
@@ -85,7 +96,7 @@ class CategoryController extends BaseController
                         static function (Variant $value) {
                             return [
                                 'id' => $value->getId(),
-                                'name' =>  $value->getName(),
+                                'name' => $value->getName(),
                             ];
                         },
                         $attribute->getAttribute()->getVariants()->toArray()
@@ -105,7 +116,9 @@ class CategoryController extends BaseController
                 'pagination' => $pagerfanta,
                 'sorting_rules' => self::SORTING_RULES,
                 'filters' => $filters,
-                'filter_setting_ids' => ($filterSettingIds !== null) ? $this->decodeFilterIdsToArray($filterSettingIds) : [null],
+                'filter_setting_ids' => ($filterSettingIds !== null) ? $this->decodeFilterIdsToArray(
+                    $filterSettingIds
+                ) : [null],
             ]
         );
     }
@@ -114,6 +127,7 @@ class CategoryController extends BaseController
     {
         $result = explode('_', $hash);
         sort($result);
+
         return array_map('intval', $result);
     }
 }
