@@ -111,6 +111,15 @@ class Product
     #[ORM\Embedded(class: ProductExport::class, columnPrefix: 'export_')]
     private ProductExport $export;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $deliveryNotes = null;
+
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $sizeTable = null;
+
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $measurementTable = null;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -169,6 +178,38 @@ class Product
     public function getAttributes(): Collection
     {
         return $this->attributes;
+    }
+
+    // Notes
+
+    public function getDeliveryNotes(): ?string
+    {
+        return $this->deliveryNotes;
+    }
+
+    public function changeDeliveryNotes(?string $deliveryNotes): void
+    {
+        $this->deliveryNotes = $deliveryNotes;
+    }
+
+    public function getSizeTable(): ?array
+    {
+        return $this->sizeTable;
+    }
+
+    public function changeSizeTable(?array $sizeTable): void
+    {
+        $this->sizeTable = $sizeTable;
+    }
+
+    public function getMeasurementTable(): ?array
+    {
+        return $this->measurementTable;
+    }
+
+    public function changeMeasurementTable(?array $measurementTable): void
+    {
+        $this->measurementTable = $measurementTable;
     }
 
     // Review
