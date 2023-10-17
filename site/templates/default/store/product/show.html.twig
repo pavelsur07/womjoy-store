@@ -95,7 +95,7 @@
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
                                             {#<span>40-42</span>#}
-                                            <span>{{ variant.quantity }} - {{ variant.id }}</span>
+                                            {#<span>{{ variant.quantity }} - {{ variant.id }}</span>#}
                                         </span>
                                     </label>
                                 {% else %}
@@ -143,12 +143,15 @@
                             <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
                             <span>В корзину</span>
                         </button>
+                        {# Временно скрыта кнопка "В избранное"
                         <button class="i-card__graybtn" type="button">
                             <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
                             <span>В избранное</span>
                         </button>
+                        #}
                     </div>
 
+                    {# Временно скрыта кнопка "В избранное" в мобильной версии
                     <div class="i-card__more">
                         <div class="i-card__delivery">
                             <img src="{{ asset('./default/img/icons/trace.svg') }}" alt="delivery" width="24" height="24">
@@ -159,8 +162,17 @@
                             В избранное
                         </button>
                     </div>
+                    #}
 
                     <div class="i-card__faq">
+
+                        <div class="i-card__faq_item">
+                            <div class="i-card__faq_ask">Доставка</div>
+                            <div class="i-card__faq_answer" itemprop="description">
+                                {#<img src="{{ asset('./default/img/icons/trace.svg') }}" alt="delivery" width="24" height="24">#}
+                                <p>Доставка 1-2 дня</p>
+                            </div>
+                        </div>
 
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Описание</div>
