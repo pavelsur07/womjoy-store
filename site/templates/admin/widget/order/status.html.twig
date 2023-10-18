@@ -1,13 +1,13 @@
 {% if status == 'new' %}
     <span class="badge badge-secondary">{{ 'new'|trans|raw }}</span>
 {% elseif status == 'paid' %}
-    <span class="badge bg-green text-green-fg">{{ 'paid'|trans|raw }}</span>
+    <span class="badge bg-blue text-blue-fg">{{ 'paid'|trans|raw }}</span>
 {% elseif status == 'sent' %}
-    <span class="badge bg-green text-green-fg">{{ 'sent'|trans|raw }}</span>
+    <span class="badge bg-cyan text-cyan-fg">{{ 'sent'|trans|raw }}</span>
 {% elseif status == 'completed' %}
     <span class="badge bg-green text-green-fg">{{ 'completed'|trans|raw }}</span>
 {% elseif status == 'cancelled' %}
-    <span class="badge bg-green text-green-fg">{{ 'cancelled'|trans|raw }}</span>
+    <span class="badge bg-orange text-orange-fg">{{ 'cancelled'|trans|raw }}</span>
 {% elseif status == 'cancelled_by_customer' %}
-    <span class="badge bg-green text-green-fg">{{ 'cancelled_by_customer'|trans|raw }}</span>
+    <span class="badge bg-red text-red-fg">{{ 'cancelled_by_customer'|trans|raw }}</span>
 {% endif %}

@@ -15,6 +15,9 @@ class OrderDelivery
     #[ORM\Column(nullable: true)]
     private ?string $index = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $externalDeliveryNumber = null;
+
     public function __construct(?string $address, ?string $index = null)
     {
         $this->address = $address;
@@ -29,5 +32,15 @@ class OrderDelivery
     public function getIndex(): ?string
     {
         return $this->index;
+    }
+
+    public function getExternalDeliveryNumber(): ?string
+    {
+        return $this->externalDeliveryNumber;
+    }
+
+    public function setExternalDeliveryNumber(?string $externalDeliveryNumber): void
+    {
+        $this->externalDeliveryNumber = $externalDeliveryNumber;
     }
 }
