@@ -75,4 +75,15 @@ class OrderController extends AbstractController
             ]
         );
     }
+
+    #[Route(path: '/admin/orders/{id}/print', name: 'store.order.admin.print')]
+    public function print(string $id, Order $order, Request $request): Response
+    {
+        return $this->render(
+            'admin/store/order/print.html.twig',
+            [
+                'order' => $order,
+            ]
+        );
+    }
 }

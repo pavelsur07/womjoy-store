@@ -23,6 +23,16 @@ class OrderStatus
         Assert::oneOf($this->value, self::list());
     }
 
+    public function isPaid(): bool
+    {
+        return $this->value === self::PAID;
+    }
+
+    public function isSent(): bool
+    {
+        return $this->value === self::SENT;
+    }
+
     public function getValue(): string
     {
         return $this->value;

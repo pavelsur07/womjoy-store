@@ -21,6 +21,13 @@
     </div>
     <div class="mb-3">
         <a class="btn btn-bitbucket" href="{{ path('store.order.admin.index') }}">Back to list</a>
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.print', {'id': order.id}) }}">Print</a>
+        --
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.pay', {'order_id': order.id}) }}">Pay</a>
+
+        {% if order.isPaid %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.send', {'order_id': order.id}) }}">Send</a>
+        {% endif %}
     </div>
 
     <div class="card">
