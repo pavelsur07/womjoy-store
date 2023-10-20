@@ -45,6 +45,8 @@ RUN apk add --no-cache postgresql-dev \
     libjpeg-turbo-dev libpng-dev libwebp-dev freetype-dev \
     bash coreutils git \
     jpegoptim optipng pngquant gifsicle \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-configure gd \
             --with-jpeg \
