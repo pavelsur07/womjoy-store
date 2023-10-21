@@ -39,7 +39,7 @@ class BaseController extends AbstractController
         'company' => null,
     ];
 
-    private string $template = 'default';
+    public string $template = 'pion';
 
     public function __construct(
         private readonly MenuRepositoryInterface $menus,

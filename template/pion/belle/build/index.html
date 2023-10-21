@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+	<div class="catalog-menu">
+		<div class="container-xxl">
+			<div class="d-flex d-md-none justify-content-between align-items-center py-4">
+				<button class="catalog-menu__back" type="button"><img src="./img/icons/back-arrow.svg" alt="" width="8" height="16"></button>
+				<span class="catalog-menu__title mb-0">КАТАЛОГ</span>
+				<button class="catalog-menu__close" type="button"><img src="./img/icons/close.svg" alt="" width="24" height="24"></button>
+			</div>
+			<div class="d-block d-md-none">
+				<div class="search">
+					<div class="container">
+						<div class="search__content">
+							<button class="search__close" type="button"><img src="./img/icons/close.svg" alt=""></button>
+
+							<div class="search__main mb-0 mb-md-5 d-flex d-md-block">
+								<form class="search__form flex-grow-1 me-2">
+									<div class="flex-grow-1 me-0 me-md-3 w-field">
+										<div class="w-field__main">
+											<img src="./img/icons/search.svg" alt="" width="24" height="24">
+											<input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+										</div>
+									</div>
+									<button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
+								</form>
+								<button class="search__cancel text-decoration-underline d-none" type="button">Отменить</button>
+							</div>
+							<div class="search__bottom position-relative pt-md-0 pt-3">
+								<div class="row flex-grow-1">
+									<div class="col col-12 col-md-6 order-2">
+										<span class="d-block title-lg mb-1 mb-md-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
+										<div class="search__queries">
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												love
+											</a>
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												боди
+											</a>
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												велосипедки
+											</a>
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												шорты
+											</a>
+										</div>
+									</div>
+									<div class="col col-12 col-md-6 order-1 mb-2 mb-md-0">
+										<span class="d-block title-lg mb-1 mb-md-3 fw-bold">ВЫ ИСКАЛИ</span>
+										<div class="search__queries">
+											<a href="#" class="search__query">
+												Одежда
+											</a>
+										</div>
+									</div>
+								</div>
+								<button class="search__clear" type="button">Очистить</button>
+							</div>
+							<div class="search__result">
+								<div class="search__queries">
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										love
+									</a>
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										боди
+									</a>
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										велосипедки
+									</a>
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										шорты
+									</a>
+								</div>
+								<a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="catalog-menu__cols">
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">SALE</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">НОВИНКИ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">СКОРО В ПРОДАЖЕ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ПЛЯЖ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ПОДАРОЧНАЯ УПАКОВКА</a>
+					</div>
+				</div>
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__title drop__trigger">НИЖНЕЕ БЕЛЬЕ</a>
+						<ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Комплекты белья</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Топы и лифы</a>
+							</li>
+							<li class="catalog-menu__item drop">
+								<a href="#" class="catalog-menu__link drop__trigger">Трусы</a>
+								<ul class="catalog-menu__sublist drop__content">
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Бразильяно</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Кюлот</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Моделирующие</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Слипы</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Стринги</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Шорты</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__subtitle drop__trigger">ПО КАПСУЛАМ</a>
+						<ul class="catalog-menu__list drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Bloom</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Sculpt</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Invisible</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Белье из бамбука</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Soft</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Бамбук</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Base</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__title drop__trigger">ОДЕЖДА</a>
+						<ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Велосипедки</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Толстовки и свитшоты</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Шорты</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Футболки</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Брюки</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Топы и кроп-топы</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Боди</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Водолазки и лонгсливы</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Майки</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__subtitle drop__trigger">ПО КАПСУЛАМ</a>
+						<ul class="catalog-menu__list drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Bloom</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Sculpt</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Invisible</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Белье из бамбука</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Soft</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Бамбук</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Base</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ОДЕЖДА ДЛЯ ДОМА</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ОДЕЖДА ДЛЯ СПОРТА</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ЛЕГИНСЫ</a>
+					</div>
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__title drop__trigger">КУПАЛЬНИКИ</a>
+						<ul class="catalog-menu__list drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Базовые</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Верх</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Низ</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Слитные</a>
+							</li>
+						</ul>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">КОЛГОТКИ И НОСКИ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">АКСЕССУАРЫ</a>
+					</div>
+				</div>
+				<div class="catalog-menu__col d-none d-xl-block">
+					<img src="./img/menu-ad.webp" alt="">
+				</div>
+				<button class="catalog-menu__close d-none d-md-block" type="button"><img src="./img/icons/close.svg" alt="" width="24" height="24"></button>
+			</div>
+			<div class="catalog-menu__bottom">
+				<ul class="catalog-menu__info">
+					<li><a href="#">Магазины</a></li>
+					<li><a href="#">Оплата</a></li>
+					<li><a href="#">Доставка</a></li>
+					<li><a href="#">Возврат</a></li>
+				</ul>
+				<ul class="catalog-menu__info">
+					<li><a href="#">Программа лояльности</a></li>
+					<li><a href="#">Инструкция по установке приложения</a></li>
+				</ul>
+				<ul class="catalog-menu__soc">
+					<li><a href="#">Vkontakte</a></li>
+					<li><a href="#">Telegram</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="search search-pc">
+		<div class="container">
+			<div class="search__content">
+				<button class="search__close" type="button"><img src="./img/icons/close.svg" alt=""></button>
+
+				<div class="search__main mb-0 mb-md-5">
+					<form class="search__form">
+						<div class="flex-grow-1 me-0 me-md-3 w-field">
+							<div class="w-field__main">
+								<img src="./img/icons/search.svg" alt="" width="24" height="24">
+								<input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+							</div>
+						</div>
+						<button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
+					</form>
+				</div>
+				<div class="search__bottom">
+					<div class="row flex-grow-1">
+						<div class="col col-6">
+							<span class="d-block title-lg mb-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
+							<div class="search__queries">
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									love
+								</a>
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									боди
+								</a>
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									велосипедки
+								</a>
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									шорты
+								</a>
+							</div>
+						</div>
+						<div class="col col-6">
+							<span class="d-block title-lg mb-3 fw-bold">ВЫ ИСКАЛИ</span>
+							<div class="search__queries">
+								<a href="#" class="search__query">
+									Одежда
+								</a>
+							</div>
+						</div>
+					</div>
+					<button class="search__clear" type="button">Очистить</button>
+				</div>
+				<div class="search__result">
+					<div class="search__queries">
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							love
+						</a>
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							боди
+						</a>
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							велосипедки
+						</a>
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							шорты
+						</a>
+					</div>
+					<a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <header class="header py-2 position-absolute left-0 top-0 w-100">
+        <div class="container-fluid">
+            <div class="header__alert d-flex justify-content-center py-2 border-bottom border-white">SUMMER SALE! до -40%! Подробнее ></div>
+            <div class="header__main d-flex justify-content-between align-items-center py-4">
+                <button class="burger d-flex align-items-center text-uppercase me-2 me-md-5 fw-bold" type="button">
+                    <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 6H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                        <path d="M3 12H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                        <path d="M3 18H11" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                    </svg>
+                    <span class="d-none d-xl-block">Каталог</span>
+                </button>
+                <div class="me-auto fw-bold d-none d-xl-flex">
+                    <a href="#" class="pe-3 me-3">RU</a>
+                    <a href="#" class="opacity-75">COM</a>
+                </div>
+                <a href="#" class="header__logo position-absolute start-50 translate-middle-x d-block">
+                	<img src="./img/logo.svg" alt="">
+                	<img src="./img/logo-black.svg" alt="">
+                </a>
+
+                <ul class="d-flex flex-grow-1 flex-md-grow-0 align-items-center">
+                	<li class="header__action call-search">
+                		<button type="button">
+                			<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+	                            <path d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z" stroke-linecap="round" stroke-linejoin="round"></path>
+	                            <path d="M15 15L21 21" stroke-linecap="round" stroke-linejoin="round"></path>
+	                        </svg>
+                		</button>
+                	</li>
+                	<li class="header__action">
+                		<a href="#">
+                			<svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+	                            <path d="M9 10C6.81196 10 4.71354 10.8297 3.16637 12.3065C1.61919 13.7834 0.75 15.9114 0.75 18C0.75 18.5523 1.19772 19 1.75 19H16.25C16.8023 19 17.25 18.5523 17.25 18C17.25 15.9114 16.3808 13.7834 14.8336 12.3065C13.2865 10.8297 11.188 10 9 10ZM9 10C10.2503 10 11.4494 9.52589 12.3335 8.68198C13.2176 7.83807 13.7143 6.69347 13.7143 5.5C13.7143 4.30653 13.2176 3.16193 12.3335 2.31802C11.4494 1.47411 10.2503 1 9 1C7.74969 1 6.5506 1.47411 5.6665 2.31802C4.7824 3.16193 4.28571 4.30653 4.28571 5.5C4.28571 6.69347 4.7824 7.83807 5.6665 8.68198C6.5506 9.52589 7.74969 10 9 10Z" stroke-linecap="round" stroke-linejoin="round"></path>
+	                        </svg>
+                		</a>
+                	</li>
+                	<li class="header__action ms-auto">
+                		<a href="#">
+                			<svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+                                <path d="M15.0226 0.529051C12.976 0.300761 10.7734 1.44221 9.9992 3.14837C9.22499 1.44221 6.99839 0.300761 4.97584 0.529051C2.28111 0.823424 0.552638 3.56891 1.09879 6.21826C1.84299 9.82283 5.90009 11.4329 9.9992 15.5C14.0803 11.4329 18.1554 9.81683 18.8996 6.21826C19.4458 3.56891 17.7173 0.823424 15.0226 0.529051Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                		</a>
+                	</li>
+                	<li class="header__action">
+                		<a href="#">
+                			<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+		                        <path d="M18.1528 8H5.84709C5.35825 8 4.94106 8.35341 4.8607 8.8356L3.19403 18.8356C3.09244 19.4451 3.56248 20 4.18042 20H19.8195C20.4374 20 20.9075 19.4451 20.8059 18.8356L19.1392 8.8356C19.0589 8.35341 18.6417 8 18.1528 8Z" stroke-linecap="round" stroke-linejoin="round"></path>
+		                        <path d="M8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8" stroke-linecap="round" stroke-linejoin="round"></path>
+		                    </svg>
+                		</a>
+                	</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero__slider">
+            <div class="hero-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-1-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-1.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="hero__title">Базовые купальники</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-2-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-2.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-2-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-2.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-2-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-2.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hero-btn-prev" type="button"><img src="./img/icons/arrow-left.svg" alt=""></button>
+            <button class="hero-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt=""></button>
+            <div class="hero-pagination"></div>
+        </div>
+    </section>
+
+    <div class="container-xxl">
+    	<section class="w-section">
+	    	<div class="row g-2 g-md-4">
+	    		<div class="col col-6 col-lg-3">
+	    			<a href="#" class="cat" style="background-image: url('./img/cats/img-1.webp');">
+	    				<span class="cat__btn w-white-btn">Нижнее белье</span>
+	    			</a>
+	    		</div>
+	    		<div class="col col-6 col-lg-3">
+	    			<a href="#" class="cat" style="background-image: url('../img/cats/img-2.webp');">
+	    				<span class="cat__btn w-white-btn">Купальники</span>
+	    			</a>
+	    		</div>
+	    		<div class="col col-6 col-lg-3">
+	    			<a href="#" class="cat" style="background-image: url('../img/cats/img-3.webp');">
+	    				<span class="cat__btn w-white-btn">Одежда для спорта</span>
+	    			</a>
+	    		</div>
+	    		<div class="col col-6 col-lg-3">
+	    			<a href="#" class="cat" style="background-image: url('../img/cats/img-4.webp');">
+	    				<span class="cat__btn w-white-btn">одежда для дома и отдыха</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    </section>
+
+	    <section class="w-section">
+	    	<a href="#" class="d-block mb-4">
+	    		<picture>
+	    			<source srcset="./img/full-sales/sale-1-mob.webp" media="(max-width: 500px)">
+		    		<img src="./img/full-sales/sale-1.webp" alt="" class="w-100" width="1126" height="310">
+	    		</picture>
+	    	</a>
+	    	<a href="#" class="d-block">
+	    		<picture>
+	    			<source srcset="./img/full-sales/sale-2-mob.webp" media="(max-width: 500px)">
+		    		<img src="./img/full-sales/sale-2.webp" alt="" class="w-100" width="1126" height="310">
+	    		</picture>
+	    	</a>
+	    </section>
+    </div>
+
+    <footer class="footer pt-md-5 mt-md-5 pt-4 mt-2">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col col-12 col-md-6 order-1 order-md-0">
+                <div class="d-flex justify-content-around justify-content-md-start">
+                    <div class="footer__col mr-0 mr-md-5 text-center text-md-start">
+                        <span class="d-block mb-3 fw-bold text-uppercase">ПОКУПАТЕЛЯМ</span>
+                        <ul class="footer__list">
+                            <li><a href="#">Оплата</a></li>
+                            <li><a href="#">Доставка</a></li>
+                            <li><a href="#">Возврат</a></li>
+                            <li><a href="#">Политика конфиденциальности</a></li>
+                            <li><a href="#">Оферта</a></li>
+                            <li><a href="#">Программа лояльности</a></li>
+                            <li><a href="#">Инструкция по установке приложения</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col text-center text-md-start">
+                        <span class="d-block mb-3 fw-bold text-uppercase">О КОМПАНИИ</span>
+                        <ul class="footer__list">
+                            <li><a href="#">Магазины</a></li>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">СМИ о нас</a></li>
+                            <li><a href="#">Отзывы</a></li>
+                            <li><a href="#">Оплата по частям</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-12 col-md-6 mb-4 mb-md-0">
+                <span class="d-block mb-3 fw-bold text-uppercase">ПОДПИШИТЕСЬ НА НАШУ РАССЫЛКУ:</span>
+                <form class="d-flex mb-4 flex-column flex-lg-row">
+                    <div class="w-field flex-grow-1 me-0 me-lg-3 mb-3 mb-lg-0">
+                        <div class="w-field__main">
+                            <input type="text" class="w-field__inp" placeholder="Введите Ваш E-Mail">
+                        </div>
+                    </div>
+                    <button class="w-primary-btn" type="submit">Подписаться</button>
+                </form>
+                <p class="w-text-sm">
+                    После подписки на рассылку на указанный e-mail придет промокод на скидку 500 рублей на ваш первый заказ от 3500 рублей. Предложение действует только для новых клиентов, которые не регистрировались в программе лояльности belle you. <br><br>
+                    Нажимая на кнопку «Подписаться», я соглашаюсь на обработку моих персональных данных и ознакомлен(а) с условиями конфиденциальности.
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between py-5 flex-column flex-md-row align-items-center align-items-md-start">
+            <div class="footer__phone">
+                <a href="#" class="footer__phone_num">8-800-707-24-26</a>
+                <p class="w-text-sm mt-2">Звонки по РФ бесплатно Пн – Вс с 07:00 до 20:00 по московскому времени</p>
+            </div>
+            <ul class="footer__social ml-auto mr-auto d-flex mb-4 mb-md-0">
+                <li class="me-4">
+                    <a href="#">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM21.6284 26.3135C21.4312 26.5214 21.0462 26.5634 21.0462 26.5634H19.7712C19.7712 26.5634 16.9581 26.7293 14.48 24.1975C11.7776 21.4352 9.39128 15.9546 9.39128 15.9546C9.39128 15.9546 9.25355 15.5951 9.40276 15.422C9.57075 15.2264 10.0288 15.2141 10.0288 15.2141L13.0766 15.1947C13.0766 15.1947 13.3636 15.2407 13.5691 15.3893C13.7392 15.5122 13.8341 15.7406 13.8341 15.7406C13.8341 15.7406 14.3266 16.9635 14.9788 18.0696C16.2528 20.2297 16.8454 20.7018 17.2774 20.4704C17.9076 20.1334 17.7188 17.4172 17.7188 17.4172C17.7188 17.4172 17.7302 16.4319 17.4016 15.9925C17.147 15.6525 16.667 15.5531 16.4552 15.5255C16.283 15.5029 16.5648 15.1117 16.93 14.9365C17.4788 14.6733 18.4471 14.658 19.5917 14.6692C20.4838 14.6784 20.7405 14.7327 21.089 14.8157C21.8978 15.0073 21.8726 15.6213 21.8181 16.9464C21.8018 17.3427 21.7829 17.8026 21.7829 18.3339C21.7829 18.4532 21.7793 18.5805 21.7757 18.7114C21.7568 19.3903 21.7351 20.1677 22.1908 20.4571C22.4246 20.6045 22.9953 20.4786 24.4238 18.0983C25.1009 16.9696 25.608 15.6433 25.608 15.6433C25.608 15.6433 25.7197 15.4067 25.8918 15.3053C26.0682 15.2018 26.3061 15.2336 26.3061 15.2336L29.5135 15.2141C29.5135 15.2141 30.4776 15.1004 30.6331 15.5285C30.7969 15.9761 30.2731 17.0229 28.9626 18.7374C27.7195 20.3642 27.1145 20.9632 27.17 21.4929C27.2106 21.88 27.6038 22.2301 28.3585 22.9172C29.9338 24.3529 30.3561 25.1083 30.4575 25.2897C30.4659 25.3048 30.4721 25.3159 30.4766 25.3231C31.183 26.4733 29.693 26.5634 29.693 26.5634L26.8434 26.6023C26.8434 26.6023 26.232 26.7211 25.4265 26.1783C25.0045 25.8942 24.5922 25.4302 24.1995 24.9882C23.5997 24.3132 23.0456 23.6896 22.5727 23.8369C21.7787 24.0848 21.8027 25.7635 21.8027 25.7635C21.8027 25.7635 21.809 26.123 21.6284 26.3135Z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20ZM16.3337 29.1667L16.674 24.0685L16.6737 24.0683L25.9478 15.6992C26.3548 15.3379 25.8589 15.1618 25.3186 15.4894L13.8731 22.7103L8.92926 21.1672C7.86161 20.8403 7.85394 20.1067 9.16896 19.5792L28.434 12.1507C29.3138 11.7512 30.1631 12.362 29.8272 13.7087L26.5464 29.1692C26.3173 30.2679 25.6534 30.5306 24.7337 30.0232L19.7359 26.3308L17.3337 28.6667C17.3261 28.674 17.3186 28.6814 17.3111 28.6887C17.0424 28.9502 16.8201 29.1667 16.3337 29.1667Z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <div class="footer__pay text-center">
+                <span class="footer__title">Способы оплаты</span>
+                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-center">
+                    <img src="./img/icons/mir.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/visa.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/mc.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/union.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/jcb.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/amex.svg" alt="" width="60" height="40">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="./libs/swiper/swiper.min.js"></script>
+<script src="./js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.defaultLocale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                {{ metaData.title }}
+            {% endblock %}
+        </title>
+
+        <meta name="description" content="{% block description %}{{ metaData.description }}{% endblock %}">
+        {% block openGraph %}{% endblock %}
+
+        {% if metaData.noindex %}
+            <meta name="robots" content="noindex">
+        {% endif %}
+
+        {% if metaData.nofollow %}
+            <meta name="robots" content="nofollow">
+        {% endif %}
+
+        {% block linkCanonical %}{% endblock %}
+
+        {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
+{#        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/default/favicon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/default/favicon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/default/favicon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/default/favicon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/default/favicon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/default/favicon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/default/favicon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/default/favicon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/default/favicon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/default/favicon-16x16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/default/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/default/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/default/favicon-192x192.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ asset('') }}/favicon-144x144.png">
+        <meta name="msapplication-config" content="{{ asset('/default/browserconfig.xml') }}">#}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('./pion/css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('./pion/css/style.css') }}">
+        {% endblock %}
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW13DRWRCX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MW13DRWRCX');
+        </script>
+    </head>
+    <body>
+    {% block header %}
+        {% include 'pion/store/common/header.html.twig' %}
+    {% endblock %}
+
+
+    {% block body %}
+    {% endblock %}
+
+    <footer class="footer pt-md-5 mt-md-5 pt-4 mt-2">
+        {{ metaData.jsonLdCompany|raw }}
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col col-12 col-md-6 order-1 order-md-0">
+                    <div class="d-flex justify-content-around justify-content-md-start">
+                        <div class="footer__col mr-0 mr-md-5 text-center text-md-start">
+                            <span class="d-block mb-3 fw-bold text-uppercase">ПОКУПАТЕЛЯМ</span>
+                            <ul class="footer__list">
+                                <li><a href="#">Оплата</a></li>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">Возврат</a></li>
+                                <li><a href="#">Политика конфиденциальности</a></li>
+                                <li><a href="#">Оферта</a></li>
+                                <li><a href="#">Программа лояльности</a></li>
+                                <li><a href="#">Инструкция по установке приложения</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__col text-center text-md-start">
+                            <span class="d-block mb-3 fw-bold text-uppercase">О КОМПАНИИ</span>
+                            <ul class="footer__list">
+                                <li><a href="#">Магазины</a></li>
+                                <li><a href="#">Контакты</a></li>
+                                <li><a href="#">О нас</a></li>
+                                <li><a href="#">СМИ о нас</a></li>
+                                <li><a href="#">Отзывы</a></li>
+                                <li><a href="#">Оплата по частям</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-6 mb-4 mb-md-0">
+                    <span class="d-block mb-3 fw-bold text-uppercase">ПОДПИШИТЕСЬ НА НАШУ РАССЫЛКУ:</span>
+                    <form class="d-flex mb-4 flex-column flex-lg-row">
+                        <div class="w-field flex-grow-1 me-0 me-lg-3 mb-3 mb-lg-0">
+                            <div class="w-field__main">
+                                <label>
+                                    <input type="text" class="w-field__inp" placeholder="Введите Ваш E-Mail">
+                                </label>
+                            </div>
+                        </div>
+                        <button class="w-primary-btn" type="submit">Подписаться</button>
+                    </form>
+                    <p class="w-text-sm">
+                        После подписки на рассылку на указанный e-mail придет промокод на скидку 500 рублей на ваш первый заказ от 3500 рублей. Предложение действует только для новых клиентов, которые не регистрировались в программе лояльности belle you. <br><br>
+                        Нажимая на кнопку «Подписаться», я соглашаюсь на обработку моих персональных данных и ознакомлен(а) с условиями конфиденциальности.
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between py-5 flex-column flex-md-row align-items-center align-items-md-start">
+                <div class="footer__phone">
+                    <a href="#" class="footer__phone_num">8-800-707-24-26</a>
+                    <p class="w-text-sm mt-2">Звонки по РФ бесплатно Пн – Вс с 07:00 до 20:00 по московскому времени</p>
+                </div>
+                <ul class="footer__social ml-auto mr-auto d-flex mb-4 mb-md-0">
+                    <li class="me-4">
+                        <a href="#">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM21.6284 26.3135C21.4312 26.5214 21.0462 26.5634 21.0462 26.5634H19.7712C19.7712 26.5634 16.9581 26.7293 14.48 24.1975C11.7776 21.4352 9.39128 15.9546 9.39128 15.9546C9.39128 15.9546 9.25355 15.5951 9.40276 15.422C9.57075 15.2264 10.0288 15.2141 10.0288 15.2141L13.0766 15.1947C13.0766 15.1947 13.3636 15.2407 13.5691 15.3893C13.7392 15.5122 13.8341 15.7406 13.8341 15.7406C13.8341 15.7406 14.3266 16.9635 14.9788 18.0696C16.2528 20.2297 16.8454 20.7018 17.2774 20.4704C17.9076 20.1334 17.7188 17.4172 17.7188 17.4172C17.7188 17.4172 17.7302 16.4319 17.4016 15.9925C17.147 15.6525 16.667 15.5531 16.4552 15.5255C16.283 15.5029 16.5648 15.1117 16.93 14.9365C17.4788 14.6733 18.4471 14.658 19.5917 14.6692C20.4838 14.6784 20.7405 14.7327 21.089 14.8157C21.8978 15.0073 21.8726 15.6213 21.8181 16.9464C21.8018 17.3427 21.7829 17.8026 21.7829 18.3339C21.7829 18.4532 21.7793 18.5805 21.7757 18.7114C21.7568 19.3903 21.7351 20.1677 22.1908 20.4571C22.4246 20.6045 22.9953 20.4786 24.4238 18.0983C25.1009 16.9696 25.608 15.6433 25.608 15.6433C25.608 15.6433 25.7197 15.4067 25.8918 15.3053C26.0682 15.2018 26.3061 15.2336 26.3061 15.2336L29.5135 15.2141C29.5135 15.2141 30.4776 15.1004 30.6331 15.5285C30.7969 15.9761 30.2731 17.0229 28.9626 18.7374C27.7195 20.3642 27.1145 20.9632 27.17 21.4929C27.2106 21.88 27.6038 22.2301 28.3585 22.9172C29.9338 24.3529 30.3561 25.1083 30.4575 25.2897C30.4659 25.3048 30.4721 25.3159 30.4766 25.3231C31.183 26.4733 29.693 26.5634 29.693 26.5634L26.8434 26.6023C26.8434 26.6023 26.232 26.7211 25.4265 26.1783C25.0045 25.8942 24.5922 25.4302 24.1995 24.9882C23.5997 24.3132 23.0456 23.6896 22.5727 23.8369C21.7787 24.0848 21.8027 25.7635 21.8027 25.7635C21.8027 25.7635 21.809 26.123 21.6284 26.3135Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20ZM16.3337 29.1667L16.674 24.0685L16.6737 24.0683L25.9478 15.6992C26.3548 15.3379 25.8589 15.1618 25.3186 15.4894L13.8731 22.7103L8.92926 21.1672C7.86161 20.8403 7.85394 20.1067 9.16896 19.5792L28.434 12.1507C29.3138 11.7512 30.1631 12.362 29.8272 13.7087L26.5464 29.1692C26.3173 30.2679 25.6534 30.5306 24.7337 30.0232L19.7359 26.3308L17.3337 28.6667C17.3261 28.674 17.3186 28.6814 17.3111 28.6887C17.0424 28.9502 16.8201 29.1667 16.3337 29.1667Z" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer__pay text-center">
+                    <span class="footer__title">Способы оплаты</span>
+                    <div class="d-flex flex-wrap flex-sm-nowrap justify-content-center">
+                        <img src="{{ asset('./pion/img/icons/mir.svg') }}" alt="mir" width="60" height="40">
+                        <img src="{{ asset('./pion/img/icons/visa.svg') }}" alt="visa" width="60" height="40">
+                        <img src="{{ asset('./pion/img/icons/mc.svg') }}" alt="mc" width="60" height="40">
+                        <img src="{{ asset('./pion/img/icons/union.svg') }}" alt="union" width="60" height="40">
+                        <img src="{{ asset('./pion/img/icons/jcb.svg') }}" alt="jcb" width="60" height="40">
+                        <img src="{{ asset('./pion/img/icons/amex.svg') }}" alt="amex" width="60" height="40">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function pushStoreMetrika(action, productIds, orderId) {
+            const options = {
+                method: 'POST',
+                body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
+            };
+
+            fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+                console.log({ "ecommerce": data });
+                window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+            });
+        }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(67287694, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            ecommerce:"dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/67287694" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Top.Mail.Ru counter -->
+    <script type="text/javascript">
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3350904", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+    <!-- /Top.Mail.Ru counter -->
+
+    </body>
+
+    {% block javascripts %}
+{#        {{ encore_entry_script_tags('store_main') }}
+        {{ encore_entry_script_tags('store_cart_badge') }}#}
+
+        <script src="{{ asset('./pion/libs/swiper/swiper.min.js') }}"></script>
+        <script src="{{ asset('./pion/js/script.js') }}"></script>
+
+        {#<script src="{{ asset('./default/libs/swiper/swiper.min.js') }}"></script>
+        <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
+        <script src="{{ asset('./default/js/script.js') }}"></script>
+        <script src="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.js" async defer>
+        </script><link rel="preconnect" href="https://i.msearch.space">
+        <link href="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.css" rel="stylesheet">#}
+    {% endblock %}
+</html>

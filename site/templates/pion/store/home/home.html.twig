@@ -1,0 +1,125 @@
+{% extends 'pion/store/base.html.twig' %}
+{% block openGraph %}
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= {{ metaData.base_url }} />
+    <meta property="og:title" content="{{ metaData.title }}"/>
+    <meta property="og:description" content="{{ metaData.description }} "/>
+    <meta property="og:image" content="{{ asset('./default/img/womjoy.svg') }}"/> {# Необходимо добавить ссылку на хранилище статики #}
+    <meta property="og:site_name" content="WOMJOY" />
+{% endblock %}
+
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('home',{},true) }}">
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        {% include 'pion/store/common/header_home.html.twig' %}
+    {% endblock %}
+
+    <section class="hero">
+        <div class="hero__slider">
+            <div class="hero-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1-mob.webp') }}" media="(max-width: 768px)">
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1.webp') }}" media="(min-width: 769px)">
+                            <img src="{{ asset('./pion/img/hero-slider/img-1.webp') }}" alt="slider 1">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="hero__title">Базовые купальники</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1-mob.webp') }}" media="(max-width: 768px)">
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1.webp') }}" media="(min-width: 769px)">
+                            <img src="{{ asset('./pion/img/hero-slider/img-1.webp') }}" alt="slider 1">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1-mob.webp') }}" media="(max-width: 768px)">
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1.webp') }}" media="(min-width: 769px)">
+                            <img src="{{ asset('./pion/img/hero-slider/img-1.webp') }}" alt="slider 1">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1-mob.webp') }}" media="(max-width: 768px)">
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1.webp') }}" media="(min-width: 769px)">
+                            <img src="{{ asset('./pion/img/hero-slider/img-1.webp') }}" alt="slider 1">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hero-btn-prev" type="button"><img src="{{ asset('./pion/img/icons/arrow-left.svg') }}" alt="arrow-left"></button>
+            <button class="hero-btn-next" type="button"><img src="{{ asset('./pion/img/icons/arrow-right.svg') }}" alt="arrow-right"></button>
+            <div class="hero-pagination"></div>
+        </div>
+    </section>
+
+    <div class="container-xxl">
+        <section class="w-section">
+            <div class="row g-2 g-md-4">
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('./pion/img/cats/img-1.webp');">
+                        <span class="cat__btn w-white-btn">Нижнее белье</span>
+                    </a>
+                </div>
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('../img/cats/img-2.webp');">
+                        <span class="cat__btn w-white-btn">Купальники</span>
+                    </a>
+                </div>
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('../img/cats/img-3.webp');">
+                        <span class="cat__btn w-white-btn">Одежда для спорта</span>
+                    </a>
+                </div>
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('../img/cats/img-4.webp');">
+                        <span class="cat__btn w-white-btn">одежда для дома и отдыха</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-section">
+            <a href="#" class="d-block mb-4">
+                <picture>
+                    <source srcset="{{ asset('./pion/img/full-sales/sale-1-mob.webp') }}" media="(max-width: 500px)">
+                    <img src="{{ asset('./pion/img/full-sales/sale-1.webp') }}" alt="banner 1" class="w-100" width="1126" height="310">
+                </picture>
+            </a>
+            <a href="#" class="d-block">
+                <picture>
+                    <source srcset="{{ asset('./pion/img/full-sales/sale-2-mob.webp') }}" media="(max-width: 500px)">
+                    <img src="{{ asset('./pion/img/full-sales/sale-2.webp') }}" alt="banner 2" class="w-100" width="1126" height="310">
+                </picture>
+            </a>
+        </section>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('subscriber') }}
+{% endblock %}

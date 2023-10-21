@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Optima Cyr';
+    src: url('../fonts/Optima.eot');
+    src: url('../fonts/Optima.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Optima.woff2') format('woff2'),
+        url('../fonts/Optima.woff') format('woff'),
+        url('../fonts/Optima.ttf') format('truetype'),
+        url('../fonts/Optima.svg#Optima') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Optima Cyr';
+    src: url('../fonts/AGOptimaBold.eot');
+    src: url('../fonts/AGOptimaBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AGOptimaBold.woff2') format('woff2'),
+        url('../fonts/AGOptimaBold.woff') format('woff'),
+        url('../fonts/AGOptimaBold.ttf') format('truetype'),
+        url('../fonts/AGOptimaBold.svg#AGOptimaBold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
