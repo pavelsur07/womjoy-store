@@ -116,7 +116,16 @@
                         Артикул: {{ product.article }} <br>
                         Параметры модели: 180 см, грудь 82 см, талия 60 см, бедра 90 см, размер на модели: XS/S
                     </p>
-                    <button class="i-card__btn w-primary-btn" type="button">Добавить в корзину</button>
+
+                    {#<button id="add_to_cart_btn" class="i-card__greenbtn btn-primary #}{#call-modal#}{# add-to-cart-action" type="button" data-target="card-success" data-variant-id>
+                        <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
+                        <span>В корзину</span>
+                    </button>#}
+
+                    <button id="add_to_cart_btn" class="i-card__btn w-primary-btn add-to-cart-action" type="button" data-target="card-success" data-variant-id>
+                        Добавить в корзину
+                    </button>
+
                     <button class="i-card__like" type="button">
                         <img src="{{ asset('./pion/img/icons/like.svg') }}" alt="like" width="24" height="24">
                         ДОБАВИТЬ В WISHLIST
@@ -126,27 +135,7 @@
                             <div class="i-card__faq_trigger">ОБМЕРЫ И ОПИСАНИЕ</div>
                             <div class="i-card__faq_dropdown">
                                 <div class="text">
-                                    <p>Удлиненные велосипедки с высокой посадкой изготовлены из упругой микрофибры в рубчик по современной технологии без боковых швов. Модель дополнена цельновязаным широким поясом и ластовицей, которые обеспечивают надежную посадку по фигуре, максимальный комфорт и удобство при носке. Идеально подходят как для домашних, так и для городских и спортивных образов. Светлые изделия могут просвечивать.</p>
-                                    <p>Фабрики, с которыми мы сотрудничаем, соблюдают общепризнанные стандарты охраны труда. При производстве изделий belle you применяются инновационные технологии для экономии природных ресурсов. Мы доставляем заказы исключительно в экологичной упаковке из органических и переработанных материалов.</p>
-                                    <p>
-                                        Обмеры изделия: <br>
-                                        Обхват по талии: 50 см (XS/S), 54 см (M/L), 58 см (XL/XXL), 62 см (3XL/4XL) <br>
-                                        Обхват по бедрам: 50 см (XS/S), 54 см (M/L), 58 см (XL/XXL), 62 см (3XL/4XL) <br>
-                                        Высота резинки пояса: 5,5 см (XS/S), 5,5 см (M/L), 5,5 см (XL/XXL), 5,5 см (3XL/4XL) <br>
-                                        Обхват по низу: 24 см (XS/S), 26 см (M/L), 28 см (XL/XXL), 32 см (3XL/4XL) <br>
-                                        Высота сидения: 27 см (XS/S), 29 см (M/L), 31 см (XL/XXL), 32 см (3XL/4XL) <br>
-                                        Длина изделия: 49 см (XS/S), 52 см (M/L), 54 см (XL/XXL), 56 см (3XL/4XL)
-                                    </p>
-                                    <b>Сервис "womjoy в подарок"</b>
-                                    <p>По вашему запросу мы можем:</p>
-                                    <ul class="disced">
-                                        <li>упаковать изделия в несколько разных <a href="#">коробок</a></li>
-                                        <li>упаковать изделия в <a href="#">подарочную коробку</a></li>
-                                        <li>убрать бирки с ценой и товарный чек из упаковки</li>
-                                        <li>не звонить получателю заранее и сохранить ваш заказ в тайне до момента его вручения</li>
-                                    </ul>
-                                    <p>Подарочная упаковка приобретается отдельно.</p>
-                                    <p>Просто укажите в комментарии к заказу ваши пожелания и мы их исполним! <br>Не забудьте дополнительно оставить свои контакты в комментарии к заказу.</p>
+                                    {{ product.description | raw }}
                                 </div>
                             </div>
                         </div>
@@ -220,62 +209,6 @@
                                             <td colspan="2" style="padding: 5px 0 16px; border: none; font-weight: bold; font-size: 15px;">
                                                 Позвоните в магазин, чтобы уточнить наличие
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «ОКЕАНИЯ»</td>
-                                            <td>+7 (499) 653-66-22</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Павелецкая Плаза»</td>
-                                            <td>+7 (499) 553-00-20</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРК «Европолис»</td>
-                                            <td>+7 (499) 322-15-35</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Саларис»</td>
-                                            <td>+7 (499) 653-50-90</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Ривьера»</td>
-                                            <td>+7 (499) 638-24-24</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Vegas Крокус Сити»</td>
-                                            <td>+7 (499) 322-40-70</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Vegas Каширское»</td>
-                                            <td>+7 (499) 322-08-90</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Vegas Кунцево»</td>
-                                            <td>+7 (499) 322-08-05</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТЦ «Метрополис»</td>
-                                            <td>+7 (499) 450-41-31</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Универмаг Цветной</td>
-                                            <td>+7 (499) 653-70-60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Афимолл Сити»</td>
-                                            <td>+7 (499) 450-90-55</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ТРЦ «Авиапарк»</td>
-                                            <td>+7 (499) 322-05-80</td>
-                                        </tr>
-                                        <tr>
-                                            <td>NOVAYA RIGA OUTLET</td>
-                                            <td>+7 (499) 450-90-20</td>
-                                        </tr>
-                                        <tr>
-                                            <td>VNUKOVO OUTLET</td>
-                                            <td>+7 (499) 322-10-80</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -571,9 +504,9 @@
         <div class="modal__bg"></div>
         <div class="modal__content">
             <div class="modal__top">
-                <buttno class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></buttno>
+                <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
             </div>
-            <img src="./pion/img/divide.webp" alt="divide">
+            <img src="{{ asset('./pion/img/divide.webp') }}" alt="divide">
             <div class="modal__bottom">
                 <b>Подробнее на <a href="#" class="text-decoration-underline">podeli.ru</a></b>
                 ООО А-4 Технологии, ОГРН 1227700064734
