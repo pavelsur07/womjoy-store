@@ -11,12 +11,21 @@ use League\Flysystem\FilesystemException;
 
 readonly class ProductImageService
 {
-    public const THUMBNAILS = [
+    /*public const THUMBNAILS = [
         [1170, 1560],
         [900, 1200],
         [390, 520],
         [360, 480],
         [300, 400],
+    ];*/
+
+    public const THUMBNAILS = [
+        [1400, 2100],
+        [720, 1080],
+        [400, 600],
+        [300, 400], // Для админ панели объязательно
+        [120, 180],
+        [80, 81],
     ];
 
     private array $thumbnailsTemplate;

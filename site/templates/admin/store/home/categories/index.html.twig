@@ -1,0 +1,73 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit home page{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Store
+            </div>
+            <h2 class="page-title">
+                Home page assign categories
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            {% include 'admin/store/home/_tabs.html.twig' %}
+        </div>
+        <div class="card-body">
+            <div>
+                <a href="#" class="btn btn-bitbucket" data-bs-toggle="modal" data-bs-target="#modal-simple">Assign</a>
+            </div>
+            <div class="mt-3">
+                {% for category in categories %}
+                    <div class="card mb-3" >
+                        <div class="row g-0">
+                            <div class="col-md-3">
+                                {% if category.category.image is not null %}
+                                <img src="{{ storage_path(category.category.image.path ~'/'~ category.category.image.name) }}" class="img-fluid rounded-start" alt="{{ category.category.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ category.category.name }}</h5>
+                                    <p class="card-text"> <strong>Id:</strong> {{ category.category.id }}</p>
+                                    <p class="card-text"><small class="text-muted"><a href="{{ path('store.admin.home.categories.revoke', {'id': category.category.id}) }}" class="btn btn-sm">remove</a></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-blur fade" id="modal-simple" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Assign category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn btn-bitbucket">{{ button_label|default('Add') }}</button>
+                    {{ form_end(form) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

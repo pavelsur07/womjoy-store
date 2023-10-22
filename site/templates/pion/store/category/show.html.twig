@@ -450,17 +450,22 @@
 
 
             <div class="row mb-5 g-2 g-md-4">
+                {% set number=1 %}
                 {% for product in pagination %}
-                    <div class="col col-6 col-md-4 col-lg-3 mb-4">
 
+                    <div class="col col-6 col-md-4 col-lg-3 mb-4">
                         <div class="card">
                             <a href="{{ path('store.product.show', {'slug': product.slug}) }}" class="card__img">
-                                <img src="{{ asset('./pion/img/cards/img-1.webp') }}" alt="Thumbnail {{ product.name }}">
-                                {#<img src="{{ thumbnail_path(product.images.first.path, product.images.first.name~'.webp', 390, 520 ) }}" alt="Thumbnail {{ product.name }}">#}
+                                {% if product.images.count > 0 %}
+                                    <img src="{{ thumbnail_path(product.images.first.path, product.images.first.name~'.webp', 400, 600 ) }}" alt="Thumbnail {{ product.name }}">
+                                {% else %}
+                                    <img src="{{ asset('./default/img/thumbnail/coming-soon.svg') }}" alt="{{ product.name }} not image">
+                                {% endif %}
                             </a>
                             <div class="card__main">
                                 <a href="{{ path('store.product.show', {'slug': product.slug}) }}" class="card__name">{{ product.name }}</a>
                                 <span class="card__cost">{{ product.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+
                                 <div class="colors">
                                     <ul class="colors__items">
                                         <li class="colors__item">
@@ -480,10 +485,12 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                         </div>
 
-                </div>
+                        {% set number=number+1 %}
+                    </div>
                 {% endfor%}
 
                 <div class="col col-6 col-md-4 col-lg-3 mb-4">

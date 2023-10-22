@@ -63,7 +63,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render(
-            'store/admin/home/edit.html.twig',
+            'admin/store/home/edit.html.twig',
             [
                 'form' => $form->createView(),
             ]
@@ -84,7 +84,7 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('store.admin.home.categories');
         }
         return $this->render(
-            'store/admin/home/categories/index.html.twig',
+            'admin/store/home/categories/index.html.twig',
             [
                 'form' => $form->createView(),
                 'categories' => $home->getCategories(),

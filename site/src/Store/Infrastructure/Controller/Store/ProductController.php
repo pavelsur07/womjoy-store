@@ -24,7 +24,7 @@ class ProductController extends BaseController
         }
 
         return $this->render(
-            'default/store/product/show.html.twig',
+            "{$this->template}/store/product/show.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,

@@ -108,8 +108,8 @@ class CategoryController extends BaseController
         }
 
         return $this->render(
-            /*"default/store/category/show.html.twig",*/
-            "$this->template/store/category/show.html.twig",
+            // "default/store/category/show.html.twig",
+            "{$this->template}/store/category/show.html.twig",
             [
                 'metaData' => $this->metaData,
                 'page' => $page,

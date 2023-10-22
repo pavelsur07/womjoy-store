@@ -144,7 +144,7 @@ class BaseController extends AbstractController
             $result[] = [
                 'name' => $category->getCategory()->getName(),
                 'href' => $this->generator->generate('store.category.show', ['slug' => $category->getCategory()->getSlug()]),
-                'imagePath' => $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName(),
+                'imagePath' =>  $category->getCategory()->getImage() === null ? '' : $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName(),
             ];
         }
 

@@ -33,7 +33,7 @@ class VariantController extends AbstractController
             return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
         }
         return $this->render(
-            'store/admin/product/variant/add.html.twig',
+            'admin/store/product/variant/add.html.twig',
             [
                 'form' => $form->createView(),
                 'product' => $product,

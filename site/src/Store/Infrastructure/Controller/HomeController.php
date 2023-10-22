@@ -47,7 +47,7 @@ class HomeController extends BaseController
         );
 
         return $this->render(
-            "$this->template/store/home/home.html.twig",
+            "{$this->template}/store/home/home.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
@@ -74,6 +74,7 @@ class HomeController extends BaseController
         return $this->redirectToRoute('home');
     }
 
+    /** @deprecated move to BaseController */
     private function categories(Home $home): array
     {
         $result = [];
@@ -82,7 +83,7 @@ class HomeController extends BaseController
             $result[] = [
                 'name' => $category->getCategory()->getName(),
                 'href' => $this->generateUrl('store.category.show', ['slug'=> $category->getCategory()->getSlug()]),
-                'imagePath' => $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName(),
+                'imagePath' => /* $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName() */ '',
             ];
         }
 
