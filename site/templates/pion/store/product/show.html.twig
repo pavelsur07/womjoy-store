@@ -6,12 +6,17 @@
 
 {% block body %}
     <div class="container-xxl">
+
+        {% set counter = 1 %}
         <div class="breadcrumbs">
-            <a href="#" class="breadcrumbs__item">Главная</a>
-            <a href="#" class="breadcrumbs__item">Каталог</a>
-            <a href="#" class="breadcrumbs__item">Одежда</a>
-            <a href="#" class="breadcrumbs__item">Велосипедки</a>
-            <div class="breadcrumbs__current">Велосипедки удлиненные в рубчик с широким поясом черный</div>
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            {% for breadcrumb in breadcrumbs %}
+                {% set counter = counter + 1 %}
+                <a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}" class="breadcrumbs__item">{{ breadcrumb.name }}</a>
+            {% endfor %}
+            {% set counter = counter + 1 %}
+
+            <div class="breadcrumbs__current">{{ product.name }}</div>
         </div>
 
         <section class="i-card w-section">

@@ -26,41 +26,43 @@
 
     <div class="container-xxl">
         <div class="breadcrumbs">
-            <a href="#" class="breadcrumbs__item">Главная</a>
-            <a href="#" class="breadcrumbs__item">Каталог</a>
-            <div class="breadcrumbs__current">Одежда</div>
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+
+            {% for breadcrumb in breadcrumbs %}
+                {% if breadcrumb.slug == category.slug %}
+                    <div class="breadcrumbs__current">{{ breadcrumb.name }}</div>
+                {% else %}
+                    <a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}" class="breadcrumbs__item">{{ breadcrumb.name }}</a>
+                {% endif %}
+            {% endfor %}
+
         </div>
 
         <section class="catalog section">
             <h1 class="mb-3 text-center text-uppercase"> {{ category.seoMetadata.h1 }}</h1>
             <ul class="catalog__tags">
-                <li><a href="#" class="active">Все</a></li>
-                <li><a href="#">Легинсы</a></li>
-                <li><a href="#">Велосипедки</a></li>
-                <li><a href="#">Толстовки и свитшоты</a></li>
-                <li><a href="#">Шорты</a></li>
-                <li><a href="#">Футболки</a></li>
-                <li><a href="#">Брюки</a></li>
-                <li><a href="#">Топы и кроп-топы</a></li>
-                <li><a href="#">Боди</a></li>
-                <li><a href="#">Водолазки и лонгсливы</a></li>
-                <li><a href="#">Майки</a></li>
-                <li><a href="#">Боди</a></li>
-                <li><a href="#">Водолазки и лонгсливы</a></li>
-                <li><a href="#">Майки</a></li>
+                {% if category.children.count > 0 %}
+                    <li><a href="#" class="active">{{ category.name }}</a></li>
+                    {% for item in category.children %}
+                        {% if category.slug == item.slug %}
+                            <li><a href="{{ path('store.category.show', {'slug': item.slug }) }}" class="active">{{ item.name }}</a></li>
+                        {% else %}
+                            <li><a href="{{ path('store.category.show', {'slug': item.slug }) }}">{{ item.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             </ul>
 
             <div class="filter">
                 <form class="filter__main">
                     <div class="d-flex d-md-none align-items-center justify-content-between p-4 border-bottom mb-3">
                         <span class="text-uppercase text-xl">Фильтр 0</span>
-                        <button class="filter__close" type="button"><img src="./img/icons/close.svg" alt="" width="16" height="16"></button>
+                        <button class="filter__close" type="button"><img src="{{ asset('./img/icons/close.svg') }}" alt="close" width="16" height="16"></button>
                     </div>
                     <div class="filter__items">
                         <div class="filter__item">
                             <div class="filter__trigger">
                                 Цвет
-
                                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
                                     <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
                                 </svg>
@@ -497,30 +499,15 @@
                     </div>
                 {% endfor%}
 
-                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+               {# <div class="col col-6 col-md-4 col-lg-3 mb-4">
                     <a href="#" class="catalog__sale">
                         <img src="{{ asset('./pion/img/cards/sale-1.webp') }}" alt="">
                     </a>
-                </div>
+                </div>#}
 
             </div>
 
-            <div class="pagination">
-                <div class="pagination__nums">
-                    <a href="#" class="pagination__num active">1</a>
-                    <a href="#" class="pagination__num">2</a>
-                    <a href="#" class="pagination__num">3</a>
-                    <a href="#" class="pagination__num">4</a>
-                    <a href="#" class="pagination__num">5</a>
-                    <a href="#" class="pagination__num">...</a>
-                    <a href="#" class="pagination__num">14</a>
-                </div>
-                <a href="#" class="pagination__next">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
-                        <path d="M1.35355 0.646447C1.15829 0.451184 0.841709 0.451184 0.646447 0.646447C0.451184 0.841709 0.451184 1.15829 0.646447 1.35355L1.35355 0.646447ZM5 5L5.35355 5.35355C5.54882 5.15829 5.54882 4.84171 5.35355 4.64645L5 5ZM0.646447 8.64645C0.451184 8.84171 0.451184 9.15829 0.646447 9.35355C0.841709 9.54882 1.15829 9.54882 1.35355 9.35355L0.646447 8.64645ZM0.646447 1.35355L4.64645 5.35355L5.35355 4.64645L1.35355 0.646447L0.646447 1.35355ZM4.64645 4.64645L0.646447 8.64645L1.35355 9.35355L5.35355 5.35355L4.64645 4.64645Z" fill="#1A1A1A"/>
-                    </svg>
-                </a>
-            </div>
+            {{ pagerfanta(pagination) }}
         </section>
 
         <section class="text section">
