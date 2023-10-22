@@ -34,9 +34,9 @@
                     </div>
                     <div class="hero__slide swiper-slide">
                         <picture>
-                            <source srcset="{{ asset('./pion/img/hero-slider/img-2-mob.jpg') }}" media="(max-width: 768px)">
-                            <source srcset="{{ asset('./pion/img/hero-slider/img-2.jpg') }}" media="(min-width: 769px)">
-                            <img src="{{ asset('./pion/img/hero-slider/img-2.jpg') }}" alt="slider 1">
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1-mob.jpg') }}" media="(max-width: 768px)">
+                            <source srcset="{{ asset('./pion/img/hero-slider/img-1.jpg') }}" media="(min-width: 769px)">
+                            <img src="{{ asset('./pion/img/hero-slider/img-1.jpg') }}" alt="slider 1">
                         </picture>
                         <div class="hero__text">
                             <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
@@ -63,33 +63,6 @@
             <div class="hero-pagination"></div>
         </div>
     </section>
-
-    {#<section class="cat section">
-        <div class="wrapper">
-            <div class="section-top">
-                <h2 class="section-title">Категории</h2>
-            </div>
-
-            <div class="cat__items">
-                {% for category in categories %}
-                <a href="{{ category.href }}" class="cat__item cat__item-lg">
-                    <div class="cat__text">
-                        <span class="cat__name">{{ category.name }}</span>
-                        <div class="cat__bottom">
-                            <span class="cat__cnt">15 моделей</span>
-                            <span class="cat__price">от 1 799 ₽</span>
-                        </div>
-                    </div>
-                    <img src="{{ storage_path( category.imagePath ) }}" alt="{{ category.name }}" class="cat__img" width="250" height="250">
-                </a>
-                {% endfor %}
-                <div class="cat__item cat__sale">
-                    <span class="cat__sale_alert">%</span>
-                    <span class="cat__sale_name">Распродажа</span>
-                </div>
-            </div>
-        </div>
-    </section>#}
 
     <div class="container-xxl">
 
