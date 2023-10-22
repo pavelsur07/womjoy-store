@@ -12,10 +12,11 @@
     <link rel="canonical" href= "https:{{  url('home',{},true) }}">
 {% endblock %}
 
+{% block header %}
+    {% include 'pion/store/common/header_home.html.twig' %}
+{% endblock %}
+
 {% block body %}
-    {% block header %}
-        {% include 'pion/store/common/header_home.html.twig' %}
-    {% endblock %}
 
     <section class="hero">
         <div class="hero__slider">

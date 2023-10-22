@@ -18,6 +18,10 @@
     <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}">
 {% endblock %}
 
+{% block header %}
+    {% include 'pion/store/common/header.html.twig' %}
+{% endblock %}
+
 {% block body %}
 
     <div class="container-xxl">

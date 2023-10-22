@@ -1,0 +1,297 @@
+<div class="catalog-menu">
+    <div class="container-xxl">
+        <div class="d-flex d-md-none justify-content-between align-items-center py-4">
+            <button class="catalog-menu__back" type="button"><img src="{{ asset('./img/icons/back-arrow.svg') }}" alt="back-arrow" width="8" height="16"></button>
+            <span class="catalog-menu__title mb-0">КАТАЛОГ</span>
+            <button class="catalog-menu__close" type="button"><img src="./img/icons/close.svg" alt="" width="24" height="24"></button>
+        </div>
+        <div class="d-block d-md-none">
+            <div class="search">
+                <div class="container">
+                    <div class="search__content">
+                        <button class="search__close" type="button"><img src="./img/icons/close.svg" alt=""></button>
+
+                        <div class="search__main mb-0 mb-md-5 d-flex d-md-block">
+                            <form class="search__form flex-grow-1 me-2">
+                                <div class="flex-grow-1 me-0 me-md-3 w-field">
+                                    <div class="w-field__main">
+                                        <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                        <input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+                                    </div>
+                                </div>
+                                <button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
+                            </form>
+                            <button class="search__cancel text-decoration-underline d-none" type="button">Отменить</button>
+                        </div>
+                        <div class="search__bottom position-relative pt-md-0 pt-3">
+                            <div class="row flex-grow-1">
+                                <div class="col col-12 col-md-6 order-2">
+                                    <span class="d-block title-lg mb-1 mb-md-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
+                                    <div class="search__queries">
+                                        <a href="#" class="search__query">
+                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            love
+                                        </a>
+                                        <a href="#" class="search__query">
+                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            боди
+                                        </a>
+                                        <a href="#" class="search__query">
+                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            велосипедки
+                                        </a>
+                                        <a href="#" class="search__query">
+                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            шорты
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-md-6 order-1 mb-2 mb-md-0">
+                                    <span class="d-block title-lg mb-1 mb-md-3 fw-bold">ВЫ ИСКАЛИ</span>
+                                    <div class="search__queries">
+                                        <a href="#" class="search__query">
+                                            Одежда
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="search__clear" type="button">Очистить</button>
+                        </div>
+                        <div class="search__result">
+                            <div class="search__queries">
+                                <a href="#" class="search__query">
+                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    love
+                                </a>
+                                <a href="#" class="search__query">
+                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    боди
+                                </a>
+                                <a href="#" class="search__query">
+                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    велосипедки
+                                </a>
+                                <a href="#" class="search__query">
+                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    шорты
+                                </a>
+                            </div>
+                            <a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="catalog-menu__cols">
+            <div class="catalog-menu__col">
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">SALE</a>
+                </div>
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">НОВИНКИ</a>
+                </div>
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">СКОРО В ПРОДАЖЕ</a>
+                </div>
+{#                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">ПЛЯЖ</a>
+                </div>#}
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</a>
+                </div>
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">ПОДАРОЧНАЯ УПАКОВКА</a>
+                </div>
+            </div>
+            <div class="catalog-menu__col">
+                <div class="catalog-menu__cell drop">
+                    <a href="#" class="catalog-menu__title drop__trigger">НИЖНЕЕ БЕЛЬЕ</a>
+                    <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Комплекты белья</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Топы и лифы</a>
+                        </li>
+                        <li class="catalog-menu__item drop">
+                            <a href="#" class="catalog-menu__link drop__trigger">Трусы</a>
+                            <ul class="catalog-menu__sublist drop__content">
+                                <li class="catalog-menu__subitem">
+                                    <a href="#" class="catalog-menu__sublink">Бразильяно</a>
+                                </li>
+                                <li class="catalog-menu__subitem">
+                                    <a href="#" class="catalog-menu__sublink">Кюлот</a>
+                                </li>
+                                <li class="catalog-menu__subitem">
+                                    <a href="#" class="catalog-menu__sublink">Моделирующие</a>
+                                </li>
+                                <li class="catalog-menu__subitem">
+                                    <a href="#" class="catalog-menu__sublink">Слипы</a>
+                                </li>
+                                <li class="catalog-menu__subitem">
+                                    <a href="#" class="catalog-menu__sublink">Стринги</a>
+                                </li>
+                                <li class="catalog-menu__subitem">
+                                    <a href="#" class="catalog-menu__sublink">Шорты</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                {#<div class="catalog-menu__cell drop">
+                    <a href="#" class="catalog-menu__subtitle drop__trigger">ПО КАПСУЛАМ</a>
+                    <ul class="catalog-menu__list drop__content">
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Bloom</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Sculpt</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Invisible</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Белье из бамбука</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Soft</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Бамбук</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Base</a>
+                        </li>
+                    </ul>
+                </div>#}
+
+            </div>
+
+
+            <div class="catalog-menu__col">
+                <div class="catalog-menu__cell drop">
+                    <a href="#" class="catalog-menu__title drop__trigger">ОДЕЖДА</a>
+                    <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Велосипедки</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Толстовки и свитшоты</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Шорты</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Футболки</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Брюки</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Топы и кроп-топы</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Боди</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Водолазки и лонгсливы</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Майки</a>
+                        </li>
+                    </ul>
+                </div>
+
+                {#<div class="catalog-menu__cell drop">
+                    <a href="#" class="catalog-menu__subtitle drop__trigger">ПО КАПСУЛАМ</a>
+                    <ul class="catalog-menu__list drop__content">
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Bloom</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Sculpt</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Invisible</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Белье из бамбука</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Soft</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Бамбук</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Base</a>
+                        </li>
+                    </ul>
+                </div>#}
+
+
+            </div>
+            <div class="catalog-menu__col">
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">ОДЕЖДА ДЛЯ ДОМА</a>
+                </div>
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">ОДЕЖДА ДЛЯ СПОРТА</a>
+                </div>
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">ЛЕГИНСЫ</a>
+                </div>
+                <div class="catalog-menu__cell drop">
+                    <a href="#" class="catalog-menu__title drop__trigger">КУПАЛЬНИКИ</a>
+                    <ul class="catalog-menu__list drop__content">
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Базовые</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Верх</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Низ</a>
+                        </li>
+                        <li class="catalog-menu__item">
+                            <a href="#" class="catalog-menu__link">Слитные</a>
+                        </li>
+                    </ul>
+                </div>
+
+                {#<div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">КОЛГОТКИ И НОСКИ</a>
+                </div>
+                <div class="catalog-menu__cell">
+                    <a href="#" class="catalog-menu__title">АКСЕССУАРЫ</a>
+                </div>#}
+
+
+            </div>
+            <div class="catalog-menu__col d-none d-xl-block">
+                <img src="{{ asset('./pion/img/menu-ad.webp') }}" alt="ads">
+            </div>
+            <button class="catalog-menu__close d-none d-md-block" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close" width="24" height="24"></button>
+        </div>
+
+        {#<div class="catalog-menu__bottom">
+            <ul class="catalog-menu__info">
+                <li><a href="#">Магазины</a></li>
+                <li><a href="#">Оплата</a></li>
+                <li><a href="#">Доставка</a></li>
+                <li><a href="#">Возврат</a></li>
+            </ul>
+            <ul class="catalog-menu__info">
+                <li><a href="#">Программа лояльности</a></li>
+                <li><a href="#">Инструкция по установке приложения</a></li>
+            </ul>
+            <ul class="catalog-menu__soc">
+                <li><a href="#">Vkontakte</a></li>
+                <li><a href="#">Telegram</a></li>
+            </ul>
+        </div>#}
+
+    </div>
+</div>
