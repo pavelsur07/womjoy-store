@@ -54,7 +54,7 @@ RUN apk add --no-cache postgresql-dev \
             --with-jpeg \
             --with-webp \
             --with-freetype \
-    && docker-php-ext-install pdo_pgsql gd opcache bcmath \
+    && docker-php-ext-install pdo_pgsql gd opcache bcmath pcntl \
     && apk del git
 
 RUN pecl install -o -f redis \
