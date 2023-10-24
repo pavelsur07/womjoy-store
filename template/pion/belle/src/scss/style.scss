@@ -1,6 +1,24 @@
 @import './fonts';
 @import './design';
 
+.cart-currentcnt {
+    position: absolute;
+    left: 60%;
+    top: 0;
+    transform: translateY(-40%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border-radius: 50px;
+    background-color: $primary;
+    color: $gray;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 700;
+}
+
 .header {
 	z-index: 11;
 	color: #fff;
@@ -82,6 +100,7 @@
 		display: block;
 		a {
 			display: block;
+			position: relative;
 			svg {
 				display: block;
 			}
@@ -95,7 +114,7 @@
 		}
 	}
 	&__logo {
-		max-width: 200px;
+		max-width: 130px;
 		img {
 			&:first-child { display: block; }
 			&:last-child { display: none; }
@@ -643,6 +662,10 @@
 		svg {
 			display: block;
 			margin-left: 10px;
+			transition: .2s;
+		}
+		&.active svg {
+			transform: rotate(180deg)
 		}
 	}
 	&__content {

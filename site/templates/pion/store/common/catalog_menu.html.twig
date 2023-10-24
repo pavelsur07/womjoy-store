@@ -3,19 +3,19 @@
         <div class="d-flex d-md-none justify-content-between align-items-center py-4">
             <button class="catalog-menu__back" type="button"><img src="{{ asset('./img/icons/back-arrow.svg') }}" alt="back-arrow" width="8" height="16"></button>
             <span class="catalog-menu__title mb-0">КАТАЛОГ</span>
-            <button class="catalog-menu__close" type="button"><img src="./img/icons/close.svg" alt="" width="24" height="24"></button>
+            <button class="catalog-menu__close" type="button"><img src="{{ asset('') }}./img/icons/close.svg" alt="" width="24" height="24"></button>
         </div>
         <div class="d-block d-md-none">
             <div class="search">
                 <div class="container">
                     <div class="search__content">
-                        <button class="search__close" type="button"><img src="./img/icons/close.svg" alt=""></button>
+                        <button class="search__close" type="button"><img src="{{ asset('') }}./img/icons/close.svg" alt=""></button>
 
                         <div class="search__main mb-0 mb-md-5 d-flex d-md-block">
                             <form class="search__form flex-grow-1 me-2">
                                 <div class="flex-grow-1 me-0 me-md-3 w-field">
                                     <div class="w-field__main">
-                                        <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                        <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                         <input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
                                     </div>
                                 </div>
@@ -29,19 +29,19 @@
                                     <span class="d-block title-lg mb-1 mb-md-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
                                     <div class="search__queries">
                                         <a href="#" class="search__query">
-                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                             love
                                         </a>
                                         <a href="#" class="search__query">
-                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                             боди
                                         </a>
                                         <a href="#" class="search__query">
-                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                             велосипедки
                                         </a>
                                         <a href="#" class="search__query">
-                                            <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                            <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                             шорты
                                         </a>
                                     </div>
@@ -60,19 +60,19 @@
                         <div class="search__result">
                             <div class="search__queries">
                                 <a href="#" class="search__query">
-                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                     love
                                 </a>
                                 <a href="#" class="search__query">
-                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                     боди
                                 </a>
                                 <a href="#" class="search__query">
-                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                     велосипедки
                                 </a>
                                 <a href="#" class="search__query">
-                                    <img src="./img/icons/search.svg" alt="" width="24" height="24">
+                                    <img src="{{ asset('') }}./img/icons/search.svg" alt="" width="24" height="24">
                                     шорты
                                 </a>
                             </div>
@@ -93,9 +93,6 @@
                 <div class="catalog-menu__cell">
                     <a href="#" class="catalog-menu__title">СКОРО В ПРОДАЖЕ</a>
                 </div>
-{#                <div class="catalog-menu__cell">
-                    <a href="#" class="catalog-menu__title">ПЛЯЖ</a>
-                </div>#}
                 <div class="catalog-menu__cell">
                     <a href="#" class="catalog-menu__title">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</a>
                 </div>
@@ -172,6 +169,7 @@
 
             <div class="catalog-menu__col">
                 <div class="catalog-menu__cell drop">
+
                     <a href="#" class="catalog-menu__title drop__trigger">ОДЕЖДА</a>
                     <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
                         <li class="catalog-menu__item">
@@ -243,6 +241,7 @@
                 <div class="catalog-menu__cell">
                     <a href="#" class="catalog-menu__title">ЛЕГИНСЫ</a>
                 </div>
+                {#
                 <div class="catalog-menu__cell drop">
                     <a href="#" class="catalog-menu__title drop__trigger">КУПАЛЬНИКИ</a>
                     <ul class="catalog-menu__list drop__content">
@@ -260,6 +259,7 @@
                         </li>
                     </ul>
                 </div>
+                #}
 
                 {#<div class="catalog-menu__cell">
                     <a href="#" class="catalog-menu__title">КОЛГОТКИ И НОСКИ</a>

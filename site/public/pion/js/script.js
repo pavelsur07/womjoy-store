@@ -365,16 +365,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			const checks = sel.querySelectorAll('.w-sel__item input');
 			const checkItems = sel.querySelectorAll('.w-sel__item');
-			console.log();
 			trigger.textContent = Array.from(checkItems).filter(item => item.querySelector('input').checked)[0].textContent;
 
 
 			checks.forEach((check, i) => check.addEventListener('change', () => {
-				trigger.textContent = document.querySelectorAll('.w-sel__item')[i].textContent;
+				trigger.textContent = sel.querySelectorAll('.w-sel__item')[i].textContent;
 				trigger.classList.remove('active');
 				dropdown.classList.remove('active');
 				sel.classList.remove('active');
+
+				const inp = sel.querySelector('.w-sel__item input[checked]');
+				inp.removeAttribute('checked');
+
+				sel.querySelectorAll('.w-sel__item')[i].querySelector('input').setAttribute('checked', '');
+				sel.querySelectorAll('.w-sel__item')[i].querySelector('input').checked = true;
 			}));
 		});
 	}
+
+	document.addEventListener('click', e => {
+		const els = document.querySelectorAll('.w-sel, .filter__item');
+		els.forEach(el => {
+			if (!el.contains(e.target)) {
+
+				if (el.classList.contains('w-sel')) {
+					el.querySelector('.w-sel__trigger').classList.remove('active');
+					el.querySelector('.w-sel__dropdown').classList.remove('active');
+					el.classList.remove('active');
+					return;
+				}
+
+				if (el.classList.contains('filter__item')) {
+					el.querySelector('.filter__trigger').classList.remove('active');
+					el.querySelector('.filter__content').classList.remove('active');
+					el.classList.remove('active');
+				}
+			}
+		});
+	});
 });

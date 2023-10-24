@@ -88,8 +88,8 @@
                         </ul>
                     </div>
 
-                    <div class="i-card__size">
-                        <div class="w-sel w-sel-sm w-sel-white">
+                    <div class="i-card__size i-card__size_items">
+                        <div class="w-sel w-sel-sm w-sel-white ">
                             <div class="w-sel__trigger">
                                 XS/S
                             </div>
@@ -250,6 +250,7 @@
                 </div>
             </div>
         </section>
+        {#
         <section class="w-section">
             <h2 class="mb-4">ИДЕАЛЬНО ПОДХОДИТ:</h2>
             <div class="row g-2 g-md-4">
@@ -281,6 +282,7 @@
                 </div>
             </div>
         </section>
+        #}
         <section class="section card-slider">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="me-2 mb-0">ИДЕАЛЬНО ПОДХОДИТ:</h2>
@@ -291,138 +293,13 @@
             </div>
             <div class="card-slider-swiper swiper">
                 <div class="swiper-wrapper">
+                    {% for product in product.relatedAssignments %}
                     <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="{{ asset('./pion/img/cards/img-2.webp') }}" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
+                        {% set item = product.getRelated %}
+                        {% include 'pion/store/common/product/product_item.html.twig' %}
                     </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-1.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-1.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
-                            <div class="card__main">
-                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
-                                <span class="card__cost">3 389 ₽</span>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </section>
@@ -432,12 +309,12 @@
         <div class="modal__content">
             <div class="modal__top">
                 <span class="modal__title">ТАБЛИЦА РАЗМЕРОВ</span>
-                <buttno class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></buttno>
+                <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
             </div>
             <div class="modal__sizes">
                 <picture>
                     <source srcset="{{ asset('./pion/img/sizes.webp') }}" alt="sizes" media="(min-width: 769px)">
-                    <source srcset="./pion/img/sizes-mob.webp" alt="sizes" media="(max-width: 768px)">
+                    <source srcset="{{ asset('./pion/img/sizes-mob.webp') }}" alt="sizes" media="(max-width: 768px)">
                     <img src="{{ asset('./pion/img/sizes.webp') }}" alt="sizes" class="modal__sizes_img">
                 </picture>
                 <div class="modal__table">

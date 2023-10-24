@@ -377,7 +377,7 @@
     <header class="header header-in py-2">
         <div class="container-fluid">
             <div class="header__alert d-flex justify-content-center py-2 border-bottom border-white">SUMMER SALE! до -40%! Подробнее ></div>
-            <div class="header__main d-flex justify-content-between align-items-center py-4">
+            <div class="header__main d-flex justify-content-between align-items-center py-4 px-0 px-md-4">
                 <button class="burger d-flex align-items-center text-uppercase me-2 me-md-5 fw-bold" type="button">
                     <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M3 6H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
@@ -424,6 +424,7 @@
 		                        <path d="M18.1528 8H5.84709C5.35825 8 4.94106 8.35341 4.8607 8.8356L3.19403 18.8356C3.09244 19.4451 3.56248 20 4.18042 20H19.8195C20.4374 20 20.9075 19.4451 20.8059 18.8356L19.1392 8.8356C19.0589 8.35341 18.6417 8 18.1528 8Z" stroke-linecap="round" stroke-linejoin="round"></path>
 		                        <path d="M8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8" stroke-linecap="round" stroke-linejoin="round"></path>
 		                    </svg>
+		                    <span class="cart-currentcnt" id="cart-badge">5</span>
                 		</a>
                 	</li>
                 </ul>
@@ -486,72 +487,20 @@
                             </div>
                         </div>
                         <div class="cart__cell">
-                            <div class="cart__cost">3 389 ₽</div>
+                            <div class="cart__cost c-item__cost">3 389 ₽</div>
                         </div>
                         <div class="cart__cell">
-                            <div class="cart__cnt">
-                                <button class="cart__cnt_action cart__cnt_minus" type="buton"></button>
-                                <input type="text" value="1" class="cart__cnt_inp">
-                                <button class="cart__cnt_action cart__cnt_plus" type="buton"></button>
+                            <div class="cart__cnt c-item__actions">
+                                <button class="cart__cnt_action cart__cnt_minus c-item__action c-item__minus" type="buton"></button>
+                                <input type="text" value="1" class="cart__cnt_inp c-item__inp">
+                                <button class="cart__cnt_action cart__cnt_plus c-item__action c-item__plus" type="buton"></button>
                             </div>
                         </div>
                         <div class="cart__cell mt-3 mt-md-0">
-                            <div class="cart__cost">10 167 ₽</div>
+                            <div class="cart__cost c-item__cost">10 167 ₽</div>
                         </div>
-                        <div class="cart__cell">
-                            <button class="cart__remove" type="button"><img src="./img/icons/remove.svg" alt="" width="28" height="30"></button>
-                        </div>
-                    </div>
-                    <div class="cart__row d-flex position-relative align-items-center justify-content-between flex-wrap">
-                        <div class="cart__left mb-3 mb-md-0 flex-column flex-lg-row align-items-start align-items-lg-center">
-                            <a href="#" class="cart__img d-block mb-0 mb-md-3 mb-lg-0 me-0 me-lg-3"><img src="./img/cart/img-1.jpg" alt="" width="106" height="160"></a>
-                            <div class="cart__name">
-                                <span class="cart__art">арт. W4020001</span>
-                                <a href="#">Велосипедки удлиненные </a>
-                            </div>
-                        </div>
-                        <div class="cart__cell"><div class="cart__color" style="background-color: #0b0a12;"></div></div>
-                        <div class="cart__cell">
-                            <div class="cart__size">
-                                <div class="w-sel w-sel-lg w-sel-dark">
-                                    <div class="w-sel__trigger">
-                                        XS/S
-                                    </div>
-                                    <div class="w-sel__dropdown">
-                                        <label class="w-sel__item">
-                                            <input type="radio" name="card-size-2" hidden>
-                                            <span></span>
-                                            XS/S
-                                        </label>
-                                        <label class="w-sel__item">
-                                            <input type="radio" name="card-size-2" checked hidden>
-                                            <span></span>
-                                            M/L
-                                        </label>
-                                        <label class="w-sel__item">
-                                            <input type="radio" name="card-size-2" hidden>
-                                            <span></span>
-                                            XL/XXL
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart__cell">
-                            <div class="cart__cost">3 389 ₽</div>
-                        </div>
-                        <div class="cart__cell">
-                            <div class="cart__cnt">
-                                <button class="cart__cnt_action cart__cnt_minus" type="buton"></button>
-                                <input type="text" value="1" class="cart__cnt_inp">
-                                <button class="cart__cnt_action cart__cnt_plus" type="buton"></button>
-                            </div>
-                        </div>
-                        <div class="cart__cell mt-3 mt-md-0">
-                            <div class="cart__cost">10 167 ₽</div>
-                        </div>
-                        <div class="cart__cell">
-                            <button class="cart__remove" type="button"><img src="./img/icons/remove.svg" alt="" width="28" height="30"></button>
+                        <div class="cart__cell c-item__remove">
+                            <button class="cart__remove cart__clear" type="button"><img src="./img/icons/remove.svg" alt="" width="28" height="30"></button>
                         </div>
                     </div>
                 </div>
@@ -569,13 +518,15 @@
                     <a href="#">Войдите</a> или зарегистрируйтесь, чтобы применить купон или начислить баллы за покупку.
                 </p>
                 <div class="col-12 col-sm-10 col-md-8 col-lg-3 order-2 order-lg-3 mb-3 mb-lg-0">
-                    <div class="d-flex mb-4">
-                        ТОВАРЫ: <span class="d-block ms-auto">6 778 ₽</span>
+                    <ul class="c-main__list">
+                        <li class="d-flex mb-4">
+                            <span>ТОВАРЫ:</span> <span class="d-block ms-auto">6 778 ₽</span>
+                        </li>
+                    </ul>
+                    <div class="d-flex mb-4 w-text-lg fw-bold c-main__final">
+                        ИТОГО: <span class="d-block ms-auto c-main__cost">6 778 ₽</span>
                     </div>
-                    <div class="d-flex mb-4 w-text-lg fw-bold">
-                        ИТОГО: <span class="d-block ms-auto">6 778 ₽</span>
-                    </div>
-                    <a href="#" class="w-primary-btn w-100">ОФОРМИТЬ ЗАКАЗ</a>
+                    <a href="#" class="w-primary-btn w-100 c-main__btn btn-primary">ОФОРМИТЬ ЗАКАЗ</a>
                 </div>
             </div>
         </section>
@@ -732,7 +683,7 @@
         <div class="row">
             <div class="col col-12 col-md-6 order-1 order-md-0">
                 <div class="d-flex justify-content-around justify-content-md-start">
-                    <div class="footer__col mr-0 mr-md-5 text-center text-md-start">
+                    <div class="footer__col me-0 me-md-5 text-center text-md-start">
                         <span class="d-block mb-3 fw-bold text-uppercase">ПОКУПАТЕЛЯМ</span>
                         <ul class="footer__list">
                             <li><a href="#">Оплата</a></li>

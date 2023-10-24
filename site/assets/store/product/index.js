@@ -35,6 +35,8 @@ variantsNodeList.forEach((node) => {
 })
 
 buttonNodeList.forEach((node) => {
+
+  console.log(node)
   node.addEventListener('click', ({ currentTarget }) => {
     // создаём действие
     const action = addCartItem(currentTarget.dataset.variantId, 1)
