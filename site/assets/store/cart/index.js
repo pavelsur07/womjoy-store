@@ -9,13 +9,15 @@ import '../i18n'
 
 // Имортируем комопненты
 import App from './components/App/App'
+import AppPion from "./components/App/AppPion";
 
 const element = document.getElementById('cart-id')
 
 if (element) {
   ReactDOM.createRoot(element).render(
     <Provider store={store}>
-      <App />
+        {/*<App />*/}
+        <AppPion />
     </Provider>
   )
 }

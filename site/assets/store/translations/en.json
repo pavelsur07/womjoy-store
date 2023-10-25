@@ -1,4 +1,5 @@
 {
   "Cart" : "Cart",
+  "Cart_not_item": "Cart not item",
   "Checkout" : "Checkout"
 }

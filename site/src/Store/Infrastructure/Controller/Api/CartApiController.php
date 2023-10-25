@@ -155,8 +155,8 @@ class CartApiController extends AbstractController
             $thumbnail = $this->thumbnails->generateUrl(
                 path: $firstImage->getPath(),
                 file: $firstImage->getName(),
-                width: 390,
-                height: 520,
+                width: 300,
+                height: 400,
             );
         } else {
             $thumbnail = '/img/e404.svg';
