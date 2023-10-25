@@ -2,12 +2,7 @@
 import React from 'react';
 
 // Имортируем комопненты
-import Customer from "../../components/Customer/Customer";
-import Delivery from "../../components/Delivery/Delivery";
-import Payment from "../../components/Payment/Payment";
-import Order from "../../components/Order/Order";
 import {useSelector} from "react-redux";
-import CartItem from "../../../cart/components/Cart/CartItem";
 import ItemPion from "../Item/ItemPion";
 import OrderPion from "../Order/OrderPion";
 import CustomerPion from "../Customer/CustomerPion";
