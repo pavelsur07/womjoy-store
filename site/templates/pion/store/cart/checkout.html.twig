@@ -1,0 +1,21 @@
+{% extends 'pion/store/base.html.twig' %}
+
+{% block body %}
+<div class="container-xxl mb-10">
+    <div class="breadcrumbs">
+        <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+        <a href="{{ path('store.cart.index') }}" class="breadcrumbs__item">Корзина</a>
+        <div class="breadcrumbs__current">Оформление заказа</div>
+    </div>
+    <div id="checkout-id">
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_checkout') }}
+{% endblock %}

@@ -7,14 +7,15 @@ import { Provider } from 'react-redux'
 import store from '../redux/store'
 
 // Имортируем комопненты
-import App from './components/App/App'
+//import App from './components/App/App'
+import AppPion from "./components/App/AppPion";
 
 const element = document.getElementById('checkout-id')
 
 if (element) {
   ReactDOM.createRoot(element).render(
     <Provider store={store}>
-      <App />
+      <AppPion />
     </Provider>
   )
 }

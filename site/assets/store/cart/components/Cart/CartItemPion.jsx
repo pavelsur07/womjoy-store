@@ -50,23 +50,6 @@ const CartItemPion = ({ item }) => {
                         <div className="w-sel__trigger">
                             {item.value}
                         </div>
-                        {/*<div className="w-sel__dropdown">
-                            <label className="w-sel__item">
-                                <input type="radio" name="card-size-1" checked hidden/>
-                                <span></span>
-                                XS/S
-                            </label>
-                            <label className="w-sel__item">
-                                <input type="radio" name="card-size-1" hidden/>
-                                <span></span>
-                                M/L
-                            </label>
-                            <label className="w-sel__item">
-                                <input type="radio" name="card-size-1" hidden/>
-                                <span></span>
-                                XL/XXL
-                            </label>
-                        </div>*/}
                     </div>
                 </div>
             </div>
@@ -117,51 +100,6 @@ const CartItemPion = ({ item }) => {
                 </button>
             </div>
         </div>
-
-        /*<div key={item.id} className="c-item" data-product-id={item.product_id}>
-            <a href={item.href} className="c-item__img">
-                <span className="c-item__img_in">
-                    <img
-                        src={item.thumbnail}
-                        alt={item.name}
-                        width="83"
-                        height="110"
-                    />
-                </span>
-            </a>
-            <div className="c-item__main">
-                <div className="c-item__text">
-                    <a href={item.href} className="c-item__name"> {item.name} </a>
-                    <span className="c-item__size">Размер: {item.value}</span>
-                </div>
-                <div className="c-item__actions">
-                    <button
-                        className="c-item__action c-item__minus"
-                        type="button"
-                        onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                    >
-                        <img src="/img_/icons/minus.svg" alt="minus" width="24" height="24" />
-                    </button>
-                    <input type="text" className="c-item__inp" readOnly={true} value={item.quantity} />
-                    <button
-                        className="c-item__action c-item__plus"
-                        type="button"
-                        onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                    >
-                        <img src="/img_/icons/plus.svg" alt="plus" width="24" height="24" />
-                    </button>
-                </div>
-                <div className="c-item__price">
-                    <span className="c-item__cost"> {new Intl.NumberFormat('ru-RU').format(item.price_list)} {item.currency}</span>
-                    <del className="c-item__disc">{item.price_old} {item.currency}</del>
-                </div>
-                <div className="c-item__remove">
-                    <button type="button" className="cart__clear" onClick={() => handleRemoveFromCart(item.id)}>
-                        <img src="/img_/icons/remove.svg" alt="remove item" width="24" height="24" />
-                    </button>
-                </div>
-            </div>
-        </div>*/
     );
 }
 
