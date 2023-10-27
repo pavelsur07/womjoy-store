@@ -119,7 +119,8 @@
                     <span class="i-card__size_info" data-modaltarget="modal-size-table">СПРАВОЧНИК РАЗМЕРОВ</span>
                     <p class="i-card__txt">
                         Артикул: {{ product.article }} <br>
-                        Параметры модели: 180 см, грудь 82 см, талия 60 см, бедра 90 см, размер на модели: XS/S
+
+                        Параметры модели: {{ product.modelParameters }}
                     </p>
 
                     {#<button id="add_to_cart_btn" class="i-card__greenbtn btn-primary #}{#call-modal#}{# add-to-cart-action" type="button" data-target="card-success" data-variant-id>
@@ -137,6 +138,14 @@
                     </button>
                     <div class="i-card__faq">
                         <div class="i-card__faq_item">
+                            <div class="i-card__faq_trigger">ДОСТАВКА ТОВАРА</div>
+                            <div class="i-card__faq_dropdown">
+                                <div class="text">
+                                    <p>Отгрузка товара осущетвляется 1-2 рабочих дн. <a href="#">Правила возврата.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="i-card__faq_item">
                             <div class="i-card__faq_trigger">ОБМЕРЫ И ОПИСАНИЕ</div>
                             <div class="i-card__faq_dropdown">
                                 <div class="text">
@@ -148,7 +157,7 @@
                             <div class="i-card__faq_trigger">СОСТАВ И УХОД</div>
                             <div class="i-card__faq_dropdown">
                                 <div class="text">
-                                    <p>96% полиамид, 4% эластан</p>
+                                    {{ product.fabricComposition }}
                                 </div>
                                 <div class="i-card__faq_adv">
                                     <img src="{{ asset('./pion/img/icons/i-card-adv-1.svg') }}" alt="Деликатная стирка при 30 градусах" width="32" height="32">
@@ -193,30 +202,6 @@
                                 <div class="i-card__faq_adv">
                                     <img src="{{ asset('./pion/img/icons/i-card-adv-11.svg') }}" alt="" width="32" height="32">
                                     Не стирать светлые изделия с цветными
-                                </div>
-                            </div>
-                        </div>
-                        <div class="i-card__faq_item">
-                            <div class="i-card__faq_trigger">НАЛИЧИЕ В МАГАЗИНАХ</div>
-                            <div class="i-card__faq_dropdown">
-                                <div class="i-card__faq_table">
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                                <div class="d-flex justify-content-between mb-2 text-lg">
-                                                    <div>Ваш город</div>
-                                                    <div>Москва</div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="padding: 5px 0 16px; border: none; font-weight: bold; font-size: 15px;">
-                                                Позвоните в магазин, чтобы уточнить наличие
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -283,26 +268,28 @@
             </div>
         </section>
         #}
-        <section class="section card-slider">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="me-2 mb-0">ИДЕАЛЬНО ПОДХОДИТ:</h2>
-                <div class="d-flex">
-                    <button class="card-slider-btn-prev me-3" type="button"><img src="{{ asset('./pion/img/icons/arrow-left.svg') }}" alt="arrow left"></button>
-                    <button class="card-slider-btn-next" type="button"><img src="{{ asset('./pion/img/icons/arrow-right.svg') }}" alt="arrow right"></button>
-                </div>
-            </div>
-            <div class="card-slider-swiper swiper">
-                <div class="swiper-wrapper">
-                    {% for product in product.relatedAssignments %}
-                    <div class="swiper-slide">
-                        {% set item = product.getRelated %}
-                        {% include 'pion/store/common/product/product_item.html.twig' %}
+        {% if product.relatedAssignments.count > 0 %}
+            <section class="section card-slider">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="me-2 mb-0">ИДЕАЛЬНО ПОДХОДИТ:</h2>
+                    <div class="d-flex">
+                        <button class="card-slider-btn-prev me-3" type="button"><img src="{{ asset('./pion/img/icons/arrow-left.svg') }}" alt="arrow left"></button>
+                        <button class="card-slider-btn-next" type="button"><img src="{{ asset('./pion/img/icons/arrow-right.svg') }}" alt="arrow right"></button>
                     </div>
-                    {% endfor %}
-
                 </div>
-            </div>
-        </section>
+                <div class="card-slider-swiper swiper">
+                    <div class="swiper-wrapper">
+                        {% for product in product.relatedAssignments %}
+                        <div class="swiper-slide">
+                            {% set item = product.getRelated %}
+                            {% include 'pion/store/common/product/product_item.html.twig' %}
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </section>
+        {% endif %}
     </div>
     <div class="modal modal-lg" id="modal-size-table">
         <div class="modal__bg"></div>
