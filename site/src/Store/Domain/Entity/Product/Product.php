@@ -120,6 +120,15 @@ class Product
     #[ORM\Column(type: 'json', nullable: true)]
     private ?array $measurementTable = null;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $modelParameters = null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $fabricComposition = null;
+
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $goodsCare = null;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -178,6 +187,38 @@ class Product
     public function getAttributes(): Collection
     {
         return $this->attributes;
+    }
+
+    // Model parameters & fabric composition & goods care
+
+    public function getModelParameters(): ?string
+    {
+        return $this->modelParameters;
+    }
+
+    public function setModelParameters(?string $modelParameters): void
+    {
+        $this->modelParameters = $modelParameters;
+    }
+
+    public function getFabricComposition(): ?string
+    {
+        return $this->fabricComposition;
+    }
+
+    public function setFabricComposition(?string $fabricComposition): void
+    {
+        $this->fabricComposition = $fabricComposition;
+    }
+
+    public function getGoodsCare(): ?array
+    {
+        return $this->goodsCare;
+    }
+
+    public function setGoodsCare(?array $goodsCare): void
+    {
+        $this->goodsCare = $goodsCare;
     }
 
     // Notes
