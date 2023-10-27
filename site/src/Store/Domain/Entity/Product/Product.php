@@ -182,6 +182,16 @@ class Product
         // throw new StoreProductException('Not found related color.');
     }
 
+    public function getColorName(): ?string
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($attribute->getAttribute()->isColor() === true) {
+                return $attribute->getVariant()->getName();
+            }
+        }
+
+        return null;
+    }
     // Attributes
 
     public function assignAttribute(

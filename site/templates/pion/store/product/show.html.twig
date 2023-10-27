@@ -71,7 +71,7 @@
                     <span class="i-card__cost">{{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}</span>
                     <div class="i-card__partly">Или 4 платежа по 847,25 ₽. <a href="#" data-modaltarget="modal-divide">Подробнее</a></div>
                     <div class="colors colors-lg mb-4">
-                        <span class="colors__title">Цвет: черный</span>
+                        <span class="colors__title">Цвет: {{ product.getColorName }}</span>
                         <ul class="colors__items">
                             {% for color in product.relatedColors %}
                                 <li class="colors__item">
