@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Repository;
 
 use App\Store\Domain\Entity\Cart\Cart;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -41,6 +42,26 @@ class CartRepository
         return $this->paginator->paginate($qb, $page, $size);
     }
 
+    public function getOldCarts(): array
+    {
+        $date = new DateTimeImmutable('-60 days');
+
+        /*return $this->em->createQueryBuilder()
+            ->select('c')
+            ->andWhere('c.updatedAt < :date')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();*/
+
+        // $date = new DateTime('-60 days');
+
+        return $this->repo->createQueryBuilder('c')
+            ->where('c.updatedAt < :date')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findById(int|null $id, string $status = ''): ?Cart
     {
         return $this->repo->findOneBy(
@@ -62,6 +83,14 @@ class CartRepository
     public function save(Cart $cart, bool $flush = false): void
     {
         $this->em->persist($cart);
+        if ($flush) {
+            $this->em->flush();
+        }
+    }
+
+    public function remove(Cart $cart, bool $flush = false): void
+    {
+        $this->em->remove($cart);
         if ($flush) {
             $this->em->flush();
         }

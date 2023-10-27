@@ -24,7 +24,7 @@ class CheckoutController extends BaseController
             return $this->redirectToRoute('store.cart.index');
         }
 
-        return $this->render("$this->template/store/cart/checkout.html.twig", [
+        return $this->render("{$this->template}/store/cart/checkout.html.twig", [
             'menu' => $this->menu,
             'metaData' => $this->metaData,
         ]);

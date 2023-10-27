@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Admin\Cart;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Cart\Cart;
 use App\Store\Infrastructure\Repository\CartRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ class CartController extends AbstractController
 {
     public const PER_PAGE = 25;
 
-    #[Route(path: '/admin/cars', name: 'store.cart.admin.index')]
+    #[Route(path: '/admin/cards', name: 'store.cart.admin.index')]
     public function index(Request $request, CartRepository $carts): Response
     {
         return $this->render(
@@ -38,5 +39,30 @@ class CartController extends AbstractController
                 'cart' => $cart,
             ]
         );
+    }
+
+    #[Route(path: '/admin/cards/old', name: 'store.cart.admin.index_old')]
+    public function oldCart(Request $request, CartRepository $carts): Response
+    {
+        return $this->render(
+            'admin/store/cart/index_old.html.twig',
+            [
+                'pagination' => $carts->getOldCarts(),
+            ]
+        );
+    }
+
+    #[Route(path: '/admin/cards/old/remove', name: 'store.cart.admin.index_old.remove')]
+    public function removeOldCarts(CartRepository $carts, Flusher $flusher): Response
+    {
+        $oldCarts = $carts->getOldCarts();
+
+        foreach ($oldCarts as $cart) {
+            $carts->remove($cart);
+        }
+
+        $flusher->flush();
+
+        return $this->redirectToRoute('store.cart.admin.index_old');
     }
 }
