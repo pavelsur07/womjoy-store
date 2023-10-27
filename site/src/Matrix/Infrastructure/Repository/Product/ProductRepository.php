@@ -95,7 +95,7 @@ class ProductRepository implements ProductRepositoryInterface
                 ->setParameter('name', '%' . mb_strtolower($filter->getName()) . '%');
         }
 
-        $qb->orderBy('p.id', 'ASC');
+        $qb->orderBy('p.id', 'DESC');
         $qb->getQuery();
 
         return $this->paginator->paginate($qb, $page, $size);
