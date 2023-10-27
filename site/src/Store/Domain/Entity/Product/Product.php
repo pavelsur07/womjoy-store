@@ -129,6 +129,13 @@ class Product
     #[ORM\Column(type: 'json', nullable: true)]
     private ?array $goodsCare = null;
 
+    /** @var ArrayCollection<array-key, Product> */
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'relatedColors')]
+    #[ORM\JoinTable(name: 'store_product_related_colors')]
+    #[ORM\JoinColumn(name: 'product_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'related_product_id', referencedColumnName: 'id')]
+    private Collection $relatedColors;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -143,6 +150,36 @@ class Product
         $this->reviews = new ArrayCollection();
         $this->attributes = new ArrayCollection();
         $this->export = new ProductExport();
+        $this->relatedColors = new ArrayCollection();
+    }
+
+    // Colors
+
+    public function getRelatedColors(): Collection
+    {
+        return $this->relatedColors;
+    }
+
+    public function assignRelatedColors(self $product): void
+    {
+        foreach ($this->relatedColors as $color) {
+            if ($color->getId() === $product->getId()) {
+                throw new StoreProductException('Already related color.');
+            }
+        }
+        $this->relatedColors->add($product);
+    }
+
+    public function revokeRelatedColors(self $product): void
+    {
+        foreach ($this->relatedColors as $color) {
+            if ($color->getId() === $product->getId()) {
+                $this->relatedColors->removeElement($color);
+                return;
+            }
+        }
+
+        // throw new StoreProductException('Not found related color.');
     }
 
     // Attributes

@@ -34,6 +34,17 @@ class ProductActionMenu
             ->setLinkAttribute('class', 'nav-link');
         $menu
             ->addChild(
+                'Colors',
+                [
+                    'route' => 'store.admin.product.related_color.index',
+                    'routeParameters' => ['id' => $options['product_id']],
+                ]
+            )
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('data-bs-toggle', 'tabs')
+            ->setLinkAttribute('class', 'nav-link');
+        $menu
+            ->addChild(
                 'Categories',
                 [
                     'route' => 'store.admin.product.categories.index',

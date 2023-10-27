@@ -57,7 +57,7 @@
                                 {% set number=1 %}
                                 {% for image in product.images %}
                                     <div class="i-card__lgimg swiper-slide">
-                                        <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 720, 1080 ) }}" alt="{{ product.name }} image N {{ number }} " width="715" height="1075">
+                                        <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 1400, 2100 ) }}" alt="{{ product.name }} image N {{ number }} " width="715" height="1075">
                                     </div>
                                     {% set number=number+1 %}
                                 {% endfor %}
@@ -73,18 +73,13 @@
                     <div class="colors colors-lg mb-4">
                         <span class="colors__title">Цвет: черный</span>
                         <ul class="colors__items">
-                            <li class="colors__item">
-                                <a href="#" class="colors__link colors__link-current" style="background-color: #000000"></a>
-                            </li>
-                            <li class="colors__item">
-                                <a href="#" class="colors__link" style="background-color: #fef2bf"></a>
-                            </li>
-                            <li class="colors__item">
-                                <a href="#" class="colors__link" style="background-color: #e3440c"></a>
-                            </li>
-                            <li class="colors__item">
-                                <a href="#" class="colors__link" style="background-color: #cde87d"></a>
-                            </li>
+                            {% for color in product.relatedColors %}
+                                <li class="colors__item">
+                                    <a href="{{ path('store.product.show', {'slug': color.slug}) }}" class="colors__link colors__link-current" style="background-color: #000000">
+                                    </a>
+                                </li>
+                            {% endfor %}
+
                         </ul>
                     </div>
 
