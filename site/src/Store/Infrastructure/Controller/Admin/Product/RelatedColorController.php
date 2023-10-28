@@ -45,6 +45,14 @@ class RelatedColorController extends AbstractController
             $product->assignRelatedColors($productAssign);
             $productAssign->assignRelatedColors($product);
 
+            foreach ($product->getRelatedColors() as $relatedColor) {
+                $relatedColor->assignRelatedColors($productAssign);
+            }
+
+            foreach ($product->getRelatedColors() as $relatedColor) {
+                $productAssign->assignRelatedColors($relatedColor);
+            }
+
             $flusher->flush();
             $this->addFlash('success', 'Success related colors - ' . $product->getName() . '.');
         } catch (StoreProductException $e) {
@@ -61,8 +69,17 @@ class RelatedColorController extends AbstractController
 
         try {
             $productRevoke = $products->get((int)$request->get('revoke_id'));
+
             $product->revokeRelatedColors($productRevoke);
             $productRevoke->revokeRelatedColors($product);
+
+            foreach ($product->getRelatedColors() as $relatedColor) {
+                $relatedColor->revokeRelatedColors($productRevoke);
+            }
+
+            foreach ($product->getRelatedColors() as $relatedColor) {
+                $productRevoke->revokeRelatedColors($relatedColor);
+            }
 
             $flusher->flush();
             $this->addFlash('success', 'Success related revoke - ' . $product->getName() . '.');

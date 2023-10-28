@@ -162,11 +162,16 @@ class Product
 
     public function assignRelatedColors(self $product): void
     {
-        foreach ($this->relatedColors as $color) {
-            if ($color->getId() === $product->getId()) {
-                throw new StoreProductException('Already related color.');
+        if ($product->id === $this->getId()) {
+            return;
+        }
+
+        foreach ($this->relatedColors as $relatedColor) {
+            if ($relatedColor->getId() === $product->getId()) {
+                return;
             }
         }
+
         $this->relatedColors->add($product);
     }
 
@@ -178,8 +183,6 @@ class Product
                 return;
             }
         }
-
-        // throw new StoreProductException('Not found related color.');
     }
 
     public function getColorName(): ?string
@@ -192,6 +195,7 @@ class Product
 
         return null;
     }
+
     // Attributes
 
     public function assignAttribute(
