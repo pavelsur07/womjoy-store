@@ -37,8 +37,10 @@ final readonly class CategoryUpdateFilterHandler
                         $result[] = [
                             'attribute_id' => $attribute->getAttribute()->getId(),
                             'attribute_name' => $attribute->getAttribute()->getName(),
+                            'is_color' => $attribute->getAttribute()->isColor(),
                             'value_id' => $variant->getId(),
                             'value' => $variant->getName(),
+                            'color_value' => $variant->getColorValue(),
                         ];
                     }
                     $attributes = array_merge($attributes, $result);
@@ -55,8 +57,10 @@ final readonly class CategoryUpdateFilterHandler
                     $result[] = [
                         'attribute_id' => $attribute->getAttribute()->getId(),
                         'attribute_name' => $attribute->getAttribute()->getName(),
+                        'is_color' => $attribute->getAttribute()->isColor(),
                         'value_id' => $variant->getId(),
                         'value' => $variant->getName(),
+                        'color_value' => $variant->getColorValue(),
                     ];
                 }
                 $attributes = array_merge($attributes, $result);
@@ -70,6 +74,7 @@ final readonly class CategoryUpdateFilterHandler
                 $filters[$key] = [
                     'attribute_id' => $item['attribute_id'],
                     'attribute_name' => $item['attribute_name'],
+                    'isColor' => $item['is_color'],
                     'items' => [],
                 ];
             }
@@ -78,6 +83,7 @@ final readonly class CategoryUpdateFilterHandler
                 $filters[$key]['items'][$valueKey] = [
                     'value_id' => $item['value_id'],
                     'value' => $item['value'],
+                    'color_value' => $item['color_value'],
                 ];
             }
         }

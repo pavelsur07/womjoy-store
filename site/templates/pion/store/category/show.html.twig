@@ -61,358 +61,56 @@
                 {% endif %}
 
             </ul>
-
             <div class="filter">
-                <form class="filter__main">
+
+                <form class="filter__main filter__form">
                     <div class="d-flex d-md-none align-items-center justify-content-between p-4 border-bottom mb-3">
                         <span class="text-uppercase text-xl">Фильтр 0</span>
                         <button class="filter__close" type="button"><img src="{{ asset('./img/icons/close.svg') }}" alt="close" width="16" height="16"></button>
                     </div>
                     <div class="filter__items">
-                        <div class="filter__item">
-                            <div class="filter__trigger">
-                                Цвет
-                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
-                                </svg>
-                            </div>
-                            <div class="filter__content">
-                                <button class="filter__clear" type="button">Выбрать все</button>
-                                <div class="filter__checks">
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
-                                            <span class="w-check__name">Бежевый</span>
-                                            <span class="text-sm ms-auto">0</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
-                                            <span class="w-check__name">Айсберг</span>
-                                            <span class="text-sm ms-auto">0</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
-                                            <span class="w-check__name">Бирюзовый</span>
-                                            <span class="text-sm ms-auto">200</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
-                                            <span class="w-check__name">Бежевый</span>
-                                            <span class="text-sm ms-auto">123</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
-                                            <span class="w-check__name">Айсберг</span>
-                                            <span class="text-sm ms-auto">22</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
-                                            <span class="w-check__name">Бирюзовый</span>
-                                            <span class="text-sm ms-auto">5</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
-                                            <span class="w-check__name">Бежевый</span>
-                                            <span class="text-sm ms-auto">2</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
-                                            <span class="w-check__name">Айсберг</span>
-                                            <span class="text-sm ms-auto">21</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
-                                            <span class="w-check__name">Бирюзовый</span>
-                                            <span class="text-sm ms-auto">22</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
-                                            <span class="w-check__name">Бежевый</span>
-                                            <span class="text-sm ms-auto">13</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
-                                            <span class="w-check__name">Айсберг</span>
-                                            <span class="text-sm ms-auto">13</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
-                                            <span class="w-check__name">Бирюзовый</span>
-                                            <span class="text-sm ms-auto">13</span>
-                                        </div>
-                                    </label>
-                                </div>
-                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
-                            </div>
-                        </div>
-                        <div class="filter__item">
-                            <div class="filter__trigger">
-                                РАЗМЕР
 
-                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
-                                </svg>
-                            </div>
-                            <div class="filter__content">
-                                <button class="filter__clear" type="button">Выбрать все</button>
-                                <div class="filter__checks">
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS</span>
-                                            <span class="text-sm ms-auto">0</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS (70B)</span>
-                                            <span class="text-sm ms-auto">0</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">OS</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS/S</span>
-                                            <span class="text-sm ms-auto">12</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">OS</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                </div>
-                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
-                            </div>
-                        </div>
-                        <div class="filter__item">
-                            <div class="filter__trigger">
-                                ТИП
+                        {% for filter in category.filters %}
 
-                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
-                                </svg>
-                            </div>
-                            <div class="filter__content">
-                                <button class="filter__clear" type="button">Выбрать все</button>
-                                <div class="filter__checks">
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Анорак</span>
-                                            <span class="text-sm ms-auto">2</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check w-check-disabled">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">XS (70B)</span>
-                                            <span class="text-sm ms-auto">0</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="checkbox" hidden>
-                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                            <span class="text-sm ms-auto">122</span>
-                                        </div>
-                                    </label>
+                            <div class="filter__item">
+                                <div class="filter__trigger">
+                                    {{ filter.attribute_name }}
+                                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+                                        <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
+                                    </svg>
                                 </div>
-                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
+                                <div class="filter__content">
+                                    <button class="filter__clear" type="button">Выбрать все</button>
+                                    <div class="filter__checks">
+
+                                        {%  for value in filter.items %}
+
+                                            <label class="filter__check w-check check">
+                                                {% if assert_one_of(value.value_id, filter_setting_ids) == true %}
+                                                    <input type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden checked value="{{ value.value_id }}">
+                                                {% else %}
+                                                    <input type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden value="{{ value.value_id }}">
+                                                {% endif %}
+
+                                                <span class="w-check__sq"><img src="{{ asset('./pion/img/icons/white-check.svg') }}" alt="check" width="18" height="13"></span>
+                                                <div class="w-check__main">
+                                                    {% if filter.isColor %}
+                                                        <span class="w-check__color" style="background-color: {{ value.color_value }};"></span>
+                                                    {% endif %}
+                                                    <span class="w-check__name">{{ value.value }}</span>
+                                                    <span class="text-sm ms-auto"> </span>
+                                                </div>
+                                            </label>
+
+                                        {% endfor %}
+
+                                    </div>
+                                    <a href="#" class="filter__apply w-primary-btn">Применить</a>
+                                </div>
                             </div>
-                        </div>
+
+                        {% endfor %}
+
                         <div class="filter__item">
                             <div class="filter__trigger">
                                 СОРТИРОВАТЬ
@@ -421,32 +119,24 @@
                                     <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
                                 </svg>
                             </div>
+
+
                             <div class="filter__content">
-                                <button class="filter__clear" type="button">Выбрать все</button>
-                                <div class="filter__checks">
-                                    <label class="filter__check w-check">
-                                        <input type="radio" hidden name="sort-type">
-                                        <span class="w-check__rd"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">Боди на широких бретелях</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="radio" hidden name="sort-type">
-                                        <span class="w-check__rd"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">По возрастанию цены</span>
-                                        </div>
-                                    </label>
-                                    <label class="filter__check w-check">
-                                        <input type="radio" hidden name="sort-type">
-                                        <span class="w-check__rd"></span>
-                                        <div class="w-check__main">
-                                            <span class="w-check__name">По убыванию цены</span>
-                                        </div>
-                                    </label>
+                                {#<button class="filter__clear" type="button"></button>#}
+
+                                <div class="filter__checks mt-4">
+
+                                    {#<div class="filter__check w-check">По популярности</div>#}
+                                    <ul class="sort__list">
+                                        {% for _sorting_rule ,_sorting_rule_title in sorting_rules %}
+                                            <li class="filter__check w-check {{ _sorting_rule == _current_sort ? 'active' }}">
+                                                <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" rel="nofollow">{{ _sorting_rule_title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+
                                 </div>
-                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
+                                {#<a href="#" class="filter__apply w-primary-btn">Применить</a>#}
                             </div>
                         </div>
                     </div>
@@ -458,6 +148,7 @@
                         </div>
                     </div>
                 </form>
+
                 <button class="filter__call d-flex d-md-none align-items-center" type="button"><img src="./img/icons/filter.svg" alt="" width="16" height="16"> Фильтры</button>
                 <span class="filter__cnt">ТОВАРОВ: 204</span>
             </div>
