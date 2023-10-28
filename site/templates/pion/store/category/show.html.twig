@@ -87,9 +87,9 @@
 
                                             <label class="filter__check w-check check">
                                                 {% if assert_one_of(value.value_id, filter_setting_ids) == true %}
-                                                    <input type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden checked value="{{ value.value_id }}">
+                                                    <input class="filter-checkbox" type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden checked value="{{ value.value_id }}">
                                                 {% else %}
-                                                    <input type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden value="{{ value.value_id }}">
+                                                    <input class="filter-checkbox" type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden value="{{ value.value_id }}">
                                                 {% endif %}
 
                                                 <span class="w-check__sq"><img src="{{ asset('./pion/img/icons/white-check.svg') }}" alt="check" width="18" height="13"></span>
