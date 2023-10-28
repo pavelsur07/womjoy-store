@@ -45,7 +45,15 @@
                         <td>{{ variant.name }}</td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-bitbucket rounded-2" href="#"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-bitbucket rounded-2"
+                                   href="{{ path('store.admin.attribute.variant.edit',
+                                       {
+                                           'id_attribute': attribute.id,
+                                           'id_variant': variant.id
+                                       }
+                                   ) }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
                                 <form method="post" action="{{ path('store.admin.attribute.variant.remove',
                                     {
                                         'id_attribute': attribute.id,

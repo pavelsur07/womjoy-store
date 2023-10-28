@@ -38,6 +38,41 @@ class VariantController extends AbstractController
         );
     }
 
+    #[Route(path: '/{id_variant}/edit', name: '.edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, AttributeRepository $attributes, Flusher $flusher): Response
+    {
+        $attributeId =(int)$request->get('id_attribute');
+        $variantId = (int)$request->get('id_variant');
+        $attribute = $attributes->get($attributeId);
+        $variant = $attribute->getVariant($variantId);
+
+        $form = $this->createForm(
+            VariantEditForm::class,
+            [
+                'name' => $variant->getName(),
+                'colorValue' => $variant->getColorValue(),
+            ]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $variant->setColorValue($data['colorValue']);
+            $flusher->flush();
+
+            return $this->redirectToRoute('store.admin.attribute.variant.index', ['id_attribute'=> $attributeId]);
+        }
+
+        return $this->render(
+            'admin/store/attribute/variant/edit.html.twig',
+            [
+                'attribute' => $attribute,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
     #[Route(path: '/{id_variant}/remove', name: '.remove', methods: ['POST'])]
     public function remove(Request $request, AttributeRepository $attributes, Flusher $flusher): Response
     {

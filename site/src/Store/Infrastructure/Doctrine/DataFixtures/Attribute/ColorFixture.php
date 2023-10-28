@@ -18,9 +18,9 @@ class ColorFixture extends Fixture
             name: 'Color',
             type: Attribute::TYPE_COLOR
         );
-        $band->addVariant('Black');
-        $band->addVariant('White');
-        $band->addVariant('Green');
+        $band->addVariant('Black', '#000000');
+        $band->addVariant('White', '#FFFFFF');
+        $band->addVariant('Green', '#00FF00');
         $band->setIsVisibleFilter(true);
 
         $this->setReference(self::REFERENCE_ATTRIBUTE_COLOR, $band);

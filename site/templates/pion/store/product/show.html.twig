@@ -73,9 +73,13 @@
                     <div class="colors colors-lg mb-4">
                         <span class="colors__title">Цвет: {{ product.getColorName }}</span>
                         <ul class="colors__items">
-                            {% for color in product.relatedColors %}
+                            <li class="colors__item">
+                                <a href="#" class="colors__link colors__link-current" style="background-color: {{ product.getColor }}">
+                                </a>
+                            </li>
+                            {% for colorVariant in product.relatedColors %}
                                 <li class="colors__item">
-                                    <a href="{{ path('store.product.show', {'slug': color.slug}) }}" class="colors__link colors__link-current" style="background-color: #000000">
+                                    <a href="{{ path('store.product.show', {'slug': colorVariant.slug}) }}" class="colors__link" style="background-color: {{ colorVariant.getColor }}">
                                     </a>
                                 </li>
                             {% endfor %}

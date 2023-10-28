@@ -49,14 +49,15 @@ class Attribute
         $this->variants = new ArrayCollection();
     }
 
-    public function addVariant(string $variantName): void
+    public function addVariant(string $variantName, ?string $colorValue = null): void
     {
         $this->variants->add(
             new Variant(
                 attribute: $this,
                 name: strip_tags(
                     trim($variantName)
-                )
+                ),
+                colorValue: $colorValue,
             )
         );
     }

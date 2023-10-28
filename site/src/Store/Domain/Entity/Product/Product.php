@@ -196,6 +196,17 @@ class Product
         return null;
     }
 
+    public function getColor(): string
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($attribute->getAttribute()->isColor() === true) {
+                return $attribute->getVariant()->getName();
+            }
+        }
+
+        return '#C0C0C0';
+    }
+
     // Attributes
 
     public function assignAttribute(

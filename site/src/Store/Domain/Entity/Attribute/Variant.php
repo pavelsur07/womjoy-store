@@ -25,10 +25,14 @@ class Variant
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private string $customerValue;
 
-    public function __construct(Attribute $attribute, string $name)
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $colorValue = null;
+
+    public function __construct(Attribute $attribute, string $name, ?string $colorValue = null)
     {
         $this->attribute = $attribute;
         $this->name = $name;
+        $this->colorValue = $colorValue;
     }
 
     public function getId(): int
@@ -54,5 +58,15 @@ class Variant
     public function setCustomerValue(string $customerValue): void
     {
         $this->customerValue = $customerValue;
+    }
+
+    public function getColorValue(): ?string
+    {
+        return $this->colorValue;
+    }
+
+    public function setColorValue(?string $colorValue): void
+    {
+        $this->colorValue = $colorValue;
     }
 }
