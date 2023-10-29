@@ -21,7 +21,9 @@ const OrderPion = () => {
                 </div>
                 <div className="d-flex justify-content-between w-100">
                     <span>ИТОГО:</span>
-                    <span className="w-text-xl">{cart.discount_cost} р.</span>
+                    <span className="w-text-xl">
+                        {new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} р.
+                    </span>
                 </div>
 
                 <button
@@ -32,7 +34,13 @@ const OrderPion = () => {
                     Оформить заказ
                 </button>
 
-                <button className="w-primary-btn d-none mt-2 d-lg-block" type="button">Оформить заказ</button>
+                <button
+                    className="w-primary-btn d-none mt-2 d-lg-block"
+                    type="button"
+                    onClick={ handleCheckoutClick }
+                >
+                    Оформить заказ
+                </button>
             </div>
         </div>
     )

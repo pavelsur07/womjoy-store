@@ -2,10 +2,14 @@
 import React from 'react';
 
 // Имортируем комопненты
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ItemPion from "../Item/ItemPion";
 import OrderPion from "../Order/OrderPion";
 import CustomerPion from "../Customer/CustomerPion";
+import {changePayment} from "../../../redux/actions/checkout";
+import PaymentPion from "../Payment/PaymentPion";
+import Delivery from "../Delivery/Delivery";
+import DeliveryPion from "../Delivery/DeliveryPion";
 
 const AppPion = () => {
 
@@ -46,9 +50,13 @@ const AppPion = () => {
 
                     </div>
                     <CustomerPion />
+                    <PaymentPion />
+                    <DeliveryPion />
+
                 </div>
 
                 <OrderPion />
+
 
             </div>
 

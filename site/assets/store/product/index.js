@@ -25,7 +25,7 @@ variantsNodeList.forEach((node) => {
       currentTarget.value
 
     buttonNodeList.forEach((buttonNode) => {
-      buttonNode.querySelector('span').innerText = 'В корзину'
+      buttonNode.querySelector('span').innerText = 'Добавить в корзину'
 
       if (buttonNode.classList.contains('active')) {
         buttonNode.classList.remove('active')
