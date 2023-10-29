@@ -172,8 +172,10 @@ class CartApiController extends AbstractController
                 ]
             ),
             'name' => $item->getVariant()->getProduct()->getName(),
+            'article' => $item->getVariant()->getProduct()->getArticle(),
             'quantity' => $item->getQuantity(),
             'value' => $item->getVariant()->getValue(),
+            'color_value' => $item->getVariant()->getProduct()->getColor(),
             'price_old' => $item->getVariant()->getProduct()->getPrice()->getPrice(),
             'price_list' => $item->getVariant()->getProduct()->getPrice()->getListPrice(),
             'currency' => 'р.',

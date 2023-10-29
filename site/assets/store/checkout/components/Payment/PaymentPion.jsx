@@ -32,8 +32,15 @@ const PaymentPion = () => {
                         <input type="radio" checked={paymentOnlineChecked} value={payment_list.online.value} onChange={changePaymentValue} hidden />
                         <span className="w-check__sq"><img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13"/></span>
                         <div className="w-check__main">
-                            <span className="w-check__name">{payment_list.online.name}</span>
-                            <p>{payment_list.online.description}</p>
+                            <span className="w-check__name">
+                                {payment_list.online.name}
+                                <img src="/pion/img/icons/mir.svg" alt="" width="60" height="40"/>
+                                <img src="/pion/img/icons/visa.svg" alt="" width="60" height="40"/>
+                                <img src="/pion/img/icons/mc.svg" alt="" width="60" height="40"/>
+                                <img src="/pion/img/icons/union.svg" alt="" width="60" height="40"/>
+
+                            </span>
+                           {/* <p>{payment_list.online.description}</p>*/}
                         </div>
                     </label>
 

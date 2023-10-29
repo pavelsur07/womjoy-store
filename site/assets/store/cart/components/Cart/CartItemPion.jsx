@@ -35,13 +35,13 @@ const CartItemPion = ({ item }) => {
                     />
                 </a>
                 <div className="cart__name">
-                    <span className="cart__art">арт. W4020001</span>
+                    <span className="cart__art">арт. {item.article}</span>
                     <a href={item.href}>{item.name} / {item.value}</a>
                 </div>
             </div>
 
             <div className="cart__cell">
-                <div className="cart__color" style={demoPoint}></div>
+                <div className="cart__color" style={{ background: item.color_value }}></div>
             </div>
 
             <div className="cart__cell">
