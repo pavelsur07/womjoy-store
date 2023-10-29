@@ -18,7 +18,7 @@ class PageController extends BaseController
         $this->setTitle($page->getSeoTitle());
         $this->setDescription($page->getSeoDescription());
         return $this->render(
-            'default/page/page/show.html.twig',
+            "$this->template/page/page/show.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,

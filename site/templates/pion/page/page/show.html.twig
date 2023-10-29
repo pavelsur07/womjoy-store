@@ -1,0 +1,24 @@
+{% extends 'pion/store/base.html.twig' %}
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('page.page.show', {'slug': page.slug}, true)}}">
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">{{ page.name }}</div>
+        </div>
+
+        <section class="catalog w-section">
+            <h1 class="mb-3 text-uppercase">{{ page.h1 }}</h1>
+
+            {{ page.value|raw }}
+
+        </section>
+    </div>
+
+{% endblock %}
