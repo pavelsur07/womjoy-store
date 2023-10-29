@@ -78,7 +78,6 @@ class AttributeController extends AbstractController
 
                 if ($data['type'] === Attribute::TYPE_COLOR) {
                     if ($attribute->isColor() === false) {
-                        
                        /* if ($attributes->hasColorAttribute()) {
                             throw new StoreAttributeException('Color already added attribute.');
                         }*/
