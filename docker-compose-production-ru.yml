@@ -117,6 +117,7 @@ services:
       IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
+      PAYMENT_PROVIDER_NAME: 'alfa'
       ALFABANK_API: 'https://pay.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
@@ -187,6 +188,7 @@ services:
       IMGPROXY_BASE_URL: 'https://imgproxy.womjoy.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
+      PAYMENT_PROVIDER_NAME: 'alfa'
       ALFABANK_API: 'https://pay.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
