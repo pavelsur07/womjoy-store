@@ -3,3 +3,7 @@
 /var/cache/*
 /var/log/*
 /var/test/*
+/.env.local
+/.env.local.php
+/.env.*.local
+/.env
