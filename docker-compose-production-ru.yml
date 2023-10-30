@@ -118,8 +118,8 @@ services:
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
       ALFABANK_API: 'https://payment.alfabank.ru'
-      ALFABANK_USERNAME: { SITE_ALFABANK_USERNAME }
-      ALFABANK_PASSWORD: { SITE_ALFABANK_PASSWORD }
+      ALFABANK_USERNAME: ${ SITE_ALFABANK_USERNAME }
+      ALFABANK_PASSWORD: ${ SITE_ALFABANK_PASSWORD }
     deploy:
       mode: replicated
       replicas: 2
@@ -188,8 +188,8 @@ services:
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
       ALFABANK_API: 'https://payment.alfabank.ru'
-      ALFABANK_USERNAME: {SITE_ALFABANK_USERNAME}
-      ALFABANK_PASSWORD: {SITE_ALFABANK_PASSWORD}
+      ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
+      ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
     command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
     deploy:
       mode: replicated
