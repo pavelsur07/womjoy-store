@@ -200,7 +200,7 @@ class Product
     {
         foreach ($this->attributes as $attribute) {
             if ($attribute->getAttribute()->isColor() === true) {
-                return $attribute->getVariant()->getName();
+                return $attribute->getVariant()->getColorValue();
             }
         }
 
