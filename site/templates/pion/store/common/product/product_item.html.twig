@@ -10,25 +10,18 @@
         <a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__name">{{ item.name }}</a>
         <span class="card__cost">{{ item.price.listPrice|number_format(0, ',', ' ') }} р.</span>
 
-        {#<div class="colors">
+        <div class="colors">
             <ul class="colors__items">
                 <li class="colors__item">
-                    <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                    <a href="#" class="colors__link colors__link-current" style="background-color:{{ item.getColor }}"></a>
                 </li>
-                <li class="colors__item">
-                    <a href="#" class="colors__link" style="background-color: #2c1609"></a>
-                </li>
-                <li class="colors__item">
-                    <a href="#" class="colors__link" style="background-color: #cfe881"></a>
-                </li>
-                <li class="colors__item">
-                    <a href="#" class="colors__link" style="background-color: #ff8800"></a>
-                </li>
-                <li class="colors__item">
-                    <a href="#" class="colors__link" style="background-color: #fe4040"></a>
-                </li>
+                {% for colorVariant in item.relatedColors %}
+                    <li class="colors__item">
+                        <a href="{{ path('store.product.show', {'slug': colorVariant.slug}) }}" class="colors__link" style="background-color:{{ colorVariant.getColor }}"></a>
+                    </li>
+                {% endfor %}
             </ul>
-        </div>#}
+        </div>
 
     </div>
 </div>
