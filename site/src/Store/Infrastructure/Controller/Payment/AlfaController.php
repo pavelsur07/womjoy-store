@@ -78,6 +78,7 @@ class AlfaController extends AbstractController
                             'items' => $orderItems,
                         ],
                     ],
+                    'email' => $order->getCustomer()->getEmail(),
                 ],
             );
         } catch (SberbankAcquiringException $exception) {
