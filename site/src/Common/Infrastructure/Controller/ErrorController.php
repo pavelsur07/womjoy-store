@@ -14,7 +14,7 @@ class ErrorController extends BaseController
     public function show(Request $request): Response
     {
         return $this->render(
-            "{$this->template}/common/error/404.html.twig",
+            "{$this->template}/store/common/error/404.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,

@@ -48,7 +48,8 @@ const CustomerPion = () => {
                                 <label className="w-field__label field__ph">EMAIL*</label>
                                 <div className="w-field__main">
                                     <input
-                                        type="text"
+                                        type="email"
+                                        name="email"
                                         className="w-field__inp field__inp"
                                         placeholder="email@example.com"
                                         value={customer.email}
@@ -63,6 +64,7 @@ const CustomerPion = () => {
                                 <div className="w-field__main">
                                     <input
                                         type="text"
+                                        name='phone'
                                         className="w-field__inp field__inp"
                                         placeholder="+7 000 000-00-00"
                                         value={customer.phone}
