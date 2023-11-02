@@ -8,7 +8,7 @@ use Voronkovich\SberbankAcquiring\Client as AcquiringClient;
 
 class AlfaAcquiringClient extends AcquiringClient
 {
-    public const API_URI = 'https://pay.alfabank.ru';
+    public const API_URI = 'https://payment.alfabank.ru';
     public const API_URI_TEST = 'https://alfa.rbsuat.com';
 
     public function __construct(
