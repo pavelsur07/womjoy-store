@@ -41,7 +41,7 @@ class CheckoutController extends BaseController
             new OrderId($orderId)
         );
 
-        return $this->render('default/store/cart/checkout-finish.html.twig', [
+        return $this->render("{$this->template}/store/cart/checkout-finish.html.twig", [
             'menu' => $this->menu,
             'metaData' => $this->metaData,
             'order' => $order,
@@ -55,7 +55,7 @@ class CheckoutController extends BaseController
             new OrderId($orderId)
         );
 
-        return $this->render('default/store/cart/checkout-fail.html.twig', [
+        return $this->render("{$this->template}/store/cart/checkout-fail.html.twig", [
             'menu' => $this->menu,
             'metaData' => $this->metaData,
             'order' => $order,

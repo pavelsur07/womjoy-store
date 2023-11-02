@@ -1,0 +1,25 @@
+{% extends 'pion/store/base.html.twig' %}
+
+{% block body %}
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <a href="{{ path('store.cart.index') }}" class="breadcrumbs__item">Корзина</a>
+            <div class="breadcrumbs__current">Оформление заказа</div>
+        </div>
+
+        <section class="catalog d-flex flex-column align-items-center py-9">
+            <h1>Заказ № {{ order.orderNumber.value }} отменён.</h1>
+
+            {% if  order.cancelReason %}
+                <h2 class="mb-5">Причина: {{ order.cancelReason }}</h2>
+            {% endif %}
+
+            <a href="{{ path('home') }}" class="w-primary-btn">На главную</a>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

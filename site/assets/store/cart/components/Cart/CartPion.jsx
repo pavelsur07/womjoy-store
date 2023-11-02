@@ -58,9 +58,9 @@ const Cart = () => {
 
                 <div className="row justify-content-between align-items-center align-items-lg-start flex-column flex-lg-row">
                     <div className="col-12 col-sm-10 col-md-8 col-lg-3 d-flex flex-column align-items-center align-items-lg-start order-3 order-lg-1">
-                        <a href="#" className=" d-inline-block mb-3 w-black-link">УСЛОВИЯ ДОСТАВКИ</a>
-                        <a href="#" className=" d-inline-block mb-3 w-black-link">ОПЛАТА ЗАКАЗОВ</a>
-                        <a href="#" className=" d-inline-block mb-3 w-black-link">ВОЗВРАТ ТОВАРА</a>
+                        <a href="https://womjoy.ru/pages/delivery" className=" d-inline-block mb-3 w-black-link">УСЛОВИЯ ДОСТАВКИ</a>
+                        <a href="https://womjoy.ru/pages/payment" className=" d-inline-block mb-3 w-black-link">ОПЛАТА ЗАКАЗОВ</a>
+                        <a href="https://womjoy.ru/pages/garantiya-vozvrata-i-obmena" className=" d-inline-block mb-3 w-black-link">ВОЗВРАТ ТОВАРА</a>
 
                         <p>Если у вас остались вопросы, свяжитесь с нами по бесплатному номеру телефона <a href="#" className="w-black-link">8-800-000-00-00</a></p>
                     </div>
