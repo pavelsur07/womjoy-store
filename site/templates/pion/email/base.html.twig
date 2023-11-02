@@ -1,244 +1,85 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>SMM Email</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <style>
-        body {
-            width: 100% !important;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            margin: 0;
-            padding: 0;
-            line-height: 150%;
-            font-size: 16px;
-            font-family: 'Arial', sans-serif;
-        }
-
-        [style*="Arial"] {font-family: 'Arial', sans-serif !important;}
-
-        img {
-            outline: none;
-            text-decoration: none;
-            border:none;
-            -ms-interpolation-mode: bicubic;
-            max-width: 100%!important;
-            margin: 0;
-            padding: 0;
-            display: block;
-        }
-
-        table td {
-            border-collapse: collapse;
-        }
-
-        table {
-            border-collapse: collapse;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        p {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            margin-bottom: 20px;
-            color: #1A1E24 !important;
-            font-size: 16px !important
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: 700;
-        }
-        .footer {
-            color: #fff;
-            font-weight: 700;
-            background: #1A1E24;
-            padding: 30px 25px;
-        }
-        .footer-call {
-            font-size: 16px;
-            width: 65%;
-            color: #fff;
-            padding-top: 0;
-        }
-        .footer-call a {
-            font-size: 32px;
-            display: inline-block;
-            padding-top: 15px;
-        }
-        .footer-list td {
-            padding-top: 10px;
-        }
-        .main-td {
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 60px;
-        }
-        .ooo {
-            font-size: 14px;
-            color: #7F8A9B;
-        }
-        .header-td {
-            padding-bottom: 60px;
-        }
-        .footer-row {
-            display: flex;
-            align-items: flex-start;
-        }
-        ul, ol {
-            list-style: none;
-        }
-
-        @media screen and (max-width:  660px) {
-            p {
-                font-size: 12px !important;
-                margin-bottom: 12px !important;
-            }
-
-            .header-td {
-                padding-bottom: 20px !important;
-            }
-            .header-td img {
-                width: 160px;
-                height: auto;
-            }
-            .table-full {
-                width: 100% !important;
-            }
-            .main-td {
-                padding-left: 10px !important;
-                padding-right: 10px !important;
-                padding-bottom: 25px !important;
-            }
-
-            .footer {
-                padding: 25px 10px !important;
-            }
-
-            .footer-call {
-                font-size: 12px !important;
-            }
-            .footer-call a {
-                font-size: 20px !important;
-                padding-top: 5px !important;
-            }
-            .footer-right {
-                font-size: 11px !important;
-            }
-            .footer-list td {
-                padding-top: 3px !important;
-            }
-            .footer-list td img {
-                width: 28px !important;
-                height: 28px !important;
-            }
-        }
-
-
-    </style>
-</head>
-
-<body style="margin: 0; padding: 0;">
-<div style="font-size:0px;font-color:#ffffff;opacity:0;visibility:hidden;width:0;height:0;display:none;">Тестовое письмо</div>
-<table cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" align="center">
-    <tr>
-        <td>
-            <table class="main table-full" cellpadding="0" cellspacing="0" width="650" align="center">
-                <tr>
-                    <td height="30"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <table width="100%" cellpadding="0" cellspacing="0" align="center">
-                            <tr>
-                                <td class="main-td">
-                                    <table width="100%" cellpadding="0" cellspacing="0" align="center">
-                                        <tr>
-                                            <td class="header-td">
-                                                <img src="{{ email.image('@images/logo.svg') }}" alt="Logo" width="196" height="47">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p class="title">Отчёт о должниках</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <table cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
-                                                    <tr>
-                                                        <td>
-                                                            {% block body %}{% endblock %}
-                                                            <p></p>
-                                                            {#<p>
-                                                                Это еженедельный отчёт о должниках в вашем маркетплейсе. Здесь
-                                                                перечислены продавцы, которые стали должниками или выплатили долг с
-                                                                момента последнего отчёта. На маркетплейсе может быть <a href="#" style="color: #1A1E24">больше приостановленных продавцов</a>
-                                                            </p>#}
-
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
+<table class="main-wrapper_mr_css_attr" cellpadding="0" cellspacing="0" width="100%" bgcolor="#dce3ea" style="border-collapse: collapse;background-color: #dce3ea;" dir="ltr">
+    <tbody><tr>
+        <td style="border-collapse: collapse;padding: 40px 10px 40px 10px;">
+            <table class="content-wrapper_mr_css_attr" cellpadding="0" cellspacing="0" align="center" width="600" style="border-collapse: collapse;background-color: #ffffff;border: 1px solid #dce3ea;">
+                <tbody><tr class="message-header_mr_css_attr">
+                    <td style="border-collapse: collapse;padding: 10px 30px 20px 30px;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;">
+                        <table cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                            <tbody><tr>
+                                <td style="border-collapse: collapse;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;"><a href="https://womjoy.ru" style="outline: none;color: #465f73;" target="_blank" rel=" noopener noreferrer"><img src="//af12.mail.ru/cgi-bin/readmsg?id=16629959540127129673;0;1&amp;mode=attachment&amp;email=service@womjoy.ru&amp;ct=image%2fsvg&amp;cn=csimg0.&amp;cte=binary" alt="ООО" width="226" height="37" style="-ms-interpolation-mode: bicubic;outline: none;text-decoration: none;border: none;width: auto;max-width: 300px;max-height: 150px;"></a></td>
                             </tr>
-                            <tr>
-                                <td class="footer">
-                                    <table width="100%" cellpadding="0" cellspacing="0" align="center" >
-                                        <tr class="footer-row" style="">
-                                            <td class="footer-call">
-                                                Контактная информация <br>
-                                                <a href="#" style="color: #fff; text-decoration: none;">8 (800) 600-08-88</a>
-                                            </td>
-                                            <td class="footer-right">
-                                                <table width="100%" cellpadding="0" cellspacing="0">
-                                                    <tr>
-                                                        <td>
-                                                            Мы в соцсетях <br>
-                                                            <table class="footer-list" cellpadding="0" cellspacing="0">
-                                                                <tr>
-                                                                    <td><a href="#"><img src="{{ email.image('@images/icons/vk.svg') }}" alt="" width="32" height="32"></a></td>
-                                                                    <td><a href="#"><img src="{{ email.image('@images/icons/tg.svg') }}" alt="" width="32" height="32"></a></td>
-                                                                    <td><a href="#"><img src="https://harut-test.ru/yt.png" alt="" width="32" height="32"></a></td>
-                                                                    <td><a href="#"><img src="https://harut-test.ru/tg.png" alt="" width="32" height="32"></a></td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="ooo">
-                                    <table bgcolor="#F7F7F9" width="100%" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <td height="10"></td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">© ООО «ВУМДЖОЙ»</td>
-                                        </tr>
-                                        <tr>
-                                            <td height="10"></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+                            </tbody></table>
                     </td>
                 </tr>
-            </table>
+                <tr class="message-header__title_mr_css_attr" style="background-color: #465f73;">
+                    <td style="border-collapse: collapse;padding: 20px 30px;">
+                        <h1 style="color: #Fff;font-size: 20px;font-weight: normal;text-transform: uppercase;">Заказ #95876 не удался</h1>
+                    </td>
+                </tr>
+
+                <tr class="message-body_mr_css_attr">
+                    {% block body %}
+
+                    {% endblock %}
+                </tr>
+
+
+                <tr class="message-footer_mr_css_attr" style="border-top: 1px solid #dce3ea;">
+                    <td style="border-collapse: collapse;background-color: #757f83;padding: 20px 30px;color: #fff;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;">
+                        <table class="info_mr_css_attr ty-email-footer-left-part_mr_css_attr" width="250" align="left" style="border-collapse: collapse;">
+                            <tbody><tr>
+                                <th class="footer-contact__title_mr_css_attr ty-email-footer_mr_css_attr" style="border-collapse: collapse;color: #fff !important;font-size: 16px !important;font-weight: bold;margin: 0px;text-transform: uppercase;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;border-bottom: 1px solid #dce3ea;text-align: center;border: none;">
+                                    Контактная информация
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="ty-email-footer_mr_css_attr" style="border-collapse: collapse;color: #fff;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 5px;text-align: center;">
+                                    Ленина 53, офис 5, Азов
+                                </td>
+                            </tr>
+                            </tbody></table>
+
+                        <table class="info_mr_css_attr ty-email-footer-right-part_mr_css_attr" width="250" align="right" style="border-collapse: collapse;">
+                            <tbody><tr>
+                                <th class="footer-social__title_mr_css_attr ty-email-footer_mr_css_attr" style="border-collapse: collapse;color: #fff !important;font-size: 16px !important;font-weight: bold;margin: 0px;text-transform: uppercase;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;border-bottom: 1px solid #dce3ea;text-align: center;border: none;">
+                                    Присоединяйтесь!
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="ty-email-footer-social-buttons_mr_css_attr footer-social_mr_css_attr" style="border-collapse: collapse;color: #fff;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 5px;">
+                                    <table cellspacing="0" cellpadding="0" align="center" style="border-collapse: collapse;">
+                                        <tbody><tr>
+                                            <td style="border-collapse: collapse;color: #fff;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 0px;padding-right: 10px;">
+                                                <a href="http://www.facebook.com" style="outline: none;color: #465f73;" target="_blank" rel=" noopener noreferrer"><img width="30" height="30" src="//af12.mail.ru/cgi-bin/readmsg?id=16629959540127129673;0;3&amp;mode=attachment&amp;email=service@womjoy.ru&amp;ct=image%2fpng&amp;cn=csimg3.png&amp;cte=binary" style="-ms-interpolation-mode: bicubic;outline: none;text-decoration: none;border: none;"></a>
+                                            </td>
+                                            <td style="border-collapse: collapse;color: #fff;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 0px;padding-right: 10px;">
+                                                <a href="https://twitter.com" style="outline: none;color: #465f73;" target="_blank" rel=" noopener noreferrer"><img width="30" height="30" src="//af12.mail.ru/cgi-bin/readmsg?id=16629959540127129673;0;4&amp;mode=attachment&amp;email=service@womjoy.ru&amp;ct=image%2fpng&amp;cn=csimg4.png&amp;cte=binary" style="-ms-interpolation-mode: bicubic;outline: none;text-decoration: none;border: none;"></a>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+
+
+                <tr class="message-copyright_mr_css_attr">
+                    <td style="border-collapse: collapse;padding: 0px 30px 10px;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;">
+                        <table class="copyright_mr_css_attr" width="100%" style="border-collapse: collapse;">
+                            <tbody><tr>
+                                <td style="border-collapse: collapse;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 10px 0 0 0;padding-bottom: 0 !important;">
+                                    ©&nbsp;ИП Новикова Н.А.
+                                </td>
+                                <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 10px 0 0 0;padding-bottom: 0 !important;">
+                                    Благодарим вас за посещение нашего магазина.
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </td>
+                </tr>
+                </tbody></table>
+
         </td>
     </tr>
-</table>
-</body>
-
-</html>
+    </tbody></table>

@@ -91,11 +91,12 @@ class DashboardController extends AbstractController
             ->subject('Thanks for signing up!')
 
             // path of the Twig template to render
-            ->htmlTemplate('emails/signup.html.twig')
+            /*->htmlTemplate('emails/signup.html.twig')*/
+            ->htmlTemplate('pion/email/test.html.twig')
 
             // pass variables (name => value) to the template
             ->context([
-                'user' => 'user name',
+                'user' => 'Jon Konar',
             ]);
         /* $email = (new Email())
              ->from('hello@example.com')

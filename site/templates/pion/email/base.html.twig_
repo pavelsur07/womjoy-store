@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>SMM Email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+            line-height: 150%;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        [style*="Arial"] {font-family: 'Arial', sans-serif !important;}
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border:none;
+            -ms-interpolation-mode: bicubic;
+            max-width: 100%!important;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 20px;
+            color: #1A1E24 !important;
+            font-size: 16px !important
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .footer {
+            color: #fff;
+            font-weight: 700;
+            background: #1A1E24;
+            padding: 30px 25px;
+        }
+        .footer-call {
+            font-size: 16px;
+            width: 65%;
+            color: #fff;
+            padding-top: 0;
+        }
+        .footer-call a {
+            font-size: 32px;
+            display: inline-block;
+            padding-top: 15px;
+        }
+        .footer-list td {
+            padding-top: 10px;
+        }
+        .main-td {
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 60px;
+        }
+        .ooo {
+            font-size: 14px;
+            color: #7F8A9B;
+        }
+        .header-td {
+            padding-bottom: 60px;
+        }
+        .footer-row {
+            display: flex;
+            align-items: flex-start;
+        }
+        ul, ol {
+            list-style: none;
+        }
+
+        @media screen and (max-width:  660px) {
+            p {
+                font-size: 12px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .header-td {
+                padding-bottom: 20px !important;
+            }
+            .header-td img {
+                width: 160px;
+                height: auto;
+            }
+            .table-full {
+                width: 100% !important;
+            }
+            .main-td {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+                padding-bottom: 25px !important;
+            }
+
+            .footer {
+                padding: 25px 10px !important;
+            }
+
+            .footer-call {
+                font-size: 12px !important;
+            }
+            .footer-call a {
+                font-size: 20px !important;
+                padding-top: 5px !important;
+            }
+            .footer-right {
+                font-size: 11px !important;
+            }
+            .footer-list td {
+                padding-top: 3px !important;
+            }
+            .footer-list td img {
+                width: 28px !important;
+                height: 28px !important;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0;">
+<div style="font-size:0px;font-color:#ffffff;opacity:0;visibility:hidden;width:0;height:0;display:none;">Тестовое письмо</div>
+<table cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" align="center">
+    <tr>
+        <td>
+            <table class="main table-full" cellpadding="0" cellspacing="0" width="650" align="center">
+                <tr>
+                    <td height="30"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" cellpadding="0" cellspacing="0" align="center">
+                            <tr>
+                                <td class="main-td">
+                                    <table width="100%" cellpadding="0" cellspacing="0" align="center">
+                                        <tr>
+                                            <td class="header-td">
+                                                <img src="{{ email.image('@images/logo.svg') }}" alt="Logo" width="196" height="47">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="title">Отчёт о должниках</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+                                                    <tr>
+                                                        <td>
+                                                            {% block body %}{% endblock %}
+                                                            <p></p>
+                                                            {#<p>
+                                                                Это еженедельный отчёт о должниках в вашем маркетплейсе. Здесь
+                                                                перечислены продавцы, которые стали должниками или выплатили долг с
+                                                                момента последнего отчёта. На маркетплейсе может быть <a href="#" style="color: #1A1E24">больше приостановленных продавцов</a>
+                                                            </p>#}
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="footer">
+                                    <table width="100%" cellpadding="0" cellspacing="0" align="center" >
+                                        <tr class="footer-row" style="">
+                                            <td class="footer-call">
+                                                Контактная информация <br>
+                                                <a href="#" style="color: #fff; text-decoration: none;">8 (800) 600-08-88</a>
+                                            </td>
+                                            <td class="footer-right">
+                                                <table width="100%" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td>
+                                                            Мы в соцсетях <br>
+                                                            <table class="footer-list" cellpadding="0" cellspacing="0">
+                                                                <tr>
+                                                                    <td><a href="#"><img src="{{ email.image('@images/icons/vk.svg') }}" alt="" width="32" height="32"></a></td>
+                                                                    <td><a href="#"><img src="{{ email.image('@images/icons/tg.svg') }}" alt="" width="32" height="32"></a></td>
+                                                                    <td><a href="#"><img src="https://harut-test.ru/yt.png" alt="" width="32" height="32"></a></td>
+                                                                    <td><a href="#"><img src="https://harut-test.ru/tg.png" alt="" width="32" height="32"></a></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ooo">
+                                    <table bgcolor="#F7F7F9" width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td height="10"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">© ООО «ВУМДЖОЙ»</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>

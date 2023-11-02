@@ -1,0 +1,203 @@
+{% extends 'pion/email/base.html.twig' %}
+
+{% block body %}
+
+    <td style="border-collapse: collapse;padding: 30px;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;">
+        Здравствуйте, {{ user }},     <br>
+        Статус вашего заказа был изменён на "Неудача".
+        <br>
+        <br> <table width="600" style="border-collapse: separate;font-family: Helvetica, Arial, sans-serif;" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr style="vertical-align: top;">
+                <td style="border-collapse: collapse;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 5px;">
+                    <table width="100%;" cellspacing="0" border="0" style="border-collapse: separate;font-family: Helvetica, Arial, sans-serif;">
+                        <tbody>
+                        <tr>
+                            <td width="50%" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 0px;padding-bottom: 10px;padding-right: 40px;vertical-align: top;">
+                                <h2 style="color: #444444;margin: 0px;font-size: 22px;font-family: Helvetica, Arial, sans-serif;text-transform: uppercase;margin-bottom: 15px;line-height: 1.5em;">Доставить в</h2>
+                                <p style="margin: 0px;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <strong>На Сосновой 3 стр.1</strong>
+                                </p>
+                                <p style="margin: 0px;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    Россия, Московская область, Юрлово, ул. Сосновая, 3, стр.1
+                                </p>
+                                <p style="margin: 0px;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <strong>Телефон:</strong>
+                                    <span dir="ltr"><span class="js-phone-number">+79205891306</span></span>
+                                </p>
+                                <p style="margin: 0px;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <strong>Время работы:</strong><br>
+                                    Пн-Пт 10:00-20:00, Сб-Вс 10:00-18:00
+                                </p>
+                                <p style="margin: 0px;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <strong>Описание:</strong><br>
+                                    По Пятницкому шоссе, деревня Юрлово, поворот направо после автозаправки Нефтьмагистраль, через 150 метров торговое здание Оазис
+                                </p>
+
+                            </td>
+                            <td width="50%" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 0px;padding-bottom: 10px;padding-left: 40px;-webkit-print-color-adjust: exact;vertical-align: top;">
+                                <p style="margin: 0px;color: #787878;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <span style="color: #444444;font-weight: bold;font-family: Helvetica, Arial, sans-serif;text-transform: uppercase;">Дата заказа</span>  09/12/2022, 18:18
+                                </p>
+                                <p style="margin: 0px;color: #787878;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <span style="color: #444444;font-weight: bold;font-family: Helvetica, Arial, sans-serif;text-transform: uppercase;">Платеж</span>  Банковская карта
+                                </p>
+                                <p style="margin: 0px;color: #787878;font-size: 14px;font-family: Helvetica, Arial, sans-serif;padding-bottom: 5px;">
+                                    <span style="color: #444444;font-weight: bold;font-family: Helvetica, Arial, sans-serif;text-transform: uppercase;">Доставка</span>  Бесплатно с примеркой ПВЗ
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-collapse: collapse;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 0px;">
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: separate;border-top: 3px solid #444;color: #444;text-transofrm: uppercase;font-family: Helvetica, Arial, sans-serif;">
+                        <tbody>
+                        <tr style="font-size: 12px;font-weight: bold;text-transform: uppercase;text-align: center;vertical-aling: top;">
+                            <td style="border-collapse: collapse;color: #2e3a47;font-size: 12px;padding: 10px;">Описание</td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-size: 12px;padding: 10px;">Кол-во</td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-size: 12px;padding: 10px;">Цена</td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-size: 12px;padding: 10px;">Сумма</td>
+                        </tr>
+
+                        <tr style="font-size: 14px;font-family: Helvetica, Arial, sans-serif;font-weight: normal;text-transform: uppercase;text-align: center;vertical-aling: middle;">
+                            <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;"><table style="border-collapse: collapse;">
+                                    <tbody>
+                                    <tr>
+                                        <td rowspan="2" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;padding-right: 20px;" width="20%"><img src="//af12.mail.ru/cgi-bin/readmsg?id=16629959540127129673;0;2&amp;mode=attachment&amp;email=service@womjoy.ru&amp;ct=image%2fjpeg&amp;cn=csimg1.jpg&amp;cte=binary" width="60" height="80" alt="" title="" style="-ms-interpolation-mode: bicubic;outline: none;text-decoration: none;">
+                                        </td>
+                                        <td style="border-collapse: collapse;color: #2e3a47;font-size: 14px;padding: 5px;vertical-align: middle;text-align: left;" width="70%">
+                                            <span>
+                                                <strong >
+                                                    <a href="https://womjoy.ru/zhenskaya-odezhda/legginsy-taytsy/legginsy-womjoy-sexy-logo-total-black-xs-chernyy/?variation_id=2104" style="outline: none;color: #465f73;" target="_blank" rel=" noopener noreferrer">
+                                                        Легинсы женские спортивные с высокой посадкой черные Sexy Logo (L (46-48))
+                                                    </a>
+                                                </strong>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;vertical-align: top;text-align: left;">
+                                            <span style="font-size: 11px;font-weight: normal;font-family: Helvetica, Arial, sans-serif;color: #a8a8a8;">
+                                                2001569917196_8FAC
+                                                <br>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table></td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;">
+                                <p style="margin: 1em 0;text-align: center;font-family: Helvetica, Arial, sans-serif;">
+                                    <strong style="font-weight: bold;">
+                                        1
+                                    </strong>
+                                </p>
+                            </td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-size: 12px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;">
+                                <p style="margin: 1em 0;text-align: center;">
+                                    <strong style="font-weight: bold;">
+                                        1&nbsp;499&nbsp;р.
+                                    </strong>
+                                </p>
+                            </td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-size: 12px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;">
+                                <p style="margin: 1em 0;text-align: center;font-family: Helvetica, Arial, sans-serif;">
+                                    <strong style="font-weight: bold;">
+                                        1&nbsp;499&nbsp;р.
+                                    </strong>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr style="font-size: 14px;font-family: Helvetica, Arial, sans-serif;font-weight: normal;text-transform: uppercase;text-align: center;vertical-aling: middle;">
+                            <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;"><table style="border-collapse: collapse;">
+                                    <tbody>
+                                    <tr>
+                                        <td rowspan="2" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;padding-right: 20px;" width="20%"><img src="https://proxy.imgsmail.ru?e=1699199391&amp;email=service%40womjoy.ru&amp;flags=2&amp;h=ldDXkGv4OJoofpPOAlAeow&amp;is_https=1&amp;url173=d29tam95LnJ1L2ltYWdlcy90aHVtYm5haWxzLzYwLzgwL2RldGFpbGVkLzQvJUQxJTg0JUQwJUJFJUQxJTgyJUQwJUJFJUQwJUIzJUQxJTgwJUQwJUIwJUQxJTg0JUQwJUI4JUQxJThGLTIuSlBHLmpwZw~~" width="60" height="80" alt="" title="" style="-ms-interpolation-mode: bicubic;outline: none;text-decoration: none;">
+                                        </td>
+                                        <td style="border-collapse: collapse;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;padding: 5px;vertical-align: middle;text-align: left;" width="80%"><span style="font-family: Helvetica, Arial, sans-serif;text-transfrom: uppercase;"><strong style="font-weight: bold;"><a href="https://womjoy.ru/zhenskaya-odezhda/rashgard-zhenskiy/longsliv-womjoy-slassic-ultraviolet-short/?variation_id=1942" style="outline: none;color: #465f73;" target="_blank" rel=" noopener noreferrer">Рашгард женский с длинным рукавом укороченный, черный  Classic Ultraviolet Short (L (46-48))</a></strong></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;vertical-align: top;text-align: left;"><span style="font-size: 11px;font-weight: normal;font-family: Helvetica, Arial, sans-serif;color: #a8a8a8;">2008895814328<br> </span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table></td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;"><p style="margin: 1em 0;text-align: center;font-family: Helvetica, Arial, sans-serif;"><strong style="font-weight: bold;">1</strong></p></td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;"><p style="margin: 1em 0;text-align: center;font-family: Helvetica, Arial, sans-serif;"><strong style="font-weight: bold;">1&nbsp;398.00&nbsp;₽</strong></p></td>
+                            <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 10px 0px;border-bottom: 1px solid #ebebeb;"><p style="margin: 1em 0;text-align: center;font-family: Helvetica, Arial, sans-serif;"><strong style="font-weight: bold;">1&nbsp;398.00&nbsp;₽</strong></p></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 0px;border-top: 2px solid #f5f5f5;padding-top: 10px;">
+                    <table width="100%" style="border-collapse: separate;font-family: Helvetica, Arial, sans-serif;">
+                        <tbody>
+                        <tr>
+                            <td width="66%" style="border-collapse: collapse;color: #444444;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;line-height: 21px;padding-right: 30px;vertical-align: top;">
+                            </td>
+                            <td width="34%" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;vertical-align: top;">
+                                <table width="100%;" style="border-collapse: collapse;font-size: 14px;font-family: Helvetica, Arial, sans-serif;color: #444;">
+                                    <tbody>
+                                    <tr style="vertical-align: top;font-family: Helvetica, Arial, sans-serif;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;padding-bottom: 20px;">Сумма
+                                        </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">2&nbsp;897.00&nbsp;₽
+                                        </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;padding-bottom: 20px;text-transform: uppercase;">
+                                        </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">
+                                        </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;padding-bottom: 20px;">Доставка
+                                        </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">0.00&nbsp;₽
+                                        </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;">
+                                        <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;padding-bottom: 20px;" align="left">Доп. сбор платежа
+                                        </td>
+                                        <td style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;" align="right">0.00&nbsp;₽
+                                        </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;font-family: Helvetica, Arial, sans-serif;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">                        </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">                        </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;font-family: Helvetica, Arial, sans-serif;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">                        </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;">                        </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;font-family: Helvetica, Arial, sans-serif;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;"> <div style="padding-bottom: 20px;font-family: Helvetica, Arial, sans-serif;"> Скидка на заказ </div>                         </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 14px;padding: 5px;"> 289.70&nbsp;₽                         </td>
+                                    </tr>
+                                    <tr style="vertical-align: top;font-size: 22px;font-weight: bold;font-family: Helvetica, Arial, sans-serif;">
+                                        <td align="left" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 22px;padding: 5px;padding-top: 20px;border-top: 1px solid #e8e8e8;">Итого
+                                        </td>
+                                        <td align="right" style="border-collapse: collapse;color: #2e3a47;font-family: Helvetica, Arial, sans-serif;font-size: 22px;padding: 5px;padding-top: 20px;border-top: 1px solid #e8e8e8;">2&nbsp;607.30&nbsp;₽
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </td>
+
+{% endblock  %}
