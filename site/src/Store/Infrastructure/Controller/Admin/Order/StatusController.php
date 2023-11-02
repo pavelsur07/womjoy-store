@@ -30,20 +30,6 @@ class StatusController extends AbstractController
             $flusher->flush();
             $this->addFlash('success', 'Success order pay.');
 
-            $email = (new TemplatedEmail())
-                ->from('info@womjoy.ru')
-                ->to(new Address($order->getCustomer()->getEmail()))
-                ->subject('Thanks for order!')
-
-                // path of the Twig template to render
-                ->htmlTemplate('default/store/email/new_order.html.twig')
-
-                // pass variables (name => value) to the template
-                ->context([
-                    'user' => 'user name',
-                ]);
-
-            $mailer->send($email);
         } catch (DomainException $e) {
             $this->addFlash('danger', 'Error order pay - ' . $e->getMessage());
         }
@@ -62,20 +48,6 @@ class StatusController extends AbstractController
             $flusher->flush();
             $this->addFlash('success', 'Success order pay.');
 
-            $email = (new TemplatedEmail())
-                ->from('info@womjoy.ru')
-                ->to(new Address($order->getCustomer()->getEmail()))
-                ->subject('Order is send!')
-
-                // path of the Twig template to render
-                ->htmlTemplate('default/store/email/send_order.html.twig')
-
-                // pass variables (name => value) to the template
-                ->context([
-                    'user' => 'user name',
-                ]);
-
-            $mailer->send($email);
         } catch (DomainException $e) {
             $this->addFlash('danger', 'Error order send - ' . $e->getMessage());
         }
