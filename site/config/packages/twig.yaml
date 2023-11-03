@@ -8,7 +8,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     paths:
         # point this wherever your images live
-        '%kernel.project_dir%/public/default/img': images
+        '%kernel.project_dir%/public/pion/img': images
 
 when@test:
     twig:

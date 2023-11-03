@@ -96,7 +96,9 @@ class DashboardController extends AbstractController
 
             // pass variables (name => value) to the template
             ->context([
+                'orderNumber' => 98555,
                 'user' => 'Jon Konar',
+                'status' => 'заказ оформлен'
             ]);
         /* $email = (new Email())
              ->from('hello@example.com')

@@ -1,10 +1,16 @@
 {% extends 'pion/email/base.html.twig' %}
 
 {% block body %}
+    <tr class="message-header__title_mr_css_attr" style="background-color: #f3f2d9;">
+        <td style="border-collapse: collapse;padding: 20px 30px;">
+            <h1 style="color: #000000;font-size: 20px;font-weight: normal;text-transform: uppercase;">Заказ #{{ orderNumber }} {{ status }}</h1>
+        </td>
+    </tr>
 
-    <td style="border-collapse: collapse;padding: 30px;color: #2e3a47;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;">
+    <tr class="message-body_mr_css_attr">
+    <td style="border-collapse: collapse;padding: 30px;color: #2F2B43;font-family: 'Open Sans','Helvetica Neue',-apple-system,sans-serif,Helvetica,Arial,sans-serif;font-size: 14px;">
         Здравствуйте, {{ user }},     <br>
-        Статус вашего заказа был изменён на "Неудача".
+        Статус вашего заказа был изменён на "{{ status }}".
         <br>
         <br> <table width="600" style="border-collapse: separate;font-family: Helvetica, Arial, sans-serif;" cellspacing="0" cellpadding="0" border="0">
             <tbody>
@@ -199,5 +205,6 @@
             </tbody>
         </table>
     </td>
+    </tr>
 
 {% endblock  %}
