@@ -281,6 +281,11 @@ class Order
         return $this->deliveryCost;
     }
 
+    public function getDiscount(): int
+    {
+        return 0;
+    }
+
     public function getCancelReason(): ?string
     {
         return $this->cancelReason;

@@ -3,6 +3,7 @@ init-ci: docker-down-clear \
 	site-clear \
 	docker-pull docker-build docker-up \
 	site-init \
+	site-development-start \
 	site-assets-build
 
 up: docker-up
@@ -68,6 +69,9 @@ site-migrations:
 
 site-fixtures:
 	docker-compose run --rm site-php-cli php bin/console doctrine:fixtures:load --no-interaction
+
+site-development-start:
+	docker-compose run --rm site-php-cli php bin/console development:start
 
 site-indexer-elastic:
 	docker-compose run --rm site-php-cli php bin/console elastic:inti-elastic

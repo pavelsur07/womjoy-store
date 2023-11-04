@@ -24,6 +24,7 @@
         <a class="btn btn-bitbucket" href="{{ path('store.order.admin.print', {'id': order.id}) }}">Print</a>
         --
         <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.pay', {'order_id': order.id}) }}">Pay</a>
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.send_status', {'id': order.id}) }}">Send Mail status</a>
 
         {% if order.isPaid %}
             <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.send', {'order_id': order.id}) }}">Send</a>
