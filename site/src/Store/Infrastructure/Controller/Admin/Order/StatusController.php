@@ -8,12 +8,10 @@ use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
 use DomainException;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(path: '/admin/orders/{order_id}/status', name: 'store.admin.order.status')]
@@ -29,7 +27,6 @@ class StatusController extends AbstractController
             $order->pay();
             $flusher->flush();
             $this->addFlash('success', 'Success order pay.');
-
         } catch (DomainException $e) {
             $this->addFlash('danger', 'Error order pay - ' . $e->getMessage());
         }
@@ -47,7 +44,6 @@ class StatusController extends AbstractController
             $order->send();
             $flusher->flush();
             $this->addFlash('success', 'Success order pay.');
-
         } catch (DomainException $e) {
             $this->addFlash('danger', 'Error order send - ' . $e->getMessage());
         }

@@ -8,11 +8,13 @@ use App\Matrix\Domain\Entity\Syncing\Key\Key;
 use App\Matrix\Infrastructure\Repository\Syncing\KeyRepository;
 use App\Matrix\Infrastructure\Wildberries\HttpRequest;
 use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
+use App\Store\Application\SendMail\Order\OrderNewSendMailCommand;
 use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
 use DateTimeImmutable;
 use Exception;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Exception\ExceptionInterface;
@@ -27,6 +29,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
 {
+    public function __construct(
+        private MessageBusInterface $bus,
+    ) {}
+
     /**
      * @throws Exception
      */
@@ -85,34 +91,25 @@ class DashboardController extends AbstractController
     #[Route(path: '/admin/dashboard/send-email', name: 'admin.dashboard.send_email')]
     public function sendMail(MailerInterface $mailer): Response
     {
-        $email = (new TemplatedEmail())
+        $this->bus->dispatch(new OrderNewSendMailCommand(
+            orderUuid: Uuid::uuid4()->toString(),
+        ));
+
+        $this->addFlash('success', 'Otpravil');
+
+        /*$email = (new TemplatedEmail())
             ->from('info@womjoy.ru')
             ->to(new Address('pavelsur07@gmail.com'))
             ->subject('Thanks for signing up!')
+            ->htmlTemplate('pion/email/store/order/order_new.html.twig')
 
-            // path of the Twig template to render
-            /*->htmlTemplate('emails/signup.html.twig')*/
-            ->htmlTemplate('pion/email/test.html.twig')
-
-            // pass variables (name => value) to the template
             ->context([
                 'orderNumber' => 98555,
                 'user' => 'Jon Konar',
                 'status' => 'заказ оформлен'
-            ]);
-        /* $email = (new Email())
-             ->from('hello@example.com')
-             ->to('you@example.com')
-             //->cc('cc@example.com')
-             //->bcc('bcc@example.com')
-             //->replyTo('fabien@example.com')
-             //->priority(Email::PRIORITY_HIGH)
-             ->subject('Time for Symfony Mailer!')
-             ->text('Sending emails is fun again!')
-             ->html('<p>See Twig integration for better HTML integration!</p>');
-         */
+            ]);*/
 
-        $mailer->send($email);
+        // $mailer->send($email);
 
         return $this->redirectToRoute('admin.dashboard.show');
     }

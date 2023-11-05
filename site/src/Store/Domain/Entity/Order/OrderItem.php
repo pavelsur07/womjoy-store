@@ -49,7 +49,6 @@ class OrderItem
         $this->quantity = $quantity;
     }
 
-
     public function getBarcode(): ?string
     {
         return $this->barcode;

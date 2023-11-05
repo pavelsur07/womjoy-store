@@ -7,7 +7,6 @@ namespace App\Store\Application\SendMail\Order;
 use App\Store\Domain\Exception\StoreOrderException;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
@@ -19,9 +18,6 @@ readonly class OrderNewSendMailHandler
         private OrderRepositoryInterface $orders,
     ) {}
 
-    /**
-     * @throws TransportExceptionInterface
-     */
     #[AsMessageHandler]
     public function __invoke(OrderNewSendMailCommand $command): void
     {
@@ -34,14 +30,14 @@ readonly class OrderNewSendMailHandler
         $email = (new TemplatedEmail())
             ->from('info@womjoy.ru')
             ->to(new Address($order->getCustomer()->getEmail()))
-            ->subject('Thanks for order!')
+            ->subject('Заказ оформлен WOMJOY № ' . $order->getOrderNumber()->value())
+            ->htmlTemplate('pion/email/test.html.twig')
 
-            // path of the Twig template to render
-            ->htmlTemplate('pion/email/store/order/order_new.html.twig')
-
-            // pass variables (name => value) to the template
             ->context([
+                'orderNumber' => (string)$order->getOrderNumber()->value(),
                 'user' => $order->getCustomer()->getName(),
+                'status' => $order->getCurrentStatus(),
+                'order' => $order,
             ]);
 
         $this->mailer->send($email);
