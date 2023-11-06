@@ -8,7 +8,7 @@ use App\Matrix\Domain\Entity\Syncing\Key\Key;
 use App\Matrix\Infrastructure\Repository\Syncing\KeyRepository;
 use App\Matrix\Infrastructure\Wildberries\HttpRequest;
 use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
-use App\Store\Application\SendMail\Order\OrderNewSendMailCommand;
+use App\Store\Application\SendMail\Order\OrderStatusSendMailCommand;
 use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
@@ -91,7 +91,7 @@ class DashboardController extends AbstractController
     #[Route(path: '/admin/dashboard/send-email', name: 'admin.dashboard.send_email')]
     public function sendMail(MailerInterface $mailer): Response
     {
-        $this->bus->dispatch(new OrderNewSendMailCommand(
+        $this->bus->dispatch(new OrderStatusSendMailCommand(
             orderUuid: Uuid::uuid4()->toString(),
         ));
 

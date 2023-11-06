@@ -6,12 +6,13 @@ namespace App\Store\Application\SendMail\Order;
 
 use App\Store\Domain\Exception\StoreOrderException;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
+use App\Store\Infrastructure\Helpers\OrderStatusHelper;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Address;
 
-readonly class OrderNewSendMailHandler
+readonly class OrderStatusSendMailHandler
 {
     public function __construct(
         private MailerInterface $mailer,
@@ -19,7 +20,7 @@ readonly class OrderNewSendMailHandler
     ) {}
 
     #[AsMessageHandler]
-    public function __invoke(OrderNewSendMailCommand $command): void
+    public function __invoke(OrderStatusSendMailCommand $command): void
     {
         $order = $this->orders->find($command->getOrderUuid());
 
@@ -27,16 +28,17 @@ readonly class OrderNewSendMailHandler
             throw new StoreOrderException('Order not found!');
         }
 
+        $status = OrderStatusHelper::orderStatusHelper($order->getCurrentStatus());
         $email = (new TemplatedEmail())
             ->from('info@womjoy.ru')
             ->to(new Address($order->getCustomer()->getEmail()))
-            ->subject('Заказ оформлен WOMJOY № ' . $order->getOrderNumber()->value())
+            ->subject('WOMJOY ' . $status . ' № ' . $order->getOrderNumber()->value())
             ->htmlTemplate('pion/email/test.html.twig')
 
             ->context([
                 'orderNumber' => (string)$order->getOrderNumber()->value(),
                 'user' => $order->getCustomer()->getName(),
-                'status' => $order->getCurrentStatus(),
+                'status' => $status,
                 'order' => $order,
             ]);
 

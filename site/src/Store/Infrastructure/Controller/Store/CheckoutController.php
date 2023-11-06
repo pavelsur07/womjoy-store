@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
-use App\Store\Application\SendMail\Order\OrderNewSendMailCommand;
+use App\Store\Application\SendMail\Order\OrderStatusSendMailCommand;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use App\Store\Infrastructure\Service\Order\OrderService;
@@ -43,7 +43,7 @@ class CheckoutController extends BaseController
             new OrderId($orderId)
         );
 
-        $bus->dispatch(new OrderNewSendMailCommand(orderUuid: $order->getId()->value()));
+        $bus->dispatch(new OrderStatusSendMailCommand(orderUuid: $order->getId()->value()));
 
         return $this->render("{$this->template}/store/cart/checkout-finish.html.twig", [
             'menu' => $this->menu,

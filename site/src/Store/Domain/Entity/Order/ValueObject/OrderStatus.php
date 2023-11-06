@@ -12,6 +12,8 @@ class OrderStatus
     public const NEW = 'new';
     public const PAID = 'paid';
     public const SENT = 'sent';
+
+    public const DELIVERED = 'delivered';
     public const COMPLETED = 'completed';
     public const CANCELLED = 'cancelled';
     public const CANCELLED_BY_CUSTOMER = 'cancelled_by_customer';
@@ -49,6 +51,7 @@ class OrderStatus
             self::NEW,
             self::PAID,
             self::SENT,
+            self::DELIVERED,
             self::COMPLETED,
             self::CANCELLED,
             self::CANCELLED_BY_CUSTOMER,

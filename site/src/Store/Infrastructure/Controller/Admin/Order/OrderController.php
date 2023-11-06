@@ -5,18 +5,21 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Order;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
-use App\Store\Application\SendMail\Order\OrderNewSendMailCommand;
+use App\Store\Application\SendMail\Order\OrderStatusSendMailCommand;
 use App\Store\Domain\Entity\Order\Order;
 use App\Store\Infrastructure\Form\Order\Admin\OrderFilter;
 use App\Store\Infrastructure\Form\Order\Admin\OrderFilterForm;
 use App\Store\Infrastructure\Form\Order\Admin\OrderStatusEditForm;
+use App\Store\Infrastructure\Helpers\OrderStatusHelper;
 use App\Store\Infrastructure\Repository\OrderRepository;
 use DomainException;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends AbstractController
@@ -82,9 +85,27 @@ class OrderController extends AbstractController
     #[Route(path: '/admin/orders/{id}/send-status', name: 'store.order.admin.send_status')]
     public function sendMailChangeStatus(string $id, Order $order, Request $request, MailerInterface $mailer, MessageBusInterface $bus): Response
     {
-        $bus->dispatch(new OrderNewSendMailCommand(
+        $bus->dispatch(new OrderStatusSendMailCommand(
             orderUuid: $order->getId()->value(),
         ));
+
+        /*
+        $status = OrderStatusHelper::orderStatusHelper($order->getCurrentStatus());
+        $email = (new TemplatedEmail())
+            ->from('info@womjoy.ru')
+            ->to(new Address($order->getCustomer()->getEmail()))
+            ->subject('WOMJOY '.$status.' № ' . $order->getOrderNumber()->value())
+            ->htmlTemplate('pion/email/test.html.twig')
+
+            ->context([
+                'orderNumber' => (string)$order->getOrderNumber()->value(),
+                'user' => $order->getCustomer()->getName(),
+                'status' => $status,
+                'order' => $order,
+            ]);
+
+        $mailer->send($email);
+        */
 
         return $this->redirectToRoute('store.order.admin.show', ['id' => $order->getId()->value()]);
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Application\SendMail\Order;
 
-readonly class OrderNewSendMailCommand
+readonly class OrderStatusSendMailCommand
 {
     public function __construct(
         private string $orderUuid,
