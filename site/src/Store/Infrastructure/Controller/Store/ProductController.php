@@ -7,13 +7,14 @@ namespace App\Store\Infrastructure\Controller\Store;
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Infrastructure\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends BaseController
 {
     #[Route(path: '/products/{slug}', name: 'store.product.show')]
-    public function show(string $slug, Product $product, ProductRepository $products): Response
+    public function show(string $slug, Product $product, Request $request, ProductRepository $products): Response
     {
         if ($product->getSeoMetadata()->getSeoTitle() !== null) {
             $this->setTitle($product->getSeoMetadata()->getSeoTitle());
@@ -30,6 +31,7 @@ class ProductController extends BaseController
                 'menu' => $this->menu,
                 'breadcrumbs'=> $this->breadcrumbsCategoryGenerate($product->getMainCategory()),
                 'product' => $product,
+                'referer' => $request->headers->get('referer'),
                 'jsProduct' => [
                     'id' => (string)$product->getId(),
                     'name' => $product->getName(),
