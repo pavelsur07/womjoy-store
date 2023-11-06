@@ -50,6 +50,7 @@ class VariantController extends AbstractController
             [
                 'value' => $variant->getValue(),
                 'quantity' => $variant->getQuantity(),
+                'barcode' => $variant->getBarcode(),
             ]
         );
         $form->handleRequest($request);
@@ -57,12 +58,13 @@ class VariantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $variant->changeQuantity($data['quantity']);
+            $variant->changeBarcode($data['barcode']);
 
             $flusher->flush();
             return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
         }
         return $this->render(
-            'store/admin/product/variant/edit.html.twig',
+            'admin/store/product/variant/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'variant' => $variant,

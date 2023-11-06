@@ -52,12 +52,13 @@
                         {% endif %}
                     </td>
                     <td>
-                        {{ product.name }}<br>
+                        <a href="{{ path('store.product.show', {'slug': product.slug}) }}" target="_blank">{{ product.name }}</a>
+                        <br>
                         <strong>{{ product.mainCategory ? product.mainCategory.name : '' }}</strong>
                     </td>
                     <td>
-                        {{ product.price.price|number_format(0, ',', ' ') }} <br>
-                        {{ product.price.listPrice|number_format(0, ',', ' ') }}
+                        {{ product.price.price|number_format(0, ',', ' ') }} р.<br>
+                        {{ product.price.listPrice|number_format(0, ',', ' ') }} р.
                     </td>
 
                     <td>

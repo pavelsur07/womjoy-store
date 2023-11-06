@@ -58,7 +58,10 @@ class Variant
         $this->quantity = $value;
     }
 
-    public function changeBarcode(string $barcode): void {}
+    public function changeBarcode(string $barcode): void
+    {
+        $this->barcode = $barcode;
+    }
 
     public function getId(): ?int
     {
