@@ -135,6 +135,10 @@ class ProductRepository
             $qb->orderBy($sort, $direction);
         }
 
+        if ($sort === 'popularity' ) {
+            $qb->orderBy('p.popularity', 'ASC');
+        }
+
         $qb->addOrderBy('p.id', 'DESC');
 
         return $qb;
