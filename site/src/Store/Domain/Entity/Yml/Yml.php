@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Yml;
 
 use App\Store\Domain\Entity\Product\Product;
+use App\Store\Domain\Exception\StoreException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,7 +36,7 @@ class Yml
     private string $path;
 
     /** @var ArrayCollection<array-key, Item> */
-    #[OneToMany(mappedBy: 'yml', targetEntity: Item::class)]
+    #[OneToMany(mappedBy: 'yml', targetEntity: Item::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $items;
 
     public function __construct(string $name, string $fileName, string $path)
@@ -57,9 +58,28 @@ class Yml
         $this->status = self::DISABLE;
     }
 
-    public function add(Product $product): void {}
+    public function add(Product $product): void
+    {
+        foreach ($this->items as $item) {
+            if ($item->getProduct()->getId() === $product->getId()) {
+                return;
+            }
+        }
 
-    public function remove(int $productId): void {}
+        $this->items->add(new Item($this, $product));
+    }
+
+    public function remove(int $productId): void
+    {
+        foreach ($this->items as $item) {
+            if ($item->getProduct()->getId() === $productId) {
+                $this->items->removeElement($item);
+                return;
+            }
+        }
+
+        throw new StoreException('Yml item product not found.');
+    }
 
     public function getId(): int
     {

@@ -26,10 +26,9 @@
         <table class="table">
             <thead>
             <tr>
-                <th class="w-1">Id</th>
                 <th class="w-1">Status</th>
                 <th>Name</th>
-                <th>Path</th>
+                <th>File name</th>
                 <th> --- </th>
                 <th class="w-25">Actions</th>
             </tr>
@@ -37,20 +36,20 @@
             <tbody>
             {% for yml in pagination %}
                 <tr>
-                    <td>---</td>
-                    <td>---</td>
+                    <td>{{ yml.status }}</td>
                     <td>
-                        ---
+                        {{ yml.name }}
                     </td>
                     <td>
-                       ---
+                       {{ yml.fileName }}
                     </td>
                     <td>
                         ---
                     </td>
 
                     <td>
-                        <a class="btn btn-sm btn-bitbucket" href="#">edit</a>
+                        <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.yml.edit', {'id': yml.id}) }}">edit</a>
+                        <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.yml.edit', {'id': yml.id}) }}">generate</a>
                     </td>
                 </tr>
             {% else %}

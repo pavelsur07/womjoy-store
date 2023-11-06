@@ -135,7 +135,7 @@ class ProductRepository
             $qb->orderBy($sort, $direction);
         }
 
-        if ($sort === 'popularity' ) {
+        if ($sort === 'popularity') {
             $qb->orderBy('p.popularity', 'ASC');
         }
 

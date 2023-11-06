@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Admin\Yml;
 
+use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Yml\Yml;
+use App\Store\Infrastructure\Form\Yml\YmlEditForm;
 use App\Store\Infrastructure\Form\Yml\YmlNewForm;
+use App\Store\Infrastructure\Repository\ProductRepository;
 use App\Store\Infrastructure\Repository\YmlRepository;
+use Exception;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +20,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/yml', name: 'store.admin.yml')]
 class YmlController extends AbstractController
 {
+    public const PER_PAGE = 10;
+
     #[Route(path: '/', name: '.index')]
     public function index(YmlRepository $ymls): Response
     {
@@ -35,13 +41,13 @@ class YmlController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            /*$yml = new Yml(
+            $yml = new Yml(
                 name: $data['name'],
                 fileName: Uuid::uuid4()->toString(),
                 path: ''
             );
 
-            $ymls->save($yml, true);*/
+            $ymls->save($yml, true);
         }
 
         return $this->render(
@@ -52,8 +58,68 @@ class YmlController extends AbstractController
         );
     }
 
-    #[Route(path: '/remove/{id}', name: '.remove')]
-    public function remove(int $id, Yml $yml, Request $request): void {}
+    #[Route(path: '/{id}/edit', name: '.edit')]
+    public function edit(int $id, Yml $yml, Request $request, ProductRepository $products): Response
+    {
+        $pagination = $products->getAll(
+            page: $request->query->getInt('page', 1),
+            size: $request->query->getInt('size', self::PER_PAGE),
+        );
+
+        $form = $this->createForm(
+            YmlEditForm::class,
+            [
+                'name' => $yml->getName(),
+                'fileName' => $yml->getFileName(),
+            ]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+
+        return $this->render(
+            'admin/store/yml/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'pagination' => $pagination,
+                'yml' => $yml,
+            ]
+        );
+    }
+
+    #[Route(path: '/{id}/add/{add_id}/product', name: '.add')]
+    public function add(int $id, Yml $yml, Request $request, ProductRepository $products, Flusher $flusher): Response
+    {
+        $productAdd = $products->get((int)$request->get('add_id'));
+        try {
+            $yml->add($productAdd);
+            $flusher->flush();
+            $this->addFlash('success', 'Success added product  - ' . $productAdd->getName() . '.');
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Error added product. ' . $e->getMessage() . $productAdd->getName() . '.');
+        }
+
+         return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
+    }
+
+    #[Route(path: '/{id}/remove/{remove_id}/product', name: '.remove')]
+    public function remove(int $id, Yml $yml, Request $request, ProductRepository $products, Flusher $flusher): Response
+    {
+        $productRemove = $products->get((int)$request->get('remove_id'));
+        try {
+            $yml->remove($productRemove->getId());
+            $flusher->flush();
+            $this->addFlash('success', 'Success remove product  - ' . $productRemove->getName() . '.');
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Error remove product. ' . $e->getMessage() . $productRemove->getName() . '.');
+        }
+
+        return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
+    }
+
+    public function generate(): void {}
 
     #[Route(path: '/active/{id}', name: '.active')]
     public function active(int $id, Yml $yml, Request $request): void {}
