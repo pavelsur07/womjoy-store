@@ -9,13 +9,13 @@ use App\Matrix\Infrastructure\Repository\Syncing\KeyRepository;
 use App\Matrix\Infrastructure\Wildberries\HttpRequest;
 use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
 use App\Store\Application\SendMail\Order\OrderStatusSendMailCommand;
+use App\Store\Infrastructure\Console\CartClearCommand;
 use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
 use DateTimeImmutable;
 use Exception;
 use Ramsey\Uuid\Uuid;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Console\Exception\ExceptionInterface;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -23,8 +23,6 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController
@@ -97,19 +95,16 @@ class DashboardController extends AbstractController
 
         $this->addFlash('success', 'Otpravil');
 
-        /*$email = (new TemplatedEmail())
-            ->from('info@womjoy.ru')
-            ->to(new Address('pavelsur07@gmail.com'))
-            ->subject('Thanks for signing up!')
-            ->htmlTemplate('pion/email/store/order/order_new.html.twig')
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
 
-            ->context([
-                'orderNumber' => 98555,
-                'user' => 'Jon Konar',
-                'status' => 'заказ оформлен'
-            ]);*/
-
-        // $mailer->send($email);
+    #[Route(path: '/admin/dashboard/cart-clear', name: 'admin.dashboard.cart_clear')]
+    public function cartClear(CartClearCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
 
         return $this->redirectToRoute('admin.dashboard.show');
     }
