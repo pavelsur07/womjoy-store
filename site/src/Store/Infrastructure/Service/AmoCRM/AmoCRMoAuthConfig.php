@@ -5,29 +5,30 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Service\AmoCRM;
 
 use AmoCRM\OAuth\OAuthConfigInterface;
+use App\Store\Domain\Entity\AmoCRM\AmoCRMoAccessToken;
 
 readonly class AmoCRMoAuthConfig implements OAuthConfigInterface
 {
+    private AmoCRMoAccessToken $token;
+
     public function __construct(
         private AmoCRMoAccessTokenStorage $storage
-    ) {}
+    ) {
+        $this->token = $this->storage->load();
+    }
 
-    // Get clientId
     public function getIntegrationId(): string
     {
-        $token = $this->storage->load();
-        return $token->getClientId();
+        return $this->token->getIntegrationId();
     }
 
     public function getSecretKey(): string
     {
-        return '';
+        return $this->token->getSecretKey();
     }
 
-    // Get RedirectDomain
     public function getRedirectDomain(): string
     {
-        $token = $this->storage->load();
-        return $token->getBaseDomain();
+        return $this->token->getBaseDomain();
     }
 }

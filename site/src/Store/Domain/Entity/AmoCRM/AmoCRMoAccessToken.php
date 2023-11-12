@@ -23,7 +23,15 @@ class AmoCRMoAccessToken
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $baseDomain = null;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $IntegrationId = null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $SecretKey = null;
+
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $accessToken = null;
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $refreshToken = null;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
@@ -47,5 +55,60 @@ class AmoCRMoAccessToken
     public function getExpires(): ?DateTimeImmutable
     {
         return $this->expires;
+    }
+
+    public function getIntegrationId(): ?string
+    {
+        return $this->IntegrationId;
+    }
+
+    public function getSecretKey(): ?string
+    {
+        return $this->SecretKey;
+    }
+
+    public function getAccessToken(): ?string
+    {
+        return $this->accessToken;
+    }
+
+    public function getRefreshToken(): ?string
+    {
+        return $this->refreshToken;
+    }
+
+    public function setClientId(?string $clientId): void
+    {
+        $this->clientId = $clientId;
+    }
+
+    public function setBaseDomain(?string $baseDomain): void
+    {
+        $this->baseDomain = $baseDomain;
+    }
+
+    public function setIntegrationId(?string $IntegrationId): void
+    {
+        $this->IntegrationId = $IntegrationId;
+    }
+
+    public function setSecretKey(?string $SecretKey): void
+    {
+        $this->SecretKey = $SecretKey;
+    }
+
+    public function setAccessToken(?string $accessToken): void
+    {
+        $this->accessToken = $accessToken;
+    }
+
+    public function setRefreshToken(?string $refreshToken): void
+    {
+        $this->refreshToken = $refreshToken;
+    }
+
+    public function setExpires(?DateTimeImmutable $expires): void
+    {
+        $this->expires = $expires;
     }
 }
