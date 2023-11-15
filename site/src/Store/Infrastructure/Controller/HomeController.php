@@ -83,7 +83,8 @@ class HomeController extends BaseController
             $result[] = [
                 'name' => $category->getCategory()->getName(),
                 'href' => $this->generateUrl('store.category.show', ['slug'=> $category->getCategory()->getSlug()]),
-                'imagePath' => /* $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName() */ '',
+                'imagePath' =>$category->getCategory()->getImage() === null ? null : $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName(),
+                'imagePathOld' => /* $category->getCategory()->getImage()->getPath() . '/' . $category->getCategory()->getImage()->getName() */ '',
             ];
         }
 
