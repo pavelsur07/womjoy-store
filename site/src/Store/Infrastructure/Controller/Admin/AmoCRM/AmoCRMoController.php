@@ -52,7 +52,7 @@ class AmoCRMoController extends AbstractController
         );
     }
 
-    #[Route(path: '/get-access-toke/{$code}', name: '.get.access_token')]
+    #[Route(path: '/toke/{$code}/get-access-token', name: '.get.access_token')]
     public function getAccessTokenFirst(string $code, AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
     {
         $toke = $storage->load();
@@ -118,6 +118,11 @@ class AmoCRMoController extends AbstractController
             $refresh_token = $response['refresh_token']; //Refresh токен
             $token_type = $response['token_type']; //Тип токена
             $expires_in = $response['expires_in']; //Через сколько действие токена истекает
+
+            $toke->setAccessToken($response['access_token']);
+            $toke->setRefreshToken($response['refresh_token']);
+
+            $flusher->flush();
 
             $this->addFlash('success', 'Succes token ready.');
         }
