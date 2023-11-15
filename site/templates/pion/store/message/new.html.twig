@@ -1,0 +1,76 @@
+{% extends 'pion/store/base.html.twig' %}
+{#{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('page.page.show', {'slug': page.slug}, true)}}">
+{% endblock %}#}
+
+
+{% block body %}
+
+
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">Контакты</div>
+        </div>
+
+        <section class="catalog w-section">
+            <h1 class="mb-3 text-uppercase">Контакты</h1>
+
+
+
+            <b>
+                <nobr><a href="tel:{{ metaData.phone }}">{{ metaData.phone }}</a></nobr></b><br>
+            <b>Бесплатно по РФ</b>&nbsp;
+
+            <p class="mt-4">
+                <b>Мы на связи с 7.00 до 20.00 по московскому времени</b>
+            </p>
+
+
+            <p class="contacts-social">
+                <!--<a class="contacts-social__whatsapp" href="https://api.whatsapp.com/send?phone=79632752016" target="_blank" >WhatsApp</a>-->
+                <a href="#" target="_blank">
+                    <img src="{{ asset('./pion/img/icons/vk.svg') }}" alt="vk" width="40" height="40">
+                </a>
+                <a class="contacts-social__tg" href="#" target="_blank">
+                    <img src="{{ asset('./pion/img/icons/tg.svg') }}" alt="vk" width="40" height="40">
+                </a>
+            </p>
+
+            <p class="mt-2">
+                Будем рады ответить на ваши вопросы с 07.00 до 24.00 по московскому времени
+            </p>
+
+            <h2 class="mt-6">Напиши нам</h2>
+
+            <p>
+                <a href="mailto:service@womjoy.ru" class="mod1">service@womjoy.ru</a> – для замечаний и пожеланий по качеству сервиса
+            </p>
+            <p>
+                <a href="mailto:partner@womjoy.ru" class="mod1">partner@womjoy.ru</a> – для предложений сотрудничества
+            </p>
+            <p>
+                <a href="mailto:franchise@womjoy.ru" class="mod1">franchise@womjoy.ru</a>&nbsp;– по вопросам франшизы<br>
+            </p>
+            <p>
+                <a href="mailto:pr@womjoy.ru" class="mod1">pr@womjoy.ru</a> – по вопросам маркетинга и PR
+            </p>
+            <p>
+                <a href="mailto:info@womjoy.ru" class="mod1">info@womjoy.ru</a> – по любым другим вопросам.
+            </p>
+
+            {#{{ page.value|raw }}#}
+            <h2 class="mt-6">Форма обратной связи</h2>
+            <p>
+            Заполните все поля и нажмите «Отправить», мы обработаем ваше обращение и свяжемся в течение 24 часов.
+            </p>
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="w-primary-btn">{{ button_label|default('Send') }}</button>
+            {{ form_end(form) }}
+
+        </section>
+    </div>
+
+{% endblock %}
