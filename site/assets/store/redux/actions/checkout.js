@@ -37,11 +37,12 @@ export const checkout = () => (dispatch, getState) => {
     })
 }
 
-export const setCustomer = (name, phone, email, comment) => (dispatch) => {
+export const setCustomer = (name, lastName, phone, email, comment) => (dispatch) => {
   dispatch({
     type: types.SET_CUSTOMER,
     customer: {
       name,
+      lastName,
       phone,
       email,
       comment,

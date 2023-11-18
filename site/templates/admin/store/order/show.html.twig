@@ -41,7 +41,8 @@
                 {% endif %}
             </p>
             <p><strong>Data: </strong> {{ order.createdAt| date('Y-m-d') }}</p>
-            <p><strong>Name: </strong> {{ order.customer.name }}</p>
+            <p><strong>Name: </strong> {{ order.customer.firstName }}  {{ order.customer.lastName }}</p>
+            <p><strong>Phone: </strong> {{ order.customer.phone }}</p>
 
             <div>
                 {{ form_start(form) }}

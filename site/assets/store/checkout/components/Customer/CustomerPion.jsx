@@ -10,7 +10,7 @@ const CustomerPion = () => {
         const values = { ...customer, [field]: value };
 
         dispatch(
-            setCustomer(values.name, values.phone, values.email, values.comment)
+            setCustomer(values.name, values.lastName, values.phone, values.email, values.comment)
         );
     };
     return(
@@ -26,23 +26,31 @@ const CustomerPion = () => {
                                     <input
                                         type="text"
                                         className="w-field__inp field__inp"
-                                        placeholder="Иван Иванов"
+                                        name="firstName"
+                                        placeholder="Иван"
                                         value={customer.name}
                                         onChange={(e) => handleInputChange('name', e.target.value)}
                                     />
                                 </div>
                             </div>
                         </div>
-                        {/*
+
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">ФАМИЛИЯ*</label>
                                 <div className="w-field__main">
-                                    <input type="text" className="w-field__inp field__inp"/>
+                                    <input
+                                        type="text"
+                                        className="w-field__inp field__inp"
+                                        name="lastName"
+                                        placeholder="Иванов"
+                                        value={customer.lastName}
+                                        onChange={(e) => handleInputChange('lastName', e.target.value)}
+                                    />
                                 </div>
                             </div>
                         </div>
-                        */}
+
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">EMAIL*</label>

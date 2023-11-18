@@ -47,7 +47,9 @@ final readonly class OrderService
             phone: $checkoutDto->customer->phone,
             name: $checkoutDto->customer->name,
             email: $checkoutDto->customer->email,
-            comment: $checkoutDto->customer->comment
+            comment: $checkoutDto->customer->comment,
+            firstName: $checkoutDto->customer->name,
+            lastName: $checkoutDto->customer->lastName,
         );
 
         $delivery = new OrderDelivery(

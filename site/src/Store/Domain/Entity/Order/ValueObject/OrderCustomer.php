@@ -31,8 +31,15 @@ class OrderCustomer
     #[ORM\Column(type: 'guid', nullable: true)]
     private ?string $userId = null;
 
-    public function __construct(string $phone, string $name, string $email, ?string $comment, ?string $firstName, ?string $lastName, ?string $userId)
-    {
+    public function __construct(
+        string $phone,
+        string $name,
+        string $email,
+        ?string $comment,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $userId = null
+    ) {
         Assert::email($email);
 
         $this->phone = $phone;

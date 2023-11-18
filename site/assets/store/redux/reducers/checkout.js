@@ -3,6 +3,8 @@ import * as types from '../constants/ActionTypes'
 const defaultState = {
   customer: {
     name: '',
+    lastName: '',
+    firstName: '',
     phone: '',
     email: '',
     comment: '',
