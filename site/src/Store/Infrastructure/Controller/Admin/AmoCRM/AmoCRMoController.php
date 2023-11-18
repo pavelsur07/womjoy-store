@@ -29,7 +29,6 @@ class AmoCRMoController extends AbstractController
         $form = $this->createForm(
             AmoCRMoAccessTokenEditForm::class,
             [
-                'clientId' => $token->getClientId(),
                 'integrationId' => $token->getIntegrationId(),
                 'secretKey' => $token->getSecretKey(),
                 'baseDomain' => $token->getBaseDomain(),
@@ -41,7 +40,6 @@ class AmoCRMoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $token->setClientId($data['clientId']);
             $token->setIntegrationId($data['integrationId']);
             $token->setSecretKey($data['secretKey']);
             $token->setBaseDomain($data['baseDomain']);

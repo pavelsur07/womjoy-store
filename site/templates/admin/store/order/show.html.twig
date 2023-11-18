@@ -29,6 +29,9 @@
         {% if order.isPaid %}
             <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.send', {'order_id': order.id}) }}">Send</a>
         {% endif %}
+        {% if order.isCreateLeadByAmo == false %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.order.amo.create_lead', {'order_id': order.id}) }}">Create Lead By AmoCRM</a>
+        {% endif %}
     </div>
 
     <div class="card">

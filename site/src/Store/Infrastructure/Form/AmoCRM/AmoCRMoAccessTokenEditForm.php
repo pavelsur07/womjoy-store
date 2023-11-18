@@ -14,7 +14,6 @@ class AmoCRMoAccessTokenEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('clientId', Type\TextType::class)
             ->add('integrationId', Type\TextType::class)
             ->add('secretKey', Type\TextType::class)
             ->add('code', Type\TextType::class)
