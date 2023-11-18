@@ -155,14 +155,21 @@ class AmoCRMoController extends AbstractController
             ),
         );
 
-        $accessToken = $apiClient->getOAuthClient()->getAccessTokenByCode($token->getCode());
+        try {
+            $accessToken = $apiClient->getOAuthClient()->getAccessTokenByCode($token->getCode());
 
-        $token->setAccessToken($accessToken->getToken());
-        $token->setRefreshToken($accessToken->getRefreshToken());
-        $token->setExpires($accessToken->getExpires());
-        $token->setBaseDomain($apiClient->getAccountBaseDomain());
+            $token->setAccessToken($accessToken->getToken());
+            $token->setRefreshToken($accessToken->getRefreshToken());
+            $token->setExpires($accessToken->getExpires());
+            $token->setBaseDomain($apiClient->getAccountBaseDomain());
 
-        $flusher->flush();
+            $flusher->flush();
+
+            $this->addFlash('success', 'Access Token is ready!');
+
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Error Access Token '.$e->getMessage());
+        }
 
         return $this->redirectToRoute('store.admin.amo.edit');
     }
