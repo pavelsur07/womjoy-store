@@ -1,26 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Infrastructure\Form\Message;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type;
 
 class MessageNewForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('type', ChoiceType::class,
+            ->add(
+                'type',
+                ChoiceType::class,
                 [
-                'choices'  => [
-                    'Возврат' =>'return',
-                    'Оплата' =>'pay',
-                    'Maybe' => null,
-                    'Yes' => true,
-                    'No' => false,
+                    'choices'  => [
+                        'Возврат' =>'return',
+                        'Оплата' =>'pay',
+                        'Maybe' => null,
+                        'Yes' => true,
+                        'No' => false,
                     ],
                 ]
             )

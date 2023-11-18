@@ -10,7 +10,7 @@ use AmoCRM\Client\AmoCRMApiClientFactory;
 readonly class AmoCRMClient
 {
     public function __construct(
-        private AmoCRMoAuthConfig  $oAuthConfig,
+        private AmoCRMoAuthConfig $oAuthConfig,
         private AmoCRMoAuthService $oAuthService,
     ) {}
 
