@@ -64,15 +64,11 @@ class AmoCRMoController extends AbstractController
     public function getAccessTokenByCode(Request $request, AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
     {
         $token = $storage->load();
-
+        $redirect_url = 'https://womjoy.ru/admin/dashboard/';
         $apiClient = new AmoCRMApiClient(
             clientId: $token->getIntegrationId(),
             clientSecret: $token->getSecretKey(),
-            redirectUri: $this->generateUrl(
-                route: 'admin.dashboard.show',
-                parameters: [],
-                referenceType: UrlGeneratorInterface::ABSOLUTE_URL
-            ),
+            redirectUri: $redirect_url,
         );
 
         try {
