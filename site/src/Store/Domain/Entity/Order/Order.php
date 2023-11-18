@@ -82,6 +82,9 @@ class Order
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $ymCounter = null;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isCreateLeadByAmo = false;
+
     public function __construct(
         OrderCustomer $customer,
         OrderDelivery $delivery,
@@ -124,6 +127,19 @@ class Order
                 )
             );
         }
+    }
+
+    public function createLeadByAmo(): void
+    {
+        if ($this->isCreateLeadByAmo) {
+            throw new StoreOrderException('Error create lead by Amo CRM already.');
+        }
+        $this->isCreateLeadByAmo = true;
+    }
+
+    public function isCreateLeadByAmo(): bool
+    {
+        return $this->isCreateLeadByAmo;
     }
 
     public function pay(): void
