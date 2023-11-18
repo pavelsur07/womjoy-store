@@ -18,7 +18,8 @@ class AmoCRMoAccessTokenEditForm extends AbstractType
             ->add('integrationId', Type\TextType::class)
             ->add('secretKey', Type\TextType::class)
             ->add('code', Type\TextType::class)
-            ->add('baseDomain', Type\TextType::class);
+            ->add('baseDomain', Type\TextType::class)
+            ->add('redirectUrl', Type\TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

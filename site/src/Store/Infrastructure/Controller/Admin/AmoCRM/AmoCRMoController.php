@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/admin/amo-crm', name: 'store.admin.amo')]
 class AmoCRMoController extends AbstractController
@@ -30,6 +29,7 @@ class AmoCRMoController extends AbstractController
                 'integrationId' => $token->getIntegrationId(),
                 'secretKey' => $token->getSecretKey(),
                 'baseDomain' => $token->getBaseDomain(),
+                'redirectUrl' => $token->getRedirectUrl(),
             ]
         );
         $form->handleRequest($request);
@@ -42,6 +42,7 @@ class AmoCRMoController extends AbstractController
             $token->setSecretKey($data['secretKey']);
             $token->setBaseDomain($data['baseDomain']);
             $token->setCode($data['code']);
+            $token->setRedirectUrl($data['redirectUrl']);
 
             $flusher->flush();
 
@@ -61,15 +62,17 @@ class AmoCRMoController extends AbstractController
 
     // Получение Access токен по коду Авторизации!!
     #[Route(path: '/token/get-token', name: '.get.token')]
-    public function getAccessTokenByCode(Request $request, AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
+    public function getAccessTokenByCode(AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
     {
         $token = $storage->load();
-        $redirect_url = 'https://womjoy.ru/admin/dashboard/';
         $apiClient = new AmoCRMApiClient(
             clientId: $token->getIntegrationId(),
             clientSecret: $token->getSecretKey(),
-            redirectUri: $redirect_url,
+            redirectUri: $token->getRedirectUrl(),
         );
+
+        // $apiClient->setAccountBaseDomain($token->getBaseDomain() . '.amocrm.ru');
+        $apiClient->setAccountBaseDomain($token->getBaseDomain());
 
         try {
             $accessToken = $apiClient->getOAuthClient()->getAccessTokenByCode($token->getCode());
@@ -82,9 +85,8 @@ class AmoCRMoController extends AbstractController
             $flusher->flush();
 
             $this->addFlash('success', 'Access Token is ready!');
-
         } catch (Exception $e) {
-            $this->addFlash('danger', 'Error Access Token '.$e->getMessage());
+            $this->addFlash('danger', 'Error Access Token ' . $e->getMessage());
         }
 
         return $this->redirectToRoute('store.admin.amo.edit');

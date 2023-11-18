@@ -28,6 +28,9 @@ class AmoCRMoAccessToken
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $baseDomain = null;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $redirectUrl = null;
+
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $accessToken = null;
     #[ORM\Column(type: 'text', nullable: true)]
@@ -122,5 +125,15 @@ class AmoCRMoAccessToken
     public function setCode(?string $code): void
     {
         $this->code = $code;
+    }
+
+    public function getRedirectUrl(): ?string
+    {
+        return $this->redirectUrl;
+    }
+
+    public function setRedirectUrl(?string $redirectUrl): void
+    {
+        $this->redirectUrl = $redirectUrl;
     }
 }
