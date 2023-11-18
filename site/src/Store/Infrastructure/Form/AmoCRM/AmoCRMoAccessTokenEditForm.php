@@ -17,6 +17,7 @@ class AmoCRMoAccessTokenEditForm extends AbstractType
             ->add('clientId', Type\TextType::class)
             ->add('integrationId', Type\TextType::class)
             ->add('secretKey', Type\TextType::class)
+            ->add('code', Type\TextType::class)
             ->add('baseDomain', Type\TextType::class);
     }
 

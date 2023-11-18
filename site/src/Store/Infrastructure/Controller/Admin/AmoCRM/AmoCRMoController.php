@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/admin/amo-crm', name: 'store.admin.amo')]
 class AmoCRMoController extends AbstractController
@@ -34,38 +35,46 @@ class AmoCRMoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+
             $token->setClientId($data['clientId']);
             $token->setIntegrationId($data['integrationId']);
             $token->setSecretKey($data['secretKey']);
             $token->setBaseDomain($data['baseDomain']);
 
             $flusher->flush();
-            return $this->redirectToRoute('store.admin.amo.edit');
+
+            return $this->redirectToRoute('store.admin.amo.get.access_token', ['code' => $data['code']]);
         }
 
         return $this->render(
             'admin/store/amo/edit.html.twig',
             [
                 'form' => $form->createView(),
+                'token' => $token,
             ]
         );
     }
 
-    #[Route(path: '/toke/{$code}/get-access-token', name: '.get.access_token')]
+    // Получение Access токен по коду Авторизации!!
+    #[Route(path: '/token/{code}/get-access-token', name: '.get.access_token')]
     public function getAccessTokenFirst(string $code, AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
     {
-        $toke = $storage->load();
+        $token = $storage->load();
 
         $subdomain = 'servicewomjoyru'; // Поддомен нужного аккаунта
         $link = 'https://' . $subdomain . '.amocrm.ru/oauth2/access_token'; // Формируем URL для запроса
 
         /** Соберем данные для запроса */
         $data = [
-            'client_id' => $toke->getClientId(),
-            'client_secret' => $toke->getSecretKey(),
+            'client_id' => $token->getClientId(),
+            'client_secret' => $token->getSecretKey(),
             'grant_type' => 'authorization_code',
             'code' => $code,
-            'redirect_uri' => 'https://test.ru/',
+            'redirect_uri' => $this->generateUrl(
+                route: 'admin.dashboard.show',
+                parameters: [],
+                referenceType: UrlGeneratorInterface::ABSOLUTE_URL
+            ),
         ];
 
         /**
@@ -112,13 +121,9 @@ class AmoCRMoController extends AbstractController
              */
             $response = json_decode($out, true);
 
-            $access_token = $response['access_token']; // Access токен
-            $refresh_token = $response['refresh_token']; // Refresh токен
-            $token_type = $response['token_type']; // Тип токена
-            $expires_in = $response['expires_in']; // Через сколько действие токена истекает
-
-            $toke->setAccessToken($response['access_token']);
-            $toke->setRefreshToken($response['refresh_token']);
+            $token->setAccessToken($response['access_token']);
+            $token->setRefreshToken($response['refresh_token']);
+            $token->setExpires($response['expires_in']);
 
             $flusher->flush();
 
@@ -127,6 +132,12 @@ class AmoCRMoController extends AbstractController
             $this->addFlash('danger', 'Error ' . $e->getCode());
         }
 
+        return $this->redirectToRoute('store.admin.amo.edit');
+    }
+
+    // Получение нового access token по его истечении
+    public function updateAccessToken(Request $request): Response
+    {
         return $this->redirectToRoute('store.admin.amo.edit');
     }
 }

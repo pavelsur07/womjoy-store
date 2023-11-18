@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\AmoCRM;
 
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -21,21 +20,21 @@ class AmoCRMoAccessToken
     private ?string $clientId = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private ?string $baseDomain = null;
-
-    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $IntegrationId = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $SecretKey = null;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $baseDomain = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $accessToken = null;
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $refreshToken = null;
 
-    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private ?DateTimeImmutable $expires = null;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $expires = null;
 
     public function getId(): int
     {
@@ -52,7 +51,7 @@ class AmoCRMoAccessToken
         return $this->baseDomain;
     }
 
-    public function getExpires(): ?DateTimeImmutable
+    public function getExpires(): ?int
     {
         return $this->expires;
     }
@@ -107,7 +106,7 @@ class AmoCRMoAccessToken
         $this->refreshToken = $refreshToken;
     }
 
-    public function setExpires(?DateTimeImmutable $expires): void
+    public function setExpires(?int $expires): void
     {
         $this->expires = $expires;
     }

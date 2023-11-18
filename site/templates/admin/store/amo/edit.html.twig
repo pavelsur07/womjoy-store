@@ -27,23 +27,12 @@
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            <a class="btn btn-bitbucket" href="#"> Get Access Token</a>
             {{ form_end(form) }}
-
-            <div class="mt-3 mb-2">
-                <script
-                        class="amocrm_oauth"
-                        charset="utf-8"
-                        data-client-id="31109630"
-                        data-intigration-id="8c6bf1b0-a614-42b6-9030-7fb08315b590"
-                        data-title="Button"
-                        data-compact="false"
-                        data-class-name="className"
-                        data-color="default"
-                        data-state="state"
-                        data-error-callback="functionName"
-                        data-mode="popup"
-                        src="https://www.amocrm.ru/auth/button.min.js"
-                ></script>
+            <div class="mt-4">
+                {{ token.accessToken }} <br>
+                {{ token.refreshToken }} <br>
+                {{ token.expires }}
             </div>
         </div>
 
