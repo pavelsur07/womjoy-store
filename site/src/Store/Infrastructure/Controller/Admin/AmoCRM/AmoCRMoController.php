@@ -66,7 +66,7 @@ class AmoCRMoController extends AbstractController
 
         /** Соберем данные для запроса */
         $data = [
-            'client_id' => $token->getClientId(),
+            'client_id' => (int)$token->getClientId(),
             'client_secret' => $token->getSecretKey(),
             'grant_type' => 'authorization_code',
             'code' => $code,
@@ -129,7 +129,8 @@ class AmoCRMoController extends AbstractController
 
             $this->addFlash('success', 'Succes token ready.');
         } catch (Exception $e) {
-            $this->addFlash('danger', 'Error ' . $e->getCode());
+            $response = json_decode($out, true);
+            $this->addFlash('danger', 'Error ' . $e->getCode(). ' '.$out );
         }
 
         return $this->redirectToRoute('store.admin.amo.edit');
