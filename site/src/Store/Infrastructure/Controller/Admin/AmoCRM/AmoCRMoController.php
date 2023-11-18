@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Admin\AmoCRM;
 
+use AmoCRM\Client\AmoCRMApiClient;
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Infrastructure\Form\AmoCRM\AmoCRMoAccessTokenEditForm;
 use App\Store\Infrastructure\Service\AmoCRM\AmoCRMoAccessTokenStorage;
@@ -40,10 +41,13 @@ class AmoCRMoController extends AbstractController
             $token->setIntegrationId($data['integrationId']);
             $token->setSecretKey($data['secretKey']);
             $token->setBaseDomain($data['baseDomain']);
+            $token->setCode($data['code']);
 
             $flusher->flush();
 
-            return $this->redirectToRoute('store.admin.amo.get.access_token', ['code' => $data['code']]);
+            // return $this->redirectToRoute('store.admin.amo.get.access_token', ['code' => $data['code']]);
+            $this->addFlash('success', 'Success changed AmoCRM setting');
+            return $this->redirectToRoute('store.admin.amo.edit');
         }
 
         return $this->render(
@@ -56,10 +60,11 @@ class AmoCRMoController extends AbstractController
     }
 
     // Получение Access токен по коду Авторизации!!
-    #[Route(path: '/token/{code}/get-access-token', name: '.get.access_token')]
-    public function getAccessTokenFirst(string $code, AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
+    #[Route(path: '/token/get-access-token', name: '.get.access_token')]
+    public function getAccessTokenFirst(AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
     {
         $token = $storage->load();
+        $code = 'def5020041f26dfb32323a4ac4a70e676fce5be1f3324b1c5ea55768a933074b9c36528beca696c4c92462bd2c7dc29d9ead9d49ba7a00169532c5e0cbfc1bf3045aa62281849ba6f44ab2e118cba866e58ef82456cc54a31c4e69263e70e400a7ea274bc289f12b2cb6f2f4204fb86a0898af40b5342e73960843694f5cf8a1184abaa79e4734a5d287d3e7d24b511497991d65f80b9c40cac2cd7ebd4f19059d33d7293b2b41b333a8c78070b3d17546f9faf76db3a26b7b73af7c08667483ceb1ab06389174db5ba8bcd0b1323be274b1864ec7dd8097c751d56fbcd2471bf11f6e1bda8d5c75c4a25f89d40d93c4d23228980a5aa82a2ed3b30297ec5901ec6ecf1ca9e234906f93117bd26caacf13e7c602d9dd9b12555e171878a741d6bd61cd17e66d55df0fd58d759128b0c594a815beeb15737ca2bc94f1b86dbc2cfbf933d02a30e85ff9de5b848674161fef1e749b4de74967b45cf912000af63cd782c4d7c644c29b98876625e0644c18e03cf541e50d285bb4ff3e5152bfa9e5c3e2c77c2ab0d630a89e57a0e69d582927bcf368b6963477f67a70204fc40816f444f0561ee76fe3e015e354a77af349c501bc3ca7774db1918f6dba6e2d9cdabeb7c55ac30ffdb544ae91eefe8b90d39e432201ee9db01f7290b5355cb2f51de70c065ae93949f87b9014';
 
         $subdomain = 'servicewomjoyru'; // Поддомен нужного аккаунта
         $link = 'https://' . $subdomain . '.amocrm.ru/oauth2/access_token'; // Формируем URL для запроса
@@ -107,7 +112,7 @@ class AmoCRMoController extends AbstractController
             502 => 'Bad gateway',
             503 => 'Service unavailable',
         ];
-        $this->addFlash('success', 'Token ready');
+        // $this->addFlash('success', 'Token ready');
 
         try {
             /** Если код ответа не успешный - возвращаем сообщение об ошибке  */
@@ -129,9 +134,35 @@ class AmoCRMoController extends AbstractController
 
             $this->addFlash('success', 'Succes token ready.');
         } catch (Exception $e) {
-            $response = json_decode($out, true);
-            $this->addFlash('danger', 'Error ' . $e->getCode(). ' '.$out );
+            $this->addFlash('danger', 'Error ' . $e->getCode() . ' ' . $out);
         }
+
+        return $this->redirectToRoute('store.admin.amo.edit');
+    }
+
+    #[Route(path: '/token/get-token', name: '.get.token')]
+    public function getAccessTokenByCode(Request $request, AmoCRMoAccessTokenStorage $storage, Flusher $flusher): Response
+    {
+        $token = $storage->load();
+
+        $apiClient = new AmoCRMApiClient(
+            clientId: $token->getIntegrationId(),
+            clientSecret: $token->getSecretKey(),
+            redirectUri: $this->generateUrl(
+                route: 'admin.dashboard.show',
+                parameters: [],
+                referenceType: UrlGeneratorInterface::ABSOLUTE_URL
+            ),
+        );
+
+        $accessToken = $apiClient->getOAuthClient()->getAccessTokenByCode($token->getCode());
+
+        $token->setAccessToken($accessToken->getToken());
+        $token->setRefreshToken($accessToken->getRefreshToken());
+        $token->setExpires($accessToken->getExpires());
+        $token->setBaseDomain($apiClient->getAccountBaseDomain());
+
+        $flusher->flush();
 
         return $this->redirectToRoute('store.admin.amo.edit');
     }

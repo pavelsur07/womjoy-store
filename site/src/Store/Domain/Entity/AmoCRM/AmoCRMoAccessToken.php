@@ -33,6 +33,9 @@ class AmoCRMoAccessToken
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $refreshToken = null;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $code = null;
+
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $expires = null;
 
@@ -109,5 +112,15 @@ class AmoCRMoAccessToken
     public function setExpires(?int $expires): void
     {
         $this->expires = $expires;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
     }
 }
