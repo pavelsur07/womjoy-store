@@ -28,6 +28,7 @@
             {{ form_widget(form) }}
             <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
             <a class="btn btn-bitbucket" href="{{ path('store.admin.amo.get.token') }}"> Get Access Token</a>
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.amo.lead.test') }}"> Test Add one Lead</a>
             {{ form_end(form) }}
             <div class="mt-4">
                 {{ token.accessToken }} <br>

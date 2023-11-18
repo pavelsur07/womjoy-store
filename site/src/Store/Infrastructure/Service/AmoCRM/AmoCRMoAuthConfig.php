@@ -29,6 +29,6 @@ readonly class AmoCRMoAuthConfig implements OAuthConfigInterface
 
     public function getRedirectDomain(): string
     {
-        return $this->token->getBaseDomain();
+        return $this->token->getRedirectUrl();
     }
 }

@@ -27,14 +27,16 @@ readonly class AmoCRMClient
 
         $accessToken = new AccessToken(
             [
-                'accessToken' => $token->getAccessToken(),
-                'refreshToken' => $token->getRefreshToken(),
+                'access_token' => $token->getAccessToken(),
+                'refresh_token' => $token->getRefreshToken(),
                 'expires' => $token->getExpires(),
                 'baseDomain' => $token->getBaseDomain(),
             ]
         );
 
         $apiClient = $apiClientFactory->make();
+
+        $apiClient->setAccountBaseDomain($token->getBaseDomain());
         $apiClient->setAccessToken($accessToken);
 
         return $apiClient;
