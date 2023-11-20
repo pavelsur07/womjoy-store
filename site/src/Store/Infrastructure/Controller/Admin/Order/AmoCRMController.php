@@ -10,6 +10,7 @@ use AmoCRM\Collections\TagsCollection;
 use AmoCRM\Exceptions\AmoCRMApiException;
 use AmoCRM\Models\ContactModel;
 use AmoCRM\Models\CustomFieldsValues\MultitextCustomFieldValuesModel;
+use AmoCRM\Models\CustomFieldsValues\TextCustomFieldValuesModel;
 use AmoCRM\Models\CustomFieldsValues\ValueCollections\MultitextCustomFieldValueCollection;
 use AmoCRM\Models\CustomFieldsValues\ValueModels\MultitextCustomFieldValueModel;
 use AmoCRM\Models\LeadModel;
@@ -35,7 +36,20 @@ class AmoCRMController extends AbstractController
             $order = $orders->get(new OrderId($orderId));
 
             $leadsService = $apiClient->leads();
-            $lead = new LeadModel();
+            /*$lead = new LeadModel();*/
+
+
+            $contact = new ContactModel();
+            $contact->setFirstName($order->getCustomer()->getFirstName());
+            $contact->setLastName($order->getCustomer()->getLastName());
+
+
+            $contactCollection = (new ContactsCollection())->add($contact);
+
+            $fieldsCollection = new CustomFieldsValuesCollection();
+
+            $fields = new TextCustomFieldValuesModel();
+
 
             $lead = (new LeadModel())
                 ->setName('Заказ ' . $order->getCustomer()->getName())
@@ -47,43 +61,12 @@ class AmoCRMController extends AbstractController
                                 ->setName($order->getStatus())
                         )
                 )
-                ->setContacts(
-                    (new ContactsCollection())
-                        ->add(
-                            (new ContactModel())
-                                ->setFirstName($order->getCustomer()->getName())
-                                ->setLastName($order->getCustomer()->getLastName())
-                                ->setCustomFieldsValues(
-                                    (new CustomFieldsValuesCollection())
-                                        ->add(
-                                            (new MultitextCustomFieldValuesModel())
-                                                ->setFieldCode('PHONE')
-                                                ->setValues(
-                                                    (new MultitextCustomFieldValueCollection())
-                                                        ->add(
-                                                            (new MultitextCustomFieldValueModel())
-                                                                ->setValue($order->getCustomer()->getPhone())
-                                                        )
-                                                )
-                                        )
-                                )
-                                ->setCustomFieldsValues(
-                                    (new CustomFieldsValuesCollection())
-                                        ->add(
-                                            (new MultitextCustomFieldValuesModel())
-                                                ->setFieldCode('EMAIL')
-                                                ->setValues(
-                                                    (new MultitextCustomFieldValueCollection())
-                                                        ->add(
-                                                            (new MultitextCustomFieldValueModel())
-                                                                ->setValue($order->getCustomer()->getEmail())
-                                                        )
-                                                )
-                                        )
-                                )
-                        )
-                )
+                ->setCreatedAt($order->getCreatedAt()->getTimestamp())
+                ->setContacts($contactCollection)
+               /* ->setCustomFieldsValues($fieldsCollection)*/
                 ->setRequestId($order->getId()->value());
+
+
             $lead = $leadsService->addOne($lead);
 
             $this->addFlash('success', 'Success Test lead is added. ' . $lead->getPrice());
