@@ -36,36 +36,52 @@
 			width: calc(100% - 260px);
 		}
 	}
+
+	.state__all-range-box {
+	    width: 48%;
+	    padding-left: 35px;
+	    padding-right: 35px;
+	    box-sizing: border-box;
+	}
+	.state__my-current-amount {
+	    width: 27%;
+	}
+	.state__my-current-state {
+	    width: 25%;
+	}
+	.range__box {
+	    width: 100%;
+	}
 }
 
 @media screen and (max-width: 992px) {
 	.cart {
-		&__left {
-			width: calc(100% - 55px - 121px - 110px - 115px - 110px - 28px);
-		}
-		&__head:first-child {
-			width: calc(100% - 55px - 121px - 110px - 115px - 110px - 28px);
-		}
-		&__cell, &__head {
-			&:nth-child(2) {
-				width: 55px;
-			}
-			&:nth-child(3) {
-				width: 121px;
-			}
-			&:nth-child(4) {
-				width: 110px;
-			}
-			&:nth-child(5) {
-				width: 115px;
-			}
-			&:nth-child(6) {
-				width: 110px;
-			}
-			&:nth-child(7) {
-				width: 28px;
-			}
-		}
+		// &__left {
+		// 	width: calc(100% - 55px - 121px - 110px - 115px - 110px - 28px);
+		// }
+		// &__head:first-child {
+		// 	width: calc(100% - 55px - 121px - 110px - 115px - 110px - 28px);
+		// }
+		// &__cell, &__head {
+		// 	&:nth-child(2) {
+		// 		width: 55px;
+		// 	}
+		// 	&:nth-child(3) {
+		// 		width: 121px;
+		// 	}
+		// 	&:nth-child(4) {
+		// 		width: 110px;
+		// 	}
+		// 	&:nth-child(5) {
+		// 		width: 115px;
+		// 	}
+		// 	&:nth-child(6) {
+		// 		width: 110px;
+		// 	}
+		// 	&:nth-child(7) {
+		// 		width: 28px;
+		// 	}
+		// }
 	}
 
 	.checkout {
@@ -98,6 +114,10 @@
 			}
 		}
 	}
+}
+
+@media screen and (min-width: 860px) {
+
 }
 
 @media screen and (min-width: 769px) {
@@ -571,6 +591,93 @@
 		&__color {
 			width: 20px;
 			height: 20px;
+		}
+	}
+
+	.cart {
+		.c-item {
+			&__main {
+				flex-wrap: wrap;
+			}
+			&__text {
+				width: calc(100% - 35px);
+				max-width: unset;
+			}
+			&__price, &__actions {
+				max-width: calc(50% - 5px);
+				margin-top: 10px;
+			}
+			&__remove {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+
+	.state__my-current-state {
+	    width: 50%;
+	}
+	.state__my-current-amount {
+	    width: 50%;
+	    text-align: right;
+	}
+	.state__all-range-box {
+	    margin-top: 40px;
+	    padding-bottom: 40px;
+	    width: 100%;
+	    align-self: center;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.state__my-current-state {
+	    width: 100%;
+	    text-align: center;
+	    margin-bottom: 40px;
+	}
+	.state__my-current-amount {
+	    width: 100%;
+	    text-align: center;
+	    margin-bottom: 35px;
+	}
+	.state__icn-box {
+	    margin: 0 auto;
+	}
+	.state__all-range-box {
+	    align-self: center;
+	    width: 80%;
+	    margin-top: 0;
+	    padding: 0 15px 40px;
+	}
+	.loyalty-state-table__my-state {
+	    flex-direction: column;
+	    padding: 15px;
+	}
+	.loyalty-state-table__info {
+	    flex-wrap: wrap;
+	    padding: 15px;
+	}
+	.loyalty-state-table__myinfo {
+	    width: 100%;
+	    margin-bottom: 24px;
+	}
+	.loyalty-state-table__common-info {
+	    width: 100%;
+	}
+
+	.main-banner {
+		padding-top: 50vw;
+		&__text {
+			max-width: unset;
+			align-items: center;
+			text-align: center;
+		}
+		&__title {
+			font-size: 10vw;
+		}
+		&__descr {
+			font-size: 5vw;
 		}
 	}
 }

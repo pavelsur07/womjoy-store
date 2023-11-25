@@ -21,6 +21,7 @@
   --w-white: #fff;
   --w-primary: #f3f2d9;
   --w-primary2: #c4c05e;
+  --w-brown: rgb(97, 54, 43);
   --w-gray: #757575;
   --w-lightgray: #efefef;
   --w-darkgray: rgba(0, 0, 0, 0.05);
@@ -788,8 +789,8 @@ select::-ms-expand {
   width: 21px;
   height: 21px;
   border-radius: 50px;
-  background-color: var(--w-primary);
-  color: var(--w-gray);
+  background-color: var(--w-brown);
+  color: #fff;
   font-size: 14px;
   line-height: 1;
   font-weight: 700;
@@ -1854,7 +1855,7 @@ p.state__statement {
 }
 
 .footer__social svg path {
-  fill: var(--w-primary2);
+  fill: var(--w-brown);
 }
 
 .catalog__tags {
