@@ -41,15 +41,14 @@ class AmoCRMController extends AbstractController
             // $lead = new LeadModel();
 
             $contact = new ContactModel();
-            $contact->setName($order->getCustomer()->getFirstName(). ' '.$order->getCustomer()->getLastName());
+            $contact->setName($order->getCustomer()->getFirstName() . ' ' . $order->getCustomer()->getLastName());
             $contact->setFirstName($order->getCustomer()->getFirstName());
             $contact->setLastName($order->getCustomer()->getLastName());
 
             // Добавляем телефон и email в контакт
-            //$contactFields = new CustomFieldsValuesCollection();
+            // $contactFields = new CustomFieldsValuesCollection();
 
-            //$contact->setCustomFieldsValues($contactFields);
-
+            // $contact->setCustomFieldsValues($contactFields);
 
             $lead = (new LeadModel())
                 ->setName('Заказ ' . $order->getCustomer()->getName())
@@ -64,7 +63,7 @@ class AmoCRMController extends AbstractController
                 ->setCreatedAt($order->getCreatedAt()->getTimestamp())
                 ->setSourceExternalId($order->getId()->value());
 
-            //$lead->setContacts((new ContactsCollection())->add($contact));
+            // $lead->setContacts((new ContactsCollection())->add($contact));
 
             $lead->setContacts(
                 (new ContactsCollection())
@@ -89,7 +88,7 @@ class AmoCRMController extends AbstractController
                     )
             );
 
-            //-------------------------------------------------------------------------------------
+            // -------------------------------------------------------------------------------------
             // Создадим коллекцию полей сущности
             $fieldsValues = new CustomFieldsValuesCollection();
             // Создадим модель значений поля типа текст
