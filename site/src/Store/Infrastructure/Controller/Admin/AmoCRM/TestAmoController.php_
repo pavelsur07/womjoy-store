@@ -1,0 +1,105 @@
+<?php
+
+namespace App\Store\Infrastructure\Controller\Admin\AmoCRM;
+
+use AmoCRM\Client\AmoCRMApiClient;
+use AmoCRM\Collections\ContactsCollection;
+use AmoCRM\Collections\CustomFieldsValuesCollection;
+use AmoCRM\Models\CustomFieldsValues\TextCustomFieldValues;
+use AmoCRM\Models\CustomFieldsValues\ValueCollections\TextCustomFieldValueCollection;
+use AmoCRM\Models\CustomFieldsValues\ValueModels\TextCustomFieldValueModel;
+use AmoCRM\Models\LeadModel;
+use AmoCRM\Models\ContactModel;
+use AmoCRM\Helpers\EntityTypesInterface;
+
+class TestAmoController
+{
+
+
+    function sendLeadToAmoCRM($accessToken, $subdomain, $leadData, $customFieldIds) {
+        // Создаем клиент API
+        $apiClient = new AmoCRMApiClient($clientId, $clientSecret, $redirectUri);
+        $apiClient->setAccessToken($accessToken)
+            ->setAccountBaseDomain($subdomain);
+
+        // Создаем контакт
+        $contact = new ContactModel();
+        $contact->setName($leadData['Имя'] . ' ' . $leadData['Фамилия']);
+
+        // Добавляем телефон и email в контакт
+        $customFields = new CustomFieldsValuesCollection();
+
+        // Телефон
+        $phoneField = new TextCustomFieldValues();
+        $phoneField->setFieldId($customFieldIds['Телефон']);
+        $phoneField->setValues(
+            (new TextCustomFieldValueCollection())
+                ->add((new TextCustomFieldValueModel())->setValue($leadData['Телефон']))
+        );
+        $customFields->add($phoneField);
+
+        // Email
+        $emailField = new TextCustomFieldValues();
+        $emailField->setFieldId($customFieldIds['Email']);
+        $emailField->setValues(
+            (new TextCustomFieldValueCollection())
+                ->add((new TextCustomFieldValueModel())->setValue($leadData['Email']))
+        );
+        $customFields->add($emailField);
+
+        $contact->setCustomFieldsValues($customFields);
+
+        // Создаем лид
+        $lead = new LeadModel();
+        $lead->setName('Заказ от ' . $leadData['Имя'])
+            ->setPrice($leadData['Сумма заказа'])
+            ->setTags([$leadData['Тэг заказа']])
+            ->setCreatedAt(new \DateTimeImmutable($leadData['Дата создания заказа']));
+
+        // Добавляем UTM-метки в лид
+        foreach ($leadData['UTM'] as $utmKey => $utmValue) {
+            $utmField = new TextCustomFieldValues();
+            $utmField->setFieldId($customFieldIds[$utmKey]);
+            $utmField->setValues(
+                (new TextCustomFieldValueCollection())
+                    ->add((new TextCustomFieldValueModel())->setValue($utmValue))
+            );
+            $customFields->add($utmField);
+        }
+
+        $lead->setCustomFieldsValues($customFields);
+
+        // Привязываем контакт к лиду
+        $lead->setContacts((new ContactsCollection())->add($contact));
+
+        try {
+            // Отправляем лид и контакт в amoCRM
+            $apiClient->leads()->addOne($lead);
+            $apiClient->contacts()->addOne($contact);
+        } catch (\AmoCRM\Exceptions\AmoCRMApiException $e) {
+            // Обработка ошибок
+            print_r($e);
+            return false;
+        }
+
+        return true;
+    }
+
+// Пример данных для отправки
+$leadData = [
+        'Имя' => 'Иван',
+        'Фамилия' => 'Иванов',
+        'Телефон' => '1234567890',
+        'Email' => 'ivan@example.com',
+        'Сумма заказа' => 1000,
+        'Тэг заказа' => 'Новый заказ',
+        'Дата создания заказа' => '2023-01-01',
+        'UTM' => [
+        'utm_source' => 'Google',
+        'utm_medium' => 'cpc',
+            // Добавьте другие UTM-метки как необходимо
+        ],
+        ];
+
+// Идентификаторы кастомных
+}
