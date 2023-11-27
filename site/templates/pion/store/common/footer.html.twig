@@ -10,7 +10,7 @@
                         <div class="footer__col mr-0 mr-md-5 text-center text-md-start">
                             <span class="d-block mb-3 fw-bold text-uppercase">{{ item.name }}</span>
                             {% if item.children is defined %}
-                                <ul class="footer__list">
+                                <ul class="footer__list" itemscope itemtype="http://schema.org/SiteNavigationElement">
                                     {% for element in item.children  %}
                                         <li><a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a></li>
                                     {% endfor %}
