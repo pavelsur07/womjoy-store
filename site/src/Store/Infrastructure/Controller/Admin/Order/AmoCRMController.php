@@ -6,6 +6,7 @@ namespace App\Store\Infrastructure\Controller\Admin\Order;
 
 use AmoCRM\Collections\ContactsCollection;
 use AmoCRM\Collections\CustomFieldsValuesCollection;
+use AmoCRM\Collections\Leads\LeadsCollection;
 use AmoCRM\Collections\TagsCollection;
 use AmoCRM\Exceptions\AmoCRMApiException;
 use AmoCRM\Models\ContactModel;
@@ -37,7 +38,7 @@ class AmoCRMController extends AbstractController
         try {
             $order = $orders->get(new OrderId($orderId));
 
-            $leadsService = $apiClient->leads();
+            // $leadsService = $apiClient->leads();
             // $lead = new LeadModel();
 
             $contact = new ContactModel();
@@ -59,6 +60,10 @@ class AmoCRMController extends AbstractController
                             (new TagModel())
                                 ->setName($order->getStatus())
                         )
+                        ->add(
+                            (new TagModel())
+                                ->setName('Заказ с сайта')
+                        )
                 )
                 ->setCreatedAt($order->getCreatedAt()->getTimestamp())
                 ->setSourceExternalId($order->getId()->value());
@@ -69,18 +74,29 @@ class AmoCRMController extends AbstractController
                 (new ContactsCollection())
                     ->add(
                         (new ContactModel())
-                            ->setFirstName('first_name')
-                            ->setLastName('last_name')
+                            ->setFirstName($order->getCustomer()->getFirstName())
+                            ->setLastName($order->getCustomer()->getLastName())
                             ->setCustomFieldsValues(
                                 (new CustomFieldsValuesCollection())
                                     ->add(
                                         (new MultitextCustomFieldValuesModel())
-                                            ->setFieldCode('ТЕЛЕФОН')
+                                            ->setFieldCode('EMAIL')
                                             ->setValues(
                                                 (new MultitextCustomFieldValueCollection())
                                                     ->add(
                                                         (new MultitextCustomFieldValueModel())
-                                                            ->setValue('+79888')
+                                                            ->setValue($order->getCustomer()->getEmail())
+                                                    )
+                                            )
+                                    )
+                                    ->add(
+                                        (new MultitextCustomFieldValuesModel())
+                                            ->setFieldCode('PHONE')
+                                            ->setValues(
+                                                (new MultitextCustomFieldValueCollection())
+                                                    ->add(
+                                                        (new MultitextCustomFieldValueModel())
+                                                            ->setValue($order->getCustomer()->getPhone())
                                                     )
                                             )
                                     )
@@ -136,12 +152,18 @@ class AmoCRMController extends AbstractController
 
             // Установим в сущности эти поля
             $lead->setCustomFieldsValues($fieldsValues);
+            $lead->setRequestId($order->getId()->value());
 
-            $lead = $leadsService->addOne($lead);
+            // $lead = $leadsService->addOne($lead);
 
-            $this->addFlash('success', 'Success Test lead is added. ' . $lead->getPrice());
+            $leadsCollection = new LeadsCollection();
+            $leadsCollection->add($lead);
+
+            $addedLeadsCollection = $apiClient->leads()->addComplex($leadsCollection);
+
+            $this->addFlash('success', 'Success Test lead is added. ' . $lead->getSourceId());
         } catch (AmoCRMApiException $e) {
-            $this->addFlash('danger', 'Error lead is not added.');
+            $this->addFlash('danger', 'Error lead is not added. ' . $e->getMessage());
         }
 
         return $this->redirectToRoute('store.order.admin.show', ['id'=> $orderId]);
