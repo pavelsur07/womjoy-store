@@ -29,6 +29,19 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/orders/{order_id}/amo', name: 'store.admin.order.amo')]
 class AmoCRMController extends AbstractController
 {
+
+    #[Route(path: '/edit', name: '.edit')]
+    public function edit(Request $request, OrderRepositoryInterface $orders): Response
+    {
+        $orderId = $request->get('order_id');
+        $order = $orders->get(new OrderId($orderId));
+
+        return $this->render('admin/store/order/amo_crm/edit.html.twig',
+            [
+                'order'=> $order,
+            ]);
+    }
+
     #[Route(path: '/create-lead', name: '.create_lead')]
     public function createLead(Request $request, OrderRepositoryInterface $orders, AmoCRMClient $client): Response
     {
@@ -41,10 +54,10 @@ class AmoCRMController extends AbstractController
             // $leadsService = $apiClient->leads();
             // $lead = new LeadModel();
 
-            $contact = new ContactModel();
-            $contact->setName($order->getCustomer()->getFirstName() . ' ' . $order->getCustomer()->getLastName());
-            $contact->setFirstName($order->getCustomer()->getFirstName());
-            $contact->setLastName($order->getCustomer()->getLastName());
+            // $contact = new ContactModel();
+            // $contact->setName($order->getCustomer()->getFirstName() . ' ' . $order->getCustomer()->getLastName());
+            // $contact->setFirstName($order->getCustomer()->getFirstName());
+            // $contact->setLastName($order->getCustomer()->getLastName());
 
             // Добавляем телефон и email в контакт
             // $contactFields = new CustomFieldsValuesCollection();
@@ -52,7 +65,7 @@ class AmoCRMController extends AbstractController
             // $contact->setCustomFieldsValues($contactFields);
 
             $lead = (new LeadModel())
-                ->setName('Заказ ' . $order->getCustomer()->getName())
+                ->setName('Заказ #' . $order->getOrderNumber()->value())
                 ->setPrice($order->getTotalCost())
                 ->setTags(
                     (new TagsCollection())
@@ -153,8 +166,6 @@ class AmoCRMController extends AbstractController
             // Установим в сущности эти поля
             $lead->setCustomFieldsValues($fieldsValues);
             $lead->setRequestId($order->getId()->value());
-
-            // $lead = $leadsService->addOne($lead);
 
             $leadsCollection = new LeadsCollection();
             $leadsCollection->add($lead);

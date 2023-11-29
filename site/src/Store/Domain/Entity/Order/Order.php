@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Order;
 
 use App\Store\Domain\Entity\Order\ValueObject\ClientId;
+use App\Store\Domain\Entity\Order\ValueObject\OrderAmoCRM;
 use App\Store\Domain\Entity\Order\ValueObject\OrderCustomer;
 use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
@@ -82,8 +83,8 @@ class Order
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $ymCounter = null;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    private bool $isCreateLeadByAmo = false;
+    #[ORM\Embedded(class: OrderAmoCRM::class, columnPrefix: 'amo_')]
+    private OrderAmoCRM $amoCRM;
 
     public function __construct(
         OrderCustomer $customer,
@@ -104,6 +105,8 @@ class Order
         $this->items = new ArrayCollection();
 
         $this->addStatus(OrderStatus::NEW);
+
+        $this->amoCRM = new OrderAmoCRM();
     }
 
     public function addItem(Variant $variant, int $quantity): void
@@ -127,19 +130,6 @@ class Order
                 )
             );
         }
-    }
-
-    public function createLeadByAmo(): void
-    {
-        if ($this->isCreateLeadByAmo) {
-            throw new StoreOrderException('Error create lead by Amo CRM already.');
-        }
-        $this->isCreateLeadByAmo = true;
-    }
-
-    public function isCreateLeadByAmo(): bool
-    {
-        return $this->isCreateLeadByAmo;
     }
 
     public function pay(): void
@@ -330,6 +320,11 @@ class Order
     public function setYmCounter(?string $ymCounter): void
     {
         $this->ymCounter = $ymCounter;
+    }
+
+    public function getAmoCRM(): OrderAmoCRM
+    {
+        return $this->amoCRM;
     }
 
     #[ORM\PreFlush]

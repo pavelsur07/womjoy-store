@@ -1,0 +1,6 @@
+{% set menu = knp_menu_get('store_order_action', [], {
+    'order_id': order.id,
+} ) %}
+
+{{ knp_menu_render(menu, {'currentClass': 'active'}) }}
+

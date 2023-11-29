@@ -1,0 +1,46 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Order show{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Order
+            </div>
+            <h2 class="page-title">
+                Amo CRM setting
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.index') }}">Back to list</a>
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.print', {'id': order.id}) }}">Print</a>
+        --
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.pay', {'order_id': order.id}) }}">Pay</a>
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.send_status', {'id': order.id}) }}">Send Mail status</a>
+
+        {% if order.isPaid %}
+            <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.send', {'order_id': order.id}) }}">Send</a>
+        {% endif %}
+        <a class="btn btn-bitbucket" href="{{ path('store.admin.order.amo.create_lead', {'order_id': order.id}) }}">Create Lead By AmoCRM</a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            {{ include('admin/store/order/_tabs.html.twig') }}
+        </div>
+        <div class="card-body">
+            Hello world
+        </div>
+    </div>
+
+
+{% endblock %}
+
