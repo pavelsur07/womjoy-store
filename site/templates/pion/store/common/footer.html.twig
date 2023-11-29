@@ -12,7 +12,10 @@
                             {% if item.children is defined %}
                                 <ul class="footer__list" itemscope itemtype="http://schema.org/SiteNavigationElement">
                                     {% for element in item.children  %}
-                                        <li><a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a></li>
+                                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                                            <a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a>
+                                            <meta itemprop="name" content="{{ element.name }}" />
+                                        </li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}
