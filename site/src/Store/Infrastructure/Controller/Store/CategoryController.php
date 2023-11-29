@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Common\Infrastructure\JsonLd\Breadcrumb\JsonLdBreadcrumb;
+use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
 use App\Store\Domain\Entity\Attribute\Variant;
 use App\Store\Domain\Entity\Category\AttributeAssignment;
 use App\Store\Domain\Entity\Category\Category;
@@ -106,6 +108,13 @@ class CategoryController extends BaseController
                 ];
             }
         }
+
+        $this->metaData['jsonLdBreadcrumb'] = JsonLdGenerator::generate(
+            JsonLdBreadcrumb::generate(
+                categories: $this->breadcrumbsCategoryGenerate($category),
+                baseUrl: $this->metaData['base_url']
+            )
+        );
 
         return $this->render(
             // "default/store/category/show.html.twig",

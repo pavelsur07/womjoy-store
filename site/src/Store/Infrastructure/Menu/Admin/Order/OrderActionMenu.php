@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Infrastructure\Menu\Admin\Order;
 
 use Knp\Menu\FactoryInterface;

@@ -34,6 +34,7 @@ class BaseController extends AbstractController
         'noindex' => false,
         'nofollow' => false,
         'jsonLdCompany' => null,
+        'jsonLdBreadcrumb' => null,
         'phone'=> null,
         'email'=> null,
         'company' => null,
@@ -118,6 +119,7 @@ class BaseController extends AbstractController
         $bread[] = [
             'name' =>$category->getName(),
             'slug' => $category->getSlug(),
+            'href' => $this->generateUrl('store.category.show', ['slug' => $category->getSlug()]),
         ];
 
         if ($category->getParent() !== null) {

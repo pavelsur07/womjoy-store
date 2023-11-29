@@ -17,6 +17,9 @@
 {% block linkCanonical %}
     <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}">
 {% endblock %}
+{% block jsonLd %}
+    {{ metaData.jsonLdBreadcrumb|raw }}
+{% endblock %}
 
 {% block header %}
     {% include 'pion/store/common/header.html.twig' %}

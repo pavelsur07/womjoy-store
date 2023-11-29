@@ -29,17 +29,18 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/admin/orders/{order_id}/amo', name: 'store.admin.order.amo')]
 class AmoCRMController extends AbstractController
 {
-
     #[Route(path: '/edit', name: '.edit')]
     public function edit(Request $request, OrderRepositoryInterface $orders): Response
     {
         $orderId = $request->get('order_id');
         $order = $orders->get(new OrderId($orderId));
 
-        return $this->render('admin/store/order/amo_crm/edit.html.twig',
+        return $this->render(
+            'admin/store/order/amo_crm/edit.html.twig',
             [
                 'order'=> $order,
-            ]);
+            ]
+        );
     }
 
     #[Route(path: '/create-lead', name: '.create_lead')]
