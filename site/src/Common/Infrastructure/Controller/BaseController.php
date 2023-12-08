@@ -17,6 +17,7 @@ use App\Store\Domain\Entity\Home\Home;
 use App\Store\Domain\Entity\Product\Image;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Service\HomeService;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -121,6 +122,8 @@ class BaseController extends AbstractController
 
     public function generateJsonLdProduct(Product $product, int $width = 1200, int $height = 2100): array
     {
+        $date =  new DateTimeImmutable();
+
         return [
             '@context' => 'https://schema.org/',
             '@type'=> 'Product',
@@ -142,7 +145,7 @@ class BaseController extends AbstractController
                 '@type'=> 'Brand',
                 'name'=> $product->getBrandName(),
             ],
-            'review'=> [
+            /*'review'=> [
                 '@type'=> 'Review',
                 'reviewRating'=> [
                     '@type'=> 'Rating',
@@ -153,20 +156,20 @@ class BaseController extends AbstractController
                     '@type'=> 'Person',
                     'name'=> 'Fred Benson',
                 ],
-            ],
+            ],*/
             'aggregateRating'=> [
                 '@type'=> 'AggregateRating',
-                'ratingValue'=> 4.4,
-                'reviewCount'=> 89,
+                'ratingValue'=> $product->getRating()->getRatingValue(),
+                'reviewCount'=> $product->getRating()->getReviewCount(),
             ],
             'offers'=> [
                 '@type'=> 'Offer',
-                'url'=> 'https://example.com/anvil',
-                'priceCurrency'=> 'USD',
-                'price'=> 119.99,
-                'priceValidUntil'=> '2020-11-20',
+                'url'=> $this->metaData['base_url'] . $this->generateUrl('store.product.show', ['slug' => $product->getSlug()]),
+                'priceCurrency'=> $product->getPrice()->getCurrency(),
+                'price'=> $product->getPrice()->getListPrice(),
+                'priceValidUntil'=> $date->format('Y-m-d'),
                 'itemCondition'=> 'https://schema.org/UsedCondition',
-                'availability'=> 'https://schema.org/InStock',
+                'availability'=> 'https://schema.org/InStock', // OutOfStock
             ],
         ];
     }
