@@ -1,5 +1,20 @@
 {% extends 'pion/store/base.html.twig' %}
 
+{% block openGraph %}
+    <meta property="og:url" content= "https:{{  url('store.product.show', {'slug': product.slug}, true)}}" />
+    <meta property="og:site_name" content="{{ metaData.shop_name  }}">
+    <meta property="og:type" content="product"/>
+    <meta property="og:title" content="{{ product.name }}"/>
+    <meta property="og:description" content="{{ product.description }} "/>
+    <meta property="og:locale" content="ru_RU" />
+    {% for image in product.images %}
+        <meta property="og:image" content="{{ thumbnail_path(image.path, image.name~'.webp', 1400, 2100 ) }}"/>
+    {% endfor %}
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="2100" />
+{% endblock %}
+
 {% block linkCanonical %}
     <link rel="canonical" href= "https:{{  url('store.product.show', {'slug': product.slug}, true)}}">
 {% endblock %}

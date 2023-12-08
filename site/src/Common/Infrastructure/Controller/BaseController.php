@@ -31,6 +31,7 @@ class BaseController extends AbstractController
     ];
 
     public array $metaData =[
+        'shop_name' =>'womjoy',
         'base_url' => '',
         'title' =>'Title default base controller',
         'description' => 'Description default base controller',
