@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Store;
 
 use App\Common\Infrastructure\Controller\BaseController;
+use App\Common\Infrastructure\JsonLd\Breadcrumb\JsonLdBreadcrumb;
+use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +25,23 @@ class ProductController extends BaseController
         if ($product->getSeoMetadata()->getSeoDescription()) {
             $this->setDescription($product->getSeoMetadata()->getSeoDescription());
         }
+
+        $this->metaData['jsonLdProduct'] = JsonLdGenerator::generate($this->generateJsonLdProduct($product));
+
+        $breadcrumbs = $this->breadcrumbsCategoryGenerate($product->getMainCategory());
+        $breadcrumbs[] =
+            [
+                'name' =>$product->getName(),
+                'slug' => $product->getSlug(),
+                'href' => $this->generateUrl('store.product.show', ['slug' => $product->getSlug()]),
+            ];
+
+        $this->metaData['jsonLdBreadcrumb'] = JsonLdGenerator::generate(
+            JsonLdBreadcrumb::generate(
+                categories: $breadcrumbs,
+                baseUrl: $this->metaData['base_url']
+            )
+        );
 
         return $this->render(
             "{$this->template}/store/product/show.html.twig",

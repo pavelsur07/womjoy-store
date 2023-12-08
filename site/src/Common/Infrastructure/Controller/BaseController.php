@@ -6,6 +6,7 @@ namespace App\Common\Infrastructure\Controller;
 
 use App\Common\Infrastructure\JsonLd\JsonLdCompany;
 use App\Common\Infrastructure\JsonLd\JsonLdGenerator;
+use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Menu\Domain\Entity\Menu;
 use App\Menu\Domain\Repository\MenuRepositoryInterface;
 use App\Menu\Infrastructure\Service\MenuSettingService;
@@ -13,6 +14,8 @@ use App\Setting\Infrastructure\Service\SettingService;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Home\AssignCategory;
 use App\Store\Domain\Entity\Home\Home;
+use App\Store\Domain\Entity\Product\Image;
+use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Service\HomeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -34,6 +37,7 @@ class BaseController extends AbstractController
         'noindex' => false,
         'nofollow' => false,
         'jsonLdCompany' => null,
+        'jsonLdProduct' => null,
         'jsonLdBreadcrumb' => null,
         'phone'=> null,
         'email'=> null,
@@ -49,6 +53,7 @@ class BaseController extends AbstractController
         private readonly MenuSettingService $menuService,
         private readonly SettingService $settingService,
         private readonly string $siteUrl,
+        private readonly ThumbnailService $thumbnail
     ) {
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {
@@ -112,6 +117,58 @@ class BaseController extends AbstractController
     public function jsonLdGenerator(array $data): string
     {
         return '<script type="application/ld+json">' . json_encode($data, JSON_UNESCAPED_SLASHES | JSON_HEX_APOS | JSON_UNESCAPED_UNICODE) . '</script>';
+    }
+
+    public function generateJsonLdProduct(Product $product, int $width = 1200, int $height = 2100): array
+    {
+        return [
+            '@context' => 'https://schema.org/',
+            '@type'=> 'Product',
+            'name'=> $product->getName(),
+            'image'=> array_map(
+                function (Image $image) {
+                    return $this->thumbnail->generateUrl(
+                        path: $image->getPath(),
+                        file: $image->getName() . '.webp',
+                        width: 1400,
+                        height: 2100,
+                    );
+                },
+                $product->getImages()->toArray()
+            ),
+            'description' => $product->getDescription(),
+            'sku'=> $product->getArticle(),
+            'brand'=> [
+                '@type'=> 'Brand',
+                'name'=> $product->getBrandName(),
+            ],
+            'review'=> [
+                '@type'=> 'Review',
+                'reviewRating'=> [
+                    '@type'=> 'Rating',
+                    'ratingValue'=> 4,
+                    'bestRating'=> 5,
+                ],
+                'author'=> [
+                    '@type'=> 'Person',
+                    'name'=> 'Fred Benson',
+                ],
+            ],
+            'aggregateRating'=> [
+                '@type'=> 'AggregateRating',
+                'ratingValue'=> 4.4,
+                'reviewCount'=> 89,
+            ],
+            'offers'=> [
+                '@type'=> 'Offer',
+                'url'=> 'https://example.com/anvil',
+                'priceCurrency'=> 'USD',
+                'price'=> 119.99,
+                'priceValidUntil'=> '2020-11-20',
+                'itemCondition'=> 'https://schema.org/UsedCondition',
+                'availability'=> 'https://schema.org/InStock',
+            ],
+        ];
     }
 
     public function breadcrumbsCategoryGenerate(Category $category, ?array $bread = null): array

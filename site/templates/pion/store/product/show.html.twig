@@ -3,7 +3,10 @@
 {% block linkCanonical %}
     <link rel="canonical" href= "https:{{  url('store.product.show', {'slug': product.slug}, true)}}">
 {% endblock %}
-
+{% block jsonLd %}
+    {{ metaData.jsonLdBreadcrumb|raw }}
+    {{ metaData.jsonLdProduct|raw }}
+{% endblock %}
 {% block body %}
     <div class="container-xxl">
 
