@@ -7,10 +7,10 @@
                 <div class="d-flex justify-content-around justify-content-md-start">
 
                     {% for item in menu.footer %}
-                        <div class="footer__col mr-0 mr-md-5 text-center text-md-start">
+                        <div class="footer__col mr-0 mr-md-5 text-center text-md-start" itemscope itemtype="http://schema.org/SiteNavigationElement">
                             <span class="d-block mb-3 fw-bold text-uppercase">{{ item.name }}</span>
                             {% if item.children is defined %}
-                                <ul class="footer__list" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                                <ul class="footer__list" itemprop="about" itemprop="about" itemscope itemtype="http://schema.org/ItemList">
                                     {% for element in item.children  %}
                                         <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                                             <a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a>
