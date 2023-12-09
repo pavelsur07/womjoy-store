@@ -53,10 +53,10 @@ class RegistrationUserController extends BaseController
                     plainPassword: $password
                 );
 
-                $user->setRoles(['ROLE_USER']);
+                /*$user->setRoles(['ROLE_USER']);
                 $user->setPassword($hashed);
 
-                $users->save($user, true);
+                $users->save($user, true);*/
                 $this->addFlash('success', 'Registration new user.');
             } catch (Exception $e) {
                 $error = $e->getMessage();
