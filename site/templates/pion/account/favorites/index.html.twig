@@ -1,0 +1,52 @@
+{% extends 'pion/store/base.html.twig' %}
+{% block linkCanonical %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="container-xxl">
+        <section class="user w-section">
+            {% include 'pion/account/account.html.twig' %}
+
+            <ul class="user__nav">
+                <li><a href="#">Заказы</a></li>
+                <li><a href="#" class="active">Избранное</a></li>
+                <li><a href="#">Программа лояльности</a></li>
+                <li><a href="#">Личные данные</a></li>
+            </ul>
+
+            <div class="pt-4">
+                <div class="h5 text-uppercase mb-4">Избранное</div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="user__card">
+                            <div class="user__card_main position-relative">
+                                <img src="./pion/img/cards/img-1.webp" alt="" class="user__card_img">
+                                <div class="user__card_overlay position-absolute left-0 bottom-0 w-100 bg-white bg-opacity-75 py-4 px-3">
+                                    <div class="user__card_sizes d-flex justify-content-center mb-3">
+                                        <div class="user__card_size d-flex flex-column align-items-center">
+                                            <span class="py-1 px-2 bg-white border mb-2">21-23</span>
+                                            много
+                                        </div>
+                                    </div>
+                                    <div class="colors colors-lg mb-4 text-center">
+                                        <span class="colors__title">Цвет: черный</span>
+                                        <ul class="colors__items">
+                                            <li class="colors__item">
+                                                <a href="#" class="colors__link colors__link-current" style="background-color: #000000"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="w-primary-btn w-100 mb-3">Добавить в корзину</a>
+                                    <a href="#" class="user__card_remove d-flex justify-content-center align-items-center"><img class="me-2" src="./img/icons/user-remove.svg" alt="" width="16" height="16"> УДАЛИТЬ ИЗ WISHLIST</a>
+                                </div>
+                            </div>
+                            <a href="#" class="user__card_name">Лонгслив с фигурной анатомической вязкой Essentials черный</a>
+                            <span class="user__card_cost">3 999 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'pion/store/base.html.twig' %}
+{% block linkCanonical %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="container-xxl">
+        <section class="user w-section">
+
+            {% include 'pion/account/account.html.twig' %}
+
+            <ul class="user__nav">
+                <li><a href="#" class="active">Заказы</a></li>
+                <li><a href="#">Избранное</a></li>
+                <li><a href="#">Программа лояльности</a></li>
+                <li><a href="#">Личные данные</a></li>
+            </ul>
+
+            <div class="pt-4">
+                <div class="h5 text-uppercase mb-4">Мои заказы</div>
+                <p>Вы еще не сделали ни одного заказа.</p>
+            </div>
+        </section>
+    </div>
+{% endblock %}

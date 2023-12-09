@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Auth\Infrastructure\Controller;
 
+use App\Common\Infrastructure\Controller\BaseController;
 use LogicException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractController
+class SecurityController extends BaseController
 {
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -24,7 +24,13 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('auth/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render(
+            'pion/auth/login.html.twig',
+            [
+                'metaData' => $this->metaData,
+                'menu' => $this->menu,
+                'last_username' => $lastUsername, 'error' => $error]
+        );
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
