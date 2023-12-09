@@ -29,7 +29,7 @@ security:
             # switch_user: true
             remember_me:
                 secret:   '%kernel.secret%' # required
-                lifetime: 604800 # 1 week in seconds
+                lifetime: 1604800 # 1 week in seconds
                 # by default, the feature is enabled by checking a checkbox in the
                 # login form , uncomment the following line to always enable it.
                 #always_remember_me: true
@@ -39,6 +39,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_MANAGER }
+        - { path: ^/account, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

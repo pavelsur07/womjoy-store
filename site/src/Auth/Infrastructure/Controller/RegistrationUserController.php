@@ -44,7 +44,7 @@ class RegistrationUserController extends AbstractController
         }
 
         return $this->render(
-            'auth/registration.html.twig',
+            'pion/auth/registration.html.twig',
             [
                 'form' => $form->createView(),
             ]
