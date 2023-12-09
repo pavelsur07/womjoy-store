@@ -1,9 +1,136 @@
 {% extends 'pion/store/base.html.twig' %}
 {% block body %}
-    <div class="card card-body">
+    {#  <div class="card card-body">
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <button class="btn">{{ button_label|default('Sign Up') }}</button>
         {{ form_end(form) }}
+    </div>#}
+
+    <div class="container-xxl">
+        <section class="section mt-4">
+            <h1 class="mb-4 text-center text-uppercase">РЕГИСТРАЦИЯ</h1>
+
+            {{ form_start(form) }}
+
+            <div class="row justify-content-center">
+                {% if error %}
+                    <div class="col col-12 col-lg-10 mb-4">
+                        <div class="p-3 bg-danger bg-opacity-10 text-danger">{{ error }}</div>
+                    </div>
+                {% endif %}
+                <div class="col col-12 col-lg-5">
+                    <div class="w-field mb-4">
+                        <label class="w-field__label">ИМЯ *</label>
+                        <div class="w-field__main">
+                            <input
+                                name="{{ field_name(form.firstName) }}"
+                                value="{{ field_value(form.firstName) }}"
+                                placeholder="{{ field_label(form.firstName) }}"
+                                class="w-field__inp"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-12 col-lg-5">
+                    <div class="w-field mb-4">
+                        <label class="w-field__label">ФАМИЛИЯ *</label>
+                        <div class="w-field__main">
+                            <input
+                                    name="{{ field_name(form.lastName) }}"
+                                    value="{{ field_value(form.lastName) }}"
+                                    placeholder="{{ field_label(form.lastName) }}"
+                                    class="w-field__inp"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-12 col-lg-5">
+                    <div class="w-field mb-4">
+                        <label class="w-field__label">МОБИЛЬНЫЙ ТЕЛЕФОН *</label>
+                        <div class="w-field__main">
+                            <input
+                                name="{{ field_name(form.phone) }}"
+                                value="{{ field_value(form.phone) }}"
+                                placeholder="{{ field_label(form.phone) }}"
+                                class="w-field__inp"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-12 col-lg-5">
+                    <div class="w-field mb-4">
+                        <label class="w-field__label">ЭЛЕКТРОННАЯ ПОЧТА *</label>
+                        <div class="w-field__main">
+                            <input
+                                name="{{ field_name(form.email) }}"
+                                value="{{ field_value(form.email) }}"
+                                placeholder="{{ field_label(form.email) }}"
+                                class="w-field__inp"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-12 col-lg-5">
+                    <div class="w-field mb-4 mb-lg-0">
+                        <label class="w-field__label">ПАРОЛЬ *</label>
+                        <div class="w-field__main">
+                            <input
+                                name="{{ field_name(form.password) }}"
+                                value="{{ field_value(form.password) }}"
+                                placeholder="{{ field_label(form.password) }}"
+                                class="w-field__inp"
+                            >
+                        </div>
+                        <span class="w-field__descr">Минимум 8 символов</span>
+                    </div>
+                </div>
+
+                <div class="col col-12 col-lg-5">
+                    <div class="w-field">
+                        <label class="w-field__label">ПОДТВЕРДИТЕ ПАРОЛЬ *</label>
+                        <div class="w-field__main">
+                            <input
+                                name="{{ field_name(form.plaintextPassword) }}"
+                                value="{{ field_value(form.plaintextPassword) }}"
+                                placeholder="{{ field_label(form.plaintextPassword) }}"
+                                class="w-field__inp"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-12 col-lg-10">
+                    <label class="w-check mt-4">
+                        <input type="checkbox" hidden="">
+                        <span class="w-check__sq"><img src="{{ asset('./pion/img/icons/white-check.svg') }}" alt="" width="18" height="13"></span>
+                        <div class="w-check__main">
+                            <span class="w-check__name">Подтверждаю свое согласие на получение информации о новинках и выгодных предложениях.</span>
+                        </div>
+                    </label>
+                    <label class="w-check mt-4">
+                        <input type="checkbox" hidden="">
+                        <span class="w-check__sq"><img src="{{ asset('./pion/img/icons/white-check.svg') }}" alt="" width="18" height="13"></span>
+                        <div class="w-check__main">
+                            <span class="w-check__name">Подтверждаю свое согласие на обработку и хранение моих персональных данных в соответствии с пользовательским соглашением</span>
+                        </div>
+                    </label>
+                    <label class="w-check mt-4">
+                        <input type="checkbox" hidden="">
+                        <span class="w-check__sq"><img src="{{ asset('./pion/img/icons/white-check.svg') }}" alt="" width="18" height="13"></span>
+                        <div class="w-check__main">
+                            <span class="w-check__name">Соглашаюсь с условиями программы лояльности</span>
+                        </div>
+                    </label>
+
+                    <button class="w-primary-btn mt-5" type="submit">Зарегистрироваться</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </section>
     </div>
 {% endblock %}

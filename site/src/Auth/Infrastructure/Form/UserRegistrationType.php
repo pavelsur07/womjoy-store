@@ -14,8 +14,48 @@ class UserRegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', Type\EmailType::class)
-            ->add('password', Type\PasswordType::class);
+            ->add(
+                'firstName',
+                Type\TextType::class,
+                [
+                    'label' => 'ИМЯ *',
+                ]
+            )
+            ->add(
+                'lastName',
+                Type\TextType::class,
+                [
+                    'label'=>'ФАМИЛИЯ * ',
+                ]
+            )
+            ->add(
+                'phone',
+                Type\TextType::class,
+                [
+                    'label'=>'МОБИЛЬНЫЙ ТЕЛЕФОН * ',
+                ]
+            )
+            ->add(
+                'email',
+                Type\EmailType::class,
+                [
+                    'label'=>'ЭЛЕКТРОННАЯ ПОЧТА * ',
+                ]
+            )
+            ->add(
+                'password',
+                Type\PasswordType::class,
+                [
+                    'label'=>'ПАРОЛЬ * ',
+                ]
+            )
+            ->add(
+                'plaintextPassword',
+                Type\PasswordType::class,
+                [
+                    'label'=>'ПОДТВЕРДИТЕ ПАРОЛЬ * ',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
