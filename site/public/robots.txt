@@ -28,8 +28,9 @@ Disallow: *?sort=price-asc*
 Disallow: *?sort=popularity*
 Disallow: *?sort=price-desc*
 
-
 Sitemap: https://static.womjoy.ru/s3/sitemap.xml
+
+Clean-Param: filter
 Clean-param: from&clid&pclid&promo&utm&utm_referrer&utm_medium&utm_source&utm_campaign&utm_term&utm_content&gclid&openstat&cpc&test&dev&sort&order&tip&tsvet&brend&brand&strana&price_min&price_max&showall&frommarket&nomobile&mobile&crcy&promo_id
 
 User-agent: Googlebot
