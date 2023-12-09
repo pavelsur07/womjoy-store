@@ -1,0 +1,26 @@
+{% extends 'pion/store/base.html.twig' %}
+{% block linkCanonical %}
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">{{ name }}</div>
+        </div>
+
+        <section class="catalog w-section">
+            <h1 class="mb-3 text-uppercase">{{ h1 }}</h1>
+
+            <div id="message-id"></div>
+        </section>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_message') }}
+{% endblock %}

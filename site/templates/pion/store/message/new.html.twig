@@ -60,17 +60,24 @@
             </p>
 
             {#{{ page.value|raw }}#}
-            <h2 class="mt-6">Форма обратной связи</h2>
+            {#<h2 class="mt-6">Форма обратной связи</h2>
             <p>
             Заполните все поля и нажмите «Отправить», мы обработаем ваше обращение и свяжемся в течение 24 часов.
-            </p>
+            </p>#}
 
-            {{ form_start(form) }}
+            {#{{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="w-primary-btn">{{ button_label|default('Send') }}</button>
-            {{ form_end(form) }}
+            {{ form_end(form) }}#}
+
+            <div id="message-id"></div>
 
         </section>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_message') }}
 {% endblock %}

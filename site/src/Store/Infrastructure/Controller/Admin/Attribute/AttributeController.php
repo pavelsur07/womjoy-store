@@ -68,14 +68,14 @@ class AttributeController extends AbstractController
                 $attribute->editName($data['name']);
 
                 if ($data['type'] === Attribute::TYPE_BRAND) {
-                   /*
-                   if ($attribute->isBrand() === false) {
-                        if ($attributes->hasBrandAttribute()) {
-                            throw new StoreAttributeException('Brande already added attribute.');
-                        }
-                        $attribute->brandTypeActive();
-                    }
-                   */
+                    /*
+                    if ($attribute->isBrand() === false) {
+                         if ($attributes->hasBrandAttribute()) {
+                             throw new StoreAttributeException('Brande already added attribute.');
+                         }
+                         $attribute->brandTypeActive();
+                     }
+                    */
 
                     $attribute->brandTypeActive();
                 }
