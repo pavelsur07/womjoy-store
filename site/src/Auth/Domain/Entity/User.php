@@ -21,6 +21,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 60, nullable: true, options: ['default' => null])]
+    private ?string $firstName = null;
+
+    #[ORM\Column(length: 60, nullable: true, options: ['default' => null])]
+    private ?string $lastName = null;
+
+    #[ORM\Column(length: 60, nullable: true, options: ['default' => null])]
+    private ?string $phone = null;
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -75,6 +84,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): void
+    {
+        $this->phone = $phone;
     }
 
     public function eraseCredentials(): void
