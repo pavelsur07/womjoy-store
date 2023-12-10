@@ -43,21 +43,32 @@ class RegistrationUserController extends BaseController
                     throw new DomainException('Error Plaintext Password!');
                 }
 
-                $email = $data['email'];
-                $phone = $data['phone'];
+                if ($users->hasEmail($data['email'])) {
+                    throw new DomainException('User with such an e-mail address already exists');
+                }
 
-                $user = new User();
-                $user->setEmail($email);
+                if ($users->hasPhone($data['phone'])) {
+                    throw new DomainException('User with such an phone already exists');
+                }
+
+                $user = User::create(
+                    email: $data['email'],
+                    firstName: $data['firstName'],
+                    lastName: $data['lastName'],
+                    phone: $data['phone']
+                );
+
                 $hashed = $hasher->hashPassword(
                     user: $user,
                     plainPassword: $password
                 );
 
-                /*$user->setRoles(['ROLE_USER']);
+                // $user->setRoles(['ROLE_USER']);
                 $user->setPassword($hashed);
 
-                $users->save($user, true);*/
+                $users->save($user, true);
                 $this->addFlash('success', 'Registration new user.');
+                return $this->redirectToRoute('account.dashboard');
             } catch (Exception $e) {
                 $error = $e->getMessage();
             }

@@ -8,6 +8,7 @@ use App\Auth\Infrastructure\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Webmozart\Assert\Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -36,6 +37,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    public static function create(string $email, string $firstName, string $lastName, ?string $phone = null): self
+    {
+        $user = new self();
+        $user->setEmail($email);
+        $user->setFirstName($firstName);
+        $user->setLastName($lastName);
+        $user->setPhone($phone);
+        $user->setRoles(['ROLE_USER']);
+        return $user;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,11 +58,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): void
     {
-        $this->email = $email;
-
-        return $this;
+        Assert::email($email);
+        $this->email = mb_strtolower($email);
     }
 
     public function getUserIdentifier(): string

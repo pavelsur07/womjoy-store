@@ -41,6 +41,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $object;
     }
 
+    public function hasEmail(string $email): bool
+    {
+        Assert::email($email);
+        $object = $this->findOneBy(['email' => mb_strtolower($email)]);
+
+        if ($object === null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function hasPhone(string $phone): bool
+    {
+        Assert::regex($phone, '/^\s?(\+\s?7|8)([- ()]*\d){10}$/');
+        $object = $this->findOneBy(['phone' => mb_strtolower($phone)]);
+
+        if ($object === null) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
