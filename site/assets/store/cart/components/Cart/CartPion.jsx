@@ -24,7 +24,7 @@ const Cart = () => {
 
     if (cart.items.length < 1) {
         return (
-            <div className="p-3 bg-danger bg-opacity-10 text-danger">{t('Cart_not_item')}</div>
+            <h2 className="mt-6">{t('Cart_not_item')}</h2>
         );
     }
 
