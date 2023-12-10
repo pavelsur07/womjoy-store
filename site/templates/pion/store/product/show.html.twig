@@ -47,7 +47,9 @@
     <meta property="og:locale" content="ru_RU" />
     {#{% for image in product.images %}#}
     {% set image = product.images.first %}
+    {% if image %}
     <meta property="og:image" content="{{ thumbnail_path(image.path, image.name, 400, 600 ) }}"/>
+    {% endif %}
     {#{% endfor %}#}
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="400" />
