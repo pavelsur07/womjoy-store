@@ -140,13 +140,13 @@ class ProductController extends AbstractController
         $form = $this->createForm(
             ProductSeoEditForm::class,
             [
-                'seoTitle' => $category->getTitleProductTemplate() ?
+                'seoTitle' => $category->getTitleProductTemplate() === null ?
                     PlaceholderService::replacePlaceholders(
                         $category->getTitleProductTemplate(),
                         $product->getPlaceholders()
                     ) :
                     $product->getSeoMetadata()->getSeoTitle(),
-                'seoDescription' => $category->getDescriptionProductTemplate() ?
+                'seoDescription' => $category->getDescriptionProductTemplate() === null ?
                     PlaceholderService::replacePlaceholders(
                         $category->getDescriptionProductTemplate(),
                         $product->getPlaceholders()
