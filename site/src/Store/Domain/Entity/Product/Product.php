@@ -683,7 +683,7 @@ class Product
 
     public function setArticle(?string $article): void
     {
-        $this->article = $article;
+        $this->article = trim(mb_strtoupper($article));
     }
 
     public function getSeoMetadata(): SeoMetadata

@@ -52,7 +52,11 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{{ path('store.product.show', {'slug': product.slug}) }}" target="_blank">{{ product.name }}</a>
+                        {% if product.slug is not null %}
+                            <a href="{{ path('store.product.show', {'slug': product.slug}) }}" target="_blank">{{ product.name }}</a>
+                        {% else %}
+                            {{ product.name }}
+                        {% endif %}
                         <br>
                         <strong>{{ product.mainCategory ? product.mainCategory.name : '' }}</strong>
                     </td>

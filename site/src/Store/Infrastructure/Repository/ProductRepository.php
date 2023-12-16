@@ -48,6 +48,11 @@ class ProductRepository
         return $object;
     }
 
+    public function findByArticle(string $article): ?Product
+    {
+        return $this->repo->findOneBy(['article' => $article]);
+    }
+
     public function getAll(
         int $page,
         int $size,

@@ -24,6 +24,7 @@
         {% if product.status.isDraft %}
         <a class="btn btn-bitbucket" href="{{ path('matrix.admin.product.regenerate.article', {'id': product.id}) }}">Regenerate article</a>
         {% endif %}
+        <a class="btn btn-bitbucket" href="{{ path('matrix.admin.product.create_by_matrix', {'id': product.id}) }}">Create by Matrix</a>
     </div>
     <div class="card">
         <div class="card-header">

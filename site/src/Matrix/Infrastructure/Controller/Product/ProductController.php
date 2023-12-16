@@ -11,12 +11,14 @@ use App\Matrix\Infrastructure\Form\Product\ProductCreatedForm;
 use App\Matrix\Infrastructure\Form\Product\ProductEditForm;
 use App\Matrix\Infrastructure\Form\Product\ProductFilterListForm;
 use App\Matrix\Infrastructure\Repository\Product\ProductFilter;
+use App\Store\Application\Command\Product\CreateByMatrix\ProductCreateByMatrixCommand;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use DomainException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
@@ -43,6 +45,21 @@ class ProductController extends AbstractController
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    #[Route(path: '/admin/matrix/products/{id}/creat-by-matrix', name: 'matrix.admin.product.create_by_matrix')]
+    public function createByMatrix(int $id, Request $request, ProductRepositoryInterface $products, MessageBusInterface $bus): Response
+    {
+        $product = $products->get($id);
+
+        $command = new ProductCreateByMatrixCommand(
+            name: $product->getName(),
+            article: $product->getArticle()
+        );
+
+        $bus->dispatch($command);
+
+        return $this->redirectToRoute('matrix.admin.product.edit', ['id'=>$id]);
     }
 
     #[Route(path: '/admin/matrix/products/create', name: 'matrix.admin.product.create')]

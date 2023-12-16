@@ -32,6 +32,12 @@ class VariantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             try {
+                $barcode = $data['barcode'];
+                if ($barcode === null) {
+                    $this->addFlash('success', 'Ups!.');
+                    return $this->redirectToRoute('matrix.admin.product.edit', ['id' => $productId]);
+                }
+
                 $product->addVariant(
                     barcode: new VariantBarcode($data['barcode']),
                     value: new VariantValue($data['value'])
