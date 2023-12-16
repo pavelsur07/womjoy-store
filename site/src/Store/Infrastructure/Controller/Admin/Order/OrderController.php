@@ -63,7 +63,6 @@ class OrderController extends AbstractController
             try {
                 $data = $form->getData();
                 $order->addStatus($data['status']);
-
                 $flusher->flush();
                 $this->addFlash('success', 'Success status changed.');
             } catch (DomainException $e) {

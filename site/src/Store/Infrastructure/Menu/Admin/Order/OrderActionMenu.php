@@ -34,6 +34,17 @@ class OrderActionMenu
             ->setLinkAttribute('class', 'nav-link');
         $menu
             ->addChild(
+                'Delivery',
+                [
+                    'route' => 'store.admin.order.delivery.edit',
+                    'routeParameters' => ['order_id' => $options['order_id']],
+                ]
+            )
+            ->setAttribute('class', 'nav-item')
+            ->setAttribute('data-bs-toggle', 'tabs')
+            ->setLinkAttribute('class', 'nav-link');
+        $menu
+            ->addChild(
                 'Amo CRM',
                 [
                     'route' => 'store.admin.order.amo.edit',

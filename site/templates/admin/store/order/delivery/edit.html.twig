@@ -10,7 +10,7 @@
                 Order
             </div>
             <h2 class="page-title">
-                Amo CRM setting
+                Delivery
             </h2>
         </div>
         <!-- Page title actions -->
@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+
     <div class="mb-3 mt-3">
         <a class="btn btn-bitbucket" href="{{ path('store.order.admin.index') }}">Back to list</a>
         <a class="btn btn-bitbucket" href="{{ path('store.order.admin.print', {'id': order.id}) }}">Print</a>
@@ -37,7 +38,10 @@
             {{ include('admin/store/order/_tabs.html.twig') }}
         </div>
         <div class="card-body">
-            Hello world
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
         </div>
     </div>
 

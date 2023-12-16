@@ -341,6 +341,19 @@ class Order
         }
     }
 
+    public function isStatusDelivered(): bool
+    {
+        return $this->currentStatus === OrderStatus::DELIVERED;
+    }
+
+    public function statusDelivered(): void
+    {
+        if ($this->isStatusDelivered()) {
+            throw new StoreOrderException('Already setting status delivered.');
+        }
+        $this->addStatus(OrderStatus::DELIVERED);
+    }
+
     public function addStatus(string $status): void
     {
         Assert::oneOf($status, OrderStatus::list());
