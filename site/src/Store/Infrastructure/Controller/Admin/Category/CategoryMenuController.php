@@ -82,7 +82,6 @@ class CategoryMenuController extends AbstractController
     ): Response {
         $generateCategory = $categories->get($categoryId);
 
-
         $category->getMenu()->addItem(
             itemId: Uuid::uuid4()->toString(),
             name: $generateCategory->getName(),
