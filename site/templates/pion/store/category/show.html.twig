@@ -44,13 +44,18 @@
         <section class="catalog section mt-5">
             <h1 class="mb-3 text-center text-uppercase"> {{ category.seoMetadata.h1 }}</h1>
             <ul class="catalog__tags">
+                <li><a href="#" class="active">{{ category.name }}</a></li>
+                {% for item in category.menu.value %}
+                    <li><a href="{{ item.href }}" >{{ item.name }}</a></li>
+                {% endfor %}
+
                 {# Проверяем есть у ли категории дочернии субкатегории #}
-                {% if category.children.count > 0 %}
+                {#{% if category.children.count > 0 %}
                     <li><a href="#" class="active">{{ category.name }}</a></li>
                     {% for item in category.children %}
-                        {# Проверям категория активна или нет #}
+                        #}{# Проверям категория активна или нет #}{#
                         {% if item.status.isActive %}
-                            {# Если активна выводим категорию #}
+                            #}{# Если активна выводим категорию #}{#
                             {% if category.slug == item.slug %}
                                 <li><a href="{{ path('store.category.show', {'slug': item.slug }) }}" class="active">{{ item.name }}</a></li>
                             {% else %}
@@ -58,10 +63,10 @@
                             {% endif %}
                         {% endif %}
                     {% endfor %}
-                {% else%}
+                {% else%}#}
                 {# Если нету то берем данные из родительской категории #}
 
-                {% endif %}
+               {# {% endif %}#}
 
             </ul>
             <div class="filter">

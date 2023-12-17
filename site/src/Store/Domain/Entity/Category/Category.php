@@ -6,6 +6,7 @@ namespace App\Store\Domain\Entity\Category;
 
 use App\Store\Domain\Entity\Attribute\Attribute;
 use App\Store\Domain\Entity\Category\ValueObject\CategoryImage;
+use App\Store\Domain\Entity\Category\ValueObject\CategoryMenu;
 use App\Store\Domain\Entity\Category\ValueObject\CategoryStatus;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreCategoryException;
@@ -67,6 +68,9 @@ class Category
 
     #[ORM\Column(type: 'json', options: ['default'=>'{}'])]
     private array $filters = [];
+
+    #[ORM\Embedded(class: CategoryMenu::class, columnPrefix: 'menu_')]
+    private CategoryMenu $menu;
 
     public function __construct()
     {
@@ -288,6 +292,11 @@ class Category
     public function setDescriptionProductTemplate(?string $descriptionProductTemplate): void
     {
         $this->descriptionProductTemplate = $descriptionProductTemplate;
+    }
+
+    public function getMenu(): CategoryMenu
+    {
+        return $this->menu;
     }
 
     #[ORM\PostLoad()]
