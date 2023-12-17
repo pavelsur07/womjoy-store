@@ -6,7 +6,9 @@ namespace App\Store\Infrastructure\Controller\Admin\Category;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Category\Category;
+use App\Store\Domain\Repository\CategoryRepositoryInterface;
 use App\Store\Infrastructure\Form\Category\CategoryMenuAddItemForm;
+use App\Store\Infrastructure\Form\Category\CategoryMenuGenerateForm;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +21,25 @@ class CategoryMenuController extends AbstractController
     #[Route(path: '/{id}/menu', name: '.index')]
     public function index(Category $category, Request $request): Response
     {
+        $form = $this->createForm(CategoryMenuGenerateForm::class, []);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            return $this->redirectToRoute(
+                'store.admin.category.menu.generate_by_category',
+                [
+                    'id' =>$category->getId(),
+                    'categoryId' => $data['mainCategory']->getValue(),
+                ]
+            );
+        }
         return $this->render(
             'admin/store/category/menu/index.html.twig',
             [
                 'category'=> $category,
+                'form' => $form->createView(),
             ]
         );
     }
@@ -53,6 +70,31 @@ class CategoryMenuController extends AbstractController
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    #[Route(path: '/{id}/menu/generate-by-category/{categoryId}', name: '.generate_by_category')]
+    public function generate(
+        Category $category,
+        int $categoryId,
+        CategoryRepositoryInterface $categories,
+        Request $request,
+        Flusher $flusher
+    ): Response {
+        $generateCategory = $categories->get($categoryId);
+
+        /** @var Category $child */
+        foreach ($generateCategory->getChildren() as $child) {
+            $category->getMenu()->addItem(
+                itemId: Uuid::uuid4()->toString(),
+                name: $child->getName(),
+                href: $this->generateUrl('store.category.show', ['slug' => $child->getSlug()])
+            );
+        }
+
+        $flusher->flush();
+
+        $this->addFlash('success', 'Success changed templates.');
+        return $this->redirectToRoute('store.admin.category.menu.index', ['id' =>$category->getId()]);
     }
 
     #[Route(path: '/{id}/menu/remove-item/{itemId}', name: '.remove_item')]
