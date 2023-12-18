@@ -21,6 +21,7 @@ class MessageNewForm extends AbstractType
                 [
                     'label' =>'Topic',
                     'choices'  => [
+                        'Замена' =>'Substitution',
                         'Возврат' =>'return',
                         'Оплата' =>'pay',
                         'Информация о заказе' => 'Order information',
