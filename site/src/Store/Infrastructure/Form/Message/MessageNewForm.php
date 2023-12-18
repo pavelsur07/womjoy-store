@@ -16,41 +16,64 @@ class MessageNewForm extends AbstractType
     {
         $builder
             ->add(
-                'type',
+                'topic',
                 ChoiceType::class,
                 [
+                    'label' =>'Topic',
                     'choices'  => [
                         'Возврат' =>'return',
                         'Оплата' =>'pay',
-                        'Maybe' => null,
-                        'Yes' => true,
-                        'No' => false,
+                        'Информация о заказе' => 'Order information',
+                        'Доставка' => 'Delivery',
+                        'Информация об изделии' => 'Product information',
+                        'Отзыв' => 'Feedback',
+                        'Сотрудничество' => 'Collaboration',
+                        'Другое' => 'Another',
                     ],
                 ]
             )
-            /*->add('typeMessage', Type\ChoiceType::class,
+            ->add(
+                'name',
+                Type\TextType::class,
                 [
-                    'choices' =>
-                        [
-                            'Возврат' =>'return',
-                            'Оплата' =>'pay',
-                            'infoOrder' => 'Информация о заказе',
-                            'infoProduct' => 'Информация о продукте',
-                            'review' => 'Отзыв',
-                            'cooperation' => 'Сотрудничество',
-                            'other' => 'Другое',
-                        ],
-                    'choice_label' => 'label',
-                    'choice_value' => 'value',
-                ])*/
-            ->add('name', Type\TextType::class)
-            ->add('phone', Type\TextType::class)
-            ->add('email', Type\EmailType::class)
+                    'label' =>'Name',
+                    'attr' => [
+                        'placeholder' => 'Name',
+                        'name' => 'firstName',
+                    ],
+                ]
+            )
+            ->add(
+                'phone',
+                Type\TextType::class,
+                [
+                    'label' => 'Phone',
+                    'attr' => [
+                        'placeholder' => '+7(999) 999-99-99',
+                        'name' => 'phone',
+                    ],
+                ]
+            )
+            ->add(
+                'email',
+                Type\EmailType::class,
+                [
+                    'label' => 'E-mail',
+                    'attr' => [
+                        'placeholder' => 'exampel@app.com',
+                        'name' => 'email',
+                    ],
+                ]
+            )
             ->add(
                 'message',
                 Type\TextareaType::class,
                 [
-                    'attr' => ['rows' => 8],
+                    'label' => 'Message',
+                    'attr' => [
+                        'rows' => 8,
+                        'placeholder' => 'Message',
+                    ],
                 ]
             );
     }

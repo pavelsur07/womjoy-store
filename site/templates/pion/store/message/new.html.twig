@@ -15,18 +15,12 @@
 
         <section class="catalog w-section">
             <h1 class="mb-3 text-uppercase">Контакты</h1>
-
-
-
             <b>
                 <nobr><a href="tel:{{ metaData.phone }}">{{ metaData.phone }}</a></nobr></b><br>
             <b>Бесплатно по РФ</b>&nbsp;
-
             <p class="mt-4">
                 <b>Мы на связи с 7.00 до 20.00 по московскому времени</b>
             </p>
-
-
             <p class="contacts-social">
                 <!--<a class="contacts-social__whatsapp" href="https://api.whatsapp.com/send?phone=79632752016" target="_blank" >WhatsApp</a>-->
                 <a href="#" target="_blank">
@@ -41,8 +35,7 @@
                 Будем рады ответить на ваши вопросы с 07.00 до 24.00 по московскому времени
             </p>
 
-            <h2 class="mt-8">Напиши нам</h2>
-
+            <h2 class="mt-6">Напиши нам</h2>
             <p>
                 <a href="mailto:service@womjoy.ru" class="mod1">service@womjoy.ru</a> – для замечаний и пожеланий по качеству сервиса
             </p>
@@ -64,20 +57,60 @@
             <p>
             Заполните все поля и нажмите «Отправить», мы обработаем ваше обращение и свяжемся в течение 24 часов.
             </p>#}
+            <div class="card-body mt-6">
+                <h2>Форма обратной связи</h2>
+                <p>
+                    Заполните все поля и нажмите «Отправить», мы обработаем ваше обращение и свяжемся в течение 24 часов.
+                </p>
+                {{ form_start(form) }}
 
-            {#{{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button class="w-primary-btn">{{ button_label|default('Send') }}</button>
-            {{ form_end(form) }}#}
+                {% if messageId is not  null %}
+                <div class="col col-12 col-lg-12 mb-3">
+                    <div class="p-3 bg-warning bg-opacity-10">Message success</div>
+                </div>
+                {% endif %}
 
-            <div id="message-id" class="mt-8"></div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form_label(form.topic) }}
+                        {{ form_widget(form.topic, {'attr': {'class': 'mt-2'}}) }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form_label(form.phone) }}
+                        {{ form_widget(form.phone) }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        {{ form_label(form.message) }}
+                        {{ form_widget(form.message) }}
+                    </div>
+                    <div class="col-md-12 mb-3"> <button class="w-primary-btn">{{ button_label|default('Send') }}</button></div>
+                    <p>
+                        Нажимая на кнопку «Отправить», вы даете согласие на обработку и хранение своих персональных данных в соответствии с
+                        <a href="#">пользовательским соглашением</a>
+                    </p>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+
+
+            {#<div id="message-id" class="mt-8"></div>#}
 
         </section>
     </div>
 
 {% endblock %}
 
+{#
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('store_message') }}
-{% endblock %}
+{% endblock %}#}
