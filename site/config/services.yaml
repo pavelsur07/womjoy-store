@@ -108,6 +108,9 @@ services:
         
     App\Store\Infrastructure\Repository\AttributeRepository:
         class: App\Store\Infrastructure\Repository\AttributeRepository
+    
+    App\Store\Infrastructure\Repository\MessageRepository:
+        class: App\Store\Infrastructure\Repository\MessageRepository
         
     App\Common\Infrastructure\Uploader\FileUploader:
         arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%' ]

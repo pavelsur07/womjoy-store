@@ -22,7 +22,7 @@ class Message
     private DateTimeImmutable $createdAt;
 
     #[ORM\Embedded(class: MessageTopic::class, columnPrefix: 'topic_')]
-    private string $topic;
+    private MessageTopic $topic;
 
     #[ORM\Column(type: 'string')]
     private string $name;
@@ -36,7 +36,7 @@ class Message
     public function __construct(
         MessageId $id,
         DateTimeImmutable $createdAt,
-        string $topic,
+        MessageTopic $topic,
         string $name,
         string $email,
         string $phone,
@@ -62,7 +62,7 @@ class Message
         return $this->createdAt;
     }
 
-    public function getTopic(): string
+    public function getTopic(): MessageTopic
     {
         return $this->topic;
     }
