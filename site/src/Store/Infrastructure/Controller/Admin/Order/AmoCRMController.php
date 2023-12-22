@@ -83,7 +83,7 @@ class AmoCRMController extends AbstractController
                 ->setSourceExternalId($order->getId()->value());
 
             // $lead->setContacts((new ContactsCollection())->add($contact));
-
+            // $lead->setPipelineId(pipelineId: 6891786); // Замените $pipelineId на требуемый ID воронки
             $lead->setContacts(
                 (new ContactsCollection())
                     ->add(
