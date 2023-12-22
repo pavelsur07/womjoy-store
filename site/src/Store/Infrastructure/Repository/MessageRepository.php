@@ -9,6 +9,8 @@ use App\Store\Domain\Entity\Message\ValueObject\MessageId;
 use App\Store\Domain\Exception\StoreProductException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class MessageRepository
 {
@@ -17,7 +19,7 @@ class MessageRepository
     /** @var EntityRepository<Message> */
     private EntityRepository $repo;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, private PaginatorInterface $paginator)
     {
         $this->em = $em;
         $this->repo = $this->em->getRepository(Message::class);
@@ -30,6 +32,20 @@ class MessageRepository
             throw new StoreProductException('Message not found.');
         }
         return $object;
+    }
+
+    public function getAll(
+        int $page,
+        int $size,
+    ): PaginationInterface {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Message::class, 'p');
+
+        $qb->orderBy('p.createdAt', 'DESC');
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
     }
 
     public function findById(MessageId $id): Message|null
