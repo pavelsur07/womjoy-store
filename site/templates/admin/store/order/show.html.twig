@@ -30,6 +30,7 @@
             <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.send', {'order_id': order.id}) }}">Send</a>
         {% endif %}
         <a class="btn btn-bitbucket" href="{{ path('store.admin.order.amo.create_lead', {'order_id': order.id}) }}">Create Lead By AmoCRM</a>
+        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.unisender', {'id': order.id}) }}">Unisender</a>
     </div>
 
     <div class="card">

@@ -6,6 +6,7 @@ namespace App\Setting\Domain\Entity;
 
 use App\Setting\Domain\Entity\ValueObject\SettingCompany;
 use App\Setting\Domain\Entity\ValueObject\SettingSeoDefault;
+use App\Setting\Domain\Entity\ValueObject\SettingUnisender;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -29,6 +30,9 @@ class Setting
     #[ORM\Embedded(class: SettingCompany::class, columnPrefix: 'company_')]
     private SettingCompany $company;
 
+    #[ORM\Embedded(class: SettingUnisender::class, columnPrefix: 'unisender_')]
+    private SettingUnisender $unisender;
+
     public function __construct()
     {
         $this->company = new SettingCompany();
@@ -38,6 +42,16 @@ class Setting
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getUnisender(): SettingUnisender
+    {
+        return $this->unisender;
+    }
+
+    public function setUnisender(SettingUnisender $unisender): void
+    {
+        $this->unisender = $unisender;
     }
 
     public function getSeoDefault(): SettingSeoDefault

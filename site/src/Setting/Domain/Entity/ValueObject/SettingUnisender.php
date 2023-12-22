@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Embeddable]
 class SettingUnisender
 {
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $key = null;
 
     public function __construct(?string $key)
