@@ -31,7 +31,7 @@
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price / <br> List Price</th>
-                    <th class="w-25">Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,8 +66,8 @@
                     </td>
 
                     <td>
-                        <a class="btn btn-sm btn-bitbucket" href="{{ path('store.admin.product.edit', {'id': product.id}) }}">edit</a>
-                        <a class="btn btn-sm btn-bitbucket" href="{{ path('store.admin.product.copy', {'id': product.id}) }}">copy</a>
+                        <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.product.edit', {'id': product.id}) }}">edit</a>
+                        <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.product.copy', {'id': product.id}) }}">copy</a>
                     </td>
                 </tr>
             {% else %}

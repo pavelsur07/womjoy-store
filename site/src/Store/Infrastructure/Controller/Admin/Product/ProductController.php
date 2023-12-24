@@ -54,6 +54,7 @@ class ProductController extends AbstractController
 
             $productRepository->save($product, true);
             $product->regenerateSeoMetadataByTemplate();
+            $product->setArticle(article: date_format($product->getCreatedAt(), 'Y') . $product->getId());
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);

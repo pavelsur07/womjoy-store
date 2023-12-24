@@ -36,7 +36,6 @@ class CopyController extends AbstractController
         $productRepository->save($newProduct);
         $flusher->flush();
 
-
         /** @var AssignCategory $category */
         foreach ($product->getCategories() as $category) {
             $newProduct->assignCategory(category: $category->getCategory());
