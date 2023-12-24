@@ -154,6 +154,7 @@ class Product
         $this->attributes = new ArrayCollection();
         $this->export = new ProductExport();
         $this->relatedColors = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     // Colors

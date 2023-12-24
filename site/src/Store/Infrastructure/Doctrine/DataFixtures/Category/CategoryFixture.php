@@ -37,6 +37,8 @@ class CategoryFixture extends Fixture implements DependentFixtureInterface
         $levelOne->setParent($levelRoot);
         $levelOne->setSlug($this->slugify->generate(self::REFERENCE_LEGGINGS));
         $levelOne->setPrefixSlugProduct($this->slugify->generate($name));
+        $levelOne->setTitleProductTemplate('[Name] купить по цене [price] руб. в интернет-магазине Womjoy art - [article]');
+        $levelOne->setDescriptionProductTemplate('[name] артикул - [article] купить в интернет-магазине womjoy.ru. Быстрая доставка, подарочная упаковка. Выгодные цены, скидки и акции! Заказ можно сделать на сайте или по телефону [phoneNumber]');
 
         $this->setReference(self::REFERENCE_LEGGINGS, $levelOne);
 
