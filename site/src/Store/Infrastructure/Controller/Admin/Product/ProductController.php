@@ -53,6 +53,8 @@ class ProductController extends AbstractController
             $product->setMainCategory($mainCategory);
 
             $productRepository->save($product, true);
+            $product->regenerateSeoMetadataByTemplate();
+            $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
         }

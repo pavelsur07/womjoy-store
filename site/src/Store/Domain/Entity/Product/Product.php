@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Product;
 
 use App\Common\Infrastructure\Service\String\StringHelper;
+use App\Common\Traits\GenerateMetadataTrait;
 use App\Store\Domain\Entity\Attribute\Attribute;
 use App\Store\Domain\Entity\Attribute\Variant as AttributeVariant;
 use App\Store\Domain\Entity\Category\Category;
@@ -28,6 +29,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`store_products`')]
 class Product
 {
+    use GenerateMetadataTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column]
@@ -449,6 +452,30 @@ class Product
     {
         $this->mainCategory = $mainCategory;
         $this->setCategoriesIds();
+        // $this->regenerateSeoMetadataByTemplate();
+    }
+
+    public function regenerateSeoMetadataByTemplate(): void
+    {
+        if ($this->mainCategory === null) {
+            throw new StoreProductException('Main category not setting.');
+        }
+
+        $metadata = new SeoMetadata();
+        $metadata->setSeoTitle(
+            $this->generateMetadata(
+                $this->mainCategory->getTitleProductTemplate(),
+                $this->getPlaceholders()
+            )
+        );
+        $metadata->setSeoDescription(
+            $this->generateMetadata(
+                $this->mainCategory->getDescriptionProductTemplate(),
+                $this->getPlaceholders()
+            )
+        );
+        $metadata->setH1($this->getName());
+        $this->setSeoMetadata($metadata);
     }
 
     public function imageUp(int $sortNumber): void

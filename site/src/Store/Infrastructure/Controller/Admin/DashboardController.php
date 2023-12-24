@@ -11,6 +11,7 @@ use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
 use App\Store\Application\SendMail\Order\OrderStatusSendMailCommand;
 use App\Store\Infrastructure\Console\CartClearCommand;
 use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
+use App\Store\Infrastructure\Console\ProductRegenerateSeoCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
 use DateTimeImmutable;
@@ -30,6 +31,23 @@ class DashboardController extends AbstractController
     public function __construct(
         private MessageBusInterface $bus,
     ) {}
+
+    #[Route('/admin/dashboard/', name: 'admin.dashboard.show', methods: ['GET'])]
+    public function dashboard(): Response
+    {
+        return $this->render('admin/store/dashboard/show.html.twig');
+    }
+
+    #[Route(path: '/admin/dashboard/product-regenerate', name: 'admin.dashboard.product.regenerate')]
+    public function regenerateSeo(ProductRegenerateSeoCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
 
     /**
      * @throws Exception
@@ -78,12 +96,6 @@ class DashboardController extends AbstractController
         }
 
         return $this->redirectToRoute('admin.dashboard.show');
-    }
-
-    #[Route('/admin/dashboard/', name: 'admin.dashboard.show', methods: ['GET'])]
-    public function dashboard(): Response
-    {
-        return $this->render('admin/store/dashboard/show.html.twig');
     }
 
     #[Route(path: '/admin/dashboard/send-email', name: 'admin.dashboard.send_email')]
