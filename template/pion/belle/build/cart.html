@@ -443,12 +443,68 @@
             <div class="border-bottom pb-5 mb-5">
                 <div class="mb-4 d-none d-md-flex position-relative align-items-center justify-content-between">
                     <span class="cart__head text-start text-lg-center">Наименование товара</span>
+                    <span class="cart__head">Цвет</span>
+                    <span class="cart__head">Размер</span>
+                    <span class="cart__head">Цена</span>
                     <span class="cart__head">Количество</span>
                     <span class="cart__head">Сумма</span>
                     <span class="cart__head"></span>
                 </div>
                 <div class="cart__rows">
-                    <div class="c-item">
+                    <div class="cart__row d-flex position-relative align-items-center justify-content-between flex-wrap">
+                        <div class="cart__left mb-3 mb-md-0 flex-column flex-lg-row align-items-start align-items-lg-center">
+                            <a mb-0 href="#" class="cart__img d-block mb-0 mb-md-3 mb-lg-0 me-0 me-lg-3"><img src="./img/cart/img-1.jpg" alt="" width="106" height="160"></a>
+                            <div class="cart__name">
+                                <span class="cart__art">арт. W4020001</span>
+                                <a href="#">Велосипедки удлиненные в рубчик с широким поясом черный / XL/XXL</a>
+                            </div>
+                        </div>
+                        <div class="cart__cell"><div class="cart__color" style="background-color: #0b0a12;"></div></div>
+                        <div class="cart__cell">
+                            <div class="cart__size">
+                                <div class="w-sel w-sel-lg w-sel-dark">
+                                    <div class="w-sel__trigger">
+                                        XS/S
+                                    </div>
+                                    <div class="w-sel__dropdown">
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size-1" checked hidden>
+                                            <span></span>
+                                            XS/S
+                                        </label>
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size-1" hidden>
+                                            <span></span>
+                                            M/L
+                                        </label>
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size-1" hidden>
+                                            <span></span>
+                                            XL/XXL
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart__cell">
+                            <div class="cart__cost c-item__cost">3 389 ₽</div>
+                        </div>
+                        <div class="cart__cell">
+                            <div class="cart__cnt c-item__actions">
+                                <button class="cart__cnt_action cart__cnt_minus c-item__action c-item__minus" type="buton"></button>
+                                <input type="text" value="1" class="cart__cnt_inp c-item__inp">
+                                <button class="cart__cnt_action cart__cnt_plus c-item__action c-item__plus" type="buton"></button>
+                            </div>
+                        </div>
+                        <div class="cart__cell mt-3 mt-md-0">
+                            <div class="cart__cost c-item__cost">10 167 ₽</div>
+                        </div>
+                        <div class="cart__cell c-item__remove">
+                            <button class="cart__remove cart__clear" type="button"><img src="./img/icons/remove.svg" alt="" width="28" height="30"></button>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="c-item">
                         <a href="#" class="c-item__img">
                             <span class="c-item__img_in">
                                 <img src="./img/cart/img-1.jpg" alt="">
@@ -478,7 +534,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row justify-content-between align-items-center align-items-lg-start flex-column flex-lg-row">
