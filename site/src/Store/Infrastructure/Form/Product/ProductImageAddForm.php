@@ -27,7 +27,7 @@ class ProductImageAddForm extends AbstractType
                     new Assert\All([
                         new Assert\Image(
                             [
-                                'maxSize' => '10M',
+                                'maxSize' => '20M',
                                 'mimeTypes' => [
                                     'image/jpeg',
                                     'image/png',

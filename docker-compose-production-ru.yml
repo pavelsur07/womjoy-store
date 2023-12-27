@@ -56,7 +56,8 @@ services:
         
   imgproxy:
     image: darthsim/imgproxy:latest
-#    environment:
+    environment:
+      IMGPROXY_MAX_SRC_RESOLUTION: 20
 #      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
 #      IMGPROXY_KEY: 'hex-encoded-key'
 #      IMGPROXY_SALT: 'hex-encoded-salt'
