@@ -64,27 +64,30 @@
         </div>
     </section>
 
+
     <div class="container-xxl">
-        <section class="w-section">
-            <div class="row g-2 g-md-4">
-                <h2>Категории</h2>
-                {% for category in categories %}
-                    <div class="col col-6 col-lg-3">
+        {% if categories is not empty %}
+            <section class="w-section">
+                <div class="row g-2 g-md-4">
+                    <h2>{{ 'home.catalog' | trans }}</h2>
+                    {% for category in categories %}
+                        <div class="col col-6 col-lg-3">
 
-                        {% if category.imagePath == null %}
-                            <a href="{{ category.href }}" class="cat" style="background-image: url({{ asset('./pion/img/cats/img-1.jpg') }});">
-                                <span class="cat__btn w-white-btn">{{ category.name }}</span>
-                            </a>
-                        {% else %}
-                            <a href="{{ category.href }}" class="cat" style="background-image: url({{ storage_path(category.imagePath) }});">
-                                <span class="cat__btn w-white-btn">{{ category.name }}</span>
-                            </a>
-                        {% endif %}
+                            {% if category.imagePath == null %}
+                                <a href="{{ category.href }}" class="cat" style="background-image: url({{ asset('./pion/img/cats/img-1.jpg') }});">
+                                    <span class="cat__btn w-white-btn">{{ category.name }}</span>
+                                </a>
+                            {% else %}
+                                <a href="{{ category.href }}" class="cat" style="background-image: url({{ storage_path(category.imagePath) }});">
+                                    <span class="cat__btn w-white-btn">{{ category.name }}</span>
+                                </a>
+                            {% endif %}
 
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
 
         <section class="w-section">
             <a href="#" class="main-banner mb-4">
@@ -113,11 +116,56 @@
         </section>
     </div>
 
+    {% if widget.isNewArrivals %}
+    <div class="container-xxl">
+        <section class="catalog section">
+            <h2 class="mb-4">{{ 'home.new.arrivals' | trans }}</h2>
+            <div class="row mb-5 g-2 g-md-4">
+                {% for item in popularity %}
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    {#<div class="card">#}
+                        {#{% include 'default/store/common/product/item_product_card.html.twig' %}#}
+                        {% include 'pion/store/common/product/product_item.html.twig' %}
+                    {#</div>#}
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+    </div>
+
+       {# <section class="products section">
+            <div class="wrapper">
+                <div class="section-top">
+                    <h2 class="section-title">{{ 'home.new.arrivals' | trans }}</h2>
+                    <a href="{{ widget.hrefNewArrivals }}" class="section-checkall">
+                        {{ 'home.view.all' | trans }}
+                        <img src="{{ asset('./default/img/icons/green-arrow-right.svg') }}" alt="green arrow right" width="24" height="24">
+                    </a>
+                </div>
+
+                <div class="products__slider">
+                    <div class="products-swiper swiper">
+                        <div class="swiper-wrapper">
+                            {% for product in newItems %}
+                                <div class="product swiper-slide">
+                                    {% include 'default/store/common/product/item_product_card.html.twig' %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="slider-btn-prev" type="button"><img src="{{ asset('./default/img/icons/arrow-left.svg') }}" alt="arrow left" width="24" height="24"></button>
+                        <button class="slider-btn-next" type="button"><img src="{{ asset('./default/img/icons/arrow-right.svg') }}" alt="arrow right" width="24" height="24"></button>
+                    </div>
+                </div>
+            </div>
+        </section>#}
+    {% endif %}
+
 
     {% if widget.isActiveSeoText %}
         <div class="container-xxl">
             {{ widget.seoText | raw }}
-
         </div>
     {% endif %}
 {% endblock %}

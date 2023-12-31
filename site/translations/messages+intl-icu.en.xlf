@@ -38,6 +38,11 @@
                 <target>Popular products</target>
             </trans-unit>
 
+            <trans-unit id="home.catalog">
+                <source>home.catalog</source>
+                <target>Collection</target>
+            </trans-unit>
+
             <trans-unit id="home.new.arrivals">
                 <source>home.new.arrivals</source>
                 <target>New arrivals</target>

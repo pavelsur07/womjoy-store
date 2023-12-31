@@ -43,6 +43,11 @@
                 <target>Новинки</target>
             </trans-unit>
 
+            <trans-unit id="home.catalog">
+                <source>home.catalog</source>
+                <target>Категории</target>
+            </trans-unit>
+
             <trans-unit id="cart.title">
                 <source>cart.title</source>
                 <target>Корзина</target>
