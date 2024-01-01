@@ -48,10 +48,6 @@
             <link rel="stylesheet" href="{{ asset('./pion/css/style.css') }}">
         {% endblock %}
 
-        <!-- AmoCRM start widget -->
-        <script>(function(a,m,o,c,r,m){a[m]={id:"397204",hash:"5c5249573bbb05b817e58a1ae5f21e118b9b15dd53c2c6890998edc2d5d2bc78",locale:"ru",inline:false,setMeta:function(p){this.params=(this.params||[]).concat([p])}};a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};var d=a.document,s=d.createElement('script');s.async=true;s.id=m+'_script';s.src='https://gso.amocrm.ru/js/button.js?1700049791';d.head&&d.head.appendChild(s)}(window,0,'amoSocialButton',0,0,'amo_social_button'));</script>
-        <!-- AmoCRM end widget -->
-
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW13DRWRCX"></script>
         <script>
@@ -122,23 +118,31 @@
     <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
     <!-- /Top.Mail.Ru counter -->
 
+    <!-- AmoCRM start widget -->
+    <script>(function(a,m,o,c,r,m){a[m]={id:"397204",hash:"5c5249573bbb05b817e58a1ae5f21e118b9b15dd53c2c6890998edc2d5d2bc78",locale:"ru",inline:false,setMeta:function(p){this.params=(this.params||[]).concat([p])}};a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};var d=a.document,s=d.createElement('script');s.async=true;s.id=m+'_script';s.src='https://gso.amocrm.ru/js/button.js?1700049791';d.head&&d.head.appendChild(s)}(window,0,'amoSocialButton',0,0,'amo_social_button'));</script>
+    <!-- AmoCRM end widget -->
+
     </body>
 
     {% block javascripts %}
-{#      {{ encore_entry_script_tags('store_main') }}
-        {{ encore_entry_script_tags('store_cart_badge') }}
-#}
-        {{ encore_entry_script_tags('store_cart_badge') }}
 
+        {#
+        {{ encore_entry_script_tags('store_main') }}
+        {{ encore_entry_script_tags('store_cart_badge') }}
+        #}
+
+        {{ encore_entry_script_tags('store_cart_badge') }}
         <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
         <script src="{{ asset('./pion/libs/swiper/swiper.min.js') }}"></script>
         <script src="{{ asset('./pion/js/script.js') }}"></script>
 
-        {#<script src="{{ asset('./default/libs/swiper/swiper.min.js') }}"></script>
+        {#
+        <script src="{{ asset('./default/libs/swiper/swiper.min.js') }}"></script>
         <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
         <script src="{{ asset('./default/js/script.js') }}"></script>
         <script src="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.js" async defer>
         </script><link rel="preconnect" href="https://i.msearch.space">
-        <link href="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.css" rel="stylesheet">#}
+        <link href="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.css" rel="stylesheet">
+        #}
     {% endblock %}
 </html>
