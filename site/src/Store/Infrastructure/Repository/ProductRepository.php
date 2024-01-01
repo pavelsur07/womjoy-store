@@ -74,6 +74,7 @@ class ProductRepository
         }
 
         $qb->orderBy('p.' . $sort, $direction === 'desc' ? 'desc' : 'asc');
+        $qb->addOrderBy('p.id', 'DESC');
 
         $qb->getQuery();
 
