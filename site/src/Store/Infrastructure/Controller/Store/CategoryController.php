@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends BaseController
 {
-    public const PER_PAGE = 15;
+    public const PER_PAGE = 16;
 
     public const SORTING_RULE_POPULARITY = 'popularity';
     public const SORTING_RULE_PRICE_ASC = 'price-asc';
