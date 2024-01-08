@@ -10,6 +10,7 @@
         <a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__name">{{ item.name }}</a>
         <span class="card__cost">{{ item.price.listPrice|number_format(0, ',', ' ') }} р.</span>
 
+        {#
         <div class="colors">
             <ul class="colors__items">
                 <li class="colors__item">
@@ -22,5 +23,6 @@
                 {% endfor %}
             </ul>
         </div>
+        #}
     </div>
 </div>
