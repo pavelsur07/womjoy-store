@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="catalog-menu">
+		<div class="container-xxl">
+			<div class="d-flex d-md-none justify-content-between align-items-center py-4">
+				<button class="catalog-menu__back" type="button"><img src="./img/icons/back-arrow.svg" alt="" width="8" height="16"></button>
+				<span class="catalog-menu__title mb-0">КАТАЛОГ</span>
+				<button class="catalog-menu__close" type="button"><img src="./img/icons/close.svg" alt="" width="24" height="24"></button>
+			</div>
+			<div class="d-block d-md-none">
+				<div class="search">
+					<div class="container">
+						<div class="search__content">
+							<button class="search__close" type="button"><img src="./img/icons/close.svg" alt=""></button>
+
+							<div class="search__main mb-0 mb-md-5 d-flex d-md-block">
+								<form class="search__form flex-grow-1 me-2">
+									<div class="flex-grow-1 me-0 me-md-3 w-field">
+										<div class="w-field__main">
+											<img src="./img/icons/search.svg" alt="" width="24" height="24">
+											<input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+										</div>
+									</div>
+									<button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
+								</form>
+								<button class="search__cancel text-decoration-underline d-none" type="button">Отменить</button>
+							</div>
+							<div class="search__bottom position-relative pt-md-0 pt-3">
+								<div class="row flex-grow-1">
+									<div class="col col-12 col-md-6 order-2">
+										<span class="d-block title-lg mb-1 mb-md-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
+										<div class="search__queries">
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												love
+											</a>
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												боди
+											</a>
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												велосипедки
+											</a>
+											<a href="#" class="search__query">
+												<img src="./img/icons/search.svg" alt="" width="24" height="24">
+												шорты
+											</a>
+										</div>
+									</div>
+									<div class="col col-12 col-md-6 order-1 mb-2 mb-md-0">
+										<span class="d-block title-lg mb-1 mb-md-3 fw-bold">ВЫ ИСКАЛИ</span>
+										<div class="search__queries">
+											<a href="#" class="search__query">
+												Одежда
+											</a>
+										</div>
+									</div>
+								</div>
+								<button class="search__clear" type="button">Очистить</button>
+							</div>
+							<div class="search__result">
+								<div class="search__queries">
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										love
+									</a>
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										боди
+									</a>
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										велосипедки
+									</a>
+									<a href="#" class="search__query">
+										<img src="./img/icons/search.svg" alt="" width="24" height="24">
+										шорты
+									</a>
+								</div>
+								<a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="catalog-menu__cols">
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">SALE</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">НОВИНКИ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">СКОРО В ПРОДАЖЕ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ПЛЯЖ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ПОДАРОЧНАЯ УПАКОВКА</a>
+					</div>
+				</div>
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__title drop__trigger">НИЖНЕЕ БЕЛЬЕ</a>
+						<ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Комплекты белья</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Топы и лифы</a>
+							</li>
+							<li class="catalog-menu__item drop">
+								<a href="#" class="catalog-menu__link drop__trigger">Трусы</a>
+								<ul class="catalog-menu__sublist drop__content">
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Бразильяно</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Кюлот</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Моделирующие</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Слипы</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Стринги</a>
+									</li>
+									<li class="catalog-menu__subitem">
+										<a href="#" class="catalog-menu__sublink">Шорты</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__subtitle drop__trigger">ПО КАПСУЛАМ</a>
+						<ul class="catalog-menu__list drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Bloom</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Sculpt</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Invisible</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Белье из бамбука</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Soft</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Бамбук</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Base</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__title drop__trigger">ОДЕЖДА</a>
+						<ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Велосипедки</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Толстовки и свитшоты</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Шорты</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Футболки</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Брюки</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Топы и кроп-топы</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Боди</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Водолазки и лонгсливы</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Майки</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__subtitle drop__trigger">ПО КАПСУЛАМ</a>
+						<ul class="catalog-menu__list drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Bloom</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Sculpt</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Invisible</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Белье из бамбука</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Soft</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Бамбук</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Base</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="catalog-menu__col">
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ОДЕЖДА ДЛЯ ДОМА</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ОДЕЖДА ДЛЯ СПОРТА</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">ЛЕГИНСЫ</a>
+					</div>
+					<div class="catalog-menu__cell drop">
+						<a href="#" class="catalog-menu__title drop__trigger">КУПАЛЬНИКИ</a>
+						<ul class="catalog-menu__list drop__content">
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Базовые</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Верх</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Низ</a>
+							</li>
+							<li class="catalog-menu__item">
+								<a href="#" class="catalog-menu__link">Слитные</a>
+							</li>
+						</ul>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">КОЛГОТКИ И НОСКИ</a>
+					</div>
+					<div class="catalog-menu__cell">
+						<a href="#" class="catalog-menu__title">АКСЕССУАРЫ</a>
+					</div>
+				</div>
+				<div class="catalog-menu__col d-none d-xl-block">
+					<img src="./img/menu-ad.webp" alt="">
+				</div>
+				<button class="catalog-menu__close d-none d-md-block" type="button"><img src="./img/icons/close.svg" alt="" width="24" height="24"></button>
+			</div>
+			<div class="catalog-menu__bottom">
+				<ul class="catalog-menu__info">
+					<li><a href="#">Магазины</a></li>
+					<li><a href="#">Оплата</a></li>
+					<li><a href="#">Доставка</a></li>
+					<li><a href="#">Возврат</a></li>
+				</ul>
+				<ul class="catalog-menu__info">
+					<li><a href="#">Программа лояльности</a></li>
+					<li><a href="#">Инструкция по установке приложения</a></li>
+				</ul>
+				<ul class="catalog-menu__soc">
+					<li><a href="#">Vkontakte</a></li>
+					<li><a href="#">Telegram</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="search search-pc">
+		<div class="container">
+			<div class="search__content">
+				<button class="search__close" type="button"><img src="./img/icons/close.svg" alt=""></button>
+
+				<div class="search__main mb-0 mb-md-5">
+					<form class="search__form">
+						<div class="flex-grow-1 me-0 me-md-3 w-field">
+							<div class="w-field__main">
+								<img src="./img/icons/search.svg" alt="" width="24" height="24">
+								<input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+							</div>
+						</div>
+						<button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
+					</form>
+				</div>
+				<div class="search__bottom">
+					<div class="row flex-grow-1">
+						<div class="col col-6">
+							<span class="d-block title-lg mb-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
+							<div class="search__queries">
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									love
+								</a>
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									боди
+								</a>
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									велосипедки
+								</a>
+								<a href="#" class="search__query">
+									<img src="./img/icons/search.svg" alt="" width="24" height="24">
+									шорты
+								</a>
+							</div>
+						</div>
+						<div class="col col-6">
+							<span class="d-block title-lg mb-3 fw-bold">ВЫ ИСКАЛИ</span>
+							<div class="search__queries">
+								<a href="#" class="search__query">
+									Одежда
+								</a>
+							</div>
+						</div>
+					</div>
+					<button class="search__clear" type="button">Очистить</button>
+				</div>
+				<div class="search__result">
+					<div class="search__queries">
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							love
+						</a>
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							боди
+						</a>
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							велосипедки
+						</a>
+						<a href="#" class="search__query">
+							<img src="./img/icons/search.svg" alt="" width="24" height="24">
+							шорты
+						</a>
+					</div>
+					<a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <header class="header header-in py-2">
+        <div class="container-fluid">
+            <div class="header__alert d-flex justify-content-center py-2 border-bottom border-white">SUMMER SALE! до -40%! Подробнее ></div>
+            <div class="header__main d-flex justify-content-between align-items-center border-bottom py-4 px-2 px-md-4">
+                <button class="burger d-flex align-items-center text-uppercase me-2 me-md-5 fw-bold" type="button">
+                    <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 6H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                        <path d="M3 12H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                        <path d="M3 18H11" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                    </svg>
+                    <span class="d-none d-xl-block">Каталог</span>
+                </button>
+                <div class="me-auto fw-bold d-none d-xl-flex">
+                    <a href="#" class="pe-3 me-3">RU</a>
+                    <a href="#" class="opacity-75">COM</a>
+                </div>
+                <a href="#" class="header__logo position-absolute start-50 translate-middle-x d-block">
+                	<img src="./img/logo.svg" alt="">
+                	<img src="./img/logo-black.svg" alt="">
+                </a>
+
+                <ul class="d-flex flex-grow-1 flex-md-grow-0 align-items-center">
+                	<li class="header__action call-search">
+                		<button type="button">
+                			<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+	                            <path d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z" stroke-linecap="round" stroke-linejoin="round"></path>
+	                            <path d="M15 15L21 21" stroke-linecap="round" stroke-linejoin="round"></path>
+	                        </svg>
+                		</button>
+                	</li>
+                	<li class="header__action">
+                		<a href="#">
+                			<svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+	                            <path d="M9 10C6.81196 10 4.71354 10.8297 3.16637 12.3065C1.61919 13.7834 0.75 15.9114 0.75 18C0.75 18.5523 1.19772 19 1.75 19H16.25C16.8023 19 17.25 18.5523 17.25 18C17.25 15.9114 16.3808 13.7834 14.8336 12.3065C13.2865 10.8297 11.188 10 9 10ZM9 10C10.2503 10 11.4494 9.52589 12.3335 8.68198C13.2176 7.83807 13.7143 6.69347 13.7143 5.5C13.7143 4.30653 13.2176 3.16193 12.3335 2.31802C11.4494 1.47411 10.2503 1 9 1C7.74969 1 6.5506 1.47411 5.6665 2.31802C4.7824 3.16193 4.28571 4.30653 4.28571 5.5C4.28571 6.69347 4.7824 7.83807 5.6665 8.68198C6.5506 9.52589 7.74969 10 9 10Z" stroke-linecap="round" stroke-linejoin="round"></path>
+	                        </svg>
+                		</a>
+                	</li>
+                	<li class="header__action ms-auto">
+                		<a href="#">
+                			<svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+                                <path d="M15.0226 0.529051C12.976 0.300761 10.7734 1.44221 9.9992 3.14837C9.22499 1.44221 6.99839 0.300761 4.97584 0.529051C2.28111 0.823424 0.552638 3.56891 1.09879 6.21826C1.84299 9.82283 5.90009 11.4329 9.9992 15.5C14.0803 11.4329 18.1554 9.81683 18.8996 6.21826C19.4458 3.56891 17.7173 0.823424 15.0226 0.529051Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                		</a>
+                	</li>
+                	<li class="header__action">
+                		<a href="#">
+                			<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+		                        <path d="M18.1528 8H5.84709C5.35825 8 4.94106 8.35341 4.8607 8.8356L3.19403 18.8356C3.09244 19.4451 3.56248 20 4.18042 20H19.8195C20.4374 20 20.9075 19.4451 20.8059 18.8356L19.1392 8.8356C19.0589 8.35341 18.6417 8 18.1528 8Z" stroke-linecap="round" stroke-linejoin="round"></path>
+		                        <path d="M8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8" stroke-linecap="round" stroke-linejoin="round"></path>
+		                    </svg>
+		                    <span class="cart-currentcnt" id="cart-badge">5</span>
+                		</a>
+                	</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="#" class="breadcrumbs__item">Главная</a>
+            <a href="#" class="breadcrumbs__item">Каталог</a>
+            <a href="#" class="breadcrumbs__item">Одежда</a>
+            <a href="#" class="breadcrumbs__item">Велосипедки</a>
+            <div class="breadcrumbs__current">Велосипедки удлиненные в рубчик с широким поясом черный</div>
+        </div>
+        <section class="i-card w-section">
+            <div class="i-card__content">
+                <div class="i-card__img">
+                    <a href="#" class="i-card__back"><img src="./img/icons/back-arrow.svg" alt=""></a>
+                    <div class="i-card__smimgs">
+                        <div class="i-card-smswiper swiper">
+                            <div class="swiper-wrapper">
+                                <div class="i-card__smimg swiper-slide"><img src="./img/i-card/sm-1.jpg" alt="" width="00" height="81"></div>
+                                <div class="i-card__smimg swiper-slide"><img src="./img/i-card/sm-2.jpg" alt="" width="00" height="81"></div>
+                                <div class="i-card__smimg swiper-slide"><img src="./img/i-card/sm-3.jpg" alt="" width="00" height="81"></div>
+                                <div class="i-card__smimg swiper-slide"><img src="./img/i-card/sm-4.jpg" alt="" width="00" height="81"></div>
+                                <div class="i-card__smimg swiper-slide"><img src="./img/i-card/sm-5.jpg" alt="" width="00" height="81"></div>
+                            </div>
+                        </div>
+                        <button class="i-card-smbtn-prev" type="button">
+                            <svg>
+                                <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#arw-up-a)" transform="rotate(-90 284.5 508.5)">
+                                    <path fill="#383838" d="M789.1 231.681l-7.552-7.548a.453.453 0 00-.64.64l7.225 7.227-7.226 7.225a.454.454 0 00.319.775.442.442 0 00.319-.134l7.548-7.548a.45.45 0 00.007-.637z" />
+                                </g>
+                            </svg>
+                        </button>
+                        <button class="i-card-smbtn-next" type="button">
+                            <svg>
+                                <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#arw-up-a)" transform="rotate(-90 284.5 508.5)">
+                                    <path fill="#383838" d="M789.1 231.681l-7.552-7.548a.453.453 0 00-.64.64l7.225 7.227-7.226 7.225a.454.454 0 00.319.775.442.442 0 00.319-.134l7.548-7.548a.45.45 0 00.007-.637z" />
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="i-card__lgimgs">
+                        <div class="i-card-lgswiper swiper">
+                            <div class="swiper-wrapper">
+                                <div class="i-card__lgimg swiper-slide"><img src="./img/i-card/lg-1.jpg" alt="" width="715" height="1075"></div>
+                                <div class="i-card__lgimg swiper-slide"><img src="./img/i-card/lg-2.jpg" alt="" width="715" height="1075"></div>
+                                <div class="i-card__lgimg swiper-slide"><img src="./img/i-card/lg-3.jpg" alt="" width="715" height="1075"></div>
+                                <div class="i-card__lgimg swiper-slide"><img src="./img/i-card/lg-4.jpg" alt="" width="715" height="1075"></div>
+                                <div class="i-card__lgimg swiper-slide"><img src="./img/i-card/lg-5.jpg" alt="" width="715" height="1075"></div>
+                            </div>
+                        </div>
+                        <div class="i-card-pagination"></div>
+                    </div>
+                </div>
+                <div class="i-card__text">
+                    <h1 class="i-card__name">Велосипедки удлиненные в рубчик с широким поясом</h1>
+                    <span class="i-card__cost">3 389 ₽</span>
+                    <div class="i-card__partly">Или 4 платежа по 847,25 ₽. <a href="#" data-modaltarget="modal-divide">Подробнее</a></div>
+                    <div class="colors colors-lg mb-4">
+                        <span class="colors__title">Цвет: черный</span>
+                        <ul class="colors__items">
+                            <li class="colors__item">
+                                <a href="#" class="colors__link colors__link-current" style="background-color: #000000"></a>
+                            </li>
+                            <li class="colors__item">
+                                <a href="#" class="colors__link" style="background-color: #fef2bf"></a>
+                            </li>
+                            <li class="colors__item">
+                                <a href="#" class="colors__link" style="background-color: #e3440c"></a>
+                            </li>
+                            <li class="colors__item">
+                                <a href="#" class="colors__link" style="background-color: #cde87d"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="i-card__size">
+                        <div class="w-sel w-sel-sm w-sel-white">
+                            <div class="w-sel__trigger">
+                                XS/S
+                            </div>
+                            <div class="w-sel__dropdown">
+                                <label class="w-sel__item">
+                                    <input type="radio" name="card-size" value="xs" checked hidden>
+                                    <span></span>
+                                    XS/S
+                                </label>
+                                <label class="w-sel__item">
+                                    <input type="radio" name="card-size" value="ml" hidden>
+                                    <span></span>
+                                    M/L
+                                </label>
+                                <label class="w-sel__item">
+                                    <input type="radio" name="card-size" value="xl" hidden>
+                                    <span></span>
+                                    XL/XXL
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="i-card__size_info" data-modaltarget="modal-size-table">СПРАВОЧНИК РАЗМЕРОВ</span>
+                    <p class="i-card__txt">
+                        Артикул: W4020001 <br>
+                        Параметры модели: 180 см, грудь 82 см, талия 60 см, бедра 90 см, размер на модели: XS/S
+                    </p>
+                    <button class="i-card__btn w-primary-btn" type="submit">Добавить в корзину</button>
+                    <button class="i-card__like" type="button">
+                        <img src="./img/icons/like.svg" alt="" width="24" height="24">
+                        ДОБАВИТЬ В WISHLIST
+                    </button>
+                    <div class="i-card__faq">
+                        <div class="i-card__faq_item">
+                            <div class="i-card__faq_trigger">ОБМЕРЫ И ОПИСАНИЕ</div>
+                            <div class="i-card__faq_dropdown">
+                                <div class="text">
+                                    <p>Удлиненные велосипедки с высокой посадкой изготовлены из упругой микрофибры в рубчик по современной технологии без боковых швов. Модель дополнена цельновязаным широким поясом и ластовицей, которые обеспечивают надежную посадку по фигуре, максимальный комфорт и удобство при носке. Идеально подходят как для домашних, так и для городских и спортивных образов. Светлые изделия могут просвечивать.</p>
+                                    <p>Фабрики, с которыми мы сотрудничаем, соблюдают общепризнанные стандарты охраны труда. При производстве изделий belle you применяются инновационные технологии для экономии природных ресурсов. Мы доставляем заказы исключительно в экологичной упаковке из органических и переработанных материалов.</p>
+                                    <p>
+                                        Обмеры изделия: <br>
+                                        Обхват по талии: 50 см (XS/S), 54 см (M/L), 58 см (XL/XXL), 62 см (3XL/4XL) <br>
+                                        Обхват по бедрам: 50 см (XS/S), 54 см (M/L), 58 см (XL/XXL), 62 см (3XL/4XL) <br>
+                                        Высота резинки пояса: 5,5 см (XS/S), 5,5 см (M/L), 5,5 см (XL/XXL), 5,5 см (3XL/4XL) <br>
+                                        Обхват по низу: 24 см (XS/S), 26 см (M/L), 28 см (XL/XXL), 32 см (3XL/4XL) <br>
+                                        Высота сидения: 27 см (XS/S), 29 см (M/L), 31 см (XL/XXL), 32 см (3XL/4XL) <br>
+                                        Длина изделия: 49 см (XS/S), 52 см (M/L), 54 см (XL/XXL), 56 см (3XL/4XL)
+                                    </p>
+                                    <b>Сервис "belle you в подарок"</b>
+                                    <p>По вашему запросу мы можем:</p>
+                                    <ul class="disced">
+                                        <li>упаковать изделия в несколько разных <a href="#">коробок</a></li>
+                                        <li>упаковать изделия в <a href="#">подарочную коробку</a></li>
+                                        <li>убрать бирки с ценой и товарный чек из упаковки</li>
+                                        <li>не звонить получателю заранее и сохранить ваш заказ в тайне до момента его вручения</li>
+                                    </ul>
+                                    <p>Подарочная упаковка приобретается отдельно.</p>
+                                    <p>Просто укажите в комментарии к заказу ваши пожелания и мы их исполним! <br>Не забудьте дополнительно оставить свои контакты в комментарии к заказу.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="i-card__faq_item">
+                            <div class="i-card__faq_trigger">СОСТАВ И УХОД</div>
+                            <div class="i-card__faq_dropdown">
+                                <div class="text">
+                                    <p>96% полиамид, 4% эластан</p>
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-1.svg" alt="" width="32" height="32">
+                                    Деликатная стирка при 30 градусах
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-2.svg" alt="" width="32" height="32">
+                                    Не гладить
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-3.svg" alt="" width="32" height="32">
+                                    Не отбеливать
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-4.svg" alt="" width="32" height="32">
+                                    Не стирать мылом
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-5.svg" alt="" width="32" height="32">
+                                    Не подвергать химчистке
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-6.svg" alt="" width="32" height="32">
+                                    Не использовать машинную сушку
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-7.svg" alt="" width="32" height="32">
+                                    Сушить вертикально вдали от отопительных приборов
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-8.svg" alt="" width="32" height="32">
+                                    Не стирать руками
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-9.svg" alt="" width="32" height="32">
+                                    Не применять смягчающий ополаскиватель
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-10.svg" alt="" width="32" height="32">
+                                    Стирать, вывернув наизнанку, с вещами похожего цвета
+                                </div>
+                                <div class="i-card__faq_adv">
+                                    <img src="./img/icons/i-card-adv-11.svg" alt="" width="32" height="32">
+                                    Не стирать светлые изделия с цветными
+                                </div>
+                            </div>
+                        </div>
+                        <div class="i-card__faq_item">
+                            <div class="i-card__faq_trigger">НАЛИЧИЕ В МАГАЗИНАХ</div>
+                            <div class="i-card__faq_dropdown">
+                                <div class="i-card__faq_table">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="d-flex justify-content-between mb-2 text-lg">
+                                                        <div>Ваш город</div>
+                                                        <div>Москва</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="padding: 5px 0 16px; border: none; font-weight: bold; font-size: 15px;">
+                                                    Позвоните в магазин, чтобы уточнить наличие
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «ОКЕАНИЯ»</td>
+                                                <td>+7 (499) 653-66-22</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Павелецкая Плаза»</td>
+                                                <td>+7 (499) 553-00-20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРК «Европолис»</td>
+                                                <td>+7 (499) 322-15-35</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Саларис»</td>
+                                                <td>+7 (499) 653-50-90</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Ривьера»</td>
+                                                <td>+7 (499) 638-24-24</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Vegas Крокус Сити»</td>
+                                                <td>+7 (499) 322-40-70</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Vegas Каширское»</td>
+                                                <td>+7 (499) 322-08-90</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Vegas Кунцево»</td>
+                                                <td>+7 (499) 322-08-05</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТЦ «Метрополис»</td>
+                                                <td>+7 (499) 450-41-31</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Универмаг Цветной</td>
+                                                <td>+7 (499) 653-70-60</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Афимолл Сити»</td>
+                                                <td>+7 (499) 450-90-55</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ТРЦ «Авиапарк»</td>
+                                                <td>+7 (499) 322-05-80</td>
+                                            </tr>
+                                            <tr>
+                                                <td>NOVAYA RIGA OUTLET</td>
+                                                <td>+7 (499) 450-90-20</td>
+                                            </tr>
+                                            <tr>
+                                                <td>VNUKOVO OUTLET</td>
+                                                <td>+7 (499) 322-10-80</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="i-card__faq_item">
+                            <div class="i-card__faq_trigger">ВОЗВРАТ</div>
+                            <div class="i-card__faq_dropdown">
+                                <div class="text">
+                                    <p>Вы можете оформить возврат товара в течение 7 дней, не считая дня получения заказа. <a href="#">Правила возврата.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="i-card__review w-empty-btn" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                            <g clip-path="url(#clip0_71_8427)">
+                                <path d="M23.7848 9.22199C22.2099 8.0643 20.2992 7.45421 18.3448 7.48499C17.1445 7.47976 15.954 7.70096 14.8358 8.13699C14.2377 7.0507 13.346 6.15457 12.2628 5.55099C10.8562 4.75865 9.26611 4.34967 7.65177 4.36499C5.69772 4.33443 3.7874 4.94451 2.21277 6.10199C1.51206 6.59497 0.936527 7.24519 0.532268 8.00057C0.128009 8.75595 -0.0937451 9.5955 -0.115234 10.452C-0.0996631 11.2198 0.0800957 11.9753 0.411958 12.6678C0.74382 13.3604 1.2201 13.9738 1.80877 14.467L1.82977 18.094C1.82818 18.1874 1.8521 18.2796 1.89897 18.3605C1.94584 18.4413 2.01388 18.5079 2.09577 18.553C2.17712 18.5972 2.26807 18.6208 2.36064 18.6216C2.45322 18.6225 2.5446 18.6006 2.62677 18.558L6.38977 16.458C6.80898 16.5114 7.23116 16.5381 7.65377 16.538C8.85092 16.5413 10.0381 16.3201 11.1538 15.886C11.5821 16.6838 12.1797 17.3784 12.9048 17.921C14.4797 19.0787 16.3904 19.6888 18.3448 19.658C18.7694 19.658 19.1936 19.6309 19.6148 19.577L23.3848 21.563C23.4642 21.6119 23.5561 21.6366 23.6494 21.6342C23.7426 21.6317 23.8331 21.6021 23.9098 21.549C23.9879 21.5009 24.0527 21.434 24.0982 21.3543C24.1436 21.2746 24.1682 21.1847 24.1698 21.093L24.1908 17.588C24.7796 17.0947 25.2559 16.4811 25.5878 15.7884C25.9196 15.0957 26.0993 14.3399 26.1148 13.572C26.093 12.7153 25.871 11.8757 25.4664 11.1203C25.0618 10.3649 24.4858 9.71476 23.7848 9.22199ZM7.65177 15.468C7.21657 15.4664 6.78207 15.433 6.35177 15.368C6.27899 15.357 6.20474 15.3612 6.13367 15.3803C6.0626 15.3994 5.99624 15.433 5.93877 15.479L2.89477 17.182L2.87777 14.232C2.87777 14.221 2.87777 14.21 2.87777 14.2C2.8743 14.1256 2.85534 14.0528 2.82211 13.9861C2.78888 13.9195 2.7421 13.8605 2.68477 13.813C2.16454 13.4168 1.73935 12.9095 1.44023 12.328C1.1411 11.7465 0.975584 11.1056 0.955766 10.452C0.955766 7.68599 3.95577 5.43599 7.65577 5.43599C10.3918 5.43599 12.8648 6.71399 13.8738 8.59399C13.5379 8.77911 13.2164 8.98903 12.9118 9.22199C12.2112 9.71508 11.6359 10.3653 11.2318 11.1207C10.8277 11.8761 10.6061 12.7156 10.5848 13.572C10.5848 14.0182 10.6457 14.4623 10.7658 14.892C9.77301 15.2774 8.71668 15.4728 7.65177 15.468ZM23.3148 16.932C23.2575 16.9795 23.2107 17.0385 23.1775 17.1052C23.1443 17.1718 23.1253 17.2446 23.1218 17.319C23.1218 17.329 23.1218 17.338 23.1218 17.348L23.1048 20.208L20.0528 18.599C19.9961 18.5566 19.9315 18.5259 19.8628 18.5087C19.7941 18.4916 19.7227 18.4883 19.6528 18.499C19.2225 18.5641 18.788 18.5975 18.3528 18.599C15.3288 18.599 12.7678 17.09 11.9388 15.024C11.9388 15.014 11.9308 15.004 11.9268 14.994C11.7489 14.5444 11.6573 14.0654 11.6568 13.582C11.7167 12.6511 12.0411 11.7567 12.5919 11.0039C13.1426 10.251 13.8968 9.671 14.7658 9.33199C14.7863 9.32358 14.8064 9.31389 14.8258 9.30299C15.9303 8.80126 17.1306 8.54536 18.3438 8.55299C22.0358 8.55299 25.0438 10.803 25.0438 13.569C25.0242 14.2229 24.8589 14.8643 24.5597 15.4461C24.2606 16.0279 23.8352 16.5356 23.3148 16.932Z" />
+                                <path d="M21.492 11.778H15.203C15.061 11.778 14.9248 11.8344 14.8243 11.9348C14.7239 12.0353 14.6675 12.1715 14.6675 12.3135C14.6675 12.4555 14.7239 12.5917 14.8243 12.6921C14.9248 12.7926 15.061 12.849 15.203 12.849H21.493C21.635 12.849 21.7712 12.7926 21.8716 12.6921C21.9721 12.5917 22.0285 12.4555 22.0285 12.3135C22.0285 12.1715 21.9721 12.0353 21.8716 11.9348C21.7712 11.8344 21.635 11.778 21.493 11.778H21.492Z" />
+                                <path d="M21.492 14.203H15.203C15.061 14.203 14.9248 14.2594 14.8243 14.3598C14.7239 14.4603 14.6675 14.5965 14.6675 14.7385C14.6675 14.8805 14.7239 15.0167 14.8243 15.1171C14.9248 15.2176 15.061 15.274 15.203 15.274H21.493C21.635 15.274 21.7712 15.2176 21.8716 15.1171C21.9721 15.0167 22.0285 14.8805 22.0285 14.7385C22.0285 14.5965 21.9721 14.4603 21.8716 14.3598C21.7712 14.2594 21.635 14.203 21.493 14.203H21.492Z" />
+                                <path d="M23.7848 9.22199C22.2099 8.0643 20.2992 7.45421 18.3448 7.48499C17.1445 7.47976 15.954 7.70096 14.8358 8.13699C14.2377 7.0507 13.346 6.15457 12.2628 5.55099C10.8562 4.75865 9.26611 4.34967 7.65177 4.36499C5.69772 4.33443 3.7874 4.94451 2.21277 6.10199C1.51206 6.59497 0.936527 7.24519 0.532268 8.00057C0.128009 8.75595 -0.0937451 9.5955 -0.115234 10.452C-0.0996631 11.2198 0.0800957 11.9753 0.411958 12.6678C0.74382 13.3604 1.2201 13.9738 1.80877 14.467L1.82977 18.094C1.82818 18.1874 1.8521 18.2796 1.89897 18.3605C1.94584 18.4413 2.01388 18.5079 2.09577 18.553C2.17712 18.5972 2.26807 18.6208 2.36064 18.6216C2.45322 18.6225 2.5446 18.6006 2.62677 18.558L6.38977 16.458C6.80898 16.5114 7.23116 16.5381 7.65377 16.538C8.85092 16.5413 10.0381 16.3201 11.1538 15.886C11.5821 16.6838 12.1797 17.3784 12.9048 17.921C14.4797 19.0787 16.3904 19.6888 18.3448 19.658C18.7694 19.658 19.1936 19.6309 19.6148 19.577L23.3848 21.563C23.4642 21.6119 23.5561 21.6366 23.6494 21.6342C23.7426 21.6317 23.8331 21.6021 23.9098 21.549C23.9879 21.5009 24.0527 21.434 24.0982 21.3543C24.1436 21.2746 24.1682 21.1847 24.1698 21.093L24.1908 17.588C24.7796 17.0947 25.2559 16.4811 25.5878 15.7884C25.9196 15.0957 26.0993 14.3399 26.1148 13.572C26.093 12.7153 25.871 11.8757 25.4664 11.1203C25.0618 10.3649 24.4858 9.71476 23.7848 9.22199ZM7.65177 15.468C7.21657 15.4664 6.78207 15.433 6.35177 15.368C6.27899 15.357 6.20474 15.3612 6.13367 15.3803C6.0626 15.3994 5.99624 15.433 5.93877 15.479L2.89477 17.182L2.87777 14.232C2.87777 14.221 2.87777 14.21 2.87777 14.2C2.8743 14.1256 2.85534 14.0528 2.82211 13.9861C2.78888 13.9195 2.7421 13.8605 2.68477 13.813C2.16454 13.4168 1.73935 12.9095 1.44023 12.328C1.1411 11.7465 0.975584 11.1056 0.955766 10.452C0.955766 7.68599 3.95577 5.43599 7.65577 5.43599C10.3918 5.43599 12.8648 6.71399 13.8738 8.59399C13.5379 8.77911 13.2164 8.98903 12.9118 9.22199C12.2112 9.71508 11.6359 10.3653 11.2318 11.1207C10.8277 11.8761 10.6061 12.7156 10.5848 13.572C10.5848 14.0182 10.6457 14.4623 10.7658 14.892C9.77301 15.2774 8.71668 15.4728 7.65177 15.468ZM23.3148 16.932C23.2575 16.9795 23.2107 17.0385 23.1775 17.1052C23.1443 17.1718 23.1253 17.2446 23.1218 17.319C23.1218 17.329 23.1218 17.338 23.1218 17.348L23.1048 20.208L20.0528 18.599C19.9961 18.5566 19.9315 18.5259 19.8628 18.5087C19.7941 18.4916 19.7227 18.4883 19.6528 18.499C19.2225 18.5641 18.788 18.5975 18.3528 18.599C15.3288 18.599 12.7678 17.09 11.9388 15.024C11.9388 15.014 11.9308 15.004 11.9268 14.994C11.7489 14.5444 11.6573 14.0654 11.6568 13.582C11.6568 10.762 14.7078 8.56599 18.3568 8.56599C22.0058 8.56599 25.0568 10.816 25.0568 13.582C25.0338 14.2348 24.8655 14.8742 24.5641 15.4537C24.2628 16.0333 23.836 16.5383 23.3148 16.932Z" />
+                                <path d="M21.492 11.778H15.203C15.061 11.778 14.9248 11.8344 14.8243 11.9348C14.7239 12.0353 14.6675 12.1715 14.6675 12.3135C14.6675 12.4555 14.7239 12.5917 14.8243 12.6921C14.9248 12.7926 15.061 12.849 15.203 12.849H21.493C21.635 12.849 21.7712 12.7926 21.8716 12.6921C21.9721 12.5917 22.0285 12.4555 22.0285 12.3135C22.0285 12.1715 21.9721 12.0353 21.8716 11.9348C21.7712 11.8344 21.635 11.778 21.493 11.778H21.492Z" />
+                                <path d="M21.492 14.203H15.203C15.061 14.203 14.9248 14.2594 14.8243 14.3598C14.7239 14.4603 14.6675 14.5965 14.6675 14.7385C14.6675 14.8805 14.7239 15.0167 14.8243 15.1171C14.9248 15.2176 15.061 15.274 15.203 15.274H21.493C21.635 15.274 21.7712 15.2176 21.8716 15.1171C21.9721 15.0167 22.0285 14.8805 22.0285 14.7385C22.0285 14.5965 21.9721 14.4603 21.8716 14.3598C21.7712 14.2594 21.635 14.203 21.493 14.203H21.492Z" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_71_8427">
+                                    <rect width="26" height="26" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        ОСТАВИТЬ ОТЗЫВ
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="w-section">
+            <h2 class="mb-4">ИДЕАЛЬНО ПОДХОДИТ:</h2>
+            <div class="row g-2 g-md-4">
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-1.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-2.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section card-slider">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="me-2 mb-0">ИДЕАЛЬНО ПОДХОДИТ:</h2>
+                <div class="d-flex">
+                    <button class="card-slider-btn-prev me-3" type="button"><img src="./img/icons/arrow-left.svg" alt=""></button>
+                    <button class="card-slider-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt=""></button>
+                </div>
+            </div>
+            <div class="card-slider-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-1.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-1.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="modal modal-lg" id="modal-size-table">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <span class="modal__title">ТАБЛИЦА РАЗМЕРОВ</span>
+                <buttno class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></buttno>
+            </div>
+            <div class="modal__sizes">
+                <picture>
+                    <source srcset="./img/sizes.webp" alt="" media="(min-width: 769px)">
+                    <source srcset="./img/sizes-mob.webp" alt="" media="(max-width: 768px)">
+                    <img src="./img/sizes.webp" alt="" class="modal__sizes_img">
+                </picture>
+                <div class="modal__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><b>Размер RU</b></th>
+                                <th><b>Размер EU</b></th>
+                                <th>Обхват<br> груди (см)</th>
+                                <th>Обхват<br> под грудью (см)</th>
+                                <th>Обхват<br> талии (см)</th>
+                                <th>Обхват<br> бедер (см)</th>
+                                <th>Рост<br> (см)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>40</b></td>
+                                <td><b>XXS</b></td>
+                                <td>80</td>
+                                <td>65</td>
+                                <td>60</td>
+                                <td>86</td>
+                                <td>158-164</td>
+                            </tr>
+                            <tr>
+                                <td><b>42/44</b></td>
+                                <td><b>XS/S</b></td>
+                                <td>82-90</td>
+                                <td>68-77</td>
+                                <td>62-70</td>
+                                <td>88-96</td>
+                                <td>158-164</td>
+                            </tr>
+                            <tr>
+                                <td><b>46/48</b></td>
+                                <td><b>M/L</b></td>
+                                <td>90-98</td>
+                                <td>73-82</td>
+                                <td>70-78</td>
+                                <td>96-104</td>
+                                <td>164-170</td>
+                            </tr>
+                            <tr>
+                                <td><b>50/52</b></td>
+                                <td><b>XL/2XL</b></td>
+                                <td>98-106</td>
+                                <td>78-87</td>
+                                <td>78-86</td>
+                                <td>104-112</td>
+                                <td>164-170</td>
+                            </tr>
+                            <tr>
+                                <td><b>54/56</b></td>
+                                <td><b>3XL/4XL</b></td>
+                                <td>106-114</td>
+                                <td>83-92</td>
+                                <td>86-94</td>
+                                <td>112-120</td>
+                                <td>164-170</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal-sm active" id="modal-divide">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <buttno class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></buttno>
+            </div>
+            <img src="./img/divide.webp" alt="">
+            <div class="modal__bottom">
+                <b>Подробнее на <a href="#" class="text-decoration-underline">podeli.ru</a></b>
+                ООО А-4 Технологии, ОГРН 1227700064734
+            </div>
+        </div>
+    </div>
+    <footer class="footer pt-md-5 mt-md-5 pt-4 mt-2">
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col col-12 col-md-6 order-1 order-md-0">
+                <div class="d-flex justify-content-around justify-content-md-start">
+                    <div class="footer__col me-0 me-md-5 text-center text-md-start">
+                        <span class="d-block mb-3 fw-bold text-uppercase">ПОКУПАТЕЛЯМ</span>
+                        <ul class="footer__list">
+                            <li><a href="#">Оплата</a></li>
+                            <li><a href="#">Доставка</a></li>
+                            <li><a href="#">Возврат</a></li>
+                            <li><a href="#">Политика конфиденциальности</a></li>
+                            <li><a href="#">Оферта</a></li>
+                            <li><a href="#">Программа лояльности</a></li>
+                            <li><a href="#">Инструкция по установке приложения</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col text-center text-md-start">
+                        <span class="d-block mb-3 fw-bold text-uppercase">О КОМПАНИИ</span>
+                        <ul class="footer__list">
+                            <li><a href="#">Магазины</a></li>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">СМИ о нас</a></li>
+                            <li><a href="#">Отзывы</a></li>
+                            <li><a href="#">Оплата по частям</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-12 col-md-6 mb-4 mb-md-0">
+                <span class="d-block mb-3 fw-bold text-uppercase">ПОДПИШИТЕСЬ НА НАШУ РАССЫЛКУ:</span>
+                <form class="d-flex mb-4 flex-column flex-lg-row">
+                    <div class="w-field flex-grow-1 me-0 me-lg-3 mb-3 mb-lg-0">
+                        <div class="w-field__main">
+                            <input type="text" class="w-field__inp" placeholder="Введите Ваш E-Mail">
+                        </div>
+                    </div>
+                    <button class="w-primary-btn" type="submit">Подписаться</button>
+                </form>
+                <p class="w-text-sm">
+                    После подписки на рассылку на указанный e-mail придет промокод на скидку 500 рублей на ваш первый заказ от 3500 рублей. Предложение действует только для новых клиентов, которые не регистрировались в программе лояльности belle you. <br><br>
+                    Нажимая на кнопку «Подписаться», я соглашаюсь на обработку моих персональных данных и ознакомлен(а) с условиями конфиденциальности.
+                </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between py-5 flex-column flex-md-row align-items-center align-items-md-start">
+            <div class="footer__phone">
+                <a href="#" class="footer__phone_num">8-800-707-24-26</a>
+                <p class="w-text-sm mt-2">Звонки по РФ бесплатно Пн – Вс с 07:00 до 20:00 по московскому времени</p>
+            </div>
+            <ul class="footer__social ml-auto mr-auto d-flex mb-4 mb-md-0">
+                <li class="me-4">
+                    <a href="#">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM21.6284 26.3135C21.4312 26.5214 21.0462 26.5634 21.0462 26.5634H19.7712C19.7712 26.5634 16.9581 26.7293 14.48 24.1975C11.7776 21.4352 9.39128 15.9546 9.39128 15.9546C9.39128 15.9546 9.25355 15.5951 9.40276 15.422C9.57075 15.2264 10.0288 15.2141 10.0288 15.2141L13.0766 15.1947C13.0766 15.1947 13.3636 15.2407 13.5691 15.3893C13.7392 15.5122 13.8341 15.7406 13.8341 15.7406C13.8341 15.7406 14.3266 16.9635 14.9788 18.0696C16.2528 20.2297 16.8454 20.7018 17.2774 20.4704C17.9076 20.1334 17.7188 17.4172 17.7188 17.4172C17.7188 17.4172 17.7302 16.4319 17.4016 15.9925C17.147 15.6525 16.667 15.5531 16.4552 15.5255C16.283 15.5029 16.5648 15.1117 16.93 14.9365C17.4788 14.6733 18.4471 14.658 19.5917 14.6692C20.4838 14.6784 20.7405 14.7327 21.089 14.8157C21.8978 15.0073 21.8726 15.6213 21.8181 16.9464C21.8018 17.3427 21.7829 17.8026 21.7829 18.3339C21.7829 18.4532 21.7793 18.5805 21.7757 18.7114C21.7568 19.3903 21.7351 20.1677 22.1908 20.4571C22.4246 20.6045 22.9953 20.4786 24.4238 18.0983C25.1009 16.9696 25.608 15.6433 25.608 15.6433C25.608 15.6433 25.7197 15.4067 25.8918 15.3053C26.0682 15.2018 26.3061 15.2336 26.3061 15.2336L29.5135 15.2141C29.5135 15.2141 30.4776 15.1004 30.6331 15.5285C30.7969 15.9761 30.2731 17.0229 28.9626 18.7374C27.7195 20.3642 27.1145 20.9632 27.17 21.4929C27.2106 21.88 27.6038 22.2301 28.3585 22.9172C29.9338 24.3529 30.3561 25.1083 30.4575 25.2897C30.4659 25.3048 30.4721 25.3159 30.4766 25.3231C31.183 26.4733 29.693 26.5634 29.693 26.5634L26.8434 26.6023C26.8434 26.6023 26.232 26.7211 25.4265 26.1783C25.0045 25.8942 24.5922 25.4302 24.1995 24.9882C23.5997 24.3132 23.0456 23.6896 22.5727 23.8369C21.7787 24.0848 21.8027 25.7635 21.8027 25.7635C21.8027 25.7635 21.809 26.123 21.6284 26.3135Z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20ZM16.3337 29.1667L16.674 24.0685L16.6737 24.0683L25.9478 15.6992C26.3548 15.3379 25.8589 15.1618 25.3186 15.4894L13.8731 22.7103L8.92926 21.1672C7.86161 20.8403 7.85394 20.1067 9.16896 19.5792L28.434 12.1507C29.3138 11.7512 30.1631 12.362 29.8272 13.7087L26.5464 29.1692C26.3173 30.2679 25.6534 30.5306 24.7337 30.0232L19.7359 26.3308L17.3337 28.6667C17.3261 28.674 17.3186 28.6814 17.3111 28.6887C17.0424 28.9502 16.8201 29.1667 16.3337 29.1667Z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <div class="footer__pay text-center">
+                <span class="footer__title">Способы оплаты</span>
+                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-center">
+                    <img src="./img/icons/mir.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/visa.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/mc.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/union.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/jcb.svg" alt="" width="60" height="40">
+                    <img src="./img/icons/amex.svg" alt="" width="60" height="40">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="./libs/swiper/swiper.min.js"></script>
+<script src="./js/script.js"></script>
+</body>
+
+</html>

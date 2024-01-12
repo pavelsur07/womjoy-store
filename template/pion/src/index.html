@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    @@include('./parts/header.html')
+    <section class="hero">
+        <div class="hero__slider">
+            <div class="hero-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-1-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-1.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="hero__title">Базовые купальники</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-2-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-2.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-2-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-2.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="hero__slide swiper-slide">
+                        <picture>
+                            <source srcset="./img/hero-slider/img-2-mob.webp" media="(max-width: 768px)">
+                            <source srcset="./img/hero-slider/img-2.webp" media="(min-width: 769px)">
+                            <img src="./img/hero-slider/img-1.webp" alt="">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="text-white mb-2 h1">До -40% на сайте и в магазинах</div>
+                            <div class="text-white display-1 mb-4">SUMMER SALE!</div>
+                            <a href="#" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hero-btn-prev" type="button"><img src="./img/icons/arrow-left.svg" alt=""></button>
+            <button class="hero-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt=""></button>
+            <div class="hero-pagination"></div>
+        </div>
+    </section>
+    <div class="container-xxl">
+        <section class="w-section">
+            <h1 class="h4 text-center mb-4">Интернет-магазин женского белья belle you</h1>
+            <div class="row g-2 g-md-4">
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('./img/cats/img-1.webp');">
+                        <span class="cat__btn w-white-btn">Нижнее белье</span>
+                    </a>
+                </div>
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('../img/cats/img-2.webp');">
+                        <span class="cat__btn w-white-btn">Купальники</span>
+                    </a>
+                </div>
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('../img/cats/img-3.webp');">
+                        <span class="cat__btn w-white-btn">Одежда для спорта</span>
+                    </a>
+                </div>
+                <div class="col col-6 col-lg-3">
+                    <a href="#" class="cat" style="background-image: url('../img/cats/img-4.webp');">
+                        <span class="cat__btn w-white-btn">одежда для дома и отдыха</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="w-section">
+            <a href="#" class="main-banner mb-4">
+                <div class="main-banner__text">
+                    <div class="main-banner__title">BLACK FRIDAY ДО 50%</div>
+                    <p class="main-banner__descr">Для участников программы лояльности</p>
+                    <div class="main-banner__btn w-white-btn">Подробнее</div>
+                </div>
+                <picture>
+                    <source srcset="./img/banner-bg.png" media="(max-width: 500px)">
+                    <img src="./img/banner-bg.png" alt="">
+                </picture>
+            </a>
+        </section>
+        <section class="w-section">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <form name="message_new_form" method="post">
+                        <div id="message_new_form">
+                            <div class="mb-3"><label class="form-label required" for="message_new_form_type">Type</label><select id="message_new_form_type" name="message_new_form[type]" class="form-select">
+                                    <option value="0">Возврат</option>
+                                    <option value="1">Оплата</option>
+                                    <option value="2" selected="selected">Maybe</option>
+                                    <option value="3">Yes</option>
+                                    <option value="4">No</option>
+                                </select> </div>
+                            <div class="mb-3"><label for="message_new_form_name" class="form-label required">Name</label><input type="text" id="message_new_form_name" name="message_new_form[name]" required="required" class="form-control"> </div>
+                            <div class="mb-3"><label for="message_new_form_phone" class="form-label required">Phone</label><input type="text" id="message_new_form_phone" name="message_new_form[phone]" required="required" class="form-control"> </div>
+                            <div class="mb-3"><label for="message_new_form_email" class="form-label required">Email</label><input type="email" id="message_new_form_email" name="message_new_form[email]" required="required" class="form-control"> </div>
+                            <div class="mb-3"><label for="message_new_form_message" class="form-label required">Message</label><textarea id="message_new_form_message" name="message_new_form[message]" required="required" rows="8" class="form-control"></textarea> </div><input type="hidden" id="message_new_form__token" name="message_new_form[_token]" value="8a2d321e12b84af675.MaMwP4E-BRkNS3L-AncfL9DOm5e9mXIl9HLK6OXqafg.Q9tGTrYNXVBjADXMRD1Uf6D52eL02zFdzRqpkIayIcpd5lhQzgtifWgqNw">
+                        </div>
+                        <button class="w-primary-btn">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="cookie">
+        <p>Мы используем файлы cookie, чтобы улучшить наш сервис. <br>Наши cookie не собирают персонализированную или личную информацию. <br><br>Продолжая просмотр, вы разрешаете их использование. </p>
+        <button class="w-empty-btn" type="button">Закрыть</button>
+    </div>
+    @@include('./parts/footer.html')
+</body>
+
+</html>

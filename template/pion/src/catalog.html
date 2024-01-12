@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+	@@include('./parts/header-in.html')
+
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="#" class="breadcrumbs__item">Главная</a>
+            <a href="#" class="breadcrumbs__item">Каталог</a>
+            <div class="breadcrumbs__current">Одежда</div>
+        </div>
+
+    	<section class="catalog section">
+            <h1 class="mb-3 text-center text-uppercase h3">Одежда</h1>   
+            <ul class="catalog__tags">
+                <li><a href="#" class="active">Все</a></li>
+                <li><a href="#">Легинсы</a></li>
+                <li><a href="#">Велосипедки</a></li>
+                <li><a href="#">Толстовки и свитшоты</a></li>
+                <li><a href="#">Шорты</a></li>
+                <li><a href="#">Футболки</a></li>
+                <li><a href="#">Брюки</a></li>
+                <li><a href="#">Топы и кроп-топы</a></li>
+                <li><a href="#">Боди</a></li>
+                <li><a href="#">Водолазки и лонгсливы</a></li>
+                <li><a href="#">Майки</a></li>
+            </ul>
+
+            <div class="filter">
+                <form class="filter__main">
+                    <div class="d-flex d-md-none align-items-center justify-content-between p-4 border-bottom mb-3">
+                        <span class="text-uppercase text-xl">Фильтр 0</span>
+                        <button class="filter__close" type="button"><img src="./img/icons/close.svg" alt="" width="16" height="16"></button>
+                    </div>
+                    <div class="filter__items">
+                        <div class="filter__item">
+                            <div class="filter__trigger">
+                                Цвет
+
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
+                                </svg>
+                            </div>
+                            <div class="filter__content">
+                                <button class="filter__clear" type="button">Выбрать все</button>
+                                <div class="filter__checks">
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
+                                            <span class="w-check__name">Бежевый</span>
+                                            <span class="text-sm ms-auto">0</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
+                                            <span class="w-check__name">Айсберг</span>
+                                            <span class="text-sm ms-auto">0</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
+                                            <span class="w-check__name">Бирюзовый</span>
+                                            <span class="text-sm ms-auto">200</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
+                                            <span class="w-check__name">Бежевый</span>
+                                            <span class="text-sm ms-auto">123</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
+                                            <span class="w-check__name">Айсберг</span>
+                                            <span class="text-sm ms-auto">22</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
+                                            <span class="w-check__name">Бирюзовый</span>
+                                            <span class="text-sm ms-auto">5</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
+                                            <span class="w-check__name">Бежевый</span>
+                                            <span class="text-sm ms-auto">2</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
+                                            <span class="w-check__name">Айсберг</span>
+                                            <span class="text-sm ms-auto">21</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
+                                            <span class="w-check__name">Бирюзовый</span>
+                                            <span class="text-sm ms-auto">22</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #d4bf9f;"></span>
+                                            <span class="w-check__name">Бежевый</span>
+                                            <span class="text-sm ms-auto">13</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #b9c8db;"></span>
+                                            <span class="w-check__name">Айсберг</span>
+                                            <span class="text-sm ms-auto">13</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__color" style="background-color: #05a1dc;"></span>
+                                            <span class="w-check__name">Бирюзовый</span>
+                                            <span class="text-sm ms-auto">13</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
+                            </div>
+                        </div>
+                        <div class="filter__item">
+                            <div class="filter__trigger">
+                                РАЗМЕР
+
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
+                                </svg>
+                            </div>
+                            <div class="filter__content">
+                                <button class="filter__clear" type="button">Выбрать все</button>
+                                <div class="filter__checks">
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS</span>
+                                            <span class="text-sm ms-auto">0</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS (70B)</span>
+                                            <span class="text-sm ms-auto">0</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">OS</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS/S</span>
+                                            <span class="text-sm ms-auto">12</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">OS</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
+                            </div>
+                        </div>
+                        <div class="filter__item">
+                            <div class="filter__trigger">
+                                ТИП
+
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
+                                </svg>
+                            </div>
+                            <div class="filter__content">
+                                <button class="filter__clear" type="button">Выбрать все</button>
+                                <div class="filter__checks">
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Анорак</span>
+                                            <span class="text-sm ms-auto">2</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check w-check-disabled">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">XS (70B)</span>
+                                            <span class="text-sm ms-auto">0</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="checkbox" hidden>
+                                        <span class="w-check__sq"><img src="./img/icons/brown-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                            <span class="text-sm ms-auto">122</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
+                            </div>
+                        </div>
+                        <div class="filter__item">
+                            <div class="filter__trigger">
+                                СОРТИРОВАТЬ
+
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
+                                </svg>
+                            </div>
+                            <div class="filter__content">
+                                <button class="filter__clear" type="button">Выбрать все</button>
+                                <div class="filter__checks">
+                                    <label class="filter__check w-check">
+                                        <input type="radio" hidden name="sort-type">
+                                        <span class="w-check__rd"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Боди на широких бретелях</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="radio" hidden name="sort-type">
+                                        <span class="w-check__rd"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">По возрастанию цены</span>
+                                        </div>
+                                    </label>
+                                    <label class="filter__check w-check">
+                                        <input type="radio" hidden name="sort-type">
+                                        <span class="w-check__rd"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">По убыванию цены</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <a href="№" class="filter__apply w-primary-btn">Применить</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-fixed start-0 bottom-0 w-100 d-block d-md-none p-4 pt-2 border-top bg-white z-3">
+                        <div class="text-center m-3 text-uppercase">Показать 206 товаров</div>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="w-empty-btn flex-grow-1">Очистить</a>
+                            <a href="#" class="w-primary-btn flex-grow-1">Применить</a>
+                        </div>
+                    </div>
+                </form>
+                <button class="filter__call d-flex d-md-none align-items-center" type="button"><img src="./img/icons/filter.svg" alt="" width="16" height="16"> Фильтры</button>
+                <span class="filter__cnt">ТОВАРОВ: 204</span>
+            </div>
+
+
+
+            <div class="row mb-5 g-2 g-md-4">
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-1.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #2c1609"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cfe881"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #ff8800"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #fe4040"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-2.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #d9d4ce"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #bfadc7"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-3.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Топ на широких бретелях из махровой ткани</a>
+                            <span class="card__cost">6 989 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #fef2bf"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #e3440c"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cde87d"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <a href="#" class="catalog__sale">
+                        <img src="./img/cards/sale-1.webp" alt="">
+                    </a>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-1.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #2c1609"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cfe881"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #ff8800"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #fe4040"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-2.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #d9d4ce"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #bfadc7"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-3.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Топ на широких бретелях из махровой ткани</a>
+                            <span class="card__cost">6 989 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #fef2bf"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #e3440c"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cde87d"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-3.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Топ на широких бретелях из махровой ткани</a>
+                            <span class="card__cost">6 989 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #fef2bf"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #e3440c"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cde87d"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-1.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #2c1609"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cfe881"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #ff8800"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #fe4040"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-2.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                            <span class="card__cost">3 389 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #0e0c11"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #d9d4ce"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #bfadc7"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-3.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Топ на широких бретелях из махровой ткани</a>
+                            <span class="card__cost">6 989 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #fef2bf"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #e3440c"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cde87d"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card">
+                        <a href="#" class="card__img">
+                            <img src="./img/cards/img-3.webp" alt="">
+                        </a>
+                        <div class="card__main">
+                            <a href="#" class="card__name">Топ на широких бретелях из махровой ткани</a>
+                            <span class="card__cost">6 989 ₽</span>
+                            <div class="colors">
+                                <ul class="colors__items">
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link colors__link-current" style="background-color: #fef2bf"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #e3440c"></a>
+                                    </li>
+                                    <li class="colors__item">
+                                        <a href="#" class="colors__link" style="background-color: #cde87d"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination__list">
+                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+                                    <path d="M1.35355 0.646447C1.15829 0.451184 0.841709 0.451184 0.646447 0.646447C0.451184 0.841709 0.451184 1.15829 0.646447 1.35355L1.35355 0.646447ZM5 5L5.35355 5.35355C5.54882 5.15829 5.54882 4.84171 5.35355 4.64645L5 5ZM0.646447 8.64645C0.451184 8.84171 0.451184 9.15829 0.646447 9.35355C0.841709 9.54882 1.15829 9.54882 1.35355 9.35355L0.646447 8.64645ZM0.646447 1.35355L4.64645 5.35355L5.35355 4.64645L1.35355 0.646447L0.646447 1.35355ZM4.64645 4.64645L0.646447 8.64645L1.35355 9.35355L5.35355 5.35355L4.64645 4.64645Z" fill="#1A1A1A"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <section class="text section">
+            <h2>Женская одежда</h2>
+            <p>Одежда, предназначенная для женщин, – это элементы, создающие нужный образ: романтичный, деловой, независимый, женственный. Женская одежда для создания любого образа, удобная, современная и экологичная, представлена в интернет-магазине belle you</p>
+            <h3>Коллекция одежды</h3>
+            <p>Сайт женской одежды предлагает комфортные модели для повседневной носки, работы, для уюта и отдыха дома, в том числе:</p>
+            <ul>
+                <li><a href="#">Боди</a>, которые можно носить и как белье, и в качестве одного из главных элементов образа. Например, в коллекции есть боди-водолазки, модели с глубоким вырезом, с открытой спиной и другие изделия с необычным кроем.</li>
+                <li><a href="#">Коллекция домашней одежды</a> - рубашки, шорты, майки и леггинсы.</li>
+                <li>Не сковывающие движения футболки для занятий спортом.</li>
+                <li>Просторные и теплые толстовки с оригинальными принтами.</li>
+                <li><a href="#">Топы</a>, подходящие как для повседневных образов, так и для спорта.</li>
+                <li><a href="#">Леггинсы и велосипедки</a> с комфортной посадкой и в различных цветах.</li>
+                <li>Легкие нейлоновые блейзеры, <a href="#">брюки</a>, шорты, блузки.</li>
+                <li><a href="#">Лонгсливы</a>, которые могут стать ярким акцентом в образе или частью базового гардероба.</li>
+            </ul>
+            <p>В магазине женской одежды можно купить и термобелье. Это модели из особых тканей, способных эффективно поглощать влагу и очень быстро сохнуть, сохранять тепло, не препятствуя поступлению кислорода к коже. Они станут хорошим решением для женщин, предпочитающих активный отдых, в том числе в холодное время года.</p>
+            <h3>Купить женскую одежду от belle you</h3>
+            <p>Главные принципы, которых мы придерживаемся при разработке моделей, - предложить удобство, красоту и высокое качество. В каталог товаров одежда женская попадает только в том случае, если она полностью соответствует этим принципам. Мы предлагаем:</p>
+            <p>
+                Модели из современных технологичных тканей, дышащих, обеспечивающих хороший воздухообмен, приятных на ощупь. Среди них, например, микромодал – материал из крученой целлюлозы, гладкостью напоминающий натуральный шелк, способный охлаждать в жару и удерживать тепло в холод. <br>
+                Износостойкие изделия, выдерживающие частые стирки, не деформируясь и не теряя цвета.
+                Лаконичный минималистичный дизайн, позволяющий сочетать наши изделия с разными предметами гардероба в любом стиле, создавая нужный образ.
+            </p>
+            <p>Оформите заказ на сайте, чтобы купить в магазине женской одежды современные модели для любого случая.</p>
+        </section>
+    </div>
+
+    @@include('./parts/footer.html')
+</body>
+
+</html>

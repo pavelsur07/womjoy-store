@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    @@include('./parts/header-in.html')
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="#" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">Корзина</div>
+        </div>
+
+        <section class="cart w-section">
+            <h1 class="mb-5 text-uppercase h3">КОРЗИНА</h1>
+
+            <div class="border-bottom pb-5 mb-5">
+                <div class="mb-4 d-none d-md-flex position-relative align-items-center justify-content-between">
+                    <span class="cart__head text-start text-lg-center">Наименование товара</span>
+                    <span class="cart__head">Цвет</span>
+                    <span class="cart__head">Размер</span>
+                    <span class="cart__head">Цена</span>
+                    <span class="cart__head">Количество</span>
+                    <span class="cart__head">Сумма</span>
+                    <span class="cart__head"></span>
+                </div>
+                <div class="cart__rows">
+                    <div class="cart__row d-flex position-relative align-items-center justify-content-between flex-wrap">
+                        <div class="cart__left mb-3 mb-md-0 flex-column flex-lg-row align-items-start align-items-lg-center">
+                            <a mb-0 href="#" class="cart__img d-block mb-0 mb-md-3 mb-lg-0 me-0 me-lg-3"><img src="./img/cart/img-1.jpg" alt="" width="106" height="160"></a>
+                            <div class="cart__name">
+                                <span class="cart__art">арт. W4020001</span>
+                                <a href="#">Велосипедки удлиненные в рубчик с широким поясом черный / XL/XXL</a>
+                            </div>
+                        </div>
+                        <div class="cart__cell"><div class="cart__color" style="background-color: #0b0a12;"></div></div>
+                        <div class="cart__cell">
+                            <div class="cart__size">
+                                <div class="w-sel w-sel-lg w-sel-dark">
+                                    <div class="w-sel__trigger">
+                                        XS/S
+                                    </div>
+                                    <div class="w-sel__dropdown">
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size-1" checked hidden>
+                                            <span></span>
+                                            XS/S
+                                        </label>
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size-1" hidden>
+                                            <span></span>
+                                            M/L
+                                        </label>
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size-1" hidden>
+                                            <span></span>
+                                            XL/XXL
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart__cell">
+                            <div class="cart__cost c-item__cost">3 389 ₽</div>
+                        </div>
+                        <div class="cart__cell">
+                            <div class="cart__cnt c-item__actions">
+                                <button class="cart__cnt_action cart__cnt_minus c-item__action c-item__minus" type="buton"></button>
+                                <input type="text" value="1" class="cart__cnt_inp c-item__inp">
+                                <button class="cart__cnt_action cart__cnt_plus c-item__action c-item__plus" type="buton"></button>
+                            </div>
+                        </div>
+                        <div class="cart__cell mt-3 mt-md-0">
+                            <div class="cart__cost c-item__cost">10 167 ₽</div>
+                        </div>
+                        <div class="cart__cell c-item__remove">
+                            <button class="cart__remove cart__clear" type="button"><img src="./img/icons/remove.svg" alt="" width="28" height="30"></button>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="c-item">
+                        <a href="#" class="c-item__img">
+                            <span class="c-item__img_in">
+                                <img src="./img/cart/img-1.jpg" alt="">
+                            </span>
+                        </a>
+                        <div class="c-item__main">
+                            <div class="c-item__text">
+                                <a href="#" class="c-item__name">Велосипедки удлиненные в рубчик с широким поясом черный </a>
+                                <span class="c-item__size">Размер: XL/XXL</span>
+                            </div>
+                            <div class="c-item__actions">
+                                <button class="c-item__action c-item__minus" type="button">
+                                    <img src="./img/icons/minus.svg" alt="" width="24" height="24">
+                                </button>
+                                <input type="text" class="c-item__inp" value="1">
+                                <button class="c-item__action c-item__plus" type="button">
+                                    <img src="./img/icons/plus.svg" alt="" width="24" height="24">
+                                </button>
+                            </div>
+                            <div class="c-item__price">
+                                <span class="c-item__cost">11 299 ₽</span>
+                                <del class="c-item__disc">1 299 ₽</del>
+                            </div>
+                            <div class="c-item__remove">
+                                <button type="button" class="cart__clear">
+                                    <img src="./img/icons/remove.svg" alt="plus" width="24" height="24">
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="row justify-content-between align-items-center align-items-lg-start flex-column flex-lg-row">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-3 d-flex flex-column align-items-center align-items-lg-start order-3 order-lg-1">
+                    <a href="#" class=" d-inline-block mb-3 w-black-link">УСЛОВИЯ ДОСТАВКИ</a>
+                    <a href="#" class=" d-inline-block mb-3 w-black-link">ОПЛАТА ЗАКАЗОВ</a>
+                    <a href="#" class=" d-inline-block mb-3 w-black-link">ВОЗВРАТ ТОВАРА</a>
+
+                    <p>Если у вас остались вопросы, свяжитесь с нами по бесплатному номеру телефона <a href="#" class="w-black-link">8-800-707-24-26</a></p>
+                </div>
+                <p class="col-12 col-sm-10 col-md-8 col-lg-3 w-text-lg order-1 order-lg-2">
+                    ПОДАРОЧНЫЙ СЕРТИФИКАТ <br>
+                    <a href="#">Войдите</a> или зарегистрируйтесь, чтобы применить купон или начислить баллы за покупку.
+                </p>
+                <div class="col-12 col-sm-10 col-md-8 col-lg-3 order-2 order-lg-3 mb-3 mb-lg-0">
+                    <ul class="c-main__list">
+                        <li class="d-flex mb-4">
+                            <span>ТОВАРЫ:</span> <span class="d-block ms-auto">6 778 ₽</span>
+                        </li>
+                    </ul>
+                    <div class="d-flex mb-4 w-text-lg fw-bold c-main__final">
+                        ИТОГО: <span class="d-block ms-auto c-main__cost">6 778 ₽</span>
+                    </div>
+                    <a href="#" class="w-primary-btn w-100 c-main__btn btn-primary">ОФОРМИТЬ ЗАКАЗ</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section card-slider">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="me-2 mb-0">ВЫ НЕДАВНО СМОТРЕЛИ:</h2>
+                <div class="d-flex">
+                    <button class="card-slider-btn-prev me-3" type="button"><img src="./img/icons/arrow-left.svg" alt=""></button>
+                    <button class="card-slider-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt=""></button>
+                </div>
+            </div>
+            <div class="card-slider-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-1.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-1.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    @@include('./parts/footer.html')
+</body>
+
+</html>

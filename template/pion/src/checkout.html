@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    @@include('./parts/header-in.html')
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="#" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">Оформление заказа</div>
+        </div>
+
+        <section class="checkout w-section">
+            <h1 class="mb-5 text-uppercase">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
+
+            <div class="row position-relative align-items-start">
+                <div class="col col-12 col-lg-9">
+                    <form class="checkout__items">
+                        <div class="checkout__item w-border-bottom-primary2 w-border-top-primary2">
+                            <div class="py-4 w-text-lg">1. ТОВАРЫ В ЗАКАЗЕ</div>
+                            <div class="pb-4">
+                                <div class="mb-4 d-none d-md-flex position-relative align-items-center justify-content-between">
+                                    <span class="cart__head text-start text-lg-center">Наименование товара</span>
+                                    <span class="cart__head">Цвет</span>
+                                    <span class="cart__head">Размер</span>
+                                    <span class="cart__head">Цена</span>
+                                    <span class="cart__head">Количество</span>
+                                    <span class="cart__head">Сумма</span>
+                                </div>
+
+                                <div class="cart__rows pb-4 w-border-bottom-primary2">
+                                    <div class="cart__row d-flex position-relative align-items-center justify-content-between flex-wrap">
+                                        <div class="cart__left mb-3 mb-md-0 flex-column flex-lg-row align-items-start align-items-lg-center">
+                                            <a mb-0 href="#" class="cart__img d-block mb-0 mb-md-3 mb-lg-0 me-0 me-lg-3"><img src="./img/cart/img-1.jpg" alt="" width="106" height="160"></a>
+                                            <div class="cart__name">
+                                                <span class="cart__art">арт. W4020001</span>
+                                                <a href="#">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                            </div>
+                                        </div>
+                                        <div class="cart__cell"><div class="cart__color" style="background-color: #0b0a12;"></div></div>
+                                        <div class="cart__cell">
+                                            <div class="cart__size">
+                                                <span class="w-text-sm d-inline-block d-md-none opacity-75">Размер: </span>
+                                                XS/S
+                                            </div>
+                                        </div>
+                                        <div class="cart__cell">
+                                            <div class="cart__cost">
+                                                3 389 ₽
+                                            </div>
+                                        </div>
+                                        <div class="cart__cell">
+                                            <span class="w-text-sm d-inline-block d-md-none  opacity-75">Количество: </span>
+                                            2 шт
+                                        </div>
+                                        <div class="cart__cell">
+                                            <div class="cart__cost">
+                                                <span class="w-text-sm d-inline-block d-md-none  opacity-75">Сумма: </span>
+                                                10 167 ₽
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cart__row d-flex position-relative align-items-center justify-content-between flex-wrap">
+                                        <div class="cart__left mb-3 mb-md-0 flex-column flex-lg-row align-items-start align-items-lg-center">
+                                            <a mb-0 href="#" class="cart__img d-block mb-0 mb-md-3 mb-lg-0 me-0 me-lg-3"><img src="./img/cart/img-1.jpg" alt="" width="106" height="160"></a>
+                                            <div class="cart__name">
+                                                <span class="cart__art">арт. W4020001</span>
+                                                <a href="#">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                            </div>
+                                        </div>
+                                        <div class="cart__cell"><div class="cart__color" style="background-color: #0b0a12;"></div></div>
+                                        <div class="cart__cell">
+                                            <div class="cart__size">
+                                                <span class="w-text-sm d-inline-block d-md-none opacity-75">Размер: </span>
+                                                XS/S
+                                            </div>
+                                        </div>
+                                        <div class="cart__cell">
+                                            <div class="cart__cost">
+                                                3 389 ₽
+                                            </div>
+                                        </div>
+                                        <div class="cart__cell">
+                                            <span class="w-text-sm d-inline-block d-md-none  opacity-75">Количество: </span>
+                                            2 шт
+                                        </div>
+                                        <div class="cart__cell">
+                                            <div class="cart__cost">
+                                                <span class="w-text-sm d-inline-block d-md-none  opacity-75">Сумма: </span>
+                                                10 167 ₽
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4 d-flex justify-content-between">
+                                    <button type="button" class="w-black-link">ВВЕСТИ ПРОМОКОД</button>
+                                    <button class="w-primary-btn ms-2 ms-sm-0" type="button">Далее</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__item w-border-bottom-primary2">
+                            <div class="py-4 w-text-lg">2. РЕГИОН ДОСТАВКИ</div>
+                            <div class="pb-4">
+                                <div class="pb-4 w-border-bottom-primary2">
+                                    <div class="row">
+                                        <div class="col col-12 col-md-6">
+                                            <div class="w-field mb-4">
+                                                <label class="w-field__label">СТРАНА *</label>
+                                                <div class="w-sel w-sel-lg w-sel-dark">
+                                                    <div class="w-sel__trigger">
+                                                        Россия
+                                                    </div>
+                                                    <div class="w-sel__dropdown">
+                                                        <label class="w-sel__item">
+                                                            <input type="radio" name="sel-1" checked="" hidden="">
+                                                            <span></span>
+                                                            Россия
+                                                        </label>
+                                                        <label class="w-sel__item">
+                                                            <input type="radio" name="sel-1" hidden="">
+                                                            <span></span>
+                                                            Беларусь
+                                                        </label>
+                                                        <label class="w-sel__item">
+                                                            <input type="radio" name="sel-1" hidden="">
+                                                            <span></span>
+                                                            Казахстан
+                                                        </label>
+                                                        <label class="w-sel__item">
+                                                            <input type="radio" name="sel-1" hidden="">
+                                                            <span></span>
+                                                            Кыргызстан
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-field">
+                                                <label class="w-field__label">НАСЕЛЕННЫЙ ПУНКТ *</label>
+                                                <div class="w-field__main"><input type="text" class="w-field__inp" placeholder="Введите название"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4 d-flex justify-content-between">
+                                    <button class="w-empty-btn" type="button">Назад</button>
+                                    <button class="w-primary-btn ms-2 ms-sm-0" type="button">Далее</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__item w-border-bottom-primary2">
+                            <div class="py-4 w-text-lg">3. ОПЛАТА</div>
+                            <div class="pb-4">
+                                <div class="pb-4 w-border-bottom-primary2">
+                                    <p>При оплате картами Visa, Mastercard и МИР, выпущенных российскими банками, рекомендуем использовать ручной ввод данных банковской карты на сайте либо воспользоваться сервисом SberPay. <br>Оплата картами Visa и Mastercard зарубежных банков недоступна. <br>Обращаем ваше внимание, что при использовании VPN сервисов могут возникнуть сложности с оплатой покупок.</p>
+                                    <div class="p-3 bg-danger bg-opacity-10 text-danger">КРАСНОЕ УВЕДОМЛЕНИЕ</div>
+                                    <label class="w-check mt-4">
+                                        <input type="checkbox" hidden="">
+                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Оплата онлайн</span>
+                                        </div>
+                                    </label>
+                                    <label class="w-check mt-4">
+                                        <input type="checkbox" hidden="">
+                                        <span class="w-check__sq"><img src="./img/icons/white-check.svg" alt="" width="18" height="13"></span>
+                                        <div class="w-check__main">
+                                            <span class="w-check__name">Подели. Оплатить по частям</span>
+                                        </div>
+                                    </label>
+
+                                    <div class="pay-divide p-2 p-sm-4 w-bg-lightgray mt-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="fs-3">6778 ₽</span>
+                                            <a href="#"><img src="./img/icons/divide-logo.svg" alt="" width="200" height="18"></a>
+                                        </div>
+                                        <div class="row mb-4 gx-2">
+                                            <div class="col col-3">
+                                                <span class="d-block w-100 rounded w-bg-primary2" style="height: 5px;"></span>
+                                                <span class="d-block my-2 w-text-gray">Сегодня</span>
+                                                <span class="d-block">1694.5 ₽</span>
+                                            </div>
+                                            <div class="col col-3">
+                                                <span class="d-block w-100 rounded w-bg-darkgray" style="height: 5px;"></span>
+                                                <span class="d-block my-2 w-text-gray">2 августа</span>
+                                                <span class="d-block">1694.5 ₽</span>
+                                            </div>
+                                            <div class="col col-3">
+                                                <span class="d-block w-100 rounded w-bg-darkgray" style="height: 5px;"></span>
+                                                <span class="d-block my-2 w-text-gray">16 августа</span>
+                                                <span class="d-block">1694.5 ₽</span>
+                                            </div>
+                                            <div class="col col-3">
+                                                <span class="d-block w-100 rounded w-bg-darkgray" style="height: 5px;"></span>
+                                                <span class="d-block my-2 w-text-gray">30 августа</span>
+                                                <span class="d-block">1694.5 ₽</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-inline-flex">
+                                            Без комиссий и переплат <a href="#" class="d-block ms-2"><img src="./img/icons/discount-info.svg" alt="" width="14" height="14"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4 d-flex justify-content-between">
+                                    <button class="w-empty-btn" type="button">Назад</button>
+                                    <button class="w-primary-btn ms-2 ms-sm-0" type="button">Далее</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__item w-border-bottom-primary2">
+                            <div class="py-4 w-text-lg">4. ПОКУПАТЕЛЬ</div>
+                            <div class="pb-4">
+                                <div class="pb-4 w-border-bottom-primary2">
+                                    <div class="row">
+                                        <div class="col col-12 col-md-6">
+                                            <div class="w-field field mb-4">
+                                                <label class="w-field__label field__ph">ИМЯ*</label>
+                                                <div class="w-field__main"><input type="text" class="w-field__inp field__inp"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12 col-md-6">
+                                            <div class="w-field field mb-4">
+                                                <label class="w-field__label field__ph">ФАМИЛИЯ*</label>
+                                                <div class="w-field__main"><input type="text" class="w-field__inp field__inp"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12 col-md-6">
+                                            <div class="w-field field mb-4">
+                                                <label class="w-field__label field__ph">EMAIL*</label>
+                                                <div class="w-field__main"><input type="text" class="w-field__inp field__inp"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12 col-md-6">
+                                            <div class="w-field field mb-4">
+                                                <label class="w-field__label field__ph">ТЕЛЕФОН*</label>
+                                                <div class="w-field__main"><input type="text" class="w-field__inp field__inp"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="w-field field mb-4">
+                                                <label class="w-field__label field__ph">КОММЕНТАРИИ К ЗАКАЗУ*</label>
+                                                <div class="w-field__main"><textarea class="w-field__textarea field__inp"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-text">
+                                        <p><b>Сервис «Belle YOU в подарок»</b></p>
+                                        <p>По вашему запросу мы можем:</p>
+                                        <ul class="disced">
+                                            <li>упаковать изделия в несколько разных коробок</li>
+                                            <li>упаковать изделия в <a href="#">подарочную коробку</a></li>
+                                            <li>убрать бирки с ценой и товарный чек из упаковки</li>
+                                            <li>не звонить получателю заранее и сохранить ваш заказ в тайне до момента его вручения</li>
+                                        </ul>
+                                        <p>Подарочная упаковка приобретается отдельно.</p>
+                                        <p>
+                                            Просто укажите в комментарии к заказу ваши пожелания и мы их исполним! <br>
+                                            Не забудьте дополнительно оставить свои контакты в комментарии к заказу.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="pt-4 d-flex justify-content-between">
+                                    <button class="w-empty-btn" type="button">Назад</button>
+                                    <button class="w-primary-btn d-none d-lg-block" type="button">Оформить заказ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col col-12 col-sm-9 col-md-6 col-lg-3 position-sticky mx-auto top-0">
+                    <div class="d-flex flex-column align-items-start pt-6">
+                        <a href="#" class="w-black-link mb-3">УСЛОВИЯ ДОСТАВКИ</a>
+                        <a href="#" class="w-black-link mb-3">ОПЛАТА ЗАКАЗОВ</a>
+                        <div class="d-flex justify-content-between mb-3 w-100">
+                            <span>ТОВАРЫ:</span>
+                            <span>6 778 ₽</span>
+                        </div>
+                        <div class="d-flex justify-content-between w-100">
+                            <span>ИТОГО:</span>
+                            <span class="w-text-xl">6 778 ₽</span>
+                        </div>
+                        <button class="w-primary-btn mx-auto mt-2 d-block d-lg-none" type="button">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section card-slider">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="me-2 mb-0">ВЫ НЕДАВНО СМОТРЕЛИ:</h2>
+                <div class="d-flex">
+                    <button class="card-slider-btn-prev me-3" type="button"><img src="./img/icons/arrow-left.svg" alt=""></button>
+                    <button class="card-slider-btn-next" type="button"><img src="./img/icons/arrow-right.svg" alt=""></button>
+                </div>
+            </div>
+            <div class="card-slider-swiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-1.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-1.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="#" class="card__img">
+                                <img src="./img/cards/img-2.webp" alt="">
+                            </a>
+                            <div class="card__main">
+                                <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
+                                <span class="card__cost">3 389 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    @@include('./parts/footer.html')
+</body>
+
+</html>
