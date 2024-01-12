@@ -120,8 +120,8 @@ class YandexMarket
                 $writer->writeElement('picture', $this->thumbnails->generateUrl(
                     path: $image->getPath(),
                     file: $image->getName(),
-                    width: 900,
-                    height: 1200
+                    width: 1400,
+                    height: 2100
                 ));
             }
             /*foreach ($product->values as $value) {
