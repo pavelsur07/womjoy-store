@@ -26,10 +26,13 @@ class ProductEditForm extends AbstractType
                     'attr' => ['rows' => 8],
                 ]
             )
-        ->add('modelParameters', Type\TextType::class,
-            [
-                'required' => false
-            ])
+            ->add(
+                'modelParameters',
+                Type\TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->add(
                 'mainCategory',
                 Type\ChoiceType::class,

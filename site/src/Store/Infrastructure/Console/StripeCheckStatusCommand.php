@@ -9,6 +9,7 @@ use App\Store\Domain\Entity\Order\Order;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
 use App\Store\Infrastructure\Service\Payment\PaymentProvider;
+use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -41,7 +42,7 @@ class StripeCheckStatusCommand extends Command
 
         /** @var Order $order */
         foreach ($orders as $order) {
-            $session = \Stripe\Checkout\Session::retrieve(
+            $session = Session::retrieve(
                 $order->getPayment()->getTransactionId()
             );
 

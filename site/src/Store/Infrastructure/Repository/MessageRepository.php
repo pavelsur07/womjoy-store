@@ -48,7 +48,7 @@ class MessageRepository
         return $this->paginator->paginate($qb, $page, $size);
     }
 
-    public function findById(MessageId $id): Message|null
+    public function findById(MessageId $id): null|Message
     {
         return $this->repo->find($id->value());
     }

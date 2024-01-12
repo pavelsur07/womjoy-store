@@ -31,7 +31,7 @@ class VariantRepository
         return $object;
     }
 
-    public function findById(int $id): Variant|null
+    public function findById(int $id): null|Variant
     {
         return $this->repo->find($id);
     }

@@ -9,6 +9,7 @@ use App\Store\Domain\Entity\Order\OrderItem;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Exception\StoreOrderException;
 use App\Store\Infrastructure\Service\Order\OrderService;
+use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +52,7 @@ class StripeController extends AbstractController
             ];
         }
 
-        $session = \Stripe\Checkout\Session::create([
+        $session = Session::create([
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => $this->generateUrl(
@@ -124,7 +125,7 @@ class StripeController extends AbstractController
         );
 
         if ($order->getPayment()->getTransactionId()) {
-            $session = \Stripe\Checkout\Session::retrieve(
+            $session = Session::retrieve(
                 $order->getPayment()->getTransactionId()
             );
 

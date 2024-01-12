@@ -17,7 +17,7 @@ readonly class CartService
         private Flusher $flusher,
     ) {}
 
-    public function getCurrentCart(int|null $customerId = null): Cart
+    public function getCurrentCart(null|int $customerId = null): Cart
     {
         // 1. Ищем корзину по id если нет корзины создаем и возвращаем
         // 2. Если пользователь залогинин то ищем корзину по идентификатору пользователя

@@ -25,7 +25,7 @@ class Cart
     private int $id;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    private int|null $customerId = null;
+    private null|int $customerId = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private DateTimeImmutable $createdAt;
@@ -37,7 +37,7 @@ class Cart
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartItem::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $items;
 
-    public function __construct(DateTimeImmutable $createdAt, int|null $customerId = null)
+    public function __construct(DateTimeImmutable $createdAt, null|int $customerId = null)
     {
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
@@ -138,7 +138,7 @@ class Cart
         $this->customerId = $customerId;
     }
 
-    public function getCustomerId(): int|null
+    public function getCustomerId(): null|int
     {
         return $this->customerId;
     }

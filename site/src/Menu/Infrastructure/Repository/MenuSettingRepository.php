@@ -32,7 +32,7 @@ class MenuSettingRepository
         return $object;
     }
 
-    public function findById(int $id): MenuSetting|null
+    public function findById(int $id): null|MenuSetting
     {
         return $this->repo->find($id);
     }

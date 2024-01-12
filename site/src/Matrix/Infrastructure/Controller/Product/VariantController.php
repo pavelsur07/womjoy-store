@@ -71,7 +71,7 @@ class VariantController extends AbstractController
             $variant->generateInternalBarcode();
             $flusher->flush();
             $this->addFlash('success', 'Success generate barcode.');
-        } catch (MatrixException|DomainException $e) {
+        } catch (DomainException|MatrixException $e) {
             $this->addFlash('warning', $e->getMessage());
         }
 

@@ -61,22 +61,22 @@ class Product
     private Collection $variants;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
-    private Category|null $mainCategory = null;
+    private null|Category $mainCategory = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private string|null $slug = null;
+    private null|string $slug = null;
 
     #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
     private SeoMetadata $seoMetadata;
 
     #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
-    private string|null $categoriesIds = null;
+    private null|string $categoriesIds = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true, options: ['default'=> '2023-06-03 06:16:11'])]
-    private DateTimeImmutable|null $publishedAt = null;
+    private null|DateTimeImmutable $publishedAt = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
     private DateTimeImmutable $updatedAt;
@@ -729,7 +729,7 @@ class Product
         return $this->createdAt;
     }
 
-    public function getPublishedAt(): DateTimeImmutable|null
+    public function getPublishedAt(): null|DateTimeImmutable
     {
         return $this->publishedAt;
     }

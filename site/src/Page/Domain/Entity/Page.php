@@ -32,7 +32,7 @@ class Page
     private string $value = '';
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private string|null $slug = null;
+    private null|string $slug = null;
 
     public function __construct(
         string $name,

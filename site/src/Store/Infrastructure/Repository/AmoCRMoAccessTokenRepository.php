@@ -22,7 +22,7 @@ class AmoCRMoAccessTokenRepository
         $this->repo = $em->getRepository(AmoCRMoAccessToken::class);
     }
 
-    public function find(): AmoCRMoAccessToken|null
+    public function find(): null|AmoCRMoAccessToken
     {
         return $this->repo->find(1);
     }

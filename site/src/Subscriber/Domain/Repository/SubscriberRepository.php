@@ -37,7 +37,7 @@ class SubscriberRepository
         return $object;
     }
 
-    public function findByEmail(string $email): Subscriber|null
+    public function findByEmail(string $email): null|Subscriber
     {
         return $this->repo->findOneBy(
             [
@@ -46,7 +46,7 @@ class SubscriberRepository
         );
     }
 
-    public function findById(int $id): Subscriber|null
+    public function findById(int $id): null|Subscriber
     {
         return $this->repo->find($id);
     }

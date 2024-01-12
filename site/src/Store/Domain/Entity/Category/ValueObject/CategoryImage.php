@@ -11,13 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
 class CategoryImage
 {
     #[ORM\Column(type: Types::STRING, nullable: true, options: ['default'=> null])]
-    private string|null $path;
+    private null|string $path;
 
     #[ORM\Column(type: Types::STRING, nullable: true, options: ['default'=> null])]
-    private string|null $name;
+    private null|string $name;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true, options: ['default'=> null])]
-    private int|null $size;
+    private null|int $size;
 
     public function __construct(string $path = null, string $name = null, int $size = null)
     {

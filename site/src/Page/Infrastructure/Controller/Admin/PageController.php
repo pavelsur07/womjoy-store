@@ -114,7 +114,7 @@ class PageController extends AbstractController
                 $flusher->flush();
 
                 $this->addFlash('success', 'Success new page created.');
-            } catch (PageException|DomainException $e) {
+            } catch (DomainException|PageException $e) {
                 $this->addFlash('danger', $e->getMessage());
             }
 

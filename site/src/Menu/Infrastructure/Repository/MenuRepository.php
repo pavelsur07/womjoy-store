@@ -37,7 +37,7 @@ class MenuRepository implements MenuRepositoryInterface
         return $object;
     }
 
-    public function findById(int $id): Menu|null
+    public function findById(int $id): null|Menu
     {
         return $this->repo->find($id);
     }

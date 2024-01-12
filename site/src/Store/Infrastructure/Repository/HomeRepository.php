@@ -23,7 +23,7 @@ class HomeRepository implements HomeRepositoryInterface
         $this->repo = $em->getRepository(Home::class);
     }
 
-    public function find(): Home|null
+    public function find(): null|Home
     {
         return $this->repo->find(1);
     }

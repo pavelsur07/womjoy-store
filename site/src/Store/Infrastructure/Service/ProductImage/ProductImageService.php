@@ -41,7 +41,7 @@ readonly class ProductImageService
      * @throws FilesystemException
      * @throws ImageResizeException
      */
-    public function checkExtension(string $path, string $name): File|null
+    public function checkExtension(string $path, string $name): null|File
     {
         $extension = explode('.', $name)[1];
         if ($extension !== 'jpg') {

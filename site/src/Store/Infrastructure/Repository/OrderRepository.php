@@ -78,7 +78,7 @@ class OrderRepository implements OrderRepositoryInterface
         return $object;
     }
 
-    public function findOwn(int $id, int $customerId): Order|null
+    public function findOwn(int $id, int $customerId): null|Order
     {
         return $this->repo->findOneBy(
             [
@@ -102,7 +102,7 @@ class OrderRepository implements OrderRepositoryInterface
             $nextOrderNumber = $this->em->createQueryBuilder()->from(Order::class, 'orders')
                 ->select('max(orders.orderNumber.value) + 1 as next_order_number')
                 ->getQuery()->getSingleScalarResult();
-        } catch (NoResultException|NonUniqueResultException $e) {
+        } catch (NonUniqueResultException|NoResultException $e) {
             $nextOrderNumber = 1;
         }
 

@@ -26,7 +26,7 @@ class Subject
     private Collection $products;
 
     #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
-    private string|null $code = null;
+    private null|string $code = null;
 
     public function __construct(string $name)
     {

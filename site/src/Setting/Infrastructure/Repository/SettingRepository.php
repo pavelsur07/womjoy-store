@@ -21,7 +21,7 @@ class SettingRepository
         $this->repo = $this->em->getRepository(Setting::class);
     }
 
-    public function findById(int $id): Setting|null
+    public function findById(int $id): null|Setting
     {
         return $this->repo->find($id);
     }

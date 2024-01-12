@@ -12,7 +12,7 @@ class SitemapService
     /**
      * @param IndexItem[]|iterable $items
      */
-    public function generateIndex(iterable $items): string|int
+    public function generateIndex(iterable $items): int|string
     {
         $writer = new XMLWriter();
         $writer->openMemory();
@@ -39,7 +39,7 @@ class SitemapService
     /**
      * @param iterable|MapItem[] $items
      */
-    public function generateMap(iterable $items): string|int
+    public function generateMap(iterable $items): int|string
     {
         $writer = new XMLWriter();
         $writer->openMemory();

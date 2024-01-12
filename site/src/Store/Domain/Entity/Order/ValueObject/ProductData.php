@@ -13,10 +13,10 @@ class ProductData
     private string $name;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private string|null $article = null;
+    private null|string $article = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private string|null $barcode = null;
+    private null|string $barcode = null;
 
     public function __construct(string $name, ?string $article, ?string $barcode)
     {

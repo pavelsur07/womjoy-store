@@ -19,10 +19,10 @@ class Setting
     private int $id;
 
     #[ORM\Column(nullable: true)]
-    private string|null $phone = null;
+    private null|string $phone = null;
 
     #[ORM\Column(nullable: true)]
-    private string|null $email = null;
+    private null|string $email = null;
 
     #[ORM\Embedded(class: SettingSeoDefault::class, columnPrefix: 'seo_')]
     private SettingSeoDefault $seoDefault;

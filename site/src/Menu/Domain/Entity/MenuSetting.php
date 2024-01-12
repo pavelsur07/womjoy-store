@@ -16,10 +16,10 @@ class MenuSetting
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: Menu::class)]
-    private Menu|null $footerMenu;
+    private null|Menu $footerMenu;
 
     public function __construct(
-        Menu|null $footerMenu = null,
+        null|Menu $footerMenu = null,
     ) {
         $this->footerMenu = $footerMenu;
     }

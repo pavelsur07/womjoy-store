@@ -72,10 +72,10 @@ class Order
     private int $deliveryCost = 0;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private string|null $cancelReason = null;
+    private null|string $cancelReason = null;
 
     #[ORM\Column(type: 'string', length: 30, nullable: true)]
-    private string|null $status = null;
+    private null|string $status = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $ymUid = null;

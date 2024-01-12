@@ -21,7 +21,7 @@ final readonly class GuaranteeNewCommand
         private string $phone,
         #[Assert\IsTrue]
         private bool $isConfirmed,
-        private bool|null $isSubscribe = null,
+        private null|bool $isSubscribe = null,
     ) {}
 
     public function isConfirmed(): bool

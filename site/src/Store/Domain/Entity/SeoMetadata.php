@@ -11,16 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 class SeoMetadata
 {
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private string|null $h1 = null;
+    private null|string $h1 = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private string|null $seoTitle = null;
+    private null|string $seoTitle = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private string|null $seoDescription = null;
+    private null|string $seoDescription = null;
 
     #[ORM\Column(type: Types::BOOLEAN, nullable: true, options: ['default' => true])]
-    private bool|null $isIndexOn = false;
+    private null|bool $isIndexOn = false;
 
     public function __construct(?string $h1 = null, ?string $title = null, ?string $description = null, bool $isIndexOn = false)
     {

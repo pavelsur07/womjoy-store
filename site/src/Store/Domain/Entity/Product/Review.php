@@ -29,7 +29,7 @@ class Review
     private string $text;
 
     #[ORM\Column(type: 'string', length: 30, nullable: true)]
-    private string|null $customerName = null;
+    private null|string $customerName = null;
 
     #[ORM\Column]
     private bool $active = false;
