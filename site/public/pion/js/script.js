@@ -111,62 +111,64 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 
-	const drops = document.querySelectorAll('.drop');
-	if (drops.length > 0) {
+	if (window.innerWidth <= 768) {
+		const drops = document.querySelectorAll('.drop');
+		if (drops.length > 0) {
 
-		const catalogBack  = document.querySelector('.catalog-menu__back');
-		const catalogTitle = document.querySelector('.catalog-menu__title');
-		const catalogBase  = document.querySelector('.catalog-menu__cols');
-		let prevContents   = [];
-		let currentContent = null;
+			const catalogBack  = document.querySelector('.catalog-menu__back');
+			const catalogTitle = document.querySelector('.catalog-menu__title');
+			const catalogBase  = document.querySelector('.catalog-menu__cols');
+			let prevContents   = [];
+			let currentContent = null;
 
-		let catalogMenuDepth = 0;
-		drops.forEach(drop => {
-			const lists      = drop.querySelectorAll('.drop__content');
-			const trigger    = drop.querySelector('.drop__trigger');
-			const content    = drop.querySelector('.drop__content');
+			let catalogMenuDepth = 0;
+			drops.forEach(drop => {
+				const lists      = drop.querySelectorAll('.drop__content');
+				const trigger    = drop.querySelector('.drop__trigger');
+				const content    = drop.querySelector('.drop__content');
 
-			trigger.addEventListener('click', e => {
-				e.preventDefault();
-				catalogMenuDepth++;
-				catalogBase.scrollTo({left: 0, top: 0})
+				trigger.addEventListener('click', e => {
+					e.preventDefault();
+					catalogMenuDepth++;
+					catalogBase.scrollTo({left: 0, top: 0})
 
-				catalogTitle.textContent = trigger.textContent;
-				content.classList.add('active');
-				currentContent = content;
+					catalogTitle.textContent = trigger.textContent;
+					content.classList.add('active');
+					currentContent = content;
 
-				if (catalogMenuDepth === 1) {
-					catalogBase.classList.add('scroll-blocked');
-				} else if (catalogMenuDepth > 1) {
-					trigger.parentNode.parentNode.classList.add('scroll-blocked');
-				}
-				prevContents.push({ title: trigger.textContent, content: trigger.parentNode.parentNode });
+					if (catalogMenuDepth === 1) {
+						catalogBase.classList.add('scroll-blocked');
+					} else if (catalogMenuDepth > 1) {
+						trigger.parentNode.parentNode.classList.add('scroll-blocked');
+					}
+					prevContents.push({ title: trigger.textContent, content: trigger.parentNode.parentNode });
+				});
 			});
-		});
-		catalogBack.addEventListener('click', () => {
-			if (catalogMenuDepth === 0) {
-				header.classList.remove('active');
-				headerMain.classList.remove('active');
-				catalogMenu.classList.remove('active');
-				return;
-			}
+			catalogBack.addEventListener('click', () => {
+				if (catalogMenuDepth === 0) {
+					header.classList.remove('active');
+					headerMain.classList.remove('active');
+					catalogMenu.classList.remove('active');
+					return;
+				}
 
-			catalogMenuDepth--;
+				catalogMenuDepth--;
 
-			currentContent.classList.remove('active');
-			prevContents[catalogMenuDepth].content.classList.remove('scroll-blocked');
-			currentContent = prevContents[catalogMenuDepth].content;
+				currentContent.classList.remove('active');
+				prevContents[catalogMenuDepth].content.classList.remove('scroll-blocked');
+				currentContent = prevContents[catalogMenuDepth].content;
 
-			if (prevContents[catalogMenuDepth - 1] !== undefined) {
-				catalogTitle.textContent = prevContents[catalogMenuDepth - 1].title;
-			} else {
-				catalogTitle.textContent = 'КАТАЛОГ';
-				catalogBase.classList.remove('scroll-blocked')
-			}
+				if (prevContents[catalogMenuDepth - 1] !== undefined) {
+					catalogTitle.textContent = prevContents[catalogMenuDepth - 1].title;
+				} else {
+					catalogTitle.textContent = 'КАТАЛОГ';
+					catalogBase.classList.remove('scroll-blocked')
+				}
 
-			prevContents.splice(catalogMenuDepth, 1);
-			
-		});
+				prevContents.splice(catalogMenuDepth, 1);
+				
+			});
+		}
 	}
 
 
