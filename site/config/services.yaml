@@ -19,6 +19,7 @@ parameters:
     alfabank_username: '%env(ALFABANK_USERNAME)%'
     alfabank_password: '%env(ALFABANK_PASSWORD)%'
 
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     # default configuration for services in *this* file
