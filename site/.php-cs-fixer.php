@@ -1,12 +1,14 @@
 <?php
 
 declare(strict_types=1);
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 
 return
-    (new PhpCsFixer\Config())
+    (new Config())
         ->setCacheFile(__DIR__ . '/var/cache/.php_cs')
         ->setFinder(
-            PhpCsFixer\Finder::create()
+            Finder::create()
                 ->in([
                     __DIR__ . '/public',
                     __DIR__ . '/src',

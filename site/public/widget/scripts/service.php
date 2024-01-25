@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace {
+    use SDEKService\Controller;
+    use SDEKService\Settings;
     use Symfony\Component\Dotenv\Dotenv;
 
     // import vendors
@@ -14,8 +16,8 @@ namespace {
     header('Access-Control-Allow-Origin: *');
     error_reporting(63);
 
-    SDEKService\Controller::processRequest(
-        SDEKService\Settings::factory(
+    Controller::processRequest(
+        Settings::factory(
             /** Настройте приоритет тарифов курьерской доставки */
             /** Set up the priority of courier delivery tariffs */
             [233, 137, 139, 16, 18, 11, 1, 3, 61, 60, 59, 58, 57, 83],

@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Yml;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Store\Domain\Entity\Yml\Item;
 use App\Store\Domain\Entity\Yml\Yml;
 use App\Store\Infrastructure\Form\Yml\YmlEditForm;
 use App\Store\Infrastructure\Form\Yml\YmlNewForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
 use App\Store\Infrastructure\Repository\YmlRepository;
+use App\Store\Infrastructure\Service\YandexMarket\YandexMarketGenerator;
 use Exception;
+use League\Flysystem\FilesystemException;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +36,38 @@ class YmlController extends AbstractController
         );
     }
 
+    /**
+     * @throws FilesystemException
+     */
+    #[Route('/{id}/generate', name: '.generate')]
+    public function generate(int $id, Yml $yml, Request $request, YandexMarketGenerator $generator): Response
+    {
+        $categories = [];
+        $products =[];
+        /** @var Item $item */
+        foreach ($yml->getItems() as $item) {
+            $categories[$item->getProduct()->getMainCategory()->getId()] = $item->getProduct()->getMainCategory();
+            $products[] = $item->getProduct();
+        }
+
+        $generator->setProperty(
+            company: 'Company',
+            name: 'Womjoy',
+            url: 'https://womjoy.ru'
+        );
+
+        $generator->generate($categories, $products, $yml->getFileName());
+
+        $this->addFlash('success', 'Success generate!');
+
+        return $this->redirectToRoute(
+            'store.admin.yml.edit',
+            [
+                'id' => $id,
+            ]
+        );
+    }
+
     #[Route(path: '/new', name: '.new')]
     public function new(Request $request, YmlRepository $ymls): Response
     {
@@ -48,6 +83,7 @@ class YmlController extends AbstractController
             );
 
             $ymls->save($yml, true);
+            return $this->redirectToRoute('store.admin.yml.index');
         }
 
         return $this->render(
@@ -101,7 +137,7 @@ class YmlController extends AbstractController
             $this->addFlash('danger', 'Error added product. ' . $e->getMessage() . $productAdd->getName() . '.');
         }
 
-         return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
+        return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
     }
 
     #[Route(path: '/{id}/remove/{remove_id}/product', name: '.remove')]
@@ -118,8 +154,6 @@ class YmlController extends AbstractController
 
         return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
     }
-
-    public function generate(): void {}
 
     #[Route(path: '/active/{id}', name: '.active')]
     public function active(int $id, Yml $yml, Request $request): void {}
