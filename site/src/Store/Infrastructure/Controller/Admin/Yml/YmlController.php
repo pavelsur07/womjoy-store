@@ -51,7 +51,7 @@ class YmlController extends AbstractController
         }
 
         $generator->setProperty(
-            company: 'Company',
+            company: 'ИП Новикова Н.А.',
             name: 'Womjoy',
             url: 'https://womjoy.ru'
         );

@@ -99,10 +99,11 @@ class YandexMarketGenerator
 
             // $writer->writeElement('url', Html::encode($productUrlGenerator($product)));
             $writer->writeElement('url', $this->urlGenerator->generate('store.product.show', ['slug'=> $product->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL));
+            $writer->writeElement('name', $product->getName());
             $writer->writeElement('price', (string)$product->getPrice()->getListPrice());
             $writer->writeElement('currencyId', 'RUR');
             $writer->writeElement('categoryId', (string)$product->getMainCategory()->getId());
-
+            $writer->writeElement('delivery', 'true');
             // $available = array_filter($deliveries, static fn (DeliveryMethod $method) => $method->isAvailableForWeight($product->weight));
 
             /*if ($available) {
@@ -112,6 +113,8 @@ class YandexMarketGenerator
                 $writer->writeElement('delivery', 'false');
             }*/
 
+            $writer->writeElement('sales_notes', 'Оплата: пластиковые карты, рсрочка');
+            $writer->writeElement('country_of_origin', 'Россия');
             /** TODO Vendor name */
             $writer->writeElement('vendor', 'WOMJOY');
             $writer->writeElement('model', (string)$product->getId());
