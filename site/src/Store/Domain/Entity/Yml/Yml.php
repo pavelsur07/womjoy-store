@@ -48,6 +48,11 @@ class Yml
         $this->items = new ArrayCollection();
     }
 
+    public function changeName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function active(): void
     {
         $this->status = self::ACTIVE;

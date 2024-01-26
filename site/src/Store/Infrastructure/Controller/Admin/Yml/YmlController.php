@@ -95,7 +95,7 @@ class YmlController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: '.edit')]
-    public function edit(int $id, Yml $yml, Request $request, ProductRepository $products): Response
+    public function edit(int $id, Yml $yml, Request $request, ProductRepository $products, Flusher $flusher): Response
     {
         $pagination = $products->getAll(
             page: $request->query->getInt('page', 1),
@@ -113,6 +113,10 @@ class YmlController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $yml->changeName($data['name']);
+
+            $flusher->flush();
         }
 
         return $this->render(
