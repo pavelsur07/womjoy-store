@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Console;
 
+use App\Setting\Infrastructure\Service\SettingService;
 use App\Store\Domain\Entity\Yml\Item;
 use App\Store\Domain\Entity\Yml\Yml;
 use App\Store\Infrastructure\Repository\YmlRepository;
@@ -26,6 +27,7 @@ class YandexFidGenerateCommand extends Command
     public function __construct(
         private readonly YmlRepository $ymls,
         private readonly YandexMarketGenerator $generator,
+        private readonly SettingService $service,
     ) {
         parent::__construct();
     }
@@ -45,10 +47,12 @@ class YandexFidGenerateCommand extends Command
             $items[] = $value->getId();
         }
 
+        $store = $this->service->get();
+
         $this->generator->setProperty(
-            company: 'ИП Новикова Н.А.',
-            name: 'Womjoy',
-            url: 'https://womjoy.ru'
+            company: $store->getCompany()->getName(),
+            name: $store->getStoreName(),
+            url: $store->getStoreUrl(),
         );
 
         foreach ($items as $item) {

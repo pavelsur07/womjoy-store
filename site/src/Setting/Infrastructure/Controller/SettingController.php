@@ -33,6 +33,8 @@ class SettingController extends AbstractController
                 'title' => $setting->getSeoDefault()->getTitle(),
                 'description' => $setting->getSeoDefault()->getDescription(),
                 'companyName' => $setting->getCompany()->getName(),
+                'storeName' => $setting->getStoreName(),
+                'storeUrl' => $setting->getStoreUrl(),
                 'postalCode' => $setting->getCompany()->getPostalCode(),
                 'addressCountry' => $setting->getCompany()->getAddressCountry(),
                 'addressLocality' => $setting->getCompany()->getAddressLocality(),
@@ -52,6 +54,8 @@ class SettingController extends AbstractController
             $setting->getSeoDefault()->setDescription($data['description']);
 
             $setting->getCompany()->setName($data['companyName']);
+            $setting->setStoreName($data['storeName']);
+            $setting->setStoreUrl($data['storeUrl']);
             $setting->getCompany()->setPostalCode($data['postalCode']);
             $setting->getCompany()->setAddressCountry($data['addressCountry']);
             $setting->getCompany()->setAddressLocality($data['addressLocality']);

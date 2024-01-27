@@ -29,6 +29,8 @@ class SettingEditBaseForm extends AbstractType
                 ]
             )
             ->add('companyName', Type\TextType::class, ['required'=>false])
+            ->add('storeName', Type\TextType::class, ['required'=>false])
+            ->add('storeUrl', Type\TextType::class, ['required'=>false])
             ->add('postalCode', Type\TextType::class, ['required'=>false])
             ->add('addressCountry', Type\TextType::class, ['required'=>false])
             ->add('addressLocality', Type\TextType::class, ['required'=>false])

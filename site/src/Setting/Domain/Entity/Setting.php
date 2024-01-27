@@ -30,6 +30,12 @@ class Setting
     #[ORM\Embedded(class: SettingCompany::class, columnPrefix: 'company_')]
     private SettingCompany $company;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $storeName = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $storeUrl = null;
+
     #[ORM\Embedded(class: SettingUnisender::class, columnPrefix: 'unisender_')]
     private SettingUnisender $unisender;
 
@@ -64,6 +70,11 @@ class Setting
         return $this->company;
     }
 
+    public function getStoreName(): ?string
+    {
+        return $this->storeName;
+    }
+
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -79,8 +90,23 @@ class Setting
         return $this->email;
     }
 
+    public function setStoreName(?string $storeName): void
+    {
+        $this->storeName = $storeName;
+    }
+
     public function setEmail(?string $email): void
     {
         $this->email = $email;
+    }
+
+    public function getStoreUrl(): ?string
+    {
+        return $this->storeUrl;
+    }
+
+    public function setStoreUrl(?string $storeUrl): void
+    {
+        $this->storeUrl = $storeUrl;
     }
 }
