@@ -79,7 +79,7 @@
         </div>
 
         <section class="i-card w-section pt-5">
-            <div class="i-card__content">
+            <div class="i-card__content js-product" data-product-id="{{ product.id }}" data-product="{{ jsProduct|serialize(format = 'json') }}" >
                 <div class="i-card__img">
                     <a href="{{ referer }}" class="i-card__back">
                         <img src="{{ asset('./pion/img/icons/back-arrow.svg') }}" alt="back arrow">
