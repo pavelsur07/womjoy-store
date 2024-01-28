@@ -131,6 +131,8 @@ services:
       ALFABANK_API: 'https://payment.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
+      GOOGLE_RECAPTCHA_SITE_KEY: ${GOOGLE_RECAPTCHA_SITE_KEY}
+      GOOGLE_RECAPTCHA_SECRET: ${GOOGLE_RECAPTCHA_SECRET}
     deploy:
       mode: replicated
       replicas: 2

@@ -15,6 +15,22 @@
 
         <section class="catalog w-section">
             <h1 class="mb-3 text-uppercase">Контакты</h1>
+
+            {% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
+                {% for message in messages %}
+                    {% if label == 'success' %}
+                        <div class="mb-2">
+                            <div class="p-3 bg-warning bg-opacity-10">{{ message }}</div>
+                        </div>
+                    {% endif %}
+                    {% if label == 'danger' %}
+                        <div class="mb-2">
+                            <div class="p-3 bg-danger bg-opacity-10 text-danger">{{ message }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
             <b>
                 <nobr><a href="tel:{{ metaData.phone }}">{{ metaData.phone }}</a></nobr></b><br>
             <b>Бесплатно по РФ</b>&nbsp;
@@ -37,19 +53,19 @@
 
             <h2 class="mt-6">Напиши нам</h2>
             <p>
-                <a href="mailto:service@womjoy.ru" class="mod1">service@womjoy.ru</a> – для замечаний и пожеланий по качеству сервиса
+                <a class="w-black-link" href="mailto:service@womjoy.ru" class="mod1">service@womjoy.ru</a> – для замечаний и пожеланий по качеству сервиса
             </p>
             <p>
-                <a href="mailto:partner@womjoy.ru" class="mod1">partner@womjoy.ru</a> – для предложений сотрудничества
+                <a class="w-black-link" href="mailto:partner@womjoy.ru" class="mod1">partner@womjoy.ru</a> – для предложений сотрудничества
             </p>
             <p>
-                <a href="mailto:franchise@womjoy.ru" class="mod1">franchise@womjoy.ru</a>&nbsp;– по вопросам франшизы<br>
+                <a class="w-black-link" href="mailto:franchise@womjoy.ru" class="mod1">franchise@womjoy.ru</a>&nbsp;– по вопросам франшизы<br>
             </p>
             <p>
-                <a href="mailto:pr@womjoy.ru" class="mod1">pr@womjoy.ru</a> – по вопросам маркетинга и PR
+                <a class="w-black-link" href="mailto:pr@womjoy.ru" class="mod1">pr@womjoy.ru</a> – по вопросам маркетинга и PR
             </p>
             <p>
-                <a href="mailto:info@womjoy.ru" class="mod1">info@womjoy.ru</a> – по любым другим вопросам.
+                <a class="w-black-link" href="mailto:info@womjoy.ru" class="mod1">info@womjoy.ru</a> – по любым другим вопросам.
             </p>
 
             {#{{ page.value|raw }}#}
@@ -64,7 +80,7 @@
                 </p>
                 {{ form_start(form) }}
 
-                {% if messageId is not  null %}
+                {% if messageId == 'success' %}
                 <div class="col col-12 col-lg-12 mb-3">
                     <div class="p-3 bg-warning bg-opacity-10">Message success</div>
                 </div>
@@ -91,10 +107,13 @@
                         {{ form_label(form.message) }}
                         {{ form_widget(form.message) }}
                     </div>
+
                     <div class="col-md-12 mb-3"> <button class="w-primary-btn">{{ button_label|default('Send') }}</button></div>
+                    <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+
                     <p>
                         Нажимая на кнопку «Отправить», вы даете согласие на обработку и хранение своих персональных данных в соответствии с
-                        <a href="#">пользовательским соглашением</a>
+                        <a class="w-black-link" href="https://womjoy.ru/pages/politika-konfidencialnosti">пользовательским соглашением</a>
                     </p>
                     {{ form_end(form) }}
                 </div>
@@ -109,8 +128,9 @@
 
 {% endblock %}
 
-{#
+
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('store_message') }}
-{% endblock %}#}
+   {# {{ encore_entry_script_tags('store_message') }}#}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

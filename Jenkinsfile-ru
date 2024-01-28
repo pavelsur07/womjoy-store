@@ -57,7 +57,9 @@ pipeline {
                     string(credentialsId: 'PROD_S3_ACCESS_SECRET', variable: 'SITE_S3_SECRET'),
                     string(credentialsId: 'PROD_REDIS_PASSWORD', variable: 'REDIS_PASSWORD'),
                     string(credentialsId: 'PROD_SITE_ALFABANK_USERNAME', variable: 'SITE_ALFABANK_USERNAME'),
-                    string(credentialsId: 'PROD_SITE_ALFABANK_PASSWORD', variable: 'SITE_ALFABANK_PASSWORD')
+                    string(credentialsId: 'PROD_SITE_ALFABANK_PASSWORD', variable: 'SITE_ALFABANK_PASSWORD'),
+                    string(credentialsId: 'PROD_GOOGLE_RECAPTCHA_SITE_KEY', variable: 'GOOGLE_RECAPTCHA_SITE_KEY'),
+                    string(credentialsId: 'PROD_GOOGLE_RECAPTCHA_SECRET', variable: 'GOOGLE_RECAPTCHA_SECRET')
                 ]) {
                     sshagent (credentials: ['PROD_AUTH']) {
                         sh 'make deploy-ru'

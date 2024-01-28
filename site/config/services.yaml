@@ -37,6 +37,8 @@ services:
             string $alfabankApi: '%alfabank_api%'
             string $alfabankUsername: '%alfabank_username%'
             string $alfabankPassword: '%alfabank_password%'
+            string $googleRecaptchaSiteKey: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+            string $googleRecaptchaSecret: '%env(GOOGLE_RECAPTCHA_SECRET)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
