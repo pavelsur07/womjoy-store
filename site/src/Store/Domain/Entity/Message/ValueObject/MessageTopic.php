@@ -14,6 +14,9 @@ class MessageTopic extends StringValueObject
     public const Substitution = 'substitution';
     public const Return = 'return';
     public const PAY = 'pay';
+
+    public const Promo = 'promo';
+
     /*
     'Замена' =>'Substitution',
     'Возврат' =>'return',
@@ -39,6 +42,7 @@ class MessageTopic extends StringValueObject
             self::PAY,
             self::Substitution,
             self::Return,
+            self::Promo,
         ];
     }
 }

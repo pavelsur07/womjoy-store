@@ -1,0 +1,23 @@
+{% extends 'pion/store/base.html.twig' %}
+
+{% block body %}
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="#" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">Спасибо</div>
+        </div>
+
+        <section class="catalog d-flex flex-column align-items-center py-9">
+            <div class="w-title-404">Спасибо</div>
+            <p>Мы получили ваше обращение</p>
+            <p>В течении 10 минут на указанную вами почту прийдет инструкция</p>
+            <p class="mb-5">Как обменять товар.</p>
+            <a href="{{ path('home') }}" class="w-primary-btn">На главную</a>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
