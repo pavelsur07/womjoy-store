@@ -12,17 +12,25 @@ use App\Store\Domain\Entity\Message\ValueObject\MessageTopic;
 use App\Store\Infrastructure\Form\Message\MessageMarketplaceNewForm;
 use App\Store\Infrastructure\Repository\MessageRepository;
 use DateTimeImmutable;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GuaranteeController extends BaseController
 {
+    /**
+     * @throws TransportExceptionInterface
+     */
     #[Route(path: '/marketplace/guarantee', name: 'store.marketplace.guarantee')]
     public function guarantee(
         Request $request,
         Flusher $flusher,
         MessageRepository $messages,
+        MailerInterface $mailer,
     ): Response {
         $messageId = $request->get('messageId');
         if ($messageId === null) {
@@ -47,6 +55,21 @@ class GuaranteeController extends BaseController
             );
             $messages->save($newMessage);
             $flusher->flush();
+
+            $email = (new TemplatedEmail())
+                ->from('info@womjoy.ru')
+                ->to(new Address($data['email']))
+                ->subject('WOMJOY Инструкция по обмену товара ненадлежащего качества, купленого на маркетплейсе.')
+                ->htmlTemplate('pion/email/store/guarantee/guarantee.html.twig')
+
+                ->context([
+                    'user' => $data['name'],
+                ]);
+
+            // TODO Настроить создание лида в АмоСРМ и отправка сообщения отвественному за гарантию
+
+            $mailer->send($email);
+
             $this->addFlash('success', 'Message sending success.');
             return $this->redirectToRoute('store.marketplace.guarantee.thank_you');
         }
