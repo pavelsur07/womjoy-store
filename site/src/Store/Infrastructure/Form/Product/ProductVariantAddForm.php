@@ -14,7 +14,8 @@ class ProductVariantAddForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('value', Type\TextType::class);
+            ->add('value', Type\TextType::class)
+            ->add('barcode', Type\TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

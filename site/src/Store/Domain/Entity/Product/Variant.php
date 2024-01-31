@@ -36,7 +36,7 @@ class Variant
         $this->article = $article;
         $this->value = $value;
         $this->product = $product;
-        $this->barcode = $barcode;
+        $this->barcode = trim($barcode);
     }
 
     public function getBarcode(): ?string
@@ -53,6 +53,11 @@ class Variant
         $this->barcode = $barcode;
     }
 
+    public function changeValue(string $value): void
+    {
+        $this->value = $value;
+    }
+
     public function changeQuantity(int $value): void
     {
         $this->quantity = $value;
@@ -60,7 +65,7 @@ class Variant
 
     public function changeBarcode(string $barcode): void
     {
-        $this->barcode = $barcode;
+        $this->barcode = trim($barcode);
     }
 
     public function getId(): ?int

@@ -27,7 +27,7 @@ class VariantController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $product->addVariant($data['value']);
+            $product->addVariant($data['value'], $data['barcode']);
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
@@ -39,6 +39,18 @@ class VariantController extends AbstractController
                 'product' => $product,
             ]
         );
+    }
+
+    #[Route(path: '/{id}/variant/{variantId}/remove', name: '.remove')]
+    public function remove(int $id, int $variantId, Request $request, ProductRepository $products, VariantRepository $variants, Flusher $flusher): Response
+    {
+        $variant = $variants->get($variantId);
+        $product = $products->get($id);
+        $product->removeVariant($variant);
+
+        $flusher->flush();
+
+        return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
     }
 
     #[Route(path: '/{id}/variant/{variantId}/edit', name: '.edit')]
@@ -59,6 +71,7 @@ class VariantController extends AbstractController
             $data = $form->getData();
             $variant->changeQuantity($data['quantity']);
             $variant->changeBarcode($data['barcode']);
+            $variant->changeValue($data['value']);
 
             $flusher->flush();
             return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
