@@ -64,9 +64,9 @@ class YandexFidGenerateCommand extends Command
             /** @var Item $value */
             foreach ($fid->getItems() as $value) {
                 $categories[$value->getProduct()->getMainCategory()->getId()] = $value->getProduct()->getMainCategory();
-                if ($value->getProduct()->getStatus()->isActive()) {
+                /*if ($value->getProduct()->getStatus()->isActive()) {*/
                     $products[] = $value->getProduct();
-                }
+               /* }*/
             }
 
             $this->generator->generate($categories, $products, $fid->getFileName());
