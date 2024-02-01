@@ -43,7 +43,7 @@
     <meta property="og:site_name" content="{{ metaData.shop_name  }}">
     <meta property="og:type" content="product"/>
     <meta property="og:title" content="{{ product.name }}"/>
-    <meta property="og:description" content="{{ product.description }} "/>
+    <meta property="og:description" content="{{ product.description | striptags}} "/>
     <meta property="og:locale" content="ru_RU" />
     {#{% for image in product.images %}#}
     {% set image = product.images.first %}
