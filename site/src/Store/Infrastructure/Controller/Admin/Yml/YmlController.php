@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Admin\Yml;
 
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Yml\Item;
 use App\Store\Domain\Entity\Yml\Yml;
+use App\Store\Domain\Repository\CategoryRepositoryInterface;
+use App\Store\Infrastructure\Form\Category\CategoryMenuGenerateForm;
 use App\Store\Infrastructure\Form\Yml\YmlEditForm;
 use App\Store\Infrastructure\Form\Yml\YmlNewForm;
 use App\Store\Infrastructure\Repository\ProductRepository;
@@ -14,6 +17,8 @@ use App\Store\Infrastructure\Repository\YmlRepository;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarketGenerator;
 use Exception;
 use League\Flysystem\FilesystemException;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,14 +124,61 @@ class YmlController extends AbstractController
             $flusher->flush();
         }
 
+        $formCategory = $this->createForm(CategoryMenuGenerateForm::class, []);
+        $formCategory->handleRequest($request);
+
+        if ($formCategory->isSubmitted() && $formCategory->isValid()) {
+            $data = $formCategory->getData();
+
+            return $this->redirectToRoute(
+                'store.admin.yml.add_by_category',
+                [
+                    'id' =>$id,
+                    'add_category_id' => $data['mainCategory']->getValue(),
+                ]
+            );
+        }
+
         return $this->render(
             'admin/store/yml/edit.html.twig',
             [
                 'form' => $form->createView(),
+                'formCategory' => $formCategory->createView(),
                 'pagination' => $pagination,
                 'yml' => $yml,
             ]
         );
+    }
+
+    #[Route(path: '/{id}/add/{add_category_id}/product', name: '.add_by_category')]
+    public function addByCategory(
+        int $id,
+        Yml $yml,
+        Request $request,
+        CategoryRepositoryInterface $categories,
+        ProductRepository $products,
+        Flusher $flusher,
+    ): Response {
+        $category = $categories->get((int)$request->get('add_category_id'));
+
+        $names = $category->getName();
+
+        $pagerfanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            adapter: new QueryAdapter($products->listByCategoryQueryBuilder(category: $category, sort: 'p.id')),
+            currentPage: $request->query->getInt('page', 1),
+            maxPerPage: $request->query->getInt('size', 1000)
+        );
+
+        /** @var Product $item */
+        foreach ($pagerfanta as $item) {
+            $names = $names . ' ' . $item->getName();
+            $yml->add($item);
+        }
+
+        $flusher->flush();
+
+        $this->addFlash('success', 'Success added products! ' . $names);
+        return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
     }
 
     #[Route(path: '/{id}/add/{add_id}/product', name: '.add')]
