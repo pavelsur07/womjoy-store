@@ -48,7 +48,15 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    
+
+    App\Store\Infrastructure\Service\Moysklad\MoyskladCredentials:
+        arguments:
+            $token: '%env(MOYSKLAD_TOKEN)%'
+
+    App\Store\Infrastructure\Service\Moysklad\MoyskladOrganization:
+        arguments:
+            $organization: '%env(MOYSKLAD_ORGANIZATION)%'
+
     Aws\S3\S3Client:
         arguments:
             - version: 'latest'

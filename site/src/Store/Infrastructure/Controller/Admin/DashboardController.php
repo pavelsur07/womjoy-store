@@ -11,6 +11,8 @@ use App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod;
 use App\Store\Application\SendMail\Order\OrderStatusSendMailCommand;
 use App\Store\Infrastructure\Console\CartClearCommand;
 use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
+use App\Store\Infrastructure\Console\Moysklad\ExportOrdersCommand;
+use App\Store\Infrastructure\Console\Moysklad\ImportIdsCommand;
 use App\Store\Infrastructure\Console\ProductRegenerateSeoCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
@@ -154,4 +156,27 @@ class DashboardController extends AbstractController
         );
         return $this->redirectToRoute('admin.dashboard.show');
     }
+
+
+    #[Route(path: '/admin/dashboard/moysklad/import-ids', name: 'admin.dashboard.moysklad.import_ids')]
+    public function moyskladImportIds(ImportIdsCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
+    #[Route(path: '/admin/dashboard/moysklad/export-orders', name: 'admin.dashboard.moysklad.export_orders')]
+    public function moyskladExportOrders(ExportOrdersCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
+
 }

@@ -10,6 +10,7 @@ use App\Store\Domain\Entity\Order\ValueObject\OrderCustomer;
 use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderItemPrice;
+use App\Store\Domain\Entity\Order\ValueObject\OrderMoysklad;
 use App\Store\Domain\Entity\Order\ValueObject\OrderNumber;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Entity\Order\ValueObject\OrderStatus;
@@ -86,6 +87,9 @@ class Order
     #[ORM\Embedded(class: OrderAmoCRM::class, columnPrefix: 'amo_')]
     private OrderAmoCRM $amoCRM;
 
+    #[ORM\Embedded(class: OrderMoysklad::class, columnPrefix: 'moysklad_')]
+    private OrderMoysklad $moysklad;
+
     public function __construct(
         OrderCustomer $customer,
         OrderDelivery $delivery,
@@ -107,6 +111,7 @@ class Order
         $this->addStatus(OrderStatus::NEW);
 
         $this->amoCRM = new OrderAmoCRM();
+        $this->moysklad = new OrderMoysklad();
     }
 
     public function addItem(Variant $variant, int $quantity): void
@@ -325,6 +330,11 @@ class Order
     public function getAmoCRM(): OrderAmoCRM
     {
         return $this->amoCRM;
+    }
+
+    public function getMoysklad(): OrderMoysklad
+    {
+        return $this->moysklad;
     }
 
     #[ORM\PreFlush]
