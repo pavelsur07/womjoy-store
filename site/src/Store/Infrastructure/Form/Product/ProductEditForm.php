@@ -20,6 +20,20 @@ class ProductEditForm extends AbstractType
             ->add('article', Type\TextType::class)
             ->add('name', Type\TextType::class)
             ->add(
+                'modelParameters',
+                Type\TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'fabrics',
+                Type\TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
                 'description',
                 Type\TextareaType::class,
                 [

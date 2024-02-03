@@ -126,6 +126,9 @@ class Product
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $modelParameters = null;
 
+    #[ORM\Column(type: 'string', length: 600, nullable: true)]
+    private ?string $fabrics = null;
+
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $fabricComposition = null;
 
@@ -246,6 +249,16 @@ class Product
                 )
             );
         }*/
+    }
+
+    public function getFabrics(): ?string
+    {
+        return $this->fabrics;
+    }
+
+    public function setFabrics(?string $fabrics): void
+    {
+        $this->fabrics = $fabrics;
     }
 
     public function revokeAttribute(int $id): void {}

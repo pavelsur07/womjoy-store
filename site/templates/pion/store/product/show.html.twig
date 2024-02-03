@@ -204,24 +204,25 @@
                     </button>
                     <div class="i-card__faq">
                         <div class="i-card__faq_item">
-                            <div class="i-card__faq_trigger">ДОСТАВКА ТОВАРА</div>
-                            <div class="i-card__faq_dropdown">
-                                <div class="text">
-                                    <p>Отгрузка товара осущетвляется 1-2 рабочих дн. <a href="https://womjoy.ru/pages/garantiya-vozvrata-i-obmena">Правила возврата.</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="i-card__faq_item">
                             <div class="i-card__faq_trigger">ОБМЕРЫ И ОПИСАНИЕ</div>
                             <div class="i-card__faq_dropdown">
                                 <div class="text">
-                                    {{ product.description | raw }}
+                                    {% if  product.description is not null%}
+                                        {{ product.description | raw }}
+                                    {% else %}
+                                        <p> <strong>Информация дополняется, появится в ближайщее время...</strong></p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_trigger">СОСТАВ И УХОД</div>
                             <div class="i-card__faq_dropdown">
+                                {% if  product.fabrics is not null%}
+                                    <p>{{ product.fabrics }}</p>
+                                {% else %}
+                                    <p> <strong>Информация дополняется, появится в ближайщее время...</strong></p>
+                                {% endif %}
                                 <div class="text">
                                     {{ product.fabricComposition }}
                                 </div>
@@ -272,10 +273,18 @@
                             </div>
                         </div>
                         <div class="i-card__faq_item">
+                            <div class="i-card__faq_trigger">ДОСТАВКА ТОВАРА</div>
+                            <div class="i-card__faq_dropdown">
+                                <div class="text">
+                                    <p>Отгрузка товара осущетвляется 1-2 рабочих дн. <a href="https://womjoy.ru/pages/garantiya-vozvrata-i-obmena">Правила возврата.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="i-card__faq_item">
                             <div class="i-card__faq_trigger">ВОЗВРАТ</div>
                             <div class="i-card__faq_dropdown">
                                 <div class="text">
-                                    <p>Вы можете оформить возврат товара в течение 7 дней, не считая дня получения заказа. <a href="https://womjoy.ru/pages/garantiya-vozvrata-i-obmena">Правила возврата.</a></p>
+                                    <p>Вы можете оформить возврат товара в течение 7 дней, не считая дня получения заказа. <a target="_blank" href="https://womjoy.ru/pages/garantiya-vozvrata-i-obmena">Правила возврата.</a></p>
                                 </div>
                             </div>
                         </div>

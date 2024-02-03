@@ -79,6 +79,7 @@ class ProductController extends AbstractController
             [
                 'article'=> $product->getArticle(),
                 'name' => $product->getName(),
+                'fabrics' => $product->getFabrics(),
                 'description' => $product->getDescription(),
                 'modelParameters' => $product->getModelParameters(),
                 'mainCategory' => $product->getMainCategory() ? new CategoryForChoice(
@@ -98,6 +99,7 @@ class ProductController extends AbstractController
             $product->setName($data['name']);
             $product->setArticle($data['article']);
             $product->setModelParameters($data['modelParameters']);
+            $product->setFabrics($data['fabrics']);
             $product->setDescription($data['description']);
 
             $product->getPrice()->changePrice($data['price'], $data['listPrice']);
