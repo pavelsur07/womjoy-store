@@ -37,7 +37,7 @@ class ProductEditForm extends AbstractType
                 'description',
                 Type\TextareaType::class,
                 [
-                    'attr' => ['rows' => 8],
+                    'attr' => ['rows' => 8, 'id' =>'id="tinymce-mytextarea"'],
                 ]
             )
             ->add(

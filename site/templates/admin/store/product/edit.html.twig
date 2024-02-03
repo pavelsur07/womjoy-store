@@ -34,13 +34,28 @@
             {{ include('admin/store/product/_tabs.html.twig') }}
         </div>
         <div class="card-body">
-            <div class="mb-2">
-                <p> <strong>Category Ids: </strong> {{ product.categoriesIds }}</p>
+            <div class="row">
+                <div class="col-10">
+                    <div class="mb-2">
+                        <p> <strong>Category Ids: </strong> {{ product.categoriesIds }}</p>
+                    </div>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-2">
+
+                    {% if product.images.count > 0 %}
+                        {% set file = product.images.first %}
+                        {% set file_url = storage_path(file.path ~'/'~ file.name) %}
+
+                        <img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}">
+
+                    {% endif %}
+
+                </div>
             </div>
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
-            {{ form_end(form) }}
         </div>
     </div>
     <div class="mt-3 mb-3">
@@ -84,5 +99,50 @@
         </table>
     </div>
 
+
+    <script src="https://cdn.tiny.cloud/1/b3ub4ko6zzd1mr36lefzmelfh9wvojxoj932tuwe6fzcay50/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#product_edit_form_description',
+            height: 500,
+            plugins: [
+                'advlist', 'autolink', 'lists'
+            ],
+            toolbar: 'undo redo | blocks | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+        });
+    </script>
+
+    {#<script>
+        // @formatter:off
+        document.addEventListener("DOMContentLoaded", function () {
+            let options = {
+                selector: '#product_edit_form_description',
+                height: 300,
+                menubar: false,
+                statusbar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | ' +
+                    'bold italic backcolor | alignleft aligncenter ' +
+                    'alignright alignjustify | bullist numlist outdent indent | ' +
+                    'removeformat',
+                content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+            }
+            if (localStorage.getItem("tablerTheme") === 'dark') {
+                options.skin = 'oxide-dark';
+                options.content_css = 'dark';
+            }
+            tinyMCE.init(options);
+        })
+        // @formatter:on
+    </script>#}
 {% endblock %}
 

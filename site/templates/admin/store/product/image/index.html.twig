@@ -42,20 +42,20 @@
             <div class="row row-cols-5 mb-3 g-2 mt-5">
                 {% for image in product.images %}
                     <div class="col">
-                    <div class="card">
-                        {# {% if image.isOptimize == true %}#}
-                            <img src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}">
-                        {#{% else %}
-                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-                        {% endif %}#}
-                        <div class="card-footer p-0 mt-2">
-                            <div class="btn-group w-100" role="group">
-                                <a href="{{ path('store.admin.product.image.up',{'product_id': product.id, 'sort': image.sort}) }}" class="btn btn-bitbucket"><span class="fa fa-arrow-left"></span></a>
-                                <a href="{{ path('store.admin.product.image.remove',{'product_id': product.id, 'image_id': image.id}) }}" class="btn btn-danger"><span class="fa fa-trash"></span></a>
-                                <a href="{{ path('store.admin.product.image.down',{'product_id': product.id, 'sort': image.sort}) }}" class="btn btn-bitbucket"><span class="fa fa-arrow-right"></span></a>
+                        <div class="card">
+                            {# {% if image.isOptimize == true %}#}
+                                <img src=" {{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}">
+                            {#{% else %}
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+                            {% endif %}#}
+                            <div class="card-footer p-0 mt-2">
+                                <div class="btn-group w-100" role="group">
+                                    <a href="{{ path('store.admin.product.image.up',{'product_id': product.id, 'sort': image.sort}) }}" class="btn btn-bitbucket"><span class="fa fa-arrow-left"></span></a>
+                                    <a href="{{ path('store.admin.product.image.remove',{'product_id': product.id, 'image_id': image.id}) }}" class="btn btn-danger"><span class="fa fa-trash"></span></a>
+                                    <a href="{{ path('store.admin.product.image.down',{'product_id': product.id, 'sort': image.sort}) }}" class="btn btn-bitbucket"><span class="fa fa-arrow-right"></span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 {% endfor %}
             </div>
