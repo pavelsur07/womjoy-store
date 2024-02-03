@@ -30,4 +30,21 @@
             {{ form_end(form) }}
         </div>
     </div>
+
+    <script src="https://cdn.tiny.cloud/1/b3ub4ko6zzd1mr36lefzmelfh9wvojxoj932tuwe6fzcay50/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#home_edit_form_seoText',
+            height: 500,
+            plugins: [
+                'advlist', 'autolink', 'lists'
+            ],
+            toolbar: 'undo redo | blocks | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help',
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+        });
+    </script>
 {% endblock %}
