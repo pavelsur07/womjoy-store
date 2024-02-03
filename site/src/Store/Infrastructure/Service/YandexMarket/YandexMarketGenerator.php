@@ -98,7 +98,7 @@ class YandexMarketGenerator
             $writer->writeAttribute('available', $product->isAvailable() ? 'true' : 'false');
 
             // $writer->writeElement('url', Html::encode($productUrlGenerator($product)));
-            $writer->writeElement('url', $this->urlGenerator->generate('store.product.show', ['slug'=> $product->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL));
+            $writer->writeElement('url', $this->baseUrl . $this->urlGenerator->generate('store.product.show', ['slug'=> $product->getSlug()]));
             $writer->writeElement('name', $product->getName());
             $writer->writeElement('price', (string)$product->getPrice()->getListPrice());
             $writer->writeElement('currencyId', 'RUR');
