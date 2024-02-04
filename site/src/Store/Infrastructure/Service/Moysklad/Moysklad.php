@@ -21,6 +21,7 @@ readonly class Moysklad
         private OrderRepository $orderRepository,
         private VariantRepository $variantRepository,
         private MoyskladOrganization $moyskladOrganization,
+        private MoyskladStore $moyskladStore,
     ) {
     }
 
@@ -104,6 +105,9 @@ readonly class Moysklad
                         'meta' => Meta::counterparty($counterparty->id),
                     ],
                     'positions' => $positions,
+                    'store' => [
+                        'meta' => Meta::store($this->moyskladStore->get()),
+                    ],
                 ]);
 
                 $customerOrder->create();
@@ -116,6 +120,9 @@ readonly class Moysklad
 
             // успешно создали заказ в moysklad
             $order->getMoysklad()->created();
+
+            // записываем ID заказа из moysklad
+            $order->getMoysklad()->setId($customerOrder->id);
 
             // сохраняем флаг
             $this->orderRepository->save($order, true);
