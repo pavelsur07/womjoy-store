@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Product;
 
 use App\Store\Domain\Entity\Product\ValueObject\SubscribeProductId;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
@@ -21,12 +22,21 @@ class SubscribeProduct
     #[ORM\Column(type: 'string', length: 60)]
     private string $email;
 
-    public function __construct(SubscribeProductId $id, Variant $variant, string $email)
+    #[ORM\Column(type: 'datetime_immutable')]
+    private DateTimeImmutable $createdAt;
+
+    public function __construct(SubscribeProductId $id, Variant $variant, string $email, DateTimeImmutable $createdAt)
     {
         Assert::email($email);
         $this->id = $id;
         $this->variant = $variant;
         $this->email = $email;
+        $this->createdAt = $createdAt;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 
     public function getId(): SubscribeProductId
