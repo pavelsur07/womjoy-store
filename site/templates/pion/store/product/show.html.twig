@@ -157,27 +157,42 @@
                     <div class="i-card__size i-card__size_items">
                         <div class="w-sel w-sel-sm w-sel-white ">
                             <div class="w-sel__trigger">
-                                XS/S
+                                {{ 'product.not_found' | trans }}
                             </div>
                             <div class="w-sel__dropdown">
-                                {% for variant in product.variants %}
-                                    {% if variant.canBeAddToCart or product.isPreSale %}
+                                {% if product.variants.count > 0 %}
+                                    {% for variant in product.variants %}
 
-                                        <label class="w-sel__item">
-                                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
-                                            <span></span>
-                                            {{ variant.value }}
-                                        </label>
-                                    {% else %}
-                                        <label class="i-card__size_item disabled">
-                                            <input type="radio" name="card-size" hidden>
-                                            <span class="i-card__size_visual">
-                                                {{ variant.value }} not found
-								            </span>
-                                        </label>
-                                    {% endif %}
+                                        {% if variant.canBeAddToCart or product.isPreSale %}
+                                            <label class="w-sel__item">
+                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
+                                                <span></span>
+                                                {{ variant.value }}
+                                            </label>
+                                        {% else %}
 
-                                {% endfor %}
+                                            <label class="w-sel__item">
+                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
+                                                <span></span>
+                                                {{ variant.value }} {{ 'product.not_found' | trans }}
+                                            </label>
+
+                                            {#<label class="i-card__size_item disabled">
+                                                <input type="radio" name="card-size" hidden>
+                                                <span class="i-card__size_visual">
+                                                    {{ variant.value }} not found
+                                                </span>
+                                            </label>#}
+
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <label class="w-sel__item">
+                                        <input type="radio" name="card-size" hidden>
+                                        <span></span>
+                                        {{ 'product.not_found' | trans }}
+                                    </label>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -221,7 +236,7 @@
                                 {% if  product.fabrics is not null%}
                                     <p>{{ product.fabrics }}</p>
                                 {% else %}
-                                    <p> <strong>Информация дополняется, появится в ближайщее время...</strong></p>
+                                    <p> <strong>{{ 'message.coming_soon' | trans }}</strong></p>
                                 {% endif %}
                                 <div class="text">
                                     {{ product.fabricComposition }}

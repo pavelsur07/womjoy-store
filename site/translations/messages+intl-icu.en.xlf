@@ -57,7 +57,14 @@
                 <source>cart.description</source>
                 <target>Cart</target>
             </trans-unit>
-
+            <trans-unit id="product.not_found">
+                <source>product.not_found</source>
+                <target>Not found</target>
+            </trans-unit>
+            <trans-unit id="message.coming_soon">
+                <source>message.coming_soon</source>
+                <target>Information is being supplemented, will appear in the near future....</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

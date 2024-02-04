@@ -57,6 +57,15 @@
                 <source>cart.description</source>
                 <target>Корзина интернет магазина</target>
             </trans-unit>
+
+            <trans-unit id="product.not_found">
+                <source>product.not_found</source>
+                <target>Нет в наличии</target>
+            </trans-unit>
+            <trans-unit id="message.coming_soon">
+                <source>message.coming_soon</source>
+                <target>Информация дополняется, появится в ближайщее время...</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
