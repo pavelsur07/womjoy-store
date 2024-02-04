@@ -145,4 +145,44 @@ readonly class Moysklad
         // each result
         $assortmentCollection->eachGenerator($handleUpdateAssortment);
     }
+
+    public function createWebhookForUpdateCustomerOrder(string $url): void
+    {
+        // Получаем инициализированный клиент
+        $moyskladClient = $this->moyskladClient->get();
+
+//        // получение списка webhook
+//        dump($moyskladClient->query()->entity()->webhook()->get()); die;
+//        // удаление webhook по id
+//        $moyskladClient->query()->entity()->webhook()->byId('38da1c8f-c370-11ee-0a80-08e0007c95f7')->delete(); die;
+
+        $moyskladClient->query()->entity()->webhook()->create([
+            'url' => $url,
+            'action' => 'UPDATE',
+            'entityType' => CustomerOrder::TYPE,
+        ]);
+    }
+
+    public function updateOrderFromMoysklad(string $guid): void
+    {
+        // Получаем инициализированный клиент
+        $moyskladClient = $this->moyskladClient->get();
+
+        $customerOrder = $moyskladClient->query()->entity()
+            ->customerorder()->byId($guid)->expand('state')->get();
+
+        // получаем Заказ по ID МойСклад
+        $order = $this->orderRepository->getOrderByMoyskladId($customerOrder->id);
+
+        if ($order) {
+             // @todo: Тут необходимо написать реализацию маппинга статусов заказа из Moysklad в статусы сайта
+             // @todo: $customerOrder->state->name === 'Выполнен'
+
+//            if ($customerOrder->state->name === 'Выполнен') {
+//                $order->complete();
+//            }
+        }
+
+        $this->orderRepository->save($order, true);
+    }
 }
