@@ -12,12 +12,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'store:moysklad:export-orders',
-    description: 'Exporting orders into moysklad',
-    aliases: ['s:m:eo'],
+    name: 'store:moysklad:update-stocks',
+    description: 'Update stocks from moysklad',
+    aliases: ['s:m:us'],
     hidden: false
 )]
-class ExportOrdersCommand extends Command
+class UpdateStocksCommand extends Command
 {
     public function __construct(
         private readonly Moysklad $moysklad,
@@ -29,7 +29,7 @@ class ExportOrdersCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $this->moysklad->exportOrdersToMoysklad();
+        $this->moysklad->updateStocksFromMoysklad();
 
         return Command::SUCCESS;
     }

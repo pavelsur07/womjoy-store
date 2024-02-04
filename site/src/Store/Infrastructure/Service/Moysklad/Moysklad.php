@@ -8,6 +8,7 @@ use App\Store\Domain\Entity\Order\OrderItem;
 use App\Store\Infrastructure\Repository\OrderRepository;
 use App\Store\Infrastructure\Repository\VariantRepository;
 use Evgeek\Moysklad\Api\Record\Objects\Documents\CustomerOrder;
+use Evgeek\Moysklad\Api\Record\Objects\Entities\Assortment;
 use Evgeek\Moysklad\Api\Record\Objects\Entities\Counterparty;
 use Evgeek\Moysklad\Api\Record\Objects\Entities\Product;
 use Evgeek\Moysklad\Exceptions\RequestException;
@@ -20,7 +21,8 @@ readonly class Moysklad
         private OrderRepository $orderRepository,
         private VariantRepository $variantRepository,
         private MoyskladOrganization $moyskladOrganization,
-    ) {}
+    ) {
+    }
 
     /**
      * @throws RequestException
@@ -118,5 +120,22 @@ readonly class Moysklad
             // сохраняем флаг
             $this->orderRepository->save($order, true);
         }
+    }
+
+    public function updateStocksFromMoysklad(): void
+    {
+        // Получаем инициализированный клиент
+        $moyskladClient = $this->moyskladClient->get();
+
+        // Подготавливаем SDK для получения всей коллекции
+        $assortmentCollection = Assortment::collection($moyskladClient)->get();
+
+        // Создаём обработчк который будет обновлять остатки
+        $handleUpdateAssortment = function ($assortment): void {
+            $this->variantRepository->updateQuantityFromMoysklad($assortment->id, $assortment->quantity);
+        };
+
+        // each result
+        $assortmentCollection->eachGenerator($handleUpdateAssortment);
     }
 }
