@@ -31,6 +31,10 @@ class Variant
     #[ORM\Column(type: 'integer', options: ['default' => 0])]
     private int $quantity = 0;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $moyskladId = null;
+
+
     public function __construct(Product $product, string $article, string $value, ?string $barcode = null)
     {
         $this->article = $article;
@@ -139,5 +143,17 @@ class Variant
     private function setQuantity($quantity): void
     {
         $this->quantity = $quantity;
+    }
+
+    public function getMoyskladId(): ?string
+    {
+        return $this->moyskladId;
+    }
+
+    public function setMoyskladId(?string $moyskladId): self
+    {
+        $this->moyskladId = $moyskladId;
+
+        return $this;
     }
 }

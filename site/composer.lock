@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6df76a59839cc0df7111b53d14589277",
+    "content-hash": "81560e9136b63761325ddc1309f6f3f6",
     "packages": [
         {
             "name": "amocrm/amocrm-api-library",
@@ -2149,6 +2149,52 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "evgeek/moysklad",
+            "version": "v0.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/evgeek/moysklad.git",
+                "reference": "66b288c7068e4313cce955e2adc05f9420fd2102"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/evgeek/moysklad/zipball/66b288c7068e4313cce955e2adc05f9420fd2102",
+                "reference": "66b288c7068e4313cce955e2adc05f9420fd2102",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.15",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Evgeek\\Moysklad\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Ivanov",
+                    "email": "evgeeek@gmail.com"
+                }
+            ],
+            "description": "SDK for MoySklad JSON API 1.2",
+            "support": {
+                "issues": "https://github.com/evgeek/moysklad/issues",
+                "source": "https://github.com/evgeek/moysklad/tree/v0.11.1"
+            },
+            "time": "2024-01-10T20:41:52+00:00"
         },
         {
             "name": "fig/http-message-util",

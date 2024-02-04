@@ -8,6 +8,7 @@ use App\Store\Domain\Entity\Order\Order;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderNumber;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
+use App\Store\Domain\Entity\Order\ValueObject\OrderStatus;
 use App\Store\Domain\Exception\StoreOrderException;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
 use App\Store\Infrastructure\Form\Order\Admin\OrderFilter;
@@ -138,6 +139,34 @@ class OrderRepository implements OrderRepositoryInterface
             ->setParameter('payment_method', OrderPayment::PAYMENT_METHOD_ONLINE)
             ->setParameter('payment_status', OrderPayment::PAYMENT_STATUS_WAITING)
             ->setParameter('payment_provider', $paymentProviderName);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @return Order[]
+     */
+    public function getOrdersPaidNotCreatedInMoysklad(): array
+    {
+        $expr = $this->em->getExpressionBuilder();
+
+        $queryBuilder = $this->em->createQueryBuilder()->from(Order::class, 'orders')->select('orders')
+            ->where(
+                $expr->eq('orders.currentStatus', ':order_status_paid')
+            )
+            ->andWhere(
+                $expr->eq('orders.moysklad.created', ':order_moysklad_created')
+            )
+            ->andWhere(
+                $expr->eq('orders.payment.method', ':order_payment_method')
+            )
+        ;
+
+        $queryBuilder
+            ->setParameter('order_status_paid', OrderStatus::PAID)
+            ->setParameter('order_moysklad_created', false)
+            ->setParameter('order_payment_method', OrderPayment::PAYMENT_METHOD_ONLINE)
+        ;
 
         return $queryBuilder->getQuery()->getResult();
     }

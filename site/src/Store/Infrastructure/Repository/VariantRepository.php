@@ -28,12 +28,34 @@ class VariantRepository
         if ($object === null) {
             throw new StoreProductException('Variant not found.');
         }
+
         return $object;
     }
 
     public function findById(int $id): null|Variant
     {
         return $this->repo->find($id);
+    }
+
+    public function updateMoyskladId(string $article, string $barcode, ?string $moyskladId): void
+    {
+        $qb = $this->repo->createQueryBuilder('variant');
+
+        // build update query
+        $qb->update()->set('variant.moyskladId', ':moysklad_id')
+            ->andWhere(
+                $qb->expr()->eq('variant.article', ':article')
+            )
+            ->andWhere(
+                $qb->expr()->eq('variant.barcode', ':barcode')
+            );
+
+        $qb
+            ->setParameter('moysklad_id', $moyskladId)
+            ->setParameter('article', $article)
+            ->setParameter('barcode', $barcode);
+
+        $qb->getQuery()->execute();
     }
 
     public function save(Variant $entity, bool $flush = false): void
