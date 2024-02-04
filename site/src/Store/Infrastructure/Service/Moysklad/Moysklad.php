@@ -20,8 +20,7 @@ readonly class Moysklad
         private OrderRepository $orderRepository,
         private VariantRepository $variantRepository,
         private MoyskladOrganization $moyskladOrganization,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws RequestException
@@ -35,7 +34,7 @@ readonly class Moysklad
         $productCollection = Product::collection($moyskladClient)->filter('article', '!=', '')->get();
 
         // Создаём обработчк который будет обновлять локальные товары
-        $handleUpdateProductVariant = function ($row) {
+        $handleUpdateProductVariant = function ($row): void {
             // $product->id, $product->article, $product->barcodes,
 
             foreach ($row->barcodes as $barcodes) {
@@ -75,7 +74,6 @@ readonly class Moysklad
                         'email' => $customer->getEmail(),
                         'phone' => $customer->getPhone(),
                     ])->create();
-
                 } else {
                     $counterparty = array_shift($counterparty->rows);
                 }
@@ -91,17 +89,17 @@ readonly class Moysklad
                         'assortment' => [
                             'meta' => Meta::product(
                                 $orderItem->getProductVariant()->getMoyskladId()
-                            )
+                            ),
                         ],
                     ];
                 }
 
                 $customerOrder = CustomerOrder::make($moyskladClient, [
                     'organization' => [
-                        'meta' => Meta::organization($this->moyskladOrganization->get())
+                        'meta' => Meta::organization($this->moyskladOrganization->get()),
                     ],
                     'agent' => [
-                        'meta' => Meta::counterparty($counterparty->id)
+                        'meta' => Meta::counterparty($counterparty->id),
                     ],
                     'positions' => $positions,
                 ]);

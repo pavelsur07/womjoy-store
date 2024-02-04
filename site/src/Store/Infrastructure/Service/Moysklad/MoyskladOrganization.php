@@ -8,8 +8,7 @@ readonly class MoyskladOrganization
 {
     public function __construct(
         private string $organization
-    ) {
-    }
+    ) {}
 
     public function get(): string
     {

@@ -159,14 +159,12 @@ class OrderRepository implements OrderRepositoryInterface
             )
             ->andWhere(
                 $expr->eq('orders.payment.method', ':order_payment_method')
-            )
-        ;
+            );
 
         $queryBuilder
             ->setParameter('order_status_paid', OrderStatus::PAID)
             ->setParameter('order_moysklad_created', false)
-            ->setParameter('order_payment_method', OrderPayment::PAYMENT_METHOD_ONLINE)
-        ;
+            ->setParameter('order_payment_method', OrderPayment::PAYMENT_METHOD_ONLINE);
 
         return $queryBuilder->getQuery()->getResult();
     }

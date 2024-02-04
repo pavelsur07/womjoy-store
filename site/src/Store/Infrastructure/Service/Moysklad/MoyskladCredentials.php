@@ -8,8 +8,7 @@ readonly class MoyskladCredentials
 {
     public function __construct(
         private string $token
-    ) {
-    }
+    ) {}
 
     public function get(): array
     {
