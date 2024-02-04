@@ -24,6 +24,11 @@ class SubscribeProductRepository
         $this->repo = $this->em->getRepository(SubscribeProduct::class);
     }
 
+    public function listByVariantIds(array $ids): array
+    {
+        return $this->repo->findBy(['variant' => $ids]);
+    }
+
     public function get(SubscribeProductId $id): Variant
     {
         $object = $this->repo->find($id->value());
@@ -55,5 +60,21 @@ class SubscribeProductRepository
         if ($flush) {
             $this->em->flush();
         }
+    }
+
+    public function hasItem(SubscribeProduct $entity): bool
+    {
+        $object = $this->repo->findBy(
+            [
+                'variant'=> $entity->getVariant(),
+                'email'=> $entity->getEmail(),
+            ]
+        );
+
+        if ($object) {
+            return true;
+        }
+
+        return false;
     }
 }

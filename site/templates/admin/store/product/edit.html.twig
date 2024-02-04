@@ -86,6 +86,7 @@
                         <div class="btn-group w-100" role="group">
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('store.admin.product.variant.edit', {'id': product.id, 'variantId': variant.id}) }}">edit</a>
                             <a class="btn btn-sm btn-red rounded-4" href="{{ path('store.admin.product.variant.remove', {'id': product.id, 'variantId': variant.id}) }}">remove</a>
+                            <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('store.admin.product.subscriber.add_test', {'id': product.id, 'variantId': variant.id}) }}">Sub test</a>
                             {# {% include 'admin/matrix/product/_delete_form.html.twig' %}#}
                         </div>
                     </td>

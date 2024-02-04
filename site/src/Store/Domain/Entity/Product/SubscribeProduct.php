@@ -30,7 +30,7 @@ class SubscribeProduct
         Assert::email($email);
         $this->id = $id;
         $this->variant = $variant;
-        $this->email = $email;
+        $this->email = mb_strtolower(trim($email));
         $this->createdAt = $createdAt;
     }
 
