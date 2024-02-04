@@ -29,15 +29,15 @@ class ExportOrdersCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-//        try {
-            $this->moysklad->exportOrdersToMoysklad();
-//        } catch (RequestException $e) {
-//            $io->error(
-//                $e->getMessage()
-//            );
-//
-//            return Command::FAILURE;
-//        }
+        //        try {
+        $this->moysklad->exportOrdersToMoysklad();
+        //        } catch (RequestException $e) {
+        //            $io->error(
+        //                $e->getMessage()
+        //            );
+        //
+        //            return Command::FAILURE;
+        //        }
 
         return Command::SUCCESS;
     }

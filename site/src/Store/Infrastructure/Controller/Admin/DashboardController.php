@@ -157,7 +157,6 @@ class DashboardController extends AbstractController
         return $this->redirectToRoute('admin.dashboard.show');
     }
 
-
     #[Route(path: '/admin/dashboard/moysklad/import-ids', name: 'admin.dashboard.moysklad.import_ids')]
     public function moyskladImportIds(ImportIdsCommand $command): Response
     {
@@ -168,6 +167,7 @@ class DashboardController extends AbstractController
 
         return $this->redirectToRoute('admin.dashboard.show');
     }
+
     #[Route(path: '/admin/dashboard/moysklad/export-orders', name: 'admin.dashboard.moysklad.export_orders')]
     public function moyskladExportOrders(ExportOrdersCommand $command): Response
     {
@@ -178,5 +178,4 @@ class DashboardController extends AbstractController
 
         return $this->redirectToRoute('admin.dashboard.show');
     }
-
 }

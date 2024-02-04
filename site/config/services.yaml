@@ -156,9 +156,12 @@ services:
         
     App\Store\Infrastructure\Repository\YmlRepository:
         class: App\Store\Infrastructure\Repository\YmlRepository
+        
+    App\Store\Infrastructure\Repository\SubscribeProductRepository:
+        class: App\Store\Infrastructure\Repository\SubscribeProductRepository
     
     
-    #---------------------- Matrix ----------------------------------------------#
+    #---------------------- Matrix ------------- Deprecated ---------------------------------#
     App\Matrix\Domain\Repository\Product\ProductRepositoryInterface:
         class: App\Matrix\Infrastructure\Repository\Product\ProductRepository
     
