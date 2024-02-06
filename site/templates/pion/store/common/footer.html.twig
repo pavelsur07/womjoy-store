@@ -27,7 +27,28 @@
 
             <div class="col col-12 col-md-6 mb-4 mb-md-0">
                 <span class="d-block mb-3 fw-bold text-uppercase">ПОДПИШИТЕСЬ НА НАШУ РАССЫЛКУ:</span>
-                <form class="d-flex mb-4 flex-column flex-lg-row">
+
+
+                <form class="d-flex mb-4 flex-column flex-lg-row" method="POST" action="https://cp.unisender.com/ru/subscribe?hash=66538gguzp1sw5gub9zt58g5rfnhrbm1dmn38wy99yo6sfu1tr77o" name="subscribtion_form">
+
+                    <div class="w-field flex-grow-1 me-0 me-lg-3 mb-3 mb-lg-0">
+                        <div class="w-field__main">
+                            <label>
+                                <input type="text" class="w-field__inp" name="email" value="" placeholder="Введите Ваш E-Mail">
+                            </label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="charset" value="UTF-8">
+                    <input type="hidden" name="default_list_id" value="1">
+                    <input type="hidden" name="overwrite" value="2">
+                    <input type="hidden" name="is_v5" value="1">
+
+                    <button class="w-primary-btn" type="submit">Подписаться</button>
+
+                </form>
+
+                {#<form class="d-flex mb-4 flex-column flex-lg-row">
                     <div class="w-field flex-grow-1 me-0 me-lg-3 mb-3 mb-lg-0">
                         <div class="w-field__main">
                             <label>
@@ -36,7 +57,9 @@
                         </div>
                     </div>
                     <button class="w-primary-btn" type="submit">Подписаться</button>
-                </form>
+                </form>#}
+
+
                 <p class="w-text-sm">
                     После подписки на рассылку на указанный e-mail придет промокод на скидку 500 рублей на ваш первый заказ от 4000 рублей. Предложение действует только для новых клиентов, которые не регистрировались в программе лояльности womjoy. <br><br>
                     Нажимая на кнопку «Подписаться», я соглашаюсь на обработку моих персональных данных и ознакомлен(а) с условиями конфиденциальности.
@@ -83,3 +106,5 @@
         </div>
     </div>
 </footer>
+
+<script type="text/javascript" src="https://cp.unisender.com/v5/template-editor-new/js/app/preview/form/form-widget-loader.js"></script>
