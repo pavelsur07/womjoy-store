@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Setting\Domain\Entity;
 
 use App\Setting\Domain\Entity\ValueObject\SettingCompany;
+use App\Setting\Domain\Entity\ValueObject\SettingMoysklad;
 use App\Setting\Domain\Entity\ValueObject\SettingSeoDefault;
 use App\Setting\Domain\Entity\ValueObject\SettingUnisender;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,6 +40,9 @@ class Setting
     #[ORM\Embedded(class: SettingUnisender::class, columnPrefix: 'unisender_')]
     private SettingUnisender $unisender;
 
+    #[ORM\Embedded(class: SettingMoysklad::class, columnPrefix: 'moysklad_')]
+    private SettingMoysklad $moysklad;
+
     public function __construct()
     {
         $this->company = new SettingCompany();
@@ -49,6 +53,12 @@ class Setting
     {
         return $this->id;
     }
+
+    public function getMoysklad(): SettingMoysklad
+    {
+        return $this->moysklad;
+    }
+
 
     public function getUnisender(): SettingUnisender
     {
