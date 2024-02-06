@@ -25,6 +25,7 @@
         <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-simple">
             Generate by Category
         </button>
+        <a class="btn btn-danger" href="{{ path('store.admin.category.menu.clear', {'id': category.id}) }}">Clear</a>
     </div>
     <div class="card">
         <div class="card-header">

@@ -44,6 +44,15 @@ class CategoryMenuController extends AbstractController
         );
     }
 
+    #[Route(path: '/{id}/menu/clear', name: '.clear')]
+    public function clear(Category $category, Request $request, Flusher $flusher): Response
+    {
+        $category->getMenu()->clear();
+        $flusher->flush();
+        $this->addFlash('success', 'Success changed templates.');
+        return $this->redirectToRoute('store.admin.category.menu.index', ['id' =>$category->getId()]);
+    }
+
     #[Route(path: '/{id}/menu/add-item', name: '.add_item')]
     public function addItem(Category $category, Request $request, Flusher $flusher): Response
     {

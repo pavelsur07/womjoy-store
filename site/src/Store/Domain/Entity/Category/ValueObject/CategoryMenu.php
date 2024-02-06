@@ -21,6 +21,11 @@ class CategoryMenu
         ];
     }
 
+    public function clear(): void
+    {
+        $this->value = null;
+    }
+
     public function removeItem(string $itemId): void
     {
         foreach ($this->value as $item) {
