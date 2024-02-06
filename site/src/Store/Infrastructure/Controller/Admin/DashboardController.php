@@ -13,6 +13,7 @@ use App\Store\Infrastructure\Console\CartClearCommand;
 use App\Store\Infrastructure\Console\CategoryUpdateFilterCommand;
 use App\Store\Infrastructure\Console\Moysklad\ExportOrdersCommand;
 use App\Store\Infrastructure\Console\Moysklad\ImportIdsCommand;
+use App\Store\Infrastructure\Console\Moysklad\UpdateStocksCommand;
 use App\Store\Infrastructure\Console\ProductRegenerateSeoCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
@@ -170,6 +171,16 @@ class DashboardController extends AbstractController
 
     #[Route(path: '/admin/dashboard/moysklad/export-orders', name: 'admin.dashboard.moysklad.export_orders')]
     public function moyskladExportOrders(ExportOrdersCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
+    #[Route(path: '/admin/dashboard/moysklad/update-stocks', name: 'admin.dashboard.moysklad.update_stocks')]
+    public function moyskladUpdateStocks(UpdateStocksCommand $command): Response
     {
         $command->run(
             new ArrayInput([]),

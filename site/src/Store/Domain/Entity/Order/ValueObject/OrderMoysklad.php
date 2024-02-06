@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Embeddable]
 class OrderMoysklad
 {
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $id = null;
+
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private bool $created = false;
 
@@ -25,5 +28,17 @@ class OrderMoysklad
         }
 
         $this->created = true;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public function setId(?string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }

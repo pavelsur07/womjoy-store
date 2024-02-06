@@ -168,4 +168,11 @@ class OrderRepository implements OrderRepositoryInterface
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function getOrderByMoyskladId(string $moyskladId): ?Order
+    {
+        return $this->repo->findOneBy([
+            'moysklad.id' => $moyskladId
+        ]);
+    }
 }

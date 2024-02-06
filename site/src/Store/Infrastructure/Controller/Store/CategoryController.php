@@ -57,17 +57,18 @@ class CategoryController extends BaseController
         //        $filterSettingIds = $request->query->get('filter_ids');
 
         // Получаем правило сортировки
-        $currentSorting = $request->query->get('sort');
+        $currentSorting = $request->query->get('sort', self::SORTING_RULE_POPULARITY);
 
         // Мапим правило на поле
         $sort = match ($currentSorting) {
             self::SORTING_RULE_PRICE_ASC, self::SORTING_RULE_PRICE_DESC => 'p.price.listPrice',
+            self::SORTING_RULE_POPULARITY => 'p.popularity',
             default => null,
         };
 
         // Мапим правило на направление сортирови
         $direction = match ($currentSorting) {
-            self::SORTING_RULE_PRICE_DESC => 'desc',
+            self::SORTING_RULE_PRICE_DESC, self::SORTING_RULE_POPULARITY => 'desc',
             default => 'asc',
         };
 

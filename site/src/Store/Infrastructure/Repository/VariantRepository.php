@@ -58,6 +58,23 @@ class VariantRepository
         $qb->getQuery()->execute();
     }
 
+    public function updateQuantityFromMoysklad(string $moyskladId, int $quantity = 0): void
+    {
+        $qb = $this->repo->createQueryBuilder('variant');
+
+        // build update query
+        $qb->update()->set('variant.quantity', ':quantity')
+            ->where(
+                $qb->expr()->eq('variant.moyskladId', ':moysklad_id')
+            );
+
+        $qb
+            ->setParameter('moysklad_id', $moyskladId)
+            ->setParameter('quantity', $quantity);
+
+        $qb->getQuery()->execute();
+    }
+
     public function save(Variant $entity, bool $flush = false): void
     {
         $this->em->persist($entity);

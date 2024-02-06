@@ -57,6 +57,10 @@ services:
         arguments:
             $organization: '%env(MOYSKLAD_ORGANIZATION)%'
 
+    App\Store\Infrastructure\Service\Moysklad\MoyskladStore:
+        arguments:
+            $store: '%env(MOYSKLAD_STORE)%'
+
     Aws\S3\S3Client:
         arguments:
             - version: 'latest'
