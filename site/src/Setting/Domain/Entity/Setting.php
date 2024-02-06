@@ -59,7 +59,6 @@ class Setting
         return $this->moysklad;
     }
 
-
     public function getUnisender(): SettingUnisender
     {
         return $this->unisender;
@@ -88,6 +87,11 @@ class Setting
     public function getPhone(): ?string
     {
         return $this->phone;
+    }
+
+    public function setMoysklad(SettingMoysklad $moysklad): void
+    {
+        $this->moysklad = $moysklad;
     }
 
     public function setPhone(?string $phone): void
