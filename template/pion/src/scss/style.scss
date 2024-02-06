@@ -424,15 +424,23 @@ p.state__statement {
 	}
 
 	&-in {
-		background-color: $primary;
 		color: $black;
 		margin-bottom: 15px;
 	}
 	&-in &__alert {
 		border-bottom-color: #000 !important;
-	}
-	&-in &__main.fixed {
-		background-color: $primary;
+		position: relative;
+		z-index: 2;
+		&::before {
+			content: '';
+			position: absolute;
+			top: -0.5rem;
+			left: calc(var(--bs-gutter-x)*-.5);
+			width: calc(100% + (var(--bs-gutter-x)*.5) * 2);
+			height: calc(100% + var(--bs-gutter-x)*.5);
+			background-color: $primary;
+			z-index: -1;
+		}
 	}
 	&-in &__logo {
 		svg path {
@@ -970,6 +978,9 @@ p.state__statement {
 		}
 	}
 }
+// .catalog-body .catalog {
+// 	--bs-gutter-x: 1rem;
+// }
 
 .pagination {
 	display: flex;
@@ -1559,6 +1570,19 @@ p.state__statement {
 		text-align: center;
 		padding: 14px;
 		font-size: 13px;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+
+		> * {
+			min-width: unset;
+			&:not(:last-child) {
+				margin-right: 1rem;
+			}
+		}
 	}
 }
 

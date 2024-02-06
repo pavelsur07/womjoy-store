@@ -109,7 +109,8 @@
                 <div class="main-banner__text">
                     <div class="main-banner__title">Получите <br>500 руб.</div>
                     <p class="main-banner__descr">На первый заказ </p>
-                    <div class="main-banner__btn w-white-btn">Подробнее</div>
+                    {#<div class="main-banner__btn w-white-btn">Подробнее</div>#}
+                    <button class="main-banner__btn w-white-btn" type="button" data-modaltarget="modal-subscribe">Подробнее</button>
                 </div>
                 <picture>
                     <source srcset="{{ asset('./pion/img/promo/366-mob.jpg') }}" media="(max-width: 500px)">
@@ -118,6 +119,38 @@
             </a>
 
         </section>
+        <div class="modal modal-sm" id="modal-subscribe">
+            <div class="modal__bg"></div>
+            <div class="modal__content">
+                <div class="modal__top">
+                    {#<span class="modal__title">Modal title</span>#}
+                    <buttno class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt=""></buttno>
+                </div>
+                <div class="p-4">
+                    <div class="p-3">
+                    <p>Подпишитесь на новости womjoy и получите 500 р. на первый заказ.</p>
+
+                    <p>Предложение действует только для новых
+                    клиентов, которые не регистрировались
+                    в программе лояльности womjoy.</p>
+                    </div>
+                    <div class="w-field mb-4">
+                        <label class="w-field__label">Email*</label>
+                        <div class="w-field__main"><input type="email" class="w-field__inp" placeholder="Введите ваш E-mail"></div>
+                    </div>
+                    <button class="w-empty-btn" type="button">Подписаться</button>
+                    <div class="p-4">
+                        <p>Нажимая на кнопку «Подписаться», я соглашаюсь на обработку моих персональных данных и ознакомлен(а) с условиями конфиденциальности. Скидка действует на первый заказ от 3500 рублей и не суммируется с другими акциями.</p>
+                    </div>
+                </div>
+                {#<div class="modal__bottom">
+                    <div class="modal__actions">
+                        <button class="w-empty-btn" type="button">Кнопка</button>
+                        <button class="w-primary-btn" type="button">Кнопка</button>
+                    </div>
+                </div>#}
+            </div>
+        </div>
     </div>
 
     {% if widget.isNewArrivals %}
