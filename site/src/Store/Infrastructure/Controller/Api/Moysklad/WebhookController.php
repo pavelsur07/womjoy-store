@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Store\Infrastructure\Controller\Api\Moysklad;
 
 use App\Store\Infrastructure\Service\Moysklad\Moysklad;
-use App\Store\Infrastructure\Service\Moysklad\MoyskladClient;
-use Evgeek\Moysklad\Api\Record\Objects\Documents\CustomerOrder;
 use Evgeek\Moysklad\Tools\Guid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +19,7 @@ class WebhookController extends AbstractController
     public function register(Request $request, Moysklad $moysklad): Response
     {
         $moysklad->createWebhookForUpdateCustomerOrder(
-             $this->generateUrl('store.api.moysklad.webhook.order.update', [],UrlGeneratorInterface::ABSOLUTE_URL),
+            $this->generateUrl('store.api.moysklad.webhook.order.update', [], UrlGeneratorInterface::ABSOLUTE_URL),
         );
 
         return $this->redirect(
@@ -37,13 +35,13 @@ class WebhookController extends AbstractController
         // Получаем содержимое webhook запроса
         $payloadInputBug = $request->getPayload();
 
-        if($payloadInputBug->has('events')) {
+        if ($payloadInputBug->has('events')) {
             $events = $payloadInputBug->all('events');
 
             foreach ($events as $event) {
                 $orderGuid = Guid::extractFirst($event['meta']['href']);
 
-                if($orderGuid) {
+                if ($orderGuid) {
                     $moysklad->updateOrderFromMoysklad($orderGuid);
                 }
             }

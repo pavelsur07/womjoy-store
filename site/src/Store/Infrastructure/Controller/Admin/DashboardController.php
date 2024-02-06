@@ -179,6 +179,7 @@ class DashboardController extends AbstractController
 
         return $this->redirectToRoute('admin.dashboard.show');
     }
+
     #[Route(path: '/admin/dashboard/moysklad/update-stocks', name: 'admin.dashboard.moysklad.update_stocks')]
     public function moyskladUpdateStocks(UpdateStocksCommand $command): Response
     {

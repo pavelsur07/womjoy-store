@@ -172,7 +172,7 @@ class OrderRepository implements OrderRepositoryInterface
     public function getOrderByMoyskladId(string $moyskladId): ?Order
     {
         return $this->repo->findOneBy([
-            'moysklad.id' => $moyskladId
+            'moysklad.id' => $moyskladId,
         ]);
     }
 }

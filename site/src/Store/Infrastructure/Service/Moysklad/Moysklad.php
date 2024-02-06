@@ -22,8 +22,7 @@ readonly class Moysklad
         private VariantRepository $variantRepository,
         private MoyskladOrganization $moyskladOrganization,
         private MoyskladStore $moyskladStore,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws RequestException
@@ -151,10 +150,10 @@ readonly class Moysklad
         // Получаем инициализированный клиент
         $moyskladClient = $this->moyskladClient->get();
 
-//        // получение списка webhook
-//        dump($moyskladClient->query()->entity()->webhook()->get()); die;
-//        // удаление webhook по id
-//        $moyskladClient->query()->entity()->webhook()->byId('38da1c8f-c370-11ee-0a80-08e0007c95f7')->delete(); die;
+        //        // получение списка webhook
+        //        dump($moyskladClient->query()->entity()->webhook()->get()); die;
+        //        // удаление webhook по id
+        //        $moyskladClient->query()->entity()->webhook()->byId('38da1c8f-c370-11ee-0a80-08e0007c95f7')->delete(); die;
 
         $moyskladClient->query()->entity()->webhook()->create([
             'url' => $url,
@@ -175,12 +174,12 @@ readonly class Moysklad
         $order = $this->orderRepository->getOrderByMoyskladId($customerOrder->id);
 
         if ($order) {
-             // @todo: Тут необходимо написать реализацию маппинга статусов заказа из Moysklad в статусы сайта
-             // @todo: $customerOrder->state->name === 'Выполнен'
+            // @todo: Тут необходимо написать реализацию маппинга статусов заказа из Moysklad в статусы сайта
+            // @todo: $customerOrder->state->name === 'Выполнен'
 
-//            if ($customerOrder->state->name === 'Выполнен') {
-//                $order->complete();
-//            }
+            //            if ($customerOrder->state->name === 'Выполнен') {
+            //                $order->complete();
+            //            }
         }
 
         $this->orderRepository->save($order, true);
