@@ -28,6 +28,11 @@ class SubscriberRepository
         $this->repo = $this->em->getRepository(Subscriber::class);
     }
 
+    public function list(): array
+    {
+        return $this->repo->findAll();
+    }
+
     public function get(int $id): Subscriber
     {
         $object = $this->repo->find($id);

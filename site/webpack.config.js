@@ -30,6 +30,7 @@ Encore
     .addEntry('store_checkout', './assets/store/checkout/index.js')
     .addEntry('store_product', './assets/store/product/index.js')
     .addEntry('store_message', './assets/store/message/index.js')
+    .addEntry('store_subscribe', './assets/store/subscribe/index.js')
     .addEntry('store_admin_product','./assets/admin/store/product/attribute/index.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
