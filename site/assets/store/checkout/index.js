@@ -7,8 +7,8 @@ import { Provider } from 'react-redux'
 import store from '../redux/store'
 
 // Имортируем комопненты
-//import App from './components/App/App'
-import AppPion from "./components/App/AppPion";
+// import App from './components/App/App'
+import AppPion from './components/App/AppPion'
 
 const element = document.getElementById('checkout-id')
 

@@ -20,7 +20,7 @@ const PaymentPion = () => {
         <div className="checkout__item w-border-bottom-primary2">
             <div className="py-4 w-text-lg">3. ОПЛАТА</div>
             <div className="pb-4">
-                <div className="pb-4 w-border-bottom-primary2">
+                <div className="pb-4">
                     <p>
                         При оплате картами Visa, Mastercard и МИР, выпущенных российскими банками, рекомендуем использовать ручной ввод данных банковской карты на сайте либо воспользоваться сервисом SberPay.
                         Оплата картами Visa и Mastercard зарубежных банков недоступна.

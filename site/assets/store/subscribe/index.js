@@ -5,15 +5,16 @@ import ReactDOM from 'react-dom/client'
 // Имортируем комопненты
 import App from './components/App'
 
-const subscribeFormDiv = document.getElementById('subscribe-form');
-
+const subscribeFormDiv = document.getElementById('subscribe-form')
+const subscribeModalFormDiv = document.getElementById('subscribe-modal-form')
 
 if (subscribeFormDiv) {
-    ReactDOM.createRoot(subscribeFormDiv).render(
-            <App />
-    )
+  ReactDOM.createRoot(subscribeFormDiv).render(<App />)
 }
 
+if (subscribeModalFormDiv) {
+  ReactDOM.createRoot(subscribeModalFormDiv).render(<App />)
+}
 /*
 
 import React from 'react';
@@ -26,4 +27,4 @@ const subscribeFormDiv = document.getElementById('subscribe_form');
 // Проверка, найден ли элемент
 if (subscribeFormDiv) {
     // Рендеринг компонента формы в найденный элемент
-    ReactDOM.render(<SubscriptionForm />, subscribeFormDiv);*/
+    ReactDOM.render(<SubscriptionForm />, subscribeFormDiv); */

@@ -22,7 +22,13 @@ export const checkout = () => (dispatch, getState) => {
       // add — добавление товара в корзину;
       // remove — удаление товара из корзины;
       // purchase — покупка;
-      pushStoreMetrika('purchase', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)), result.order_id)
+      pushStoreMetrika(
+        'purchase',
+        Array.from(document.querySelectorAll('[data-product-id]')).map((v) =>
+          parseInt(v.dataset.productId)
+        ),
+        result.order_id
+      )
 
       console.log('Ответ при оформлении заказа:', result)
 
@@ -37,18 +43,19 @@ export const checkout = () => (dispatch, getState) => {
     })
 }
 
-export const setCustomer = (name, lastName, phone, email, comment) => (dispatch) => {
-  dispatch({
-    type: types.SET_CUSTOMER,
-    customer: {
-      name,
-      lastName,
-      phone,
-      email,
-      comment,
-    },
-  })
-}
+export const setCustomer =
+  (name, lastName, phone, email, comment) => (dispatch) => {
+    dispatch({
+      type: types.SET_CUSTOMER,
+      customer: {
+        name,
+        lastName,
+        phone,
+        email,
+        comment,
+      },
+    })
+  }
 
 export const setDelivery = (price, address) => (dispatch) => {
   dispatch({

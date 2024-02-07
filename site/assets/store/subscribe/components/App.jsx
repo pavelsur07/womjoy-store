@@ -21,6 +21,7 @@ const App = () => {
 
     const handleChange = (e) => {
         setEmail(e.target.value);
+        setFormErrors({})
     };
 
     const handleSubmit = async (e) => {
@@ -52,7 +53,9 @@ const App = () => {
 
         <span className="d-block mb-3 fw-bold text-uppercase">ПОДПИШИТЕСЬ НА НАШУ РАССЫЛКУ:</span>
         {formSubmitted ? (
-            <p>Вы успешно подписались на новости!</p>
+            <div className="p-3 bg-warning bg-opacity-10 mb-1">
+                Вы успешно подписались на новости!
+            </div>
         ) : (
             <form className="d-flex mb-4 flex-column flex-lg-row" onSubmit={handleSubmit}>
 

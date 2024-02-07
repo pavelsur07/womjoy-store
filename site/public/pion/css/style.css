@@ -2612,6 +2612,10 @@ p.state__statement {
   max-width: 450px;
 }
 
+.modal-md .modal__content {
+  max-width: 550px;
+}
+
 .modal__top {
   padding: 24px 20px;
   display: -webkit-box;

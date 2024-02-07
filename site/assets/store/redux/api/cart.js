@@ -16,7 +16,12 @@ export const addToCartRequest = (productId, quantity) => {
   // add — добавление товара в корзину;
   // remove — удаление товара из корзины;
   // purchase — покупка;
-  pushStoreMetrika('add', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
+  pushStoreMetrika(
+    'add',
+    Array.from(document.querySelectorAll('[data-product-id]')).map((v) =>
+      parseInt(v.dataset.productId)
+    )
+  )
 
   return fetch('/api/v1/cart/add', {
     method: 'POST',
@@ -38,7 +43,12 @@ export const removeFromCartRequest = (productId) => {
   // add — добавление товара в корзину;
   // remove — удаление товара из корзины;
   // purchase — покупка;
-  pushStoreMetrika('remove', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
+  pushStoreMetrika(
+    'remove',
+    Array.from(document.querySelectorAll('[data-product-id]')).map((v) =>
+      parseInt(v.dataset.productId)
+    )
+  )
 
   // Отправка данных на бэкэнд с использованием fetch()
   return fetch('/api/v1/cart/remove', {

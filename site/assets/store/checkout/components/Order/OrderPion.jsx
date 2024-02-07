@@ -13,8 +13,8 @@ const OrderPion = () => {
     return(
         <div className="col col-12 col-sm-9 col-md-6 col-lg-3 position-sticky mx-auto top-0">
             <div className="d-flex flex-column align-items-start pt-6">
-                <a href="#" className="w-black-link mb-3">УСЛОВИЯ ДОСТАВКИ</a>
-                <a href="#" className="w-black-link mb-3">ОПЛАТА ЗАКАЗОВ</a>
+                <a href="/pages/delivery" className="w-black-link mb-3" target="_blank">УСЛОВИЯ ДОСТАВКИ</a>
+                <a href="/pages/payment" className="w-black-link mb-3" target="_blank">ОПЛАТА ЗАКАЗОВ</a>
                 <div className="d-flex justify-content-between mb-3 w-100">
                     <span>ТОВАРЫ:</span>
                     <span>{cart.amount} шт.</span>
@@ -35,7 +35,7 @@ const OrderPion = () => {
                 </button>
 
                 <button
-                    className="w-primary-btn d-none mt-2 d-lg-block"
+                    className="w-primary-btn w-100 c-main__btn btn-primary mt-2"
                     type="button"
                     onClick={ handleCheckoutClick }
                 >

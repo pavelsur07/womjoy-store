@@ -21,7 +21,7 @@ const AppPion = () => {
             <div className="row position-relative align-items-start">
                 <div className="col col-12 col-lg-9">
                     <div className="checkout__items">
-                        <div className="checkout__item w-border-bottom-primary2 w-border-top-primary2">
+                        <div className="checkout__item">
                             <div className="py-4 w-text-lg">1. ТОВАРЫ В ЗАКАЗЕ</div>
                             <div className="pb-4">
                                 <div className="mb-4 d-none d-md-flex position-relative align-items-center justify-content-between">

@@ -62,13 +62,15 @@ const Cart = () => {
                         <a href="https://womjoy.ru/pages/payment" className=" d-inline-block mb-3 w-black-link">ОПЛАТА ЗАКАЗОВ</a>
                         <a href="https://womjoy.ru/pages/garantiya-vozvrata-i-obmena" className=" d-inline-block mb-3 w-black-link">ВОЗВРАТ ТОВАРА</a>
 
-                        <p>Если у вас остались вопросы, свяжитесь с нами по бесплатному номеру телефона <a href="#" className="w-black-link">8-800-000-00-00</a></p>
+                        <p>Если у вас остались вопросы, свяжитесь с нами по бесплатному номеру телефона <a href="#" className="w-black-link">8-800-301-67-53</a></p>
                     </div>
-                    <p className="col-12 col-sm-10 col-md-8 col-lg-3 w-text-lg order-1 order-lg-2">
-                        ПОДАРОЧНЫЙ СЕРТИФИКАТ <br/>
-                        <a href="#">Войдите</a>
-                         или зарегистрируйтесь, чтобы применить купон или начислить баллы за покупку.
-                    </p>
+                    <div className="col-12 col-sm-10 col-md-8 col-lg-3 order-1 order-lg-2">
+                        <p className="w-text-lg ">ПОДАРОЧНЫЙ СЕРТИФИКАТ </p>
+                        <p>
+                        <a href="/login">Войдите</a>&nbsp;
+                         или <a href="/registration/">зарегистрируйтесь</a>, чтобы применить купон или начислить баллы за покупку.
+                        </p>
+                    </div>
                     <div className="col-12 col-sm-10 col-md-8 col-lg-3 order-2 order-lg-3 mb-3 mb-lg-0">
                         <ul className="c-main__list">
                             <li className="d-flex mb-4">

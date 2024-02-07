@@ -11,8 +11,8 @@ if (element) {
   const root = ReactDOM.createRoot(element)
 
   root.render(
-      <Provider store={store}>
-        <App id={productId} />
-      </Provider>
+    <Provider store={store}>
+      <App id={productId} />
+    </Provider>
   )
 }

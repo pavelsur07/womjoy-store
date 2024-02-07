@@ -12,9 +12,9 @@ import App from './components/App/App'
 const element = document.getElementById('message-id')
 
 if (element) {
-    ReactDOM.createRoot(element).render(
-        <Provider store={store}>
-            <App />
-        </Provider>
-    )
+  ReactDOM.createRoot(element).render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
 }

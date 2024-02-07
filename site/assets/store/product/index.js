@@ -35,7 +35,6 @@ variantsNodeList.forEach((node) => {
 })
 
 buttonNodeList.forEach((node) => {
-
   console.log(node)
   node.addEventListener('click', ({ currentTarget }) => {
     // создаём действие
