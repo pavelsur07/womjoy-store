@@ -102,7 +102,7 @@ const DeliveryPion = () => {
                             <div className="p-3 bg-danger bg-opacity-10 text-danger">Пункт выдачи не выбран</div>
                             <div className="pt-4 d-flex justify-content-between">
                                 <button
-                                    className="w-primary-btn"
+                                    className="w-primary-btn w-100 c-main__btn btn-primary"
                                     type="button"
                                     onClick={() => showChoicePickupPoint()}
                                 >
@@ -114,16 +114,15 @@ const DeliveryPion = () => {
                 }
 
                 <>
-                    <div className={'modal' + (isOpenChoicePickupPoint ? ' active' : '')} id="my-data">
+                    <div className={'modal modal-lg' + (isOpenChoicePickupPoint ? ' active' : '')} id="my-data">
                         <div className="modal__bg"></div>
-                        <div className="modal__content" style={{width: '80%'}}>
-                            <button className="modal__close" type="button" onClick={() => hideChoicePickupPoint()}>
-                                <img src="/img_/icons/close-black.svg" alt="close black" width="24" height="24"/>
-                            </button>
+                        <div className="modal__content" style={{width: '100%'}}>
 
-                            <h2 className="modal__title">
-                                Выберите способ получения
-                            </h2>
+                            <div className="modal__top">
+                                <buttno className="modal__close ms-auto" type="button" onClick={() => hideChoicePickupPoint()}>
+                                    <img src="/pion/img/icons/close.svg" alt="close"/>
+                                </buttno>
+                            </div>
 
                             <DeliveryCDEKPickUpPoint
                                 defaultCity={'Москва'}

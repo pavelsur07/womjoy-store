@@ -26,13 +26,13 @@ const OrderPion = () => {
                     </span>
                 </div>
 
-                <button
+{/*                <button
                     className="w-primary-btn mx-auto mt-2 d-block d-lg-none"
                     type="button"
                     onClick={ handleCheckoutClick }
                 >
                     Оформить заказ
-                </button>
+                </button>*/}
 
                 <button
                     className="w-primary-btn w-100 c-main__btn btn-primary mt-2"

@@ -53,7 +53,7 @@ const DeliveryCDEKPickUpPoint = (props) => {
     })
 
     return (
-        <div id="delivery-cdek-pickup-point" style={{ height: '50vh' }} />
+        <div id="delivery-cdek-pickup-point" style={{ height: '100vh' }} />
     );
 }
 
