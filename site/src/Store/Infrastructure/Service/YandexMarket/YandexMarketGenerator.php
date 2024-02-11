@@ -117,7 +117,7 @@ class YandexMarketGenerator
             $writer->writeElement('country_of_origin', 'Россия');
             /** TODO Vendor name */
             $writer->writeElement('vendor', 'WOMJOY');
-            $writer->writeElement('model', (string)$product->getId());
+            $writer->writeElement('model', (string)$product->getBrandName());
             $writer->writeElement('description', strip_tags($product->getDescription()));
 
             foreach ($product->getImages() as $image) {
