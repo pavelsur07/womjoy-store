@@ -39,10 +39,10 @@
             </p>
             <p class="contacts-social">
                 <!--<a class="contacts-social__whatsapp" href="https://api.whatsapp.com/send?phone=79632752016" target="_blank" >WhatsApp</a>-->
-                <a href="#" target="_blank">
+                <a href="https://vk.com/womjoy" target="_blank">
                     <img src="{{ asset('./pion/img/icons/vk.svg') }}" alt="vk" width="40" height="40">
                 </a>
-                <a class="contacts-social__tg" href="#" target="_blank">
+                <a class="contacts-social__tg" href="https://t.me/womjoy_chat" target="_blank">
                     <img src="{{ asset('./pion/img/icons/tg.svg') }}" alt="vk" width="40" height="40">
                 </a>
             </p>
@@ -108,8 +108,13 @@
                         {{ form_widget(form.message) }}
                     </div>
 
+                    <div class="col-md-12 mb-3">
+                        {{ form_label(form.isMyHideForm) }}
+                        {{ form_widget(form.isMyHideForm) }}
+                    </div>
+
                     <div class="col-md-12 mb-3"> <button class="w-primary-btn">{{ button_label|default('Send') }}</button></div>
-                    <div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+                    {#<div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>#}
 
                     <p>
                         Нажимая на кнопку «Отправить», вы даете согласие на обработку и хранение своих персональных данных в соответствии с
@@ -132,5 +137,5 @@
 {% block javascripts %}
     {{ parent() }}
    {# {{ encore_entry_script_tags('store_message') }}#}
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+   {# <script src='https://www.google.com/recaptcha/api.js'></script>#}
 {% endblock %}

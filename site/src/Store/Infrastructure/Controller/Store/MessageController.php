@@ -27,8 +27,8 @@ class MessageController extends BaseController
         string $googleRecaptchaSiteKey,
         string $googleRecaptchaSecret
     ): Response {
-        $recaptcha = new ReCaptcha($googleRecaptchaSecret);
-        $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
+        /*$recaptcha = new ReCaptcha($googleRecaptchaSecret);
+        $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());*/
 
         $messageId = $request->get('messageId');
         if ($messageId === null) {
@@ -41,12 +41,12 @@ class MessageController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$resp->isSuccess()) {
+            /*if (!$resp->isSuccess()) {
                 // Do something if the submit wasn't valid ! Use the message to show something
                 $message = "The reCAPTCHA wasn't entered correctly. Go back and try it again.";
                 $this->addFlash('danger', $message);
                 return $this->redirectToRoute('store.message.contact.new', ['messageId' =>'error']);
-            }
+            }*/
 
             $data = $form->getData();
             $newMessage = new Message(

@@ -76,6 +76,13 @@ class MessageNewForm extends AbstractType
                         'placeholder' => 'Message',
                     ],
                 ]
+            )
+            ->add(
+                'isMyHideForm',
+                Type\CheckboxType::class,
+                [
+                    'label' => 'Я соглашаюсь на обработку моих персональных данных.',
+                ]
             );
     }
 
