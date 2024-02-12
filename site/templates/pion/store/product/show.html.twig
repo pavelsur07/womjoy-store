@@ -336,17 +336,30 @@
                     <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
                 </div>
 
-                <div class="p-5">
-                        <h3>{{ product.name }}</h3>
-
-                        <p>Добавлен в корзину</p>
-                        <div class="i-card__smimg">
-                            {% set image = product.images.first %}
-                            <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt=" Thumbnail " width="60" height="81">
+                <div class="p-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card">
+                                {% if product.images.count > 0 %}
+                                    {% set image = product.images.first %}
+                                    <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt=" Thumbnail " width="267" height="400">
+                                {% endif %}
+                            </div>
                         </div>
+                        <div class="col-6">
+                            <h3>{{ product.name }}</h3>
+
+                            <p>Добавлен в корзину</p>
+                            <p><strong>Цена:</strong> {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}</p>
+                            <p><strong>Кол-во:</strong> 1 </p>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
-                <div class="modal__bottom">
+                <div class="modal__bottom p-4">
                     <div class="modal__actions">
                         <a class="w-empty-btn" href="{{ path('store.product.show', {'slug': product.slug }) }}" type="button">Продолжить покупки</a>
                         <a class="w-primary-btn" href="{{ path('store.cart.index') }}" type="button">Оформить заказ</a>
