@@ -35,6 +35,9 @@ variantsNodeList.forEach((node) => {
 })
 
 buttonNodeList.forEach((node) => {
+ // получить модальное окно
+  const modalProduct = document.getElementById('modal-product');
+
   console.log(node)
   node.addEventListener('click', ({ currentTarget }) => {
     // создаём действие
@@ -44,6 +47,11 @@ buttonNodeList.forEach((node) => {
     store.dispatch(action)
 
     node.querySelector('span').innerText = 'В корзине'
+
+    // показать модальное окно
+    if (!modalProduct.classList.contains('active')) {
+      modalProduct.classList.add('active')
+    }
 
     if (!node.classList.contains('active')) {
       node.classList.add('active')
