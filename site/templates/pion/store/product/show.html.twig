@@ -157,7 +157,7 @@
                     <div class="i-card__size i-card__size_items">
                         <div class="w-sel w-sel-sm w-sel-white ">
                             <div class="w-sel__trigger">
-                                {{ 'product.not_found' | trans }}
+                                <strong>{{ 'product.not_found' | trans }}</strong>
                             </div>
                             <div class="w-sel__dropdown">
                                 {% if product.variants.count > 0 %}
@@ -165,16 +165,16 @@
 
                                         {% if variant.canBeAddToCart or product.isPreSale %}
                                             <label class="w-sel__item">
-                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
+                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
                                                 <span></span>
                                                 {{ variant.value }}
                                             </label>
                                         {% else %}
 
                                             <label class="w-sel__item">
-                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
+                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
                                                 <span></span>
-                                                {{ variant.value }} {{ 'product.not_found' | trans }}
+                                                {{ variant.value }} <strong>{{ 'product.not_found' | trans }}</strong>
                                             </label>
 
                                             {#<label class="i-card__size_item disabled">
@@ -188,7 +188,7 @@
                                     {% endfor %}
                                 {% else %}
                                     <label class="w-sel__item">
-                                        <input type="radio" name="card-size" hidden>
+                                        <input type="radio" name="card-size" data-quantity={{ variant.quantity}} hidden>
                                         <span></span>
                                         {{ 'product.not_found' | trans }}
                                     </label>
@@ -213,11 +213,11 @@
                         <span>Добавить в корзину</span>
                     </button>
 
-
-                    <button class="i-card__like" type="button">
+                    <!-- Добавить обработку добавления в список желаний -->
+                    {#<button class="i-card__like" type="button">
                         <img src="{{ asset('./pion/img/icons/like.svg') }}" alt="like" width="24" height="24">
                         ДОБАВИТЬ В WISHLIST
-                    </button>
+                    </button>#}
 
                     <div class="i-card__faq">
                         <div class="i-card__faq_item">
@@ -307,7 +307,8 @@
                         </div>
                     </div>
 
-                    <a class="i-card__review w-empty-btn" type="button">
+                    <!-- Добавить обработку добавления отзыва -->
+                    {#<a class="i-card__review w-empty-btn" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
                             <g clip-path="url(#clip0_71_8427)">
                                 <path d="M23.7848 9.22199C22.2099 8.0643 20.2992 7.45421 18.3448 7.48499C17.1445 7.47976 15.954 7.70096 14.8358 8.13699C14.2377 7.0507 13.346 6.15457 12.2628 5.55099C10.8562 4.75865 9.26611 4.34967 7.65177 4.36499C5.69772 4.33443 3.7874 4.94451 2.21277 6.10199C1.51206 6.59497 0.936527 7.24519 0.532268 8.00057C0.128009 8.75595 -0.0937451 9.5955 -0.115234 10.452C-0.0996631 11.2198 0.0800957 11.9753 0.411958 12.6678C0.74382 13.3604 1.2201 13.9738 1.80877 14.467L1.82977 18.094C1.82818 18.1874 1.8521 18.2796 1.89897 18.3605C1.94584 18.4413 2.01388 18.5079 2.09577 18.553C2.17712 18.5972 2.26807 18.6208 2.36064 18.6216C2.45322 18.6225 2.5446 18.6006 2.62677 18.558L6.38977 16.458C6.80898 16.5114 7.23116 16.5381 7.65377 16.538C8.85092 16.5413 10.0381 16.3201 11.1538 15.886C11.5821 16.6838 12.1797 17.3784 12.9048 17.921C14.4797 19.0787 16.3904 19.6888 18.3448 19.658C18.7694 19.658 19.1936 19.6309 19.6148 19.577L23.3848 21.563C23.4642 21.6119 23.5561 21.6366 23.6494 21.6342C23.7426 21.6317 23.8331 21.6021 23.9098 21.549C23.9879 21.5009 24.0527 21.434 24.0982 21.3543C24.1436 21.2746 24.1682 21.1847 24.1698 21.093L24.1908 17.588C24.7796 17.0947 25.2559 16.4811 25.5878 15.7884C25.9196 15.0957 26.0993 14.3399 26.1148 13.572C26.093 12.7153 25.871 11.8757 25.4664 11.1203C25.0618 10.3649 24.4858 9.71476 23.7848 9.22199ZM7.65177 15.468C7.21657 15.4664 6.78207 15.433 6.35177 15.368C6.27899 15.357 6.20474 15.3612 6.13367 15.3803C6.0626 15.3994 5.99624 15.433 5.93877 15.479L2.89477 17.182L2.87777 14.232C2.87777 14.221 2.87777 14.21 2.87777 14.2C2.8743 14.1256 2.85534 14.0528 2.82211 13.9861C2.78888 13.9195 2.7421 13.8605 2.68477 13.813C2.16454 13.4168 1.73935 12.9095 1.44023 12.328C1.1411 11.7465 0.975584 11.1056 0.955766 10.452C0.955766 7.68599 3.95577 5.43599 7.65577 5.43599C10.3918 5.43599 12.8648 6.71399 13.8738 8.59399C13.5379 8.77911 13.2164 8.98903 12.9118 9.22199C12.2112 9.71508 11.6359 10.3653 11.2318 11.1207C10.8277 11.8761 10.6061 12.7156 10.5848 13.572C10.5848 14.0182 10.6457 14.4623 10.7658 14.892C9.77301 15.2774 8.71668 15.4728 7.65177 15.468ZM23.3148 16.932C23.2575 16.9795 23.2107 17.0385 23.1775 17.1052C23.1443 17.1718 23.1253 17.2446 23.1218 17.319C23.1218 17.329 23.1218 17.338 23.1218 17.348L23.1048 20.208L20.0528 18.599C19.9961 18.5566 19.9315 18.5259 19.8628 18.5087C19.7941 18.4916 19.7227 18.4883 19.6528 18.499C19.2225 18.5641 18.788 18.5975 18.3528 18.599C15.3288 18.599 12.7678 17.09 11.9388 15.024C11.9388 15.014 11.9308 15.004 11.9268 14.994C11.7489 14.5444 11.6573 14.0654 11.6568 13.582C11.7167 12.6511 12.0411 11.7567 12.5919 11.0039C13.1426 10.251 13.8968 9.671 14.7658 9.33199C14.7863 9.32358 14.8064 9.31389 14.8258 9.30299C15.9303 8.80126 17.1306 8.54536 18.3438 8.55299C22.0358 8.55299 25.0438 10.803 25.0438 13.569C25.0242 14.2229 24.8589 14.8643 24.5597 15.4461C24.2606 16.0279 23.8352 16.5356 23.3148 16.932Z" />
@@ -324,7 +325,8 @@
                             </defs>
                         </svg>
                         ОСТАВИТЬ ОТЗЫВ
-                    </a>
+                    </a>#}
+
                 </div>
             </div>
         </section>
@@ -332,6 +334,7 @@
         <div class="modal modal-md" id="modal-product">
             <div class="modal__bg"></div>
             <div class="modal__content">
+
                 <div class="modal__top">
                     <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
                 </div>
@@ -354,9 +357,6 @@
                             <p><strong>Кол-во:</strong> 1 </p>
                         </div>
                     </div>
-
-
-
                 </div>
 
                 <div class="modal__bottom p-4">
@@ -401,6 +401,7 @@
             </div>
         </section>
         #}
+
         {% if product.relatedAssignments.count > 0 %}
             <section class="section card-slider">
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -424,6 +425,7 @@
             </section>
         {% endif %}
     </div>
+
     <div class="modal modal-lg" id="modal-size-table">
         <div class="modal__bg"></div>
         <div class="modal__content">

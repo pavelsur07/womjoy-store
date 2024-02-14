@@ -323,6 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	const modalCallers = document.querySelectorAll('[data-modaltarget]');
+	const modals = document.querySelectorAll('.modal');
+
+	modals.forEach(modal => {
+		modal.querySelector('.modal__close').addEventListener('click', () => modal.classList.remove('active'));
+		modal.querySelector('.modal__bg').addEventListener('click', () => modal.classList.remove('active'));
+	});
+
 	modalCallers.forEach(modalCaller => {
 		console.log('#' + modalCaller.dataset.modaltarget);
 		const modal = document.querySelector('#' + modalCaller.dataset.modaltarget);
