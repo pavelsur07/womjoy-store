@@ -19,6 +19,7 @@ variantsNodeList.forEach((node) => {
     const buttonAdd = document.querySelector('.add-to-cart-action')
     // устанавливаем ID товара на кнопку
     document.querySelector('.add-to-cart-action').dataset.variantId = node.value
+    // устанавливаем остатки товаров на кнопку
     buttonAdd.dataset.quantity = node.dataset.quantity
 
     if (node.dataset.quantity > 0 ){
@@ -38,7 +39,7 @@ variantsNodeList.forEach((node) => {
     document.querySelector('.add-to-cart-action').dataset.variantId =
       currentTarget.value
 
-
+    // устанавливаем остатки товаров на кнопку
     buttonAdd.dataset.quantity = quantity
 
 
