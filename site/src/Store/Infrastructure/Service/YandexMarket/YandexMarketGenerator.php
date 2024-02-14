@@ -118,6 +118,8 @@ class YandexMarketGenerator
             /** TODO Vendor name */
             $writer->writeElement('vendor', 'WOMJOY');
             /*$writer->writeElement('model', (string)$product->getBrandName());*/
+            /*TODO Доработать свойстов model */
+            $writer->writeElement('model', "Pion");
             $writer->writeElement('description', strip_tags($product->getDescription()));
 
             foreach ($product->getImages() as $image) {
