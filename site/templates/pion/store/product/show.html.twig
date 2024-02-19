@@ -161,24 +161,35 @@
                             </div>
                             <div class="w-sel__dropdown">
                                 {% if product.variants.count > 0 %}
+                                    {% set loop_is_first_checked = true %}
+
                                     {% for variant in product.variants %}
-
                                         {% if variant.canBeAddToCart or product.isPreSale %}
-
                                             <label class="w-sel__item">
-                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
+                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} {#{{ loop.first ? 'checked' : '' }}#} data-quantity={{ variant.quantity}} hidden>
                                                 <span></span>
                                                 {{ variant.value }}
                                             </label>
 
-                                        {% else %}
+                                            {% if loop_is_first_checked  %}
+                                                {% set loop_is_first_checked = false %}
+                                            {% endif %}
+
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% for variant in product.variants %}
+                                        {% if variant.canBeAddToCart or product.isPreSale %}{% else %}
 
                                             <label class="w-sel__item">
-                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
+                                                <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
                                                 <span></span>
                                                 {{ variant.value }} <strong>{{ 'product.not_found' | trans }}</strong>
                                             </label>
 
+                                            {% if loop_is_first_checked  %}
+                                                {% set loop_is_first_checked = false %}
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 {% else %}
