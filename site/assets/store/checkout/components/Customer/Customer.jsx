@@ -14,6 +14,7 @@ const Customer = () => {
         );
     };
 
+
     return (
         <div className="checkout__row">
             <div className="checkout__subtitle">Данные получателя</div>
@@ -27,7 +28,7 @@ const Customer = () => {
                 </div>
                 <div className="field">
                     <span className="field__ph">Номер телефона</span>
-                    <input type="text" className="field__inp phone-masked-field" placeholder="+7 000 000-00-00"
+                    <input type="tel" className="field__inp phone-masked-field" placeholder="+7 000 000-00-00"
                            value={customer.phone}
                            onChange={(e) => handleInputChange('phone', e.target.value)}
                     />
