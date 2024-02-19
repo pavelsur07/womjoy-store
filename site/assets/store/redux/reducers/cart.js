@@ -5,6 +5,7 @@ const defaultState = {
   cost: 0,
   discount: 0,
   discount_cost: 0,
+  delivery_cost: 0,
   temlate: 'default',
   items: [],
 }

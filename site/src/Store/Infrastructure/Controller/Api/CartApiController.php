@@ -36,6 +36,9 @@ class CartApiController extends AbstractController
                 'customer_id' => null,
                 'cost' => $cart->getCost(),
                 'costDiscount' => $cart->getCostDiscount(),
+                'deliveryCost' => $cart->getDeliveryCost(
+                    $cart->getCostDiscount(true)
+                ),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
                 'items' => $this->getCartItems($cart),
@@ -178,7 +181,7 @@ class CartApiController extends AbstractController
             'color_value' => $item->getVariant()->getProduct()->getColor(),
             'price_old' => $item->getVariant()->getProduct()->getPrice()->getPrice(),
             'price_list' => $item->getVariant()->getProduct()->getPrice()->getListPrice(),
-            'currency' => 'р.',
+            'currency' => '₽',
             'thumbnail' => $thumbnail,
         ];
     }

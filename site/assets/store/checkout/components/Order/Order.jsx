@@ -28,13 +28,13 @@ const Order = () => {
             <ul className="c-main__list">
                 <li>
                     <span>Товары, {cart.amount} шт.</span>
-                    <span>{cart.cost} р</span>
+                    <span>{cart.cost} ₽</span>
                 </li>
                 {
                     (cart.discount > 0) && (
                         <li>
                             <span>Скидка</span>
-                            <span>− {cart.discount} р</span>
+                            <span>− {cart.discount} ₽</span>
                         </li>
                     )
                 }
@@ -44,7 +44,7 @@ const Order = () => {
                 </li>
             </ul>
             <div className="c-main__final">
-                Сумма заказа <span className="c-main__cost">{cart.discount_cost} р</span>
+                Сумма заказа <span className="c-main__cost">{cart.discount_cost} ₽</span>
             </div>
 
             <button className="c-main__btn btn-primary" onClick={ handleCheckoutClick } type="button">Оформить заказ</button>

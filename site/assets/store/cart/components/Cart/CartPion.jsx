@@ -74,11 +74,11 @@ const Cart = () => {
                     <div className="col-12 col-sm-10 col-md-8 col-lg-3 order-2 order-lg-3 mb-3 mb-lg-0">
                         <ul className="c-main__list">
                             <li className="d-flex mb-4">
-                                <span>ТОВАРЫ:</span> <span className="d-block ms-auto">{new Intl.NumberFormat('ru-RU').format(cart.cost)} р.</span>
+                                <span>ТОВАРЫ:</span> <span className="d-block ms-auto">{new Intl.NumberFormat('ru-RU').format(cart.cost)} ₽</span>
                             </li>
                         </ul>
                         <div className="d-flex mb-4 w-text-lg fw-bold c-main__final">
-                            ИТОГО: <span className="d-block ms-auto c-main__cost">{new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} р.</span>
+                            ИТОГО: <span className="d-block ms-auto c-main__cost">{new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} ₽</span>
                         </div>
 
                         <button

@@ -56,13 +56,13 @@ const Cart = () => {
                     <ul className="c-main__list">
                         <li>
                             <span>Товары, {cart.amount} шт.</span>
-                            <span>{new Intl.NumberFormat('ru-RU').format(cart.cost)} р.</span>
+                            <span>{new Intl.NumberFormat('ru-RU').format(cart.cost)} ₽</span>
                         </li>
                         {
                             (cart.discount > 0) && (
                                 <li>
                                     <span>Скидка</span>
-                                    <span>− {new Intl.NumberFormat('ru-RU').format(cart.discount)} р.</span>
+                                    <span>− {new Intl.NumberFormat('ru-RU').format(cart.discount)} ₽</span>
                                 </li>
                             )
                         }
@@ -73,7 +73,7 @@ const Cart = () => {
                     </ul>
                     <div className="c-main__final">
                         Сумма заказа
-                        <span className="c-main__cost">{new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} р.</span>
+                        <span className="c-main__cost">{new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} ₽</span>
                     </div>
                     <button
                         type="button"

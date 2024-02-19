@@ -92,22 +92,24 @@ class Cart
         return $result;
     }
 
-    public function getCost(): int
+    public function getCost(bool $withoutDeliveryCost = false): int
     {
         $result = 0;
         foreach ($this->items as $item) {
             $result += $item->getCost();
         }
-        return $result;
+
+        return $result + $this->getDeliveryCost($result);
     }
 
-    public function getCostDiscount(): int
+    public function getCostDiscount(bool $withoutDeliveryCost = false): int
     {
         $result = 0;
         foreach ($this->items as $item) {
             $result += $item->getCostDiscount();
         }
-        return $result;
+
+        return $result + $this->getDeliveryCost($result);
     }
 
     public function getDiscount(): int
@@ -117,6 +119,11 @@ class Cart
             $result += $item->getDiscount();
         }
         return $result;
+    }
+
+    public function getDeliveryCost(int $cost): int
+    {
+        return $cost < 5000 ? 467 : 0;
     }
 
     public function getSubtotal(): int

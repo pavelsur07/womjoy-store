@@ -6,29 +6,23 @@ const CustomerPion = () => {
     const dispatch = useDispatch();
     const customer = useSelector((state) => state.checkout.customer);
 
-    let phone_ref = useRef(null);
-
-    if (phone_ref.current) {
-        phone_ref.current.addEventListener('input', e => {
-            let r = '+'
-            let phone = e.target.value.replace(/\D/g, "")
-            if (phone === '') return e.target.value = '+7'
-
-            let prefix = phone.charAt(0)
-            if (prefix !== '7') prefix = '7'
-            phone = phone.substring(1)
-            r += `${prefix}`
-            if (phone.length > 0) r += ` ${phone.substring(0, 3)}`
-            if (phone.length > 3) r += ` ${phone.substring(3, 6)}`
-            if (phone.length > 6) r += `-${phone.substring(6, 8)}`
-            if (phone.length > 8) r += `-${phone.substring(8, 10)}`
-
-            return e.target.value = r
-        });
-    }
-
     const handleInputChange = (field, value) => {
         let values = { ...customer, [field]: value };
+
+        let r = '+'
+        let phone = values.phone.replace(/\D/g, "")
+        if (phone === '') return values.phone = '+7'
+
+        let prefix = phone.charAt(0)
+        if (prefix !== '7') prefix = '7'
+        phone = phone.substring(1)
+        r += `${prefix}`
+        if (phone.length > 0) r += ` ${phone.substring(0, 3)}`
+        if (phone.length > 3) r += ` ${phone.substring(3, 6)}`
+        if (phone.length > 6) r += `-${phone.substring(6, 8)}`
+        if (phone.length > 8) r += `-${phone.substring(8, 10)}`
+
+        values.phone =  r;
 
         dispatch(
             setCustomer(values.name, values.lastName, values.phone, values.email, values.comment)
@@ -95,7 +89,6 @@ const CustomerPion = () => {
                                     <input
                                         type="tel"
                                         name='phone'
-                                        ref={phone_ref}
                                         className="w-field__inp field__inp"
                                         placeholder="+7 000 000-00-00"
                                         value={customer.phone}
