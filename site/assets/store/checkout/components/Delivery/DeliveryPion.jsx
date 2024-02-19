@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Delivery from "./Delivery";
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setDelivery} from "../../../redux/actions/checkout";
-import DeliveryCDEKPickUpPoint from "./DeliveryCDEKPickUpPoint";
 
 const DeliveryPion = () => {
     const dispatch = useDispatch();
@@ -26,14 +24,24 @@ const DeliveryPion = () => {
         hideChoicePickupPoint();
     }
 
-    return(
+    const handleChangeDeliveryAddress = ({ target }) => {
+        if (target.value.length < 10) {
+            return;
+        }
+
+        dispatch(
+            setDelivery(0, target.value)
+        );
+    }
+
+    return (
         <div className="checkout__item w-border-bottom-primary2">
             <div className="py-4 w-text-lg">4. ДОСТАВКА</div>
             <div className="pb-4">
 
-                <div className="pb-4">
+                <div className="">
                     <div className="row">
-                        <div className="col col-12 col-md-6">
+                        {/*<div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">Регион*</label>
                                 <div className="w-field__main">
@@ -45,21 +53,23 @@ const DeliveryPion = () => {
                                     />
                                 </div>
                             </div>
-                        </div>
-                        <div className="col col-12 col-md-6">
+                        </div>*/}
+                        <div className="col col-12">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">Город*</label>
+                                <label className="w-field__label field__ph">Адрес доставки*</label>
                                 <div className="w-field__main">
                                     <input
                                         type="text"
                                         className="w-field__inp field__inp"
-                                        name="city"
-                                        placeholder="Москва"
+                                        name="address"
+                                        autoComplete="shipping street-address"
+                                        placeholder="Москва, ул. Ленина, дом. 1. кв. 1"
+                                        onChange={handleChangeDeliveryAddress}
                                     />
                                 </div>
                             </div>
                         </div>
-                        <div className="col col-12 col-md-6">
+                        {/*<div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">Улица*</label>
                                 <div className="w-field__main">
@@ -99,11 +109,18 @@ const DeliveryPion = () => {
                                     />
                                 </div>
                             </div>
-                        </div>
-
+                        </div>*/}
 
                     </div>
                 </div>
+
+                {
+                    (!delivery.address || delivery.address.length < 10) && (
+                        <>
+                            <div className="p-3 bg-danger bg-opacity-10 text-danger">Не указан адрес доставки</div>
+                        </>
+                    )
+                }
 
                 {/*<div className="pb-4">
                     <div className="row">
@@ -148,7 +165,7 @@ const DeliveryPion = () => {
                     </div>
                 </div>*/}
 
-                {
+                {/*{
                     delivery.address && (
                         <>
                             <div className="pvz-block__title">
@@ -193,9 +210,9 @@ const DeliveryPion = () => {
                         <div className="modal__content" style={{width: '100%'}}>
 
                             <div className="modal__top">
-                                <buttno className="modal__close ms-auto" type="button" onClick={() => hideChoicePickupPoint()}>
+                                <button className="modal__close ms-auto" type="button" onClick={() => hideChoicePickupPoint()}>
                                     <img src="/pion/img/icons/close.svg" alt="close"/>
-                                </buttno>
+                                </button>
                             </div>
 
                             <DeliveryCDEKPickUpPoint
@@ -204,7 +221,7 @@ const DeliveryPion = () => {
                             />
                         </div>
                     </div>
-                </>
+                </>*/}
             </div>
         </div>
     )
