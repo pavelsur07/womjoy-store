@@ -164,11 +164,13 @@
                                     {% for variant in product.variants %}
 
                                         {% if variant.canBeAddToCart or product.isPreSale %}
+
                                             <label class="w-sel__item">
                                                 <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
                                                 <span></span>
                                                 {{ variant.value }}
                                             </label>
+
                                         {% else %}
 
                                             <label class="w-sel__item">
@@ -177,21 +179,16 @@
                                                 {{ variant.value }} <strong>{{ 'product.not_found' | trans }}</strong>
                                             </label>
 
-                                            {#<label class="i-card__size_item disabled">
-                                                <input type="radio" name="card-size" hidden>
-                                                <span class="i-card__size_visual">
-                                                    {{ variant.value }} not found
-                                                </span>
-                                            </label>#}
-
                                         {% endif %}
                                     {% endfor %}
                                 {% else %}
+
                                     <label class="w-sel__item">
                                         <input type="radio" name="card-size" data-quantity={{ variant.quantity}} hidden>
                                         <span></span>
                                         {{ 'product.not_found' | trans }}
                                     </label>
+
                                 {% endif %}
                             </div>
                         </div>
