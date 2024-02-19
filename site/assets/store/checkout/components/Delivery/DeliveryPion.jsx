@@ -61,7 +61,7 @@ const DeliveryPion = () => {
                         </div>
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">Город*</label>
+                                <label className="w-field__label field__ph">Улица*</label>
                                 <div className="w-field__main">
                                     <input
                                         type="text"
@@ -75,7 +75,7 @@ const DeliveryPion = () => {
 
                         <div className="col col-6 col-md-3">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">Номер дома*</label>
+                                <label className="w-field__label field__ph">Дом*</label>
                                 <div className="w-field__main">
                                     <input
                                         type="text"
@@ -89,7 +89,7 @@ const DeliveryPion = () => {
 
                         <div className="col col-6 col-md-3">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">Номер квартиры*</label>
+                                <label className="w-field__label field__ph">Квартиры*</label>
                                 <div className="w-field__main">
                                     <input
                                         type="text"
