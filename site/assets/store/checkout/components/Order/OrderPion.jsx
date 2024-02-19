@@ -20,14 +20,22 @@ const OrderPion = () => {
                     <span>{cart.amount} шт.</span>
                 </div>
 
-                {
-                    cart.delivery_cost > 0 && (
-                        <div className="d-flex justify-content-between mb-3 w-100">
-                            <span>ДОСТАВКА:</span>
+                <div className="d-flex justify-content-between mb-3 w-100">
+                    <span>ДОСТАВКА:</span>
+
+                    {
+                        // цена доставки
+                        cart.delivery_cost > 0 && (
                             <span>{cart.delivery_cost} ₽</span>
-                        </div>
-                    )
-                }
+                        )
+                    }
+                    {
+                        // бесплатно
+                        !cart.delivery_cost && (
+                            <span>БЕСПЛАТНО</span>
+                        )
+                    }
+                </div>
 
                 <div className="d-flex justify-content-between w-100">
                     <span>ИТОГО:</span>

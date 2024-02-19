@@ -99,6 +99,10 @@ class Cart
             $result += $item->getCost();
         }
 
+        if($withoutDeliveryCost) {
+            return $result;
+        }
+
         return $result + $this->getDeliveryCost($result);
     }
 
@@ -107,6 +111,10 @@ class Cart
         $result = 0;
         foreach ($this->items as $item) {
             $result += $item->getCostDiscount();
+        }
+
+        if($withoutDeliveryCost) {
+            return $result;
         }
 
         return $result + $this->getDeliveryCost($result);
