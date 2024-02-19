@@ -14,7 +14,8 @@ const DeliveryCDEKPickUpPoint = (props) => {
 
     if (!ISDEKWidgetReady) {
         new ISDEKWidjet({
-            defaultCity: props.defaultCity, //какой город отображается по умолчанию
+            /*defaultCity: props.defaultCity, //какой город отображается по умолчанию*/
+            defaultCity: 'Москва', //какой город отображается по умолчанию
             country: 'Россия', // можно выбрать страну, для которой отображать список ПВЗ
             link: 'delivery-cdek-pickup-point', // id элемента страницы, в который будет вписан виджет
             path: '/widget/scripts/', //директория с библиотеками

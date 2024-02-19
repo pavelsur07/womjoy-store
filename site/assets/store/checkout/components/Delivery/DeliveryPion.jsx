@@ -31,6 +31,80 @@ const DeliveryPion = () => {
             <div className="py-4 w-text-lg">4. ДОСТАВКА</div>
             <div className="pb-4">
 
+                <div className="pb-4">
+                    <div className="row">
+                        <div className="col col-12 col-md-6">
+                            <div className="w-field field mb-4">
+                                <label className="w-field__label field__ph">Регион*</label>
+                                <div className="w-field__main">
+                                    <input
+                                        type="text"
+                                        className="w-field__inp field__inp"
+                                        name="region"
+                                        placeholder="Московская обл"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col col-12 col-md-6">
+                            <div className="w-field field mb-4">
+                                <label className="w-field__label field__ph">Город*</label>
+                                <div className="w-field__main">
+                                    <input
+                                        type="text"
+                                        className="w-field__inp field__inp"
+                                        name="city"
+                                        placeholder="Москва"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col col-12 col-md-6">
+                            <div className="w-field field mb-4">
+                                <label className="w-field__label field__ph">Город*</label>
+                                <div className="w-field__main">
+                                    <input
+                                        type="text"
+                                        className="w-field__inp field__inp"
+                                        name="street"
+                                        placeholder="Ленина"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col col-6 col-md-3">
+                            <div className="w-field field mb-4">
+                                <label className="w-field__label field__ph">Номер дома*</label>
+                                <div className="w-field__main">
+                                    <input
+                                        type="text"
+                                        className="w-field__inp field__inp"
+                                        name="street"
+                                        placeholder="99"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col col-6 col-md-3">
+                            <div className="w-field field mb-4">
+                                <label className="w-field__label field__ph">Номер квартиры*</label>
+                                <div className="w-field__main">
+                                    <input
+                                        type="text"
+                                        className="w-field__inp field__inp"
+                                        name="street"
+                                        placeholder="99"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
                 {/*<div className="pb-4">
                     <div className="row">
                         <div className="col col-12 col-md-6">

@@ -16,12 +16,17 @@ const defaultState = {
   payment: 'cod',
   payment_list: {
     online: {
-      name: 'Картой онлайн',
-      description: 'Картой онлайн',
+      name: 'Банковской картой',
+      description: 'Банковской картой',
       value: 'online',
     },
+    cod_online: {
+      name: 'Банковской картой при получении',
+      description: 'Банковской картой при получении',
+      value: 'cod_online', // cash on delivery ()
+    },
     cod: {
-      name: 'При получении',
+      name: 'Наличными при получении',
       description: 'Оплата в пункте вывоза',
       value: 'cod', // cash on delivery ()
     },
