@@ -52,7 +52,7 @@ const DeliveryCDEKPickUpPoint = (props) => {
 
     useEffect(() => {
         setISDEKWidget(true);
-    })
+    }, [])
 
     return (
         <div id="delivery-cdek-pickup-point" style={{ height: '87vh' }} />
