@@ -9,20 +9,22 @@ const CustomerPion = () => {
     const handleInputChange = (field, value) => {
         let values = { ...customer, [field]: value };
 
-        let r = '+'
-        let phone = values.phone.replace(/\D/g, "")
-        if (phone === '') return values.phone = '+7'
+        if (field === 'phone') {
+            let r = '+'
+            let phone = values.phone.replace(/\D/g, "")
+            if (phone === '') return values.phone = '+7'
 
-        let prefix = phone.charAt(0)
-        if (prefix !== '7') prefix = '7'
-        phone = phone.substring(1)
-        r += `${prefix}`
-        if (phone.length > 0) r += ` ${phone.substring(0, 3)}`
-        if (phone.length > 3) r += ` ${phone.substring(3, 6)}`
-        if (phone.length > 6) r += `-${phone.substring(6, 8)}`
-        if (phone.length > 8) r += `-${phone.substring(8, 10)}`
+            let prefix = phone.charAt(0)
+            if (prefix !== '7') prefix = '7'
+            phone = phone.substring(1)
+            r += `${prefix}`
+            if (phone.length > 0) r += ` ${phone.substring(0, 3)}`
+            if (phone.length > 3) r += ` ${phone.substring(3, 6)}`
+            if (phone.length > 6) r += `-${phone.substring(6, 8)}`
+            if (phone.length > 8) r += `-${phone.substring(8, 10)}`
 
-        values.phone =  r;
+            values.phone = r;
+        }
 
         dispatch(
             setCustomer(values.name, values.lastName, values.phone, values.email, values.comment)
