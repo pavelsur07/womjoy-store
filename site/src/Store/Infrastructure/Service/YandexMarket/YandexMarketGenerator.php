@@ -120,7 +120,11 @@ class YandexMarketGenerator
             /*$writer->writeElement('model', (string)$product->getBrandName());*/
             /*TODO Доработать свойстов model */
             $writer->writeElement('model', "Pion");
-            $writer->writeElement('description', strip_tags($product->getDescription()));
+            $writer->writeElement(
+                name:'description',
+                content:  strip_tags( $product->getDescription() === null ? ' ': $product->getDescription()
+                )
+            );
 
             foreach ($product->getImages() as $image) {
                 $writer->writeElement('picture', $this->thumbnails->generateUrl(
