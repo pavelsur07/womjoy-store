@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Service\YandexMarket;
 
+use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Common\Infrastructure\Service\Thumbnail\ThumbnailService;
 use App\Common\Infrastructure\Uploader\FileUploader;
 use App\Store\Domain\Entity\Category\Category;
@@ -29,6 +30,7 @@ class YandexMarketGenerator
         private readonly ProductRepository $products,
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly ThumbnailService $thumbnails,
+        private SlugifyService $slugifyService,
     ) {}
 
     public function setProperty(string $company, string $name, string $url): void
@@ -220,11 +222,15 @@ class YandexMarketGenerator
             if ($product->getVariants()->count() > 0) {
                 foreach ($product->getVariants() as $variant) {
                     $writer->startElement('offer');
-                    $writer->writeAttribute('id', (string)$variant->getId());
-                    $writer->writeAttribute('type', 'vendor.model');
+                    $writer->writeAttribute(
+                        name: 'id',
+                        value: strtoupper(
+                            $this->slugifyService->generate($variant->getArticle())
+                        )
+                    );
+
                     $writer->writeAttribute('available', $product->isAvailable() ? 'true' : 'false');
 
-                    // $writer->writeElement('url', Html::encode($productUrlGenerator($product)));
                     $writer->writeElement('url', $this->baseUrl . $this->urlGenerator->generate('store.product.show', ['slug'=> $product->getSlug()]));
                     $writer->writeElement('name', $product->getName());
                     $writer->writeElement('price', (string)$product->getPrice()->getListPrice());
@@ -246,7 +252,12 @@ class YandexMarketGenerator
 
                     $writer->writeElement('barcode', $variant->getBarcode() !==null ? $variant->getBarcode() : '');
                     $writer->writeElement('vendor', $product->getBrandName() !== null ? $product->getBrandName() : 'WOMJOY');
-                    $writer->writeElement('vendorCode', $variant->getArticle());
+                    $writer->writeElement(
+                        name: 'vendorCode',
+                        content: strtoupper(
+                            $this->slugifyService->generate($variant->getArticle())
+                        )
+                    );
                     $writer->writeElement('model', $product->getArticle() !== null ? $product->getArticle() : 'Article-001');
 
                     $dimensions = $product->getDimensions();
@@ -260,7 +271,6 @@ class YandexMarketGenerator
                         (string)($dimensions->getHeight() !== null ? (string)$dimensions->getHeight() : '3');
 
                     $writer->writeElement('dimensions', $dimensionsResult);
-
                     $writer->writeElement('weight', $dimensions->getWeight() !== null ? (string)($dimensions->getWeight()/1000) : '0.250');
 
                     $writer->writeElement(
