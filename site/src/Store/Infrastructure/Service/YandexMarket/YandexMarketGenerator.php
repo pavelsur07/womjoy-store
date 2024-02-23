@@ -238,15 +238,6 @@ class YandexMarketGenerator
                     $writer->writeElement('categoryId', (string)$product->getMainCategory()->getId());
                     $writer->writeElement('delivery', 'true');
 
-                    // $available = array_filter($deliveries, static fn (DeliveryMethod $method) => $method->isAvailableForWeight($product->weight));
-
-                    /*if ($available) {
-                        $writer->writeElement('delivery', 'true');
-                        $writer->writeElement('local_delivery_cost', max(array_map(static fn (DeliveryMethod $method) => $method->cost, $available)));
-                    } else {
-                        $writer->writeElement('delivery', 'false');
-                    }*/
-
                     $writer->writeElement('sales_notes', 'Оплата: пластиковые карты');
                     $writer->writeElement('country_of_origin', 'Россия');
 
@@ -261,10 +252,6 @@ class YandexMarketGenerator
                     $writer->writeElement('model', $product->getArticle() !== null ? $product->getArticle() : 'Article-001');
 
                     $dimensions = $product->getDimensions();
-                    /*$writer->writeElement('length', $dimensions->getLength() !== null ? (string)$dimensions->getLength() : '20');
-                    $writer->writeElement('width', $dimensions->getWidth() !== null ? (string)$dimensions->getWidth() : '25');
-                    $writer->writeElement('height', $dimensions->getHeight() !== null ? (string)$dimensions->getHeight() : '3');*/
-
                     $dimensionsResult =
                         (string)($dimensions->getLength() !== null ? (string)$dimensions->getLength() : '20') . '/' .
                         (string)($dimensions->getWidth() !== null ? (string)$dimensions->getWidth() : '25') . '/' .
@@ -294,14 +281,6 @@ class YandexMarketGenerator
                     $writer->writeAttribute('name', 'Размер');
                     $writer->text($variant->getValue());
                     $writer->endElement();
-
-                    /** @var AttributeAssignment $value */
-                    /*foreach ($product->getAttributes() as $value) {
-                        $writer->startElement('param');
-                        $writer->writeAttribute('name', $value->getAttribute()->getName());
-                        $writer->text($value->getVariant()->getName());
-                        $writer->endElement();
-                    }*/
 
                     /** @var AttributeAssignment $value */
                     foreach ($product->getYandexMarketAttributes() as $value) {
