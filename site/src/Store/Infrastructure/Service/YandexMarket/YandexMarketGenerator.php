@@ -245,8 +245,15 @@ class YandexMarketGenerator
                     $writer->writeElement('country_of_origin', 'Россия');
 
                     $writer->writeElement('barcode', $variant->getBarcode() !==null ? $variant->getBarcode() : '');
+                    $writer->writeElement('vendor', $product->getBrandName() !== null ? $product->getBrandName() : 'WOMJOY');
                     $writer->writeElement('vendorCode', $variant->getArticle());
                     $writer->writeElement('model', $product->getArticle() !== null ? $product->getArticle() : 'Article-001');
+
+                    $dimensions = $product->getDimensions();
+                    $writer->writeElement('length', $dimensions->getLength() !== null ? (string)$dimensions->getLength() : '20');
+                    $writer->writeElement('width', $dimensions->getWidth() !== null ? (string)$dimensions->getWidth() : '25');
+                    $writer->writeElement('height', $dimensions->getHeight() !== null ? (string)$dimensions->getHeight() : '3');
+                    $writer->writeElement('weight', $dimensions->getWeight() !== null ? (string)($dimensions->getWeight()/1000) : '0.250');
 
                     $writer->writeElement(
                         name: 'description',

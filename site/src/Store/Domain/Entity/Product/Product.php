@@ -10,6 +10,7 @@ use App\Store\Domain\Entity\Attribute\Attribute;
 use App\Store\Domain\Entity\Attribute\Variant as AttributeVariant;
 use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
+use App\Store\Domain\Entity\Product\ValueObject\ProductDimensions;
 use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
@@ -146,6 +147,9 @@ class Product
     #[ORM\Embedded(class: ProductYandexMarket::class, columnPrefix: 'yandex_')]
     private ProductYandexMarket $yandexMarket;
 
+    #[ORM\Embedded(class: ProductDimensions::class, columnPrefix: 'dimension_')]
+    private ProductDimensions $dimensions;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -162,6 +166,16 @@ class Product
         $this->export = new ProductExport();
         $this->relatedColors = new ArrayCollection();
         $this->categories = new ArrayCollection();
+    }
+
+    public function getDimensions(): ProductDimensions
+    {
+        return $this->dimensions;
+    }
+
+    public function setDimensions(ProductDimensions $dimensions): void
+    {
+        $this->dimensions = $dimensions;
     }
 
     // Colors
