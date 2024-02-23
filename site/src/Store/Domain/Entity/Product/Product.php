@@ -792,14 +792,14 @@ class Product
         ];
     }
 
-    public function getBrandName(): string
+    public function getBrandName(): null|string
     {
         foreach ($this->attributes as $attribute) {
             if ($attribute->getAttribute()->isBrand() === true) {
                 return $attribute->getVariant()->getName();
             }
         }
-        return '';
+        return null;
     }
 
     public function getPopularity(): int

@@ -99,7 +99,7 @@ class Cart
             $result += $item->getCost();
         }
 
-        if($withoutDeliveryCost) {
+        if ($withoutDeliveryCost) {
             return $result;
         }
 
@@ -113,7 +113,7 @@ class Cart
             $result += $item->getCostDiscount();
         }
 
-        if($withoutDeliveryCost) {
+        if ($withoutDeliveryCost) {
             return $result;
         }
 
