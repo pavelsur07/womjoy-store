@@ -60,7 +60,7 @@
 
             <trans-unit id="product.not_found">
                 <source>product.not_found</source>
-                <target>Нет в наличии</target>
+                <target>Товар закончился</target>
             </trans-unit>
             <trans-unit id="message.coming_soon">
                 <source>message.coming_soon</source>
