@@ -14,7 +14,14 @@ class YmlEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', Type\TextType::class);
+            ->add('name', Type\TextType::class)
+            ->add(
+                'yandexMarketFid',
+                Type\CheckboxType::class,
+                [
+                    'required' => false,
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

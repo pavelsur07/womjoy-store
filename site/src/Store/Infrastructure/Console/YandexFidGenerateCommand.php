@@ -69,7 +69,11 @@ class YandexFidGenerateCommand extends Command
                 // }
             }
 
-            $this->generator->generate($categories, $products, $fid->getFileName());
+            if ($fid->isYandexMarketFid()) {
+                $this->generator->generateYandexMarketFid($categories, $products, $fid->getFileName());
+            } else {
+                $this->generator->generate($categories, $products, $fid->getFileName());
+            }
         }
 
         return Command::SUCCESS;

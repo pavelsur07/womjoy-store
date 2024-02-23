@@ -16,7 +16,7 @@ use App\Store\Infrastructure\Console\Moysklad\ImportIdsCommand;
 use App\Store\Infrastructure\Console\Moysklad\UpdateStocksCommand;
 use App\Store\Infrastructure\Console\ProductRegenerateSeoCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
-use App\Store\Infrastructure\Service\YandexMarket\YandexMarket;
+use App\Store\Infrastructure\Console\YandexMarketFidGenerateCommand;
 use DateTimeImmutable;
 use Exception;
 use Ramsey\Uuid\Uuid;
@@ -125,10 +125,13 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/admin/dashboard/generate/yml', name: 'admin.dashboard.generate.yml', methods: ['GET'])]
-    public function generateYml(YandexMarket $market): Response
+    public function generateYml(YandexMarketFidGenerateCommand $command): Response
     {
-        $market->setProperty(company: 'WOMJOY', name: 'ВУМДЖОЙ ООО', url: 'https://womjoy.ru');
-        $market->generate();
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
         return $this->redirectToRoute('admin.dashboard.show');
     }
 

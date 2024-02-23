@@ -61,7 +61,11 @@ class YmlController extends AbstractController
             url: 'https://womjoy.ru'
         );
 
-        $generator->generate($categories, $products, $yml->getFileName());
+        if ($yml->isYandexMarketFid()) {
+            $generator->generateYandexMarketFid($categories, $products, $yml->getFileName());
+        } else {
+            $generator->generate($categories, $products, $yml->getFileName());
+        }
 
         $this->addFlash('success', 'Success generate!');
 
@@ -111,6 +115,7 @@ class YmlController extends AbstractController
             YmlEditForm::class,
             [
                 'name' => $yml->getName(),
+                'yandexMarketFid' => $yml->isYandexMarketFid(),
                 'fileName' => $yml->getFileName(),
             ]
         );
@@ -120,8 +125,11 @@ class YmlController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $yml->changeName($data['name']);
+            $yml->setIsYandexMarketFid($data['yandexMarketFid']);
 
             $flusher->flush();
+            $this->addFlash('success', 'Success changed');
+            return $this->redirectToRoute('store.admin.yml.edit', ['id' => $id]);
         }
 
         $formCategory = $this->createForm(CategoryMenuGenerateForm::class, []);

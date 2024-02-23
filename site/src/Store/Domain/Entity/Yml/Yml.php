@@ -35,6 +35,9 @@ class Yml
     #[ORM\Column]
     private string $path;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isYandexMarketFid;
+
     /** @var ArrayCollection<array-key, Item> */
     #[OneToMany(mappedBy: 'yml', targetEntity: Item::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $items;
@@ -46,6 +49,16 @@ class Yml
         $this->fileName = $fileName;
         $this->path = $path;
         $this->items = new ArrayCollection();
+    }
+
+    public function isYandexMarketFid(): bool
+    {
+        return $this->isYandexMarketFid;
+    }
+
+    public function setIsYandexMarketFid(bool $isYandexMarketFid): void
+    {
+        $this->isYandexMarketFid = $isYandexMarketFid;
     }
 
     public function changeName(string $name): void

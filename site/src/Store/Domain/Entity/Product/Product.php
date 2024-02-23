@@ -13,6 +13,7 @@ use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
 use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
+use App\Store\Domain\Entity\Product\ValueObject\ProductYandexMarket;
 use App\Store\Domain\Entity\SeoMetadata;
 use App\Store\Domain\Exception\StoreCategoryException;
 use App\Store\Domain\Exception\StoreProductException;
@@ -141,6 +142,9 @@ class Product
     #[ORM\JoinColumn(name: 'product_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'related_product_id', referencedColumnName: 'id')]
     private Collection $relatedColors;
+
+    #[ORM\Embedded(class: ProductYandexMarket::class, columnPrefix: 'yandex_')]
+    private ProductYandexMarket $yandexMarket;
 
     public function __construct(ProductPrice $price)
     {
@@ -826,6 +830,27 @@ class Product
     public function clearAttributes(): void
     {
         $this->attributes->clear();
+    }
+
+    public function getYandexMarket(): ProductYandexMarket
+    {
+        return $this->yandexMarket;
+    }
+
+    public function getYandexMarketAttributes(): array
+    {
+        $result = [];
+
+        /** @var AttributeAssignment $attribute */
+        foreach ($this->attributes as $attribute) {
+            $result[$attribute->getAttribute()->getId()] = [
+                'name' => $attribute->getAttribute()->getName(),
+                'value' => !empty($result[$attribute->getAttribute()->getId()]['value'])
+                    ? $result[$attribute->getAttribute()->getId()]['value'] . ';' . $attribute->getVariant()->getName()
+                    : $attribute->getVariant()->getName(),
+            ];
+        }
+        return $result;
     }
 
     private function sortable(): void
