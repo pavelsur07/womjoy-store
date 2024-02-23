@@ -49,7 +49,7 @@ class Yml
         $this->fileName = $fileName;
         $this->path = $path;
         $this->items = new ArrayCollection();
-        $this->setIsYandexMarketFid(true);
+        $this->setIsYandexMarketFid(false);
     }
 
     public function isYandexMarketFid(): bool
