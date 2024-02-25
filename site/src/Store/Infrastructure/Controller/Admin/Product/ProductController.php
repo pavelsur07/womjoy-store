@@ -80,7 +80,7 @@ class ProductController extends AbstractController
                 'article'=> $product->getArticle(),
                 'name' => $product->getName(),
                 'fabrics' => $product->getFabrics(),
-                'description' => $product->getDescription(),
+                'description' => $product->getDescription() !== null ? $product->getDescription(): ' ',
                 'modelParameters' => $product->getModelParameters(),
                 'mainCategory' => $product->getMainCategory() ? new CategoryForChoice(
                     label: $product->getMainCategory()->getName(),
