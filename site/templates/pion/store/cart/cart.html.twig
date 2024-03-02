@@ -21,4 +21,5 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('store_cart') }}
+    <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
 {% endblock %}

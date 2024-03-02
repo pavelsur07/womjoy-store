@@ -18,4 +18,5 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('store_checkout') }}
+    <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
 {% endblock %}
