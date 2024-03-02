@@ -58,7 +58,6 @@ class BaseController extends AbstractController
         private readonly ThumbnailService $thumbnail,
         private readonly string $templateName
     ) {
-
         $this->template = $this->templateName;
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {
