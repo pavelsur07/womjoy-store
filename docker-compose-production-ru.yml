@@ -106,6 +106,7 @@ services:
       APP_ENV: prod
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
+      TEMPLATE_NAME: 'pion'
       SITE_LOCALE: 'ru'
       SITE_URL: 'https://womjoy.ru'
       MAILER_DSN: smtp://info@womjoy.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
