@@ -251,7 +251,10 @@
                                 <div class="text">
                                     {{ product.fabricComposition }}
                                 </div>
-                                <div class="i-card__faq_adv">
+
+                                {{ product.getGarmentCare.value | raw }}
+
+                                {#<div class="i-card__faq_adv">
                                     <img src="{{ asset('./pion/img/icons/i-card-adv-1.svg') }}" alt="Деликатная стирка при 30 градусах" width="32" height="32">
                                     Деликатная стирка при 30 градусах
                                 </div>
@@ -294,7 +297,7 @@
                                 <div class="i-card__faq_adv">
                                     <img src="{{ asset('./pion/img/icons/i-card-adv-11.svg') }}" alt="" width="32" height="32">
                                     Не стирать светлые изделия с цветными
-                                </div>
+                                </div>#}
                             </div>
                         </div>
                         <div class="i-card__faq_item">

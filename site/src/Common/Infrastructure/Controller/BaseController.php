@@ -55,7 +55,7 @@ class BaseController extends AbstractController
         private readonly MenuSettingService $menuService,
         private readonly SettingService $settingService,
         private readonly string $siteUrl,
-        private readonly ThumbnailService $thumbnail
+        private readonly ThumbnailService $thumbnail,
     ) {
         $headerMenu = $this->menus->findById(id: 1);
         if ($headerMenu === null) {

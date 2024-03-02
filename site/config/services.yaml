@@ -13,6 +13,8 @@ parameters:
 
     # Параметры платёжной системы Stripe
     stripe_api_key: '%env(STRIPE_API_KEY)%'
+    
+    template_name: '%env(TEMPLATE)%'
 
     # Параметры платёжной системы Alfabank
     alfabank_api: '%env(ALFABANK_API)%'

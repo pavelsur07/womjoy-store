@@ -12,6 +12,7 @@ use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
 use App\Store\Domain\Entity\Product\ValueObject\ProductDimensions;
 use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
+use App\Store\Domain\Entity\Product\ValueObject\ProductGarmentCare;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Entity\Product\ValueObject\ProductYandexMarket;
@@ -150,6 +151,9 @@ class Product
     #[ORM\Embedded(class: ProductDimensions::class, columnPrefix: 'dimension_')]
     private ProductDimensions $dimensions;
 
+    #[ORM\Embedded(class: ProductGarmentCare::class, columnPrefix: 'garment_care_')]
+    private ProductGarmentCare $garmentCare;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -166,6 +170,16 @@ class Product
         $this->export = new ProductExport();
         $this->relatedColors = new ArrayCollection();
         $this->categories = new ArrayCollection();
+    }
+
+    public function getGarmentCare(): ProductGarmentCare
+    {
+        return $this->garmentCare;
+    }
+
+    public function setGarmentCare(ProductGarmentCare $garmentCare): void
+    {
+        $this->garmentCare = $garmentCare;
     }
 
     public function getDimensions(): ProductDimensions

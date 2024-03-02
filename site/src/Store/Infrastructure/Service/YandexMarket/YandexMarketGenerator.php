@@ -116,7 +116,7 @@ class YandexMarketGenerator
                 $writer->writeElement('delivery', 'false');
             }*/
 
-            /*$writer->writeElement('sales_notes', 'Оплата: пластиковые карты');*/
+            // $writer->writeElement('sales_notes', 'Оплата: пластиковые карты');
 
             $writer->writeElement('country_of_origin', 'Россия');
             /** TODO Vendor name */
