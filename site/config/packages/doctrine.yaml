@@ -5,6 +5,7 @@ doctrine:
             store_order_uuid: App\Store\Infrastructure\Doctrine\OrderIdType
             store_message_uuid: App\Store\Infrastructure\Doctrine\MessageIdType
             store_product_subscribe_uuid: App\Store\Infrastructure\Doctrine\SubscribeProductIdType
+            store_promo_code_uuid: App\Store\Infrastructure\Doctrine\PromoCodeIdType
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
