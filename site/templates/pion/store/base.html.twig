@@ -61,24 +61,25 @@
 
     {% include 'pion/store/common/footer.html.twig' %}
 
-    <script>
-        function pushStoreMetrika(action, productIds, orderId) {
-            const options = {
-                method: 'POST',
-                body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
-            };
+    {% if app.environment == 'prod' %}
+        <script>
+            function pushStoreMetrika(action, productIds, orderId) {
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
+                };
 
-            fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
-                console.log({ "ecommerce": data });
-                window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
-            });
-        }
-    </script>
+                fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+                    console.log({ "ecommerce": data });
+                    window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+                });
+            }
+        </script>
+    {% endif %}
 
     </body>
 
     {% block javascripts %}
-
 
         {% if app.environment == 'prod' %}
             <!-- Yandex.Metrika counter -->
