@@ -1,0 +1,72 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Order index{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Store
+            </div>
+            <h2 class="page-title">
+                Promo code index
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('store.admin.promo_code.test') }}" class="btn btn-bitbucket">Test code</a>
+
+    <div class="card card-body mt-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="w-1">Code</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Is activated</th>
+                <th class="w-25">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for code in pagination %}
+                <tr>
+                    <td>
+                        {{ code.code }}
+                    </td>
+                    <td>
+                        {{ code.discountType.value }}
+                    </td>
+                    <td>
+                        {{ code.discountValue }}
+                    </td>
+                    <td>
+                        {% if code.isExpired %}
+                            true
+                        {% else %}
+                            false
+                        {% endif %}
+
+                    </td>
+                    <td>
+                        <a class="btn btn-sm rounded-2 btn-bitbucket" href="#">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

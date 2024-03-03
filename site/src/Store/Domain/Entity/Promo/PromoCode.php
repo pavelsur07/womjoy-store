@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Promo;
 
+use App\Common\Infrastructure\Service\PromoCode\PromoCodeGenerator;
 use App\Store\Domain\Entity\Promo\ValueObject\PromoCodeDiscountType;
 use App\Store\Domain\Entity\Promo\ValueObject\PromoCodeId;
 use App\Store\Domain\Exception\StoreException;
@@ -80,8 +81,8 @@ class PromoCode
         return $this->isActivated;
     }
 
-    public function generate(): string
+    public static function generate(): string
     {
-        return 'promo-code';
+        return PromoCodeGenerator::generatePromoCode();
     }
 }

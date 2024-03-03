@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller\Webhook;
 
+use App\Store\Domain\Entity\Promo\ValueObject\PromoCodeDiscountType;
+use App\Store\Infrastructure\Service\Promo\PromoCodeService;
 use App\Subscriber\Domain\Entity\Subscriber;
 use App\Subscriber\Domain\Repository\SubscriberRepository;
 use Exception;
@@ -15,14 +17,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class LeadGenicController extends AbstractController
 {
     #[Route(path: '/endpoint/webhook/lead-genic', methods: ['POST'])]
-    public function subscribe(Request $request, SubscriberRepository $subscribers): Response
+    public function subscribe(Request $request, SubscriberRepository $subscribers, PromoCodeService $promoCodes): Response
     {
         $data = json_decode($request->getContent(), true);
         try {
             $email = $data['email'];
 
+            // Сохраняем подписчика к нам в базу
             $subscriber = new Subscriber(email: (string)$email);
             $subscribers->save($subscriber, true);
+
+            // Генерируем промокод и сохраняем его в базу
+            $code = $promoCodes->getPromoCode(discountValue: 10, discountType: PromoCodeDiscountType::PERCENT);
+            $promoCodes->save();
+
+            // Отправляем промокод письмом через сервис Unisender
 
             $message = 'success';
             $code = 201;
