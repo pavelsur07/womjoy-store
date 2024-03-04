@@ -8,7 +8,21 @@
     </a>
     <div class="card__main">
         <a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__name">{{ item.name }}</a>
-        <span class="card__cost">{{ item.price.listPrice|number_format(0, ',', ' ') }} р.</span>
+        {#<span class="card__cost">{{ item.price.listPrice|number_format(0, ',', ' ') }} р.</span>#}
+
+        {% if item.price.listPrice == item.price.price %}
+            <span class="product__cost">{{ item.price.price|number_format(0, ',', ' ')}} р.</span>
+        {% else %}
+            <span class="product__cost">
+                {{ item.price.listPrice|number_format(0, ',', ' ') }} р.
+                <del class="product__old">{{ item.price.price|number_format(0, ',', ' ') }} р.</del>
+
+            </span>
+
+            {#<span class="product__sale">#}
+           {# -{{ ((1-(item.price.listPrice / item.price.price)) * 100)|number_format(0, ',', ' ') }}%#}
+            {#</span>#}
+        {% endif %}
 
         {#
         <div class="colors">
