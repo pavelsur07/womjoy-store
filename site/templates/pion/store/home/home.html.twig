@@ -24,6 +24,18 @@
                 <div class="swiper-wrapper">
                     <div class="hero__slide swiper-slide">
                         <picture>
+                            <source srcset="{{ asset('./pion/img/hero-slider/Mobil-600-900-03-7.jpg') }}" media="(max-width: 768px)">
+                            <source srcset="{{ asset('./pion/img/hero-slider/Desctop-1920-910-13-13-1.jpg') }}" media="(min-width: 769px)">
+                            <img src="{{ asset('./pion/img/hero-slider/Desctop-1920-910-13-13-1.jpg') }}" alt="Одежда для дома">
+                        </picture>
+                        <div class="hero__text">
+                            <div class="hero__title">Праздничная скидка к 8 марта - 10%</div>
+                            <a href="https://womjoy.ru/collections/zhenskaya-odezhda" class="w-white-btn">Посмотреть</a>
+                        </div>
+                    </div>
+
+                    <div class="hero__slide swiper-slide">
+                        <picture>
                             <source srcset="{{ asset('./pion/img/hero-slider/Mobil-600x900-0001.jpg') }}" media="(max-width: 768px)">
                             <source srcset="{{ asset('./pion/img/hero-slider/1920-910-0001.jpg') }}" media="(min-width: 769px)">
                             <img src="{{ asset('./pion/img/hero-slider/1920-910-0001.jpg') }}" alt="Одежда для дома">
