@@ -323,6 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	const modalCallers = document.querySelectorAll('[data-modaltarget]');
+	const modals = document.querySelectorAll('.modal');
+
+	modals.forEach(modal => {
+		modal.querySelector('.modal__close').addEventListener('click', () => modal.classList.remove('active'));
+		modal.querySelector('.modal__bg').addEventListener('click', () => modal.classList.remove('active'));
+	});
+
 	modalCallers.forEach(modalCaller => {
 		console.log('#' + modalCaller.dataset.modaltarget);
 		const modal = document.querySelector('#' + modalCaller.dataset.modaltarget);
@@ -367,17 +374,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			const checks = sel.querySelectorAll('.w-sel__item input');
 			const checkItems = sel.querySelectorAll('.w-sel__item');
-			trigger.textContent = Array.from(checkItems).filter(item => item.querySelector('input').checked)[0].textContent;
+
+
+			if (Array.from(checkItems).filter(item => item.querySelector('input').checked).length > 0) {
+				trigger.textContent = Array.from(checkItems).filter(item => item.querySelector('input').checked)[0].textContent;
+			} else if (sel.dataset.wSelDefault) {
+				trigger.textContent = sel.dataset.wSelDefault;
+			} else {
+				trigger.textContent = 'Не выбрано';
+			}
+
+			checkItems.forEach((checkItem, i) => {
+				if (+checks[i].dataset.quantity === 0) {
+					checkItem.insertAdjacentHTML('beforeend', `
+						<strong>
+							<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; margin-right: 2px">
+								<path d="M1.66675 2.91666H18.3334V17.0833H1.66675V2.91666Z" stroke="#141B34" stroke-width="1.25" stroke-linejoin="round"></path>
+								<path d="M1.66675 5.83337L10.0001 10L18.3334 5.83337" stroke="#141B34" stroke-width="1.25"></path>
+							</svg>
+							Уведомить
+						</strong>
+					`);
+				}
+			})
 
 
 			checks.forEach((check, i) => check.addEventListener('change', () => {
-				trigger.textContent = sel.querySelectorAll('.w-sel__item')[i].textContent;
+				trigger.innerHTML = sel.querySelectorAll('.w-sel__item')[i].querySelector('div').textContent.replace(sel.dataset.wSelEmpty, '');
+
+				if (+check.dataset.quantity === 0) {
+					trigger.innerHTML += `
+						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px; margin-right: 4px">
+							<path d="M1.66675 2.91666H18.3334V17.0833H1.66675V2.91666Z" stroke="#141B34" stroke-width="1.25" stroke-linejoin="round"></path>
+							<path d="M1.66675 5.83337L10.0001 10L18.3334 5.83337" stroke="#141B34" stroke-width="1.25"></path>
+						</svg>
+						Уведомить
+					`;
+				}
 				trigger.classList.remove('active');
 				dropdown.classList.remove('active');
 				sel.classList.remove('active');
 
 				const inp = sel.querySelector('.w-sel__item input[checked]');
-				inp.removeAttribute('checked');
+				if (inp) inp.removeAttribute('checked');
 
 				sel.querySelectorAll('.w-sel__item')[i].querySelector('input').setAttribute('checked', '');
 				sel.querySelectorAll('.w-sel__item')[i].querySelector('input').checked = true;
