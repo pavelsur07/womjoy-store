@@ -67,7 +67,6 @@
         "symfony/yaml": "6.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "unisender/api-wrapper": "^1.6",
         "voronkovich/sberbank-acquiring-client": "^2.8"
     },
     "config": {
