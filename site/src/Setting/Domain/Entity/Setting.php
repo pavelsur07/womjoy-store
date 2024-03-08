@@ -8,6 +8,7 @@ use App\Setting\Domain\Entity\ValueObject\SettingCompany;
 use App\Setting\Domain\Entity\ValueObject\SettingMoysklad;
 use App\Setting\Domain\Entity\ValueObject\SettingSeoDefault;
 use App\Setting\Domain\Entity\ValueObject\SettingUnisender;
+use App\Setting\Domain\Entity\ValueObject\SettingYandexMetrika;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -43,10 +44,23 @@ class Setting
     #[ORM\Embedded(class: SettingMoysklad::class, columnPrefix: 'moysklad_')]
     private SettingMoysklad $moysklad;
 
+    #[ORM\Embedded(class: SettingYandexMetrika::class,columnPrefix: 'yandex_metrika_')]
+    private SettingYandexMetrika $yandexMetrika;
+
     public function __construct()
     {
         $this->company = new SettingCompany();
         $this->seoDefault = new SettingSeoDefault();
+    }
+
+    public function getYandexMetrika(): SettingYandexMetrika
+    {
+        return $this->yandexMetrika;
+    }
+
+    public function setYandexMetrika(SettingYandexMetrika $yandexMetrika): void
+    {
+        $this->yandexMetrika = $yandexMetrika;
     }
 
     public function getId(): int
