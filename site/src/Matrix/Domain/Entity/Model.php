@@ -26,7 +26,7 @@ class Model
     private Collection $products;
 
     #[ORM\Column(type: Types::STRING, length: 6, nullable: true)]
-    private null|string $code = null;
+    private ?string $code = null;
 
     public function __construct(string $name)
     {
@@ -54,12 +54,12 @@ class Model
         return $this->products;
     }
 
-    public function getCode(): null|string
+    public function getCode(): ?string
     {
         return $this->code;
     }
 
-    public function setCode(null|string $code): void
+    public function setCode(?string $code): void
     {
         $this->code = $code;
     }

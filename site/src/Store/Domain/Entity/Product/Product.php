@@ -64,22 +64,22 @@ class Product
     private Collection $variants;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
-    private null|Category $mainCategory = null;
+    private ?Category $mainCategory = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private null|string $slug = null;
+    private ?string $slug = null;
 
     #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
     private SeoMetadata $seoMetadata;
 
     #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
-    private null|string $categoriesIds = null;
+    private ?string $categoriesIds = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true, options: ['default'=> '2023-06-03 06:16:11'])]
-    private null|DateTimeImmutable $publishedAt = null;
+    private ?DateTimeImmutable $publishedAt = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default'=> '2023-06-03 06:16:11'])]
     private DateTimeImmutable $updatedAt;
@@ -774,7 +774,7 @@ class Product
         return $this->createdAt;
     }
 
-    public function getPublishedAt(): null|DateTimeImmutable
+    public function getPublishedAt(): ?DateTimeImmutable
     {
         return $this->publishedAt;
     }
@@ -811,7 +811,7 @@ class Product
     }
 
     /**
-     * @return array{name: string, article: integer}
+     * @return array{name: string, article: int}
      */
     public function getPlaceholders(): array
     {
@@ -824,7 +824,7 @@ class Product
         ];
     }
 
-    public function getBrandName(): null|string
+    public function getBrandName(): ?string
     {
         foreach ($this->attributes as $attribute) {
             if ($attribute->getAttribute()->isBrand() === true) {

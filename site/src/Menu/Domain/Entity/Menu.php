@@ -30,10 +30,10 @@ class Menu
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private null|self $parent;
+    private ?self $parent;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
-    private null|int $root = null;
+    private ?int $root = null;
 
     /**
      * @var ArrayCollection<int, Menu>

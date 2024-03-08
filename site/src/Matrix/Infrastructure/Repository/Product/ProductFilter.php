@@ -14,9 +14,9 @@ class ProductFilter implements ProductFilterInterface
     public ?string $name = null;
     public ?string $article = null;
     public ?string $status = null;
-    public null|Subject $subject = null;
-    public null|Color $color = null;
-    public null|Model $model = null;
+    public ?Subject $subject = null;
+    public ?Color $color = null;
+    public ?Model $model = null;
 
     public function getColor(): ?Color
     {

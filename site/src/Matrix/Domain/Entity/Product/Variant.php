@@ -32,7 +32,7 @@ class Variant
     private string $article;
 
     #[ORM\OneToOne(mappedBy: 'variant', targetEntity: Barcode::class, cascade: ['ALL'], orphanRemoval: true)]
-    private null|Barcode $internalBarcode = null;
+    private ?Barcode $internalBarcode = null;
 
     public function __construct(Product $product, VariantBarcode $barcode, VariantValue $value)
     {

@@ -21,7 +21,7 @@ abstract class StringValueObject
         return $this->value();
     }
 
-    final public function value(): null|string
+    final public function value(): ?string
     {
         return $this->value;
     }

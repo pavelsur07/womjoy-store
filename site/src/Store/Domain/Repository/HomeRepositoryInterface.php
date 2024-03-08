@@ -8,7 +8,7 @@ use App\Store\Domain\Entity\Home\Home;
 
 interface HomeRepositoryInterface
 {
-    public function find(): null|Home;
+    public function find(): ?Home;
 
     public function save(Home $object, bool $flush = false): void;
 }

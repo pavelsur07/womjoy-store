@@ -62,7 +62,7 @@ class CartRepository
             ->getResult();
     }
 
-    public function findById(null|int $id, string $status = ''): ?Cart
+    public function findById(?int $id, string $status = ''): ?Cart
     {
         return $this->repo->findOneBy(
             [
@@ -71,7 +71,7 @@ class CartRepository
         );
     }
 
-    public function findByOwner(int $customerId): null|Cart
+    public function findByOwner(int $customerId): ?Cart
     {
         return $this->repo->findOneBy(
             [

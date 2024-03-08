@@ -30,7 +30,7 @@ class Category
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
-    private null|self $parent;
+    private ?self $parent;
 
     /**
      * @var ArrayCollection<int, Category>
@@ -40,25 +40,25 @@ class Category
     private Collection $children;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private null|string $slug = null;
+    private ?string $slug = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private null|string $prefixSlugProduct = null;
+    private ?string $prefixSlugProduct = null;
 
     #[ORM\Embedded(class: SeoMetadata::class, columnPrefix: false)]
     private SeoMetadata $seoMetadata;
 
     #[ORM\Column(type: Types::STRING, length: 300, nullable: true)]
-    private null|string $ids = null;
+    private ?string $ids = null;
 
     #[ORM\Embedded(class: CategoryImage::class, columnPrefix: 'image_')]
-    private null|CategoryImage $image;
+    private ?CategoryImage $image;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private null|string $titleProductTemplate = null;
+    private ?string $titleProductTemplate = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true)]
-    private null|string $descriptionProductTemplate = null;
+    private ?string $descriptionProductTemplate = null;
 
     #[ORM\Embedded(class: CategoryStatus::class, columnPrefix: 'status_')]
     private CategoryStatus $status;
@@ -257,7 +257,7 @@ class Category
         return $this->prefixSlugProduct;
     }
 
-    public function getImage(): null|CategoryImage
+    public function getImage(): ?CategoryImage
     {
         return $this->image;
     }

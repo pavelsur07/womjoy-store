@@ -80,7 +80,7 @@ class AttributeRepository
         return $this->repo->findAll();
     }
 
-    public function findById(int $id): null|Attribute
+    public function findById(int $id): ?Attribute
     {
         return $this->repo->find($id);
     }

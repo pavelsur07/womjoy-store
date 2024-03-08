@@ -20,10 +20,10 @@ class Guarantee
     private int $id;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private null|DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private null|DateTimeImmutable $updatedAt = null;
+    private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
     private string $phone;

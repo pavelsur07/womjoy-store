@@ -14,10 +14,10 @@ class WildberriesKey
     public const KEY_STATISTICS = 'wb_statistics';
 
     #[Column(type: 'string', nullable: true)]
-    private null|string $value = null;
+    private ?string $value = null;
 
     #[Column(type: 'string', nullable: true)]
-    private null|string $type = null;
+    private ?string $type = null;
 
     public function __construct(string $value = null, string $type = null)
     {

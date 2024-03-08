@@ -79,7 +79,7 @@ class OrderRepository implements OrderRepositoryInterface
         return $object;
     }
 
-    public function findOwn(int $id, int $customerId): null|Order
+    public function findOwn(int $id, int $customerId): ?Order
     {
         return $this->repo->findOneBy(
             [

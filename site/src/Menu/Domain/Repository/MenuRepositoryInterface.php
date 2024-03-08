@@ -10,7 +10,7 @@ interface MenuRepositoryInterface
 {
     public function get(int $id): Menu;
 
-    public function findById(int $id): null|Menu;
+    public function findById(int $id): ?Menu;
 
     public function list(): array;
 

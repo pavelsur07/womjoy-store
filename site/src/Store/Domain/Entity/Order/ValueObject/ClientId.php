@@ -10,10 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
 class ClientId
 {
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $yandex = null;
+    private ?string $yandex = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $google = null;
+    private ?string $google = null;
 
     public function __construct(?string $yandex, ?string $google)
     {

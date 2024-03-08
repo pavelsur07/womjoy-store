@@ -48,7 +48,7 @@ class PromoCodeRepository
         return $this->paginator->paginate($qb, $page, $size);
     }
 
-    public function findByPromoCode(string $code): null|PromoCode
+    public function findByPromoCode(string $code): ?PromoCode
     {
         $result = $this->repo->findBy(
             [
@@ -63,7 +63,7 @@ class PromoCodeRepository
         return $result;
     }
 
-    public function findById(PromoCodeId $id): null|PromoCode
+    public function findById(PromoCodeId $id): ?PromoCode
     {
         return $this->repo->find($id->value());
     }

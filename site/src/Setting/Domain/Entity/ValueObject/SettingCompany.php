@@ -10,19 +10,19 @@ use Doctrine\ORM\Mapping as ORM;
 class SettingCompany
 {
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $name = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $postalCode = null;
+    private ?string $postalCode = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $addressCountry = null;
+    private ?string $addressCountry = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $addressLocality = null;
+    private ?string $addressLocality = null;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $streetAddress = null;
+    private ?string $streetAddress = null;
 
     public function __construct(
         ?string $name='',

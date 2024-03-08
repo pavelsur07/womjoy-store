@@ -10,13 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
 class SettingSeoDefault
 {
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $h1;
+    private ?string $h1;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private null|string $title;
+    private ?string $title;
 
     #[ORM\Column(type: 'string', length: 300, nullable: true)]
-    private null|string $description;
+    private ?string $description;
 
     public function __construct(?string $h1 = '', ?string $title = '', ?string $description = '')
     {

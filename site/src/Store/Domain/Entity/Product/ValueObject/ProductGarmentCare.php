@@ -18,7 +18,7 @@ class ProductGarmentCare
         $this->value = $value;
     }
 
-    public function value(): null|string
+    public function value(): ?string
     {
         return $this->value;
     }

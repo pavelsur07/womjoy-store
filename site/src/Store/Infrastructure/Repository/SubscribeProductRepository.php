@@ -39,7 +39,7 @@ class SubscribeProductRepository
         return $object;
     }
 
-    public function findById(SubscribeProductId $id): null|Variant
+    public function findById(SubscribeProductId $id): ?Variant
     {
         return $this->repo->find($id->value());
     }
