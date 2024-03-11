@@ -244,6 +244,7 @@ services:
         - swarm.cronjob.skip-running=true
       restart_policy:
         condition: none
+  
   site-clear-old-cart:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
@@ -275,6 +276,41 @@ services:
       labels:
         - swarm.cronjob.enable=true
         - swarm.cronjob.schedule=0 0 * * *
+        - swarm.cronjob.skip-running=true
+      restart_policy:
+        condition: none
+  
+  site-check-status:
+    image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${APP_SECRET}
+      SITE_LOCALE: 'ru'
+      SITE_URL: 'https://womjoy.ru'
+      DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
+      SENTRY_DSN: ${SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      AWS_S3_ACCESS_ID: ${SITE_S3_ACCESS_ID}
+      AWS_S3_ACCESS_SECRET: ${SITE_S3_SECRET}
+      AWS_S3_DEFAULT_REGION: 'ru-1'
+      S3_ENDPOINT: 'https://s3.timeweb.com'
+      S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
+      #STORAGE_BASE_URL: 'https://static.womjoy.ru/s3'
+      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      CACHE_PATH_IMAGE: '/cache'
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
+    command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console store:alfa:check-status --no-interaction'
+    deploy:
+      labels:
+        - swarm.cronjob.enable=true
+        - swarm.cronjob.schedule=*/5 * * * *
         - swarm.cronjob.skip-running=true
       restart_policy:
         condition: none
