@@ -10,6 +10,7 @@ use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
 use App\Store\Infrastructure\Service\Payment\AlfaAcquiringClient;
 use App\Store\Infrastructure\Service\Payment\PaymentProvider;
+use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -40,9 +41,14 @@ class AlfaCheckStatusCommand extends Command
 
         /** @var Order $order */
         foreach ($orders as $order) {
-            $alfaOrderStatus = $this->acquiringClient->getOrderStatus(
-                $order->getPayment()->getTransactionId(),
-            );
+            try {
+                $alfaOrderStatus = $this->acquiringClient->getOrderStatus(
+                    $order->getPayment()->getTransactionId(),
+                );
+            } catch (Exception) {
+                // @TODO что делать если ошибка от банка
+                continue;
+            }
 
             // Если статус открыт, то пропускаем проверку
             if ($alfaOrderStatus['orderStatus'] === OrderStatus::CREATED) {
