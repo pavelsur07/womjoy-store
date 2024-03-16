@@ -6,12 +6,15 @@ namespace App\Store\Infrastructure\Controller\Store\Marketplace;
 
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Common\Infrastructure\Doctrine\Flusher;
+use App\Setting\Infrastructure\Service\SettingService;
 use App\Store\Domain\Entity\Message\Message;
 use App\Store\Domain\Entity\Message\ValueObject\MessageId;
 use App\Store\Domain\Entity\Message\ValueObject\MessageTopic;
 use App\Store\Infrastructure\Form\Message\MessageMarketplaceNewForm;
 use App\Store\Infrastructure\Repository\MessageRepository;
 use DateTimeImmutable;
+use Exception;
+use GuzzleHttp\Client;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +34,7 @@ class GuaranteeController extends BaseController
         Flusher $flusher,
         MessageRepository $messages,
         MailerInterface $mailer,
+        SettingService $service,
     ): Response {
         $messageId = $request->get('messageId');
         if ($messageId === null) {
@@ -38,6 +42,8 @@ class GuaranteeController extends BaseController
         } else {
             $message = 'message success';
         }
+
+        $setting = $service->get();
 
         $form = $this->createForm(MessageMarketplaceNewForm::class, []);
         $form->handleRequest($request);
@@ -55,6 +61,13 @@ class GuaranteeController extends BaseController
             );
             $messages->save($newMessage);
             $flusher->flush();
+
+            if ($this->addEmailToListWithPromoCode(
+                email: $data['phone'],
+                promocode: 'TEST-PROMO',
+                apiKey: $service->get()->getUnisender()->getKey()
+            )) {
+            }
 
             $email = (new TemplatedEmail())
                 ->from('info@womjoy.ru')
@@ -83,6 +96,50 @@ class GuaranteeController extends BaseController
             ]
         );
     }
+
+    public function addEmailToListWithPromoCode($email, $promocode, string $apiKey): bool
+    {
+        // $apiKey = 'YOUR_API_KEY'; // Замените на свой API-ключ Unisender
+        $listId = 250; // Замените на ID вашего списка рассылки в Unisender
+
+        $client = new Client([
+            'base_uri' => 'https://api.unisender.com/ru/api/',
+        ]);
+
+        try {
+            $response = $client->post('subscribe', [
+                'form_params' => [
+                    'api_key' => $apiKey,
+                    'format' => 'json',
+                    'list_ids' => $listId,
+                    'fields[email]' => $email,
+                    'tags' => 'promocode', // Добавляем тег "promocode"
+                    'tags_values' => $promocode, // Передаем значение переменной promocode
+                ],
+            ]);
+
+            $body = $response->getBody();
+            $data = json_decode($body->getContents(), true);
+
+            if ($data['result'] === 'error') {
+                // Обработка ошибки добавления
+                echo 'Ошибка добавления: ' . $data['message'];
+            } else {
+                // Успешно добавлено
+                // echo 'Email успешно добавлен в список';
+                return true;
+            }
+        } catch (Exception $e) {
+            // Обработка исключений
+            // echo 'Произошла ошибка: ' . $e->getMessage();
+        }
+        return false;
+    }
+
+    // Пример использования функции
+    /*email = 'example@example.com'; // Замените на адрес электронной почты
+    $promoCode = 'YOUR_PROMO_CODE'; // Замените на актуальный промокод
+    addEmailToListWithPromoCode($email, $promoCode);*/
 
     #[Route(path: '/marketplace/guarantee/thank-you', name: 'store.marketplace.guarantee.thank_you')]
     public function thankYou(): Response
