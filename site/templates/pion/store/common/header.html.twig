@@ -6,15 +6,16 @@
             <button class="search__close" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
 
             <div class="search__main mb-0 mb-md-5">
-                <form class="search__form">
+                {#<form action="/search" method="get" class="search__form">
                     <div class="flex-grow-1 me-0 me-md-3 w-field">
                         <div class="w-field__main">
                             <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="search" width="24" height="24">
-                            <input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+                            <input name="param" id="param" type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
                         </div>
                     </div>
                     <button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
-                </form>
+                </form>#}
+                {% include 'pion/store/common/search_form.html.twig' %}
             </div>
             {#
             <div class="search__bottom">
