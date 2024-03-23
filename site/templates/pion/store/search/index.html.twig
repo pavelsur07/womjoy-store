@@ -41,15 +41,6 @@
         <div class="breadcrumbs">
             <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
             <div class="breadcrumbs__current"> {{ 'store.search' | trans }}</div>
-
-           {# {% for breadcrumb in breadcrumbs %}
-                {% if breadcrumb.slug == category.slug %}
-                    <div class="breadcrumbs__current">{{ breadcrumb.name }}</div>
-                {% else %}
-                    <a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}" class="breadcrumbs__item">{{ breadcrumb.name }}</a>
-                {% endif %}
-            {% endfor %}#}
-
         </div>
 
         <section class="catalog section mt-5">
