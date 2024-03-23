@@ -66,6 +66,11 @@
                 <source>message.coming_soon</source>
                 <target>Информация дополняется, появится в ближайщее время...</target>
             </trans-unit>
+
+            <trans-unit id="store.search">
+                <source>store.search</source>
+                <target>Поиск</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

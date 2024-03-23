@@ -31,6 +31,11 @@
                 <source>cart.description</source>
                 <target>Корзина интернет магазина</target>
             </trans-unit>
+
+            <trans-unit id="store.search">
+                <source>store.search</source>
+                <target>Поиск</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

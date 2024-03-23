@@ -40,6 +40,7 @@
     <div class="container-xxl">
         <div class="breadcrumbs">
             <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current"> {{ 'store.search' | trans }}</div>
 
            {# {% for breadcrumb in breadcrumbs %}
                 {% if breadcrumb.slug == category.slug %}

@@ -65,6 +65,10 @@
                 <source>message.coming_soon</source>
                 <target>Information is being supplemented, will appear in the near future....</target>
             </trans-unit>
+            <trans-unit id="store.search">
+                <source>store.search</source>
+                <target>Search</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
