@@ -149,11 +149,13 @@
                     {% endif %}
 
 
+                    {# -- Оплата долями скрыта
                     <div class="i-card__partly">Или 4 платежа по {{ product.price.listPrice/4 |number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
                         <a href="#" data-modaltarget="modal-divide">
                             Подробнее
                         </a>
                     </div>
+                    #}
 
                     <div class="colors colors-lg mb-4">
                         <span class="colors__title">Цвет: {{ product.getColorName }}</span>
@@ -272,50 +274,6 @@
 
                                 {{ product.getGarmentCare.value | raw }}
 
-                                {#<div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-1.svg') }}" alt="Деликатная стирка при 30 градусах" width="32" height="32">
-                                    Деликатная стирка при 30 градусах
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-2.svg') }}" alt="Не гладить" width="32" height="32">
-                                    Не гладить
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-3.svg') }}" alt="" width="32" height="32">
-                                    Не отбеливать
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-4.svg') }}" alt="" width="32" height="32">
-                                    Не стирать мылом
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-5.svg') }}" alt="" width="32" height="32">
-                                    Не подвергать химчистке
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-6.svg') }}" alt="" width="32" height="32">
-                                    Не использовать машинную сушку
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-7.svg') }}" alt="" width="32" height="32">
-                                    Сушить вертикально вдали от отопительных приборов
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-8.svg') }}" alt="" width="32" height="32">
-                                    Не стирать руками
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-9.svg') }}" alt="" width="32" height="32">
-                                    Не применять смягчающий ополаскиватель
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-10.svg') }}" alt="" width="32" height="32">
-                                    Стирать, вывернув наизнанку, с вещами похожего цвета
-                                </div>
-                                <div class="i-card__faq_adv">
-                                    <img src="{{ asset('./pion/img/icons/i-card-adv-11.svg') }}" alt="" width="32" height="32">
-                                    Не стирать светлые изделия с цветными
-                                </div>#}
                             </div>
                         </div>
                         <div class="i-card__faq_item">
@@ -533,6 +491,8 @@
             </div>
         </div>
     </div>
+
+    {#
     <div class="modal modal-sm" id="modal-divide">
         <div class="modal__bg"></div>
         <div class="modal__content">
@@ -546,6 +506,8 @@
             </div>
         </div>
     </div>
+    #}
+
 {% endblock %}
 
 {% block javascripts %}
