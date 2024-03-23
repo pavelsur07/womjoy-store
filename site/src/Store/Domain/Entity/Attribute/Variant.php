@@ -28,6 +28,9 @@ class Variant
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $colorValue = null;
 
+    #[ORM\Column(type: 'boolean', options: ['default' => true])]
+    private bool $isActive = true;
+
     public function __construct(Attribute $attribute, string $name, ?string $colorValue = null)
     {
         $this->attribute = $attribute;
@@ -39,6 +42,23 @@ class Variant
     {
         return $this->id;
     }
+
+    public function active(): void
+    {
+        $this->isActive = true;
+    }
+
+
+    public function disable(): void
+    {
+        $this->isActive = false;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->isActive;
+    }
+
 
     public function getAttribute(): Attribute
     {
