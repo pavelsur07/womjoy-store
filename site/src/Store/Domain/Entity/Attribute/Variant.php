@@ -43,22 +43,15 @@ class Variant
         return $this->id;
     }
 
-    public function active(): void
+    public function setIsActive(bool $isActive): void
     {
-        $this->isActive = true;
-    }
-
-
-    public function disable(): void
-    {
-        $this->isActive = false;
+        $this->isActive = $isActive;
     }
 
     public function isActive(): bool
     {
         return $this->isActive;
     }
-
 
     public function getAttribute(): Attribute
     {

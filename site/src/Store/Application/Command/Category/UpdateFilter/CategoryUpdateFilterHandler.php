@@ -34,14 +34,16 @@ final readonly class CategoryUpdateFilterHandler
                 if ($attribute->getAttribute()->isVisibleFilter()) {
                     /** @var Variant $variant */
                     foreach ($attribute->getAttribute()->getVariants() as $variant) {
-                        $result[] = [
-                            'attribute_id' => $attribute->getAttribute()->getId(),
-                            'attribute_name' => $attribute->getAttribute()->getName(),
-                            'is_color' => $attribute->getAttribute()->isColor(),
-                            'value_id' => $variant->getId(),
-                            'value' => $variant->getName(),
-                            'color_value' => $variant->getColorValue(),
-                        ];
+                        if ($variant->isActive() === true) {
+                            $result[] = [
+                                'attribute_id' => $attribute->getAttribute()->getId(),
+                                'attribute_name' => $attribute->getAttribute()->getName(),
+                                'is_color' => $attribute->getAttribute()->isColor(),
+                                'value_id' => $variant->getId(),
+                                'value' => $variant->getName(),
+                                'color_value' => $variant->getColorValue(),
+                            ];
+                        }
                     }
                     $attributes = array_merge($attributes, $result);
                 }
@@ -54,14 +56,16 @@ final readonly class CategoryUpdateFilterHandler
             if ($attribute->getAttribute()->isVisibleFilter()) {
                 /** @var Variant $variant */
                 foreach ($attribute->getAttribute()->getVariants() as $variant) {
-                    $result[] = [
-                        'attribute_id' => $attribute->getAttribute()->getId(),
-                        'attribute_name' => $attribute->getAttribute()->getName(),
-                        'is_color' => $attribute->getAttribute()->isColor(),
-                        'value_id' => $variant->getId(),
-                        'value' => $variant->getName(),
-                        'color_value' => $variant->getColorValue(),
-                    ];
+                    if ($variant->isActive() === true) {
+                        $result[] = [
+                            'attribute_id' => $attribute->getAttribute()->getId(),
+                            'attribute_name' => $attribute->getAttribute()->getName(),
+                            'is_color' => $attribute->getAttribute()->isColor(),
+                            'value_id' => $variant->getId(),
+                            'value' => $variant->getName(),
+                            'color_value' => $variant->getColorValue(),
+                        ];
+                    }
                 }
                 $attributes = array_merge($attributes, $result);
             }
