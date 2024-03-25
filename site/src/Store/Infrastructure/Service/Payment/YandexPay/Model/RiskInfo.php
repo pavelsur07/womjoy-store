@@ -6,36 +6,36 @@ namespace App\Store\Infrastructure\Service\Payment\YandexPay\Model;
 
 class RiskInfo extends AbstractObject
 {
-    const SHIPPING_TYPE_COURIER = 'COURIER';
-    const SHIPPING_TYPE_PICKUP = 'PICKUP';
+    public const SHIPPING_TYPE_COURIER = 'COURIER';
+    public const SHIPPING_TYPE_PICKUP = 'PICKUP';
 
     /**
      * Номер телефона клиента (пример +71234567890)
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $billingPhone = null;
 
     /**
      * Идентификатор устройства клиента (device_id/gaid/idfa/ifv)
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $deviceId = null;
 
     /**
      * Адрес доставки
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $shippingAddress = null;
 
     /**
      * Номер телефона получателя (пример +71234567890)
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $shippingPhone = null;
 
     /**
      * Способ получения заказа
-     * Enum: COURIER, PICKUP
+     * Enum: COURIER, PICKUP.
      */
     private ?string $shippingType = null;
 

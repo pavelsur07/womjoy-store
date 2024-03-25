@@ -19,7 +19,6 @@ use App\Store\Infrastructure\Service\Payment\YandexPay\Model\Cart\RenderedCartIt
 use App\Store\Infrastructure\Service\Payment\YandexPay\Model\MerchantRedirectUrls;
 use App\Store\Infrastructure\Service\Payment\YandexPay\Request\CreateOrderRequest;
 use App\Store\Infrastructure\Service\Payment\YandexPay\YandexPay;
-use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,8 +33,7 @@ class YandexSplitController extends AbstractController
         private readonly YandexPay $yandexPay,
         private readonly OrderService $orderService,
         private readonly Flusher $flusher,
-    ) {
-    }
+    ) {}
 
     #[Route('/{orderId}', name: '.purchase')]
     public function purchase(string $orderId): Response
@@ -61,7 +59,9 @@ class YandexSplitController extends AbstractController
         }
 
         $cart = new RenderedCart(
-            $orderId, $items, new CartTotal($order->getTotalCost())
+            $orderId,
+            $items,
+            new CartTotal($order->getTotalCost())
         );
 
         $redirectUrls = new MerchantRedirectUrls();

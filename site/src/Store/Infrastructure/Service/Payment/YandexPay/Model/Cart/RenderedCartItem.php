@@ -10,53 +10,53 @@ class RenderedCartItem extends AbstractObject
 {
     /**
      * Описание товара
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $description = null;
 
     /**
      * Цена за единицу товара с учётом скидок на позицию
-     * Example: 123.45
+     * Example: 123.45.
      */
     private ?float $discountedUnitPrice = null;
 
     /**
      * Id товара в системе продавца. В параметрах запроса каждый идентификатор товара productId должен быть уникальным
-     * Max length: 2048
+     * Max length: 2048.
      */
     private string $productId;
 
     /**
-     * Количество товара в заказе
+     * Количество товара в заказе.
      */
     private ItemQuantity $quantity;
 
     /**
-     * Данные для формирования чека
+     * Данные для формирования чека.
      */
     private ?ItemReceipt $receipt = null;
 
     /**
      * Суммарная цена за позицию без учета скидок
-     * Example: 123.45
+     * Example: 123.45.
      */
     private ?float $subtotal = null;
 
     /**
      * Наименование товара
-     * Max length: 2048
+     * Max length: 2048.
      */
     private string $title;
 
     /**
      * Суммарная цена за позицию с учётом скидок на позицию
-     * Example: 123.45
+     * Example: 123.45.
      */
     private float $total;
 
     /**
      * Полная цена за единицу товара без учетка скидки
-     * Example: 123.45
+     * Example: 123.45.
      */
     private ?float $unitPrice = null;
 

@@ -10,25 +10,22 @@ class ItemQuantity extends AbstractObject
 {
     /**
      * Максимально доступное количество товара
-     * Example: 123.45
+     * Example: 123.45.
      */
     private ?float $available = null;
 
     /**
      * Количество товара в заказе
-     * Example: 123.45
+     * Example: 123.45.
      */
     private float $count;
 
     /**
      * Название единиц измерения, например "кг" или "шт"
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $label = null;
 
-    /**
-     * @param float $count
-     */
     public function __construct(float $count)
     {
         $this->count = $count;

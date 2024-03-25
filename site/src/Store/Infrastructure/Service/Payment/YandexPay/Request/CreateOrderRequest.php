@@ -11,16 +11,16 @@ use App\Store\Infrastructure\Service\Payment\YandexPay\Model\RiskInfo;
 
 class CreateOrderRequest extends AbstractRequest
 {
-    const PAYMENT_METHOD_CARD = 'CARD';
-    const PAYMENT_METHOD_SPLIT = 'SPLIT';
+    public const PAYMENT_METHOD_CARD = 'CARD';
+    public const PAYMENT_METHOD_SPLIT = 'SPLIT';
 
-    const PREFERRED_PAYMENT_METHOD_FULLPAYMENT = 'FULLPAYMENT';
-    const PREFERRED_PAYMENT_METHOD_SPLIT = 'SPLIT';
+    public const PREFERRED_PAYMENT_METHOD_FULLPAYMENT = 'FULLPAYMENT';
+    public const PREFERRED_PAYMENT_METHOD_SPLIT = 'SPLIT';
 
-    const ORDER_SOURCE_WEBSITE = 'WEBSITE';
-    const ORDER_SOURCE_APP = 'APP';
-    const ORDER_SOURCE_CRM = 'CRM';
-    const ORDER_SOURCE_CASH_REGISTER = 'CASH_REGISTER';
+    public const ORDER_SOURCE_WEBSITE = 'WEBSITE';
+    public const ORDER_SOURCE_APP = 'APP';
+    public const ORDER_SOURCE_CRM = 'CRM';
+    public const ORDER_SOURCE_CASH_REGISTER = 'CASH_REGISTER';
 
     /**
      * Доступные методы оплаты на платежной форме Яндекс Пэй.
@@ -31,17 +31,17 @@ class CreateOrderRequest extends AbstractRequest
      * @var string[]
      */
     private array $availablePaymentMethods = [
-        CreateOrderRequest::PAYMENT_METHOD_CARD,
-        CreateOrderRequest::PAYMENT_METHOD_SPLIT
+        self::PAYMENT_METHOD_CARD,
+        self::PAYMENT_METHOD_SPLIT,
     ];
 
     /**
-     * Корзина
+     * Корзина.
      */
     private RenderedCart $cart;
 
     /**
-     * Трехбуквенный код валюты заказа (ISO 4217)
+     * Трехбуквенный код валюты заказа (ISO 4217).
      *
      * Enum: RUB
      * Max length: 2048
@@ -49,12 +49,12 @@ class CreateOrderRequest extends AbstractRequest
     private string $currencyCode = 'RUB';
 
     /**
-     * Дополнительные параметры для оформления офлайн заказа
+     * Дополнительные параметры для оформления офлайн заказа.
      */
     private ?OrderExtensions $extensions = null;
 
     /**
-     * Произвольные данные по заказу для внутреннего использования
+     * Произвольные данные по заказу для внутреннего использования.
      *
      * Max length: 2048
      */
@@ -62,12 +62,12 @@ class CreateOrderRequest extends AbstractRequest
 
     /**
      * Идентификатор заказа на стороне продавца (должен быть уникальным). Дальнейшее взаимодействие по заявке на оплату будет осуществляться с использованием этого идентификатора. Также данный идентификатор будет использоваться в сверках
-     * Max length: 2048
+     * Max length: 2048.
      */
     private string $orderId;
 
     /**
-     * Поверхность на которой инициализировали создание заказа
+     * Поверхность на которой инициализировали создание заказа.
      *
      * Необходимо для последующей аналитики
      *
@@ -81,7 +81,7 @@ class CreateOrderRequest extends AbstractRequest
      * Enum: WEBSITE, APP, CRM, CASH_REGISTER
      * Default: null
      */
-    private ?string $orderSource = CreateOrderRequest::ORDER_SOURCE_WEBSITE;
+    private ?string $orderSource = self::ORDER_SOURCE_WEBSITE;
 
     /**
      * Предпочтительный метод оплаты.
@@ -93,22 +93,22 @@ class CreateOrderRequest extends AbstractRequest
 
     /**
      * Назначение платежа
-     * Max length: 128
+     * Max length: 128.
      */
     private ?string $purpose = null;
 
     /**
-     * Ссылки для переадресации пользователя с формы оплаты. Обязательно для онлайн продавца
+     * Ссылки для переадресации пользователя с формы оплаты. Обязательно для онлайн продавца.
      */
     private MerchantRedirectUrls $redirectUrls;
 
     /**
-     * Дополнительная информация, наличие которой может увеличить вероятность одобрения по сплиту
+     * Дополнительная информация, наличие которой может увеличить вероятность одобрения по сплиту.
      */
     private ?RiskInfo $risk = null;
 
     /**
-     * Время жизни заказа (в секундах)
+     * Время жизни заказа (в секундах).
      *
      * 180 <= ttl <= 604800
      * Default: 1800

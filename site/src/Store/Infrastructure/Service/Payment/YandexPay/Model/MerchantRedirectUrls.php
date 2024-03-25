@@ -8,19 +8,19 @@ class MerchantRedirectUrls extends AbstractObject
 {
     /**
      * Ссылка для переадресации пользователя в случае отмены процесса оплаты
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $onAbort = null;
 
     /**
      * Ссылка для переадресации пользователя в случае возникновения ошибки во время оплаты, или если срок ссылки на оплату истек
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $onError = null;
 
     /**
      * Ссылка для переадресации пользователя в случае успешной оплаты
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $onSuccess = null;
 

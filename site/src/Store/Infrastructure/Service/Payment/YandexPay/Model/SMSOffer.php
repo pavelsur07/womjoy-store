@@ -8,7 +8,7 @@ class SMSOffer extends AbstractObject
 {
     /**
      * Номер телефона клиента (пример +71234567890)
-     * Max length: 2048
+     * Max length: 2048.
      */
     private string $phone;
 

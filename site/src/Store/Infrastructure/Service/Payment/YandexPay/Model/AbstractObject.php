@@ -16,16 +16,14 @@ use function ucwords;
 
 abstract class AbstractObject implements ArrayAccess, JsonSerializable
 {
-
     /**
      * @var array Свойства установленные пользователем
      */
     private array $unknownProperties = [];
 
-
     public function __construct(?array $data = [])
     {
-        if (!empty($data) && is_array($data)) {
+        if (!empty($data) && \is_array($data)) {
             $this->fromArray($data);
         }
     }
@@ -83,7 +81,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      * @return bool True если свойство имеется, false если нет
      */
     #[ReturnTypeWillChange]
-    public function offsetExists(mixed $offset): bool
+    final public function offsetExists(mixed $offset): bool
     {
         $method = 'get' . ucfirst($offset);
         if (method_exists($this, $method)) {
@@ -94,7 +92,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
             return true;
         }
 
-        return array_key_exists($offset, $this->unknownProperties);
+        return \array_key_exists($offset, $this->unknownProperties);
     }
 
     /**
@@ -105,7 +103,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      * @return mixed Значение свойства
      */
     #[ReturnTypeWillChange]
-    public function offsetGet(mixed $offset): mixed
+    final public function offsetGet(mixed $offset): mixed
     {
         if ($offset === 'validator') {
             return null;
@@ -129,7 +127,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      * @param mixed $value Значение свойства
      */
     #[ReturnTypeWillChange]
-    public function offsetSet(mixed $offset, mixed $value): void
+    final public function offsetSet(mixed $offset, mixed $value): void
     {
         if ($offset === 'validator') {
             return;
@@ -153,7 +151,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      * @param string $offset Имя удаляемого свойства
      */
     #[ReturnTypeWillChange]
-    public function offsetUnset(mixed $offset): void
+    final public function offsetUnset(mixed $offset): void
     {
         if ($offset === 'validator') {
             return;
@@ -176,7 +174,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      *
      * @param array|Traversable $sourceArray Ассоциативный массив с настройками
      */
-    public function fromArray(iterable $sourceArray): void
+    final public function fromArray(iterable $sourceArray): void
     {
         foreach ($sourceArray as $key => $value) {
             $this->offsetSet($key, $value);
@@ -189,7 +187,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      *
      * @return array Ассоциативный массив со свойствами текущего объекта
      */
-    public function toArray(): array
+    final public function toArray(): array
     {
         return $this->jsonSerialize();
     }
@@ -200,17 +198,17 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
      * @return array Ассоциативный массив со свойствами текущего объекта
      */
     #[ReturnTypeWillChange]
-    public function jsonSerialize(): array
+    final public function jsonSerialize(): array
     {
         $excludedMethods = ['getUnknownProperties', 'getIterator', 'getValidator'];
         $result = [];
         foreach (get_class_methods($this) as $method) {
             if (0 === strncmp('get', $method, 3)) {
-                if (in_array($method, $excludedMethods)) {
+                if (\in_array($method, $excludedMethods, true)) {
                     continue;
                 }
 
-//                $property = strtolower(preg_replace('/[A-Z]/', '_\0', lcfirst(substr($method, 3))));
+                //                $property = strtolower(preg_replace('/[A-Z]/', '_\0', lcfirst(substr($method, 3))));
                 $property = lcfirst(str_replace('_', '', ucwords(lcfirst(substr($method, 3)), '_')));
                 $value = $this->serializeValueToJson($this->{$method}());
                 if (null !== $value) {
@@ -220,7 +218,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
         }
         if (!empty($this->unknownProperties)) {
             foreach ($this->unknownProperties as $property => $value) {
-                if (!array_key_exists($property, $result)) {
+                if (!\array_key_exists($property, $result)) {
                     $result[$property] = $this->serializeValueToJson($value);
                 }
             }
@@ -231,10 +229,10 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
 
     private function serializeValueToJson($value)
     {
-        if (null === $value || is_scalar($value)) {
+        if (null === $value || \is_scalar($value)) {
             return $value;
         }
-        if (is_array($value)) {
+        if (\is_array($value)) {
             $array = [];
             foreach ($value as $key => $item) {
                 if ('validator' === $key) {

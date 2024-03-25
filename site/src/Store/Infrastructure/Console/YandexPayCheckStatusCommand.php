@@ -8,15 +8,12 @@ use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Domain\Entity\Order\Order;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Repository\OrderRepositoryInterface;
-use App\Store\Infrastructure\Service\Payment\AlfaAcquiringClient;
-use App\Store\Infrastructure\Service\Payment\PaymentProvider;
 use App\Store\Infrastructure\Service\Payment\YandexPay\YandexPay;
 use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Voronkovich\SberbankAcquiring\OrderStatus;
 
 #[AsCommand(
     name: 'store:yandex-pay:check-status',

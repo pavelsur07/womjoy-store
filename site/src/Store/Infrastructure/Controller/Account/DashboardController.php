@@ -21,7 +21,7 @@ class DashboardController extends BaseController
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
-                'user' => $user
+                'user' => $user,
             ]
         );
     }

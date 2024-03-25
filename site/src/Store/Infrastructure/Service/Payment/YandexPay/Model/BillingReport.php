@@ -9,14 +9,14 @@ class BillingReport extends AbstractObject
     /**
      * Идентификатор точки продаж
      * Default: null
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $branchId = null;
 
     /**
      * Идентификатор менеджера
      * Default: null
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $managerId = null;
 

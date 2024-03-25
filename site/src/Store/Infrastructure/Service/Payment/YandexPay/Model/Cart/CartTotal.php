@@ -10,18 +10,15 @@ class CartTotal extends AbstractObject
 {
     /**
      * Стоимость корзины с учетом всех скидок, и без учета доставки
-     * Example: 123.45
+     * Example: 123.45.
      */
     private float $amount;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $label = null;
 
-    /**
-     * @param float $amount
-     */
     public function __construct(float $amount)
     {
         $this->amount = $amount;

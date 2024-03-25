@@ -8,7 +8,7 @@ class QRData extends AbstractObject
 {
     /**
      * QR токен
-     * Max length: 2048
+     * Max length: 2048.
      */
     private string $token;
 

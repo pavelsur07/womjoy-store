@@ -16,8 +16,8 @@ use Psr\Http\Message\ResponseInterface;
 
 readonly class YandexPay
 {
-    const API_URI = 'https://pay.yandex.ru/api/merchant';
-    const API_URI_SANDBOX = 'https://sandbox.pay.yandex.ru/api/merchant';
+    public const API_URI = 'https://pay.yandex.ru/api/merchant';
+    public const API_URI_SANDBOX = 'https://sandbox.pay.yandex.ru/api/merchant';
 
     private string $baseUrl;
 
@@ -44,7 +44,7 @@ readonly class YandexPay
 
         $response = $this->client->send('post', $path, [], $order->toArray());
 
-        if($response->getStatusCode() !== 200) {
+        if ($response->getStatusCode() !== 200) {
             $this->handleError($response);
         }
 
@@ -66,7 +66,7 @@ readonly class YandexPay
 
         $response = $this->client->send('get', $path);
 
-        if($response->getStatusCode() !== 200) {
+        if ($response->getStatusCode() !== 200) {
             $this->handleError($response);
         }
 

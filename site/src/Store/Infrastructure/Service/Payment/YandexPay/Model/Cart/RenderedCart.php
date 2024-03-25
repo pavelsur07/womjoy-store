@@ -10,7 +10,7 @@ class RenderedCart extends AbstractObject
 {
     /**
      * Переданный продавцом идентификатор корзины
-     * Max length: 2048
+     * Max length: 2048.
      */
     private string $externalId;
 

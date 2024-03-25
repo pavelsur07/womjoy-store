@@ -7,7 +7,7 @@ namespace App\Store\Infrastructure\Service\Payment\YandexPay\Model;
 class PaymentsOperator extends AbstractObject
 {
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?array $phones = null;
 

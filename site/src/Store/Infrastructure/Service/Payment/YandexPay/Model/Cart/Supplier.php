@@ -9,17 +9,17 @@ use App\Store\Infrastructure\Service\Payment\YandexPay\Model\AbstractObject;
 class Supplier extends AbstractObject
 {
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $inn = null;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $name = null;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?array $phones = null;
 

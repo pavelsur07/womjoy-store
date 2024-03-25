@@ -7,17 +7,17 @@ namespace App\Store\Infrastructure\Service\Payment\YandexPay\Model;
 class OrderExtensions extends AbstractObject
 {
     /**
-     * Дополнительные параметры для отчета сплита
+     * Дополнительные параметры для отчета сплита.
      */
     private ?BillingReport $billingReport = null;
 
     /**
-     * Дополнительные параметры для отправки ссылки на оплату с использованием QR
+     * Дополнительные параметры для отправки ссылки на оплату с использованием QR.
      */
     private ?QRData $qrData = null;
 
     /**
-     * Дополнительные параметры для отправки ссылки на оплату с использованием SMS
+     * Дополнительные параметры для отправки ссылки на оплату с использованием SMS.
      */
     private ?SMSOffer $smsOffer = null;
 

@@ -12,7 +12,7 @@ class ItemReceipt extends AbstractObject
 
     /**
      * Не должно содержать больше двух знаков после запятой. Например: 1.12, 5.1, 10, 11.00 .
-     * Example: 123.45
+     * Example: 123.45.
      */
     private ?float $excise = null;
 
@@ -20,28 +20,28 @@ class ItemReceipt extends AbstractObject
 
     /**
      * Описание значений: Ссылка
-     * Enum: 0, 10, 11, 12, 20, 21, 22, 30, 31, 32, 40, 41, 42, 50, 51, 70, 71, 72, 73, 80, 81, 82, 83, 255, null
+     * Enum: 0, 10, 11, 12, 20, 21, 22, 30, 31, 32, 40, 41, 42, 50, 51, 70, 71, 72, 73, 80, 81, 82, 83, 255, null.
      */
     private ?int $measure = null;
 
     /**
      * Описание значений: Ссылка
-     * Enum: 1, 2, 3, 4, 5, 6, 7, null
+     * Enum: 1, 2, 3, 4, 5, 6, 7, null.
      *
-     * @link https://pay.yandex.ru/ru/docs/custom/fns#payment-method-type
+     * @see https://pay.yandex.ru/ru/docs/custom/fns#payment-method-type
      */
     private ?int $paymentMethodType = null;
 
     /**
      * Описание значений: Ссылка
-     * Enum: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, null
+     * Enum: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, null.
      *
-     * @link https://pay.yandex.ru/ru/docs/custom/fns#payment-subject-type
+     * @see https://pay.yandex.ru/ru/docs/custom/fns#payment-subject-type
      */
     private ?int $paymentSubjectType = null;
 
     /**
-     * Код товара (base64 кодированный массив от 1 до 32 байт)
+     * Код товара (base64 кодированный массив от 1 до 32 байт).
      */
     private ?string $productCode = null;
 
@@ -49,20 +49,17 @@ class ItemReceipt extends AbstractObject
 
     /**
      * Описание значений: Ссылка
-     * Enum: 1, 2, 3, 4, 5, 6
+     * Enum: 1, 2, 3, 4, 5, 6.
      *
-     * @link https://pay.yandex.ru/ru/docs/custom/fns#tax
+     * @see https://pay.yandex.ru/ru/docs/custom/fns#tax
      */
     private int $tax;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $title = null;
 
-    /**
-     * @param int $tax
-     */
     public function __construct(int $tax)
     {
         $this->tax = $tax;

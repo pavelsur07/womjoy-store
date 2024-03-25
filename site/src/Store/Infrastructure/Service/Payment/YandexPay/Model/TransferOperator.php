@@ -7,22 +7,22 @@ namespace App\Store\Infrastructure\Service\Payment\YandexPay\Model;
 class TransferOperator extends AbstractObject
 {
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $address = null;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $inn = null;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $name = null;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?array $phones = null;
 

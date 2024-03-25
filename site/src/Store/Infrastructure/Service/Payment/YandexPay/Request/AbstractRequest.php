@@ -6,6 +6,4 @@ namespace App\Store\Infrastructure\Service\Payment\YandexPay\Request;
 
 use App\Store\Infrastructure\Service\Payment\YandexPay\Model\AbstractObject;
 
-abstract class AbstractRequest extends AbstractObject
-{
-}
+abstract class AbstractRequest extends AbstractObject {}

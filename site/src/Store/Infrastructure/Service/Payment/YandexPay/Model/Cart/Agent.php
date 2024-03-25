@@ -12,29 +12,26 @@ class Agent extends AbstractObject
 {
     /**
      * Описание значений: Ссылка
-     * Enum: 1, 2, 3, 4, 5, 6, 7
+     * Enum: 1, 2, 3, 4, 5, 6, 7.
      *
-     * @link https://pay.yandex.ru/ru/docs/custom/fns#agent-type
+     * @see https://pay.yandex.ru/ru/docs/custom/fns#agent-type
      */
     private int $agentType;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?string $operation = null;
 
     private ?PaymentsOperator $paymentsOperator = null;
 
     /**
-     * Max length: 2048
+     * Max length: 2048.
      */
     private ?array $phones = null;
 
     private ?TransferOperator $transferOperator = null;
 
-    /**
-     * @param int $agentType
-     */
     public function __construct(int $agentType)
     {
         $this->agentType = $agentType;
