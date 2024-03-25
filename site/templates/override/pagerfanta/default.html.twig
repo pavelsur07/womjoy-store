@@ -4,7 +4,9 @@
     <div class="pagination">
         <nav aria-label="Page navigation example">
             <ul class="pagination__list">
+                {% if  end_page != 1 %}
                 {{- block('pager') -}}
+                {% endif %}
             </ul>
         </nav>
     </div>
