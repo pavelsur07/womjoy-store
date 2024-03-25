@@ -1,0 +1,82 @@
+{% extends 'pion/store/base.html.twig' %}
+
+{# Получение атрибутов текущего роута  #}
+{% set _route = app.request.attributes.get('_route') %}
+{% set _route_params = app.request.attributes.get('_route_params') %}
+
+{# Получаем GET параметр сортировки #}
+{% set _current_sort = app.request.query.get('sort', 'popularity') %}
+
+{#
+{% block title %}
+    {{ metaData.title }}{% if page not in '1' %}&nbsp;|&nbsp;{{ 'pagination.page' | trans}} {{ page }} {% endif %}
+{% endblock %}
+#}
+
+{#
+{% block description %}
+    {{ metaData.description }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
+{% endblock %}
+#}
+
+{#
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}">
+{% endblock %}
+#}
+
+{#
+{% block jsonLd %}
+    {{ metaData.jsonLdBreadcrumb|raw }}
+{% endblock %}
+#}
+
+{% block header %}
+    {% include 'pion/store/common/header.html.twig' %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current"> {{ 'store.search' | trans }}</div>
+        </div>
+
+        <section class="catalog section mt-5">
+            <h1 class="mb-3 text-center text-uppercase">
+                {#{{ category.seoMetadata.h1 }}#}
+                {{ param }}
+            </h1>
+
+            <div class="row mb-5 g-2 g-md-3">
+
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Доступные события:
+                    //
+                    // impression — просмотр списка товаров;
+                    // detail — просмотр товара;
+                    // add — добавление товара в корзину;
+                    // remove — удаление товара из корзины;
+                    // purchase — покупка;
+                    pushStoreMetrika('impression', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
+                })
+            </script>
+
+           {# {{ pagerfanta(pagination) }}#}
+        </section>
+
+        <section class="text section">
+
+        </section>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_category') }}
+{% endblock %}

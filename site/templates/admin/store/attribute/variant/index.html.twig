@@ -35,6 +35,7 @@
                 <tr>
                     <th class="w-1">Id</th>
                     <th>Variant</th>
+                    <th>Status</th>
                     <th class="w-1">Action</th>
                 </tr>
                 </thead>
@@ -43,6 +44,13 @@
                     <tr>
                         <td>{{ variant.id }}</td>
                         <td>{{ variant.name }}</td>
+                        <td>
+                            {% if variant.isActive %}
+                                <span class="badge bg-green text-green-fg">Active</span>
+                            {% else %}
+                                <span class="badge bg-red text-red-fg">Disable</span>
+                            {% endif %}
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-bitbucket rounded-2"

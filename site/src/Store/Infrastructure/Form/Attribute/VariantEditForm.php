@@ -21,6 +21,13 @@ class VariantEditForm extends AbstractType
                 [
                     'required' => false,
                 ]
+            )
+            ->add(
+                'isActive',
+                Type\CheckboxType::class,
+                [
+                    'required' => false,
+                ]
             );
     }
 

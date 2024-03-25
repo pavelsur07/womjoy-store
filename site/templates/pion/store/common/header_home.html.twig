@@ -6,16 +6,9 @@
             <button class="search__close" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
 
             <div class="search__main mb-0 mb-md-5">
-                <form class="search__form">
-                    <div class="flex-grow-1 me-0 me-md-3 w-field">
-                        <div class="w-field__main">
-                            <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="search" width="24" height="24">
-                            <input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
-                        </div>
-                    </div>
-                    <button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
-                </form>
+                {% include 'pion/store/common/search_form.html.twig' %}
             </div>
+            {#
             <div class="search__bottom">
                 <div class="row flex-grow-1">
                     <div class="col col-6">
@@ -50,6 +43,8 @@
                 </div>
                 <button class="search__clear" type="button">Очистить</button>
             </div>
+            #}
+            {#
             <div class="search__result">
                 <div class="search__queries">
                     <a href="#" class="search__query">
@@ -71,6 +66,7 @@
                 </div>
                 <a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
             </div>
+            #}
         </div>
     </div>
 </div>
@@ -88,8 +84,10 @@
                 <span class="d-none d-xl-block">Каталог</span>
             </button>
             <div class="me-auto fw-bold d-none d-xl-flex">
-{#                <a href="#" class="pe-3 me-3">RU</a>
-                <a href="#" class="opacity-75">COM</a>#}
+                {#
+                <a href="#" class="pe-3 me-3">RU</a>
+                <a href="#" class="opacity-75">COM</a>
+                #}
             </div>
             <a href="{{ path('home') }}" class="header__logo position-absolute start-50 translate-middle-x d-block">
                 <img src="{{ asset('./pion/img/logo.png') }}" alt="logo">

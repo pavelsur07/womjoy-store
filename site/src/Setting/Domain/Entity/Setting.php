@@ -44,7 +44,7 @@ class Setting
     #[ORM\Embedded(class: SettingMoysklad::class, columnPrefix: 'moysklad_')]
     private SettingMoysklad $moysklad;
 
-    #[ORM\Embedded(class: SettingYandexMetrika::class,columnPrefix: 'yandex_metrika_')]
+    #[ORM\Embedded(class: SettingYandexMetrika::class, columnPrefix: 'yandex_metrika_')]
     private SettingYandexMetrika $yandexMetrika;
 
     public function __construct()

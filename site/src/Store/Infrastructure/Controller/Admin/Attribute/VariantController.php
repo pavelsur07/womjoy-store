@@ -51,6 +51,7 @@ class VariantController extends AbstractController
             [
                 'name' => $variant->getName(),
                 'colorValue' => $variant->getColorValue(),
+                'isActive' => $variant->isActive(),
             ]
         );
 
@@ -59,6 +60,7 @@ class VariantController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $variant->setColorValue($data['colorValue']);
+            $variant->setIsActive($data['isActive']);
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.attribute.variant.index', ['id_attribute'=> $attributeId]);

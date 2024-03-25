@@ -128,6 +128,8 @@ services:
       ALFABANK_API: 'https://payment.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
+      YANDEX_PAY_SANDBOX: false
+      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
       GOOGLE_RECAPTCHA_SITE_KEY: ${GOOGLE_RECAPTCHA_SITE_KEY}
       GOOGLE_RECAPTCHA_SECRET: ${GOOGLE_RECAPTCHA_SECRET}
     deploy:
@@ -263,6 +265,10 @@ services:
       IMGPROXY_BASE_URL: 'http://imgproxy.novowear.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
+      ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
+      ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
+      YANDEX_PAY_SANDBOX: false
+      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console cart:clear --no-interaction'
     deploy:
       labels:
@@ -302,6 +308,8 @@ services:
       ALFABANK_API: 'https://payment.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
+      YANDEX_PAY_SANDBOX: false
+      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
     command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
     deploy:
       mode: replicated

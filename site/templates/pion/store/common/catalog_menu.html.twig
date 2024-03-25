@@ -12,51 +12,18 @@
                         <button class="search__close" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
 
                         <div class="search__main mb-0 mb-md-5 d-flex d-md-block">
-                            <form class="search__form flex-grow-1 me-2">
+                            <form action="/search" method="get" class="search__form flex-grow-1 me-2">
                                 <div class="flex-grow-1 me-0 me-md-3 w-field">
                                     <div class="w-field__main">
                                         <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="search" width="24" height="24">
-                                        <input type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
+                                        <input name="param" id="param" type="text" class="search__inp w-field__inp" placeholder="Название, цвет или артикул">
                                     </div>
                                 </div>
                                 <button class="search__btn w-primary-btn" type="submit">НАЙТИ</button>
                             </form>
                             <button class="search__cancel text-decoration-underline d-none" type="button">Отменить</button>
                         </div>
-                        <div class="search__bottom position-relative pt-md-0 pt-3">
-                            <div class="row flex-grow-1">
-                                <div class="col col-12 col-md-6 order-2">
-                                    <span class="d-block title-lg mb-1 mb-md-3 fw-bold">ПОПУЛЯРНЫЕ ЗАПРОСЫ</span>
-                                    <div class="search__queries">
-                                        <a href="#" class="search__query">
-                                            <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                            love
-                                        </a>
-                                        <a href="#" class="search__query">
-                                            <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                            боди
-                                        </a>
-                                        <a href="#" class="search__query">
-                                            <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                            велосипедки
-                                        </a>
-                                        <a href="#" class="search__query">
-                                            <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                            шорты
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col col-12 col-md-6 order-1 mb-2 mb-md-0">
-                                    <span class="d-block title-lg mb-1 mb-md-3 fw-bold">ВЫ ИСКАЛИ</span>
-                                    <div class="search__queries">
-                                        <a href="#" class="search__query">
-                                            Одежда
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="search__clear" type="button">Очистить</button>
-                        </div>
+                        {#
                         <div class="search__result">
                             <div class="search__queries">
                                 <a href="#" class="search__query">
@@ -78,6 +45,7 @@
                             </div>
                             <a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
                         </div>
+                        #}
                     </div>
                 </div>
             </div>
