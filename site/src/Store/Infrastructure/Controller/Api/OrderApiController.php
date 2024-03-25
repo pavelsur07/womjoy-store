@@ -54,6 +54,10 @@ class OrderApiController extends AbstractController
                 route: $this->paymentProvider->getControllerRoute(),
                 parameters: ['orderId' => $order->getId()->value()]
             ),
+            OrderPayment::PAYMENT_METHOD_YANDEX_SPLIT => $this->generateUrl(
+                route: 'store.checkout.payment.yandex_split.purchase',
+                parameters: ['orderId' => $order->getId()->value()]
+            ),
         };
 
         return $this->json(

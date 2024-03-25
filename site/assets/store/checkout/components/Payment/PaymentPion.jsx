@@ -15,6 +15,7 @@ const PaymentPion = () => {
 
     const paymentCodChecked = payment_list.cod.value === payment;
     const paymentOnlineChecked = payment_list.online.value === payment;
+    const paymentYandexSplitChecked = payment_list.yandex_split.value === payment;
 
     return(
         <div className="checkout__item w-border-bottom-primary2">
@@ -45,12 +46,23 @@ const PaymentPion = () => {
                     </label>
 
                     <label className="w-check mt-4">
-
                         <input type="radio" checked={paymentCodChecked} value={payment_list.cod.value} onChange={changePaymentValue} hidden />
-                        <span className="w-check__sq"><img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13"/></span>
+                        <span className="w-check__sq">
+                            <img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13" />
+                        </span>
                         <div className="w-check__main">
                             <span className="w-check__name">{payment_list.cod.name}</span>
                             {/*<p>{payment_list.cod.description}</p>*/}
+                        </div>
+                    </label>
+
+                    <label className="w-check mt-4">
+                        <input type="radio" checked={paymentYandexSplitChecked} value={payment_list.yandex_split.value} onChange={changePaymentValue} hidden />
+                        <span className="w-check__sq">
+                            <img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13" />
+                        </span>
+                        <div className="w-check__main">
+                            <span className="w-check__name">{payment_list.yandex_split.name}</span>
                         </div>
                     </label>
 

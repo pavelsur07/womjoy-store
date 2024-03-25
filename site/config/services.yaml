@@ -13,7 +13,11 @@ parameters:
 
     # Параметры платёжной системы Stripe
     stripe_api_key: '%env(STRIPE_API_KEY)%'
-    
+
+    # Параметры платёжной системы YandexPAY
+    yandex_pay_api_key: '%env(YANDEX_PAY_API_KEY)%'
+    yandex_pay_sandbox: '%env(YANDEX_PAY_SANDBOX)%'
+
     # Устанавливаем название шаблон
     template_name: '%env(TEMPLATE_NAME)%'
 
@@ -52,6 +56,11 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Store\Infrastructure\Service\Payment\YandexPay\YandexPay:
+        arguments:
+            $apikey: '%yandex_pay_api_key%'
+            $sandbox: '%yandex_pay_sandbox%'
 
     App\Store\Infrastructure\Service\Moysklad\MoyskladCredentials:
         arguments:

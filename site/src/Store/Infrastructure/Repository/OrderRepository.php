@@ -143,6 +143,29 @@ class OrderRepository implements OrderRepositoryInterface
         return $queryBuilder->getQuery()->getResult();
     }
 
+    public function getOrdersAwaitingPaymentYandexPay(): array
+    {
+        $expr = $this->em->getExpressionBuilder();
+
+        $queryBuilder = $this->em->createQueryBuilder()->from(Order::class, 'orders')->select('orders')
+            ->where(
+                $expr->eq('orders.payment.method', ':payment_method')
+            )
+            ->andWhere(
+                $expr->eq('orders.payment.status', ':payment_status')
+            )
+            ->andWhere(
+                $expr->isNotNull('orders.payment.transactionId')
+            )
+            ->orderBy('orders.updatedAt', 'asc');
+
+        $queryBuilder
+            ->setParameter('payment_method', OrderPayment::PAYMENT_METHOD_YANDEX_SPLIT)
+            ->setParameter('payment_status', OrderPayment::PAYMENT_STATUS_WAITING);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
     /**
      * @return Order[]
      */
