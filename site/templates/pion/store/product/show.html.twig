@@ -213,13 +213,13 @@
                                         {% endif %}
                                     {% endfor %}
                                 {% else %}
-
-                                    <label class="w-sel__item">
-                                        <input type="radio" name="card-size" data-quantity={{ variant.quantity}} hidden>
-                                        <span></span>
-                                        {{ 'product.not_found' | trans }}
-                                    </label>
-
+                                    {% if variant is defined %}
+                                        <label class="w-sel__item">
+                                            <input type="radio" name="card-size" data-quantity={{ variant.quantity}} hidden>
+                                            <span></span>
+                                            {{ 'product.not_found' | trans }}
+                                        </label>
+                                    {%  endif %}
                                 {% endif %}
                             </div>
                         </div>
