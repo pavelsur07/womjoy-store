@@ -13,6 +13,7 @@ class OrderPayment
 {
     public const PAYMENT_METHOD_COD = 'cod';
     public const PAYMENT_METHOD_ONLINE = 'online';
+    public const PAYMENT_METHOD_YANDEX_SPLIT = 'yandex_split';
 
     public const PAYMENT_STATUS_WAITING = 'waiting';
     public const PAYMENT_STATUS_SUCCEEDED = 'succeeded';
@@ -48,6 +49,11 @@ class OrderPayment
     public static function online(string $status, string $provider): self
     {
         return new static(self::PAYMENT_METHOD_ONLINE, $status, $provider);
+    }
+
+    public static function yandexSplit(string $status): self
+    {
+        return new static(self::PAYMENT_METHOD_YANDEX_SPLIT, $status);
     }
 
     public function getMethod(): string

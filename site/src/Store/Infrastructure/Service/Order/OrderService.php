@@ -62,6 +62,9 @@ final readonly class OrderService
                 OrderPayment::PAYMENT_STATUS_WAITING,
                 $this->paymentProvider->getProviderName(),
             ),
+            OrderPayment::PAYMENT_METHOD_YANDEX_SPLIT => OrderPayment::yandexSplit(
+                OrderPayment::PAYMENT_STATUS_WAITING
+            ),
         };
 
         $order = new Order(

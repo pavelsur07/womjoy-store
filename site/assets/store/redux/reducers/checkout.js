@@ -30,6 +30,11 @@ const defaultState = {
       description: 'Оплата в пункте вывоза',
       value: 'cod', // cash on delivery ()
     },
+    yandex_split: {
+      name: 'Яндекс Сплит',
+      description: 'Яндекс Cплит — это сервис оплаты покупок частями.',
+      value: 'yandex_split',
+    },
   },
 }
 
