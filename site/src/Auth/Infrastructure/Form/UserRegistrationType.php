@@ -21,13 +21,13 @@ class UserRegistrationType extends AbstractType
                     'label' => 'ИМЯ *',
                 ]
             )
-            ->add(
+/*            ->add(
                 'lastName',
                 Type\TextType::class,
                 [
                     'label'=>'ФАМИЛИЯ * ',
                 ]
-            )
+            )*/
             ->add(
                 'phone',
                 Type\TextType::class,
@@ -48,14 +48,14 @@ class UserRegistrationType extends AbstractType
                 [
                     'label'=>'ПАРОЛЬ * ',
                 ]
-            )
-            ->add(
+            );
+/*            ->add(
                 'plaintextPassword',
                 Type\PasswordType::class,
                 [
                     'label'=>'ПОДТВЕРДИТЕ ПАРОЛЬ * ',
                 ]
-            );
+            );*/
     }
 
     public function configureOptions(OptionsResolver $resolver): void

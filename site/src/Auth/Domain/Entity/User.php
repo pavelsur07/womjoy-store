@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    public static function create(string $email, string $firstName, string $lastName, ?string $phone = null): self
+    public static function create(string $email, string $firstName, string $lastName = ' ', ?string $phone = null): self
     {
         $user = new self();
         $user->setEmail($email);

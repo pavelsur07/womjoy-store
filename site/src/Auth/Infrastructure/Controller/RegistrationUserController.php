@@ -31,13 +31,12 @@ class RegistrationUserController extends BaseController
             try {
                 Assert::email($data['email']);
                 Assert::notEmpty($data['firstName']);
-                Assert::notEmpty($data['lastName']);
                 Assert::notEmpty($data['phone']);
                 Assert::notEmpty($data['password']);
                 Assert::minLength($data['password'], 8);
 
                 $password = $data['password'];
-                $plaintextPassword =$data['plaintextPassword'];
+                $plaintextPassword = $data['password'];
 
                 if ($password !== $plaintextPassword) {
                     throw new DomainException('Error Plaintext Password!');
@@ -54,7 +53,7 @@ class RegistrationUserController extends BaseController
                 $user = User::create(
                     email: $data['email'],
                     firstName: $data['firstName'],
-                    lastName: $data['lastName'],
+                    lastName: '',
                     phone: $data['phone']
                 );
 
