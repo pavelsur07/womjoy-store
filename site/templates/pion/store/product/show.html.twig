@@ -225,10 +225,14 @@
                         </div>
                     </div>
 
-                    <span class="i-card__size_info" data-modaltarget="modal-size-table">СПРАВОЧНИК РАЗМЕРОВ</span>
+                    <span class="i-card__size_info mt-3" data-modaltarget="modal-size-table">СПРАВОЧНИК РАЗМЕРОВ</span>
+
+                    <button id="add_to_cart_btn" class="i-card__btn w-primary-btn add-to-cart-action" onclick="ym(67287694,'reachGoal','basket')" type="button" data-target="card-success" data-variant-id>
+                        <span>Добавить в корзину</span>
+                    </button>
+
                     <p class="i-card__txt">
                         Артикул: {{ product.article }} <br>
-
                         Параметры модели: {{ product.modelParameters }}
                     </p>
 
@@ -237,9 +241,11 @@
                         <span>В корзину</span>
                     </button>#}
 
+                    {#
                     <button id="add_to_cart_btn" class="i-card__btn w-primary-btn add-to-cart-action" onclick="ym(67287694,'reachGoal','basket')" type="button" data-target="card-success" data-variant-id>
                         <span>Добавить в корзину</span>
                     </button>
+                    #}
 
                     <!-- Добавить обработку добавления в список желаний -->
                     {#<button class="i-card__like" type="button">
