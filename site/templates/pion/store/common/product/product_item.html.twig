@@ -11,16 +11,15 @@
         {#<span class="card__cost">{{ item.price.listPrice|number_format(0, ',', ' ') }} р.</span>#}
 
         {% if item.price.listPrice == item.price.price %}
-            <span class="product__cost">{{ item.price.price|number_format(0, ',', ' ')}} р.</span>
+            <span class="product__cost">
+                <strong>{{ item.price.price|number_format(0, ',', ' ')}} р.</strong></span>
         {% else %}
             <span class="product__cost">
-                {{ item.price.listPrice|number_format(0, ',', ' ') }} р.
+                <strong>{{ item.price.listPrice|number_format(0, ',', ' ') }} р.</strong>
                 <del class="product__old">{{ item.price.price|number_format(0, ',', ' ') }} р.</del>
-
             </span>
-
             {#<span class="product__sale">#}
-           {# -{{ ((1-(item.price.listPrice / item.price.price)) * 100)|number_format(0, ',', ' ') }}%#}
+            {# -{{ ((1-(item.price.listPrice / item.price.price)) * 100)|number_format(0, ',', ' ') }}%#}
             {#</span>#}
         {% endif %}
 
