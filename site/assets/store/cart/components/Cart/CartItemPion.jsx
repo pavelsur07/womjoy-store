@@ -46,11 +46,7 @@ const CartItemPion = ({ item }) => {
 
             <div className="cart__cell">
                 <div className="cart__size">
-                    <div className="w-sel w-sel-lg w-sel-dark">
-                        <div className="w-sel__trigger">
-                            {item.value}
-                        </div>
-                    </div>
+                    {item.value}
                 </div>
             </div>
 
