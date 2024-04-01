@@ -1,0 +1,17 @@
+{# Start Price #}
+{% if product.price.listPrice == product.price.price %}
+    <span class="i-card__cost" itemprop="price" content={{ product.price.price }}>
+            {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+    </span>
+{% else %}
+    <span class="i-card__cost" itemprop="lowPrice" content={{ product.price.listPrice }}>
+        {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+        <del class="i-card__oldcost" itemprop="highPrice" content={{ product.price.price }}>
+            {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+        </del>
+    </span>
+    <span class="i-card__sale">
+        -{{ ((1- (product.price.listPrice / product.price.price)) * 100)|number_format(0, ',', ' ') }}%
+    </span>
+{% endif %}
+{# End Price #}

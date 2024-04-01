@@ -1,0 +1,50 @@
+<div class="i-card__size i-card__size_items">
+    <div class="w-sel w-sel-sm w-sel-white ">
+        <div class="w-sel__trigger">
+            <strong>{{ 'product.not_found' | trans }}</strong>
+        </div>
+        <div class="w-sel__dropdown">
+            {% if product.variants.count > 0 %}
+                {% set loop_is_first_checked = true %}
+
+                {% for variant in product.variants %}
+                    {% if variant.canBeAddToCart or product.isPreSale %}
+                        <label class="w-sel__item">
+                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} {#{{ loop.first ? 'checked' : '' }}#} data-quantity={{ variant.quantity}} hidden>
+                            <span></span>
+                            {{ variant.value }}
+                        </label>
+
+                        {% if loop_is_first_checked  %}
+                            {% set loop_is_first_checked = false %}
+                        {% endif %}
+
+                    {% endif %}
+                {% endfor %}
+
+                {% for variant in product.variants %}
+                    {% if variant.canBeAddToCart or product.isPreSale %}{% else %}
+
+                        <label class="w-sel__item">
+                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
+                            <span></span>
+                            {{ variant.value }} <strong>{{ 'product.not_found' | trans }}</strong>
+                        </label>
+
+                        {% if loop_is_first_checked  %}
+                            {% set loop_is_first_checked = false %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% if variant is defined %}
+                    <label class="w-sel__item">
+                        <input type="radio" name="card-size" data-quantity={{ variant.quantity}} hidden>
+                        <span></span>
+                        {{ 'product.not_found' | trans }}
+                    </label>
+                {%  endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -379,11 +379,14 @@
             <div class="header__alert d-flex justify-content-center py-2 border-bottom border-white">SUMMER SALE! до -40%! Подробнее ></div>
             <div class="header__main d-flex justify-content-between align-items-center border-bottom py-4 px-2 px-md-4">
                 <button class="burger d-flex align-items-center text-uppercase me-2 me-md-5 fw-bold" type="button">
-                    <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<svg class="me-2 burger__bars" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M3 6H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
                         <path d="M3 12H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
                         <path d="M3 18H11" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
                     </svg>
+                    <svg class="me-2 burger__x" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M18 6L6 18M6 6L18 18" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>	
                     <span class="d-none d-xl-block">Каталог</span>
                 </button>
                 <div class="me-auto fw-bold d-none d-xl-flex">
@@ -575,9 +578,24 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -586,9 +604,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-1.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -597,9 +630,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -608,9 +656,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-1.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -619,9 +682,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -630,9 +708,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -641,9 +734,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -652,9 +760,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -663,9 +786,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -674,9 +812,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -685,9 +838,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -696,9 +864,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="#" class="card__img">
-                                <img src="./img/cards/img-2.webp" alt="">
-                            </a>
+                            <div class="card__img">
+                                <div class="card__img_slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="card__img_slide swiper-slide active">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-1.webp" alt="" width="289" height="384">
+                                        </div>
+                                        <div class="card__img_slide swiper-slide">
+                                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="./img/cards/img-2.webp" alt="" width="289" height="384">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card__main">
                                 <a href="#" class="card__name">Велосипедки удлиненные в рубчик с широким поясом</a>
                                 <span class="card__cost">3 389 ₽</span>
@@ -791,8 +974,10 @@
         </div>
     </div>
 </footer>
+<script src="./libs/blazy.min.js"></script>
 <script src="./libs/swiper/swiper.min.js"></script>
 <script src="./js/script.js"></script>
+<script src="./js/lazy_img.js"></script>
 </body>
 
 </html>
