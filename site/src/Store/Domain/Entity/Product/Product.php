@@ -154,6 +154,9 @@ class Product
     #[ORM\Embedded(class: ProductGarmentCare::class, columnPrefix: 'garment_care_')]
     private ProductGarmentCare $garmentCare;
 
+    #[ORM\Column(type: 'text', length: 6000, nullable: true)]
+    private ?string $searchData = null;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -171,6 +174,20 @@ class Product
         $this->relatedColors = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
+
+    public function searchDataGenerate(): void
+    {
+        $this->searchData = strtolower(strip_tags($this->getName())).', '.
+            strtolower(strip_tags($this->getArticle())).', '.
+            strtolower(strip_tags($this->getDescription())).', '.
+            strtolower(strip_tags($this->getColorName()));
+    }
+
+    public function getSearchData(): ?string
+    {
+        return $this->searchData;
+    }
+
 
     public function getGarmentCare(): ProductGarmentCare
     {
