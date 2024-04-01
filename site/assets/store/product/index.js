@@ -21,11 +21,12 @@ variantsNodeList.forEach((node) => {
     document.querySelector('.add-to-cart-action').dataset.variantId = node.value
     // устанавливаем остатки товаров на кнопку
     buttonAdd.dataset.quantity = node.dataset.quantity
+    const subscribeProduct = document.querySelector('.subscribe-product')
 
     if (node.dataset.quantity > 0 ){
       buttonAdd.querySelector('span').innerText = 'Добавить в корзину'
     } else {
-      buttonAdd.querySelector('span').innerText = 'Нет в наличии'
+      buttonAdd.querySelector('span').innerText = 'Уведомить'
       buttonAdd.setAttribute("disabled", "disabled")
     }
   }
@@ -48,7 +49,7 @@ variantsNodeList.forEach((node) => {
         buttonNode.querySelector('span').innerText = 'Добавить в корзину'
         buttonNode.removeAttribute("disabled")
       } else {
-        buttonNode.querySelector('span').innerText = 'Нет в наличии'
+        buttonNode.querySelector('span').innerText = 'Уведомить'
         buttonNode.setAttribute("disabled", "disabled")
       }
 

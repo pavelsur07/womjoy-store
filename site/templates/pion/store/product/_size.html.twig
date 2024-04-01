@@ -1,7 +1,7 @@
 <div class="i-card__size i-card__size_items">
     <div class="w-sel w-sel-sm w-sel-white ">
         <div class="w-sel__trigger">
-            <strong>{{ 'product.not_found' | trans }}</strong>
+           {# <strong>{{ 'product.not_found' | trans }}</strong>#}
         </div>
         <div class="w-sel__dropdown">
             {% if product.variants.count > 0 %}
@@ -10,7 +10,7 @@
                 {% for variant in product.variants %}
                     {% if variant.canBeAddToCart or product.isPreSale %}
                         <label class="w-sel__item">
-                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} {#{{ loop.first ? 'checked' : '' }}#} data-quantity={{ variant.quantity}} hidden>
+                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
                             <span></span>
                             {{ variant.value }}
                         </label>
@@ -28,7 +28,7 @@
                         <label class="w-sel__item">
                             <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
                             <span></span>
-                            {{ variant.value }} <strong>{{ 'product.not_found' | trans }}</strong>
+                            {{ variant.value }}
                         </label>
 
                         {% if loop_is_first_checked  %}
