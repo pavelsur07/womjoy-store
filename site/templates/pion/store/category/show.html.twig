@@ -27,158 +27,71 @@
 
 {% block body %}
 
-    <div class="container-xxl">
-        <div class="breadcrumbs">
-            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+<div class="container-xxl">
+    <div class="breadcrumbs">
+        <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
 
-            {% for breadcrumb in breadcrumbs %}
-                {% if breadcrumb.slug == category.slug %}
-                    <div class="breadcrumbs__current">{{ breadcrumb.name }}</div>
+        {% for breadcrumb in breadcrumbs %}
+            {% if breadcrumb.slug == category.slug %}
+                <div class="breadcrumbs__current">{{ breadcrumb.name }}</div>
+            {% else %}
+                <a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}" class="breadcrumbs__item">{{ breadcrumb.name }}</a>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+    <section class="catalog section">
+        <h1 class="mb-3 text-center text-uppercase h3"> {{ category.seoMetadata.h1 }}</h1>
+
+        <ul class="catalog__tags">
+            {% for item in category.menu.value %}
+                {% if app.request.requestUri == item.href %}
+                    <li><a class="active">{{ item.name }}</a></li>
                 {% else %}
-                    <a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}" class="breadcrumbs__item">{{ breadcrumb.name }}</a>
+                    <li><a href="{{ item.href }}">{{ item.name }}</a></li>
                 {% endif %}
+
             {% endfor %}
+        </ul>
+
+        {% include "pion/store/category/_filter.html.twig" %}
+
+
+
+        <div class="row mb-5 g-2 g-md-3">
+
+            {% set number=1 %}
+            {% for item in pagination %}
+
+                <div class="col col-6 col-md-4 col-lg-3 mb-4">
+                    {% include 'pion/store/common/product/product_item.html.twig' %}
+                    {% set number=number+1 %}
+                </div>
+            {% endfor%}
 
         </div>
 
-        <section class="catalog section mt-5">
-            <h1 class="mb-3 text-center text-uppercase"> {{ category.seoMetadata.h1 }}</h1>
-            <ul class="catalog__tags">
-                {% for item in category.menu.value %}
-                    {% if app.request.requestUri == item.href %}
-                        <li><a class="active">{{ item.name }}</a></li>
-                    {% else %}
-                        <li><a href="{{ item.href }}">{{ item.name }}</a></li>
-                    {% endif %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Доступные события:
+                //
+                // impression — просмотр списка товаров;
+                // detail — просмотр товара;
+                // add — добавление товара в корзину;
+                // remove — удаление товара из корзины;
+                // purchase — покупка;
+                pushStoreMetrika('impression', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
+            })
+        </script>
 
-                {% endfor %}
-            </ul>
-            <div class="filter">
-                <form class="filter__main filter__form">
-                    <div class="d-flex d-md-none align-items-center justify-content-between p-4 border-bottom mb-3">
-                        <span class="text-uppercase text-xl">Фильтр 0</span>
-                        <button class="filter__close" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close" width="16" height="16"></button>
-                    </div>
-                    <div class="filter__items">
+        {{ pagerfanta(pagination) }}
+    </section>
 
-                        {% for filter in category.filters %}
+    <section class="text section">
 
-                            <div class="filter__item">
-                                <div class="filter__trigger">
-                                    {{ filter.attribute_name }}
-                                    <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                        <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
-                                    </svg>
-                                </div>
-                                <div class="filter__content">
-                                    <button class="filter__clear" type="button">Выбрать все</button>
-                                    <div class="filter__checks">
-
-                                        {%  for value in filter.items %}
-
-                                            <label class="filter__check w-check check">
-                                                {% if assert_one_of(value.value_id, filter_setting_ids) == true %}
-                                                    <input class="filter-checkbox" type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden checked value="{{ value.value_id }}">
-                                                {% else %}
-                                                    <input class="filter-checkbox" type="checkbox" name="filter[{{ filter.attribute_id }}][]" hidden value="{{ value.value_id }}">
-                                                {% endif %}
-
-                                                <span class="w-check__sq"><img src="{{ asset('./pion/img/icons/white-check.svg') }}" alt="check" width="18" height="13"></span>
-                                                <div class="w-check__main">
-                                                    {% if filter.isColor %}
-                                                        <span class="w-check__color" style="background-color: {{ value.color_value }};"></span>
-                                                    {% endif %}
-                                                    <span class="w-check__name">{{ value.value }}</span>
-                                                    <span class="text-sm ms-auto"> </span>
-                                                </div>
-                                            </label>
-
-                                        {% endfor %}
-
-                                    </div>
-                                    <a href="#" class="filter__apply w-primary-btn">Применить</a>
-                                </div>
-                            </div>
-
-                        {% endfor %}
-
-                        <div class="filter__item">
-                            <div class="filter__trigger">
-                                СОРТИРОВАТЬ
-
-                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                                    <path d="M11.0209 1.35355C11.2161 1.15829 11.2161 0.841709 11.0209 0.646447C10.8256 0.451184 10.509 0.451184 10.3138 0.646447L11.0209 1.35355ZM6.00065 5.66667L5.6471 6.02022C5.74087 6.11399 5.86804 6.16667 6.00065 6.16667C6.13326 6.16667 6.26044 6.11399 6.35421 6.02022L6.00065 5.66667ZM1.68754 0.646447C1.49228 0.451184 1.17569 0.451184 0.980431 0.646447C0.785169 0.841709 0.785169 1.15829 0.980431 1.35355L1.68754 0.646447ZM10.3138 0.646447L5.6471 5.31311L6.35421 6.02022L11.0209 1.35355L10.3138 0.646447ZM6.3542 5.31311L1.68754 0.646447L0.980431 1.35355L5.6471 6.02022L6.3542 5.31311Z" fill="#383838" />
-                                </svg>
-                            </div>
-
-
-                            <div class="filter__content">
-                                {#<button class="filter__clear" type="button"></button>#}
-
-                                <div class="filter__checks mt-4">
-
-                                    {#<div class="filter__check w-check">По популярности</div>#}
-                                    <ul class="sort__list">
-                                        {% for _sorting_rule ,_sorting_rule_title in sorting_rules %}
-                                            <li class="filter__check w-check {{ _sorting_rule == _current_sort ? 'active' }}">
-                                                <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" rel="nofollow">{{ _sorting_rule_title }}</a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-
-                                </div>
-                                {#<a href="#" class="filter__apply w-primary-btn">Применить</a>#}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="position-fixed start-0 bottom-0 w-100 d-block d-md-none p-4 pt-2 border-top bg-white z-3">
-                        <div class="text-center m-3 text-uppercase">Показать 206 товаров</div>
-                        <div class="d-flex gap-3">
-                            <a href="#" class="w-empty-btn flex-grow-1">Очистить</a>
-                            <a href="#" class="w-primary-btn flex-grow-1">Применить</a>
-                        </div>
-                    </div>
-
-                </form>
-
-                <button class="filter__call d-flex d-md-none align-items-center" type="button"><img src="{{ asset('./pion/img/icons/filter.svg') }}" alt="filter" width="16" height="16"> Фильтры</button>
-                <span class="filter__cnt">ТОВАРОВ: {{ pagination.count }}</span>
-            </div>
-
-
-
-            <div class="row mb-5 g-2 g-md-3">
-                {% set number=1 %}
-                {% for item in pagination %}
-
-                    <div class="col col-6 col-md-4 col-lg-3 mb-4">
-                        {% include 'pion/store/common/product/product_item.html.twig' %}
-                        {% set number=number+1 %}
-                    </div>
-                {% endfor%}
-            </div>
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Доступные события:
-                    //
-                    // impression — просмотр списка товаров;
-                    // detail — просмотр товара;
-                    // add — добавление товара в корзину;
-                    // remove — удаление товара из корзины;
-                    // purchase — покупка;
-                    pushStoreMetrika('impression', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
-                })
-            </script>
-
-            {{ pagerfanta(pagination) }}
-        </section>
-
-        <section class="text section">
-
-        </section>
-    </div>
+    </section>
+</div>
 
 {% endblock %}
 
