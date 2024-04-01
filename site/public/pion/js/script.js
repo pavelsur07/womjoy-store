@@ -1,40 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const cards = document.querySelectorAll('.card');
 
-	cards.forEach((card, i) => {
+	if (cards.length) {
+		cards.forEach((card, i) => {
 
-		const images = card.querySelectorAll('.card__img_slide');
-		
-		let finalHTML = '<div class="card__img_hovers">';
-		for (let a = 0; a < images.length; a++) {
-			finalHTML += '<div class="card__img_hover"></div>';
-		}
-		finalHTML += '</div>';
+			const images = card.querySelectorAll('.card__img_slide');
 
-		finalHTML += '<div class="card__img_checks">';
-		for (let a = 0; a < images.length; a++) {
-			finalHTML += '<div class="card__img_check"></div>';
-		}
-		finalHTML += '</div>';
-
-
-		card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
-
-
-		const hovers = card.querySelectorAll('.card__img_hover');
-		const checks = card.querySelectorAll('.card__img_check');
-
-		hovers.forEach((hover, i) => {
-			hover.addEventListener('mouseover', () => {
-				card.querySelector('.card__img_slide.active')?.classList.remove('active');
-				card.querySelector('.card__img_check.active')?.classList.remove('active');
-
-				images[i].classList.add('active');
-				checks[i].classList.add('active');
-			});
-		});
-	});
+			if (images.length > 1) {
+				let finalHTML = '<div class="card__img_hovers">';
+				for (let a = 0; a < images.length; a++) {
+					finalHTML += '<div class="card__img_hover"></div>';
+				}
+				finalHTML += '</div>';
 	
+				finalHTML += '<div class="card__img_checks">';
+				for (let a = 0; a < images.length; a++) {
+					finalHTML += '<div class="card__img_check"></div>';
+				}
+				finalHTML += '</div>';
+	
+	
+				card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
+	
+	
+				const hovers = card.querySelectorAll('.card__img_hover');
+				const checks = card.querySelectorAll('.card__img_check');
+	
+				hovers.forEach((hover, i) => {
+					hover.addEventListener('mouseover', () => {
+						card.querySelector('.card__img_slide.active')?.classList.remove('active');
+						card.querySelector('.card__img_check.active')?.classList.remove('active');
+	
+						images[i].classList.add('active');
+						checks[i].classList.add('active');
+					});
+				});
+			}
+		});
+	}
+
 	const header       = document.querySelector('.header');
 	const burger       = document.querySelector('.burger');
 	const headerMain   = document.querySelector('.header__main');
