@@ -103,7 +103,7 @@ const Cart = () => {
                         <button
                             type="button"
                             onClick={() => handleCheckoutClick()}
-                            className="w-primary-btn w-100 c-main__btn btn-primary">
+                            className="w-action-btn w-100 c-main__btn btn-primary">
                             {t('Checkout')}
                         </button>
 

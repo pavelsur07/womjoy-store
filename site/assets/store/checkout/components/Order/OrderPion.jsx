@@ -53,7 +53,7 @@ const OrderPion = () => {
                 </button>*/}
 
                 <button
-                    className="w-primary-btn w-100 c-main__btn btn-primary mt-2"
+                    className="w-action-btn w-100 c-main__btn btn-primary mt-2"
                     type="button"
                     onClick={ handleCheckoutClick }
                 >
