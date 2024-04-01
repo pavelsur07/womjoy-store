@@ -116,12 +116,13 @@ class ProductRepository
             ->groupBy('p.id');
 
         if (\count($filterIds) > 0) {
+
             // Добавить фильтрацию товаров по характеристикам
             foreach ($filterIds as $attributeId => $variantIds) {
                 // создаём алиас для подзапроса
                 $alias = sprintf('attr_%d', $attributeId);
 
-                $filterQb = $this->em->createQueryBuilder()->select($alias)
+                $filterQb = $this->em->createQueryBuilder()->select('IDENTITY(' . $alias . '.product)')
                     ->from(AttributeAssignment::class, $alias);
 
                 $filterQb->where(
@@ -132,7 +133,7 @@ class ProductRepository
                 );
 
                 $qb->andWhere(
-                    $expr->exists($filterQb->getDQL())
+                    $expr->in( 'p.id', $filterQb->getDQL())
                 );
             }
         }
