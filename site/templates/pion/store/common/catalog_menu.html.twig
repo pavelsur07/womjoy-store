@@ -1,3 +1,4 @@
+
 <div class="catalog-menu">
     <div class="container-xxl">
         <div class="d-flex d-md-none justify-content-between align-items-center py-4">
@@ -10,7 +11,6 @@
                 <div class="container">
                     <div class="search__content">
                         <button class="search__close" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
-
                         <div class="search__main mb-0 mb-md-5 d-flex d-md-block">
                             <form action="/search" method="get" class="search__form flex-grow-1 me-2">
                                 <div class="flex-grow-1 me-0 me-md-3 w-field">
@@ -23,29 +23,6 @@
                             </form>
                             <button class="search__cancel text-decoration-underline d-none" type="button">Отменить</button>
                         </div>
-                        {#
-                        <div class="search__result">
-                            <div class="search__queries">
-                                <a href="#" class="search__query">
-                                    <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                    love
-                                </a>
-                                <a href="#" class="search__query">
-                                    <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                    боди
-                                </a>
-                                <a href="#" class="search__query">
-                                    <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                    велосипедки
-                                </a>
-                                <a href="#" class="search__query">
-                                    <img src="{{ asset('./pion/img/icons/search.svg') }}" alt="" width="24" height="24">
-                                    шорты
-                                </a>
-                            </div>
-                            <a href="#" class="mt-4 d-inline-block text-decoration-underline text-uppercase text-lg">Смотреть результаты (50)</a>
-                        </div>
-                        #}
                     </div>
                 </div>
             </div>
@@ -54,22 +31,23 @@
 
             <div class="catalog-menu__col" itemscope itemtype="http://schema.org/SiteNavigationElement">
                 <menu itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-                    {#<div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/sellout-117" class="catalog-menu__title" itemprop="url">SALE</a>
-                        <meta itemprop="name" content="SALE" />
-                    </div>#}
                     <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                         <a href="https://womjoy.ru/collections/novinki-dlya-zhenshchin-115" class="catalog-menu__title" itemprop="url">НОВИНКИ</a>
                         <meta itemprop="name" content="НОВИНКИ" />
                     </div>
-                    {#<div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                    {#
+                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                         <a href="https://womjoy.ru/collections/podarochnye-sertefikaty-140" class="catalog-menu__title" itemprop="url">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</a>
                         <meta itemprop="name" content="ПОДАРОЧНЫЕ СЕРТИФИКАТЫ" />
-                    </div>#}
-{#                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                    </div>
+                    #}
+
+                    {#
+                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                         <a href="https://womjoy.ru/collections/podarochnaya-upakovka-141" class="catalog-menu__title" itemprop="url">ПОДАРОЧНАЯ УПАКОВКА</a>
                         <meta itemprop="name" content="ПОДАРОЧНАЯ УПАКОВКА" />
-                    </div>#}
+                    </div>
+                    #}
                     <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                         <a href="https://womjoy.ru/collections/skoro-v-prodazhe-118" class="catalog-menu__title" itemprop="url">СКОРО В ПРОДАЖЕ</a>
                         <meta itemprop="name" content="СКОРО В ПРОДАЖЕ" />

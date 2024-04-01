@@ -1,12 +1,14 @@
 <div class="card" data-product-id="{{ item.id }}">
 
-    {#<a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__img">#}
-    {% if item.images.count > 0 %}
-        <img src="{{ thumbnail_path(item.images.first.path, item.images.first.name~'.webp', 400, 600 ) }}" alt="Thumbnail {{ item.name }}">
-    {% else %}
-        <img src="{{ asset('./default/img/thumbnail/coming-soon.svg') }}" alt="{{ item.name }} not image">
-    {% endif %}
-    {#</a>#}
+    <a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__img">
+        <div class="card__img_slider swiper">
+            {% if item.images.count > 0 %}
+                <img src="{{ thumbnail_path(item.images.first.path, item.images.first.name~'.webp', 400, 600 ) }}" alt="Thumbnail {{ item.name }}">
+            {% else %}
+                <img src="{{ asset('./default/img/thumbnail/coming-soon.svg') }}" alt="{{ item.name }} not image">
+            {% endif %}
+        </div>
+    </a>
 
     <div class="card__main">
         <a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__name">{{ item.name }}</a>
