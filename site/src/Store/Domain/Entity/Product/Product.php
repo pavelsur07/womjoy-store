@@ -177,9 +177,9 @@ class Product
 
     public function searchDataGenerate(): void
     {
-        $this->searchData = strtolower(strip_tags($this->getName())).', '.
-            strtolower(strip_tags($this->getArticle())).', '.
-            strtolower(strip_tags($this->getDescription())).', '.
+        $this->searchData = strtolower(strip_tags($this->getName())) . ', ' .
+            strtolower(strip_tags($this->getArticle())) . ', ' .
+            strtolower(strip_tags($this->getDescription())) . ', ' .
             strtolower(strip_tags($this->getColorName()));
     }
 
@@ -187,7 +187,6 @@ class Product
     {
         return $this->searchData;
     }
-
 
     public function getGarmentCare(): ProductGarmentCare
     {

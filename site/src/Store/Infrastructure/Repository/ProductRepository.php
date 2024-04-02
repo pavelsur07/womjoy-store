@@ -116,7 +116,6 @@ class ProductRepository
             ->groupBy('p.id');
 
         if (\count($filterIds) > 0) {
-
             // Добавить фильтрацию товаров по характеристикам
             foreach ($filterIds as $attributeId => $variantIds) {
                 // создаём алиас для подзапроса
@@ -133,7 +132,7 @@ class ProductRepository
                 );
 
                 $qb->andWhere(
-                    $expr->in( 'p.id', $filterQb->getDQL())
+                    $expr->in('p.id', $filterQb->getDQL())
                 );
             }
         }
@@ -150,6 +149,15 @@ class ProductRepository
 
         return $qb;
     }
+
+    /*
+    public function listBySearchPhraseSearchPhrase(
+        string $searchPhrase,
+        ?string $sort,
+        ?string $direction = 'asc'
+    ) :QueryBuilder {
+    }
+    */
 
     public function listByCategoryWithPagination(Category $category, int $page, int $size): PaginationInterface
     {
