@@ -6,11 +6,15 @@ import store from '../redux/store'
 
 // Импортируем действие
 import { addCartItem } from '../redux/actions/cart'
+import ReactDOM from "react-dom/client";
+import {Provider} from "react-redux";
+import AppPion from "../cart/components/App/AppPion";
 
 const buttonNodeList = document.querySelectorAll('.add-to-cart-action')
 const variantsNodeList = document.querySelectorAll(
   '.i-card__size_items input[name=card-size]'
 )
+const subscribeProduct = document.getElementById('subscribe-product')
 
 variantsNodeList.forEach((node) => {
   // проверякм выбранный элемент
@@ -21,17 +25,26 @@ variantsNodeList.forEach((node) => {
     document.querySelector('.add-to-cart-action').dataset.variantId = node.value
     // устанавливаем остатки товаров на кнопку
     buttonAdd.dataset.quantity = node.dataset.quantity
-    const subscribeProduct = document.querySelector('.subscribe-product')
+
 
     if (node.dataset.quantity > 0 ){
       buttonAdd.querySelector('span').innerText = 'Добавить в корзину'
     } else {
       buttonAdd.querySelector('span').innerText = 'Уведомить'
+
+      /*if (subscribeProduct) {
+        ReactDOM.createRoot(subscribeProduct).render(
+            <>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" className="w-field__inp"
+                       required autoFocus placeholder="your@email.com" autoComplete="off"/>
+            </>
+        )
+       }*/
       buttonAdd.setAttribute("disabled", "disabled")
     }
   }
 
-  node.addEventListener('change', ({ currentTarget }) => {
+  node.addEventListener('change', ({currentTarget}) => {
     // Получаем кнопку и остатки товароа
     const buttonAdd = document.querySelector('.add-to-cart-action')
     const quantity = currentTarget.dataset.quantity

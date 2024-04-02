@@ -1,29 +1,64 @@
 <div class="i-card__size i-card__size_items">
+    <div class="w-sel w-sel-sm w-sel-white" data-w-sel-default="Выберите размер">
+        <div class="w-sel__trigger">
+            XS/S
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.66675 2.91666H18.3334V17.0833H1.66675V2.91666Z" stroke="#141B34" stroke-width="1.25" stroke-linejoin="round"/>
+                <path d="M1.66675 5.83337L10.0001 10L18.3334 5.83337" stroke="#141B34" stroke-width="1.25"/>
+            </svg>
+        </div>
+
+        {% if product.variants.count > 0 %}
+            {% set loop_is_first_checked = true %}
+            <div class="w-sel__dropdown">
+                {% for variant in product.variants %}
+                    <label class="w-sel__item">
+                        <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
+                        <span></span>
+                        <div>{{ variant.value }}</div>
+                    </label>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{#
+
+<div class="i-card__size i-card__size_items">
     <div class="w-sel w-sel-sm w-sel-white ">
         <div class="w-sel__trigger">
-           {# <strong>{{ 'product.not_found' | trans }}</strong>#}
+           #}
+{# <strong>{{ 'product.not_found' | trans }}</strong>#}{#
+
         </div>
         <div class="w-sel__dropdown">
             {% if product.variants.count > 0 %}
                 {% set loop_is_first_checked = true %}
 
                 {% for variant in product.variants %}
+                   #}
+{# {% if variant.canBeAddToCart or product.isPreSale %}#}{#
+
+                        <label class="w-sel__item">
+                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
+                            <span></span>
+                            {{ variant.value }}
+                        </label>
+
+                        {% if loop_is_first_checked  %}
+                            {% set loop_is_first_checked = false %}
+                        {% endif %}
+
+                    #}
+{#{% endif %}#}{#
+
+                {% endfor %}
+
+                #}
+{#{% for variant in product.variants %}
                     {% if variant.canBeAddToCart or product.isPreSale %}
-                        <label class="w-sel__item">
-                            <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
-                            <span></span>
-                            {{ variant.value }}
-                        </label>
-
-                        {% if loop_is_first_checked  %}
-                            {% set loop_is_first_checked = false %}
-                        {% endif %}
-
-                    {% endif %}
-                {% endfor %}
-
-                {% for variant in product.variants %}
-                    {% if variant.canBeAddToCart or product.isPreSale %}{% else %}
+                    {% else %}
 
                         <label class="w-sel__item">
                             <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
@@ -36,6 +71,8 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+#}{#
+
             {% else %}
                 {% if variant is defined %}
                     <label class="w-sel__item">
@@ -48,3 +85,4 @@
         </div>
     </div>
 </div>
+#}
