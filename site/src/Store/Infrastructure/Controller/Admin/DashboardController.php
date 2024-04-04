@@ -16,6 +16,7 @@ use App\Store\Infrastructure\Console\Moysklad\ImportIdsCommand;
 use App\Store\Infrastructure\Console\Moysklad\UpdateStocksCommand;
 use App\Store\Infrastructure\Console\ProductRegenerateSeoCommand;
 use App\Store\Infrastructure\Console\ProductUpdateSearchDataCommand;
+use App\Store\Infrastructure\Console\ProductUpdateSortVariantCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Console\YandexMarketFidGenerateCommand;
 use DateTimeImmutable;
@@ -54,7 +55,7 @@ class DashboardController extends AbstractController
     }
 
     #[Route(path: '/admin/dashboard/product-update-sort', name: 'admin.dashboard.product.update_sort')]
-    public function updateSort(ProductUpdateSearchDataCommand $command): Response
+    public function updateSort(ProductUpdateSortVariantCommand $command): Response
     {
         $command->run(
             new ArrayInput([]),
@@ -63,6 +64,7 @@ class DashboardController extends AbstractController
 
         return $this->redirectToRoute('admin.dashboard.show');
     }
+
     #[Route(path: '/admin/dashboard/product-search-data', name: 'admin.dashboard.product.search_data')]
     public function searchData(ProductUpdateSearchDataCommand $command): Response
     {
