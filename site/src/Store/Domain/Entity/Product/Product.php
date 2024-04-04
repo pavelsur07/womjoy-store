@@ -178,10 +178,19 @@ class Product
 
     public function searchDataGenerate(): void
     {
-        $this->searchData = strtolower(strip_tags($this->getName())) . ', ' .
-            strtolower(strip_tags($this->getArticle())) . ', ' .
-            strtolower(strip_tags($this->getDescription())) . ', ' .
-            strtolower(strip_tags($this->getColorName()));
+        $this->searchData = $this->textConversion($this->getName()) . ', ' .
+            $this->textConversion($this->getArticle()) . ', ' .
+            $this->textConversion($this->getDescription()) . ', ' .
+            $this->textConversion($this->getColorName());
+    }
+
+    private function textConversion(null|int|string $text): string
+    {
+        if ($text === null) {
+            return '';
+        }
+
+        return strtolower(strip_tags((string)$text));
     }
 
     public function getSearchData(): ?string
