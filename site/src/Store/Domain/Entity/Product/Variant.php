@@ -11,6 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`store_product_variants`')]
 class Variant
 {
+    public const SORT = [
+        'XS'=> 0,
+        'S' => 10,
+        'M' => 20,
+        'L' => 30,
+    ];
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -34,12 +40,24 @@ class Variant
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $moyskladId = null;
 
+    #[ORM\Column(type: 'string', options: ['default' => 0])]
+    private int $sort = 0;
+
     public function __construct(Product $product, string $article, string $value, ?string $barcode = null)
     {
         $this->article = $article;
         $this->value = $value;
         $this->product = $product;
         $this->barcode = trim($barcode);
+    }
+
+    public function sortGenerate(): void
+    {
+        foreach (self::SORT as $key => $value) {
+            if ($this->value === $key) {
+                $this->sort = $value;
+            }
+        }
     }
 
     public function getBarcode(): ?string

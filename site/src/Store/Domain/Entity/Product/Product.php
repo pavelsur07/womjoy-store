@@ -61,6 +61,7 @@ class Product
 
     /** @var ArrayCollection<array-key, Variant> */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Variant::class, cascade: ['ALL'], orphanRemoval: true)]
+    #[ORM\OrderBy(['sort' => 'ASC'])]
     private Collection $variants;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
