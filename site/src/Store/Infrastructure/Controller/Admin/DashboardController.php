@@ -53,6 +53,16 @@ class DashboardController extends AbstractController
         return $this->redirectToRoute('admin.dashboard.show');
     }
 
+    #[Route(path: '/admin/dashboard/product-update-sort', name: 'admin.dashboard.product.update_sort')]
+    public function updateSort(ProductUpdateSearchDataCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
     #[Route(path: '/admin/dashboard/product-search-data', name: 'admin.dashboard.product.search_data')]
     public function searchData(ProductUpdateSearchDataCommand $command): Response
     {
