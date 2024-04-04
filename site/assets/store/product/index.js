@@ -7,14 +7,17 @@ import store from '../redux/store'
 // Импортируем действие
 import { addCartItem } from '../redux/actions/cart'
 import ReactDOM from "react-dom/client";
+import SubscribeInput from "./components/SubscribeInput";
 import {Provider} from "react-redux";
 import AppPion from "../cart/components/App/AppPion";
+
 
 const buttonNodeList = document.querySelectorAll('.add-to-cart-action')
 const variantsNodeList = document.querySelectorAll(
   '.i-card__size_items input[name=card-size]'
 )
 const subscribeProduct = document.getElementById('subscribe-product')
+
 
 variantsNodeList.forEach((node) => {
   // проверякм выбранный элемент
@@ -32,14 +35,13 @@ variantsNodeList.forEach((node) => {
     } else {
       buttonAdd.querySelector('span').innerText = 'Уведомить'
 
-      /*if (subscribeProduct) {
+      if (subscribeProduct) {
         ReactDOM.createRoot(subscribeProduct).render(
             <>
-                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" className="w-field__inp"
-                       required autoFocus placeholder="your@email.com" autoComplete="off"/>
+              <SubscribeInput/>
             </>
         )
-       }*/
+      }
       buttonAdd.setAttribute("disabled", "disabled")
     }
   }
@@ -60,9 +62,27 @@ variantsNodeList.forEach((node) => {
     buttonNodeList.forEach((buttonNode) => {
       if (quantity > 0) {
         buttonNode.querySelector('span').innerText = 'Добавить в корзину'
+        if (subscribeProduct) {
+          ReactDOM.createRoot(subscribeProduct).render(
+              <></>
+          )
+        }
         buttonNode.removeAttribute("disabled")
       } else {
         buttonNode.querySelector('span').innerText = 'Уведомить'
+        if (subscribeProduct) {
+          ReactDOM.createRoot(subscribeProduct).render(
+            <>
+              <SubscribeInput/>
+              {/*<div className="w-field mb-4 w-100">
+                <div className="w-field__main w-100">
+                  <input type="text" className="w-field__inp w-100" placeholder="Введите email"
+                  />
+                </div>
+              </div>*/}
+            </>
+          )
+        }
         buttonNode.setAttribute("disabled", "disabled")
       }
 
