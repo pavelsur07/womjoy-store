@@ -184,15 +184,6 @@ class Product
             $this->textConversion($this->getColorName());
     }
 
-    private function textConversion(null|int|string $text): string
-    {
-        if ($text === null) {
-            return '';
-        }
-
-        return strtolower(strip_tags((string)$text));
-    }
-
     public function getSearchData(): ?string
     {
         return $this->searchData;
@@ -905,6 +896,15 @@ class Product
             ];
         }
         return $result;
+    }
+
+    private function textConversion(null|int|string $text): string
+    {
+        if ($text === null) {
+            return '';
+        }
+
+        return strtolower(strip_tags((string)$text));
     }
 
     private function sortable(): void
