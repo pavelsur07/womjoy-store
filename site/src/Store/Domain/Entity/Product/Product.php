@@ -248,7 +248,7 @@ class Product
             }
         }
 
-        return null;
+        return '';
     }
 
     public function getColor(): string

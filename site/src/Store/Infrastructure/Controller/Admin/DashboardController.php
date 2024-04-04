@@ -15,6 +15,7 @@ use App\Store\Infrastructure\Console\Moysklad\ExportOrdersCommand;
 use App\Store\Infrastructure\Console\Moysklad\ImportIdsCommand;
 use App\Store\Infrastructure\Console\Moysklad\UpdateStocksCommand;
 use App\Store\Infrastructure\Console\ProductRegenerateSeoCommand;
+use App\Store\Infrastructure\Console\ProductUpdateSearchDataCommand;
 use App\Store\Infrastructure\Console\SitemapGenerateCommand;
 use App\Store\Infrastructure\Console\YandexMarketFidGenerateCommand;
 use DateTimeImmutable;
@@ -43,6 +44,17 @@ class DashboardController extends AbstractController
 
     #[Route(path: '/admin/dashboard/product-regenerate', name: 'admin.dashboard.product.regenerate')]
     public function regenerateSeo(ProductRegenerateSeoCommand $command): Response
+    {
+        $command->run(
+            new ArrayInput([]),
+            new NullOutput()
+        );
+
+        return $this->redirectToRoute('admin.dashboard.show');
+    }
+
+    #[Route(path: '/admin/dashboard/product-search-data', name: 'admin.dashboard.product.search_data')]
+    public function searchData(ProductUpdateSearchDataCommand $command): Response
     {
         $command->run(
             new ArrayInput([]),
