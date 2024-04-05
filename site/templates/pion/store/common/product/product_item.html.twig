@@ -3,7 +3,17 @@
     <a href="{{ path('store.product.show', {'slug': item.slug}) }}" class="card__img">
         <div class="card__img_slider swiper">
             {% if item.images.count > 0 %}
-                <img src="{{ thumbnail_path(item.images.first.path, item.images.first.name~'.webp', 400, 600 ) }}" alt="Thumbnail {{ item.name }}">
+                {% set number=1 %}
+
+                <div class="swiper-wrapper">
+                    {% for image in item.images | slice(0, 3) %}
+                        <div class="card__img_slide swiper-slide active">
+                            <img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ thumbnail_path(image.path, image.name~'.webp', 400, 600 ) }}" alt="{{ item.name }} - N{{ number }}" width="289" height="384">
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {#<img src="{{ thumbnail_path(item.images.first.path, item.images.first.name~'.webp', 400, 600 ) }}" alt="Thumbnail {{ item.name }}">#}
             {% else %}
                 <img src="{{ asset('./default/img/thumbnail/coming-soon.svg') }}" alt="{{ item.name }} not image">
             {% endif %}
