@@ -19,7 +19,7 @@ class MessageNewForm extends AbstractType
                 'topic',
                 ChoiceType::class,
                 [
-                    'label' =>'Topic',
+                    'label' =>'Тема',
                     'choices'  => [
                         'Замена' =>'Substitution',
                         'Возврат' =>'return',
@@ -37,7 +37,7 @@ class MessageNewForm extends AbstractType
                 'name',
                 Type\TextType::class,
                 [
-                    'label' =>'Name',
+                    'label' =>'Имя',
                     'attr' => [
                         'placeholder' => 'Name',
                         'name' => 'firstName',
@@ -48,7 +48,7 @@ class MessageNewForm extends AbstractType
                 'phone',
                 Type\TextType::class,
                 [
-                    'label' => 'Phone',
+                    'label' => 'Телефон',
                     'attr' => [
                         'placeholder' => '+7(999) 999-99-99',
                         'name' => 'phone',
@@ -70,7 +70,7 @@ class MessageNewForm extends AbstractType
                 'message',
                 Type\TextareaType::class,
                 [
-                    'label' => 'Message',
+                    'label' => 'Сообщение',
                     'attr' => [
                         'rows' => 8,
                         'placeholder' => 'Message',
