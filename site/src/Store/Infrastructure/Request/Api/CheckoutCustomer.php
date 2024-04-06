@@ -12,11 +12,12 @@ class CheckoutCustomer
         #[Assert\NotBlank]
         public string $name,
         #[Assert\NotBlank]
-        public string $lastName,
-        #[Assert\NotBlank]
         public string $phone,
         #[Assert\NotBlank]
         public string $email,
         public ?string $comment = null,
+
+//        #[Assert\NotBlank]
+//        public ?string $lastName = null,
     ) {}
 }

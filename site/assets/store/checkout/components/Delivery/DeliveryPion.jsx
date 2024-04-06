@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setDelivery} from "../../../redux/actions/checkout";
 
-const DeliveryPion = () => {
+const DeliveryPion = ({ heading, errors }) => {
     const dispatch = useDispatch();
     const delivery = useSelector((state) => state.checkout.delivery);
     const [isOpenChoicePickupPoint, setOpenChoicePickupPoint] = useState(false);
@@ -34,11 +34,25 @@ const DeliveryPion = () => {
         );
     }
 
+    const getInputErrorClass = (name) => {
+        return (errors[name]?._errors) ? 'error border-danger' : '';
+    };
+
+    const renderInputError = (name) => {
+        let error = null;
+
+        if (errors[name]) {
+            error = errors[name]?._errors;
+        }
+
+        return <div className="w-field__error text-danger">{error}&nbsp;</div>;
+    };
+
+
     return (
         <div className="checkout__item w-border-bottom-primary2">
-            <div className="py-4 w-text-lg">4. ДОСТАВКА</div>
+            <div className="py-4 w-text-lg">{heading}</div>
             <div className="pb-4">
-
                 <div className="">
                     <div className="row">
                         {/*<div className="col col-12 col-md-6">
@@ -57,7 +71,7 @@ const DeliveryPion = () => {
                         <div className="col col-12">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">Адрес доставки*</label>
-                                <div className="w-field__main">
+                                <div className={"w-field__main " + getInputErrorClass('address')}>
                                     <input
                                         type="text"
                                         className="w-field__inp field__inp"
@@ -67,6 +81,10 @@ const DeliveryPion = () => {
                                         onChange={handleChangeDeliveryAddress}
                                     />
                                 </div>
+                                {
+                                    // отрисовка блока ошибки
+                                    renderInputError('address')
+                                }
                             </div>
                         </div>
                         {/*<div className="col col-12 col-md-6">
@@ -114,13 +132,13 @@ const DeliveryPion = () => {
                     </div>
                 </div>
 
-                {
+                {/*{
                     (!delivery.address || delivery.address.length < 10) && (
                         <>
                             <div className="p-3 bg-danger bg-opacity-10 text-danger">Не указан адрес доставки</div>
                         </>
                     )
-                }
+                }*/}
 
                 {/*<div className="pb-4">
                     <div className="row">

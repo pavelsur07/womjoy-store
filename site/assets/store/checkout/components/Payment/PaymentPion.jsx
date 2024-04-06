@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changePayment} from "../../../redux/actions/checkout";
 
-const PaymentPion = () => {
+const PaymentPion = ({heading}) => {
     const dispatch = useDispatch();
     const payment = useSelector((state) => state.checkout.payment);
     const payment_list = useSelector((state) => state.checkout.payment_list);
@@ -19,17 +19,10 @@ const PaymentPion = () => {
 
     return(
         <div className="checkout__item w-border-bottom-primary2">
-            <div className="py-4 w-text-lg">3. ОПЛАТА</div>
+            <div className="py-4 w-text-lg">{heading}</div>
             <div className="pb-4">
                 <div className="pb-4">
-                    <p>
-                        При оплате картами Visa, Mastercard и МИР, выпущенных российскими банками, рекомендуем использовать ручной ввод данных банковской карты на сайте либо воспользоваться сервисом SberPay.
-                        Оплата картами Visa и Mastercard зарубежных банков недоступна.
-                        Обращаем ваше внимание, что при использовании VPN сервисов могут возникнуть сложности с оплатой покупок.
-                    </p>
-
-                    <label className="w-check mt-4">
-
+                    <label className="w-check">
                         <input type="radio" checked={paymentOnlineChecked} value={payment_list.online.value} onChange={changePaymentValue} hidden />
                         <span className="w-check__sq"><img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13"/></span>
                         <div className="w-check__main">
@@ -65,6 +58,12 @@ const PaymentPion = () => {
                             <span className="w-check__name">{payment_list.yandex_split.name}</span>
                         </div>
                     </label>
+
+                    <p className="mt-4  text-muted">
+                        При оплате картами Visa, Mastercard и МИР, выпущенных российскими банками, рекомендуем использовать ручной ввод данных банковской карты на сайте либо воспользоваться сервисом SberPay.
+                        Оплата картами Visa и Mastercard зарубежных банков недоступна.
+                        Обращаем ваше внимание, что при использовании VPN сервисов могут возникнуть сложности с оплатой покупок.
+                    </p>
 
                     {/*<div className="pay-divide p-2 p-sm-4 w-bg-lightgray mt-4">
                         <div className="d-flex justify-content-between align-items-center mb-3">

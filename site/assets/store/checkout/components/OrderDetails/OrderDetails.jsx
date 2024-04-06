@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCartInfo} from "../../../redux/actions/cart";
 import {checkout as checkoutAction} from "../../../redux/actions/checkout";
 
-const Order = () => {
+const OrderDetails = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const [isOfferAccept, setOfferAccept] = useState(true);
@@ -64,4 +64,4 @@ const Order = () => {
     );
 };
 
-export default Order;
+export default OrderDetails;

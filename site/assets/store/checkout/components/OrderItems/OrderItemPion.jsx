@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-const ItemPion = ({item}) => {
+const OrderItemPion = ({item}) => {
 
     const demoPoint = {
         background: '#0b0a12',
@@ -49,4 +49,4 @@ const ItemPion = ({item}) => {
     )
 }
 
-export default ItemPion
+export default OrderItemPion

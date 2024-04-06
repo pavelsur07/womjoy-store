@@ -5,7 +5,7 @@ import React from 'react';
 import Customer from "../../components/Customer/Customer";
 import Delivery from "../../components/Delivery/Delivery";
 import Payment from "../../components/Payment/Payment";
-import Order from "../../components/Order/Order";
+import OrderDetails from "../../components/OrderDetails/OrderDetails";
 
 const App = () => {
     return (
@@ -18,7 +18,7 @@ const App = () => {
             <Delivery />
             <Payment />
 
-            <Order />
+            <OrderDetails />
         </div>
     );
 };

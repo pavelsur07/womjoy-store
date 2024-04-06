@@ -1,78 +1,64 @@
-import React, {useRef} from "react";
+import React from "react";
+import InputMask from 'react-input-mask';
 import {useDispatch, useSelector} from "react-redux";
 import {setCustomer} from "../../../redux/actions/checkout";
 
-const CustomerPion = () => {
+const CustomerPion = ({ heading, errors }) => {
     const dispatch = useDispatch();
     const customer = useSelector((state) => state.checkout.customer);
 
     const handleInputChange = (field, value) => {
         let values = { ...customer, [field]: value };
 
-        if (field === 'phone') {
-            let r = '+'
-            let phone = values.phone.replace(/\D/g, "")
-            if (phone === '') return values.phone = '+7'
+        dispatch(
+            setCustomer(values.name, values.phone, values.email, values.comment)
+        );
+    };
 
-            let prefix = phone.charAt(0)
-            if (prefix !== '7') prefix = '7'
-            phone = phone.substring(1)
-            r += `${prefix}`
-            if (phone.length > 0) r += ` ${phone.substring(0, 3)}`
-            if (phone.length > 3) r += ` ${phone.substring(3, 6)}`
-            if (phone.length > 6) r += `-${phone.substring(6, 8)}`
-            if (phone.length > 8) r += `-${phone.substring(8, 10)}`
+    const getInputErrorClass = (name) => {
+        return (errors[name]?._errors) ? 'error border-danger' : '';
+    };
 
-            values.phone = r;
+    const renderInputError = (name) => {
+        let error = null;
+
+        if (errors[name]) {
+            error = errors[name]?._errors;
         }
 
-        dispatch(
-            setCustomer(values.name, values.lastName, values.phone, values.email, values.comment)
-        );
+        return <div className="w-field__error text-danger">{error}&nbsp;</div>;
     };
 
     return (
         <>
-            <div className="py-4 w-text-lg">2. ПОКУПАТЕЛЬ</div>
+            <div className="py-4 w-text-lg">{heading}</div>
             <div className="pb-4">
                 <div className="pb-4 w-border-bottom-primary2">
                     <div className="row">
-                        <div className="col col-12 col-md-6">
+                        <div className="col col-12 col-md-12">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">ИМЯ*</label>
-                                <div className="w-field__main">
+                                <label className="w-field__label field__ph">ФИО*</label>
+                                <div className={"w-field__main " + getInputErrorClass('name')}>
                                     <input
                                         type="text"
                                         className="w-field__inp field__inp"
-                                        name="firstName"
-                                        placeholder="Иван"
+                                        name="name"
+                                        placeholder="Иванов Иван Иванович"
                                         value={customer.name}
                                         onChange={(e) => handleInputChange('name', e.target.value)}
                                     />
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="col col-12 col-md-6">
-                            <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">ФАМИЛИЯ*</label>
-                                <div className="w-field__main">
-                                    <input
-                                        type="text"
-                                        className="w-field__inp field__inp"
-                                        name="lastName"
-                                        placeholder="Иванов"
-                                        value={customer.lastName}
-                                        onChange={(e) => handleInputChange('lastName', e.target.value)}
-                                    />
-                                </div>
+                                {
+                                    // отрисовка блока ошибки
+                                    renderInputError('name')
+                                }
                             </div>
                         </div>
 
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">EMAIL*</label>
-                                <div className="w-field__main">
+                                <div className={"w-field__main " + getInputErrorClass('email')}>
                                     <input
                                         type="email"
                                         name="email"
@@ -82,27 +68,43 @@ const CustomerPion = () => {
                                         onChange={(e) => handleInputChange('email', e.target.value)}
                                     />
                                 </div>
+                                {
+                                    // отрисовка блока ошибки
+                                    renderInputError('email')
+                                }
                             </div>
                         </div>
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
                                 <label className="w-field__label field__ph">ТЕЛЕФОН*</label>
-                                <div className="w-field__main">
-                                    <input
-                                        type="tel"
-                                        name='phone'
-                                        className="w-field__inp field__inp"
-                                        placeholder="+7 000 000-00-00"
+                                <div className={"w-field__main " + getInputErrorClass('phone')}>
+                                    <InputMask
+                                        mask="+7 (999) 999-99-99"
+                                        onChange={(e) => handleInputChange('phone', e.target.value.replace('_', ''))}
                                         value={customer.phone}
-                                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                                    />
+                                    >
+                                        {
+                                            _ => (
+                                                <input
+                                                    type="tel"
+                                                    name='phone'
+                                                    className="w-field__inp field__inp"
+                                                    placeholder="+7 (000) 000-00-00"
+                                                />
+                                            )
+                                        }
+                                    </InputMask>
                                 </div>
+                                {
+                                    // отрисовка блока ошибки
+                                    renderInputError('phone')
+                                }
                             </div>
                         </div>
                         <div className="col col-12">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">КОММЕНТАРИИ К ЗАКАЗУ*</label>
-                                <div className="w-field__main">
+                                <label className="w-field__label field__ph">КОММЕНТАРИИ К ЗАКАЗУ</label>
+                                <div className={"w-field__main " + getInputErrorClass('comment')}>
                                     <textarea
                                         className="w-field__textarea field__inp"
                                         value={customer.comment}
@@ -110,6 +112,10 @@ const CustomerPion = () => {
                                         placeholder="Текст комментария"
                                     />
                                 </div>
+                                {
+                                    // отрисовка блока ошибки
+                                    renderInputError('comment')
+                                }
                             </div>
                         </div>
                     </div>
