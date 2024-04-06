@@ -13,7 +13,7 @@
             <div class="w-sel__dropdown">
                 {% for variant in product.variants %}
                     <label class="w-sel__item">
-                        <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop_is_first_checked ? 'checked' : '' }} data-quantity={{ variant.quantity}} hidden>
+                        <input type="radio" name="card-size" value="{{ variant.id }}" data-quantity={{ variant.quantity}} hidden>
                         <span></span>
                         <div>{{ variant.value }}</div>
                     </label>

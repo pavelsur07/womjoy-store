@@ -80,7 +80,7 @@
     </div>
     {# End Breadcrumbs #}
 
-    <section class="i-card w-section">
+    <section class="i-card w-section pt-4">
         <div class="i-card__content js-product" data-product-id="{{ product.id }}" data-product="{{ jsProduct|serialize(format = 'json') }}" >
 
             {# Start Images #}
@@ -274,42 +274,7 @@
         </div>
     </section>
 
-    <div class="modal modal-md" id="modal-product">
-        <div class="modal__bg"></div>
-        <div class="modal__content">
 
-            <div class="modal__top">
-                <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
-            </div>
-
-            <div class="p-4">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card">
-                            {% if product.images.count > 0 %}
-                                {% set image = product.images.first %}
-                                <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt=" Thumbnail " width="267" height="400">
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <h3>{{ product.name }}</h3>
-
-                        <p>Добавлен в корзину</p>
-                        <p><strong>Цена:</strong> {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}</p>
-                        <p><strong>Кол-во:</strong> 1 </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal__bottom p-4">
-                <div class="modal__actions">
-                    <a class="w-empty-btn" href="{{ path('store.product.show', {'slug': product.slug }) }}" type="button">Продолжить покупки</a>
-                    <a class="w-primary-btn" href="{{ path('store.cart.index') }}" type="button">Оформить заказ</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {#
     <section class="w-section">
@@ -356,97 +321,133 @@
             </div>
             <div class="card-slider-swiper swiper">
                 <div class="swiper-wrapper">
-                    {% for product in product.relatedAssignments %}
-                    <div class="swiper-slide">
-                        {% set item = product.getRelated %}
-                        {% include 'pion/store/common/product/product_item.html.twig' %}
-                    </div>
+                    {% for element in product.relatedAssignments %}
+                        <div class="swiper-slide">
+                            {% set item = element.getRelated %}
+                            {% include 'pion/store/common/product/product_item.html.twig' %}
+                        </div>
                     {% endfor %}
-
                 </div>
             </div>
         </section>
     {% endif %}
 </div>
 
-<div class="modal modal-lg" id="modal-size-table">
-    <div class="modal__bg"></div>
-    <div class="modal__content">
-        <div class="modal__top">
-            <span class="modal__title">ТАБЛИЦА РАЗМЕРОВ</span>
-            <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
-        </div>
-        <div class="modal__sizes">
-            <picture>
-                <source srcset="{{ asset('./pion/img/rectangle-16.png') }}" alt="sizes" media="(min-width: 769px)">
-                <source srcset="{{ asset('./pion/img/rectangle-16.png') }}" alt="sizes" media="(max-width: 768px)">
-                <img src="{{ asset('./pion/img/rectangle-16.png') }}" alt="sizes" class="modal__sizes_img">
-            </picture>
-            <div class="modal__table">
-                <table>
-                    <thead>
-                    <tr>
-                        <th><b>Размер RU</b></th>
-                        <th><b>Размер EU</b></th>
-                        <th>Обхват<br> груди (см)</th>
-                        <th>Обхват<br> под грудью (см)</th>
-                        <th>Обхват<br> талии (см)</th>
-                        <th>Обхват<br> бедер (см)</th>
-                        <th>Рост<br> (см)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><b>40</b></td>
-                        <td><b>XXS</b></td>
-                        <td>80</td>
-                        <td>65</td>
-                        <td>60</td>
-                        <td>86</td>
-                        <td>158-164</td>
-                    </tr>
-                    <tr>
-                        <td><b>42/44</b></td>
-                        <td><b>XS/S</b></td>
-                        <td>82-90</td>
-                        <td>68-77</td>
-                        <td>62-70</td>
-                        <td>88-96</td>
-                        <td>158-164</td>
-                    </tr>
-                    <tr>
-                        <td><b>46/48</b></td>
-                        <td><b>M/L</b></td>
-                        <td>90-98</td>
-                        <td>73-82</td>
-                        <td>70-78</td>
-                        <td>96-104</td>
-                        <td>164-170</td>
-                    </tr>
-                    <tr>
-                        <td><b>50/52</b></td>
-                        <td><b>XL/2XL</b></td>
-                        <td>98-106</td>
-                        <td>78-87</td>
-                        <td>78-86</td>
-                        <td>104-112</td>
-                        <td>164-170</td>
-                    </tr>
-                    <tr>
-                        <td><b>54/56</b></td>
-                        <td><b>3XL/4XL</b></td>
-                        <td>106-114</td>
-                        <td>83-92</td>
-                        <td>86-94</td>
-                        <td>112-120</td>
-                        <td>164-170</td>
-                    </tr>
-                    </tbody>
-                </table>
+    <div class="modal modal-md" id="modal-product">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+
+            <div class="modal__top">
+                <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
+            </div>
+
+            <div class="p-4">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            {% if product.images.count > 0 %}
+                                {% set image = product.images.first %}
+                                <img src="{{ thumbnail_path(image.path, image.name~'.webp', 300, 400 ) }}" alt=" Thumbnail " width="267" height="400">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h3>{{ product.name }}</h3>
+
+                        <p>Добавлен в корзину</p>
+                        <p><strong>Цена:</strong> {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}</p>
+                        <p><strong>Кол-во:</strong> 1 </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal__bottom p-4">
+                <div class="modal__actions">
+                    <a class="w-empty-btn" href="{{ path('store.product.show', {'slug': product.slug }) }}" type="button">Продолжить покупки</a>
+                    <a class="w-primary-btn" href="{{ path('store.cart.index') }}" type="button">Оформить заказ</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="modal modal-lg" id="modal-size-table">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <span class="modal__title">ТАБЛИЦА РАЗМЕРОВ</span>
+                <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close"></button>
+            </div>
+            <div class="modal__sizes">
+                <picture>
+                    <source srcset="{{ asset('./pion/img/rectangle-16.png') }}" alt="sizes" media="(min-width: 769px)">
+                    <source srcset="{{ asset('./pion/img/rectangle-16.png') }}" alt="sizes" media="(max-width: 768px)">
+                    <img src="{{ asset('./pion/img/rectangle-16.png') }}" alt="sizes" class="modal__sizes_img">
+                </picture>
+                <div class="modal__table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th><b>Размер RU</b></th>
+                            <th><b>Размер EU</b></th>
+                            <th>Обхват<br> груди (см)</th>
+                            <th>Обхват<br> под грудью (см)</th>
+                            <th>Обхват<br> талии (см)</th>
+                            <th>Обхват<br> бедер (см)</th>
+                            <th>Рост<br> (см)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><b>40</b></td>
+                            <td><b>XXS</b></td>
+                            <td>80</td>
+                            <td>65</td>
+                            <td>60</td>
+                            <td>86</td>
+                            <td>158-164</td>
+                        </tr>
+                        <tr>
+                            <td><b>42/44</b></td>
+                            <td><b>XS/S</b></td>
+                            <td>82-90</td>
+                            <td>68-77</td>
+                            <td>62-70</td>
+                            <td>88-96</td>
+                            <td>158-164</td>
+                        </tr>
+                        <tr>
+                            <td><b>46/48</b></td>
+                            <td><b>M/L</b></td>
+                            <td>90-98</td>
+                            <td>73-82</td>
+                            <td>70-78</td>
+                            <td>96-104</td>
+                            <td>164-170</td>
+                        </tr>
+                        <tr>
+                            <td><b>50/52</b></td>
+                            <td><b>XL/2XL</b></td>
+                            <td>98-106</td>
+                            <td>78-87</td>
+                            <td>78-86</td>
+                            <td>104-112</td>
+                            <td>164-170</td>
+                        </tr>
+                        <tr>
+                            <td><b>54/56</b></td>
+                            <td><b>3XL/4XL</b></td>
+                            <td>106-114</td>
+                            <td>83-92</td>
+                            <td>86-94</td>
+                            <td>112-120</td>
+                            <td>164-170</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {#
     <div class="modal modal-sm" id="modal-divide">
