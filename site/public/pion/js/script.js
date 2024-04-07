@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				slidesPerView: 4,
 				slidesPerGroup: 4,
 				spaceBetween: 20,
-				loop: true,
+				/*loop: true,*/
 				navigation: {
 					prevEl: cardSlider.querySelector('.card-slider-btn-prev'),
 					nextEl: cardSlider.querySelector('.card-slider-btn-next'),
