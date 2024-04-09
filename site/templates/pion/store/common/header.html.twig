@@ -5,7 +5,63 @@
 <header class="header header-in py-2">
     <div class="container-fluid">
         {% include 'pion/common/header_banners.html.twig' %}
-        <div class="header__main d-flex justify-content-between align-items-center border-bottom py-4 px-0 px-md-4">
+        <div class="header__main d-flex justify-content-between align-items-center border-bottom py-3 py-md-4 px-2 px-md-4">
+            <button class="burger d-none d-md-flex align-items-center text-uppercase me-2 me-md-5 fw-bold" type="button">
+                <svg class="me-2 burger__bars" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 6H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                    <path d="M3 12H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                    <path d="M3 18H11" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
+                </svg>
+                <svg class="me-2 burger__x" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="d-none d-xl-block">Каталог</span>
+            </button>
+            <div class="me-auto fw-bold d-none d-xl-flex">
+                <a href="#" class="pe-3 me-3">RU</a>
+                <a href="#" class="opacity-75">COM</a>
+            </div>
+            <a href="{{ path('home') }}" class="header__logo">
+                <img src="{{ asset('./pion/img/logo.png') }}" alt="logo">
+                <img src="{{ asset('./pion/img/logo-black.svg') }}" alt="logo black">
+            </a>
+
+            <ul class="d-flex flex-grow-1 flex-md-grow-0 align-items-center">
+                <li class="header__action call-search">
+                    <button type="button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M10 17C13.866 17 17 13.866 17 10C17 6.13401 13.866 3 10 3C6.13401 3 3 6.13401 3 10C3 13.866 6.13401 17 10 17Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M15 15L21 21" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                </li>
+                <li class="header__action">
+                    <a href="{{ path('account.dashboard') }}">
+                        <svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+                            <path d="M9 10C6.81196 10 4.71354 10.8297 3.16637 12.3065C1.61919 13.7834 0.75 15.9114 0.75 18C0.75 18.5523 1.19772 19 1.75 19H16.25C16.8023 19 17.25 18.5523 17.25 18C17.25 15.9114 16.3808 13.7834 14.8336 12.3065C13.2865 10.8297 11.188 10 9 10ZM9 10C10.2503 10 11.4494 9.52589 12.3335 8.68198C13.2176 7.83807 13.7143 6.69347 13.7143 5.5C13.7143 4.30653 13.2176 3.16193 12.3335 2.31802C11.4494 1.47411 10.2503 1 9 1C7.74969 1 6.5506 1.47411 5.6665 2.31802C4.7824 3.16193 4.28571 4.30653 4.28571 5.5C4.28571 6.69347 4.7824 7.83807 5.6665 8.68198C6.5506 9.52589 7.74969 10 9 10Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="header__action ms-auto">
+                    <a href="{{ path('account.favorite.index') }}">
+                        <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+                            <path d="M15.0226 0.529051C12.976 0.300761 10.7734 1.44221 9.9992 3.14837C9.22499 1.44221 6.99839 0.300761 4.97584 0.529051C2.28111 0.823424 0.552638 3.56891 1.09879 6.21826C1.84299 9.82283 5.90009 11.4329 9.9992 15.5C14.0803 11.4329 18.1554 9.81683 18.8996 6.21826C19.4458 3.56891 17.7173 0.823424 15.0226 0.529051Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="header__action">
+                    <a href="{{ path('store.cart.index') }}">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18.1528 8H5.84709C5.35825 8 4.94106 8.35341 4.8607 8.8356L3.19403 18.8356C3.09244 19.4451 3.56248 20 4.18042 20H19.8195C20.4374 20 20.9075 19.4451 20.8059 18.8356L19.1392 8.8356C19.0589 8.35341 18.6417 8 18.1528 8Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M8 8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <div id="cart-badge"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        {#<div class="header__main d-flex justify-content-between align-items-center border-bottom py-4 px-0 px-md-4">
             <button class="burger d-flex align-items-center text-uppercase me-2 me-md-5 fw-bold" type="button">
                 <svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M3 6H19" stroke-linecap="round" stroke-width="1.5" stroke="#ffffff"></path>
@@ -15,8 +71,8 @@
                 <span class="d-none d-xl-block">Каталог</span>
             </button>
             <div class="me-auto fw-bold d-none d-xl-flex">
-                {#<a href="#" class="pe-3 me-3">RU</a>
-                <a href="#" class="opacity-75">COM</a>#}
+                #}{#<a href="#" class="pe-3 me-3">RU</a>
+                <a href="#" class="opacity-75">COM</a>#}{#
             </div>
             <a href="{{ path('home') }}" class="header__logo position-absolute start-50 translate-middle-x d-block">
                 <img src="{{ asset('./pion/img/logo.png') }}" alt="logo">
@@ -56,6 +112,6 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div>#}
     </div>
 </header>

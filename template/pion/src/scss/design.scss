@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 :root {
 	--w-black: #383838;	
 	--w-white: #fff;
@@ -9,6 +11,9 @@
 	--w-brown: rgb(97, 54, 43);
 
 	--w-gray: #757575;
+
+	--w-action: #593129;
+
 	--w-lightgray: #efefef;
 	--w-darkgray: rgba(0, 0, 0, 0.05);
 }
@@ -21,6 +26,7 @@ $brown: var(--w-brown);
 $gray: var(--w-gray);
 $lightgray: var(--w-lightgray);
 $darkgray: var(--w-darkgray);
+$action: var(--w-action);
 
 * {
 	margin: 0;
@@ -119,13 +125,17 @@ body {
     line-height: 1;
     letter-spacing: .1em;
     box-sizing: border-box;
+
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.75);
+	}
 }
 .w-primary-btn {
 	display: inline-block;
     border: 1px solid $primary;
     background-color: $primary;
     color: #111111;
-    padding: 15px;
+    padding: 15px 10px;
 	min-width: 218px;
 	text-align: center;
     font-size: 16px;
@@ -141,6 +151,23 @@ body {
 		border-color: $primary2;
 		color: $primary2;
     }
+}
+.w-action-btn {
+	display: inline-block;
+    border: 1px solid $action;
+    background-color: $action;
+    color: #fff;
+	font-weight: 700;
+    padding: 15px 10px;
+	min-width: 218px;
+	text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+    transition: .2s;
+    line-height: 1;
+    letter-spacing: .1em;
+    box-sizing: border-box;
 }
 .w-empty-btn {
 	display: inline-block;
@@ -191,7 +218,6 @@ body {
 	font-size: 14px;
 	img {
 		display: block;
-		margin-right: 8px;
 	}
 	&__label {
 		text-transform: uppercase;
@@ -207,12 +233,29 @@ body {
 		border: 1px solid #cccccc;
 		display: flex;
 		align-items: center;
-		padding: 14px 16px;
+		min-height: 100%;
 		box-sizing: border-box;
+
+		img, svg {
+			position: absolute;
+			left: 16px;
+		}
+
+		&:hover {
+			border-color: #949494;
+		}
 	}
 	&__inp {
 		display: block;
 		flex-grow: 1;
+		padding: 14px 16px;
+	}
+
+	&__main:has(img, svg) &__inp {
+		padding-left: 48px;
+	}
+	&__main:has(&__inp:focus) {
+		border-color: $action;
 	}
 	&__textarea {
 		display: block;
@@ -400,7 +443,8 @@ body {
 		z-index: 3;
 	}
 	&__trigger {
-		display: block;
+		display: flex;
+		align-items: center;
 		width: 100%;
 		cursor: pointer;
 		position: relative;
@@ -422,6 +466,10 @@ body {
 		&.active::after {
 			transform: translateY(-50%) rotate(180deg);
 		}
+
+		svg {
+			display: block;
+		}
 	}
 
 	&__dropdown {
@@ -440,13 +488,20 @@ body {
 	    }
 	}
 	&__item {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		width: 100%;
 		box-sizing: border-box;
 		padding: 10px;
 		position: relative;
 		z-index: 1;
 		cursor: pointer;
+
+		strong {
+			opacity: .7;
+			font-size: 12px;
+		}
 	}
 
 	&-sm &__trigger {
@@ -625,6 +680,14 @@ input.form-control, textarea.form-control {
     display: flex;
     padding: 14px 16px;
     box-sizing: border-box;
+
+	&:hover {
+		border-color: #949494;
+	}
+
+	&:focus {
+		border-color: $action;
+	}
 }
 
 select.form-select {
@@ -637,6 +700,14 @@ select.form-select {
     background-image: url('../img/icons/arrow-down.svg');
     background-position: right 1.2rem center;
     background-repeat: no-repeat;
+
+	&:hover {
+		border-color: #949494;
+	}
+
+	&:focus {
+		border-color: $action;
+	}
 }
 select::-ms-expand {
 	/* IE */

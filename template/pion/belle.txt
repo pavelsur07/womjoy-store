@@ -1,0 +1,5 @@
+1. У header__logo убрать все остальные классы, кроме самого header__logo
+2. Убрать search__close внутри search-pc
+3. Добавить иконку menu-back-arrow.svg и в элементе catalog-menu__back поправить тег img соответственно верстке
+4. В catalog-menu добавился div catalog-menu__content
+5. После футера добавить список mob-bar

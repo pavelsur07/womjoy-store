@@ -1,67 +1,68 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const cards = document.querySelectorAll('.card');
 
-	if (cards.length) {
-		cards.forEach((card, i) => {
+	cards.forEach((card, i) => {
 
-			const images = card.querySelectorAll('.card__img_slide');
+		const images = card.querySelectorAll('.card__img_slide');
+		
+		let finalHTML = '<div class="card__img_hovers">';
+		for (let a = 0; a < images.length; a++) {
+			finalHTML += '<div class="card__img_hover"></div>';
+		}
+		finalHTML += '</div>';
 
-			if (images.length > 1) {
-				let finalHTML = '<div class="card__img_hovers">';
-				for (let a = 0; a < images.length; a++) {
-					finalHTML += '<div class="card__img_hover"></div>';
-				}
-				finalHTML += '</div>';
-	
-				finalHTML += '<div class="card__img_checks">';
-				for (let a = 0; a < images.length; a++) {
-					finalHTML += '<div class="card__img_check"></div>';
-				}
-				finalHTML += '</div>';
-	
-	
-				card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
-	
-	
-				const hovers = card.querySelectorAll('.card__img_hover');
-				const checks = card.querySelectorAll('.card__img_check');
-	
-				hovers.forEach((hover, i) => {
-					hover.addEventListener('mouseover', () => {
-						card.querySelector('.card__img_slide.active')?.classList.remove('active');
-						card.querySelector('.card__img_check.active')?.classList.remove('active');
-	
-						images[i].classList.add('active');
-						checks[i].classList.add('active');
-					});
-				});
-			}
+		finalHTML += '<div class="card__img_checks">';
+		for (let a = 0; a < images.length; a++) {
+			finalHTML += '<div class="card__img_check"></div>';
+		}
+		finalHTML += '</div>';
+
+
+		card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
+
+
+		const hovers = card.querySelectorAll('.card__img_hover');
+		const checks = card.querySelectorAll('.card__img_check');
+
+		hovers.forEach((hover, i) => {
+			hover.addEventListener('mouseover', () => {
+				card.querySelector('.card__img_slide.active')?.classList.remove('active');
+				card.querySelector('.card__img_check.active')?.classList.remove('active');
+
+				images[i].classList.add('active');
+				checks[i].classList.add('active');
+			});
 		});
-	}
-
+	});
+	
 	const header       = document.querySelector('.header');
-	const burger       = document.querySelector('.burger');
+	const burgers      = document.querySelectorAll('.burger, .call-catalog');
 	const headerMain   = document.querySelector('.header__main');
 	const catalogMenu  = document.querySelector('.catalog-menu');
 	const catalogClose = document.querySelectorAll('.catalog-menu__close');
 	const searchPc     = document.querySelector('.search-pc')
 
-	burger.addEventListener('click', () => {
+	burgers.forEach(burger => burger.addEventListener('click', e => {
+		e.preventDefault();
 		header.classList.toggle('active');
 		headerMain.classList.toggle('active');
 		catalogMenu.classList.toggle('active');
+		burger.classList.toggle('active');
 
 		if (window.innerWidth <= 768) {
-			searchPc.classList.toggle('active');
+			searchPc.classList.remove('active');
+			searchCaller.classList.remove('active')
 		}
-	});
+	}));
 	catalogClose.forEach(close => close.addEventListener('click', () => {
 		header.classList.remove('active');
 		headerMain.classList.remove('active');
 		catalogMenu.classList.remove('active');
+		burgers.forEach(b => b.classList.remove('active'));
 
 		if (window.innerWidth <= 768) {
 			searchPc.classList.remove('active');
+			searchCaller.classList.remove('active')
 		}
 	}));
 
@@ -70,11 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.addEventListener('scroll', () => {
 		if (window.pageYOffset > document.querySelector('.header__alert').offsetHeight && !isHeaderFixed) {
 			document.querySelector('.header__main').classList.add('fixed');
-			header.classList.contains('header-in') ? document.body.style.paddingTop = headerMain.offsetHeight + 'px' : '';
+			if (header.classList.contains('header-in')) {
+				document.body.style.paddingTop = headerMain.offsetHeight + 'px';
+			}
 			if (window.innerWidth > 768) {
 				catalogMenu.classList.add('fixed');
-				searchPc.classList.add('fixed');
 			}
+			searchPc.classList.add('fixed');
 
 			isHeaderFixed = true;
 			return;
@@ -84,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			header.classList.contains('header-in') ? document.body.style.paddingTop = '0px' : '';
 			if (window.innerWidth > 768) {
 				catalogMenu.classList.remove('fixed');
-				searchPc.classList.remove('fixed');
 			}
+			searchPc.classList.remove('fixed');
 
 			isHeaderFixed = false;;
 			return;
@@ -144,11 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	searchCaller.addEventListener('click', () => {
 		header.classList.toggle('active');
 		searchPc.classList.toggle('active');
+		searchCaller.classList.toggle('active');
 	});
-	searchPc.querySelector('.search__close').addEventListener('click', () => {
-		header.classList.remove('active');
-		searchPc.classList.remove('active');
-	});
+	// searchPc.querySelector('.search__close').addEventListener('click', () => {
+	// 	header.classList.remove('active');
+	// 	searchPc.classList.remove('active');
+	// });
 
 
 	if (window.innerWidth <= 768) {
@@ -182,6 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						trigger.parentNode.parentNode.classList.add('scroll-blocked');
 					}
 					prevContents.push({ title: trigger.textContent, content: trigger.parentNode.parentNode });
+
+					if (catalogMenuDepth > 0) {
+						catalogBack.classList.add('active');
+						catalogMenu.querySelector('.search').classList.add('d-none');
+					}
 				});
 			});
 			catalogBack.addEventListener('click', () => {
@@ -207,6 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				prevContents.splice(catalogMenuDepth, 1);
 				
+				if (catalogMenuDepth === 0) {
+					catalogBack.classList.remove('active');
+					catalogMenu.querySelector('.search').classList.remove('d-none');
+				}
 			});
 		}
 	}
@@ -331,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				slidesPerView: 4,
 				slidesPerGroup: 4,
 				spaceBetween: 20,
-				/*loop: true,*/
+				loop: true,
 				navigation: {
 					prevEl: cardSlider.querySelector('.card-slider-btn-prev'),
 					nextEl: cardSlider.querySelector('.card-slider-btn-next'),
