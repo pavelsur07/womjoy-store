@@ -1,40 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const cards = document.querySelectorAll('.card');
 
-	cards.forEach((card, i) => {
+	if (cards.length > 0) {
+		cards.forEach((card, i) => {
 
-		const images = card.querySelectorAll('.card__img_slide');
-		
-		let finalHTML = '<div class="card__img_hovers">';
-		for (let a = 0; a < images.length; a++) {
-			finalHTML += '<div class="card__img_hover"></div>';
-		}
-		finalHTML += '</div>';
+			const images = card.querySelectorAll('.card__img_slide');
 
-		finalHTML += '<div class="card__img_checks">';
-		for (let a = 0; a < images.length; a++) {
-			finalHTML += '<div class="card__img_check"></div>';
-		}
-		finalHTML += '</div>';
+			let finalHTML = '<div class="card__img_hovers">';
+			for (let a = 0; a < images.length; a++) {
+				finalHTML += '<div class="card__img_hover"></div>';
+			}
+			finalHTML += '</div>';
 
-
-		card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
+			finalHTML += '<div class="card__img_checks">';
+			for (let a = 0; a < images.length; a++) {
+				finalHTML += '<div class="card__img_check"></div>';
+			}
+			finalHTML += '</div>';
 
 
-		const hovers = card.querySelectorAll('.card__img_hover');
-		const checks = card.querySelectorAll('.card__img_check');
+			if (card.querySelector('.card__img')) {
+				card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
 
-		hovers.forEach((hover, i) => {
-			hover.addEventListener('mouseover', () => {
-				card.querySelector('.card__img_slide.active')?.classList.remove('active');
-				card.querySelector('.card__img_check.active')?.classList.remove('active');
 
-				images[i].classList.add('active');
-				checks[i].classList.add('active');
-			});
+				const hovers = card.querySelectorAll('.card__img_hover');
+				const checks = card.querySelectorAll('.card__img_check');
+
+				hovers.forEach((hover, i) => {
+					hover.addEventListener('mouseover', () => {
+						card.querySelector('.card__img_slide.active')?.classList.remove('active');
+						card.querySelector('.card__img_check.active')?.classList.remove('active');
+
+						images[i].classList.add('active');
+						checks[i].classList.add('active');
+					});
+				});
+			}
 		});
-	});
-	
+	}
+
 	const header       = document.querySelector('.header');
 	const burgers      = document.querySelectorAll('.burger, .call-catalog');
 	const headerMain   = document.querySelector('.header__main');
@@ -215,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 
 				prevContents.splice(catalogMenuDepth, 1);
-				
+
 				if (catalogMenuDepth === 0) {
 					catalogBack.classList.remove('active');
 					catalogMenu.querySelector('.search').classList.remove('d-none');
