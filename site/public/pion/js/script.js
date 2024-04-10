@@ -3,34 +3,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (cards.length > 0) {
 		cards.forEach((card, i) => {
-
+	
 			const images = card.querySelectorAll('.card__img_slide');
-
+			
 			let finalHTML = '<div class="card__img_hovers">';
 			for (let a = 0; a < images.length; a++) {
 				finalHTML += '<div class="card__img_hover"></div>';
 			}
 			finalHTML += '</div>';
-
+	
 			finalHTML += '<div class="card__img_checks">';
 			for (let a = 0; a < images.length; a++) {
 				finalHTML += '<div class="card__img_check"></div>';
 			}
 			finalHTML += '</div>';
-
-
+	
+	
 			if (card.querySelector('.card__img')) {
 				card.querySelector('.card__img').insertAdjacentHTML('beforeend', finalHTML);
-
-
+		
+		
 				const hovers = card.querySelectorAll('.card__img_hover');
 				const checks = card.querySelectorAll('.card__img_check');
-
+		
 				hovers.forEach((hover, i) => {
 					hover.addEventListener('mouseover', () => {
 						card.querySelector('.card__img_slide.active')?.classList.remove('active');
 						card.querySelector('.card__img_check.active')?.classList.remove('active');
-
+		
 						images[i].classList.add('active');
 						checks[i].classList.add('active');
 					});
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
-
+	
 	const header       = document.querySelector('.header');
 	const burgers      = document.querySelectorAll('.burger, .call-catalog');
 	const headerMain   = document.querySelector('.header__main');
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 
 				prevContents.splice(catalogMenuDepth, 1);
-
+				
 				if (catalogMenuDepth === 0) {
 					catalogBack.classList.remove('active');
 					catalogMenu.querySelector('.search').classList.remove('d-none');
@@ -250,12 +250,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		if (window.innerWidth <= 768) {
-			const filterCall = document.querySelector('.filter__call');
-			const filterMain = document.querySelector('.filter__main');
-			const filterClose = document.querySelector('.filter__close');
+			const filterCall        = document.querySelector('.filter__call');
+			const filterSortTrigger = document.querySelector('.filter__sort_trigger');
+			const filterSortList    = document.querySelector('.filter__sort_list');
+			const filterMain        = document.querySelector('.filter__main');
+			const filterClose       = document.querySelector('.filter__close');
 
 			filterCall.addEventListener('click', () => filterMain.classList.add('active'));
 			filterClose.addEventListener('click', () => filterMain.classList.remove('active'));
+			filterSortTrigger.addEventListener('click', () => filterSortList.classList.add('active'));
 		}
 	}
 
@@ -348,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				slidesPerView: 4,
 				slidesPerGroup: 4,
 				spaceBetween: 20,
-				loop: true,
+				// loop: true,
 				navigation: {
 					prevEl: cardSlider.querySelector('.card-slider-btn-prev'),
 					nextEl: cardSlider.querySelector('.card-slider-btn-next'),
@@ -491,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	document.addEventListener('click', e => {
-		const els = document.querySelectorAll('.w-sel, .filter__item');
+		const els = document.querySelectorAll('.w-sel, .filter__item, .filter__sort');
 		els.forEach(el => {
 			if (!el.contains(e.target)) {
 
@@ -507,7 +510,38 @@ document.addEventListener('DOMContentLoaded', () => {
 					el.querySelector('.filter__content').classList.remove('active');
 					el.classList.remove('active');
 				}
+				if (el.classList.contains('filter__sort')) {
+					el.querySelector('.filter__sort_list').classList.remove('active');
+				}
 			}
 		});
+	});
+
+	const floatEls = document.querySelectorAll('[data-float-target]');
+	floatEls.forEach(floatEl => {
+		const target = document.querySelector(floatEl.dataset.floatTarget);
+
+		if (!target) {
+			floatEl?.classList?.add('hidden');
+			return;
+		}
+
+		let elShown = true;
+		window.addEventListener('scroll', () => {
+			if (
+				window.pageYOffset + window.innerHeight - 70 > target.getBoundingClientRect().top + window.pageYOffset
+			) {
+				floatEl.classList.add('hidden');
+				elShown = false;
+
+				if (target.getBoundingClientRect().top < 0) {
+					floatEl.classList.remove('hidden');
+					elShown = true;
+				}
+			} else {
+				floatEl.classList.remove('hidden');
+				elShown = true;
+			}
+		})
 	});
 });
