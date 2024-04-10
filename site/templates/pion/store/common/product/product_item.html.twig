@@ -36,6 +36,17 @@
             {# -{{ ((1-(item.price.listPrice / item.price.price)) * 100)|number_format(0, ',', ' ') }}%#}
             {#</span>#}
         {% endif %}
+        {% if item.variants.count > 0 %}
+        <ul class="card__sizes">
+            {% for variant in item.variants %}
+                {% if variant.canBeAddToCart %}
+                    <li><a href="#">{{ variant.value }}</a></li>
+                {% else %}
+                    <li><a href="#" class="disabled">{{ variant.value }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
 
         {#
         <div class="colors">

@@ -42,7 +42,10 @@
     </div>
 
     <section class="catalog section">
-        <h1 class="mb-3 text-center text-uppercase h3"> {{ category.seoMetadata.h1 }}</h1>
+        <h1 class="mb-3 text-center text-uppercase h3">
+            {{ category.seoMetadata.h1 }}
+            <span class="catalog__cnt"> {{ pagination.count }}</span>
+        </h1>
 
         <ul class="catalog__tags">
             {% for item in category.menu.value %}
