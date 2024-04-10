@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    @@include('./parts/header-in.html')
     <div class="container-xxl">
         <div class="breadcrumbs">
             <a href="#" class="breadcrumbs__item">Главная</a>
@@ -19,6 +18,13 @@
         </div>
 
         <section class="checkout w-section">
+            <a href="#" class="back-link mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12L20 11.9998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.99992 6.99988L4.70703 11.2928C4.37369 11.6261 4.20703 11.7928 4.20703 11.9999C4.20703 12.207 4.37369 12.3737 4.70703 12.707L8.99992 16.9999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                    
+                В корзину
+            </a>
             <h1 class="mb-5 text-uppercase">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
 
             <div class="row position-relative align-items-start">
@@ -287,7 +293,7 @@
                             <span>ИТОГО:</span>
                             <span class="w-text-xl">6 778 ₽</span>
                         </div>
-                        <button class="w-primary-btn mx-auto mt-2 d-block d-lg-none" type="button">Оформить заказ</button>
+                        <button class="w-primary-btn mx-auto mt-2 d-block d-lg-none checkout__btn" type="button">Оформить заказ</button>
                     </div>
                 </div>
             </div>
@@ -440,7 +446,23 @@
         </section>
     </div>
 
-    @@include('./parts/footer.html')
+    <div class="bottom-sticky-bar">
+        <div class="cart-checkout" data-float-target=".checkout__btn">
+            <div class="cart-checkout__text">
+                <span class="cart-checkout__top">Итого</span>
+                <div class="cart-checkout__val">
+                    1 товар на <b>9 599 р.</b>
+                </div>
+            </div>
+            <a href="#" class="w-action-btn">Оформить заказ</a>
+        </div>
+    </div>
+    
+    <script src="./libs/blazy.min.js"></script>
+    <script src="./libs/swiper/swiper.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/lazy_img.js"></script>
+    
 </body>
 
 </html>

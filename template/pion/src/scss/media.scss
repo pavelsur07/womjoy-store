@@ -176,7 +176,7 @@
 		padding: 12px;
 	}
 
-	.w-action-btn {
+	.w-action-btn, .w-primary-btn {
 		padding: 12px 10px;
 		min-width: unset;
 		font-size: 12px;
@@ -491,6 +491,10 @@
 				margin-bottom: 0;
 			}
 		}
+
+		&__cnt {
+			display: inline;
+		}
 	}
 
 	.filter {
@@ -680,7 +684,7 @@
 			position: absolute;
 			display: block;
 			right: 0;
-			top: -5px;
+			top: 0;
 			width: 18px;
 			img {
 				display: block;
@@ -712,6 +716,7 @@
 		&__priceone {
 			font-size: 12px;
 			color: #818793;
+			display: block;
 		}
 	}
 
@@ -763,6 +768,9 @@
 			align-items: flex-start;
 			max-width: 100%;
 		}
+		&__cost {
+			font-weight: 700;
+		}
 		&__sizes {
 			font-size: 12px;
 		}
@@ -772,6 +780,56 @@
 			overflow: hidden;
 			display: block;
 			max-width: 100%;
+		}
+	}
+
+	.filter {
+		&__cnt {
+			display: none;
+		}
+
+		&__sort {
+			display: block;
+			position: relative;
+
+			&_trigger {
+				display: flex;
+				align-items: center;
+
+				svg {
+					display: block;
+					margin-right: 8px;
+					flex-shrink: 0;
+				}
+			}
+
+			&_list {
+				position: absolute;
+				right: 0;
+				top: calc(100% + 10px);
+				width: 220px;
+				background-color: #fff;
+				box-sizing: border-box;
+				padding: 12px;
+				box-shadow: 0px 4px 16px rgba(28, 28, 28, 0.15);
+				display: none;
+
+				&.active {
+					display: block;
+				}
+
+				li {
+					&:not(:last-child) {
+						margin-bottom: 8px;
+					}
+				}
+			}
+		}
+	}
+
+	.modal {
+		&__actions {
+			flex-direction: column;
 		}
 	}
 }

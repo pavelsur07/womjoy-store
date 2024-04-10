@@ -713,3 +713,16 @@ select::-ms-expand {
 	/* IE */
 	display: none;
 }
+
+
+.back-link {
+	display: inline-flex;
+	align-items: center;
+	color: #818793;
+
+	svg {
+		display: block;
+		flex-shrink: 0;
+		margin-right: 8px;
+	}
+}

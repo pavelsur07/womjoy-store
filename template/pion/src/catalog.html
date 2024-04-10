@@ -438,6 +438,17 @@
                     </div>
                 </form>
                 <button class="filter__call d-flex d-md-none align-items-center" type="button"><img src="./img/icons/filter.svg" alt="" width="16" height="16"> Фильтры</button>
+                <div class="filter__sort">
+                    <div class="filter__sort_trigger">
+                        <img src="./img/icons/sort.svg" alt="">
+                        СОРТИРОВАТЬ
+                    </div>
+                    <ul class="filter__sort_list">
+                        <li><a href="#">По популярности</a></li>
+                        <li><a href="#">По возрастанию цены</a></li>
+                        <li><a href="#">По убыванию цены</a></li>
+                    </ul>
+                </div>
                 <span class="filter__cnt">ТОВАРОВ: 204</span>
             </div>
 
@@ -544,6 +555,33 @@
         </section>
     </div>
 
+    <div class="modal modal-sm active" id="modal-product-added">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <span class="modal__title">Добавлен в корзину</span>
+                <buttno class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></buttno>
+            </div>
+            <div class="p-4">
+                <div class="added-product">
+                    <div class="added-product__img"><img src="https://womjoy.ru/images/s3/2024/02/20/cache/400-600/0fe2e300-e1e9-4e85-9bd2-f389cb754589.jpg.webp" alt=""></div>
+                    <div class="added-product__text">
+                        <div class="added-product__name">Халат цветной бежевый</div>
+                        <span>Размер: М</span>
+                        <span>Количество: 1 шт</span>
+                        <span>Цена: <b>9 599 р.</b></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__bottom">
+                <div class="modal__actions modal__actions-vertical">
+                    <button class="w-action-btn" type="button">Оформить заказ</button>
+                    <button class="w-primary-btn" type="button">Продолжить покупки</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     @@include('./parts/footer.html')
 </body>
 

@@ -543,7 +543,7 @@ p.state__statement {
 		padding-right: 2rem !important;
 		background-color: $white;
 		color: $black;
-		z-index: 11;
+		z-index: 13;
 		border-bottom: 1px solid #dee2e6;
 	}
 	&__main.fixed &__logo {
@@ -575,6 +575,7 @@ p.state__statement {
 	display: flex;
 	align-items: center;
 	font-size: 16px;
+	margin-bottom: 15px;
 
 	&__item {
 		opacity: .6;
@@ -1046,7 +1047,8 @@ p.state__statement {
 	&__cnt {
 		font-size: 16px;
 		color: #9CA3AF;
-		vertical-align: top
+		vertical-align: top;
+		display: none;
 	}
 }
 // .catalog-body .catalog {
@@ -1184,6 +1186,9 @@ p.state__statement {
 	&__apply {
 		width: 100%;
 		margin-top: auto;
+	}
+	&__sort {
+		display: none;
 	}
 	&__call {
 		display: flex;
@@ -1408,6 +1413,7 @@ p.state__statement {
 }
 
 .i-card {
+	padding-top: 20px;
 	&__content {
 		display: flex;
 		align-items: flex-start;
@@ -1785,6 +1791,17 @@ p.state__statement {
 				margin-right: 1rem;
 			}
 		}
+
+		&-vertical {
+			flex-direction: column;
+
+			> * {
+				&:not(:last-child) {
+					margin-right: 0;
+					margin-bottom: 1rem;
+				}
+			}
+		}
 	}
 }
 
@@ -1817,6 +1834,7 @@ p.state__statement {
 		justify-content: space-between;
 		margin-bottom: 25px;
 	}
+	&__priceone { display: none; }
 	// &__head {
 	// 	text-align: center;
 	// 	&:first-child {
@@ -1934,7 +1952,7 @@ p.state__statement {
 	}
 	&__img {
 		width: 82px;
-		height: 74px;
+		height: 124px;
 		flex-shrink: 0;
 		overflow: hidden;
 
@@ -1945,10 +1963,6 @@ p.state__statement {
 			object-fit: cover;
 			object-position: center;
 			transition: .25s;
-		}
-
-		&:hover {
-			transform: scale(1.1);
 		}
 	}
 
@@ -2099,6 +2113,7 @@ p.state__statement {
 
 .checkout {
 	.cart {
+		&__priceone { display: none; }
 		&__left {
 			width: calc(100% - 10% - 8% - 12% - 10.26% - 14%);
 		}
@@ -2213,6 +2228,31 @@ p.state__statement {
 	.cart-currentcnt {
 		transform: translateY(-20%);
 		left: 70%;
+	}
+}
+
+.added-product {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	&__img {
+		width: 81px;
+		height: 120px;
+		flex-shrink: 0;
+	}
+
+	&__text {
+		width: calc(100% - 97px);
+
+		span {
+			font-size: 12px;
+			display: block;
+			margin-top: 6px;
+		}
+	}
+	&__name {
+		font-size: 16px;
 	}
 }
 
