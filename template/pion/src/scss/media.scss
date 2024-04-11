@@ -187,8 +187,8 @@
 	}
 
 	.w-field {
-		&__inp {
-			padding: 8px 10px;
+		&__inp, &__textarea {
+			padding: 13px 10px;
 		}
 		img {
 			max-width: 20px;
@@ -770,6 +770,8 @@
 		}
 		&__cost {
 			font-weight: 700;
+			font-size: 14px;
+			line-height: 1;
 		}
 		&__sizes {
 			font-size: 12px;

@@ -777,6 +777,10 @@ p.state__statement {
 		&:hover {
 			color: $primary2;
 		}
+		&.active {
+			color: var(--w-black);
+			border-bottom: 1px solid var(--w-black);
+		}
 	}
 	&__sublink {
 		color: #757575;
@@ -1244,7 +1248,6 @@ p.state__statement {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	position: relative;
 
 	&__img {
@@ -1320,15 +1323,16 @@ p.state__statement {
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		padding: 15px;
+		align-items: flex-start;
+		padding: 15px 0;
 	}
 
 	&__name {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 		display: block;
-		text-align: center;
-		width: 100%;
+		max-width: 100%;
 		margin-bottom: 5px;
 		&:hover {
 			text-decoration: underline;
@@ -1337,6 +1341,8 @@ p.state__statement {
 	&__cost {
 		margin-top: auto;
 		display: block;
+		font-weight: 700;
+		line-height: 1;
 	}
 	&__sizes {
 		display: flex;
@@ -1351,7 +1357,7 @@ p.state__statement {
 				margin-right: 8px;
 			}
 
-			a.disabled {
+			&.disabled {
 				color: #D1D5DB
 			}
 		}
@@ -1421,7 +1427,8 @@ p.state__statement {
 	&__img {
 		display: flex;
 		align-items: flex-start;
-		width: 598px;
+		justify-content: space-between;
+		width: 620px;
 		max-width: calc(100% - 400px - 32px);
 	}
 	&__smimgs {
@@ -1430,6 +1437,7 @@ p.state__statement {
 		position: relative;
 		align-self: stretch;
 		height: 700px;
+		padding-top: 5px;
 
 		&:has(.i-card__smimg.swiper-slide-active:first-child) {
 			.i-card-smbtn-prev {
@@ -1536,6 +1544,10 @@ p.state__statement {
 
 		form {
 			display: block;
+			width: 100%;
+		}
+
+		#subscribe-product {
 			width: 100%;
 		}
 	}
@@ -2112,6 +2124,24 @@ p.state__statement {
 }
 
 .checkout {
+
+	&__choose {
+		display: inline-flex;
+		align-items: center;
+		font-size: 16px;
+		color: #61362B;
+		> * {
+			&:first-child {
+				display: block;
+				margin-right: 8px;
+			}
+			&:last-child {
+				display: block;
+				margin-left: 6px;
+			}
+		}
+	}
+	
 	.cart {
 		&__priceone { display: none; }
 		&__left {
@@ -2158,8 +2188,14 @@ p.state__statement {
 	position: sticky;
 	margin-top: auto;
     bottom: -1px;
-	z-index: 12;
+	z-index: 101;
 	display: none;
+
+	> *.hidden {
+		opacity: 0;
+		pointer-events: none;
+		display: flex !important;
+	}
 }
 
 .cart-checkout {
