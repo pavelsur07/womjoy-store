@@ -16,6 +16,8 @@ class Variant
         'S' => 10,
         'M' => 20,
         'L' => 30,
+        'S-M' => 40,
+        'M-L' => 50,
     ];
     #[ORM\Id]
     #[ORM\GeneratedValue]
