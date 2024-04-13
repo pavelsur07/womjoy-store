@@ -10,8 +10,10 @@ import '../i18n'
 // Имортируем комопненты
 import App from './components/App/App'
 import AppPion from './components/App/AppPion'
+import CartPionCheckout from "./components/Cart/CartPionCheckout";
 
 const element = document.getElementById('cart-id')
+const elementMobile = document.getElementById('cart-checkout')
 
 if (element) {
   ReactDOM.createRoot(element).render(
@@ -19,4 +21,12 @@ if (element) {
       <AppPion />
     </Provider>
   )
+}
+
+if (elementMobile) {
+    ReactDOM.createRoot(elementMobile).render(
+        <Provider store={store}>
+            <CartPionCheckout />
+        </Provider>
+    )
 }
