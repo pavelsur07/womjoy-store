@@ -46,113 +46,116 @@ document.addEventListener('DOMContentLoaded', () => {
 	const catalogClose = document.querySelectorAll('.catalog-menu__close');
 	const searchPc     = document.querySelector('.search-pc')
 
-	burgers.forEach(burger => burger.addEventListener('click', e => {
-		e.preventDefault();
-		header.classList.toggle('active');
-		headerMain.classList.toggle('active');
-		catalogMenu.classList.toggle('active');
-		burger.classList.toggle('active');
-
-		if (window.innerWidth <= 768) {
-			searchPc.classList.remove('active');
-			searchCaller.classList.remove('active')
-		}
-	}));
-	catalogClose.forEach(close => close.addEventListener('click', () => {
-		header.classList.remove('active');
-		headerMain.classList.remove('active');
-		catalogMenu.classList.remove('active');
-		burgers.forEach(b => b.classList.remove('active'));
-
-		if (window.innerWidth <= 768) {
-			searchPc.classList.remove('active');
-			searchCaller.classList.remove('active')
-		}
-	}));
-
-
-	let isHeaderFixed = false;
-	window.addEventListener('scroll', () => {
-		if (window.pageYOffset > document.querySelector('.header__alert').offsetHeight && !isHeaderFixed) {
-			document.querySelector('.header__main').classList.add('fixed');
-			if (header.classList.contains('header-in')) {
-				document.body.style.paddingTop = headerMain.offsetHeight + 'px';
+	if (header) {
+		burgers.forEach(burger => burger.addEventListener('click', e => {
+			e.preventDefault();
+			header.classList.toggle('active');
+			headerMain.classList.toggle('active');
+			catalogMenu.classList.toggle('active');
+			burger.classList.toggle('active');
+	
+			if (window.innerWidth <= 768) {
+				searchPc.classList.remove('active');
+				searchCaller.classList.remove('active')
 			}
-			if (window.innerWidth > 768) {
-				catalogMenu.classList.add('fixed');
+		}));
+		catalogClose.forEach(close => close.addEventListener('click', () => {
+			header.classList.remove('active');
+			headerMain.classList.remove('active');
+			catalogMenu.classList.remove('active');
+			burgers.forEach(b => b.classList.remove('active'));
+	
+			if (window.innerWidth <= 768) {
+				searchPc.classList.remove('active');
+				searchCaller.classList.remove('active')
 			}
-			searchPc.classList.add('fixed');
-
-			isHeaderFixed = true;
-			return;
-		}
-		if (window.pageYOffset < document.querySelector('.header__alert').offsetHeight && isHeaderFixed) {
-			document.querySelector('.header__main').classList.remove('fixed');
-			header.classList.contains('header-in') ? document.body.style.paddingTop = '0px' : '';
-			if (window.innerWidth > 768) {
-				catalogMenu.classList.remove('fixed');
-			}
-			searchPc.classList.remove('fixed');
-
-			isHeaderFixed = false;;
-			return;
-		}
-	});
-
-	const searches     = document.querySelectorAll('.search');
-	const searchCaller = document.querySelector('.call-search');
-
-	searches.forEach(search => {
-		const searchInp    = search.querySelector('.search__inp');
-		const searchResult = search.querySelector('.search__result');
-		const searchBottom = search.querySelector('.search__bottom');
-
-		let searchTimeout  = null;
-		searchInp.addEventListener('input', () => {
-			clearTimeout(searchTimeout);
-			searchTimeout = setTimeout(() => {
-				console.log('Request ....');
-
-				searchResult.classList.add('active');
-				searchBottom.classList.add('hidden');
-
-				if (searchInp.value === '') {
-					searchResult.classList.remove('active');
-					searchBottom.classList.remove('hidden');
+		}));
+	
+	
+		let isHeaderFixed = false;
+		window.addEventListener('scroll', () => {
+			if (window.pageYOffset > document.querySelector('.header__alert').offsetHeight && !isHeaderFixed) {
+				document.querySelector('.header__main').classList.add('fixed');
+				if (header.classList.contains('header-in')) {
+					document.body.style.paddingTop = headerMain.offsetHeight + 'px';
 				}
-			}, 500);
+				if (window.innerWidth > 768) {
+					catalogMenu.classList.add('fixed');
+				}
+				searchPc.classList.add('fixed');
+	
+				isHeaderFixed = true;
+				return;
+			}
+			if (window.pageYOffset < document.querySelector('.header__alert').offsetHeight && isHeaderFixed) {
+				document.querySelector('.header__main').classList.remove('fixed');
+				header.classList.contains('header-in') ? document.body.style.paddingTop = '0px' : '';
+				if (window.innerWidth > 768) {
+					catalogMenu.classList.remove('fixed');
+				}
+				searchPc.classList.remove('fixed');
+	
+				isHeaderFixed = false;;
+				return;
+			}
 		});
-
-		if (window.innerWidth <= 768) {
-			const searchCancel = search.querySelector('.search__cancel');
-			searchInp.addEventListener('focus', () => {
-				searchBottom.classList.add('active');
-				document.querySelector('.catalog-menu__bottom').classList.add('active');
-				document.querySelector('.catalog-menu__cols').classList.add('hidden');
-				if (searchCancel) {
-					searchCancel.classList.remove('d-none');
-				}
+	
+		const searches     = document.querySelectorAll('.search');
+		const searchCaller = document.querySelector('.call-search');
+	
+		searches.forEach(search => {
+			const searchInp    = search.querySelector('.search__inp');
+			const searchResult = search.querySelector('.search__result');
+			const searchBottom = search.querySelector('.search__bottom');
+	
+			let searchTimeout  = null;
+			searchInp.addEventListener('input', () => {
+				clearTimeout(searchTimeout);
+				searchTimeout = setTimeout(() => {
+					console.log('Request ....');
+	
+					searchResult.classList.add('active');
+					searchBottom.classList.add('hidden');
+	
+					if (searchInp.value === '') {
+						searchResult.classList.remove('active');
+						searchBottom.classList.remove('hidden');
+					}
+				}, 500);
 			});
-
-			if (searchCancel) {
-				searchCancel.addEventListener('click', () => {
-					searchInp.value = '';
-					searchBottom.classList.remove('active');
-					document.querySelector('.catalog-menu__bottom').classList.remove('active');
-					document.querySelector('.catalog-menu__cols').classList.remove('hidden');
-					searchResult.classList.remove('active');
-					searchBottom.classList.remove('hidden');
-					searchCancel.classList.add('d-none');
+	
+			if (window.innerWidth <= 768) {
+				const searchCancel = search.querySelector('.search__cancel');
+				searchInp.addEventListener('focus', () => {
+					searchBottom.classList.add('active');
+					document.querySelector('.catalog-menu__bottom').classList.add('active');
+					document.querySelector('.catalog-menu__cols').classList.add('hidden');
+					if (searchCancel) {
+						searchCancel.classList.remove('d-none');
+					}
 				});
+	
+				if (searchCancel) {
+					searchCancel.addEventListener('click', () => {
+						searchInp.value = '';
+						searchBottom.classList.remove('active');
+						document.querySelector('.catalog-menu__bottom').classList.remove('active');
+						document.querySelector('.catalog-menu__cols').classList.remove('hidden');
+						searchResult.classList.remove('active');
+						searchBottom.classList.remove('hidden');
+						searchCancel.classList.add('d-none');
+					});
+				}
 			}
-		}
-
-	});
-	searchCaller.addEventListener('click', () => {
-		header.classList.toggle('active');
-		searchPc.classList.toggle('active');
-		searchCaller.classList.toggle('active');
-	});
+	
+		});
+		searchCaller.addEventListener('click', () => {
+			header.classList.toggle('active');
+			searchPc.classList.toggle('active');
+			searchCaller.classList.toggle('active');
+		});
+	}
+	
 	// searchPc.querySelector('.search__close').addEventListener('click', () => {
 	// 	header.classList.remove('active');
 	// 	searchPc.classList.remove('active');
@@ -477,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							<path d="M1.66675 2.91666H18.3334V17.0833H1.66675V2.91666Z" stroke="#141B34" stroke-width="1.25" stroke-linejoin="round"></path>
 							<path d="M1.66675 5.83337L10.0001 10L18.3334 5.83337" stroke="#141B34" stroke-width="1.25"></path>
 						</svg>
-						Уведомить
+						Уведомить о поступлении
 					`;
 				}
 				trigger.classList.remove('active');
