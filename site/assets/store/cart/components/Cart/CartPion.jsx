@@ -30,7 +30,7 @@ const Cart = () => {
 
     return (
         <>
-            <section className="cart w-section">
+            <section className="cart w-section pt-2">
                 <h1 className="mb-3 text-uppercase">{t('Cart')}</h1>
 
                 <div className="border-bottom pb-5 mb-5">
