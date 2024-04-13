@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (document.querySelector('.i-card-smswiper')) {
 		const smSwiper = new Swiper('.i-card-smswiper', {
-			slidesPerView: 4,
+			slidesPerView: 5,
 			spaceBetween: 7,
 			direction: 'vertical',
 			navigation: {

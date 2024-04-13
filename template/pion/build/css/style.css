@@ -1777,8 +1777,8 @@ p.state__statement {
 
 .catalog-menu__link.active,
 .catalog-menu__sublink.active {
-  color: var(--w-black);
-  border-bottom: 1px solid var(--w-black);
+  color: var(--w-action);
+  border-bottom: 1px solid var(--w-action);
 }
 
 .catalog-menu__sublink {
@@ -2561,8 +2561,7 @@ p.state__statement {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  width: 620px;
-  max-width: calc(100% - 400px - 32px);
+  width: calc(100% - 400px);
 }
 
 .i-card__smimgs {
@@ -2572,7 +2571,7 @@ p.state__statement {
   -webkit-align-self: stretch;
               -ms-grid-row-align: stretch;
           align-self: stretch;
-  height: 700px;
+  height: 876px;
   padding-top: 5px;
 }
 
@@ -2580,7 +2579,7 @@ p.state__statement {
   display: none;
 }
 
-.i-card__smimgs:has(.i-card__smimg.swiper-slide-active:nth-last-child(4)) .i-card-smbtn-next {
+.i-card__smimgs:has(.i-card__smimg.swiper-slide-active:nth-last-child(5)) .i-card-smbtn-next {
   display: none;
 }
 
@@ -4377,6 +4376,10 @@ p.state__statement {
 
   .filter__sort_list li:not(:last-child) {
     margin-bottom: 8px;
+  }
+
+  .filter__sort_list li a.active {
+    text-decoration: underline;
   }
 
   .modal__actions {
