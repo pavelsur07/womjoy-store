@@ -162,7 +162,7 @@ class CartApiController extends AbstractController
                 height: 400,
             );
         } else {
-            $thumbnail = '/img/e404.svg';
+            $thumbnail = '/pion/img/e404.svg';
         }
 
         return [
