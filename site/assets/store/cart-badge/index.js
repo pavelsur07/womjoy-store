@@ -10,6 +10,8 @@ import store from '../redux/store'
 import App from './components/App/App'
 
 const element = document.getElementById('cart-badge')
+const elementMobile = document.getElementById('cart-badge-mobile')
+
 
 if (element) {
   ReactDOM.createRoot(element).render(
@@ -17,4 +19,12 @@ if (element) {
       <App />
     </Provider>
   )
+}
+
+if (elementMobile) {
+    ReactDOM.createRoot(elementMobile).render(
+        <Provider store={store}>
+            <App />
+        </Provider>
+    )
 }
