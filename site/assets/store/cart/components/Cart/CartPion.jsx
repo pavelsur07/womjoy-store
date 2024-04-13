@@ -31,7 +31,7 @@ const Cart = () => {
     return (
         <>
             <section className="cart w-section">
-                <h1 className="mb-5 text-uppercase">{t('Cart')}</h1>
+                <h1 className="mb-3 text-uppercase">{t('Cart')}</h1>
 
                 <div className="border-bottom pb-5 mb-5">
                     <div className="mb-4 d-none d-md-flex position-relative align-items-center justify-content-between">

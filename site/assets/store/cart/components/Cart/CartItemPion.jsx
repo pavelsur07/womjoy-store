@@ -82,8 +82,11 @@ const CartItemPion = ({ item }) => {
 
             <div className="cart__cell mt-3 mt-md-0">
                 <div className="cart__cost c-item__cost">
-                    {new Intl.NumberFormat('ru-RU').format(item.price_list * item.quantity )} {item.currency}
+                    {new Intl.NumberFormat('ru-RU').format(item.price_list * item.quantity)} {item.currency}
                 </div>
+                <span className="cart__priceone">
+                    {new Intl.NumberFormat('ru-RU').format(item.price_list)} {item.currency} / шт.
+                </span>
             </div>
 
             <div className="cart__cell c-item__remove">
