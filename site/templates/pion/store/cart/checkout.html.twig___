@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.defaultLocale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            {{ metaData.title }}
+        {% endblock %}
+    </title>
+
+    <meta name="description" content="{% block description %}{{ metaData.description }}{% endblock %}">
+    {% block openGraph %}{% endblock %}
+
+    {% if metaData.noindex %}
+        <meta name="robots" content="noindex">
+    {% endif %}
+
+    {% if metaData.nofollow %}
+        <meta name="robots" content="nofollow">
+    {% endif %}
+
+    {% block linkCanonical %}{% endblock %}
+
+    {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('./pion/favicon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('./pion/favicon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('./pion/favicon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('./pion/favicon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('./pion/favicon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('./pion/favicon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('./pion/favicon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('./pion/favicon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('./pion/favicon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('./pion/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('./pion/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('./pion/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('./pion/favicon-192x192.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('./pion/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('./pion/favicon.ico') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('./pion/favicon-144x144.png') }}">
+    <meta name="msapplication-config" content="{{ asset('./pion/browserconfig.xml') }}">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('./pion/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('./pion/css/style.css') }}">
+    {% endblock %}
+
+    {% block jsonLd %}{% endblock %}
+</head>
+<body>
+
+{% block body %}
+    <div class="container-xxl mb-10">
+        <a href="{{ path('store.cart.index') }}" class="d-flex align-items-center mt-3 fs-5" style="color: #818793">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                <path d="M5 12L20 11.9998" stroke="#818793" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.99992 6.99988L4.70703 11.2928C4.37369 11.6261 4.20703 11.7928 4.20703 11.9999C4.20703 12.207 4.37369 12.3737 4.70703 12.707L8.99992 16.9999" stroke="#818793" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            В корзину
+        </a>
+        <div id="checkout-id">
+
+        </div>
+        <div class="bottom-sticky-bar">
+            <div id="cart-checkout"></div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+<script>
+    function pushStoreMetrika(action, productIds, orderId) {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
+        };
+
+        fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+            console.log({ "ecommerce": data });
+            window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+        });
+    }
+</script>
+
+{% block javascripts %}
+    {% if app.environment == 'prod' %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(67287694, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/67287694" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Top.Mail.Ru counter -->
+    <script type="text/javascript">
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3350904", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+    <!-- /Top.Mail.Ru counter -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW13DRWRCX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MW13DRWRCX');
+    </script>
+    {% else %}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter96687743 = new Ya.Metrika({
+                        id:96687743,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        ecommerce:"dataLayer"
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                x = "https://mc.yandex.ru/metrika/watch.js",
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            for (var i = 0; i < document.scripts.length; i++) {
+                if (document.scripts[i].src === x) { return; }
+            }
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = x;
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/96687743" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    {% endif %}
+
+    <!-- AmoCRM start widget -->
+    <script>(function(a,m,o,c,r,m){a[m]={id:"397204",hash:"5c5249573bbb05b817e58a1ae5f21e118b9b15dd53c2c6890998edc2d5d2bc78",locale:"ru",inline:false,setMeta:function(p){this.params=(this.params||[]).concat([p])}};a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};var d=a.document,s=d.createElement('script');s.async=true;s.id=m+'_script';s.src='https://gso.amocrm.ru/js/button.js?1700049791';d.head&&d.head.appendChild(s)}(window,0,'amoSocialButton',0,0,'amo_social_button'));</script>
+    <!-- AmoCRM end widget -->
+
+    <!-- BEGIN LEADGENIC CODE {literal} -->
+    <!-- Put this script tag before the </body> tag of your page -->
+    <script type="text/javascript" charset="UTF-8" async src="https://gate.leadgenic.ru/getscript?site=65e199e1c87fbc0001f13410"></script>
+    <!-- {/literal} END LEADGENIC CODE -->
+
+    {{ encore_entry_script_tags('store_cart_badge') }}
+    {{ encore_entry_script_tags('store_subscribe') }}
+    {{ encore_entry_script_tags('store_checkout') }}
+    <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
+    <script src="{{ asset('./pion/libs/blazy.min.js') }}"></script>
+    <script src="{{ asset('./pion/libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('./pion/libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('./pion/js/script.js') }}"></script>
+    <script src="{{ asset('./pion/js/lazy_img.js') }}"></script>
+{% endblock %}
+</body>
+</html>
+
