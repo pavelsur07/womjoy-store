@@ -17,6 +17,7 @@ use App\Store\Domain\Entity\Home\Home;
 use App\Store\Domain\Entity\Product\Image;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Service\HomeService;
+use App\Store\Infrastructure\Menu\Store\CatalogMenu;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -44,6 +45,7 @@ class BaseController extends AbstractController
         'phone'=> null,
         'email'=> null,
         'company' => null,
+        'catalog_menu' => null,
     ];
 
     public string $template = 'pion';
@@ -56,6 +58,7 @@ class BaseController extends AbstractController
         private readonly SettingService $settingService,
         private readonly string $siteUrl,
         private readonly ThumbnailService $thumbnail,
+        private readonly CatalogMenu $catalogMenu,
         private readonly string $templateName
     ) {
         $this->template = $this->templateName;
@@ -71,6 +74,9 @@ class BaseController extends AbstractController
             $item->setSort($count++);
             $this->menus->save($item, true);
         }
+
+        // Внедряем меню - Каталог -
+        $this->metaData['catalog_menu'] = $this->catalogMenu->build();
 
         $this->menu['header'] = $this->menus->menuTree($headerMenu);
         $footerMenu = $this->menuService->getSetting()->getFooterMenu();

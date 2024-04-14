@@ -29,129 +29,37 @@
         </div>
         <div class="catalog-menu__cols">
 
-            <div class="catalog-menu__col" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                <menu itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/novinki-dlya-zhenshchin-115" class="catalog-menu__title" itemprop="url">НОВИНКИ</a>
-                        <meta itemprop="name" content="НОВИНКИ" />
-                    </div>
-                    {#
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/podarochnye-sertefikaty-140" class="catalog-menu__title" itemprop="url">ПОДАРОЧНЫЕ СЕРТИФИКАТЫ</a>
-                        <meta itemprop="name" content="ПОДАРОЧНЫЕ СЕРТИФИКАТЫ" />
-                    </div>
-                    #}
 
-                    {#
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/podarochnaya-upakovka-141" class="catalog-menu__title" itemprop="url">ПОДАРОЧНАЯ УПАКОВКА</a>
-                        <meta itemprop="name" content="ПОДАРОЧНАЯ УПАКОВКА" />
-                    </div>
-                    #}
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/skoro-v-prodazhe-118" class="catalog-menu__title" itemprop="url">СКОРО В ПРОДАЖЕ</a>
-                        <meta itemprop="name" content="СКОРО В ПРОДАЖЕ" />
-                    </div>
-                </menu>
-            </div>
+            {% for menu_item in metaData.catalog_menu  %}
+
+                <div class="catalog-menu__col">
+
+                    {% if menu_item['is_list'] %}
+                        {% for sub_menu in menu_item.items %}
+                            <div class="catalog-menu__cell" >
+                                <a href="{{ sub_menu.href }}" class="catalog-menu__title" itemprop="url">{{ sub_menu.name }}</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if menu_item['is_dropdown'] %}
+                        <div class="catalog-menu__cell drop">
+                            <a href="{{ menu_item['href'] }}" class="catalog-menu__title drop__trigger">{{ menu_item['name'] }}</a>
+                            <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
+                                {% for sub_menu in menu_item.items %}
+                                    <li class="catalog-menu__item">
+                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link" itemprop="url">{{ sub_menu['name'] }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
 
 
-            <div class="catalog-menu__col">
-                <div class="catalog-menu__cell drop" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                    <a href="https://womjoy.ru/collections/zhenskaya-odezhda" class="catalog-menu__title drop__trigger">ОДЕЖДА</a>
-                    <ul class="catalog-menu__list catalog-menu__list-bordered drop__content" itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-bryuki-108" class="catalog-menu__link" itemprop="url">Брюки</a>
-                            <meta itemprop="name" content="Брюки" />
-                        </li>
 
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-vodolazki-i-longslivy-142" class="catalog-menu__link" itemprop="url">Лонгсливы</a>
-                            <meta itemprop="name" content="Лонгсливы" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-mayki-135" class="catalog-menu__link" itemprop="url">Майки</a>
-                            <meta itemprop="name" content="Майки" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/halaty-zhenskie" class="catalog-menu__link" itemprop="url">Халаты</a>
-                            <meta itemprop="name" content="Халаты" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/rubashki-zhenskie-143" class="catalog-menu__link" itemprop="url">Рубашки</a>
-                            <meta itemprop="name" content="Брюки" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-tolstovki-i-svitshot-139" class="catalog-menu__link" itemprop="url">Толстовки и свитшоты</a>
-                            <meta itemprop="name" content="Рубашки" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-topy-136" class="catalog-menu__link" itemprop="url">Топы и кроп-топы</a>
-                            <meta itemprop="name" content="Топы и кроп-топы" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-futbolki-134" class="catalog-menu__link" itemprop="url">Футболки</a>
-                            <meta itemprop="name" content="Футболки" />
-                        </li>
-
-                        <li class="catalog-menu__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                            <a href="https://womjoy.ru/collections/zhenskie-shorty-114" class="catalog-menu__link" itemprop="url">Шорты</a>
-                            <meta itemprop="name" content="Шорты" />
-                        </li>
-                    </ul>
                 </div>
 
-
-            </div>
-
-            <div class="catalog-menu__col" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                <menu itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/odezhda-dlya-doma-121" class="catalog-menu__title" itemprop="url">ОДЕЖДА ДЛЯ ДОМА</a>
-                        <meta itemprop="name" content="ОДЕЖДА ДЛЯ ДОМА" />
-                    </div>
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/odezhda-dlya-sporta-120" class="catalog-menu__title" itemprop="url">ОДЕЖДА ДЛЯ СПОРТА</a>
-                        <meta itemprop="name" content="ОДЕЖДА ДЛЯ СПОРТА" />
-                    </div>
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/zhenskie-leginsy-i-losiny-109" class="catalog-menu__title" itemprop="url">ЛЕГИНСЫ</a>
-                        <meta itemprop="name" content="ЛЕГИНСЫ" />
-                    </div>
-
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="https://womjoy.ru/collections/velosipedki-zhenskie-113" class="catalog-menu__title" itemprop="url">ВЕЛОСИПЕДКИ</a>
-                        <meta itemprop="name" content="ВЕЛОСИПЕДКИ" />
-                    </div>
-
-                    <div class="catalog-menu__cell" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
-                        <a href="#" class="catalog-menu__title" itemprop="url">АКСЕССУАРЫ</a>
-                        <meta itemprop="name" content="АКСЕССУАРЫ" />
-                    </div>
-                </menu>
-            </div>
-
-            <div class="catalog-menu__col">
-                <div class="catalog-menu__cell drop">
-
-                    <a href="https://womjoy.ru/collections/zhenskaya-odezhda" class="catalog-menu__title drop__trigger">Покупателю</a>
-                    <ul class="catalog-menu__list catalog-menu__list-bordered drop__content" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                        <li class="catalog-menu__item">
-                            <a href="#" class="catalog-menu__link" itemprop="url">Pion</a>
-                        </li>
-                        <li class="catalog-menu__item">
-                            <a href="#" class="catalog-menu__link" itemprop="url">Active</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
+            {% endfor %}
 
             <div class="catalog-menu__col d-none d-xl-block">
                 <a href="#">
@@ -161,22 +69,6 @@
 
             <button class="catalog-menu__close d-none d-md-block" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt="close" width="24" height="24"></button>
         </div>
-
-        {#<div itemscope itemtype="http://schema.org/SiteNavigationElement">
-            <menu itemprop="about" itemscope itemtype="http://schema.org/ItemList">
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт 1</a><meta itemprop="name" content="Пункт_1" /></li>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт_2<meta itemprop="name" content="Пункт_2" /></a></li>
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт_3</a>
-                    <meta itemprop="name" content="Пункт_3" />
-                    <menu>
-                        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Под_пункт_3_1<meta itemprop="name" content="Пункт_3_1" /></a></li>
-                        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Под_пункт_3_2<meta itemprop="name" content="Пункт_3_2" /></a></li>
-                    </menu>
-                </li>
-                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList"><a href="url" itemprop="url">Пункт_4<meta itemprop="name" content="Пункт_4" /></a></li>
-            </menu>
-        </div>#}
-
 
     </div>
 </div>
