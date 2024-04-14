@@ -49,7 +49,7 @@ final readonly class OrderService
             email: $checkoutDto->customer->email,
             comment: $checkoutDto->customer->comment,
             firstName: $checkoutDto->customer->name,
-//            lastName: $checkoutDto->customer->lastName,
+            //            lastName: $checkoutDto->customer->lastName,
         );
 
         $delivery = new OrderDelivery(

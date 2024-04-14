@@ -17,7 +17,7 @@ class CheckoutCustomer
         public string $email,
         public ?string $comment = null,
 
-//        #[Assert\NotBlank]
-//        public ?string $lastName = null,
+        //        #[Assert\NotBlank]
+        //        public ?string $lastName = null,
     ) {}
 }

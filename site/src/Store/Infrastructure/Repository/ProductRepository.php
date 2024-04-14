@@ -81,6 +81,29 @@ class ProductRepository
         return $this->paginator->paginate($qb, $page, $size);
     }
 
+    public function search(string $filter): QueryBuilder
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from(Product::class, 'p');
+
+        $qb
+            ->andWhere('p.status.value = :status ')
+            ->setParameter('status', ProductStatus::ACTIVE);
+
+        $qb
+            ->andWhere(
+                $qb->expr()->like('LOWER(p.searchData)', ':name')
+            )
+            ->setParameter('name', '%' . mb_strtolower($filter) . '%');
+
+        $qb->orderBy('p.id', 'DESC');
+        $qb->getQuery();
+
+        // return $this->paginator->paginate($qb, $page, $size);
+        return $qb;
+    }
+
     public function getAllIterator(): iterable
     {
         $qb = $this->em->createQueryBuilder()
