@@ -23,7 +23,9 @@ const OrderItemPion = ({item}) => {
                     <a href={item.href}>Велосипедки удлиненные в рубчик с широким поясом</a>
                 </div>
             </div>
-            <div className="cart__cell"><div className="cart__color" style={{ background: item.color_value }}></div></div>
+            <div className="cart__cell">
+                <div className="cart__color" style={{ background: item.color_value }}></div>
+            </div>
             <div className="cart__cell">
                 <div className="cart__size">
                     <span className="w-text-sm d-inline-block d-md-none opacity-75">Размер: </span>

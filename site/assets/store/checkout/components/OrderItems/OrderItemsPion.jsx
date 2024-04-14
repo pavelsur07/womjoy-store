@@ -6,7 +6,7 @@ const OrderItemsPion = ({ heading }) => {
     const cart = useSelector((state) => state.cart);
 
     return (
-        <div className="checkout__items">
+        <div className="checkout__items order-4 order-md-1">
             <div className="checkout__item">
                 <div className="py-4 w-text-lg">{heading}</div>
                 <div className="pb-4">

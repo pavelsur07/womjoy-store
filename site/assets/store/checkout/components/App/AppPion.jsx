@@ -89,10 +89,10 @@ const AppPion = () => {
 
             <div className="row position-relative align-items-start">
                 <div className="col col-12 col-lg-9">
-                    <OrderItemsPion heading="1. ТОВАРЫ В ЗАКАЗЕ" />
-                    <CustomerPion heading="2. ПОКУПАТЕЛЬ" errors={errorsCustomer} />
-                    <DeliveryPion heading="3. ДОСТАВКА" errors={errorsDelivery}/>
-                    <PaymentPion heading="4. ОПЛАТА" />
+                    <OrderItemsPion heading="ТОВАРЫ В ЗАКАЗЕ" />
+                    <CustomerPion heading="ПОКУПАТЕЛЬ" errors={errorsCustomer} />
+                    <DeliveryPion heading="ДОСТАВКА" errors={errorsDelivery}/>
+                    <PaymentPion heading="ОПЛАТА" />
                 </div>
                 <div className="col col-12 col-sm-9 col-md-6 col-lg-3 position-sticky mx-auto top-0">
                     <OrderDetailsPion onClickCheckout={handleClickCheckout} />

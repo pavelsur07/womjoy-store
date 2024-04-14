@@ -1,16 +1,33 @@
-{% extends 'pion/store/base.html.twig' %}
+{% extends 'pion/store/base_checkout.html.twig' %}
 
 {% block body %}
-<div class="container-xxl mb-10">
-    <div class="breadcrumbs">
-        <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
-        <a href="{{ path('store.cart.index') }}" class="breadcrumbs__item">Корзина</a>
-        <div class="breadcrumbs__current">Оформление заказа</div>
-    </div>
-    <div id="checkout-id">
+    <div class="container-xxl">
+
+        <a href="{{ path('store.cart.index') }}" class="d-flex align-items-center mt-3 fs-5" style="color: #818793">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                <path d="M5 12L20 11.9998" stroke="#818793" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.99992 6.99988L4.70703 11.2928C4.37369 11.6261 4.20703 11.7928 4.20703 11.9999C4.20703 12.207 4.37369 12.3737 4.70703 12.707L8.99992 16.9999" stroke="#818793" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            В корзину
+        </a>
+
+        <div id="checkout-id">
+
     </div>
 
-</div>
+     <div class="bottom-sticky-bar">
+         <div class="cart-checkout" data-float-target=".c-main__btn">
+             <div class="cart-checkout__text">
+{#                 <span class="cart-checkout__top">Итого</span>
+                 <div class="cart-checkout__val">
+                     1 товар на <b>9 599 р.</b>
+                 </div>#}
+             </div>
+            <a href="#" class="w-action-btn">Оформить заказ</a>
+         </div>
+     </div>
+     <div id="cart-badge" class="hidden"></div>
+     <div id="cart-badge-mobile" class="hidden"></div>
 
 {% endblock %}
 

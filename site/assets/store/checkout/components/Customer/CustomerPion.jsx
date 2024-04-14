@@ -37,7 +37,7 @@ const CustomerPion = ({ heading, errors }) => {
                     <div className="row">
                         <div className="col col-12 col-md-12">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">ФИО*</label>
+                                <label className="w-field__label field__ph d-none d-md-block">ФИО*</label>
                                 <div className={"w-field__main " + getInputErrorClass('name')}>
                                     <input
                                         type="text"
@@ -57,7 +57,7 @@ const CustomerPion = ({ heading, errors }) => {
 
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">EMAIL*</label>
+                                <label className="w-field__label field__ph d-none d-md-block">EMAIL*</label>
                                 <div className={"w-field__main " + getInputErrorClass('email')}>
                                     <input
                                         type="email"
@@ -76,7 +76,7 @@ const CustomerPion = ({ heading, errors }) => {
                         </div>
                         <div className="col col-12 col-md-6">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">ТЕЛЕФОН*</label>
+                                <label className="w-field__label field__ph d-none d-md-block">ТЕЛЕФОН*</label>
                                 <div className={"w-field__main " + getInputErrorClass('phone')}>
                                     <InputMask
                                         mask="+7 (999) 999-99-99"
@@ -103,7 +103,7 @@ const CustomerPion = ({ heading, errors }) => {
                         </div>
                         <div className="col col-12">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">КОММЕНТАРИИ К ЗАКАЗУ</label>
+                                <label className="w-field__label field__ph d-none d-md-block">КОММЕНТАРИИ К ЗАКАЗУ</label>
                                 <div className={"w-field__main " + getInputErrorClass('comment')}>
                                     <textarea
                                         className="w-field__textarea field__inp"

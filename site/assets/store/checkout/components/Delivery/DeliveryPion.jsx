@@ -70,7 +70,7 @@ const DeliveryPion = ({ heading, errors }) => {
                         </div>*/}
                         <div className="col col-12">
                             <div className="w-field field mb-4">
-                                <label className="w-field__label field__ph">Адрес доставки*</label>
+                                <label className="w-field__label field__ph">Адрес доставки (Курьер СДЭК)*</label>
                                 <div className={"w-field__main " + getInputErrorClass('address')}>
                                     <input
                                         type="text"
