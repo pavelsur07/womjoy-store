@@ -37,7 +37,7 @@
                     {% if menu_item['is_list'] %}
                         {% for sub_menu in menu_item.items %}
                             <div class="catalog-menu__cell" >
-                                <a href="{{ sub_menu.href }} {{ app.request.requestUri == sub_menu.href ? active : ''  }}" class="catalog-menu__title" itemprop="url">{{ sub_menu.name }}</a>
+                                <a href="{{ sub_menu.href }} {{ str_contains(sub_menu.href,app.request.requestUri ) ? active : ''  }}" class="catalog-menu__title" itemprop="url">{{ sub_menu.name }}</a>
                             </div>
                         {% endfor %}
                     {% endif %}
@@ -48,7 +48,7 @@
                             <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
                                 {% for sub_menu in menu_item.items %}
                                     <li class="catalog-menu__item">
-                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link {{ str_contains(menu_item['href'],app.request.requestUri ) ? active : ''  }}" itemprop="url">{{ sub_menu['name'] }}</a>
+                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link {{ str_contains(sub_menu['href'],app.request.requestUri ) ? active : ''  }}" itemprop="url">{{ sub_menu['name'] }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
