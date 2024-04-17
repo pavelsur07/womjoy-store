@@ -37,26 +37,23 @@
                     {% if menu_item['is_list'] %}
                         {% for sub_menu in menu_item.items %}
                             <div class="catalog-menu__cell" >
-                                <a href="{{ sub_menu.href }}" class="catalog-menu__title" itemprop="url">{{ sub_menu.name }}</a>
+                                <a href="{{ sub_menu.href }} {{ app.request.requestUri == sub_menu.href ? active : ''  }}" class="catalog-menu__title" itemprop="url">{{ sub_menu.name }}</a>
                             </div>
                         {% endfor %}
                     {% endif %}
 
                     {% if menu_item['is_dropdown'] %}
                         <div class="catalog-menu__cell drop">
-                            <a href="{{ menu_item['href'] }}" class="catalog-menu__title drop__trigger {{ app.request.requestUri == menu_item['href']? active : ''  }}">{{ menu_item['name'] }}</a>
+                            <a href="{{ menu_item['href'] }}" class="catalog-menu__title drop__trigger {{ app.request.requestUri == menu_item['href'] ? active : ''  }}">{{ menu_item['name'] }}</a>
                             <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
                                 {% for sub_menu in menu_item.items %}
                                     <li class="catalog-menu__item">
-                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link {{ app.request.requestUri == menu_item['href']? active : ''  }}" itemprop="url">{{ sub_menu['name'] }}</a>
+                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link {{ app.request.requestUri == sub_menu['href'] ? active : ''  }}" itemprop="url">{{ sub_menu['name'] }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
                         </div>
                     {% endif %}
-
-
-
                 </div>
 
             {% endfor %}
