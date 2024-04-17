@@ -28,7 +28,7 @@ class CatalogMenu
             // -  Меню с вложенными элементами -
             [
                 'name'=>'Каталог',
-                'href' =>'/collections/zhenskie-bryuki-108',
+                'href' =>'/collections/zhenskaya-odezhda',
                 'is_dropdown' => true,
                 'is_list' => false,
                 'items'=> [
