@@ -34,11 +34,11 @@ class CatalogMenu
                 'items'=> [
                     [
                         'name' => 'Брюки',
-                        'href' => 'https://womjoy.ru/collections/zhenskie-bryuki-108',
+                        'href' => '/collections/zhenskie-bryuki-108',
                     ],
                     [
                         'name' => 'Велосипедки',
-                        'href' => 'https://womjoy.ru/collections/velosipedki-zhenskie-113',
+                        'href' => '/collections/velosipedki-zhenskie-113',
                     ],
                     [
                         'name' => 'Лонгсливы',
