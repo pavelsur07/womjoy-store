@@ -64,7 +64,7 @@
                         <ul class="sort__list">
                             {% for _sorting_rule ,_sorting_rule_title in sorting_rules %}
                                 <li class="filter__check w-check {{ _sorting_rule == _current_sort ? 'active' }}">
-                                    <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" rel="nofollow">{{ _sorting_rule_title }}</a>
+                                    <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" class="class="{{ _sorting_rule == _current_sort ? 'active' }}" rel="nofollow">{{ _sorting_rule_title }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -92,9 +92,17 @@
             СОРТИРОВАТЬ
         </div>
         <ul class="filter__sort_list">
-            <li><a href="#">По популярности</a></li>
+            {% for _sorting_rule ,_sorting_rule_title in sorting_rules %}
+                <li class="filter__check w-check {{ _sorting_rule == _current_sort ? 'active' }}">
+                    <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" class="{{ _sorting_rule == _current_sort ? 'active' }}" rel="nofollow">{{ _sorting_rule_title }}</a>
+                </li>
+            {% endfor %}
+
+
+
+           {# <li><a href="#">По популярности</a></li>
             <li><a href="#">По возрастанию цены</a></li>
-            <li><a href="#">По убыванию цены</a></li>
+            <li><a href="#">По убыванию цены</a></li>#}
         </ul>
     </div>
     <span class="filter__cnt">ТОВАРОВ: {{ pagination.count }}</span>
