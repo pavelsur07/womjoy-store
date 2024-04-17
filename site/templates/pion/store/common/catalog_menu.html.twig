@@ -44,11 +44,11 @@
 
                     {% if menu_item['is_dropdown'] %}
                         <div class="catalog-menu__cell drop">
-                            <a href="{{ menu_item['href'] }}" class="catalog-menu__title drop__trigger {{ app.request.requestUri == menu_item['href'] ? active : ''  }}">{{ menu_item['name'] }}</a>
+                            <a href="{{ menu_item['href'] }}" class="catalog-menu__title drop__trigger {{ str_contains(menu_item['href'],app.request.requestUri ) ? active : ''  }}">{{ menu_item['name'] }}</a>
                             <ul class="catalog-menu__list catalog-menu__list-bordered drop__content">
                                 {% for sub_menu in menu_item.items %}
                                     <li class="catalog-menu__item">
-                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link {{ app.request.requestUri == sub_menu['href'] ? active : ''  }}" itemprop="url">{{ sub_menu['name'] }}</a>
+                                        <a href="{{ sub_menu['href'] }}" class="catalog-menu__link {{ str_contains(menu_item['href'],app.request.requestUri ) ? active : ''  }}" itemprop="url">{{ sub_menu['name'] }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
