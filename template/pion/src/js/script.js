@@ -520,17 +520,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
-	const floatEls = document.querySelectorAll('[data-float-target]');
-	floatEls.forEach(floatEl => {
-		const target = document.querySelector(floatEl.dataset.floatTarget);
-
-		if (!target) {
-			floatEl?.classList?.add('hidden');
-			return;
-		}
-
-		let elShown = true;
-		window.addEventListener('scroll', () => {
+	
+	window.addEventListener('scroll', () => {
+		console.log(11111111111);
+		const floatEls = document.querySelectorAll('[data-float-target]');
+		floatEls.forEach(floatEl => {
+			const target = document.querySelector(floatEl.dataset.floatTarget);
+			
+			if (!target) {
+				floatEl?.classList?.add('hidden');
+				return;
+			}
+			let elShown = true;
 			if (
 				window.pageYOffset + window.innerHeight - 70 > target.getBoundingClientRect().top + window.pageYOffset
 			) {

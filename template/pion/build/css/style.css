@@ -1657,7 +1657,7 @@ p.state__statement {
   width: 100%;
   max-height: calc(100vh - 116px);
   overflow-y: auto;
-  z-index: 15;
+  z-index: 103;
   background-color: #fff;
   box-sizing: border-box;
   padding-top: 40px;
@@ -2160,7 +2160,7 @@ p.state__statement {
           justify-content: space-between;
   margin-bottom: 16px;
   position: relative;
-  z-index: 12;
+  z-index: 102;
 }
 
 .filter__trigger {
@@ -2255,6 +2255,10 @@ p.state__statement {
   max-height: 350px;
   overflow-y: auto;
   margin-bottom: 15px;
+}
+
+.filter__checks .filter__check a.active {
+  text-decoration: underline;
 }
 
 .filter__clear {
@@ -2954,6 +2958,10 @@ p.state__statement {
 
 .modal-lg .modal__content {
   max-width: 978px;
+}
+
+.modal-md .modal__content {
+  max-width: 670px;
 }
 
 .modal-sm .modal__content {
@@ -3842,6 +3850,12 @@ p.state__statement {
   .catalog-menu__sublink {
     display: block;
     width: 100%;
+  }
+
+  .catalog-menu__link.active,
+  .catalog-menu__sublink.active {
+    border-bottom: 0;
+    text-decoration: underline;
   }
 
   .catalog-menu__sublist {

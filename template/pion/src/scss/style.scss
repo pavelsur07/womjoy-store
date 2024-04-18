@@ -678,7 +678,7 @@ p.state__statement {
 	width: 100%;
 	max-height: calc(100vh - 116px);
 	overflow-y: auto;
-	z-index: 15;
+	z-index: 103;
 	background-color: #fff;
 	box-sizing: border-box;
 	padding-top: 40px;
@@ -1113,7 +1113,7 @@ p.state__statement {
 	justify-content: space-between;
 	margin-bottom: 16px;
 	position: relative;
-	z-index: 12;
+	z-index: 102;
 	&__trigger {
 		font-size: 16px;
 	}
@@ -1181,6 +1181,11 @@ p.state__statement {
 		max-height: 350px;
 		overflow-y: auto;
 		margin-bottom: 15px;
+	}
+	&__checks &__check {
+		a.active {
+			text-decoration: underline;
+		}
 	}
 	&__clear {
 		text-decoration: underline;
@@ -1746,6 +1751,9 @@ p.state__statement {
 
 	&-lg &__content {
 		max-width: 978px;
+	}
+	&-md &__content {
+		max-width: 670px;
 	}
 	&-sm &__content {
 		max-width: 450px;

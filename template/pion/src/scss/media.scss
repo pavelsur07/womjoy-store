@@ -321,6 +321,11 @@
 		&__link, &__sublink {
 			display: block;
 			width: 100%;
+
+			&.active {
+				border-bottom: 0;
+				text-decoration: underline;
+			}
 		}
 		&__sublist {
 			padding: 0;
