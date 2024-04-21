@@ -1,5 +1,5 @@
 // Корневой компонент приложения
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Имортируем комопненты
 import OrderDetailsPion from "../OrderDetails/OrderDetailsPion";
@@ -37,20 +37,11 @@ const AppPion = () => {
         setErrorsDelivery({});
     };
 
-    /*
-    componentDidMount() {
-        // Добавляем обработчик события 'checkoutClicked'
+    useEffect(()=>{
         window.addEventListener('checkoutClicked', handleCheckoutClick);
-    }
-
-    componentWillUnmount() {
-        // Удаляем обработчик при размонтировании компонента
-        window.removeEventListener('checkoutClicked', handleCheckoutClick);
-    }
-    */
+    },[])
 
     const handleCheckoutClick = () => {
-        // Вызываем функцию validate
         handleClickCheckout()
     }
 

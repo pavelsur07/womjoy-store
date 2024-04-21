@@ -9,7 +9,8 @@ import { addCartItem } from '../redux/actions/cart'
 import ReactDOM from "react-dom/client";
 import SubscribeInput from "./components/SubscribeInput";
 import {Provider} from "react-redux";
-import AppPion from "../cart/components/App/AppPion";
+import App from "../cart-badge/components/App/App";
+import ButtonAddToCart from "./components/ButtonAddToCart";
 
 
 const buttonNodeList = document.querySelectorAll('.add-to-cart-action')
@@ -17,6 +18,7 @@ const variantsNodeList = document.querySelectorAll(
   '.i-card__size_items input[name=card-size]'
 )
 const subscribeProduct = document.getElementById('subscribe-product')
+const stickyBar = document.getElementById('sticky-bar')
 
 
 variantsNodeList.forEach((node) => {
@@ -74,12 +76,6 @@ variantsNodeList.forEach((node) => {
           ReactDOM.createRoot(subscribeProduct).render(
             <>
               <SubscribeInput/>
-              {/*<div className="w-field mb-4 w-100">
-                <div className="w-field__main w-100">
-                  <input type="text" className="w-field__inp w-100" placeholder="Введите email"
-                  />
-                </div>
-              </div>*/}
             </>
           )
         }
@@ -123,3 +119,17 @@ buttonNodeList.forEach((node) => {
     }
   })
 })
+
+// Добавляем обработчик события 'checkoutClicked'
+window.addEventListener('addToCartClicked', addToCard);
+
+function addToCard() {
+  console.log('Ups!!')
+}
+
+
+if (stickyBar) {
+  ReactDOM.createRoot(stickyBar).render(
+      <ButtonAddToCart />
+  )
+}
