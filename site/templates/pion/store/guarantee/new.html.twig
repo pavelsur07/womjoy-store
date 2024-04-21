@@ -14,8 +14,8 @@
         </div>
 
         <section class="catalog w-section">
-            <h1 class="mb-3 text-uppercase">Гарантия</h1>
-            <h2>Обмен товара ненадлежащего качества, купленого на маркетплейсе.</h2>
+            <h1 class="mb-3 text-uppercase">Гарантия и 4-х недельный курс по фитнесу</h1>
+            <h2>Заполните форму и получите расширенную гарантию до <br> 60 дней и 4-х недельный стартовый <br>курс по фитнесу с чек листом.</h2>
 
 
 
@@ -35,11 +35,10 @@
             {% endfor %}
 
 
-            <div class="card-body mt-6">
-                <h2>Форма обратной связи</h2>
-                <p>
-                    Заполните все поля и нажмите «Отправить», мы обработаем ваше обращение и свяжемся в течение 24 часов.
-                </p>
+            <div class="card-body mt-4">
+                <h5>
+                    Заполните все поля и нажмите «Отправить», вам на почту придет письмо с крантией и ссылконй на курс.
+                </h5>
                 {{ form_start(form) }}
 
                 {% if messageId == 'success' %}
@@ -60,10 +59,6 @@
                     <div class="col-md-6 mb-3">
                         {{ form_label(form.email) }}
                         {{ form_widget(form.email) }}
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        {{ form_label(form.message) }}
-                        {{ form_widget(form.message) }}
                     </div>
 
                     <div class="col-md-12 mb-3"> <button class="w-primary-btn">{{ button_label|default('Send') }}</button></div>

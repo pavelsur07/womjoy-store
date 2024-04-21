@@ -57,17 +57,17 @@ class GuaranteeController extends BaseController
                 name: $data['name'],
                 email: $data['email'],
                 phone: $data['phone'],
-                message: $data['message']
+                message: ''
             );
             $messages->save($newMessage);
             $flusher->flush();
 
-            if ($this->addEmailToListWithPromoCode(
+            /*if ($this->addEmailToListWithPromoCode(
                 email: $data['phone'],
                 promocode: 'TEST-PROMO',
                 apiKey: $service->get()->getUnisender()->getKey()
             )) {
-            }
+            }*/
 
             $email = (new TemplatedEmail())
                 ->from('info@womjoy.ru')
@@ -81,9 +81,22 @@ class GuaranteeController extends BaseController
 
             // TODO Настроить создание лида в АмоСРМ и отправка сообщения отвественному за гарантию
 
+            $result = $this->sendToUnisender(
+                apiKey: $service->get()->getUnisender()->getKey(),
+                listId: ['250'],
+                name: $data['name'],
+                phone: $data['phone'],
+                email: $data['email'],
+            );
+
+            /*
+            service@womjoy.ru
+            6DZ-XN6-WuH-5D5
+            */
+
             $mailer->send($email);
 
-            $this->addFlash('success', 'Message sending success.');
+            $this->addFlash('success', 'Message sending success.' . $result);
             return $this->redirectToRoute('store.marketplace.guarantee.thank_you');
         }
         return $this->render(
@@ -95,6 +108,31 @@ class GuaranteeController extends BaseController
                 'messageId' => $message,
             ]
         );
+    }
+
+    public function sendToUnisender($apiKey, $listId, $name, $phone, $email): string
+    {
+        $client = new Client([
+            'base_uri' => 'https://api.unisender.com/ru/api/',
+            'timeout'  => 2.0,
+        ]);
+
+        // try {
+        $response = $client->post('subscribe', [
+            'form_params' => [
+                'api_key' => $apiKey,
+                'list_ids' => $listId,
+                'fields[email]' => $email,
+                'fields[Name]' => $name,
+                'fields[phone]' => $phone,
+            ],
+        ]);
+
+        $body = $response->getBody();
+        return $body->getContents();
+        /*} catch (Exception $e) {
+            return "Error: " . $e->getMessage();
+        }*/
     }
 
     public function addEmailToListWithPromoCode($email, $promocode, string $apiKey): bool

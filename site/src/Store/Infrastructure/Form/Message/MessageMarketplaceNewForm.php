@@ -46,18 +46,6 @@ class MessageMarketplaceNewForm extends AbstractType
                         'name' => 'email',
                     ],
                 ]
-            )
-            ->add(
-                'message',
-                Type\TextareaType::class,
-                [
-                    'label' => 'Message',
-                    'attr' => [
-                        'rows' => 8,
-                        'placeholder' => 'Message',
-                    ],
-                    'required' => false,
-                ]
             );
     }
 
