@@ -81,7 +81,7 @@ class GuaranteeController extends BaseController
 
             // TODO Настроить создание лида в АмоСРМ и отправка сообщения отвественному за гарантию
 
-            $result = $this->sendToUnisender(
+            $result = $this->subscribeToUnisender(
                 apiKey: $service->get()->getUnisender()->getKey(),
                 listId: ['250'],
                 name: $data['name'],
@@ -110,7 +110,7 @@ class GuaranteeController extends BaseController
         );
     }
 
-    public function sendToUnisender($apiKey, $listId, $name, $phone, $email): string
+    public function subscribeToUnisender($apiKey, $listId, $name, $phone, $email): string
     {
         $client = new Client([
             'base_uri' => 'https://api.unisender.com/ru/api/',
@@ -125,6 +125,7 @@ class GuaranteeController extends BaseController
                 'fields[email]' => $email,
                 'fields[Name]' => $name,
                 'fields[phone]' => $phone,
+                'double_optin' => 3,
             ],
         ]);
 
@@ -153,6 +154,7 @@ class GuaranteeController extends BaseController
                     'fields[email]' => $email,
                     'tags' => 'promocode', // Добавляем тег "promocode"
                     'tags_values' => $promocode, // Передаем значение переменной promocode
+                    'double_optin' => 3,
                 ],
             ]);
 
