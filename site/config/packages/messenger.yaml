@@ -19,8 +19,7 @@ framework:
             App\Store\Application\Command\Category\UpdateFilter\CategoryUpdateFilterCommand: async
             App\Store\Application\Command\Product\Image\Optimize\ProductImageOptimizeCommand: async
             App\Store\Application\SendMail\Order\OrderStatusSendMailCommand: async
-            App\Matrix\Infrastructure\Wildberries\Model\Statistics\ReportDetailByPeriod: async
-            App\Store\Application\Command\Product\CreateByMatrix\ProductCreateByMatrixCommand: async
+            #App\Store\Application\Command\Product\CreateByMatrix\ProductCreateByMatrixCommand: async
             #Symfony\Component\Mailer\Messenger\SendEmailMessage: async
             #Symfony\Component\Notifier\Message\ChatMessage: async
             #Symfony\Component\Notifier\Message\SmsMessage: async
