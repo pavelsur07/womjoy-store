@@ -69,7 +69,7 @@ class GuaranteeController extends BaseController
             )) {
             }*/
 
-            $email = (new TemplatedEmail())
+           /* $email = (new TemplatedEmail())
                 ->from('info@womjoy.ru')
                 ->to(new Address($data['email']))
                 ->subject('WOMJOY Инструкция по обмену товара ненадлежащего качества, купленого на маркетплейсе.')
@@ -77,7 +77,7 @@ class GuaranteeController extends BaseController
 
                 ->context([
                     'user' => $data['name'],
-                ]);
+                ]);*/
 
             // TODO Настроить создание лида в АмоСРМ и отправка сообщения отвественному за гарантию
 
