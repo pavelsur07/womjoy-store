@@ -26,11 +26,6 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Store/Domain/Entity'
                 prefix: 'App\Store\Domain\Entity'
                 alias: Store
-#            Matrix:
-#                is_bundle: false
-#                dir: '%kernel.project_dir%/src/Matrix/Domain/Entity'
-#                prefix: 'App\Matrix\Domain\Entity'
-#                alias: Matrix
             Menu:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Menu/Domain/Entity'

@@ -149,9 +149,6 @@ services:
     
     App\Common\Infrastructure\Service\Thumbnail\ThumbnailService:
         arguments: [ '@uploads.storage.aws', '%env(STORAGE_BASE_URL)%', '%env(CACHE_PATH_IMAGE)%']
-
-    App\Matrix\Infrastructure\Menu\ProductActionMenu:
-        tags: [ { name: knp_menu.menu_builder, method: build, alias: matrix_product_action } ]
     
     App\Store\Infrastructure\Menu\Admin\Product\ProductActionMenu:
         tags: [ { name: knp_menu.menu_builder, method: build, alias: store_product_action } ]
@@ -180,25 +177,3 @@ services:
     App\Store\Infrastructure\Repository\SubscribeProductRepository:
         class: App\Store\Infrastructure\Repository\SubscribeProductRepository
     
-    
-    #---------------------- Matrix ------------- Deprecated ---------------------------------#
-    App\Matrix\Domain\Repository\Product\ProductRepositoryInterface:
-        class: App\Matrix\Infrastructure\Repository\Product\ProductRepository
-    
-    App\Matrix\Domain\Repository\SubjectRepositoryInterface:
-        class: App\Matrix\Infrastructure\Repository\SubjectRepository
-    
-    App\Matrix\Domain\Repository\ModelRepositoryInterface:
-        class: App\Matrix\Infrastructure\Repository\ModelRepository
-    
-    App\Matrix\Domain\Repository\ColorRepositoryInterface:
-        class: App\Matrix\Infrastructure\Repository\ColorRepository
-
-    App\Matrix\Infrastructure\Repository\Finance\SaleRepository:
-        class: App\Matrix\Infrastructure\Repository\Finance\SaleRepository
-    
-    App\Matrix\Infrastructure\Repository\Syncing\KeyRepository:
-        class: App\Matrix\Infrastructure\Repository\Syncing\KeyRepository
-        
-    App\Matrix\Infrastructure\Repository\SellerRepository:
-        class: App\Matrix\Infrastructure\Repository\SellerRepository

@@ -5,9 +5,6 @@
 #        en: '' # don't prefix URLs for English, the default locale
 #        ru: '/ru'
 #        bg: '/bg'
-#matrix:
-#    resource: ../src/Matrix/Infrastructure/Controller/
-#    type: annotation
 
 store:
     resource: ../src/Store/Infrastructure/Controller/
