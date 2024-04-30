@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -108,25 +108,6 @@
                                 </div>
                             </li>
 
-                            {#
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
-                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
-                                    </span>
-                                    <span class="nav-link-title">
-                                      Finance
-                                    </span>
-                                </a>
-
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ path('matrix.admin.finance.sale.index') }}">
-                                        Sale
-                                    </a>
-                                </div>
-                            </li>
-                            #}
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
                                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
@@ -183,73 +164,14 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
-                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
-                                    </span>
-                                    <span class="nav-link-title">
-                                      Matrix
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ path('matrix.admin.product.index') }}">
-                                        Product
-                                    </a>
-
-                                    <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                                            Attribute
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ path('matrix.admin.subject.index') }}">
-                                                Subject
-                                            </a>
-                                            <a class="dropdown-item" href="{{ path('matrix.admin.model.index') }}">
-                                                Model
-                                            </a>
-                                            <a class="dropdown-item" href="{{ path('matrix.admin.color.index') }}">
-                                                Color
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                                            Seller
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a href="{{ path('matrix.admin.seller.index') }}" class="dropdown-item">
-                                                Seller index
-                                            </a>
-
-                                            <a href="{{ path('matrix.admin.syncing.report_detail_by_period.index') }}" class="dropdown-item">
-                                                External key
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
-                                            Syncing
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a href="{{ path('matrix.admin.syncing.report_detail_by_period.index') }}" class="dropdown-item">
-                                                Report detail by period WB
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
                         </ul>
                         <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                             <form action="./" method="get" autocomplete="off" novalidate>
                                 <div class="input-icon">
-                        <span class="input-icon-addon">
-                          <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
-                        </span>
+                                    <span class="input-icon-addon">
+                                      <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+                                    </span>
                                     <input type="text" value="" class="form-control" placeholder="Search…" aria-label="Search in website">
                                 </div>
                             </form>
@@ -261,10 +183,8 @@
         <div class="page-body">
             <div class="container-xl">
                 {% include 'common/admin/alerts.html.twig' %}
-            {% block body %}{% endblock %}
+                {% block body %}{% endblock %}
             </div>
-
         </div>
-
     </body>
 </html>
