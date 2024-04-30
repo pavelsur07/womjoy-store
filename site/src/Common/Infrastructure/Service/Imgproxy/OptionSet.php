@@ -105,7 +105,7 @@ class OptionSet
         return $this->firstValue(ProcessingOption::ENLARGE->value, 'bool');
     }
 
-    public function withExtend(string $gravityType = null, $gravityX = null, $gravityY = null): self
+    public function withExtend(?string $gravityType = null, $gravityX = null, $gravityY = null): self
     {
         if ($gravityType === Gravity::Smart->value) {
             throw new InvalidArgumentException('extend doesnt support smart gravity');
@@ -120,7 +120,7 @@ class OptionSet
         return $this->get(ProcessingOption::EXTEND->value);
     }
 
-    public function withGravity(string $type = null, $x = null, $y = null): self
+    public function withGravity(?string $type = null, $x = null, $y = null): self
     {
         $gravity = $this->gravityOptions($type, [], $x, $y);
         if (\count($gravity) === 0) {
@@ -135,7 +135,7 @@ class OptionSet
         return $this->get(ProcessingOption::GRAVITY->value);
     }
 
-    public function withCrop($w, $h, string $gravityType = null, $gravityX = null, $gravityY = null): self
+    public function withCrop($w, $h, ?string $gravityType = null, $gravityX = null, $gravityY = null): self
     {
         $gravity = $this->gravityOptions($gravityType, [], $gravityX, $gravityY);
 
@@ -608,7 +608,7 @@ class OptionSet
         }
     }
 
-    private function gravityOptions(string $type = null, array $defaults, $x = null, $y = null): array
+    private function gravityOptions(?string $type, array $defaults, $x = null, $y = null): array
     {
         switch ($type) {
             case null:

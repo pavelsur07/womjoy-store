@@ -69,6 +69,7 @@ class PageController extends AbstractController
         );
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $page->changeName($data['name']);

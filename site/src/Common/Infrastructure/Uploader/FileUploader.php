@@ -23,7 +23,7 @@ class FileUploader
     /**
      * @throws FilesystemException
      */
-    public function upload(UploadedFile $file, string $path = null): File
+    public function upload(UploadedFile $file, ?string $path = null): File
     {
         if ($path === null) {
             $path = date('Y/m/d');

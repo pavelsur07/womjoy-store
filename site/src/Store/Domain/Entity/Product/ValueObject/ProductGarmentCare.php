@@ -13,7 +13,7 @@ class ProductGarmentCare
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     protected ?string $value = null;
 
-    public function __construct(string $value = null)
+    public function __construct(?string $value = null)
     {
         $this->value = $value;
     }

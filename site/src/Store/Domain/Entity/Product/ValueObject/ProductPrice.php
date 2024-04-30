@@ -26,7 +26,7 @@ class ProductPrice
         $this->price = $price;
     }
 
-    public function changePrice(int $oldPrice, int $listPrice = null): void
+    public function changePrice(int $oldPrice, ?int $listPrice = null): void
     {
         if ($oldPrice < $listPrice) {
             throw new StoreProductException('Error old price < list price.');

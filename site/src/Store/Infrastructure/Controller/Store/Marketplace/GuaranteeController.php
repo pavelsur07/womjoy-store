@@ -69,15 +69,15 @@ class GuaranteeController extends BaseController
             )) {
             }*/
 
-           /* $email = (new TemplatedEmail())
-                ->from('info@womjoy.ru')
-                ->to(new Address($data['email']))
-                ->subject('WOMJOY Инструкция по обмену товара ненадлежащего качества, купленого на маркетплейсе.')
-                ->htmlTemplate('pion/email/store/guarantee/guarantee.html.twig')
+            /* $email = (new TemplatedEmail())
+                 ->from('info@womjoy.ru')
+                 ->to(new Address($data['email']))
+                 ->subject('WOMJOY Инструкция по обмену товара ненадлежащего качества, купленого на маркетплейсе.')
+                 ->htmlTemplate('pion/email/store/guarantee/guarantee.html.twig')
 
-                ->context([
-                    'user' => $data['name'],
-                ]);*/
+                 ->context([
+                     'user' => $data['name'],
+                 ]);*/
 
             // TODO Настроить создание лида в АмоСРМ и отправка сообщения отвественному за гарантию
 
@@ -94,7 +94,7 @@ class GuaranteeController extends BaseController
             6DZ-XN6-WuH-5D5
             */
 
-            /*$mailer->send($email);*/
+            // $mailer->send($email);
 
             $this->addFlash('success', 'Message sending success.' . $result);
             return $this->redirectToRoute('store.marketplace.guarantee.thank_you');

@@ -23,7 +23,7 @@ readonly class UrlBuilder
         ResizingType $resizingType,
         Gravity $gravity,
         bool $enlarge = false,
-        string $extension = null
+        ?string $extension = null
     ): Url {
         return (new Url($this, $url, $width, $height))
             ->setResizingType($resizingType)

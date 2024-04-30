@@ -19,7 +19,7 @@ class CategoryImage
     #[ORM\Column(type: Types::INTEGER, nullable: true, options: ['default'=> null])]
     private ?int $size;
 
-    public function __construct(string $path = null, string $name = null, int $size = null)
+    public function __construct(?string $path = null, ?string $name = null, ?int $size = null)
     {
         $this->path = $path;
         $this->name = $name;

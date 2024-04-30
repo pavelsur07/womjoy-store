@@ -21,7 +21,7 @@ class MapItem
     public ?string $changeFrequency;
     public $priority;
 
-    public function __construct(string $location, DateTimeImmutable $lastModified = null, ?string $changeFrequency = null, $priority = null)
+    public function __construct(string $location, ?DateTimeImmutable $lastModified = null, ?string $changeFrequency = null, $priority = null)
     {
         $this->location = $location;
         $this->lastModified = $lastModified;
