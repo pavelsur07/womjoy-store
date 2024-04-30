@@ -83,7 +83,7 @@ class GuaranteeController extends BaseController
 
             $result = $this->subscribeToUnisender(
                 apiKey: $service->get()->getUnisender()->getKey(),
-                listId: ['250'],
+                listId: ['354'],
                 name: $data['name'],
                 phone: $data['phone'],
                 email: $data['email'],
