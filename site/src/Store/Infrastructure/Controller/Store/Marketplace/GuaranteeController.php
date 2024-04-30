@@ -94,7 +94,7 @@ class GuaranteeController extends BaseController
             6DZ-XN6-WuH-5D5
             */
 
-            $mailer->send($email);
+            /*$mailer->send($email);*/
 
             $this->addFlash('success', 'Message sending success.' . $result);
             return $this->redirectToRoute('store.marketplace.guarantee.thank_you');
