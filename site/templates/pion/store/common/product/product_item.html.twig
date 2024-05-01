@@ -40,9 +40,9 @@
         <ul class="card__sizes">
             {% for variant in item.variants %}
                 {% if variant.canBeAddToCart %}
-                    <li><a href="#">{{ variant.value }}</a></li>
+                    <li>{{ variant.value }}</li>
                 {% else %}
-                    <li><a href="#" class="disabled">{{ variant.value }}</a></li>
+                    <li class="disabled">{{ variant.value }}</li>
                 {% endif %}
             {% endfor %}
         </ul>
