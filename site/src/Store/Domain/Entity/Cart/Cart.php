@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Cart;
 
+use App\Store\Domain\Entity\Cart\ValueObject\CartPromoCode;
 use App\Store\Domain\Entity\Product\Variant;
 use App\Store\Domain\Exception\StoreCartException;
 use DateTimeImmutable;
@@ -36,6 +37,9 @@ class Cart
     /** @var ArrayCollection<array-key, CartItem> */
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartItem::class, cascade: ['ALL'], orphanRemoval: true)]
     private Collection $items;
+
+    #[ORM\Embedded(class: CartPromoCode::class, columnPrefix: 'promo_code_')]
+    private CartPromoCode $discount;
 
     public function __construct(DateTimeImmutable $createdAt, ?int $customerId = null)
     {
