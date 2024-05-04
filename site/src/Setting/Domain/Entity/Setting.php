@@ -9,6 +9,7 @@ use App\Setting\Domain\Entity\ValueObject\SettingMoysklad;
 use App\Setting\Domain\Entity\ValueObject\SettingSeoDefault;
 use App\Setting\Domain\Entity\ValueObject\SettingUnisender;
 use App\Setting\Domain\Entity\ValueObject\SettingYandexMetrika;
+use App\Setting\Domain\Entity\ValueObject\SettingYandexPay;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -47,10 +48,23 @@ class Setting
     #[ORM\Embedded(class: SettingYandexMetrika::class, columnPrefix: 'yandex_metrika_')]
     private SettingYandexMetrika $yandexMetrika;
 
+    #[ORM\Embedded(class: SettingYandexPay::class, columnPrefix: 'yandex_pay_')]
+    private SettingYandexPay $yandexPay;
+
     public function __construct()
     {
         $this->company = new SettingCompany();
         $this->seoDefault = new SettingSeoDefault();
+    }
+
+    public function getYandexPay(): SettingYandexPay
+    {
+        return $this->yandexPay;
+    }
+
+    public function setYandexPay(SettingYandexPay $yandexPay): void
+    {
+        $this->yandexPay = $yandexPay;
     }
 
     public function getYandexMetrika(): SettingYandexMetrika
