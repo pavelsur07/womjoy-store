@@ -39,7 +39,7 @@ class Cart
     private Collection $items;
 
     #[ORM\Embedded(class: CartPromoCode::class, columnPrefix: 'promo_code_')]
-    private CartPromoCode $discount;
+    private CartPromoCode $promoCode;
 
     public function __construct(DateTimeImmutable $createdAt, ?int $customerId = null)
     {
@@ -47,6 +47,28 @@ class Cart
         $this->updatedAt = $createdAt;
         $this->customerId = $customerId;
         $this->items = new ArrayCollection();
+    }
+
+    public function getPromoCode(): CartPromoCode
+    {
+        return $this->promoCode;
+    }
+
+    public function setPromoCode(CartPromoCode $promoCode): void
+    {
+        if ($promoCode->getCode() === null) {
+            throw new StoreCartException('Promo code cannot be null.');
+        }
+
+        if ($promoCode->getType() === null) {
+            throw new StoreCartException('Promo code cannot be null.');
+        }
+
+        if ($promoCode->getValue() === null) {
+            throw new StoreCartException('Promo code cannot be null.');
+        }
+
+        $this->promoCode = $promoCode;
     }
 
     public function add(Variant $variant, int $quantity): void
