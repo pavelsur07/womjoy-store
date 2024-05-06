@@ -496,6 +496,11 @@ class Product
         ));
     }
 
+    public function addVariantNewVersion(Variant $variant): void
+    {
+        $this->variants->add($variant);
+    }
+
     /*    public function removeVariant(int $variantId): void
     {
 

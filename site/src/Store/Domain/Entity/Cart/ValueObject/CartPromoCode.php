@@ -30,6 +30,23 @@ class CartPromoCode
         $this->value = $value;
     }
 
+    public function isValid(): bool
+    {
+        if ($this->getCode() === null) {
+            return false;
+        }
+
+        if ($this->getType() === null) {
+            return false;
+        }
+
+        if ($this->getValue() === null) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function getCode(): ?string
     {
         return $this->code;
@@ -40,7 +57,7 @@ class CartPromoCode
         return $this->type;
     }
 
-    public function getValue(): ?int
+    public function getValue(): int
     {
         return $this->value;
     }
