@@ -25,5 +25,11 @@ final class ProductAttributeTest extends TestCase
         self::assertEquals(ProductBuilder::PRODUCT_NAME, $product->getName());
         self::assertEquals(AttributeBuilder::ATTRIBUTE_NAME, $attribute->getName());
         self::assertEquals(AttributeVariantBuilder::ATTRIBUTE_VARIANT_NAME, $attributeVariant->getName());
+        /*
+        $promoCodeValue = 3;
+        $total = 1000 * 100;
+        $promoCodeDiscount = 1000 / 100 * 3;
+        $result = round($promoCodeDiscount / 100, 2);
+        */
     }
 }

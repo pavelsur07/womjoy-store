@@ -35,6 +35,7 @@ class CartApiController extends AbstractController
             [
                 'customer_id' => null,
                 'cost' => $cart->getCost(),
+                'promoCodeDiscount' => $cart->getPromoCodeDiscount(),
                 'costDiscount' => $cart->getCostDiscount(),
                 'deliveryCost' => $cart->getDeliveryCost(
                     $cart->getCostDiscount(true)

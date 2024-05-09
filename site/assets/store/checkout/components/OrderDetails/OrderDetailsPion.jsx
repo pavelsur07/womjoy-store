@@ -36,6 +36,23 @@ const OrderDetailsPion = ({ onClickCheckout }) => {
                 }
             </div>
 
+            <div className="d-flex justify-content-between mb-3 w-100">
+                <span>ПРОМОКОД:</span>
+
+                {
+                    // цена доставки
+                    cart.promo_code_discount > 0 && (
+                        <span>{cart.promo_code_discount} ₽</span>
+                    )
+                }
+                {
+                    // бесплатно
+                    !cart.promo_code_discount && (
+                        <span>- 0.00 ₽</span>
+                    )
+                }
+            </div>
+
             <div className="d-flex justify-content-between w-100">
                 <span>ИТОГО:</span>
                 <span className="w-text-xl">

@@ -6,6 +6,7 @@ const defaultState = {
   discount: 0,
   discount_cost: 0,
   delivery_cost: 0,
+  promo_code_discount: 0,
   temlate: 'default',
   items: [],
 }

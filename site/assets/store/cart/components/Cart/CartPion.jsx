@@ -94,6 +94,23 @@ const Cart = () => {
                                     }
                                 </span>
                             </li>
+                            <li className="d-flex mb-4">
+                                <span>ПРОМОКОД:</span>
+                                <span className="d-block ms-auto">
+                                    {
+                                        // цена доставки
+                                        cart.promo_code_discount > 0 && (
+                                            <span>{cart.promo_code_discount} ₽</span>
+                                        )
+                                    }
+                                    {
+                                        // бесплатно
+                                        !cart.promo_code_discount && (
+                                            <span>- 0.00 ₽</span>
+                                        )
+                                    }
+                                </span>
+                            </li>
                         </ul>
                         <div className="d-flex mb-4 w-text-lg fw-bold c-main__final">
                             ИТОГО: <span

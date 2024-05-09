@@ -56,9 +56,6 @@ class Cart
 
     public function setPromoCode(CartPromoCode $promoCode): void
     {
-        if ($promoCode === null) {
-            throw new StoreCartException('PromoCode cannot be null.');
-        }
 
         if ($promoCode->getCode() === null) {
             throw new StoreCartException('Promo code cannot be null.');
@@ -171,25 +168,24 @@ class Cart
             $result = $result + $item->getQuantity()*$item->getPrice();
         }
 
-        /*if ($this->promoCode !==null) {
-            if ($this->promoCode->isValid()) {
-                $result -= $this->getPromoCodeDiscount();
-            }
-        }*/
-
         return $result;
     }
 
     public function getPromoCodeDiscount(): float
     {
-        /*if (!$this->promoCode->isValid()) {
+        if ($this->promoCode === null) {
             return 0;
-        }*/
+        }
 
-        $subtotal = $this->getSubtotal()/100 *$this->getPromoCode()->getValue();
+        if ($this->getPromoCode()->getValue() === null) {
+            return 0;
+        }
 
-        return round($subtotal);
+        $subtotal = round($this->getSubtotal() * $this->getPromoCode()->getValue(), 2)  ;
+
+        return $subtotal/100;
     }
+
 
     public function getId(): int
     {

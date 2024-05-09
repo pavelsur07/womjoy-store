@@ -57,7 +57,7 @@ class CartPromoCode
         return $this->type;
     }
 
-    public function getValue(): int
+    public function getValue(): ?int
     {
         return $this->value;
     }

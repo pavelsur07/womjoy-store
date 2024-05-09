@@ -45,6 +45,7 @@ const receiveCartInfo = (cart) => ({
     discount: cart.discount,
     discount_cost: cart.costDiscount,
     delivery_cost: cart.deliveryCost,
+    promo_code_discount: cart.promoCodeDiscount,
     items: cart.items,
   },
 })
