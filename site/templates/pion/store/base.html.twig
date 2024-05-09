@@ -44,14 +44,16 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('./pion/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('./pion/css/style.css') }}">
-
         {#
-        {{ encore_entry_link_tags('app') }}
+        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
         #}
+        {#<link rel="stylesheet" href="{{ asset('./pion/css/bootstrap.css') }}">#}
+        {#
+        <link rel="stylesheet" href="{{ asset('./pion/css/style.css') }}">
+        #}
+
+        {{ encore_entry_link_tags('pion') }}
     {% endblock %}
 
     {% block jsonLd %}{% endblock %}
