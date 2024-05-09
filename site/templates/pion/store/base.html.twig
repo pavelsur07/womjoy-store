@@ -48,7 +48,8 @@
         <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
         <link rel="stylesheet" href="{{ asset('./pion/libs/swiper/swiper.min.css') }}">
         #}
-        {#<link rel="stylesheet" href="{{ asset('./pion/css/bootstrap.css') }}">#}
+
+        <link rel="stylesheet" href="{{ asset('./pion/css/bootstrap.css') }}">
         {#
         <link rel="stylesheet" href="{{ asset('./pion/css/style.css') }}">
         #}
@@ -177,8 +178,9 @@
         <script src="{{ asset('./pion/libs/blazy.min.js') }}"></script>
         <script src="{{ asset('./pion/libs/swiper/swiper.min.js') }}"></script>
         <script src="{{ asset('./pion/libs/swiper/swiper.min.js') }}"></script>
-        <script src="{{ asset('./pion/js/script.js') }}"></script>
         <script src="{{ asset('./pion/js/lazy_img.js') }}"></script>
+        {#<script src="{{ asset('./pion/js/script.js') }}"></script>#}
+        {{ encore_entry_script_tags('pion') }}
     {% endblock %}
 </body>
 </html>
