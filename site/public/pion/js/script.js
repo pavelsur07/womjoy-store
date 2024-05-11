@@ -112,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			searchInp.addEventListener('input', () => {
 				clearTimeout(searchTimeout);
 				searchTimeout = setTimeout(() => {
-					console.log('Request ....');
-	
 					searchResult.classList.add('active');
 					searchBottom.classList.add('hidden');
 	
@@ -413,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		modal.querySelector('.modal__close').addEventListener('click', () => modal.classList.remove('active'));
 		modal.querySelector('.modal__bg').addEventListener('click', () => modal.classList.remove('active'));
+		modal.querySelectorAll('[data-modalclose]').forEach(closer => closer.addEventListener('click', () => modal.classList.remove('active')));
 	});
 
 
@@ -522,7 +521,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	
 	window.addEventListener('scroll', () => {
-		console.log(11111111111);
 		const floatEls = document.querySelectorAll('[data-float-target]');
 		floatEls.forEach(floatEl => {
 			const target = document.querySelector(floatEl.dataset.floatTarget);
