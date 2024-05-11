@@ -524,6 +524,20 @@
                     <button class="i-card__btn w-primary-btn d-none d-md-inline-block" type="submit">Узнать о поступлении</button>
                     <button class="i-card__btn w-primary-btn d-none d-md-inline-block" type="submit">Добавить в корзину</button>
                     <button class="i-card__mobbtn w-action-btn" type="submit">Добавить в корзину</button>
+                    <button type="button" class="split-trigger w-100 mb-4" data-modaltarget="modal-split">
+                        <div class="split-trigger__price">
+                            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 9C0 4.03053 4.02855 0 8.99802 0H18.7143V18H8.99802C4.02855 18 0 13.9695 0 9Z" fill="#111827"/>
+                                <path d="M11.018 7.4025L10.9527 7.31358C14.2844 4.6238 13.9142 4.22367 13.9142 4.22367C13.5876 3.868 13.2392 3.55678 12.869 3.29003C12.3464 2.91213 11.7802 2.60091 11.1705 2.40085C8.64445 1.46721 5.63938 2.20078 3.83198 4.22367C1.41485 6.86899 1.3713 11.0704 3.8102 13.7602C6.37976 16.5833 10.7567 16.7611 13.5223 14.1603L13.5658 14.1158L13.6094 14.0714L13.6311 14.0491C13.6747 14.0047 13.7182 13.9602 13.74 13.9158C14.5239 12.8932 13.348 10.1145 11.018 7.4025ZM13.1521 13.4045C12.9779 13.5823 12.2375 13.6045 11.0398 12.9599C9.92923 12.3597 8.68801 11.3371 7.51211 10.0923C7.31612 10.2479 10.5825 7.6248 10.4301 7.75817C11.4535 8.95857 12.3246 10.2701 12.7819 11.3594C13.3263 12.6264 13.3045 13.2489 13.1521 13.4045Z" fill="white" fill-opacity="0.98"/>
+                            </svg>
+                            2500 ₽
+                        </div>
+                        <span class="split-trigger__txt">х 4 платежа без переплат</span>
+
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.19687 11.194L8.388 7L4.19687 2.80601C3.85527 2.46418 3.85546 1.91016 4.19729 1.56857C4.53911 1.22698 5.09313 1.22717 5.43473 1.56899L10.2439 6.38149C10.5854 6.72315 10.5854 7.27685 10.2439 7.61851L5.43473 12.431C5.09313 12.7728 4.53911 12.773 4.19729 12.4314C3.85546 12.0898 3.85527 11.5358 4.19687 11.194Z" fill="#D1D5DB"/>
+                        </svg>                            
+                    </button>
                     <button class="i-card__like" type="button">
                         <img src="./img/icons/like.svg" alt="" width="24" height="24">
                         ДОБАВИТЬ В WISHLIST
@@ -821,7 +835,7 @@
         <div class="modal__content">
             <div class="modal__top">
                 <span class="modal__title">ТАБЛИЦА РАЗМЕРОВ</span>
-                <buttno class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></buttno>
+                <button class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></button>
             </div>
             <div class="modal__sizes">
                 <picture>
@@ -898,7 +912,7 @@
         <div class="modal__bg"></div>
         <div class="modal__content">
             <div class="modal__top">
-                <buttno class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></buttno>
+                <button class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></button>
             </div>
             <img src="./img/divide.webp" alt="">
             <div class="modal__bottom">
@@ -907,12 +921,12 @@
             </div>
         </div>
     </div>
-    <div class="modal modal-sm active" id="modal-product-added">
+    <div class="modal modal-sm" id="modal-product-added">
         <div class="modal__bg"></div>
         <div class="modal__content">
             <div class="modal__top">
                 <span class="modal__title">Добавлен в корзину</span>
-                <buttno class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></buttno>
+                <button class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></button>
             </div>
             <div class="p-4">
                 <div class="added-product">
@@ -930,6 +944,54 @@
                     <button class="w-action-btn" type="button">Оформить заказ</button>
                     <button class="w-primary-btn" type="button">Продолжить покупки</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-sm" id="modal-split">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <div class="modal__title">2500 р сегодня, <br>а остальное потом</div>
+                <button class="modal__close ms-auto" type="button"><img src="./img/icons/close.svg" alt=""></button>
+            </div>
+            <div class="px-4">
+                <p>Оплатите заказ частями в сплит </p>
+                <div class="split">
+                    <img src="./img/icons/split-logo.svg" alt="" width="148" height="30" class="split__logo">
+                    <div class="split__title">
+                        <span>Без переплат</span> на 2 месяца 
+                    </div>
+                    <div class="split__items">
+                        <div class="split__item split__item-active">
+                            <div class="split__txt">
+                                <span>сегодня</span>
+                                2500 ₽
+                            </div>
+                        </div>
+                        <div class="split__item">
+                            <div class="split__txt">
+                                <span>27 янв</span>
+                                2500 ₽
+                            </div>
+                        </div>
+                        <div class="split__item">
+                            <div class="split__txt">
+                                <span>10 фев</span>
+                                2500 ₽
+                            </div>
+                        </div>
+                        <div class="split__item">
+                            <div class="split__txt">
+                                <span>24 фев</span>
+                                2500 ₽
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__bottom">
+                <button class="w-action-btn w-100" type="button" data-modalclose>ПОНЯТНО</button>
             </div>
         </div>
     </div>

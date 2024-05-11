@@ -234,6 +234,7 @@ body {
 		display: flex;
 		align-items: center;
 		min-height: 100%;
+		position: relative;
 		box-sizing: border-box;
 
 		img, svg {
@@ -269,6 +270,12 @@ body {
 		display: inline-block;
 		margin-top: 5px;
 		text-transform: lowercase;
+	}
+
+	&__append {
+		display: flex;
+		padding-right: 16px;
+		padding-left: 8px;
 	}
 }
 
@@ -338,8 +345,8 @@ body {
 		margin-right: 12px;
 	}
 	input:checked + &__sq {
-		background-color: $primary;
-		border-color: $primary;
+		background-color: $action;
+		border-color: $action;
 		img {
 			display: block;
 		}
@@ -410,6 +417,9 @@ body {
 }
 .w-text-gray {
 	color: $gray;
+}
+.w-text-action {
+	color: $action;
 }
 
 .w-black-link {
@@ -665,6 +675,35 @@ body {
 
 	&__btn {
 		margin-top: auto;
+	}
+}
+
+.lined-list {
+	background-color: inherit;
+	li {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		background-color: inherit;
+		z-index: 2;
+
+		&:not(:last-child) { margin-bottom: 14px; }
+
+		span {
+			display: inline-block;
+			background-color: inherit;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 5px;
+			width: 100%;
+			border-bottom: 1px dashed #D1D5DB;
+			z-index: -2;
+		}
 	}
 }
 
