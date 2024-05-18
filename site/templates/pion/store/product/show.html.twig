@@ -485,6 +485,54 @@
         </div>
     </div>
 
+    <div class="modal modal-sm" id="modal-split">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <div class="modal__top">
+                <div class="modal__title"> {{ (product.price.listPrice / 4) | number_format(2, ',', ' ') }} р сегодня, <br>а остальное потом</div>
+                <button class="modal__close ms-auto" type="button"><img src="{{ asset('./pion/img/icons/close.svg') }}" alt=""></button>
+            </div>
+            <div class="px-4">
+                <p>Оплатите заказ частями в сплит </p>
+                <div class="split">
+                    <img src="{{ asset('./pion/img/icons/split-logo.svg') }}" alt="" width="148" height="30" class="split__logo">
+                    <div class="split__title">
+                        <span>Без переплат</span> на 2 месяца
+                    </div>
+                    <div class="split__items">
+                        <div class="split__item split__item-active">
+                            <div class="split__txt">
+                                <span>сегодня</span>
+                                {{ (product.price.listPrice / 4) | number_format(2, ',', ' ') }}  ₽
+                            </div>
+                        </div>
+                        <div class="split__item">
+                            <div class="split__txt">
+                                <span>2 - платеж {#27 янв#}</span>
+                                {{ (product.price.listPrice / 4) | number_format(2, ',', ' ') }}  ₽
+                            </div>
+                        </div>
+                        <div class="split__item">
+                            <div class="split__txt">
+                                <span>3 - платеж {#10 фев#}</span>
+                                {{ (product.price.listPrice / 4) | number_format(2, ',', ' ') }}  ₽
+                            </div>
+                        </div>
+                        <div class="split__item">
+                            <div class="split__txt">
+                                <span>4 - платеж{#24 фев#}</span>
+                                {{ (product.price.listPrice / 4) | number_format(2, ',', ' ') }}  ₽
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__bottom">
+                <button class="w-action-btn w-100" type="button" data-modalclose>ПОНЯТНО</button>
+            </div>
+        </div>
+    </div>
+
     {#
     <div class="modal modal-sm" id="modal-divide">
         <div class="modal__bg"></div>

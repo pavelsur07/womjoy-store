@@ -50,13 +50,15 @@ const PaymentPion = ({heading}) => {
                     </label>
 
                     <label className="w-check mt-4">
-                        <input type="radio" checked={paymentYandexSplitChecked} value={payment_list.yandex_split.value} onChange={changePaymentValue} hidden />
+                        <input type="radio" checked={paymentYandexSplitChecked} value={payment_list.yandex_split.value}
+                               onChange={changePaymentValue} hidden/>
                         <span className="w-check__sq">
-                            <img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13" />
+                            <img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13"/>
                         </span>
                         <div className="w-check__main">
                             <span className="w-check__name">{payment_list.yandex_split.name}</span>
                         </div>
+                        <img src="/pion/img/icons/split-logo.svg" alt="" width="148" height="25" className="ms-auto"/>
                     </label>
 
                     <p className="mt-4  text-muted">
