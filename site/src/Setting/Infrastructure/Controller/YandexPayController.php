@@ -18,17 +18,20 @@ class YandexPayController extends AbstractController
 {
     public function __construct(
         private readonly SettingService $service,
-        private readonly Flusher $flusher,
-    ) {}
+        private readonly Flusher $flusher
+    ) {
+    }
 
     #[Route(path: '/admin/setting/yandex-pay', name: 'setting.yandex_pay')]
     public function edit(Request $request): Response
     {
         $setting = $this->service->get();
+
         $form = $this->createForm(
             YandexPayEditForm::class,
             [
                 'apiKey' => $setting->getYandexPay()->getApiKey(),
+                'sandbox' => $setting->getYandexPay()->isSandbox(),
             ]
         );
 
@@ -37,7 +40,7 @@ class YandexPayController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             try {
-                $setting->setYandexPay(new SettingYandexPay($data['apiKey']));
+                $setting->setYandexPay(new SettingYandexPay($data['apiKey'], $data['sandbox']));
                 $this->flusher->flush();
                 $this->addFlash('success', 'Success edit setting yandex pay');
                 $this->redirect('setting.yandex-pay');
