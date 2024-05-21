@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changePayment} from "../../../redux/actions/checkout";
+import {PaymentYandex} from "./PaymentYandex";
 
 const PaymentPion = ({heading}) => {
     const dispatch = useDispatch();
@@ -60,6 +61,10 @@ const PaymentPion = ({heading}) => {
                         </div>
                         <img src="/pion/img/icons/split-logo.svg" alt="" width="148" height="25" className="ms-auto"/>
                     </label>
+
+                    {/*
+                    <PaymentYandex />*
+                    /}
 
                     <p className="mt-4  text-muted">
                         При оплате картами Visa, Mastercard и МИР, выпущенных российскими банками, рекомендуем использовать ручной ввод данных банковской карты на сайте либо воспользоваться сервисом SberPay.
