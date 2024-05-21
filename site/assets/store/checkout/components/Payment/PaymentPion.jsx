@@ -25,7 +25,9 @@ const PaymentPion = ({heading}) => {
                 <div className="pb-4">
                     <label className="w-check">
                         <input type="radio" checked={paymentOnlineChecked} value={payment_list.online.value} onChange={changePaymentValue} hidden />
-                        <span className="w-check__sq"><img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13"/></span>
+                        <span className="w-check__sq">
+                            <img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13" />
+                        </span>
                         <div className="w-check__main">
                             <span className="w-check__name">
                                 {payment_list.online.name}
@@ -39,16 +41,16 @@ const PaymentPion = ({heading}) => {
                         </div>
                     </label>
 
-                    <label className="w-check mt-4">
+                    {/*<label className="w-check mt-4">
                         <input type="radio" checked={paymentCodChecked} value={payment_list.cod.value} onChange={changePaymentValue} hidden />
                         <span className="w-check__sq">
                             <img src="/pion/img/icons/white-check.svg" alt="check" width="18" height="13" />
                         </span>
                         <div className="w-check__main">
                             <span className="w-check__name">{payment_list.cod.name}</span>
-                            {/*<p>{payment_list.cod.description}</p>*/}
+                            <p>{payment_list.cod.description}</p>
                         </div>
-                    </label>
+                    </label>*/}
 
                     <label className="w-check mt-4">
                         <input type="radio" checked={paymentYandexSplitChecked} value={payment_list.yandex_split.value}
@@ -61,7 +63,7 @@ const PaymentPion = ({heading}) => {
                         </div>
                         <img src="/pion/img/icons/split-logo.svg" alt="" width="148" height="25" className="ms-auto"/>
                     </label>
-
+                    
                     {/*
                     <PaymentYandex />*
                     /}

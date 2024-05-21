@@ -11,7 +11,7 @@ const defaultState = {
         price: 0,
         address: null,
     },
-    payment: 'cod',
+    payment: 'online',
     payment_list: {
         online: {
             name: 'Оплата онлайн',
