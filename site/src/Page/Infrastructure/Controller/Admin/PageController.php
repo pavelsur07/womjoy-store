@@ -71,12 +71,17 @@ class PageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $page->changeName($data['name']);
-            $page->changeValue($data['value']);
-            $flusher->flush();
+            try {
+                $data = $form->getData();
+                $page->changeName($data['name']);
+                $page->changeValue($data['value']);
+                $flusher->flush();
 
-            $this->addFlash('success', 'Success new page created.');
+                $this->addFlash('success', 'Success new page created.');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Error - '. $e->getMessage());
+            }
+
             return $this->redirectToRoute('page.admin.page.edit', ['id'=>$id]);
         }
 
