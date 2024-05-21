@@ -16,7 +16,10 @@ class MoyskladEditForm extends AbstractType
         $builder
             ->add('token', Type\TextType::class)
             ->add('companyId', Type\TextType::class)
-            ->add('skladId', Type\TextType::class);
+            ->add('skladId', Type\TextType::class)
+            ->add('allowUpdateStock', Type\CheckboxType::class, ['required' => false])
+        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

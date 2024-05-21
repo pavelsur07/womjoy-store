@@ -63,7 +63,7 @@ const PaymentPion = ({heading}) => {
                         </div>
                         <img src="/pion/img/icons/split-logo.svg" alt="" width="148" height="25" className="ms-auto"/>
                     </label>
-                    
+
                     {/*
                     <PaymentYandex />*
                     /}

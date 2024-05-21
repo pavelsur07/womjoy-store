@@ -31,6 +31,7 @@ class MoyskladController extends AbstractController
                 'token' => $setting->getMoysklad()->getToken(),
                 'companyId' => $setting->getMoysklad()->getCompanyId(),
                 'skladId' => $setting->getMoysklad()->getSkladId(),
+                'allowUpdateStock' => $setting->getMoysklad()->getAllowUpdateStock(),
             ]
         );
 
@@ -43,6 +44,7 @@ class MoyskladController extends AbstractController
                     token: $data['token'],
                     companyId: $data['companyId'],
                     skladId: $data['skladId'],
+                    allowUpdateStock: $data['allowUpdateStock']
                 )
             );
 

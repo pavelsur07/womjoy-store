@@ -56,17 +56,11 @@ services:
     App\Store\Infrastructure\Service\Payment\YandexPay\YandexPay:
         factory: '@App\Store\Infrastructure\Service\Payment\YandexPay\YandexPayFactory'
 
-    App\Store\Infrastructure\Service\Moysklad\MoyskladCredentials:
-        arguments:
-            $token: '%env(MOYSKLAD_TOKEN)%'
+    App\Store\Infrastructure\Service\Moysklad\MoyskladClient:
+        factory: '@App\Store\Infrastructure\Service\Moysklad\MoyskladClientFactory'
 
-    App\Store\Infrastructure\Service\Moysklad\MoyskladOrganization:
-        arguments:
-            $organization: '%env(MOYSKLAD_ORGANIZATION)%'
-
-    App\Store\Infrastructure\Service\Moysklad\MoyskladStore:
-        arguments:
-            $store: '%env(MOYSKLAD_STORE)%'
+    App\Store\Infrastructure\Service\Moysklad\Moysklad:
+        factory: '@App\Store\Infrastructure\Service\Moysklad\MoyskladFactory'
 
     Aws\S3\S3Client:
         arguments:

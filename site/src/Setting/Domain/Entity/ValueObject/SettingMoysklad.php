@@ -18,11 +18,15 @@ class SettingMoysklad
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $skladId = null;
 
-    public function __construct(?string $token, ?string $companyId, ?string $skladId)
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $allowUpdateStock = false;
+
+    public function __construct(?string $token, ?string $companyId, ?string $skladId, ?bool $allowUpdateStock = false)
     {
         $this->token = $token;
         $this->companyId = $companyId;
         $this->skladId = $skladId;
+        $this->allowUpdateStock = $allowUpdateStock;
     }
 
     public function getToken(): ?string
@@ -38,5 +42,10 @@ class SettingMoysklad
     public function getSkladId(): ?string
     {
         return $this->skladId;
+    }
+
+    public function getAllowUpdateStock(): ?bool
+    {
+        return $this->allowUpdateStock;
     }
 }

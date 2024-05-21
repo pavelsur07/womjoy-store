@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Console\Moysklad;
 
+use App\Setting\Infrastructure\Service\SettingService;
 use App\Store\Infrastructure\Service\Moysklad\Moysklad;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -21,15 +22,18 @@ class UpdateStocksCommand extends Command
 {
     public function __construct(
         private readonly Moysklad $moysklad,
+        private readonly SettingService $settingService,
     ) {
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $io = new SymfonyStyle($input, $output);
+        $setting = $this->settingService->get();
 
-        $this->moysklad->updateStocksFromMoysklad();
+        if ($setting->getMoysklad()->getAllowUpdateStock()) {
+            $this->moysklad->updateStocksFromMoysklad();
+        }
 
         return Command::SUCCESS;
     }
