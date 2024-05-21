@@ -138,7 +138,7 @@ readonly class Moysklad
 
         // Создаём обработчк который будет обновлять остатки
         $handleUpdateAssortment = function ($assortment): void {
-            $this->variantRepository->updateQuantityFromMoysklad($assortment->id, $assortment->quantity);
+            $this->variantRepository->updateQuantityFromMoysklad($assortment->id, (int)$assortment->quantity);
         };
 
         // each result
