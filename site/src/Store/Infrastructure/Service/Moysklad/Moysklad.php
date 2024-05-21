@@ -11,6 +11,7 @@ use Evgeek\Moysklad\Api\Record\Objects\Documents\CustomerOrder;
 use Evgeek\Moysklad\Api\Record\Objects\Entities\Assortment;
 use Evgeek\Moysklad\Api\Record\Objects\Entities\Counterparty;
 use Evgeek\Moysklad\Api\Record\Objects\Entities\Product;
+use Evgeek\Moysklad\Api\Record\Objects\Nested\State;
 use Evgeek\Moysklad\Exceptions\RequestException;
 use Evgeek\Moysklad\Tools\Meta;
 
@@ -97,6 +98,7 @@ readonly class Moysklad
                 }
 
                 $customerOrder = CustomerOrder::make($moyskladClient, [
+                    'name' => (string)$order->getOrderNumber()->value(),
                     'organization' => [
                         'meta' => Meta::organization($this->moyskladOrganization->get()),
                     ],
@@ -104,6 +106,9 @@ readonly class Moysklad
                         'meta' => Meta::counterparty($counterparty->id),
                     ],
                     'positions' => $positions,
+                    'state' => [
+                        'meta' => Meta::state('customerorder', 'af22ee11-1786-11ef-0a80-07e3001bb246')
+                    ],
                     'store' => [
                         'meta' => Meta::store($this->moyskladStore->get()),
                     ],
