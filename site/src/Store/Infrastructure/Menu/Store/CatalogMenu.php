@@ -97,10 +97,10 @@ class CatalogMenu
                         'name' => 'Одежда для путешествий',
                         'href' => '/collections/odezhda-dlya-aktivnogo-otdyha',
                     ],
-                    [
+                    /*[
                         'name' => 'АКСЕССУАРЫ',
                         'href' => '/collections/odezhda-dlya-aktivnogo-otdyha',
-                    ],
+                    ],*/
                 ],
             ],
         ];

@@ -30,95 +30,7 @@ const Cart = () => {
 
     return (
         <>
-
-            <section className="cart w-section">
-                <div className="row position-relative align-items-start">
-                    <div className="col col-12 col-lg-8 d-flex flex-column">
-                        <h1 className="mb-5 text-uppercase">КОРЗИНА</h1>
-
-                        <div className="border-bottom pb-5 mb-5">
-                            <div
-                                className="mb-4 d-none d-md-flex position-relative align-items-center justify-content-between">
-                                <span className="cart__head text-start text-lg-center">Наименование товара</span>
-                                <span className="cart__head">Размер</span>
-                                <span className="cart__head">Цена</span>
-                                <span className="cart__head">Кол-во</span>
-                                <span className="cart__head">Сумма</span>
-                                <span className="cart__head"></span>
-                            </div>
-                            <div className="cart__rows">
-
-
-                                {
-                                    cart.items.map(
-                                        (item, index) => (
-                                            <CartItemPion key={index} item={item} />
-                                        )
-                                    )
-                                }
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col col-12 col-sm-9 col-md-6 col-lg-4 position-sticky mx-auto top-0">
-                        <div className="d-flex flex-column align-items-start p-4 p-sm-5 w-bg-primary">
-                            <div className="fs-2 lh-1 mb-4">Ваш заказ</div>
-                            <ul className="lined-list w-100">
-                                <li>
-                                    <span>ТОВАРЫ:</span>
-                                    <span>
-                                        {new Intl.NumberFormat('ru-RU').format(cart.cost)} ₽
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>ДОСТАВКА:</span>
-                                    {
-                                        // цена доставки
-                                        cart.delivery_cost > 0 && (
-                                            <span>{cart.delivery_cost} ₽</span>
-                                        )
-                                    }
-                                    {
-                                        // бесплатно
-                                        !cart.delivery_cost && (
-                                            <span>БЕСПЛАТНО</span>
-                                        )
-                                    }
-                                </li>
-                                <li className="fw-bold"><span>ИТОГО:</span><span>
-                                    {new Intl.NumberFormat('ru-RU').format(cart.discount_cost)}
-                                </span></li>
-                            </ul>
-                            <div className="w-field w-100 mb-4">
-                                <div className="w-field__main bg-white">
-                                    <input type="text" className="w-field__inp" placeholder="Введите промокод"/>
-                                    <div className="w-field__append">
-                                        <button type="button" className="w-text-action">Применить</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                className="w-action-btn w-100 c-main__btn"
-                                onClick={() => handleCheckoutClick()}
-                            >
-                                {t('Checkout')}
-                            </button>
-                            {/*<div className="fs-5 mb-2 mt-3">Подарочный сертификат</div>*/}
-                            <p className="mt-3">
-                                <a href="/login">Войдите</a> или <a href="/registration/">зарегистрируйтесь</a>, чтобы применить купон или
-                                начислить баллы за покупку.
-                            </p>
-                            <p>Если у вас остались вопросы, свяжитесь с нами по бесплатному номеру телефона <a href="tel:8-800-301-67-53" className="w-black-link">8-800-301-67-53</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            {/* <section className="cart w-section pt-2">
+            <section className="cart w-section pt-2">
                 <h1 className="mb-3 text-uppercase">{t('Cart')}</h1>
 
                 <div className="border-bottom pb-5 mb-5">
@@ -215,7 +127,7 @@ const Cart = () => {
                     </div>
                 </div>
 
-            </section>*/}
+            </section>
         </>
     );
 };
