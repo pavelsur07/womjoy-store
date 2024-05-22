@@ -40,6 +40,10 @@ readonly class Moysklad
         $handleUpdateProductVariant = function ($row): void {
             // $product->id, $product->article, $product->barcodes,
 
+            if (!$row->barcodes) {
+                return;
+            }
+
             foreach ($row->barcodes as $barcodes) {
                 if (!isset($barcodes->code128)) {
                     continue;
