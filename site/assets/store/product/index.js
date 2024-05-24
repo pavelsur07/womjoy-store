@@ -128,8 +128,9 @@ function addToCard() {
 }
 
 
+/*
 if (stickyBar) {
   ReactDOM.createRoot(stickyBar).render(
       <ButtonAddToCart />
   )
-}
+}*/
