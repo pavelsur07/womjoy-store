@@ -109,10 +109,19 @@ readonly class Moysklad
                     'agent' => [
                         'meta' => Meta::counterparty($counterparty->id),
                     ],
+
+                    // Метаданные позиций Заказа покупателя
                     'positions' => $positions,
+
+                    // Адрес доставки Заказа покупателя
+                    'shipmentAddress' => $order->getDelivery()->getAddress(),
+
+                    // Метаданные статуса заказа
                     'state' => [
                         'meta' => Meta::state('customerorder', 'af22ee11-1786-11ef-0a80-07e3001bb246')
                     ],
+
+                    // Метаданные склада
                     'store' => [
                         'meta' => Meta::store($this->moyskladStore->get()),
                     ],
