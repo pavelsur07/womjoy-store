@@ -69,7 +69,11 @@ class CartApiController extends AbstractController
                 'message' => $message,
                 'customer_id' => null,
                 'cost' => $cart->getCost(),
+                'promoCodeDiscount' => $cart->getPromoCodeDiscount(),
                 'costDiscount' => $cart->getCostDiscount(),
+                'deliveryCost' => $cart->getDeliveryCost(
+                    $cart->getCostDiscount(true)
+                ),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
                 'items' => $this->getCartItems($cart),
@@ -100,7 +104,11 @@ class CartApiController extends AbstractController
                 'message' => $message,
                 'customer_id' => null,
                 'cost' => $cart->getCost(),
+                'promoCodeDiscount' => $cart->getPromoCodeDiscount(),
                 'costDiscount' => $cart->getCostDiscount(),
+                'deliveryCost' => $cart->getDeliveryCost(
+                    $cart->getCostDiscount(true)
+                ),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
                 'items' => $this->getCartItems($cart),
@@ -122,7 +130,11 @@ class CartApiController extends AbstractController
             [
                 'customer_id' => null,
                 'cost' => $cart->getCost(),
+                'promoCodeDiscount' => $cart->getPromoCodeDiscount(),
                 'costDiscount' => $cart->getCostDiscount(),
+                'deliveryCost' => $cart->getDeliveryCost(
+                    $cart->getCostDiscount(true)
+                ),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
                 'items' => $this->getCartItems($cart),
@@ -142,7 +154,11 @@ class CartApiController extends AbstractController
             [
                 'customer_id' => null,
                 'cost' => $cart->getCost(),
+                'promoCodeDiscount' => $cart->getPromoCodeDiscount(),
                 'costDiscount' => $cart->getCostDiscount(),
+                'deliveryCost' => $cart->getDeliveryCost(
+                    $cart->getCostDiscount(true)
+                ),
                 'discount' => $cart->getDiscount(),
                 'amount' => $cart->getAmount(),
                 'items' => $this->getCartItems($cart),
