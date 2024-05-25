@@ -92,7 +92,7 @@ readonly class Moysklad
                     $positions[] = [
                         'quantity' => $orderItem->getQuantity(),
                         'reserve' => $orderItem->getQuantity(),
-                        'price' => $orderItem->getPrice()->getSalePrice(),
+                        'price' => $orderItem->getPrice()->getSalePrice() * 100,
                         'assortment' => [
                             'meta' => Meta::product(
                                 $orderItem->getProductVariant()->getMoyskladId()
