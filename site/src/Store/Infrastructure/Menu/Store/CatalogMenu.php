@@ -27,6 +27,30 @@ class CatalogMenu
             ],
             // -  Меню с вложенными элементами -
             [
+                'name'=>'Капсулы',
+                'href' =>'#',
+                'is_dropdown' => true,
+                'is_list' => false,
+                'items'=> [
+                    [
+                        'name' => 'Street and Home',
+                        'href' => '/collections/kapsula-street-and-home-149',
+                    ],
+                    [
+                        'name' => 'Black & White',
+                        'href' => '/collections/kapsula-black-white-150',
+                    ],
+                    [
+                        'name' => 'Pion',
+                        'href' => '/collections/kapsula-pion-151',
+                    ],
+                    [
+                        'name' => 'New line',
+                        'href' => '/collections/kapsula-new-line-152',
+                    ],
+                ],
+            ],
+            [
                 'name'=>'Каталог',
                 'href' =>'/collections/zhenskaya-odezhda',
                 'is_dropdown' => true,
@@ -94,7 +118,7 @@ class CatalogMenu
                         'href' => '/collections/odezhda-dlya-sporta-120',
                     ],
                     [
-                        'name' => 'Одежда для путешествий',
+                        'name' => 'Одежда для активного отдыха',
                         'href' => '/collections/odezhda-dlya-aktivnogo-otdyha',
                     ],
                     /*[
