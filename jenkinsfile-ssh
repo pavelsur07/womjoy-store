@@ -35,7 +35,7 @@ pipeline {
                     string(credentialsId: 'PROD_GOOGLE_RECAPTCHA_SECRET', variable: 'GOOGLE_RECAPTCHA_SECRET')
                 ]) {
                     sshagent (credentials: ['PROD_AUTH']) {
-                        ssh-copy-id deploy@151.248.121.164
+                        sh 'ssh-copy-id deploy@151.248.121.164'
                     }
                 }
             }
