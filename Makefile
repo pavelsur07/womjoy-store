@@ -165,10 +165,10 @@ try-build-storage:
 push: push-site
 
 push-site:
-	docker push ${DOMAIN}/site:${IMAGE_TAG}
-	docker push ${DOMAIN}/site-php-fpm:${IMAGE_TAG}
-	docker push ${DOMAIN}/site-php-cli:${IMAGE_TAG}
-	docker push ${DOMAIN}/storage-nginx:${IMAGE_TAG}
+	docker push ${REGISTRY}/site:${IMAGE_TAG}
+	docker push ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
+	docker push ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+	docker push ${REGISTRY}/storage-nginx:${IMAGE_TAG}
 
 #---------------------  Deploy Womjoy COM PROD ----------------------------------
 deploy-com:
