@@ -34,13 +34,9 @@ pipeline {
                         credentialsId: 'DOCKER_HUB_AUTH',
                         usernameVariable: 'USER',
                         passwordVariable: 'PASSWORD'
-                    ),
-           string(
-                credentialsId: 'DOMAIN',
-                variable: 'DOMAIN'
-            )
+                    )
                 ]) {
-                    sh 'docker login $DOMAIN -u=$USER -p=$PASSWORD'
+                    sh 'docker login -u=$USER -p=$PASSWORD'
                 }
                     sh "make push"
             }
