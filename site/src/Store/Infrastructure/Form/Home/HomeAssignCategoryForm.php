@@ -25,6 +25,9 @@ class HomeAssignCategoryForm extends AbstractType
                     'choice_label' => 'label',
                     'choice_value' => 'value',
                 ]
+            )
+            ->add(
+                'description',
             );
     }
 
