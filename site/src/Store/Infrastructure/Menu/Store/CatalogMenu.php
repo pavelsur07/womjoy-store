@@ -27,31 +27,7 @@ class CatalogMenu
             ],
             // -  Меню с вложенными элементами -
             [
-                'name'=>'Капсулы',
-                'href' =>'#',
-                'is_dropdown' => true,
-                'is_list' => false,
-                'items'=> [
-                    [
-                        'name' => 'Street and Home',
-                        'href' => '/collections/kapsula-street-and-home-149',
-                    ],
-                    [
-                        'name' => 'Black & White',
-                        'href' => '/collections/kapsula-black-white-150',
-                    ],
-                    [
-                        'name' => 'Pion',
-                        'href' => '/collections/kapsula-pion-151',
-                    ],
-                    [
-                        'name' => 'New line',
-                        'href' => '/collections/kapsula-new-line-152',
-                    ],
-                ],
-            ],
-            [
-                'name'=>'Каталог',
+                'name'=>'Одежда',
                 'href' =>'/collections/zhenskaya-odezhda',
                 'is_dropdown' => true,
                 'is_list' => false,
@@ -99,6 +75,30 @@ class CatalogMenu
                     [
                         'name' => 'Шорты',
                         'href' => '/collections/zhenskie-shorty-114',
+                    ],
+                ],
+            ],
+            [
+                'name'=>'Капсулы',
+                'href' =>'#',
+                'is_dropdown' => true,
+                'is_list' => false,
+                'items'=> [
+                    [
+                        'name' => 'Street and Home',
+                        'href' => '/collections/kapsula-street-and-home-149',
+                    ],
+                    [
+                        'name' => 'Black & White',
+                        'href' => '/collections/kapsula-black-white-150',
+                    ],
+                    [
+                        'name' => 'Pion',
+                        'href' => '/collections/kapsula-pion-151',
+                    ],
+                    [
+                        'name' => 'New line',
+                        'href' => '/collections/kapsula-new-line-152',
                     ],
                 ],
             ],
