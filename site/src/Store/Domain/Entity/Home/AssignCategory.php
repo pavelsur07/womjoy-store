@@ -21,11 +21,21 @@ class AssignCategory
     #[ORM\ManyToOne(targetEntity: Category::class)]
     private Category $category;
 
-    public function __construct(Home $home, Category $category)
+
+    private string|null $name = null;
+
+    public function __construct(Home $home, Category $category, ?string $name = null)
     {
         $this->home = $home;
         $this->category = $category;
+        $this->name = $name;
     }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
 
     public function getId(): int
     {
