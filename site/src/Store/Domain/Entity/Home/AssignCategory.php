@@ -22,6 +22,7 @@ class AssignCategory
     private Category $category;
 
 
+    #[ORM\Column(type: 'string', nullable: true, options: ['default' => null])]
     private string|null $name = null;
 
     public function __construct(Home $home, Category $category, ?string $name = null)
