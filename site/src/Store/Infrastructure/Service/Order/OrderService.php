@@ -13,6 +13,7 @@ use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderPayment;
 use App\Store\Domain\Exception\StoreCartException;
+use App\Store\Domain\Exception\StoreOrderException;
 use App\Store\Infrastructure\Repository\OrderRepository;
 use App\Store\Infrastructure\Request\Api\CheckoutDto;
 use App\Store\Infrastructure\Service\Payment\PaymentProvider;
@@ -57,7 +58,7 @@ final readonly class OrderService
         );
 
         $payment = match ($checkoutDto->payment) {
-            OrderPayment::PAYMENT_METHOD_COD => OrderPayment::cod(),
+//            OrderPayment::PAYMENT_METHOD_COD => OrderPayment::cod(),
             OrderPayment::PAYMENT_METHOD_ONLINE => OrderPayment::online(
                 OrderPayment::PAYMENT_STATUS_WAITING,
                 $this->paymentProvider->getProviderName(),
@@ -65,6 +66,7 @@ final readonly class OrderService
             OrderPayment::PAYMENT_METHOD_YANDEX_SPLIT => OrderPayment::yandexSplit(
                 OrderPayment::PAYMENT_STATUS_WAITING
             ),
+            default => throw new StoreOrderException('Unsupported payment method'),
         };
 
         $order = new Order(

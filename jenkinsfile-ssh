@@ -12,36 +12,8 @@ pipeline {
 
     }
     stages {
-        stage("Init") {
-            steps {
-                 sh "make init"
-            }
-        }
-        stage("Down") {
-            steps {
-                sh "make docker-down-clear"
-            }
-        }
-        stage("Build") {
-            steps {
-                sh "make build"
-            }
-        }
-        stage("Push") {
-            steps {
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'DOCKER_HUB_AUTH',
-                        usernameVariable: 'USER',
-                        passwordVariable: 'PASSWORD'
-                    )
-                ]) {
-                    sh 'docker login -u=$USER -p=$PASSWORD'
-                }
-                    sh "make push"
-            }
-        }
-        stage("Deploy") {
+
+        stage("ssh") {
             when {
                 branch "master"
             }
@@ -63,17 +35,11 @@ pipeline {
                     string(credentialsId: 'PROD_GOOGLE_RECAPTCHA_SECRET', variable: 'GOOGLE_RECAPTCHA_SECRET')
                 ]) {
                     sshagent (credentials: ['PROD_AUTH']) {
-                        sh 'make deploy-ru'
+                        sh 'ssh-copy-id deploy@151.248.121.164'
                     }
                 }
             }
         }
     }
-    post {
-        always {
-            sh "make docker-down-clear || true"
-            sh 'make deploy-clean || true'
-            cleanWs()
-        }
-    }
+    
 }
