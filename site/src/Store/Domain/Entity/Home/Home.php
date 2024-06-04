@@ -50,7 +50,7 @@ class Home
         $this->categories = new ArrayCollection();
     }
 
-    public function assignCategory(Category $category): void
+    public function assignCategory(Category $category, ?string $name = null): void
     {
         foreach ($this->categories as $item) {
             if ($item->getCategory()->getId() === $category->getId()) {
@@ -58,7 +58,13 @@ class Home
             }
         }
 
-        $this->categories->add(new AssignCategory(home: $this, category: $category));
+        $this->categories->add(
+            new AssignCategory(
+                home: $this,
+                category: $category,
+                name: $name
+            )
+        );
     }
 
     public function revokeCategory(int $id): void

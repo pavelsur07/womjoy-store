@@ -27,7 +27,7 @@ class HomeAssignCategoryForm extends AbstractType
                 ]
             )
             ->add(
-                'description',
+                'name',
             );
     }
 

@@ -39,8 +39,9 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ category.category.name }}</h5>
-                                    <p class="card-text"> <strong>Id:</strong> {{ category.category.id }}</p>
+                                    <h5 class="card-title"><strong>Category: </strong>{{ category.category.name }}</h5>
+                                    <p class="card-text"> <strong>Name:</strong> {{ category.name }}</p>
+                                    {#<p class="card-text"> <strong>Id:</strong> {{ category.category.id }}</p>#}
                                     <p class="card-text"><small class="text-muted"><a href="{{ path('store.admin.home.categories.revoke', {'id': category.category.id}) }}" class="btn btn-sm">remove</a></small></p>
                                 </div>
                             </div>
