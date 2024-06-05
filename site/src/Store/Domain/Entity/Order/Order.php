@@ -41,6 +41,9 @@ class Order
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $updatedAt;
 
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private DateTimeImmutable|null $deliveredAt = null;
+
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $customerId;
 
@@ -349,6 +352,11 @@ class Order
         if ($this->orderNumber->isEmpty()) {
             $this->orderNumber = null;
         }
+    }
+
+    public function getDeliveredAt(): ?DateTimeImmutable
+    {
+        return $this->deliveredAt;
     }
 
     public function isStatusDelivered(): bool
