@@ -58,7 +58,7 @@ final readonly class OrderService
         );
 
         $payment = match ($checkoutDto->payment) {
-//            OrderPayment::PAYMENT_METHOD_COD => OrderPayment::cod(),
+            //            OrderPayment::PAYMENT_METHOD_COD => OrderPayment::cod(),
             OrderPayment::PAYMENT_METHOD_ONLINE => OrderPayment::online(
                 OrderPayment::PAYMENT_STATUS_WAITING,
                 $this->paymentProvider->getProviderName(),

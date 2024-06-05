@@ -118,7 +118,7 @@ readonly class Moysklad
 
                     // Метаданные статуса заказа
                     'state' => [
-                        'meta' => Meta::state('customerorder', 'af22ee11-1786-11ef-0a80-07e3001bb246')
+                        'meta' => Meta::state('customerorder', 'af22ee11-1786-11ef-0a80-07e3001bb246'),
                     ],
 
                     // Метаданные склада

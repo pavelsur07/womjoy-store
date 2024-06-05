@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Domain\Entity\Cart\ValueObject;
+
 use Doctrine\ORM\Mapping as ORM;
-use Webmozart\Assert\Assert;
 
 #[ORM\Embeddable]
 class CartCustomer
 {
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private null|string $email;
+    private ?string $email;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private null|string $name;
+    private ?string $name;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private null|string $address;
+    private ?string $address;
 
     public function getEmail(): ?string
     {

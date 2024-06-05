@@ -12,15 +12,16 @@ readonly class YandexPayFactory
     public function __construct(
         private ClientInterface $client,
         private SettingService $settingService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): YandexPay
     {
         $setting = $this->settingService->get();
 
         return new YandexPay(
-            $this->client, $setting->getYandexPay()->getApiKey(), $setting->getYandexPay()->isSandbox()
+            $this->client,
+            $setting->getYandexPay()->getApiKey(),
+            $setting->getYandexPay()->isSandbox()
         );
     }
 }

@@ -59,7 +59,6 @@ class Cart
         return $this->customer;
     }
 
-
     public function getPromoCode(): CartPromoCode
     {
         return $this->promoCode;
@@ -67,7 +66,6 @@ class Cart
 
     public function setPromoCode(CartPromoCode $promoCode): void
     {
-
         if ($promoCode->getCode() === null) {
             throw new StoreCartException('Promo code cannot be null.');
         }
@@ -192,11 +190,10 @@ class Cart
             return 0;
         }
 
-        $subtotal = round($this->getSubtotal() * $this->getPromoCode()->getValue(), 2)  ;
+        $subtotal = round($this->getSubtotal() * $this->getPromoCode()->getValue(), 2);
 
         return $subtotal/100;
     }
-
 
     public function getId(): int
     {

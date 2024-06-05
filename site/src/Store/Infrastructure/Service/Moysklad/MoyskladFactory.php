@@ -15,8 +15,7 @@ readonly class MoyskladFactory
         private OrderRepository $orderRepository,
         private VariantRepository $variantRepository,
         private SettingService $settingService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): Moysklad
     {

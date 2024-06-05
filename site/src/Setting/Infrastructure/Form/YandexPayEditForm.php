@@ -15,8 +15,7 @@ class YandexPayEditForm extends AbstractType
     {
         $builder
             ->add('apiKey', Type\TextType::class)
-            ->add('sandbox', Type\CheckboxType::class, ['required' => false])
-        ;
+            ->add('sandbox', Type\CheckboxType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

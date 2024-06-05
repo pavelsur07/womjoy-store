@@ -14,6 +14,7 @@ use App\Page\Infrastructure\Form\PageSeoEditForm;
 use App\Page\Infrastructure\Repository\PageRepository;
 use DateTimeImmutable;
 use DomainException;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,8 +79,8 @@ class PageController extends AbstractController
                 $flusher->flush();
 
                 $this->addFlash('success', 'Success new page created.');
-            } catch (\Exception $e) {
-                $this->addFlash('danger', 'Error - '. $e->getMessage());
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Error - ' . $e->getMessage());
             }
 
             return $this->redirectToRoute('page.admin.page.edit', ['id'=>$id]);

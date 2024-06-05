@@ -21,9 +21,8 @@ class AssignCategory
     #[ORM\ManyToOne(targetEntity: Category::class)]
     private Category $category;
 
-
     #[ORM\Column(type: 'string', nullable: true, options: ['default' => null])]
-    private string|null $name = null;
+    private ?string $name = null;
 
     public function __construct(Home $home, Category $category, ?string $name = null)
     {
@@ -36,7 +35,6 @@ class AssignCategory
     {
         return $this->name;
     }
-
 
     public function getId(): int
     {

@@ -79,7 +79,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $home->assignCategory(category: $categories->get((int)$data['category']->getValue()),name: $data['name']);
+            $home->assignCategory(category: $categories->get((int)$data['category']->getValue()), name: $data['name']);
             $this->flusher->flush();
             return $this->redirectToRoute('store.admin.home.categories');
         }

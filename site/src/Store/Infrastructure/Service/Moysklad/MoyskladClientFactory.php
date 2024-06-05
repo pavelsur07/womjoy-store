@@ -10,8 +10,7 @@ readonly class MoyskladClientFactory
 {
     public function __construct(
         private SettingService $settingService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): MoyskladClient
     {

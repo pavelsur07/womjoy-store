@@ -183,7 +183,7 @@ class OrderRepository implements OrderRepositoryInterface
             ->andWhere(
                 $expr->in('orders.payment.method', [
                     OrderPayment::PAYMENT_METHOD_ONLINE,
-                    OrderPayment::PAYMENT_METHOD_YANDEX_SPLIT
+                    OrderPayment::PAYMENT_METHOD_YANDEX_SPLIT,
                 ])
             );
 
