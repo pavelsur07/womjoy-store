@@ -48,9 +48,8 @@ final class CartTest extends TestCase
         );
 
         self::assertEquals($discount, $cart->getPromoCode()->getValue());
-        $promoCodeDiscount = round($subtotal * $cart->getPromoCode()->getValue(),2)/100;
+        $promoCodeDiscount = round($subtotal * $cart->getPromoCode()->getValue(), 2)/100;
         self::assertEquals($promoCodeDiscount, $cart->getPromoCodeDiscount());
-
     }
 
     public function testNotPromoCodeDiscount(): void
@@ -76,5 +75,24 @@ final class CartTest extends TestCase
         self::assertCount(1, $cart->getItems());
 
         self::assertEquals(0, $cart->getPromoCodeDiscount());
+    }
+
+    public function testCustomer(): void
+    {
+        $now = new DateTimeImmutable();
+        $cart = new Cart(
+            createdAt: $now,
+            customerId: null
+        );
+
+        self::assertNotNull($cart->getCustomer());
+
+        $cart->getCustomer()->setEmail($emil = 'email@email.com');
+        $cart->getCustomer()->setAddress($address = 'address@address.com');
+        $cart->getCustomer()->setName($name = 'name');
+
+        self::assertEquals($emil, $cart->getCustomer()->getEmail());
+        self::assertEquals($address, $cart->getCustomer()->getAddress());
+        self::assertEquals($name, $cart->getCustomer()->getName());
     }
 }
