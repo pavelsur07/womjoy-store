@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Domain\Entity\Cart;
 
+use App\Store\Domain\Entity\Cart\ValueObject\CartCustomer;
 use App\Store\Domain\Entity\Cart\ValueObject\CartPromoCode;
 use App\Store\Domain\Entity\Product\Variant;
 use App\Store\Domain\Exception\StoreCartException;
@@ -41,13 +42,23 @@ class Cart
     #[ORM\Embedded(class: CartPromoCode::class, columnPrefix: 'promo_code_')]
     private ?CartPromoCode $promoCode = null;
 
+    #[ORM\Embedded(class: CartCustomer::class, columnPrefix: 'customer_')]
+    private ?CartCustomer $customer = null;
+
     public function __construct(DateTimeImmutable $createdAt, ?int $customerId = null)
     {
         $this->createdAt = $createdAt;
         $this->updatedAt = $createdAt;
         $this->customerId = $customerId;
         $this->items = new ArrayCollection();
+        $this->customer = new CartCustomer();
     }
+
+    public function getCustomer(): ?CartCustomer
+    {
+        return $this->customer;
+    }
+
 
     public function getPromoCode(): CartPromoCode
     {
