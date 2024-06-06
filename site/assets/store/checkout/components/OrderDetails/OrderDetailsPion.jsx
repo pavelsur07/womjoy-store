@@ -5,6 +5,8 @@ const OrderDetailsPion = ({ onClickCheckout }) => {
     const cart = useSelector((state) => state.cart);
 
     const handleCheckoutClick = () => {
+        ym(67287694,'reachGoal','chek-pay')
+
         if (onClickCheckout) {
             onClickCheckout()
         }
