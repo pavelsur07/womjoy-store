@@ -8,6 +8,7 @@ use App\Store\Domain\Entity\Order\ValueObject\ClientId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderAmoCRM;
 use App\Store\Domain\Entity\Order\ValueObject\OrderCustomer;
 use App\Store\Domain\Entity\Order\ValueObject\OrderDelivery;
+use App\Store\Domain\Entity\Order\ValueObject\OrderEmailTrigger;
 use App\Store\Domain\Entity\Order\ValueObject\OrderId;
 use App\Store\Domain\Entity\Order\ValueObject\OrderItemPrice;
 use App\Store\Domain\Entity\Order\ValueObject\OrderMoysklad;
@@ -93,6 +94,9 @@ class Order
     #[ORM\Embedded(class: OrderMoysklad::class, columnPrefix: 'moysklad_')]
     private OrderMoysklad $moysklad;
 
+    #[ORM\Embedded(class: OrderEmailTrigger::class, columnPrefix: 'email_')]
+    private ?OrderEmailTrigger $emailTrigger = null;
+
     public function __construct(
         OrderCustomer $customer,
         OrderDelivery $delivery,
@@ -115,6 +119,12 @@ class Order
 
         $this->amoCRM = new OrderAmoCRM();
         $this->moysklad = new OrderMoysklad();
+        $this->emailTrigger = new OrderEmailTrigger();
+    }
+
+    public function getEmailTrigger(): ?OrderEmailTrigger
+    {
+        return $this->emailTrigger;
     }
 
     public function addItem(Variant $variant, int $quantity): void
