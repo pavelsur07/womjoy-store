@@ -22,6 +22,21 @@ class CartCustomer
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $address;
 
+    public function complement(?string $name = null, ?string $email = null, ?string $phone = null): void
+    {
+        if ($name) {
+            $this->setName($name);
+        }
+
+        if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->setEmail($email);
+        }
+
+        if ($phone) {
+            $this->setPhone($phone);
+        }
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;

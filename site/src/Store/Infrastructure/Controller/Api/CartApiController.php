@@ -10,11 +10,13 @@ use App\Store\Domain\Entity\Cart\Cart;
 use App\Store\Domain\Entity\Cart\CartItem;
 use App\Store\Domain\Entity\Product\Image;
 use App\Store\Infrastructure\Repository\VariantRepository;
+use App\Store\Infrastructure\Request\Api\CartCustomer;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use DomainException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -22,14 +24,41 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class CartApiController extends AbstractController
 {
     public function __construct(
+        private readonly CartService $cartService,
         private readonly UrlGeneratorInterface $generator,
         private readonly ThumbnailService $thumbnails
-    ) {}
+    ) {
+    }
+
+    #[Route(path: '/customer', name: '.customer', methods: ['GEt'])]
+    public function customer(): Response
+    {
+        $cart = $this->cartService->getCurrentCart();
+
+        return $this->json($cart->getCustomer());
+    }
+
+    #[Route(path: '/customer', name: '.customer_update', methods: ['POST'])]
+    public function customerUpdate(#[MapRequestPayload] CartCustomer $cartCustomer, Flusher $flusher): Response
+    {
+        $cart = $this->cartService->getCurrentCart();
+
+        // дополняем данные о покупателе
+        $cart->getCustomer()->complement(
+            $cartCustomer->name,
+            $cartCustomer->email,
+            $cartCustomer->phone,
+        );
+
+        $flusher->flush();
+
+        return $this->json($cart->getCustomer());
+    }
 
     #[Route(path: '/', name: '.get', methods: ['GET'])]
-    public function get(CartService $service): Response
+    public function get(): Response
     {
-        $cart = $service->getCurrentCart();
+        $cart = $this->cartService->getCurrentCart();
 
         return $this->json(
             [
@@ -48,13 +77,13 @@ class CartApiController extends AbstractController
     }
 
     #[Route(path: '/add', name: '.add', methods: ['POST'])]
-    public function add(Request $request, CartService $service, VariantRepository $variants, Flusher $flusher): Response
+    public function add(Request $request, VariantRepository $variants, Flusher $flusher): Response
     {
         $data = $request->toArray();
         $variantId = (int)$data['productId'];
         $quantity = (int)$data['quantity'];
 
-        $cart = $service->getCurrentCart();
+        $cart = $this->cartService->getCurrentCart();
 
         try {
             $cart->add(variant: $variants->get($variantId), quantity: $quantity);
@@ -82,13 +111,13 @@ class CartApiController extends AbstractController
     }
 
     #[Route(path: '/quantity', name: '.quantity', methods: ['POST'])]
-    public function quantity(Request $request, CartService $service, Flusher $flusher): Response
+    public function quantity(Request $request, Flusher $flusher): Response
     {
         $data = $request->toArray();
         $variantId = (int)$data['productId'];
         $quantity = (int)$data['quantity'];
 
-        $cart = $service->getCurrentCart();
+        $cart = $this->cartService->getCurrentCart();
 
         try {
             $cart->setQuantity($variantId, $quantity);
@@ -117,11 +146,11 @@ class CartApiController extends AbstractController
     }
 
     #[Route(path: '/remove', name: '.remove', methods: ['POST'])]
-    public function remove(Request $request, CartService $service, Flusher $flusher): Response
+    public function remove(Request $request, Flusher $flusher): Response
     {
         $data = $request->toArray();
 
-        $cart = $service->getCurrentCart();
+        $cart = $this->cartService->getCurrentCart();
         $cart->remove($data['productId']);
 
         $flusher->flush();
@@ -143,9 +172,9 @@ class CartApiController extends AbstractController
     }
 
     #[Route(path: '/clear', name: '.clear', methods: ['POST'])]
-    public function clear(CartService $service, Flusher $flusher): Response
+    public function clear(Flusher $flusher): Response
     {
-        $cart = $service->getCurrentCart();
+        $cart = $this->cartService->getCurrentCart();
         $cart->clear();
 
         $flusher->flush();

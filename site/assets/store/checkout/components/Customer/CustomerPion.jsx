@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import InputMask from 'react-input-mask';
 import {useDispatch, useSelector} from "react-redux";
 import {setCustomer} from "../../../redux/actions/checkout";
@@ -6,6 +6,7 @@ import {setCustomer} from "../../../redux/actions/checkout";
 const CustomerPion = ({ heading, errors }) => {
     const dispatch = useDispatch();
     const customer = useSelector((state) => state.checkout.customer);
+
 
     const handleInputChange = (field, value) => {
         let values = { ...customer, [field]: value };

@@ -8,6 +8,35 @@ export const fetchCartRequest = () => {
     })
 }
 
+export const getCartCustomer = () => {
+  let init = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  };
+
+  return fetch('/api/v1/cart/customer', init)
+    .then((response) => response.json())
+    .catch((err) => {
+      // Обработка ошибки
+      console.error(err)
+    });
+}
+
+export const updateCartCustomer = (name, email, phone) => {
+  let init = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, phone })
+  };
+
+  return fetch('/api/v1/cart/customer', init)
+    .then((response) => response.json())
+    .catch((err) => {
+      // Обработка ошибки
+      console.error(err)
+  });
+}
+
 export const addToCartRequest = (productId, quantity) => {
   // Доступные события:
   //

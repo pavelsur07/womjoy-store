@@ -1,5 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import {execCheckoutRequest} from '../api/checkout'
+import debounce from "lodash.debounce";
+import {updateCartCustomer} from "../api/cart";
 
 export const checkout = () => (dispatch, getState) => {
     const { checkout } = getState()
@@ -43,8 +45,14 @@ export const checkout = () => (dispatch, getState) => {
         })
 }
 
+const updateCartCustomerDebounce = debounce((name, email, phone) => {
+    updateCartCustomer(name, email, phone).finally();
+}, 300);
+
 export const setCustomer =
     (name, phone, email, comment) => (dispatch) => {
+        updateCartCustomerDebounce(name, email, phone);
+
         dispatch({
             type: types.SET_CUSTOMER,
             customer: {

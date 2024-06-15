@@ -1,10 +1,13 @@
 import * as types from '../constants/ActionTypes'
+import {getCartCustomer} from "../api/cart";
+
+const defaultCartCustomer = await getCartCustomer();
 
 const defaultState = {
     customer: {
-        name: '',
-        phone: '',
-        email: '',
+        name: defaultCartCustomer.name,
+        phone: defaultCartCustomer.phone,
+        email: defaultCartCustomer.email,
         comment: '',
     },
     delivery: {
