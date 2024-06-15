@@ -42,7 +42,7 @@ class Order
     private DateTimeImmutable $updatedAt;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
-    private DateTimeImmutable|null $completedAt = null;
+    private ?DateTimeImmutable $completedAt = null;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private ?int $customerId;
@@ -358,7 +358,6 @@ class Order
     {
         return $this->completedAt;
     }
-
 
     public function isStatusDelivered(): bool
     {

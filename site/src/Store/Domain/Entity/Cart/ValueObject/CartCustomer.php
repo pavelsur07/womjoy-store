@@ -14,6 +14,9 @@ class CartCustomer
     private ?string $email;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $phone;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $name;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -28,6 +31,16 @@ class CartCustomer
     {
         Assert::email($email);
         $this->email = $email;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): void
+    {
+        $this->phone = $phone;
     }
 
     public function getName(): ?string

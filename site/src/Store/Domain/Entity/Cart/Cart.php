@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Store\Domain\Entity\Cart;
 
 use App\Store\Domain\Entity\Cart\ValueObject\CartCustomer;
+use App\Store\Domain\Entity\Cart\ValueObject\CartEmailTrigger;
 use App\Store\Domain\Entity\Cart\ValueObject\CartPromoCode;
 use App\Store\Domain\Entity\Product\Variant;
 use App\Store\Domain\Exception\StoreCartException;
@@ -45,6 +46,9 @@ class Cart
     #[ORM\Embedded(class: CartCustomer::class, columnPrefix: 'customer_')]
     private ?CartCustomer $customer = null;
 
+    #[ORM\Embedded(class: CartEmailTrigger::class, columnPrefix: 'email_trigger_')]
+    private ?CartEmailTrigger $emailTrigger = null;
+
     public function __construct(DateTimeImmutable $createdAt, ?int $customerId = null)
     {
         $this->createdAt = $createdAt;
@@ -52,6 +56,12 @@ class Cart
         $this->customerId = $customerId;
         $this->items = new ArrayCollection();
         $this->customer = new CartCustomer();
+        $this->emailTrigger = new CartEmailTrigger();
+    }
+
+    public function getEmailTrigger(): ?CartEmailTrigger
+    {
+        return $this->emailTrigger;
     }
 
     public function getCustomer(): ?CartCustomer
