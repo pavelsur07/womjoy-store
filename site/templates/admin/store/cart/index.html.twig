@@ -20,13 +20,13 @@
         </div>
     </div>
 
-    <div class="card card-body">
+    <div class="card card-body mt-3">
         <table class="table">
             <thead>
             <tr>
                 <th class="w-1">Id</th>
                 <th class="w-1">Created At<br>Updated At </th>
-                <th>Image</th>
+                <th>Customer</th>
                 <th>Name</th>
                 <th class="w-25">Actions</th>
             </tr>
@@ -39,9 +39,9 @@
                         {{ cart.createdAt | date('Y-m-d') }} <br>
                         {{ cart.updatedAt | date('Y-m-d') }}
                     </td>
-                    <td>{{ cart.customerId }}</td>
+                    <td>{{ cart.customer.email }}</td>
+                    <td>{{ cart.customer.name }}</td>
                     <td><a href="{{ path('store.cart.admin.show', {'id': cart.id}) }}" class="btn btn-sm rounded-2">show</a></td>
-                    <td></td>
                 </tr>
             {% else %}
                 <tr>
