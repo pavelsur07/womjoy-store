@@ -22,7 +22,7 @@ class CartController extends AbstractController
         return $this->render(
             'admin/store/cart/index.html.twig',
             [
-                'pagination' => $carts->getAll(
+                'pagination' => $carts->getAllCustomerEmailNotNull(
                     page: $request->query->getInt('page', 1),
                     size: $request->query->getInt('size', self::PER_PAGE),
                 ),

@@ -42,6 +42,24 @@ class CartRepository
         return $this->paginator->paginate($qb, $page, $size);
     }
 
+    public function getAllCustomerEmailNotNull(
+        int $page,
+        int $size,
+    ): PaginationInterface {
+        // return $this->repo->findAll();
+        $qb = $this->em->createQueryBuilder()
+            ->select('p')
+            ->where('p.customer.email IS NOT NULL')
+            ->from(Cart::class, 'p');
+
+        $qb->orderBy('p.id', 'ASC');
+
+        $qb->getQuery();
+
+        return $this->paginator->paginate($qb, $page, $size);
+    }
+
+
     public function getOldCarts(): array
     {
         $date = new DateTimeImmutable('-60 days');
