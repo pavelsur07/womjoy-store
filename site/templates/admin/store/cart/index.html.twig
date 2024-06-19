@@ -26,8 +26,10 @@
             <tr>
                 <th class="w-1">Id</th>
                 <th class="w-1">Created At<br>Updated At </th>
-                <th>Customer</th>
+                <th>Email</th>
+                <th>Phone</th>
                 <th>Name</th>
+                <th>Email <br>trigger</th>
                 <th class="w-25">Actions</th>
             </tr>
             </thead>
@@ -40,7 +42,9 @@
                         {{ cart.updatedAt | date('Y-m-d') }}
                     </td>
                     <td>{{ cart.customer.email }}</td>
+                    <td>{{ cart.customer.phone }}</td>
                     <td>{{ cart.customer.name }}</td>
+                    <td> --- </td>
                     <td><a href="{{ path('store.cart.admin.show', {'id': cart.id}) }}" class="btn btn-sm rounded-2">show</a></td>
                 </tr>
             {% else %}
