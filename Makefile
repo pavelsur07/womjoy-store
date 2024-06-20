@@ -201,12 +201,12 @@ deploy-ru:
 
 
 #---------------------  Deploy Novowear PROD ----------------------------------
-deploy-novowear-ru:
+deploy-novowear:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'docker network create --driver=overlay traefik-public || true'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'rm -rf site_${BUILD_NUMBER}'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'mkdir site_${BUILD_NUMBER}'
 
-	envsubst < docker-compose-nw-production-ru.yml > docker-compose-production-env.yml
+	envsubst < docker-compose-production-novowear.yml > docker-compose-production-env.yml
 	scp -o StrictHostKeyChecking=no -P ${PORT} docker-compose-production-env.yml deploy@${HOST}:site_${BUILD_NUMBER}/docker-compose.yml
 	rm -f docker-compose-production-env.yml
 

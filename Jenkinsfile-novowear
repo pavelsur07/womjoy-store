@@ -1,0 +1,79 @@
+pipeline {
+    agent any
+    options {
+        timestamps()
+    }
+    environment {
+        REGISTRY = credentials('REGISTRY')
+        IMAGE_TAG = sh(
+            returnStdout: true,
+            script: "echo '${env.BUILD_TAG}' | sed 's/%2F/-/g'"
+        ).trim()
+
+    }
+    stages {
+        stage("Init") {
+            steps {
+                 sh "make init"
+            }
+        }
+        stage("Down") {
+            steps {
+                sh "make docker-down-clear"
+            }
+        }
+        stage("Build") {
+            steps {
+                sh "make build"
+            }
+        }
+        stage("Push") {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'DOCKER_HUB_AUTH',
+                        usernameVariable: 'USER',
+                        passwordVariable: 'PASSWORD'
+                    )
+                ]) {
+                    sh 'docker login -u=$USER -p=$PASSWORD'
+                }
+                    sh "make push"
+            }
+        }
+        stage("Deploy") {
+            when {
+                branch "master"
+            }
+            steps {
+                withCredentials([
+                    string(credentialsId: 'PROD_HOST', variable: 'HOST'),
+                    string(credentialsId: 'PROD_PORT', variable: 'PORT'),
+                    string(credentialsId: 'PROD_APP_SECRET', variable: 'APP_SECRET'),
+                    string(credentialsId: 'PROD_SENTRY_DSN', variable: 'SENTRY_DSN'),
+                    string(credentialsId: 'PROD_SITE_MAIL_PASSWORD', variable: 'SITE_MAIL_PASSWORD'),
+                    string(credentialsId: 'PROD_DB_PASSWORD', variable: 'DB_PASSWORD'),
+                    string(credentialsId: 'PROD_S3_ACCESS_ID', variable: 'SITE_S3_ACCESS_ID'),
+                    string(credentialsId: 'PROD_S3_ACCESS_SECRET', variable: 'SITE_S3_SECRET'),
+                    string(credentialsId: 'PROD_REDIS_PASSWORD', variable: 'REDIS_PASSWORD'),
+                    string(credentialsId: 'PROD_SITE_ALFABANK_USERNAME', variable: 'SITE_ALFABANK_USERNAME'),
+                    string(credentialsId: 'PROD_SITE_ALFABANK_PASSWORD', variable: 'SITE_ALFABANK_PASSWORD'),
+                    string(credentialsId: 'PROD_SITE_YANDEX_PAY_API_KEY', variable: 'SITE_YANDEX_PAY_API_KEY'),
+                    string(credentialsId: 'PROD_GOOGLE_RECAPTCHA_SITE_KEY', variable: 'GOOGLE_RECAPTCHA_SITE_KEY'),
+                    string(credentialsId: 'PROD_GOOGLE_RECAPTCHA_SECRET', variable: 'GOOGLE_RECAPTCHA_SECRET')
+                ]) {
+                    sshagent (credentials: ['PROD_AUTH']) {
+                        sh 'make deploy-novowear'
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            sh "make docker-down-clear || true"
+            sh 'make deploy-clean || true'
+            cleanWs()
+        }
+    }
+}
