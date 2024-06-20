@@ -53,11 +53,14 @@ services:
     deploy:
       placement:
         constraints: [ node.role == manager ]
-        
+  
   imgproxy:
     image: darthsim/imgproxy:latest
     environment:
       IMGPROXY_MAX_SRC_RESOLUTION: 20
+    #      IMGPROXY_BASE_URL: 'http://imgproxy.novowear.ru'
+    #      IMGPROXY_KEY: 'hex-encoded-key'
+    #      IMGPROXY_SALT: 'hex-encoded-salt'
     networks:
       - traefik-public
       - default
@@ -128,8 +131,6 @@ services:
       ALFABANK_API: 'https://payment.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
-      YANDEX_PAY_SANDBOX: false
-      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
       GOOGLE_RECAPTCHA_SITE_KEY: ${GOOGLE_RECAPTCHA_SITE_KEY}
       GOOGLE_RECAPTCHA_SECRET: ${GOOGLE_RECAPTCHA_SECRET}
     deploy:
@@ -239,6 +240,41 @@ services:
         - swarm.cronjob.skip-running=true
       restart_policy:
         condition: none
+  
+  site-product-update-search-data:
+    image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${APP_SECRET}
+      SITE_LOCALE: 'ru'
+      SITE_URL: 'https://novowear.ru'
+      DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
+      MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
+      SENTRY_DSN: ${SENTRY_DSN}
+      # TODO: Remove after installing CS Fixer for PHP 8.2
+      PHP_CS_FIXER_IGNORE_ENV: 1
+      AWS_S3_ACCESS_ID: ${SITE_S3_ACCESS_ID}
+      AWS_S3_ACCESS_SECRET: ${SITE_S3_SECRET}
+      AWS_S3_DEFAULT_REGION: 'ru-1'
+      S3_ENDPOINT: 'https://s3.timeweb.com'
+      S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
+      STORAGE_BASE_URL: 'https://novowear.ru/images/s3'
+      CACHE_PATH_IMAGE: '/cache'
+      REDIS_HOST: site-redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      IMGPROXY_BASE_URL: 'http://imgproxy.novowear.ru'
+      IMGPROXY_KEY: 'hex-encoded-key'
+      IMGPROXY_SALT: 'hex-encoded-salt'
+    command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console product:update-search-data --no-interaction'
+    deploy:
+      labels:
+        - swarm.cronjob.enable=true
+        - swarm.cronjob.schedule=0 * * * *
+        - swarm.cronjob.skip-running=true
+      restart_policy:
+        condition: none
+  
   site-clear-old-cart:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
@@ -265,10 +301,6 @@ services:
       IMGPROXY_BASE_URL: 'http://imgproxy.novowear.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
-      ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
-      ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
-      YANDEX_PAY_SANDBOX: false
-      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console cart:clear --no-interaction'
     deploy:
       labels:
@@ -277,7 +309,8 @@ services:
         - swarm.cronjob.skip-running=true
       restart_policy:
         condition: none
-  site-yandex-pay:check:
+  
+  site-check-status:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
       APP_ENV: prod
@@ -303,18 +336,15 @@ services:
       IMGPROXY_BASE_URL: 'http://imgproxy.novowear.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
-      ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
-      ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
-      YANDEX_PAY_SANDBOX: false
-      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
-    command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console store:yandex-pay:check-status --no-interaction'
+    command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console store:alfa:check-status --no-interaction'
     deploy:
       labels:
         - swarm.cronjob.enable=true
-        - swarm.cronjob.schedule=0 * * * *
+        - swarm.cronjob.schedule=*/5 * * * *
         - swarm.cronjob.skip-running=true
       restart_policy:
         condition: none
+  
   site-async:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
@@ -345,8 +375,6 @@ services:
       ALFABANK_API: 'https://payment.alfabank.ru'
       ALFABANK_USERNAME: ${SITE_ALFABANK_USERNAME}
       ALFABANK_PASSWORD: ${SITE_ALFABANK_PASSWORD}
-      YANDEX_PAY_SANDBOX: false
-      YANDEX_PAY_API_KEY: ${SITE_YANDEX_PAY_API_KEY}
     command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && php bin/console messenger:consume async -vv"
     deploy:
       mode: replicated
@@ -384,29 +412,7 @@ services:
     deploy:
       placement:
         constraints: [ node.role == manager ]
-
-#  deprecated
-#  storage-nginx:
-#    image: ${REGISTRY}/storage-nginx:${IMAGE_TAG}
-#    networks:
-#      - traefik-public
-#      - default
-#    labels:
-#      - traefik.enable=true
-#      - traefik.docker.network=traefik-public
-#      - traefik.http.routers.storage.rule=Host(`cdn.novowear.ru`) || Host(`www.cdn.novowear.ru`)
-#      - traefik.http.services.storage.loadBalancer.server.port=80
-#      - traefik.http.middlewares.storage-redirect.redirectRegex.regex=^(https?://)www.cdn.novowear.ru/(.*)$$
-#      - traefik.http.middlewares.storage-redirect.redirectRegex.replacement=$${1}cdn.novowear.ru/$${2}
-#      - traefik.http.middlewares.storage-redirect.redirectRegex.permanent=true
-#      - traefik.http.routers.storage.middlewares=frontend-redirect,secure-headers
-#      - traefik.http.routers.storage.entryPoints=https
-#      - traefik.http.routers.storage.tls=true
-#      - traefik.http.routers.storage.tls.certResolver=letsEncrypt
-#    deploy:
-#      placement:
-#        constraints: [ node.role == manager ]
-
+        
 volumes:
   site-postgres:
   traefik-public-certs:
