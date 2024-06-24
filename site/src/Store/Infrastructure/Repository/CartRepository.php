@@ -47,16 +47,43 @@ class CartRepository
         int $size,
     ): PaginationInterface {
         // return $this->repo->findAll();
+        $numberTrigger = null;
+
         $qb = $this->em->createQueryBuilder()
             ->select('p')
             ->where('p.customer.email IS NOT NULL')
-            ->from(Cart::class, 'p');
+            ->where('p.emailTrigger.errorMessage IS  NULL');
 
+
+        if ( $numberTrigger === null ) {
+            $qb->where('p.emailTrigger.value IS NULL');
+        } else {
+            $qb->where('p.emailTrigger.value = :numberTrigger');
+            $qb->setParameter('numberTrigger', $numberTrigger);
+        }
+
+        $qb->from(Cart::class, 'p');
         $qb->orderBy('p.id', 'ASC');
-
         $qb->getQuery();
 
         return $this->paginator->paginate($qb, $page, $size);
+    }
+
+    public function getAllSendEmailTrigger(string|null $numberTrigger = null): array
+    {
+
+        $date = new DateTimeImmutable('-1 days');
+
+        $result = $this->repo->createQueryBuilder('c')
+            ->where('p.customer.email IS NOT NULL')
+            ->where('p.emailTrigger.errorMessage IS  NULL')
+            ->where('c.updatedAt < :date')
+            ->setParameter('date', $date)
+            ->getQuery();
+
+            $result->getResult();
+
+        return $result;
     }
 
 

@@ -44,7 +44,7 @@
                     <td>{{ cart.customer.email }}</td>
                     <td>{{ cart.customer.phone }}</td>
                     <td>{{ cart.customer.name }}</td>
-                    <td> --- </td>
+                    <td> {{ cart.emailTrigger.value }}  {% if cart.emailTrigger.value is null %} null {% endif %}</td>
                     <td><a href="{{ path('store.cart.admin.show', {'id': cart.id}) }}" class="btn btn-sm rounded-2">show</a></td>
                 </tr>
             {% else %}

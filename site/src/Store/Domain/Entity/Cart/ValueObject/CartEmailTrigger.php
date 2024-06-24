@@ -19,6 +19,11 @@ class CartEmailTrigger
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $errorMessage = null;
 
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
     public function isFirstSendEmail(): bool
     {
         if ($this->value === self::FIRST) {
