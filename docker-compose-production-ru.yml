@@ -103,7 +103,7 @@ services:
   site-php-fpm:
     image: ${REGISTRY}/site-php-fpm:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       TEMPLATE_NAME: 'pion'
@@ -144,7 +144,7 @@ services:
   site-migration:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
@@ -178,7 +178,7 @@ services:
   site-generate-site-map:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
@@ -213,7 +213,7 @@ services:
   site-generate-yandex-fid:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
@@ -248,7 +248,7 @@ services:
   site-product-update-search-data:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
@@ -283,7 +283,7 @@ services:
   site-clear-old-cart:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
@@ -318,7 +318,7 @@ services:
   site-check-status:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
@@ -353,7 +353,7 @@ services:
   site-async:
     image: ${REGISTRY}/site-php-cli:${IMAGE_TAG}
     environment:
-      APP_ENV: prod
+      APP_ENV: dev
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
