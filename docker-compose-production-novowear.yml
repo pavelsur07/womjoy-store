@@ -106,7 +106,7 @@ services:
       APP_ENV: prod
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
-      TEMPLATE_NAME: 'default'
+      TEMPLATE_NAME: 'pion'
       SITE_LOCALE: 'ru'
       SITE_URL: 'https://novowear.ru'
       MAILER_DSN: smtp://info@novowear.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
