@@ -88,18 +88,18 @@ class CatalogMenu
                         'name' => 'Street and Home',
                         'href' => '/collections/kapsula-street-and-home-149',
                     ],
-                    [
+                   /* [
                         'name' => 'Black & White',
                         'href' => '/collections/kapsula-black-white-150',
-                    ],
+                    ],*/
                     [
                         'name' => 'Pion',
                         'href' => '/collections/kapsula-pion-151',
                     ],
-                    [
+                  /*  [
                         'name' => 'New line',
                         'href' => '/collections/kapsula-new-line-152',
-                    ],
+                    ],*/
                 ],
             ],
             // -  Меню список -
