@@ -174,7 +174,7 @@ services:
       MINIO_ROOT_USER: storage_app
       MINIO_ROOT_PASSWORD: secret_key
     ports:
-      - "9000:9000"
+      - "9050:9000"
       - "9090:9090"
     volumes:
       - site-storage:/data
