@@ -125,7 +125,7 @@ services:
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'https://imgproxy.joymania.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.joymania.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
       PAYMENT_PROVIDER_NAME: 'alfa'
