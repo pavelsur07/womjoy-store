@@ -1,0 +1,16 @@
+{% extends 'pion/store/base.html.twig' %}
+
+{% block body %}
+    <div class="container-xxl">
+        <div class="breadcrumbs">
+            <a href="{{ path('home') }}" class="breadcrumbs__item">Главная</a>
+            <div class="breadcrumbs__current">404</div>
+        </div>
+
+        <section class="catalog d-flex flex-column align-items-center py-9">
+            <div class="w-title-404">404</div>
+            <p class="mb-5">Вы попали на несуществующую страницу</p>
+            <a href="{{ path('home') }}" class="w-primary-btn">На главную</a>
+        </section>
+    </div>
+{% endblock %}
