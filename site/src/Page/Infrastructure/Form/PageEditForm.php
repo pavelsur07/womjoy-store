@@ -19,6 +19,7 @@ class PageEditForm extends AbstractType
                 'value',
                 Type\TextareaType::class,
                 [
+                    'required' => false,
                     'attr' => ['rows' => 15, 'id' =>'id="tinymce-mytextarea"'],
                 ]
             );
