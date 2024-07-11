@@ -5,7 +5,7 @@
     <meta property="og:title" content="{{ metaData.title }}"/>
     <meta property="og:description" content="{{ metaData.description }} "/>
     <meta property="og:image" content="{{ asset('./pion/img/joymaina.jpg') }}"/> {# Необходимо добавить ссылку на хранилище статики #}
-    <meta property="og:site_name" content="WOMJOY" />
+    <meta property="og:site_name" content={{ metaData.site_name }} />
 {% endblock %}
 
 {% block linkCanonical %}

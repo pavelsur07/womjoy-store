@@ -46,6 +46,7 @@ class BaseController extends AbstractController
         'email'=> null,
         'company' => null,
         'catalog_menu' => null,
+        'site_name' => '',
     ];
 
     public string $template = 'pion';
@@ -93,6 +94,7 @@ class BaseController extends AbstractController
         $this->metaData['phone'] = $setting->getPhone();
         $this->metaData['email'] = $setting->getEmail();
         $this->metaData['company'] = $setting->getCompany() ? $setting->getCompany()->getName() : '';
+        $this->metaData['site_name'] = $setting->getStoreName();
         $this->metaData['jsonLdCompany'] = JsonLdGenerator::generate(
             JsonLdCompany::get(
                 name: $setting->getCompany() ? $setting->getCompany()->getName() : '',
