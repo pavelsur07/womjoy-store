@@ -37,7 +37,7 @@
                                     {% set number=1 %}
                                     {% for image in product.images %}
                                         <div class="i-card__slide swiper-slide">
-                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 900, 1200 ) }}" alt="{{ product.name }} image N {{ number }} " width="598" height="798">
+                                            <img itemprop="image" src="{{ thumbnail_path(image.path, image.name~'.webp', 1400, 2100 ) }}" alt="{{ product.name }} image N {{ number }} " width="598" height="798">
                                         </div>
                                         {% set number=number+1 %}
                                     {% endfor %}
