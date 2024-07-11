@@ -54,8 +54,7 @@ class CartRepository
             ->where('p.customer.email IS NOT NULL')
             ->where('p.emailTrigger.errorMessage IS  NULL');
 
-
-        if ( $numberTrigger === null ) {
+        if ($numberTrigger === null) {
             $qb->where('p.emailTrigger.value IS NULL');
         } else {
             $qb->where('p.emailTrigger.value = :numberTrigger');
@@ -69,9 +68,8 @@ class CartRepository
         return $this->paginator->paginate($qb, $page, $size);
     }
 
-    public function getAllSendEmailTrigger(string|null $numberTrigger = null): array
+    public function getAllSendEmailTrigger(?string $numberTrigger = null): array
     {
-
         $date = new DateTimeImmutable('-1 days');
 
         $result = $this->repo->createQueryBuilder('c')
@@ -81,11 +79,10 @@ class CartRepository
             ->setParameter('date', $date)
             ->getQuery();
 
-            $result->getResult();
+        $result->getResult();
 
         return $result;
     }
-
 
     public function getOldCarts(): array
     {

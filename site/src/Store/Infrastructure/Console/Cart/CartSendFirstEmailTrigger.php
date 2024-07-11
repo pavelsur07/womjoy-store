@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Infrastructure\Console\Cart;
+
 use App\Common\Infrastructure\Doctrine\Flusher;
 use App\Store\Infrastructure\Repository\CartRepository;
 use Exception;
@@ -30,13 +33,10 @@ class CartSendFirstEmailTrigger extends Command
         $io = new SymfonyStyle($input, $output);
 
         try {
-
             /*foreach ($this->carts->getOldCarts() as $cart) {
                 $this->carts->remove($cart);
             }
             $this->flusher->flush();*/
-
-
         } catch (Exception $e) {
             return Command::FAILURE;
         }

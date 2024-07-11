@@ -27,8 +27,7 @@ class CartApiController extends AbstractController
         private readonly CartService $cartService,
         private readonly UrlGeneratorInterface $generator,
         private readonly ThumbnailService $thumbnails
-    ) {
-    }
+    ) {}
 
     #[Route(path: '/customer', name: '.customer', methods: ['GEt'])]
     public function customer(): Response
