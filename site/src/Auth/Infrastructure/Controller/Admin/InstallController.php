@@ -70,7 +70,7 @@ class InstallController extends BaseController
 
             $user->setPassword($hashed);
 
-            $user->getRoles(['ROLE_ADMIN']);
+            $user->setRoles(['ROLE_ADMIN']);
 
             $users->save($user, true);
             $this->addFlash('success', 'Registration new user.');
