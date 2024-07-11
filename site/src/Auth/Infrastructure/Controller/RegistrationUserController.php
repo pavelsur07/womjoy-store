@@ -83,4 +83,5 @@ class RegistrationUserController extends BaseController
             ]
         );
     }
+
 }
