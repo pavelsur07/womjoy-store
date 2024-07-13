@@ -23,6 +23,7 @@ class HomeEditForm extends AbstractType
                 Type\TextareaType::class,
                 [
                     'attr' => ['rows' => 8],
+                    'required'=> false,
                 ]
             )
             ->add('isActiveBestseller', Type\CheckboxType::class, ['required' => false])
