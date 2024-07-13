@@ -87,15 +87,17 @@
                             </div>
                         </div>
 
+                        {% if product.variants.count > 0 %}
                         <div class="i-card__size_items">
                             {% for variant in product.variants %}
-                                {% if variant.canBeAddToCart or product.isPreSale %}
+
+                                {#{% if variant.canBeAddToCart or product.isPreSale %}
                                     <label class="i-card__size_item">
                                         <input type="radio" name="card-size" value="{{ variant.id }}" {{ loop.first ? 'checked' : '' }} hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
-                                            {#<span>40-42</span>#}
-                                            {#<span>{{ variant.quantity }} - {{ variant.id }}</span>#}
+                                            #}{#<span>40-42</span>#}{#
+                                            #}{#<span>{{ variant.quantity }} - {{ variant.id }}</span>#}{#
                                         </span>
                                     </label>
                                 {% else %}
@@ -103,43 +105,51 @@
                                         <input type="radio" name="card-size" hidden>
                                         <span class="i-card__size_visual">
                                             {{ variant.value }}
-									         {#  <span>40-42</span>#}
+									         #}{#  <span>40-42</span>#}{#
 								        </span>
                                     </label>
-                                {% endif %}
+                                {% endif %}#}
 
-                            {% endfor %}
+                            <label class="i-card__size_item">
+                                <input type="radio" name="card-size" value="{{ variant.id }}" data-quantity={{ variant.quantity}} hidden>
+                                <span class="i-card__size_visual">
+                                    {{ variant.value }}
+                                </span>
+                            </label>
 
-                        </div>
+                        {% endfor %}
+
                     </div>
+                    {% endif %}
+                </div>
 
 
-                    <div class="i-card__price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
-                        <meta itemprop="priceCurrency" content={{ product.price.currency}} />
+                <div class="i-card__price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
+                    <meta itemprop="priceCurrency" content={{ product.price.currency}} />
 
-                        {% if product.price.listPrice == product.price.price %}
-                            <span class="i-card__cost" itemprop="price" content={{ product.price.price }}>
-                                {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
-                            </span>
-                        {% else %}
-                            <span class="i-card__cost" itemprop="lowPrice" content={{ product.price.listPrice }}>
-                                {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
-                            </span>
+                    {% if product.price.listPrice == product.price.price %}
+                        <span class="i-card__cost" itemprop="price" content={{ product.price.price }}>
+                            {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+                        </span>
+                    {% else %}
+                        <span class="i-card__cost" itemprop="lowPrice" content={{ product.price.listPrice }}>
+                            {{ product.price.listPrice|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+                        </span>
 
-                            <del class="i-card__oldcost" itemprop="highPrice" content={{ product.price.price }}>
-                                {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
-                            </del>
+                        <del class="i-card__oldcost" itemprop="highPrice" content={{ product.price.price }}>
+                            {{ product.price.price|number_format(0, ',', ' ') }} {{ product.price.currencySymbol }}
+                        </del>
 
-                            <span class="i-card__sale">
-                                -{{ ((1- (product.price.listPrice / product.price.price)) * 100)|number_format(0, ',', ' ') }}%
-                            </span>
-                        {% endif %}
+                        <span class="i-card__sale">
+                            -{{ ((1- (product.price.listPrice / product.price.price)) * 100)|number_format(0, ',', ' ') }}%
+                        </span>
+                    {% endif %}
 
-                        <link itemprop="availability" href="https://schema.org/InStock" /> In stock
-                    </div>
+                    <link itemprop="availability" href="https://schema.org/InStock" /> In stock
+                </div>
 
-                    <div class="i-card__btns">
-                        <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary {#call-modal#} add-to-cart-action" type="button" data-target="card-success" data-variant-id>
+                <div class="i-card__btns">
+                    <button id="add_to_cart_btn" class="i-card__greenbtn btn-primary {#call-modal#} add-to-cart-action" type="button" data-target="card-success" data-variant-id>
                             <img src="{{ asset('./default/img/icons/cart.svg') }}" alt="add to cart" width="20" height="20">
                             <span>В корзину</span>
                         </button>
