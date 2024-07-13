@@ -9,7 +9,73 @@
                 </svg>
             </button>
         </form>
+
         <ul class="burger-menu__list">
+
+            {% for element in menu.header %}
+                {% if element.children is defined %}
+
+                {% else %}
+                    <li class="nav__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                        <a href="{{ element.href }}" class="nav__link" itemprop="url">
+                            {{ element.name }}
+                        </a>
+                        <meta itemprop="name" content={{ element.name }} />
+                    </li>
+                {% endif %}
+
+
+
+            {% endfor %}
+
+
+
+
+{#
+            <li class="burger-menu__item dropable">
+                <div class="burger-menu__title">Щенщинам</div>
+                <ul class="burger-menu__sublist">
+                    <li><a href="#">Брюки</a></li>
+                    <li><a href="#">Леггинсы</a></li>
+                    <li><a href="#">Топы</a></li>
+                    <li><a href="#">Рашгарды</a></li>
+                    <li><a href="#">Футболки</a></li>
+                    <li><a href="#">Худи</a></li>
+                    <li><a href="#">Шорты</a></li>
+                    <li><a href="#">Аксессуары</a></li>
+                </ul>
+            </li>
+            <li class="burger-menu__item dropable">
+                <div class="burger-menu__title">Занятия</div>
+                <ul class="burger-menu__sublist">
+                    <li><a href="#">Брюки</a></li>
+                    <li><a href="#">Леггинсы</a></li>
+                    <li><a href="#">Топы</a></li>
+                </ul>
+            </li>
+            <li class="burger-menu__item dropable">
+                <div class="burger-menu__title">Спецпредложения</div>
+                <ul class="burger-menu__sublist">
+                    <li><a href="#">Брюки</a></li>
+                    <li><a href="#">Леггинсы</a></li>
+                    <li><a href="#">Топы</a></li>
+                </ul>
+            </li>
+            <li class="burger-menu__item dropable">
+                <div class="burger-menu__title">Покупателям</div>
+                <ul class="burger-menu__sublist">
+                    <li><a href="#">Брюки</a></li>
+                    <li><a href="#">Леггинсы</a></li>
+                    <li><a href="#">Топы</a></li>
+                </ul>
+            </li>
+            <li class="burger-menu__item">
+                <a href="#" class="burger-menu__title">Покупателям</a>
+            </li>
+            #}
+        </ul>
+
+        {#<ul class="burger-menu__list">
             {% for element in menu.header %}
                 {% if element.children is defined %}
                     {% for subMenu in element.children %}
@@ -26,6 +92,6 @@
                     {% endfor %}
                 {% endif %}
             {% endfor %}
-        </ul>
+        </ul>#}
     </div>
 </div>
