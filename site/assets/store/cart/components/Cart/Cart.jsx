@@ -30,11 +30,20 @@ const Cart = () => {
 
     return (
         <>
+            {
+                // цена доставки
+                cart.delivery_cost > 0 && (
+                    <div className="alert mb-20">
+                        <p className="alert__title">Бесплатная доставка при заказе от 5000 р.</p>
+                    </div>
+                )
+            }
+
             <div className="cart__top">
                 <h1 className="cart__title title-xl">{t('Cart')}</h1>
 
                 <button className="cart__clear" type="button" onClick={handleClearCart}>
-                    <img src="/img_/icons/cart-remove.svg" alt="cart remove" width="20" height="20" />
+                    <img src="/img_/icons/cart-remove.svg" alt="cart remove" width="20" height="20"/>
                     Очистить корзину
                 </button>
             </div>
@@ -44,7 +53,7 @@ const Cart = () => {
                         {
                             cart.items.map(
                                 (item, index) => (
-                                    <CartItem key={index} item={item} />
+                                    <CartItem key={index} item={item}/>
                                 )
                             )
                         }
@@ -68,12 +77,25 @@ const Cart = () => {
                         }
                         <li>
                             <span>Доставка</span>
-                            <span>Бесплатно</span>
+                            {/*<span>Бесплатно</span>*/}
+                            {
+                                // цена доставки
+                                cart.delivery_cost > 0 && (
+                                    <span>{cart.delivery_cost} ₽</span>
+                                )
+                            }
+                            {
+                                // бесплатно
+                                !cart.delivery_cost && (
+                                    <span>БЕСПЛАТНО</span>
+                                )
+                            }
                         </li>
                     </ul>
                     <div className="c-main__final">
                         Сумма заказа
-                        <span className="c-main__cost">{new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} ₽</span>
+                        <span
+                            className="c-main__cost">{new Intl.NumberFormat('ru-RU').format(cart.discount_cost)} ₽</span>
                     </div>
                     <button
                         type="button"
