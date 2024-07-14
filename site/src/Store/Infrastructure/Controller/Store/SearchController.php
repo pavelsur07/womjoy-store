@@ -57,6 +57,11 @@ class SearchController extends BaseController
                 'param'=> $request->get('param'),
                 'pagination' => $pagerfanta,
                 'popularity'=> $popularity,
+                'sorting_rules' => self::SORTING_RULES,
+                /*'filters' => $filters,
+                'filter_setting_ids' => ($filterSettingIds !== null) ? $this->decodeFilterIdsToArray(
+                    $filterSettingIds
+                ) : [null],*/
             ]
         );
     }

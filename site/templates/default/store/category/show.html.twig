@@ -95,14 +95,22 @@
             </div>#}
         </div>
     </section>
+
     <section class="catalog section">
+        <div class="wrapper">
+            <div class="catalog__content">
+                {{ include('default/store/category/catalog.html.twig') }}
+            </div>
+        </div>
+    </section>
+    {#<section class="catalog section">
         <div class="wrapper">
             <div class="catalog__content">
                 {{ include('default/store/category/filter.html.twig') }}
                 {{ include('default/store/category/catalog.html.twig') }}
             </div>
         </div>
-    </section>
+    </section>#}
 {% endblock %}
 
 {% block javascripts %}

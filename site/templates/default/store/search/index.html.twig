@@ -1,0 +1,81 @@
+{% extends 'default/store/base.html.twig' %}
+
+{# Получение атрибутов текущего роута  #}
+{% set _route = app.request.attributes.get('_route') %}
+{% set _route_params = app.request.attributes.get('_route_params') %}
+
+{# Получаем GET параметр сортировки #}
+{% set _current_sort = app.request.query.get('sort', 'popularity') %}
+
+{#
+{% block title %}
+    {{ metaData.title }}{% if page not in '1' %}&nbsp;|&nbsp;{{ 'pagination.page' | trans}} {{ page }} {% endif %}
+{% endblock %}
+#}
+
+{#
+{% block description %}
+    {{ metaData.description }}{% if page not in '1' %}&nbsp;|&nbsp;Page {{ page }} {% endif %}
+{% endblock %}
+#}
+
+{#
+{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('store.category.show', {'slug': category.slug}, true)}}">
+{% endblock %}
+#}
+
+{#
+{% block jsonLd %}
+    {{ metaData.jsonLdBreadcrumb|raw }}
+{% endblock %}
+#}
+
+{% block body %}
+    <section class="i-cat">
+        <div class="wrapper">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}"> {{ 'home'|trans|raw }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ 'store.search' | trans }}</li>
+                </ol>
+            </nav>
+
+            {% if pagination.count > 0 %}
+            <h1 class="in-title text-uppercase">
+                {{ param }}
+            </h1>
+            {% else %}
+                <h1 class="in-title text-uppercase">
+                    По данному запросу нечего не найдено: <br>" {{ param }} "
+                </h1>
+            {% endif %}
+
+        </div>
+    </section>
+
+    {% if pagination.count > 0 %}
+        <section class="catalog section">
+            <div class="wrapper">
+                <div class="catalog__content">
+                    {#{{ include('default/store/category/filter.html.twig') }}#}
+                    {{ include('default/store/category/catalog.html.twig') }}
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <section class="catalog section">
+            <div class="wrapper">
+                <h2>Not result</h2>
+            </div>
+        </section>
+    {% endif %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_category') }}
+{% endblock %}
