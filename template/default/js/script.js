@@ -231,7 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (document.querySelector('.i-card-swiper')) {
 		const thumbs = new Swiper('.i-card-smswiper', {
-			slidesPerView: 6,
+			slidesPerView: 'auto',
+			direction: 'vertical',
 			spaceBetween: 20,
 		});
 
