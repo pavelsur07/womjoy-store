@@ -5,6 +5,34 @@
 {# Получаем GET параметр сортировки #}
 {% set _current_sort = app.request.query.get('sort', 'popularity') %}
 
+
+    <div class="products__items products-4">
+        {% for product in pagination %}
+            <div class="product" data-product-id="{{ product.id }}">
+                {% include 'default/store/common/product/item_product_card.html.twig' %}
+            </div>
+        {% endfor %}
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Доступные события:
+                //
+                // impression — просмотр списка товаров;
+                // detail — просмотр товара;
+                // add — добавление товара в корзину;
+                // remove — удаление товара из корзины;
+                // purchase — покупка;
+                pushStoreMetrika('impression', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
+            })
+        </script>
+
+    </div>
+
+
+
+    {{ pagerfanta(pagination) }}
+
+{#
 <div class="catalog__main">
     <div class="catalog__top">
         <div class="sort">
@@ -17,10 +45,10 @@
                 {% endfor %}
             </ul>
         </div>
-        {#<div class="filter-trigger">
+        <div class="filter-trigger">
             <img src="{{ asset('./default/img/icons/filter.svg') }}" alt="filter" width="20" height="20">
             Фильтры
-        </div>#}
+        </div>
     </div>
     <div class="products">
         <div class="products__items products-3">
@@ -47,3 +75,4 @@
 
     {{ pagerfanta(pagination) }}
 </div>
+#}
