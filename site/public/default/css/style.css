@@ -1166,7 +1166,7 @@ input:checked + .f-check__sq svg {
   width: 100%;
   max-width: 100%;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto;
   text-overflow: ellipsis;
   color: rgba(47, 43, 67, 0.5);
 }
@@ -5071,7 +5071,7 @@ input:checked + .pay-method__rd::before {
   }
 
   .breadcrumb {
-    display: none;
+    font-size: 12px;
   }
 
   .burger-menu {
