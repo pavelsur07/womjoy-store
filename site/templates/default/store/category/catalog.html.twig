@@ -5,6 +5,13 @@
 {# Получаем GET параметр сортировки #}
 {% set _current_sort = app.request.query.get('sort', 'popularity') %}
 
+    <ul class="catalog__sort">
+        {% for _sorting_rule ,_sorting_rule_title in sorting_rules %}
+            <li class="{{ _sorting_rule == _current_sort ? 'active' }}">
+                <a href="{{ path(_route, _route_params|merge({ sort: _sorting_rule })) }}" rel="nofollow">{{ _sorting_rule_title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 
     <div class="products__items products-4">
         {% for product in pagination %}

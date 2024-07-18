@@ -2542,6 +2542,30 @@ input:checked + .inform__check_sq img {
   margin-right: 10px;
 }
 
+.catalog__sort {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.catalog__sort li {
+  opacity: 0.5;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+}
+
+.catalog__sort li:has(a.active) {
+  opacity: 1;
+}
+
+.catalog__sort li:not(:last-child) {
+  margin-right: 16px;
+}
+
 .filter {
   width: calc(100% / 12 * 3 - 20px);
   margin-left: 10px;
@@ -5795,6 +5819,14 @@ input:checked + .pay-method__rd::before {
     -webkit-justify-content: space-between;
             justify-content: space-between;
     margin-bottom: 15px;
+  }
+
+  .catalog__sort li:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  .catalog__sort li a {
+    font-size: 12px;
   }
 
   .filter {
