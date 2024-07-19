@@ -185,7 +185,7 @@ class GuaranteeController extends BaseController
     public function thankYou(): Response
     {
         return $this->render(
-            'pion/store/guarantee/thank_you.html.twig',
+            "{$this->template}/store/guarantee/thank_you.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
