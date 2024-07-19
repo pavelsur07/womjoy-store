@@ -2558,7 +2558,7 @@ input:checked + .inform__check_sq img {
           flex-shrink: 0;
 }
 
-.catalog__sort li:has(a.active) {
+.catalog__sort li.active {
   opacity: 1;
 }
 
