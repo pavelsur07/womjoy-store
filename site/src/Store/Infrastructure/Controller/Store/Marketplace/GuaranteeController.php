@@ -100,7 +100,7 @@ class GuaranteeController extends BaseController
             return $this->redirectToRoute('store.marketplace.guarantee.thank_you');
         }
         return $this->render(
-            'pion/store/guarantee/new.html.twig',
+            "{$this->template}/store/guarantee/new.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,

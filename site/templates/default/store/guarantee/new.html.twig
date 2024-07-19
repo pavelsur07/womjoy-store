@@ -1,0 +1,64 @@
+{% extends 'default/store/base.html.twig' %}
+{#{% block linkCanonical %}
+    <link rel="canonical" href= "https:{{  url('page.page.show', {'slug': page.slug}, true)}}">
+{% endblock %}#}
+
+
+{% block body %}
+
+<section class="typography">
+    <div class="wrapper">
+        <div class="mb-60">
+            <div class="title-s mb-20">Расширенная гарантия и 4-х недельный курс по фитнесу</div>
+            <p >Заполните форму и получите расширенную гарантию 60-дней и 4-х недельный стартовый курс по фитнесу с чек листом.</p>
+
+            <h5 class="mb-20">
+                Заполните все поля и нажмите «Отправить», вам на почту придет письмо с крантией и ссылконй на курс.
+            </h5>
+            {{ form_start(form) }}
+
+            {% if messageId == 'success' %}
+                <div class="col col-12 col-lg-12 mb-3">
+                    <div class="p-3 bg-warning bg-opacity-10">Message success</div>
+                </div>
+            {% endif %}
+
+            <div class="mt-5">
+                <div class="g-form__field field mb-20">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+                <div class="g-form__field field mb-20">
+                    {{ form_label(form.phone) }}
+                    {{ form_widget(form.phone) }}
+                </div>
+                <div class="g-form__field field mb-20">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+
+                <div class="mb-10">
+                    <button class="g-form__submit btn-primary">{{ button_label|default('Send') }}
+                    </button>
+                </div>
+
+                <p>
+                    Нажимая на кнопку «Отправить», вы даете согласие на обработку и хранение своих персональных данных в соответствии с
+                    <a class="w-black-link" href="https://womjoy.ru/pages/politika-konfidencialnosti">пользовательским соглашением</a>
+                </p>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {# {{ encore_entry_script_tags('store_message') }}#}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

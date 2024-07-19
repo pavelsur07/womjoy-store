@@ -20,7 +20,7 @@ class MessageMarketplaceNewForm extends AbstractType
                 [
                     'label' =>'Name',
                     'attr' => [
-                        'placeholder' => 'Name',
+                        'placeholder' => 'Ivan Ivanov',
                         'name' => 'firstName',
                     ],
                 ]
