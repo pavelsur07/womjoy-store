@@ -25,7 +25,7 @@ class SecurityController extends BaseController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(
-            'pion/auth/login.html.twig',
+            "{$this->template}/auth/login.html.twig",
             [
                 'metaData' => $this->metaData,
                 'menu' => $this->menu,
