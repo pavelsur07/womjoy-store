@@ -13,6 +13,7 @@ use App\Store\Domain\Entity\Product\ValueObject\ProductAggregateRating;
 use App\Store\Domain\Entity\Product\ValueObject\ProductDimensions;
 use App\Store\Domain\Entity\Product\ValueObject\ProductExport;
 use App\Store\Domain\Entity\Product\ValueObject\ProductGarmentCare;
+use App\Store\Domain\Entity\Product\ValueObject\ProductMarketplace;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
 use App\Store\Domain\Entity\Product\ValueObject\ProductYandexMarket;
@@ -158,6 +159,9 @@ class Product
     #[ORM\Column(type: 'text', length: 6000, nullable: true)]
     private ?string $searchData = null;
 
+    #[ORM\Embedded(class: ProductMarketplace::class, columnPrefix: 'marketplace_')]
+    private ProductMarketplace $marketplace;
+
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
@@ -182,6 +186,11 @@ class Product
             $this->textConversion($this->getArticle()) . ', ' .
             $this->textConversion($this->getDescription()) . ', ' .
             $this->textConversion($this->getColorName());
+    }
+
+    public function getMarketplace(): ProductMarketplace
+    {
+        return $this->marketplace;
     }
 
     public function getSearchData(): ?string
