@@ -123,6 +123,80 @@
                     {% endif %}
                 </div>
 
+                    <div class="i-card__color">
+                        <span class="i-card__color_title">Цвет</span>
+                        <div class="i-card__color_items">
+
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" checked hidden>
+                                <span style="background-color:{{ product.getColor }}"></span>
+                            </label>
+
+
+                            {% for colorVariant in product.relatedColors %}
+                                <label class="i-card__color_item">
+                                    <input type="radio" name="card-color" hidden>
+                                    <a href="{{ path('store.product.show', {'slug': colorVariant.slug}) }}" >
+                                        <span style="background-color:  {{ colorVariant.getColor }}"></span>
+                                    </a>
+                                </label>
+                            {% endfor %}
+
+{#                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" checked hidden>
+                                <span style="background-color: #9EDFE5;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #6E72A8;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #3740B4;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #A8AAB6;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #27262C;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #9EDFE5;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #6E72A8;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #3740B4;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #A8AAB6;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #27262C;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #3740B4;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #A8AAB6;"></span>
+                            </label>
+                            <label class="i-card__color_item">
+                                <input type="radio" name="card-color" hidden>
+                                <span style="background-color: #27262C;"></span>
+                            </label>#}
+                        </div>
+                    </div>
+
 
                 <div class="i-card__price" itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
                     <meta itemprop="priceCurrency" content={{ product.price.currency}} />
