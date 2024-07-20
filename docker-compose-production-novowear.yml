@@ -10,7 +10,7 @@ services:
       --entryPoints.https.address=:443
       --certificatesresolvers.letsEncrypt.acme.httpChallenge=true
       --certificatesresolvers.letsEncrypt.acme.httpChallenge.entryPoint=http
-      --certificatesresolvers.letsEncrypt.acme.email=mail@womjoy.ru
+      --certificatesresolvers.letsEncrypt.acme.email=mail@womjoy-shop.ru
       --certificatesresolvers.letsEncrypt.acme.storage=/certs/acme.json
     ports:
       -   target: 80
@@ -58,7 +58,7 @@ services:
     image: darthsim/imgproxy:latest
     environment:
       IMGPROXY_MAX_SRC_RESOLUTION: 20
-    #      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+    #      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
     #      IMGPROXY_KEY: 'hex-encoded-key'
     #      IMGPROXY_SALT: 'hex-encoded-salt'
     networks:
@@ -68,7 +68,7 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
-        - traefik.http.routers.imgproxy.rule=Host(`imgproxy.womjoy.ru`)
+        - traefik.http.routers.imgproxy.rule=Host(`imgproxy.womjoy-shop.ru`)
         - traefik.http.services.imgproxy.loadBalancer.server.port=8080
         - traefik.http.routers.imgproxy.entryPoints=https
         - traefik.http.routers.imgproxy.tls=true
@@ -85,10 +85,10 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
-        - traefik.http.routers.frontend.rule=Host(`womjoy.ru`) || Host(`www.womjoy.ru`)
+        - traefik.http.routers.frontend.rule=Host(`womjoy-shop.ru`) || Host(`www.womjoy-shop.ru`)
         - traefik.http.services.frontend.loadBalancer.server.port=80
-        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.womjoy.ru/(.*)$$
-        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}womjoy.ru/$${2}
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.regex=^(https?://)www.womjoy-shop.ru/(.*)$$
+        - traefik.http.middlewares.frontend-redirect.redirectRegex.replacement=$${1}womjoy-shop.ru/$${2}
         - traefik.http.middlewares.frontend-redirect.redirectRegex.permanent=true
         - traefik.http.routers.frontend.middlewares=frontend-redirect,secure-headers
         - traefik.http.routers.frontend.entryPoints=https
@@ -108,8 +108,8 @@ services:
       APP_SECRET: ${APP_SECRET}
       TEMPLATE_NAME: 'default'
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
-      MAILER_DSN: smtp://info@womjoy.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
+      SITE_URL: 'https://womjoy-shop.ru'
+      MAILER_DSN: smtp://info@womjoy-shop.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -120,11 +120,11 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'https://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'https://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
       PAYMENT_PROVIDER_NAME: 'alfa'
@@ -147,7 +147,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
+      SITE_URL: 'https://womjoy-shop.ru'
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -158,11 +158,11 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console doctrine:migrations:migrate --no-interaction'
@@ -180,7 +180,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
+      SITE_URL: 'https://womjoy-shop.ru'
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -191,11 +191,11 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console sitemap:generate --no-interaction'
@@ -214,7 +214,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
+      SITE_URL: 'https://womjoy-shop.ru'
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -225,11 +225,11 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console yandex:fid-generate --no-interaction'
@@ -248,7 +248,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
+      SITE_URL: 'https://womjoy-shop.ru'
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -259,11 +259,11 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console product:update-search-data --no-interaction'
@@ -282,7 +282,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
+      SITE_URL: 'https://womjoy-shop.ru'
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -293,12 +293,12 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      #STORAGE_BASE_URL: 'https://static.womjoy.ru/s3'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      #STORAGE_BASE_URL: 'https://static.womjoy-shop.ru/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console cart:clear --no-interaction'
@@ -317,7 +317,7 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
+      SITE_URL: 'https://womjoy-shop.ru'
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -328,12 +328,12 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      #STORAGE_BASE_URL: 'https://static.womjoy.ru/s3'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      #STORAGE_BASE_URL: 'https://static.womjoy-shop.ru/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'http://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
     command: sh -c 'wait-for-it site-postgres:5432 -t 60 && php bin/console store:alfa:check-status --no-interaction'
@@ -352,8 +352,8 @@ services:
       APP_DEBUG: 0
       APP_SECRET: ${APP_SECRET}
       SITE_LOCALE: 'ru'
-      SITE_URL: 'https://womjoy.ru'
-      MAILER_DSN: smtp://info@womjoy.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
+      SITE_URL: 'https://womjoy-shop.ru'
+      MAILER_DSN: smtp://info@womjoy-shop.ru:${SITE_MAIL_PASSWORD}@smtp.mail.ru:465
       DATABASE_URL: pgsql://app:${DB_PASSWORD}@site-postgres:5432/app
       MESSENGER_TRANSPORT_DSN: doctrine://default?auto_setup=0
       SENTRY_DSN: ${SENTRY_DSN}
@@ -364,11 +364,11 @@ services:
       AWS_S3_DEFAULT_REGION: 'ru-1'
       S3_ENDPOINT: 'https://s3.timeweb.com'
       S3_BUCKET: '482c8326-f46726b3-b4df-4af2-a784-36893c9644a1'
-      STORAGE_BASE_URL: 'https://womjoy.ru/images/s3'
+      STORAGE_BASE_URL: 'https://womjoy-shop.ru/images/s3'
       CACHE_PATH_IMAGE: '/cache'
       REDIS_HOST: site-redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-      IMGPROXY_BASE_URL: 'https://imgproxy.womjoy.ru'
+      IMGPROXY_BASE_URL: 'https://imgproxy.womjoy-shop.ru'
       IMGPROXY_KEY: 'hex-encoded-key'
       IMGPROXY_SALT: 'hex-encoded-salt'
       PAYMENT_PROVIDER_NAME: 'alfa'
