@@ -30,6 +30,7 @@ Encore
     .addEntry('store_category', './assets/store/category/index.js')
     .addEntry('store_cart_badge', './assets/store/cart-badge/index.js')
     .addEntry('store_checkout', './assets/store/checkout/index.js')
+    .addEntry('store_default_checkout', './assets/store/checkout/index_default.js')
     .addEntry('store_product', './assets/store/product/index.js')
     .addEntry('store_message', './assets/store/message/index.js')
     .addEntry('store_subscribe', './assets/store/subscribe/index.js')

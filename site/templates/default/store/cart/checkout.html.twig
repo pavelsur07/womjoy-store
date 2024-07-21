@@ -15,12 +15,15 @@
                 </ol>
             </nav>
 
-            <div id="checkout-id"></div>
+            <div id="checkout-id">
+
+
+            </div>
         </div>
     </section>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('store_checkout') }}
+    {{ encore_entry_script_tags('store_default_checkout') }}
 {% endblock %}

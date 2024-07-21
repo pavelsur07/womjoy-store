@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import DeliveryCDEKPickUpPoint from "./DeliveryCDEKPickUpPoint";
 import {setDelivery} from "../../../redux/actions/checkout";
 
-const Delivery = () => {
+const Delivery = ({ heading, errors }) => {
     const dispatch = useDispatch();
     const delivery = useSelector((state) => state.checkout.delivery);
     const [isOpenChoicePickupPoint, setOpenChoicePickupPoint] = useState(false);
@@ -25,73 +24,61 @@ const Delivery = () => {
         hideChoicePickupPoint();
     }
 
+    const handleChangeDeliveryAddress = ({ target }) => {
+        if (target.value.length < 10) {
+            return;
+        }
+
+        dispatch(
+            setDelivery(0, target.value)
+        );
+    }
+
+    const getInputErrorClass = (name) => {
+        return (errors[name]?._errors) ? 'error border-danger' : '';
+    };
+
+    const renderInputError = (name) => {
+        let error = null;
+
+        if (errors[name]) {
+            error = errors[name]?._errors;
+        }
+
+        return <div className="w-field__error text-danger">{error}&nbsp;</div>;
+    };
+
+
     return (
-        <div className="checkout__row">
-            <div className="checkout__subtitle">Способ доставки</div>
-            {/*<div className="pvz-block">
-                <div className="pvz-block__text">
-                    <div className="pvz-block__title">Пункт выдачи
-                        СДЭК <img src="/img/icons/sdek-check.svg" alt="" width="24" height="24" />
-                    </div>
-                    <div className="pvz-block__info">
-                        <span className="pvz-block__cost">500 ₽</span>
-                        <span>На Космонавтов 32</span>
-                    </div>
-                </div>
-                <button className="pvz-block__btn" type="button">Изменить</button>
-            </div>*/}
+        <>
+            <div className="checkout__row">
+                <div className="checkout__subtitle">{heading}</div>
 
-            {
-                delivery.address && (
-                    <div className="pvz-block">
-                        <div className="pvz-block__text">
-                            <div className="pvz-block__title">
-                                Пункт выдачи СДЭК <img src="/img_/icons/sdek-check.svg" alt="" width="24" height="24" />
-                            </div>
-                            <div className="pvz-block__info">
-                                {/*<span className="pvz-block__cost">500 ₽</span>*/}
-                                <span>{delivery.address}</span>
-                            </div>
-                        </div>
-                        <button className="pvz-block__btn" onClick={() => showChoicePickupPoint()} type="button">Изменить</button>
-                    </div>
-                )
-            }
-            {
-                !delivery.address && (
-                    <div className="pvz-block">
-                        <div className="pvz-block__text">
-                            <div className="pvz-block__title" style={{ marginBottom: 0}}>
-                                Пункт выдачи не выбран
-                            </div>
-                        </div>
-                        <button className="btn-black" onClick={() => showChoicePickupPoint()} type="button">Выбрать пункт выдачи</button>
-                    </div>
-                )
-            }
+                <div className="field-list">
 
-            <>
-                <div className={'modal' + (isOpenChoicePickupPoint ? ' active' : '')} id="my-data">
-                    <div className="modal__bg"></div>
-                    <div className="modal__content" style={{ width: '80%' }}>
-                        <button className="modal__close" type="button"  onClick={() => hideChoicePickupPoint()}>
-                            <img src="/img_/icons/close-black.svg" alt="" width="24" height="24"/>
-                        </button>
 
-                        <h2 className="modal__title">
-                            Выберите способ получения
-                        </h2>
-
-                        <DeliveryCDEKPickUpPoint
-                            defaultCity={'Москва'}
-                            onSelectPickupPoint={handleSelectPickupPoint}
+                    <div className={"field " + getInputErrorClass('address')}>
+                        <span className="field__ph">Адрес доставки (Курьер СДЭК)*</span>
+                        <input
+                            type="text"
+                            className="w-field__inp field__inp"
+                            name="address"
+                            autoComplete="shipping street-address"
+                            placeholder="Москва, ул. Ленина, дом. 1. кв. 1"
+                            onChange={handleChangeDeliveryAddress}
                         />
                     </div>
+                    {
+                        // отрисовка блока ошибки
+                        renderInputError('address')
+                    }
+
                 </div>
-            </>
-        </div>
-    );
 
-};
+            </div>
 
-export default Delivery;
+        </>
+    )
+}
+
+export default Delivery
