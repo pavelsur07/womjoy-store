@@ -294,7 +294,7 @@
     <!-- /Yandex.Metrika counter -->
 
     <!-- Top.Mail.Ru counter -->
-    <script type="text/javascript">
+{#    <script type="text/javascript">
         var _tmr = window._tmr || (window._tmr = []);
         _tmr.push({id: "3350904", type: "pageView", start: (new Date()).getTime()});
         (function (d, w, id) {
@@ -305,13 +305,10 @@
             if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
         })(document, window, "tmr-code");
     </script>
-    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>#}
     <!-- /Top.Mail.Ru counter -->
 
-    </body>
-
-    {% block javascripts %}
-        {% if app.environment == 'prod' %}
+    {% if app.environment == 'prod' %}
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript" >
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -355,7 +352,7 @@
 
             gtag('config', 'G-MW13DRWRCX');
         </script>
-        {% else %}
+    {% else %}
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript" >
             (function (d, w, c) {
@@ -389,7 +386,11 @@
         </script>
         <noscript><div><img src="https://mc.yandex.ru/watch/96687743" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
         <!-- /Yandex.Metrika counter -->
-        {% endif %}
+    {% endif %}
+
+    </body>
+
+    {% block javascripts %}
 
         {{ encore_entry_script_tags('store_main') }}
         {{ encore_entry_script_tags('store_cart_badge') }}
