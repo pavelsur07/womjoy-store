@@ -451,6 +451,21 @@
             </div>
         </div>
     </section>
+
+    <div class="modal" id="modal-product">
+        <div class="modal__bg"></div>
+        <div class="modal__content">
+            <button class="modal__close" type="button"><img src="{{ asset('./default/img/icons/close-black.svg') }}" alt="" width="24" height="24"></button>
+            <div class="success">
+                <img src="{{ asset('./default/img/icons/success.svg') }}" alt="" width="70" height="70">
+                <div class="success__title">Добавлено в корзину</div>
+                <div class="success__btns">
+                    <a class="success__btn btn-black" href="{{ path('store.cart.index') }}">Перейти в корзину</a>
+                    <a class="success__btn btn-empty" href="{{ path('store.product.show', {'slug': product.slug }) }}" type="button">Продолжить покупки</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
