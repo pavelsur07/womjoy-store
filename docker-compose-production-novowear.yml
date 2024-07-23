@@ -397,21 +397,21 @@ services:
         constraints: [ node.labels.db == db ]
       endpoint_mode: dnsrr
   
-  site-redis:
-    image: redis:7.0-alpine
-    restart: always
-    volumes:
-      - site-redis:/data
-    command:
-      - 'redis-server'
-      - '--databases 2'
-      - '--save 900 1'
-      - '--save 300 10'
-      - '--save 60 10000'
-      - '--requirepass ${REDIS_PASSWORD}'
-    deploy:
-      placement:
-        constraints: [ node.role == manager ]
+#  site-redis:
+#    image: redis:7.0-alpine
+#    restart: always
+#    volumes:
+#      - site-redis:/data
+#    command:
+#      - 'redis-server'
+#      - '--databases 2'
+#      - '--save 900 1'
+#      - '--save 300 10'
+#      - '--save 60 10000'
+#      - '--requirepass ${REDIS_PASSWORD}'
+#    deploy:
+#      placement:
+#        constraints: [ node.role == manager ]
         
 volumes:
   site-postgres:
