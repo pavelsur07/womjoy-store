@@ -1,19 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Store\Domain\Entity\Product\ValueObject;
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Embeddable]
 class ProductMarketplace
 {
-    #[ORM\Column(type: 'string', length: 300,nullable: true, options: ['default' => null])]
-    private string|null $wb = null;
+    #[ORM\Column(type: 'string', length: 300, nullable: true, options: ['default' => null])]
+    private ?string $wb = null;
 
-    #[ORM\Column(type: 'string', length: 300,nullable: true, options: ['default' => null])]
-    private string|null $ozon = null;
+    #[ORM\Column(type: 'string', length: 300, nullable: true, options: ['default' => null])]
+    private ?string $ozon = null;
 
-    #[ORM\Column(type: 'string', length: 500,nullable: true, options: ['default' => null])]
-    private string|null $yandex = null;
+    #[ORM\Column(type: 'string', length: 500, nullable: true, options: ['default' => null])]
+    private ?string $yandex = null;
 
     public function getWb(): ?string
     {
@@ -44,6 +47,4 @@ class ProductMarketplace
     {
         $this->yandex = $yandex;
     }
-
-
 }

@@ -247,7 +247,7 @@ abstract class AbstractObject implements ArrayAccess, JsonSerializable
             return $value->jsonSerialize();
         }
         if ($value instanceof DateTime) {
-            return $value->format('Y-m-d\\TH:i:s.v\\Z');
+            return $value->format('Y-m-d\TH:i:s.v\Z');
         }
 
         return $value;

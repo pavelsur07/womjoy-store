@@ -14,6 +14,6 @@ final class PlaceholderService
         foreach ($data as $key => $value) {
             $string = str_replace('[' . $key . ']', $value, $string);
         }
-        return preg_replace('/\\[(.*?)\\]/', ' ', $string);
+        return preg_replace('/\[(.*?)\]/', ' ', $string);
     }
 }
