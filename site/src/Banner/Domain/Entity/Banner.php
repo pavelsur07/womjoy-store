@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Banner\Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
@@ -25,9 +26,9 @@ class Banner
     #[ORM\Column(type: 'string', length: 16)]
     private string $status;
 
-    /** @var ArrayCollection<Item, array-key> */
+    /** @var ArrayCollection<array-key, Item> */
     #[ORM\OneToMany(mappedBy: 'banner', targetEntity: Item::class, cascade: ['ALL'], orphanRemoval: true)]
-    private ArrayCollection $items;
+    private Collection $items;
 
     public function __construct(string $id, string $name)
     {
@@ -35,6 +36,32 @@ class Banner
         $this->id = $id;
         $this->name = $name;
         $this->status = self::INACTIVE;
+        $this->items = new ArrayCollection();
+    }
+
+    public function activate(): void
+    {
+        $this->status = self::ACTIVE;
+    }
+
+    public function inactivate(): void
+    {
+        $this->status = self::INACTIVE;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::ACTIVE;
+    }
+
+    public function isInactivate(): bool
+    {
+        return static::INACTIVE === $this->status;
+    }
+
+    public function getItems(): ArrayCollection
+    {
+        return $this->items;
     }
 
     public function getId(): string
