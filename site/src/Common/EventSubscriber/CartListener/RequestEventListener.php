@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Common\EventSubscriber\CartListener;
 
 use App\Common\Infrastructure\Helper\SessionHelper;
+use App\Store\Infrastructure\Repository\CartRepository;
 use App\Store\Infrastructure\Service\Cart\CartService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -16,7 +17,9 @@ readonly class RequestEventListener implements EventSubscriberInterface
     public function __construct(
         private RequestStack $session,
         private CartService $service,
-    ) {}
+        private CartRepository $cartRepository,
+    ) {
+    }
 
     public function onKernelRequest(RequestEvent $event): void
     {
@@ -33,6 +36,17 @@ readonly class RequestEventListener implements EventSubscriberInterface
         if ($request->cookies->has(SessionHelper::CART_KEY)) {
             // получаем id корзины из cookie
             $cartId = (int)$request->cookies->get(SessionHelper::CART_KEY);
+
+            // ищем корзину по ID
+            $cart = $this->cartRepository->findById($cartId);
+
+            if (!$cart) {
+                // получаем текущий ID корзины
+                $cartId = $this->service->getCurrentCart()->getId();
+
+                // удаляем несуществующий ID корзины из cookie
+                $request->cookies->remove(SessionHelper::CART_KEY);
+            }
 
             // записываем id в сессию
             $this->session->getSession()->set(SessionHelper::CART_KEY, $cartId);
