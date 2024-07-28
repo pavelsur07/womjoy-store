@@ -1,0 +1,72 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Banner edit{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Banner
+            </div>
+            <h2 class="page-title">
+                Banner edit
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('admin.banner.index') }}">Back to list</a>
+        <a class="btn btn-bitbucket" href="{{ path('admin.banner.new_item', {'id': banner.id}) }}">New item</a>
+        {% if banner.status == 'inactive' %}
+            <a class="btn btn-bitbucket" href="{{ path('admin.banner.new') }}">Active</a>
+        {% else %}
+            <a class="btn btn-bitbucket" href="{{ path('admin.banner.new') }}">Inactive</a>
+        {% endif %}
+    </div>
+    <div class="card card-body">
+        <p>Status: <strong>{{ banner.status }}</strong></p>
+        <div class="mt-3 mb-3">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Sort</th>
+                <th>Name</th>
+                <th>Href</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for item in banner.items %}
+
+               <tr>
+                    <td>{{ item.title }}</td>
+                    <td> {{ item.description }}</td>
+                    <td>{{ item.url }}</td>
+                    <td class="w-5">
+                        <a class="btn-success" href="{{ path('admin.banner.item.edit', {'id': banner.id, 'item_id': item.id}) }}">edit</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {#<div class="pagination mt-3">
+            {{ knp_pagination_render(pagination) }}
+        </div>#}
+    </div>
+{% endblock %}

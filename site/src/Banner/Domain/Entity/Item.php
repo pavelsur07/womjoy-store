@@ -12,7 +12,6 @@ use Webmozart\Assert\Assert;
 class Item
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'guid')]
     private string $id;
 
@@ -23,13 +22,47 @@ class Item
     private ?string $patchDesktopImage = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $nameDesktopImage = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $patchMobileImage = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $nameMobileImage = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $url = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $title = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $description = null;
 
     public function __construct(string $id, Banner $banner)
     {
         Assert::uuid($id);
         $this->id = $id;
         $this->banner = $banner;
+    }
+
+    public function getNameDesktopImage(): ?string
+    {
+        return $this->nameDesktopImage;
+    }
+
+    public function setNameDesktopImage(?string $nameDesktopImage): void
+    {
+        $this->nameDesktopImage = $nameDesktopImage;
+    }
+
+    public function getNameMobileImage(): ?string
+    {
+        return $this->nameMobileImage;
+    }
+
+    public function setNameMobileImage(?string $nameMobileImage): void
+    {
+        $this->nameMobileImage = $nameMobileImage;
     }
 
     public function getPatchDesktopImage(): ?string
@@ -60,5 +93,35 @@ class Item
     public function getBanner(): Banner
     {
         return $this->banner;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): void
+    {
+        $this->url = $url;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
     }
 }

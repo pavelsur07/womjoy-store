@@ -7,6 +7,7 @@ namespace App\Banner\Infrastructure\Controller\Admin;
 use App\Banner\Domain\Entity\Banner;
 use App\Banner\Infrastructure\Form\Admin\BannerNewForm;
 use App\Banner\Infrastructure\Repository\BannerRepository;
+use App\Common\Infrastructure\Doctrine\Flusher;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,6 +50,35 @@ class BannerController extends AbstractController
             'admin/banner/new.html.twig',
             [
                 'form' => $form->createView(),
+            ]
+        );
+    }
+
+    #[Route(path: '/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
+    public function edit(string $id, Request $request, BannerRepository $banners, Flusher $flusher): Response
+    {
+        $banner = $banners->get($id);
+        $form = $this->createForm(
+            BannerNewForm::class,
+            [
+                'name' => $banner->getName(),
+            ]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $banner->setName($data['name']);
+            $flusher->flush();
+            $this->addFlash('success', 'Banner changed successfully.');
+            return $this->redirectToRoute('admin.banner.edit', ['id' => $id]);
+        }
+        return $this->render(
+            'admin/banner/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'banner' => $banner,
             ]
         );
     }

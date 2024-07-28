@@ -21,15 +21,14 @@
     </div>
     <div class="mt-3 mb-3">
         <a class="btn btn-bitbucket" href="{{ path('admin.banner.new') }}">New</a>
+
     </div>
     <div class="card card-body">
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Sort</th>
                 <th>Name</th>
-                <th>Href</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -37,11 +36,10 @@
 
             {% for banner in pagination %}
                 <tr>
-                    <td class='w-5'>{{ banner.id }}</td>
                     <td>{{ banner.name }}</td>
                     <td> {{ banner.status }}</td>
-                    <td></td>
                     <td class="w-5">
+                        <a class="btn btn-bitbucket" href="{{ path('admin.banner.edit', {'id': banner.id}) }}">edit</a>
                     </td>
                 </tr>
             {% else %}

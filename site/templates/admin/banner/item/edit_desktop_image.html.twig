@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Banner item edit desktop image{% endblock %}
+
+{% block body %}
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Banner item
+            </div>
+            <h2 class="page-title">
+                Banner item edit desktop image
+            </h2>
+        </div>
+        <!-- Page title actions -->
+        <div class="col-auto ms-auto d-print-none">
+            <div class="btn-list">
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 mb-3">
+        <a class="btn btn-bitbucket" href="{{ path('admin.banner.item.edit', {'id': banner.id, 'item_id': item.id}) }}">back to item</a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-bitbucket">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+
+            {% if item.patchDesktopImage is not null %}
+                <div class="mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" class="card-img-top" alt="...">
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

@@ -39,6 +39,11 @@ class Banner
         $this->items = new ArrayCollection();
     }
 
+    public function addItem(Item $item): void
+    {
+        $this->items->add($item);
+    }
+
     public function activate(): void
     {
         $this->status = self::ACTIVE;
@@ -59,9 +64,9 @@ class Banner
         return static::INACTIVE === $this->status;
     }
 
-    public function getItems(): ArrayCollection
+    public function getItems(): array
     {
-        return $this->items;
+        return $this->items->toArray();
     }
 
     public function getId(): string
@@ -77,5 +82,20 @@ class Banner
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getItem(string $item_id): ?Item
+    {
+        foreach ($this->items as $item) {
+            if ($item->getId() === $item_id) {
+                return $item;
+            }
+        }
+        return null;
     }
 }
