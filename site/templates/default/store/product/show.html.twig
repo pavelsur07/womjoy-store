@@ -134,12 +134,14 @@
 
 
                             {% for colorVariant in product.relatedColors %}
-                                <label class="i-card__color_item">
-                                    <input type="radio" name="card-color" hidden>
-                                    <a href="{{ path('store.product.show', {'slug': colorVariant.slug}) }}" >
-                                        <span style="background-color:  {{ colorVariant.getColor }}"></span>
-                                    </a>
-                                </label>
+                                {% if colorVariant.status == 'active' %}
+                                    <label class="i-card__color_item">
+                                        <input type="radio" name="card-color" hidden>
+                                        <a href="{{ path('store.product.show', {'slug': colorVariant.slug}) }}" >
+                                            <span style="background-color:  {{ colorVariant.getColor }}"></span>
+                                        </a>
+                                    </label>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -175,10 +177,10 @@
                             <span>Выберите вариант</span>
                         </button>
                         {# Временно скрыта кнопка "В избранное"
-                        <button class="i-card__graybtn" type="button">
-                            <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
-                            <span>В избранное</span>
-                        </button>
+                            <button class="i-card__graybtn" type="button">
+                                <img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="add to favourite" width="20" height="20">
+                                <span>В избранное</span>
+                            </button>
                         #}
                     </div>
 
