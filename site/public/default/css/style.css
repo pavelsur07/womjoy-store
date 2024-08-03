@@ -5457,7 +5457,6 @@ input:checked + .pay-method__rd::before {
             flex-wrap: wrap;
     margin-left: -5px;
     margin-right: -5px;
-    overflow: hidden;
   }
 
   .products-swiper {
@@ -6133,6 +6132,14 @@ input:checked + .pay-method__rd::before {
   .i-card .wrapper {
     padding: 0;
     width: 100%;
+  }
+
+  .i-card .breadcrumb {
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: calc(100% - 10px);
+    padding-right: 10px;
+    box-sizing: border-box;
   }
 
   .i-card__images {
