@@ -26,6 +26,8 @@ class BannerItemImageEditForm extends AbstractType
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',
+                            'image/jpg',
+                            'image/webp',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid Image document',
                     ]),

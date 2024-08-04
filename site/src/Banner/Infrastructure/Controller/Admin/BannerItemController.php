@@ -40,7 +40,7 @@ class BannerItemController extends AccountController
         }
 
         return $this->render(
-            'admin/banner/item/edit.html.twig',
+            'admin/banner/item/new.html.twig',
             [
                 'form' => $form->createView(),
                 'banner' => $banner,
