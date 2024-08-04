@@ -1,7 +1,26 @@
+{% set counter = 1 %}
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Главная</a></li>
-        <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Каталог</li>
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="{{ path('home') }}" itemprop="item"> {{ 'home'|trans|raw }}</a>
+            <meta itemprop="position" content="{{ counter }}" />
+            <meta itemprop="name" content="{{ 'home'|trans|raw }}" />
+        </li>
+        {% for breadcrumb in breadcrumbs %}
+            {% set counter = counter + 1 %}
+            {% if breadcrumb.slug == category.slug %}
+                <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    {{ breadcrumb.name }}
+                    <meta itemprop="position" content="{{ counter }}" />
+                    <meta itemprop="name" content="{{ breadcrumb.name }}" />
+                </li>
+            {% else %}
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}">{{ breadcrumb.name }}</a>
+                    <meta itemprop="position" content="{{ counter }}" />
+                    <meta itemprop="name" content="{{ breadcrumb.name }}" />
+                </li>
+            {% endif %}
+        {% endfor %}
     </ol>
 </nav>

@@ -17,18 +17,9 @@
 
     <section class="i-cat">
         <div class="wrapper">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('home') }}"> {{ 'home'|trans|raw }}</a></li>
-                    {% for breadcrumb in breadcrumbs %}
-                        {% if breadcrumb.slug == category.slug %}
-                            <li class="breadcrumb-item active" aria-current="page">{{ breadcrumb.name }}</li>
-                        {% else %}
-                            <li class="breadcrumb-item"><a href="{{ path('store.category.show', {'slug': breadcrumb.slug}) }}">{{ breadcrumb.name }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                </ol>
-            </nav>
+
+           {% include 'default/store/category/breadcrumb.html.twig' %}
+
             {#<h1 class="in-title">
                 {{ category.seoMetadata.h1 }}
                 {% if page not in '1' %}
