@@ -5697,6 +5697,7 @@ input:checked + .pay-method__rd::before {
     opacity: 1;
     padding: 0;
     box-shadow: none;
+    width: 100%;
   }
 
   .product__addtocart {
