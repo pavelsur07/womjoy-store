@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Store\Infrastructure\Controller;
 
+use App\Banner\Infrastructure\Service\BannerService;
 use App\Common\Infrastructure\Controller\BaseController;
 use App\Store\Domain\Entity\Home\AssignCategory;
 use App\Store\Domain\Entity\Home\Home;
@@ -19,7 +20,7 @@ class HomeController extends BaseController
     public const PER_PAGE = 8;
 
     #[Route(path: '/', name: 'home', requirements: ['_locale' => 'en|ru|bg'])]
-    public function show(Request $request, ProductRepository $products, HomeService $homes): Response
+    public function show(Request $request, ProductRepository $products, HomeService $homes, BannerService $banners): Response
     {
         $home = $homes->get();
         if ($home->getSeoMetadata()->getSeoTitle() !== null) {
@@ -47,6 +48,8 @@ class HomeController extends BaseController
             status: ProductStatus::ACTIVE,
         );
 
+        $heroSlider = $banners->getHeroSlider()->getHeroSlider();
+
         return $this->render(
             "{$this->template}/store/home/home.html.twig",
             [
@@ -57,6 +60,7 @@ class HomeController extends BaseController
                 'popularity' => $popularity,
                 'locales' => $locales,
                 'template' => $this->getTemplate(),
+                'heroSlider' => $heroSlider,
                 'widget' => [
                     'isNewArrivals' => $home->isActiveNewArrivals(),
                     'hrefNewArrivals' => $home->getHrefNewArrivals(),

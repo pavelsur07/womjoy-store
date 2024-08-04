@@ -2,6 +2,19 @@
 <div class="hero__slider">
     <div class="hero-swiper swiper">
         <div class="swiper-wrapper">
+            {% for item in heroSlider.items %}
+                <div class="hero__slide swiper-slide">
+                    <a href="{{ item.url }}" class="big-banner">
+                        <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" alt="" class="big-banner__img" width="1216" height="460">
+                        <div class="big-banner__text">
+                            <div class="big-banner__title">{{ item.title }}</div>
+                            <div class="big-banner__descr">{{ item.description}}</div>
+                            <button type="button" class="btn-primary">Смотреть товары</button>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            {#
             <div class="hero__slide swiper-slide">
                 <a href="#" class="big-banner">
                     <img src="./default/img/hero-banner.webp" alt="" class="big-banner__img" width="1216" height="460">
@@ -22,6 +35,7 @@
                     <img src="./default/img/hero-banner.webp" alt="" class="big-banner-2__img" width="1216" height="460">
                 </a>
             </div>
+            #}
         </div>
     </div>
     <div class="hero-pagination"></div>
