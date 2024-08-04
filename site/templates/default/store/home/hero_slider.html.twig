@@ -5,7 +5,12 @@
             {% for item in heroSlider.items %}
                 <div class="hero__slide swiper-slide">
                     <a href="{{ item.url }}" class="big-banner">
-                        <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" alt="" class="big-banner__img" width="1216" height="460">
+                        <picture>
+                            <source srcset="{{ storage_path(item.patchMobileImage ~'/'~ item.nameMobileImage) }}" media="(max-width: 499px)">
+                            <source srcset="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" media="(min-width: 500px)">
+                            <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" alt="{{ item.title }}" class="big-banner__img" width="1216" height="460">
+                        </picture>
+
                         <div class="big-banner__text">
                             <div class="big-banner__title">{{ item.title }}</div>
                             <div class="big-banner__descr">{{ item.description}}</div>
