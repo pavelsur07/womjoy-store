@@ -161,11 +161,14 @@
 
                 {% for item in menu.footer %}
                     <div class="footer__col">
-                        <div class="footer__title">{{ item.name }}</div>
+                        <div class="footer__title" itemscope="" itemtype="http://schema.org/SiteNavigationElement">{{ item.name }}</div>
                         {% if item.children is defined %}
-                            <ul class="footer__list" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                            <ul class="footer__list" itemprop="about" itemscope="" itemtype="http://schema.org/ItemList">
                                 {% for element in item.children  %}
-                                    <li><a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a></li>
+                                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                                        <a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a>
+                                        <meta itemprop="name" content="{{ element.name }}" />
+                                    </li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
