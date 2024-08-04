@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (document.querySelector('.hero-swiper')) {
 		new Swiper('.hero-swiper', {
 			slidesPerView: 1,
+			autoHeight: true,
 			pagination: {
 				el: '.hero-pagination',
 				clickable: true,
