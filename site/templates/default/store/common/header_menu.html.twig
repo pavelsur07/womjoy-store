@@ -1,11 +1,11 @@
 <div class="header__bottom">
     <div class="wrapper">
-        <nav class="nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
-
-            <ul class="nav__list" itemprop="about" itemscope itemtype="http://schema.org/ItemList">
+        <nav class="nav" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+            <ul class="nav__list" itemprop="about" itemscope="" itemtype="http://schema.org/ItemList">
 
                 {% for element in menu.header %}
                     {% if element.children is defined %}
+                        {# Микроразметка не валидная #}
                         <li class="nav__item menu-droper" itemprop="itemListElement" itemscope itemtype="http://schema.org/ItemList">
 
                             <a href="{{ element.href }}" class="nav__link" itemprop="url"><span itemprop="name">{{ element.name }}</span></a>
@@ -47,12 +47,13 @@
                                 </div>
                             </div>
                         </li>
+
                     {% else %}
                         <li class="nav__item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
                             <a href="{{ element.href }}" class="nav__link" itemprop="url">
                                 {{ element.name }}
                             </a>
-                            <meta itemprop="name" content={{ element.name }} />
+                            <meta itemprop="name" content="{{ element.name }}" />
                         </li>
                     {% endif %}
                 {% endfor %}
