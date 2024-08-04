@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Banner\Infrastructure\Repository;
 
 use App\Banner\Domain\Entity\Banner;
-use App\Page\Domain\Exception\PageException;
+use App\Banner\Domain\Exception\BannerException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Webmozart\Assert\Assert;
@@ -28,7 +28,7 @@ class BannerRepository
         Assert::uuid($id);
         $object = $this->repo->find($id);
         if ($object === null) {
-            throw new PageException('Banner not found.');
+            throw new BannerException('Banner not found.');
         }
 
         return $object;
@@ -37,6 +37,16 @@ class BannerRepository
     public function getAll(): array
     {
         return $this->repo->findAll();
+    }
+
+    public function getRootAll(): array
+    {
+        $result = [];
+        foreach ($this->repo->findAll() as $item) {
+            $result[] = new BannerForChoice(label: $item->getName(), value: (string)$item->getId());
+        }
+
+        return $result;
     }
 
     public function save(Banner $object, bool $flush): void
