@@ -29,7 +29,7 @@ class VariantController extends AbstractController
             $data = $form->getData();
             $product->addVariant($data['value'], $data['barcode']);
             $flusher->flush();
-
+            $this->addFlash('success', 'Product variant added successfully');
             return $this->redirectToRoute('store.admin.product.edit', ['id'=> $id]);
         }
         return $this->render(

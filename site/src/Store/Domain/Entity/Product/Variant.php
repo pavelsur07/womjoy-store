@@ -50,7 +50,9 @@ class Variant
         $this->article = $article;
         $this->value = $value;
         $this->product = $product;
-        $this->barcode = trim($barcode);
+        if ($barcode !== null) {
+            $this->barcode = trim($barcode);
+        }
     }
 
     public function sortGenerate(): void
@@ -86,9 +88,11 @@ class Variant
         $this->quantity = $value;
     }
 
-    public function changeBarcode(string $barcode): void
+    public function changeBarcode(?string $barcode = null): void
     {
-        $this->barcode = trim($barcode);
+        if ($this->barcode !== null) {
+            $this->barcode = trim($barcode);
+        }
     }
 
     public function getId(): ?int
