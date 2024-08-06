@@ -202,19 +202,23 @@
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Описание</div>
                             <div class="i-card__faq_answer" itemprop="description">
-                                <p>{{ product.description | raw }}</p>
+                                {% if  product.description is not null%}
+                                    {{ product.description | raw }}
+                                {% else %}
+                                    <p> <strong>Информация дополняется, появится в ближайщее время...</strong></p>
+                                {% endif %}
                             </div>
                         </div>
 
                         <div class="i-card__faq_item">
                             <div class="i-card__faq_ask">Состав и уход</div>
                             <div class="i-card__faq_answer">
-                                <p>Состав: полиэстер, эластан</p>
+                                <p>Состав: {{ product.fabrics }}</p>
                                 <ul class="i-card__faq_icons">
-                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-1.svg') }}" alt="" width="32" height="32"></li>
-                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-2.svg') }}" alt="" width="32" height="32"></li>
-                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-3.svg') }}" alt="" width="32" height="32"></li>
-                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-4.svg') }}" alt="" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-1.svg') }}" alt="icon 1" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-2.svg') }}" alt="icon 2" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-3.svg') }}" alt="icon 3" width="32" height="32"></li>
+                                    <li><img src="{{ asset('./default/img/icons/card-faq-icon-4.svg') }}" alt="icon 4" width="32" height="32"></li>
                                 </ul>
                                 <p>Бережная стирка при 30 градусах, отбеливание запрещено, глажка запрещена, химическая чистка запрещена</p>
                             </div>
@@ -416,6 +420,7 @@
         </div>
     </div>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('store_product') }}
@@ -425,5 +430,4 @@
             pushStoreMetrika('detail', Array.from(document.querySelectorAll('[data-product-id]')).map(v => parseInt(v.dataset.productId)))
         })
     </script>
-
 {% endblock %}
