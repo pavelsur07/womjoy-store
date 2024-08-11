@@ -100,13 +100,44 @@
         </table>
     </div>
 
-    <div class="mt-3">
-        <p>{{ product.searchData }}</p>
-    </div>
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" />
 
-    <script src="https://cdn.tiny.cloud/1/b3ub4ko6zzd1mr36lefzmelfh9wvojxoj932tuwe6fzcay50/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",
+                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/"
+            }
+        }
+    </script>
 
-    <script>
+    <script type="module">
+        import {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } from 'ckeditor5';
+
+        ClassicEditor
+            .create( document.querySelector( '#product_edit_form_description' ), {
+                plugins: [ Essentials, Bold, Italic, Font, Paragraph ],
+                toolbar: {
+                    items: [
+                        'undo', 'redo', '|', 'bold', 'italic', '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                    ]
+                }
+            } )
+            .then( /* ... */ )
+            .catch( /* ... */ );
+    </script>
+
+
+    {#<script src="https://cdn.tiny.cloud/1/b3ub4ko6zzd1mr36lefzmelfh9wvojxoj932tuwe6fzcay50/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>#}
+    {#<script>
         tinymce.init({
             selector: '#product_edit_form_description',
             height: 500,
@@ -119,6 +150,6 @@
                 'removeformat | help',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
         });
-    </script>
+    </script>#}
 {% endblock %}
 
