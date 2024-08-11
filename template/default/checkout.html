@@ -26,7 +26,7 @@
             <span></span>
         </div>
     </div>
-    <header class="header @@class">
+    <header class="header hide-on-mobile">
 		<div class="wrapper">
 			<div class="header__main">
 				<div class="header__left">
@@ -373,117 +373,243 @@
 			</ul>
 		</div>
 	</div>
-    <section class="cart">
+    <section class="checkout">
         <div class="wrapper">
-            <nav aria-label="breadcrumb">
+            <nav class="hide-on-mobile" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Корзина</li>
+                    <li class="breadcrumb-item active" aria-current="page">Оформление заказа</li>
                 </ol>
             </nav>
-            <div class="cart__top">
-                <h1 class="cart__title title-xl">Корзина</h1>
-                <button class="cart__clear" type="button">
-                    <img src="./img/icons/cart-remove.svg" alt="" width="20" height="20">
-                    Очистить корзину
-                </button>
+            <div class="show-on-mobile">
+                <a href="#" class="back-to-cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0303 18.5303C12.3232 18.2374 12.3232 17.7626 12.0303 17.4697L7.31066 12.75L18 12.75C18.4142 12.75 18.75 12.4142 18.75 12C18.75 11.5858 18.4142 11.25 18 11.25L7.31066 11.25L12.0303 6.53033C12.3232 6.23744 12.3232 5.76256 12.0303 5.46967C11.7374 5.17677 11.2626 5.17677 10.9697 5.46967L4.96967 11.4697C4.67678 11.7626 4.67678 12.2374 4.96967 12.5303L10.9697 18.5303C11.2626 18.8232 11.7374 18.8232 12.0303 18.5303Z" fill="#2F2B43" fill-opacity="0.7"/>
+                    </svg>                        
+                    Назад в корзину
+                </a>
             </div>
-            <div class="cart__content">
-                <div class="cart__left">
-                    <div class="cart__items">
-                        <div class="c-item">
-                            <a href="#" class="c-item__img">
-                                <span class="c-item__img_in">
-                                    <img src="./img/cart-item-img.png" alt="" width="83" height="110">
-                                </span>
-                            </a>
-                            <div class="c-item__main">
-                                <div class="c-item__text">
-                                    <a href="#" class="c-item__name">Лонгслив женский</a>
-                                    <span class="c-item__size">Размер: М</span>
+            <div class="checkout__top">
+                <h1 class="checkout__title title-xl">Оформление заказа</h1>
+            </div>
+            <div class="checkout__content">
+                <div class="checkout__left">
+                    <div class="checkout__rows">
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Товары в заказе</div>
+                            <div class="checkout__items">
+                                <div class="c-item">
+                                    <a href="#" class="c-item__img">
+                                        <span class="c-item__img_in">
+                                            <img src="./img/cart-item-img.png" alt="" width="83" height="110">
+                                        </span>
+                                    </a>
+                                    <div class="c-item__main">
+                                        <div class="c-item__text">
+                                            <a href="#" class="c-item__name">Лонгслив женский</a>
+                                            <span class="c-item__size">Размер: М</span>
+                                        </div>
+                                        <div class="c-item__xprice">1 299 ₽ х 1</div>
+                                        <div class="c-item__price">
+                                            <span class="c-item__cost">1 299 ₽</span>
+                                            <del class="c-item__disc">1 299 ₽</del>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="c-item__xprice">1 299 ₽ х 1</div>
-                                <div class="c-item__actions">
-                                    <button class="c-item__action c-item__minus" type="button">
-                                        <img src="./img/icons/minus.svg" alt="" width="24" height="24">
-                                    </button>
-                                    <input type="text" class="c-item__inp" value="1">
-                                    <button class="c-item__action c-item__plus" type="button">
-                                        <img src="./img/icons/plus.svg" alt="" width="24" height="24">
-                                    </button>
-                                </div>
-                                <div class="c-item__price">
-                                    <span class="c-item__cost">1 299 ₽</span>
-                                    <del class="c-item__disc">1 299 ₽</del>
-                                </div>
-                                <div class="c-item__remove">
-                                	<button type="button" class="cart__clear">
-                                		<img src="./img/icons/remove.svg" alt="plus" width="24" height="24">
-                                	</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="c-item">
-                            <a href="#" class="c-item__img">
-                                <span class="c-item__img_in">
-                                    <img src="./img/cart-item-img.png" alt="" width="83" height="110">
-                                </span>
-                            </a>
-                            <div class="c-item__main">
-                                <div class="c-item__text">
-                                    <a href="#" class="c-item__name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
-                                    <span class="c-item__size">Размер: М</span>
-                                </div>
-                                <div class="c-item__xprice">1 299 ₽ х 1</div>
-                                <div class="c-item__actions">
-                                    <button class="c-item__action c-item__minus" type="button">
-                                        <img src="./img/icons/minus.svg" alt="" width="24" height="24">
-                                    </button>
-                                    <input type="text" class="c-item__inp" value="1">
-                                    <button class="c-item__action c-item__plus" type="button">
-                                        <img src="./img/icons/plus.svg" alt="" width="24" height="24">
-                                    </button>
-                                </div>
-                                <div class="c-item__price">
-                                    <span class="c-item__cost">1 299 ₽</span>
-                                </div>
-                                <div class="c-item__remove">
-                                	<button type="button" class="cart__clear">
-                                		<img src="./img/icons/remove.svg" alt="plus" width="24" height="24">
-                                	</button>
+                                <div class="c-item">
+                                    <a href="#" class="c-item__img">
+                                        <span class="c-item__img_in">
+                                            <img src="./img/cart-item-img.png" alt="" width="83" height="110">
+                                        </span>
+                                    </a>
+                                    <div class="c-item__main">
+                                        <div class="c-item__text">
+                                            <a href="#" class="c-item__name">Лонгслив женский Лонгслив женский Лонгслив женский Лонгслив</a>
+                                            <span class="c-item__size">Размер: М</span>
+                                        </div>
+                                        <div class="c-item__xprice">1 299 ₽ х 1</div>
+                                        <div class="c-item__price">
+                                            <span class="c-item__cost">1 299 ₽</span>
+                                            <del class="c-item__disc">1 299 ₽</del>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="c-item">
-                            <a href="#" class="c-item__img">
-                                <span class="c-item__img_in">
-                                    <img src="./img/cart-item-img.png" alt="" width="83" height="110">
-                                </span>
-                            </a>
-                            <div class="c-item__main">
-                                <div class="c-item__text">
-                                    <a href="#" class="c-item__name">Лонгслив женский спортивный укороченный Womjoy Classic Logo Black</a>
-                                    <span class="c-item__size">Размер: М</span>
+                        <div class="checkout__row checkout__customer-info">
+                            <div class="checkout__subtitle">Данные получателя</div>
+                            <form class="field-list">
+                                <div class="field">
+                                    <span class="field__ph">Ваше имя</span>
+                                    <input type="text" class="field__inp" placeholder="Иванов Иван Иванович">
                                 </div>
-                                <div class="c-item__xprice">1 299 ₽ х 1</div>
-                                <div class="c-item__actions">
-                                    <button class="c-item__action c-item__minus" type="button">
-                                        <img src="./img/icons/minus.svg" alt="" width="24" height="24">
-                                    </button>
-                                    <input type="text" class="c-item__inp" value="1">
-                                    <button class="c-item__action c-item__plus" type="button">
-                                        <img src="./img/icons/plus.svg" alt="" width="24" height="24">
-                                    </button>
+                                <div class="field">
+                                    <span class="field__ph">Номер телефона</span>
+                                    <input type="text" class="field__inp phone-masked-field" placeholder="+7 956 654-55-33">
                                 </div>
-                                <div class="c-item__price">
-                                    <span class="c-item__cost">1 299 ₽</span>
+                                <div class="field">
+                                    <span class="field__ph">Email для счёта</span>
+                                    <input type="text" class="field__inp" placeholder="email@example.com">
                                 </div>
-                                <div class="c-item__remove">
-                                	<button type="button" class="cart__clear">
-                                		<img src="./img/icons/remove.svg" alt="plus" width="24" height="24">
-                                	</button>
+                                <div class="field field-text">
+                                    <span class="field__ph">Комментарий к заказу</span>
+                                    <textarea class="field__inp" placeholder="Текст комментария"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- <div class="checkout__row">
+                            <div class="checkout__subtitle">Способ доставки</div>
+                            <div class="pvz-block">
+                                <div class="pvz-block__text">
+                                    <div class="pvz-block__title">Пункт выдачи СДЭК <img src="./img/icons/sdek-check.svg" alt="" width="24" height="24"></div>
+                                    <div class="pvz-block__info">
+                                        <span class="pvz-block__cost">500 ₽</span>
+                                        <span>На Космонавтов 32</span>
+                                    </div>
+                                </div>
+                                <button class="pvz-block__btn" type="button">Изменить</button>
+                            </div>
+                            <div class="pvz-block">
+                                <div class="pvz-block__text">
+                                    <div class="pvz-block__title">Пункт выдачи не выбран</div>
+                                    <div class="pvz-block__info">
+                                        <span>Доставка от 500 ₽</span>
+                                    </div>
+                                </div>
+                                <button class="btn-black" type="button">Выбрать пункт выдачи</button>
+                            </div>
+                        </div> -->
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Способ оплаты</div>
+                            <!-- <label class="pay-method">
+                                <input type="radio" name="pay_method" hidden checked>
+                                <span class="pay-method__rd"></span>
+                                <div class="pay-method__main">
+                                    <div class="pay-method__top">
+                                        <span class="pay-method__name">Картой онлайн</span>
+                                        <div class="pay-method__imgs">
+                                            <img src="./img/icons/mc.svg" alt="" width="45" height="32">
+                                            <img src="./img/icons/mir.svg" alt="" width="45" height="32">
+                                            <img src="./img/icons/visa.svg" alt="" width="45" height="32">
+                                        </div>
+                                    </div>
+                                    <span class="gray">Без комиссии</span>
+                                </div>
+                            </label>
+                            <label class="pay-method">
+                                <input type="radio" name="pay_method" hidden>
+                                <span class="pay-method__rd"></span>
+                                <div class="pay-method__main">
+                                    <div class="pay-method__top">
+                                        <span class="pay-method__name">При получении</span>
+                                    </div>
+                                    <span class="gray">Оплата в пункте вывоза</span>
+                                </div>
+                            </label> -->
+
+                            <div class="radio-list">
+                                <label class="radio">
+                                    <input type="radio" name="pay_method" hidden>
+                                    <div class="radio__text">Оплата онлайн</div>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="pay_method" hidden>
+                                    <div class="radio__text">Наличными при получении</div>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="pay_method" hidden>
+                                    <div class="radio__text">Яндекс Сплит</div>
+                                    <div class="radio__append"><img src="./img/icons/split-logo.svg" alt="" width="94" height="19"></div>
+                                </label>
+                            </div>
+
+                            <div class="ya-split">
+                                <div class="ya-split__title">Без переплат на 2 месяца </div>
+                                <div class="ya-split__cols">
+                                    <div class="ya-split__col">
+                                        <div class="ya-split__indicator ya-split__indicator--active"></div>
+                                        <div class="ya-split__day">сегодня</div>
+                                        <div class="ya-split__cost">2500 ₽</div>
+                                    </div>
+                                    <div class="ya-split__col">
+                                        <div class="ya-split__indicator"></div>
+                                        <div class="ya-split__day">27 янв</div>
+                                        <div class="ya-split__cost">2500 ₽</div>
+                                    </div>
+                                    <div class="ya-split__col">
+                                        <div class="ya-split__indicator"></div>
+                                        <div class="ya-split__day">10 фев</div>
+                                        <div class="ya-split__cost">2500 ₽</div>
+                                    </div>
+                                    <div class="ya-split__col">
+                                        <div class="ya-split__indicator"></div>
+                                        <div class="ya-split__day">24 фев</div>
+                                        <div class="ya-split__cost">2500 ₽</div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Доставка</div>
+
+                            <div class="radio-list radio-list--horizontal">
+                                <label class="radio">
+                                    <input type="radio" name="delivery_type" hidden>
+                                    <div class="radio__text">Курьером</div>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="delivery_type" hidden>
+                                    <div class="radio__text">СДЭК</div>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="delivery_type" hidden>
+                                    <div class="radio__text">DPD</div>
+                                </label>
+                            </div>
+
+                            <br>
+                            <div class="field">
+                                <span class="field__ph">Адрес доставки</span>
+                                <input type="text" class="field__inp" value="Москва, Ленина 1">
+                            </div>
+                        </div>
+                        <div class="checkout__row">
+                            <div class="checkout__subtitle">Доставка</div>
+
+                            <div class="radio-list radio-list--horizontal">
+                                <label class="radio">
+                                    <input type="radio" name="delivery_type_2" hidden>
+                                    <div class="radio__text">Курьером</div>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="delivery_type_2" hidden>
+                                    <div class="radio__text">СДЭК</div>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="delivery_type_2" hidden>
+                                    <div class="radio__text">DPD</div>
+                                </label>
+                            </div>
+
+                            <div class="pickup">
+                                <div class="pickup__title">Пункт самовывоза</div>
+                                <button class="pickup__btn" type="button">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.6177 21.367C13.1841 21.773 12.6044 22 12.0011 22C11.3978 22 10.8182 21.773 10.3845 21.367C6.41302 17.626 1.09076 13.4469 3.68627 7.37966C5.08963 4.09916 8.45834 2 12.0011 2C15.5439 2 18.9126 4.09916 20.316 7.37966C22.9082 13.4393 17.599 17.6389 13.6177 21.367Z" stroke="#2F2B43" stroke-width="1.5"/>
+                                        <path d="M15.5 11C15.5 12.933 13.933 14.5 12 14.5C10.067 14.5 8.5 12.933 8.5 11C8.5 9.067 10.067 7.5 12 7.5C13.933 7.5 15.5 9.067 15.5 11Z" stroke="#2F2B43" stroke-width="1.5"/>
+                                    </svg>                                        
+                                    Пункт самовывоза
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#2F2B43" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                        
+                                </button>
+                            </div>
+                        </div>
+                        <div class="checkout__row">
+                            <ul class="checkout__links">
+                                <li><a href="#">Условия доставки</a></li>
+                                <li><a href="#">Оплата заказов</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -498,10 +624,6 @@
                         Сумма заказа
                         <span class="c-main__cost">2 000 р</span>
                     </div>
-                    <form class="promo">
-                        <div class="promo__inp"><input type="text" placeholder="Промокод"></div>
-                        <button type="submit" class="promo__submit">Применить</button>
-                    </form>
                     <button class="c-main__btn btn-primary" type="button">Оформить заказ</button>
                     <label class="c-main__check f-check">
                         <input type="checkbox" checked hidden>
