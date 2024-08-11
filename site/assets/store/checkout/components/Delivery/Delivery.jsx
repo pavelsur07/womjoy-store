@@ -53,9 +53,7 @@ const Delivery = ({ heading, errors }) => {
         <>
             <div className="checkout__row">
                 <div className="checkout__subtitle">{heading}</div>
-
                 <div className="field-list">
-
 
                     <div className={"field " + getInputErrorClass('address')}>
                         <span className="field__ph">Адрес доставки (Курьер СДЭК)*</span>
@@ -72,11 +70,8 @@ const Delivery = ({ heading, errors }) => {
                         // отрисовка блока ошибки
                         renderInputError('address')
                     }
-
                 </div>
-
             </div>
-
         </>
     )
 }

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.defaultLocale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            {{ metaData.title }}
+        {% endblock %}
+    </title>
+
+    <meta name="description" content="{% block description %}{{ metaData.description }}{% endblock %}">
+    {% block openGraph %}{% endblock %}
+
+    {% if metaData.noindex %}
+        <meta name="robots" content="noindex">
+    {% endif %}
+
+    {% if metaData.nofollow %}
+        <meta name="robots" content="nofollow">
+    {% endif %}
+
+    {% block linkCanonical %}{% endblock %}
+
+    {#<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">#}
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/default/favicon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/default/favicon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/default/favicon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/default/favicon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/default/favicon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/default/favicon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/default/favicon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/default/favicon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/default/favicon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/default/favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/default/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/default/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/default/favicon-192x192.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/default/favicon.ico') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('') }}/favicon-144x144.png">
+    <meta name="msapplication-config" content="{{ asset('/default/browserconfig.xml') }}">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('./default/css/style.css') }}">
+    {% endblock %}
+
+    <style>
+        .c-item__disc {
+            margin-top: 0;
+        }
+        .cart__left {
+            width: calc(100% - 400px);
+            max-width: 100%;
+        }
+        @media screen and (max-width: 500px) {
+            .cart__left {
+                width: 100%;
+            }
+        }
+
+        .add-to-cart-action {
+            -webkit-transition: none;
+            transition: none;
+            border-radius: 0px;
+            border: 4px solid #54EE46;
+        }
+        .add-to-cart-action.active {
+            border: 4px solid #24d413;
+            border-radius: 0px;
+            background: #54ee461f;
+        }
+        .add-to-cart-action:hover {
+            background: #54ee461f;
+            border: 4px solid #24d413;
+            border-radius: 0px;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW13DRWRCX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MW13DRWRCX');
+    </script>
+</head>
+<body>
+
+
+{% block body %}{% endblock %}
+
+<footer class="footer">
+    {{ metaData.jsonLdCompany|raw }}
+    <div class="wrapper">
+        <div class="footer__main">
+            <div class="footer__left">
+                <a href="{{ path('home') }}" class="footer__logo">
+                    <img src="{{ asset('./default/img/logo.svg') }}" alt="logo" width="205" height="36">
+                </a>
+                <div itemscope="" itemtype="http://schema.org/Organization" class="footer__phone">
+                    <meta itemprop="name" content="ООО Вумджой">
+                    <meta itemprop="email" content="info@womjoy.ru">
+                    <meta itemprop="legalName" content="Женская одежда для спорта и путешествий.">
+                    <a itemprop="telephone" href="tel:{{ metaData.phone }}" class="footer__phone_call">{{ metaData.phone }}</a>
+                    <span class="footer__phone_descr">Звонок по РФ бесплатный</span>
+                </div>
+                <a href="mailto:info@womjoy.ru" class="footer__mail">info@womjoy.ru</a>
+                <ul class="footer__socials">
+                    <li><a href="https://vk.com/womjoy" target="_blank"><img src="{{ asset('./default/img/icons/vk.svg') }}" alt="VK" width="40" height="40"></a></li>
+                    <li><a href="https://t.me/womjoy_chat" target="_blank"><img src="{{ asset('./default/img/icons/tg.svg') }}" alt="Telegram" width="40" height="40"></a></li>
+                    <li><a href="#"><img src="{{ asset('./default/img/icons/wa.svg') }}" alt="WhatsApp" width="40" height="40"></a></li>
+                </ul>
+            </div>
+
+            {% for item in menu.footer %}
+                <div class="footer__col">
+                    <div class="footer__title" itemscope="" itemtype="http://schema.org/SiteNavigationElement">{{ item.name }}</div>
+                    {% if item.children is defined %}
+                        <ul class="footer__list" itemprop="about" itemscope="" itemtype="http://schema.org/ItemList">
+                            {% for element in item.children  %}
+                                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ItemList">
+                                    <a href="{{ element.href }}" itemprop="url" >{{ element.name }}</a>
+                                    <meta itemprop="name" content="{{ element.name }}" />
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="footer__right">
+                <noindex>
+                    <div class="footer__marketplaces">
+                        <a href="https://www.wildberries.ru/brands/womjoy" class="footer__marketplace" rel="nofollow" target="_blank">
+                            <img src="{{ asset('./default/img/icons/wb.png') }}" alt="wb" class="footer__marketplace_img" width="40" height="40">
+                            <div class="footer__marketplace_text">
+                                <span class="footer__marketplace_descr">Наш магазин</span>
+                                <span class="footer__marketplace_name">Wildberries</span>
+                            </div>
+                        </a>
+                        <a href="https://www.ozon.ru/seller/ooo-vumdzhoy-25218/products/?miniapp=seller_25218" class="footer__marketplace" rel="nofollow" target="_blank">
+                            <img src="{{ asset('./default/img/icons/ozon.png') }}" alt="ozon" class="footer__marketplace_img" width="40" height="40">
+                            <div class="footer__marketplace_text">
+                                <span class="footer__marketplace_descr">Наш магазин</span>
+                                <span class="footer__marketplace_name">Ozon</span>
+                            </div>
+                        </a>
+                        <a href="#" class="footer__marketplace" rel="nofollow">
+                            <img src="{{ asset('./default/img/icons/ym.png') }}" alt="yandex" class="footer__marketplace_img" width="40" height="40">
+                            <div class="footer__marketplace_text">
+                                <span class="footer__marketplace_descr">Наш магазин</span>
+                                <span class="footer__marketplace_name">Яндекс Маркет</span>
+                            </div>
+                        </a>
+                    </div>
+                </noindex>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer__bottom">
+        <div class="wrapper">
+            <div class="footer__bottom_row">
+                    <span class="footer__copyright">
+                        <a href="{{ path('admin.dashboard.show') }}" class="nav-link">© 2019 - {{ 'now'|date('Y') }} {{ metaData.company }}</a>
+                    </span>
+                <ul class="footer__pay">
+                    <li><img src="{{ asset('./default/img/icons/visa.svg') }}" alt="visa" width="58" height="40"></li>
+                    <li><img src="{{ asset('./default/img/icons/mc.svg') }}" alt="mc" width="58" height="40"></li>
+                    <li><img src="{{ asset('./default/img/icons/mir.svg') }}" alt="mir" width="58" height="40"></li>
+                    <li><img src="{{ asset('./default/img/icons/sbp.svg') }}" alt="sbp" width="58" height="40"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<ul class="mob-bar">
+    <li class="mob-bar__item">
+        <a href="#" class="mob-bar__link c-open">
+            <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/catalog.svg') }}" alt="catalog" width="24" height="24"></span>
+            Каталог
+        </a>
+    </li>
+    {#
+    <li class="mob-bar__item">
+        <a href="#" class="mob-bar__link">
+            <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/trace.svg') }}" alt="trace" width="24" height="24"></span>
+            Отследить
+        </a>
+    </li>
+    #}
+    <li class="mob-bar__item">
+        <a href="{{ path('store.account.history') }}" class="mob-bar__link">
+            <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/cabinet.svg') }}" alt="cabinet" width="24" height="24"></span>
+            Кабинет
+        </a>
+    </li>
+    <li class="mob-bar__item">
+        <a href="#" class="mob-bar__link">
+            <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/favourite.svg') }}" alt="favourite" width="24" height="24"></span>
+            Изрбранное
+        </a>
+    </li>
+    <li class="mob-bar__item">
+        <a href="{{ path('store.cart.index') }}" class="mob-bar__link">
+            <span class="mob-bar__icon"><img src="{{ asset('./default/img/icons/cart.svg') }}" alt="" width="24" height="24"></span>
+            <div id="cart-badge-mobile"></div>
+            Корзина
+        </a>
+    </li>
+</ul>
+<div id="modal-id"></div>
+
+<script>
+    function pushStoreMetrika(action, productIds, orderId) {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({ action: action, products: productIds, orderId: orderId })
+        };
+
+        fetch('/api/v1/metrika/get', options).then((resp) => resp.json()).then((data) => {
+            console.log({ "ecommerce": data });
+            window.dataLayer ? window.dataLayer.push({ "ecommerce": data }) : null;
+        });
+    }
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(67287694, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        ecommerce:"dataLayer"
+    });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/67287694" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Top.Mail.Ru counter -->
+<script type="text/javascript">
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3350904", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+</script>
+<noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3350904;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+<!-- /Top.Mail.Ru counter -->
+
+</body>
+
+{% block javascripts %}
+
+    <!-- AmoCRM start widget -->
+    <script>(function(a,m,o,c,r,m){a[m]={id:"397204",hash:"5c5249573bbb05b817e58a1ae5f21e118b9b15dd53c2c6890998edc2d5d2bc78",locale:"ru",inline:false,setMeta:function(p){this.params=(this.params||[]).concat([p])}};a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};var d=a.document,s=d.createElement('script');s.async=true;s.id=m+'_script';s.src='https://gso.amocrm.ru/js/button.js?1700049791';d.head&&d.head.appendChild(s)}(window,0,'amoSocialButton',0,0,'amo_social_button'));</script>
+    <!-- AmoCRM end widget -->
+
+    <!-- BEGIN LEADGENIC CODE {literal} -->
+    <!-- Put this script tag before the </body> tag of your page -->
+    <script type="text/javascript" charset="UTF-8" async src="https://gate.leadgenic.ru/getscript?site=65e199e1c87fbc0001f13410"></script>
+    <!-- {/literal} END LEADGENIC CODE -->
+
+    {{ encore_entry_script_tags('store_main') }}
+    {{ encore_entry_script_tags('store_cart_badge') }}
+
+    <script src="{{ asset('./default/libs/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('./default/widget/widjet.js') }}" async defer></script>
+    <script src="{{ asset('./default/js/script.js') }}"></script>
+    {#<script src="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.js" async defer>
+        </script><link rel="preconnect" href="https://i.msearch.space">
+        <link href="https://i.msearch.space/app/ed45422702893f73fbbf676302a6ef6f/inj.css" rel="stylesheet">#}
+{% endblock %}
+</html>

@@ -32,7 +32,7 @@ const Customer = ({ heading, errors }) => {
 
     return (
 
-            <div className="checkout__row">
+            <div className="checkout__row checkout__customer-info">
                 <div className="checkout__subtitle">{heading}</div>
 
                 <div className="field-list">

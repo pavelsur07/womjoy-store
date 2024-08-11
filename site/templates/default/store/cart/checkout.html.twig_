@@ -1,0 +1,29 @@
+{% extends 'default/store/base.html.twig' %}
+
+{% block body %}
+    <section class="cart">
+        <div class="wrapper">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ path('home') }}">Главная</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ path('store.cart.index') }}">Корзина</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Оформление заказа</li>
+                </ol>
+            </nav>
+
+            <div id="checkout-id">
+
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('store_default_checkout') }}
+{% endblock %}

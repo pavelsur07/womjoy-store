@@ -99,26 +99,24 @@ const App = () => {
 
     return (
         <>
-            <h1 className="cart__title title-xl">Оформление заказа</h1>
-            <div className="cart__content">
-                <div className="cart__left">
-                    <div className="cart__items">
-                        <OrderItems />
-                        <Customer heading="Покупатель" errors={errorsCustomer} />
+            {/*<h1 className="cart__title title-xl">Оформление заказа</h1>*/}
+            <div className="checkout__top">
+                <h1 className="checkout__title title-xl">Оформление заказа</h1>
+            </div>
+
+            <div className="checkout__content">
+
+                <div className="checkout__left">
+                    <div className="checkout__rows">
+                        <OrderItems/>
+                        <Customer heading="Покупатель" errors={errorsCustomer}/>
                         <Delivery heading="Доставка" errors={errorsDelivery}/>
                         <Payment heading="Оплата"/>
                     </div>
 
                 </div>
-                <OrderDetails onClickCheckout={handleClickCheckout} />
 
-                {/*
-                <Customer />
-                <Delivery />
-                <Payment />
-                <OrderDetails />
-                */}
-
+                <OrderDetails onClickCheckout={handleClickCheckout}/>
 
             </div>
         </>
