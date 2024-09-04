@@ -1,0 +1,16 @@
+{% for subMenu in element.children %}
+    <li class="burger-menu__item dropable">
+        <div class="burger-menu__title">{{ subMenu.name }}</div>
+        <ul class="burger-menu__sublist">
+            {% if subMenu.children is defined %}
+                {% for item in subMenu.children %}
+                    <li><a href="{{ item.href }}">{{ item.name }}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </li>
+{% endfor %}
+
+
+
+
