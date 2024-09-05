@@ -33,5 +33,9 @@
         В корзину
     </button>
     #}
-    <div class="product__sizes">Размеры: XS S M L</div>
+    <div class="product__sizes">Размеры:
+        {% for variant in product.variants %}
+            {{ variant.value }}&#x20;
+        {% endfor %}
+    </div>
 </div>
