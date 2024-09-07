@@ -59,6 +59,7 @@ class BannerItemController extends AccountController
                 'title' => $item->getTitle(),
                 'description' => $item->getDescription(),
                 'url' => $item->getUrl(),
+                'isShortBanner' => true,
             ]
         );
 
@@ -68,6 +69,7 @@ class BannerItemController extends AccountController
             $item->setTitle($data['title']);
             $item->setDescription($data['description']);
             $item->setUrl($data['url']);
+            $item->setIsShortBanner($data['isShortBanner']);
 
             $flusher->flush();
 

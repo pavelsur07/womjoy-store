@@ -16,7 +16,9 @@ class BannerItemEditForm extends AbstractType
         $builder
             ->add('title', Type\TextType::class, ['required' => false])
             ->add('description', Type\TextType::class, ['required' => false])
-            ->add('url', Type\TextType::class, ['required' => false]);
+            ->add('url', Type\TextType::class, ['required' => false])
+            ->add('isShortBanner', Type\CheckboxType::class, ['required' => false])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

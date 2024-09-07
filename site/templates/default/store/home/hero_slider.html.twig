@@ -4,69 +4,44 @@
         <div class="swiper-wrapper">
             {% if heroSlider != null %}
                 {% for item in heroSlider.items %}
-                    <div class="hero__slide swiper-slide">
-                        <a href="{{ item.url }}" class="big-banner">
-                            <picture>
-                                <source srcset="{{ storage_path(item.patchMobileImage ~'/'~ item.nameMobileImage) }}" media="(max-width: 499px)">
-                                <source srcset="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" media="(min-width: 500px)">
-                                <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" alt="{{ item.title }}" class="big-banner__img" width="1216" height="460">
-                            </picture>
 
-                            <div class="big-banner__text">
-                                <div class="big-banner__title">{{ item.title }}</div>
-                                <div class="big-banner__descr">{{ item.description}}</div>
-                                <button type="button" class="btn-primary">Смотреть товары</button>
-                            </div>
-                        </a>
-                    </div>
+                    {% if item.isShortBanner == false %}
+                        <div class="hero__slide swiper-slide">
+                            <a href="{{ item.url }}" class="big-banner">
+                                <picture>
+                                    <source srcset="{{ storage_path(item.patchMobileImage ~'/'~ item.nameMobileImage) }}" media="(max-width: 499px)">
+                                    <source srcset="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" media="(min-width: 500px)">
+                                    <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" alt="{{ item.title }}" class="big-banner__img" width="1216" height="460">
+                                </picture>
+
+                                <div class="big-banner__text">
+                                    <div class="big-banner__title">{{ item.title }}</div>
+                                    <div class="big-banner__descr">{{ item.description}}</div>
+                                    <button type="button" class="btn-primary">Смотреть товары</button>
+                                </div>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="hero__slide swiper-slide">
+                            <a href="#" class="big-banner-2">
+                                <div class="big-banner-2__text">
+                                    <div class="big-banner-2__title">{{ item.title }}</div>
+                                    <div class="big-banner-2__descr">{{ item.description}}</div>
+                                    <button type="button" class="btn-primary">Смотреть товары</button>
+                                </div>
+                                <picture>
+                                    <source srcset="{{ storage_path(item.patchMobileImage ~'/'~ item.nameMobileImage) }}" media="(max-width: 499px)">
+                                    <source srcset="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" media="(min-width: 500px)">
+                                    <img src="{{ storage_path(item.patchDesktopImage ~'/'~ item.nameDesktopImage) }}" alt="{{ item.title }}" class="big-banner__img" width="1216" height="460">
+                                </picture>
+                            </a>
+                        </div>
+
+                    {% endif %}
+
                 {% endfor %}
             {% endif %}
-            {#
-            <div class="hero__slide swiper-slide">
-                <a href="#" class="big-banner">
-                    <img src="./default/img/hero-banner.webp" alt="" class="big-banner__img" width="1216" height="460">
-                    <div class="big-banner__text">
-                        <div class="big-banner__title">Новая коллекция</div>
-                        <div class="big-banner__descr">Бесплатная доставка при оплате на сайте</div>
-                        <button type="button" class="btn-primary">Смотреть товары</button>
-                    </div>
-                </a>
-            </div>
-            <div class="hero__slide swiper-slide">
-                <a href="#" class="big-banner-2">
-                    <div class="big-banner-2__text">
-                        <div class="big-banner-2__title">Новая коллекция</div>
-                        <div class="big-banner-2__descr">Бесплатная доставка при оплате на сайте</div>
-                        <button type="button" class="btn-primary">Смотреть товары</button>
-                    </div>
-                    <img src="./default/img/hero-banner.webp" alt="" class="big-banner-2__img" width="1216" height="460">
-                </a>
-            </div>
-            #}
         </div>
     </div>
     <div class="hero-pagination"></div>
 </div>
-
-{# SM banners #}
-
-{#
-<div class="hero__banners">
-    <a href="#" class="hero__banner">
-        <span class="hero__banner_img">
-            <picture>
-                <source srcset="./default/img/banners/hero-sm-1-mob.webp" media="(max-width: 480px)">
-                <img src="./default/img/banners/hero-sm-1.webp" alt="" width="598" height="150">
-            </picture>
-        </span>
-    </a>
-    <a href="#" class="hero__banner">
-        <span class="hero__banner_img">
-            <picture>
-                <source srcset="./default/img/banners/hero-sm-2-mob.webp" media="(max-width: 480px)">
-                <img src="./default/img/banners/hero-sm-2.webp" alt="" width="598" height="150">
-            </picture>
-        </span>
-    </a>
-</div>
-#}

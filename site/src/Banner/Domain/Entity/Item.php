@@ -38,12 +38,26 @@ class Item
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true, options: ['default' => false])]
+    private bool $isShortBanner;
+
     public function __construct(string $id, Banner $banner)
     {
         Assert::uuid($id);
         $this->id = $id;
         $this->banner = $banner;
     }
+
+    public function isShortBanner(): bool
+    {
+        return $this->isShortBanner;
+    }
+
+    public function setIsShortBanner(bool $isShortBanner): void
+    {
+        $this->isShortBanner = $isShortBanner;
+    }
+
 
     public function getNameDesktopImage(): ?string
     {
