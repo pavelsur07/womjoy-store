@@ -15,7 +15,9 @@ class MenuEditForm extends AbstractType
     {
         $builder
             ->add('name', Type\TextType::class)
-            ->add('href', Type\TextType::class);
+            ->add('href', Type\TextType::class)
+            ->add('sort', Type\IntegerType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

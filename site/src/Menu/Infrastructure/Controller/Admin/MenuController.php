@@ -64,6 +64,7 @@ class MenuController extends AbstractController
             [
                 'name' => $menu->getName(),
                 'href' => $menu->getHref(),
+                'sort' => $menu->getSort(),
             ]
         );
 
@@ -76,6 +77,7 @@ class MenuController extends AbstractController
 
             $menu->setName($data['name']);
             $menu->setHref($data['href']);
+            $menu->setSort($data['sort']);
 
             $flusher->flush();
 
