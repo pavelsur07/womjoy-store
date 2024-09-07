@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const burgerItems = document.querySelectorAll('.burger-menu__item.dropable');
 		burgerItems.forEach(item => {
-			item.querySelector('a').addEventListener('click', e => e.preventDefault());
+			if (item.querySelector('.burger-menu__title a')) item.querySelector('.burger-menu__title a').addEventListener('click', e => e.preventDefault());
 			item.addEventListener('click', () => {
 				toggleItem(item.querySelector('.burger-menu__title'), item.querySelector('.burger-menu__sublist'));
 			})
