@@ -31,6 +31,7 @@
                     <th class="w-1">Status,<br>Popularity</th>
                     <th>Name</th>
                     <th>Price / <br> List Price</th>
+                    <th>Moysklad status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -67,7 +68,13 @@
                         {{ product.price.price|number_format(0, ',', ' ') }} р.<br>
                         {{ product.price.listPrice|number_format(0, ',', ' ') }} р.
                     </td>
-
+                    <td>
+                        {% if product.hasMoyskladIdInVariants() %}
+                            <span class="badge bg-success text-green-fg">success</span>
+                        {% else %}
+                            <span class="badge bg-warning text-white">warning</span>
+                        {% endif %}
+                    </td>
                     <td>
                         <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.product.edit', {'id': product.id}) }}">edit</a>
                         <a class="btn btn-sm btn-bitbucket rounded-2" href="{{ path('store.admin.product.copy', {'id': product.id}) }}">copy</a>

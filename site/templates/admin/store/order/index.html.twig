@@ -35,18 +35,19 @@
             {{ form_end(form) }}
         </div>
     </div>
-    <div class="card card-body mt-2">
+    <div class="card card-table mt-2">
         <table class="table">
             <thead>
             <tr>
                 <th class="w-1">Number</th>
-                <th>Date</th>
+                <th>Date time</th>
                 <th>Status</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Address <br> Type delivery</th>
                 <th>Total</th>
-                <th class="w-25">Actions</th>
+                <th>Moysklad status</th>
+                <th class="text-end">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -66,7 +67,16 @@
                     <td> {{ order.customer.email }} </td>
                     <td> {{ order.delivery.address }} <br> <strong>PVZ</strong> </td>
                     <td> {{ order.totalCost }} </td>
-                    <td><a class="btn btn-sm rounded-2 btn-bitbucket" href="{{ path('store.order.admin.show', {'id': order.id}) }}">show</a></td>
+                    <td>
+                        {% if order.moysklad.isCreated %}
+                            <span class="badge bg-success text-green-fg">success</span>
+                        {% else %}
+                            <span class="badge bg-warning text-white">warning</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-sm rounded-2 btn-bitbucket" href="{{ path('store.order.admin.show', {'id': order.id}) }}">show</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>

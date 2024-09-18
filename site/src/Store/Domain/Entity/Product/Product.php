@@ -930,4 +930,13 @@ class Product
             ++$number;
         }
     }
+
+    public function hasMoyskladIdInVariants(): bool
+    {
+        $callback = function (Variant $variant) {
+            return $variant->getMoyskladId();
+        };
+
+        return $this->getVariants()->filter($callback)->count() === $this->getVariants()->count();
+    }
 }

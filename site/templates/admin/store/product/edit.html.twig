@@ -71,6 +71,7 @@
                 <th>Value</th>
                 <th>Barcode</th>
                 <th>Quantity</th>
+                <th>Moysklad Id</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -78,10 +79,11 @@
             {% for variant in product.variants %}
                 <tr>
                     <td class="w-1">{{ variant.id }}</td>
-                    <td>{{ variant.article}}</td>
+                    <td>{{ variant.article }}</td>
                     <td>{{ variant.value }}</td>
-                    <td> {{ variant.barcode }}</td>
+                    <td>{{ variant.barcode }}</td>
                     <td>{{ variant.quantity }}</td>
+                    <td>{{ variant.moyskladId|default('&mdash;')|raw }}</td>
                     <td class="w-5">
                         <div class="btn-group w-100" role="group">
                             <a class="btn btn-sm btn-bitbucket rounded-4" href="{{ path('store.admin.product.variant.edit', {'id': product.id, 'variantId': variant.id}) }}">edit</a>

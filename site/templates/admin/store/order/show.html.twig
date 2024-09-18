@@ -40,6 +40,7 @@
 
         <div class="card-body">
             <p><strong>Id: </strong> {{ order.id }}</p>
+            <p><strong>Moysklad Id: </strong> {{ order.moysklad.id|default('&mdash;')|raw }}</p>
             <p><strong>Number: </strong>
                 {% if order.orderNumber is not null %}
                     {{ order.orderNumber.value }}
