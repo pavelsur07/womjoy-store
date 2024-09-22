@@ -17,8 +17,7 @@ class ProductEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('article', Type\TextType::class, ['required' => false])
-            ->add('externalArticle', Type\TextType::class, ['required' => false])
+            ->add('article', Type\TextType::class, ['required' => false])
             ->add('name', Type\TextType::class)
             ->add(
                 'mainCategory',

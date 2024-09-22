@@ -38,7 +38,7 @@
                 <div class="col-10">
                     <div class="mb-2">
                         <p> <strong>Category Ids: </strong> {{ product.categoriesIds }}</p>
-                        <p><strong>Article: </strong> {{ product.id }}</p>
+                        <p><strong>Id: </strong> {{ product.id }}</p>
                     </div>
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
@@ -51,7 +51,7 @@
                         {% set file = product.images.first %}
                         {% set file_url = storage_path(file.path ~'/'~ file.name) %}
 
-                        <img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}">
+                        <img src=" {{ thumbnail_path(file.path, file.name~'.webp', 300, 400 ) }}" alt="main image">
 
                     {% endif %}
 
@@ -114,7 +114,7 @@
         }
     </script>
 
-    <script type="module">
+    {#<script type="module">
         import {
             ClassicEditor,
             Essentials,
@@ -136,11 +136,11 @@
             } )
             .then( /* ... */ )
             .catch( /* ... */ );
-    </script>
+    </script>#}
 
 
-    {#<script src="https://cdn.tiny.cloud/1/b3ub4ko6zzd1mr36lefzmelfh9wvojxoj932tuwe6fzcay50/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>#}
-    {#<script>
+    <script src="https://cdn.tiny.cloud/1/b3ub4ko6zzd1mr36lefzmelfh9wvojxoj932tuwe6fzcay50/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
         tinymce.init({
             selector: '#product_edit_form_description',
             height: 500,
@@ -153,6 +153,6 @@
                 'removeformat | help',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
         });
-    </script>#}
+    </script>
 {% endblock %}
 

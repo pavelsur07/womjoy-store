@@ -59,8 +59,6 @@ class ProductController extends AbstractController
 
             $productRepository->save($product, true);
             $product->regenerateSeoMetadataByTemplate();
-            // $product->setArticle(article: date_format($product->getCreatedAt(), 'Y') . $product->getId());
-            // $product->setArticle($product->getId());
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
@@ -70,11 +68,6 @@ class ProductController extends AbstractController
             'product' => $product,
             'form' => $form->createView(),
         ]);
-    }
-
-    public function generateArticle(Product $product, ?string $prefix = null): string
-    {
-        return $prefix . date_format($product->getCreatedAt(), 'mY') . $product->getId();
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
@@ -89,7 +82,6 @@ class ProductController extends AbstractController
             ProductEditForm::class,
             [
                 'article'=> $product->getArticle(),
-                'externalArticle' => $product->getExternalArticle(),
                 'name' => $product->getName(),
                 'fabrics' => $product->getFabrics(),
                 'description' => $product->getDescription() !== null ? $product->getDescription() : ' ',
@@ -123,9 +115,8 @@ class ProductController extends AbstractController
             if ($data['mainCategory'] !== null) {
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }
-            $product->setCategoriesIds();
-            $product->changeExternalArticle($data['externalArticle']);
 
+            $product->setCategoriesIds();
             $product->setPopularity($data['popularity']);
 
             if ($product->isPreSale()) {

@@ -162,8 +162,10 @@ class Product
     #[ORM\Embedded(class: ProductMarketplace::class, columnPrefix: 'marketplace_')]
     private ProductMarketplace $marketplace;
 
+/*
     #[ORM\Column(type: 'text', length: 50, nullable: true)]
     private ?string $externalArticle = null;
+*/
 
     public function __construct(ProductPrice $price)
     {
@@ -189,20 +191,6 @@ class Product
             $this->textConversion($this->getArticle()) . ', ' .
             $this->textConversion($this->getDescription()) . ', ' .
             $this->textConversion($this->getColorName());
-    }
-
-    public function getExternalArticle(): ?string
-    {
-        return $this->externalArticle;
-    }
-
-    public function changeExternalArticle(?string $externalArticle): void
-    {
-        if ($externalArticle !== null) {
-            $this->externalArticle = mb_strtoupper($externalArticle);
-        } else {
-            $this->externalArticle = $externalArticle;
-        }
     }
 
     public function getMarketplace(): ProductMarketplace
