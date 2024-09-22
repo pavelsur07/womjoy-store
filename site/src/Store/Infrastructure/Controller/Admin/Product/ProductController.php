@@ -10,6 +10,8 @@ use App\Common\Infrastructure\Service\Slugify\SlugifyService;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductPrice;
 use App\Store\Domain\Repository\CategoryRepositoryInterface;
+use App\Store\Infrastructure\Form\Product\Admin\ProductFilter;
+use App\Store\Infrastructure\Form\Product\Admin\ProductFilterForm;
 use App\Store\Infrastructure\Form\Product\ProductEditForm;
 use App\Store\Infrastructure\Form\Product\ProductSeoEditForm;
 use App\Store\Infrastructure\Repository\Category\CategoryForChoice;
@@ -27,11 +29,17 @@ class ProductController extends AbstractController
     #[Route('/', name: '.index', methods: ['GET'])]
     public function index(Request $request, ProductRepository $productRepository): Response
     {
+        $filter = new ProductFilter();
+        $form = $this->createForm(ProductFilterForm::class, $filter);
+        $form->handleRequest($request);
+
         return $this->render('admin/store/product/index.html.twig', [
             'pagination' => $productRepository->getAll(
                 page: $request->query->getInt('page', 1),
                 size: $request->query->getInt('size', self::PER_PAGE),
+                filter: $filter,
             ),
+            'form' => $form->createView(),
         ]);
     }
 

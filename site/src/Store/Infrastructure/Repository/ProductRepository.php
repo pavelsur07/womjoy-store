@@ -8,6 +8,7 @@ use App\Store\Domain\Entity\Category\Category;
 use App\Store\Domain\Entity\Product\AttributeAssignment;
 use App\Store\Domain\Entity\Product\Product;
 use App\Store\Domain\Entity\Product\ValueObject\ProductStatus;
+use App\Store\Infrastructure\Form\Product\Admin\ProductFilter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -56,6 +57,7 @@ class ProductRepository
     public function getAll(
         int $page,
         int $size,
+        ?ProductFilter $filter,
         string $sort = 'createdAt',
         string $direction = 'desc',
         ?string $status = null
@@ -67,6 +69,20 @@ class ProductRepository
         if ($status !== null) {
             $qb->andWhere('p.status.value = :status_value');
             $qb->setParameter('status_value', $status);
+        }
+
+        if ($filter->getName() !== null) {
+            $qb->andWhere(
+                $qb->expr()->like('LOWER(p.name)', ':name')
+            );
+            $qb->setParameter('name', '%' . mb_strtolower($filter->getName()) . '%');
+        }
+
+        if ($filter->getArticle() !== null) {
+            $qb->andWhere(
+                $qb->expr()->like('LOWER(p.article)', ':article')
+            );
+            $qb->setParameter('article', '%' . mb_strtolower($filter->getArticle()) . '%');
         }
 
         if (!\in_array($sort, ['createdAt', 'id'], true)) {
