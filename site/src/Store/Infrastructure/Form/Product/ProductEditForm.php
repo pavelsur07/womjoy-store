@@ -17,9 +17,18 @@ class ProductEditForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('article', Type\TextType::class, ['required' => false])
+            /*->add('article', Type\TextType::class, ['required' => false])*/
             ->add('externalArticle', Type\TextType::class, ['required' => false])
             ->add('name', Type\TextType::class)
+            ->add(
+                'mainCategory',
+                Type\ChoiceType::class,
+                [
+                    'choices' => $this->categories->getCategoryTree(),
+                    'choice_label' => 'label',
+                    'choice_value' => 'value',
+                ]
+            )
             ->add(
                 'modelParameters',
                 Type\TextType::class,
@@ -38,7 +47,7 @@ class ProductEditForm extends AbstractType
                 'description',
                 Type\TextareaType::class,
                 [
-                    'attr' => ['rows' => 28, 'id' =>'id="edit-textarea"'],
+                    'attr' => ['rows' => 10, 'id' =>'id="edit-textarea"', 'required' => false],
                 ]
             )
             ->add(
@@ -46,15 +55,6 @@ class ProductEditForm extends AbstractType
                 Type\TextType::class,
                 [
                     'required' => false,
-                ]
-            )
-            ->add(
-                'mainCategory',
-                Type\ChoiceType::class,
-                [
-                    'choices' => $this->categories->getCategoryTree(),
-                    'choice_label' => 'label',
-                    'choice_value' => 'value',
                 ]
             )
             ->add('popularity', Type\IntegerType::class)

@@ -39,7 +39,10 @@ class ProductController extends AbstractController
     public function new(Request $request, ProductRepository $productRepository, Flusher $flusher, CategoryRepositoryInterface $categories): Response
     {
         $product = new Product(new ProductPrice());
-        $form = $this->createForm(ProductEditForm::class, []);
+        $form = $this->createForm(ProductEditForm::class,
+            [
+                'popularity' => 100
+            ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,7 +57,8 @@ class ProductController extends AbstractController
 
             $productRepository->save($product, true);
             $product->regenerateSeoMetadataByTemplate();
-            $product->setArticle(article: date_format($product->getCreatedAt(), 'Y') . $product->getId());
+            /*$product->setArticle(article: date_format($product->getCreatedAt(), 'Y') . $product->getId());*/
+            /*$product->setArticle($product->getId());*/
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);
@@ -64,6 +68,11 @@ class ProductController extends AbstractController
             'product' => $product,
             'form' => $form->createView(),
         ]);
+    }
+
+    public function generateArticle(Product $product, ?string $prefix = null): string
+    {
+        return $prefix . date_format($product->getCreatedAt(), 'mY') . $product->getId();
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
