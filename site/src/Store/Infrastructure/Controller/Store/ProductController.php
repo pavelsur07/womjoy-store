@@ -55,7 +55,7 @@ class ProductController extends BaseController
                     'id' => (string)$product->getId(),
                     'name' => $product->getName(),
                     'price' => $product->getPrice()->getListPrice(),
-                    'brand' => 'WOMJOY', // TODO Добавить вывод название брэнда
+                    'brand' => $product->getBrandName(),
                     'category' => 'Одежда/Мужская одежда/Футболки', // TODO Добавить вывод хлебныхкрошек
                     'variant' => $product->getColor(),
                     'list' => 'Результаты поиска',
