@@ -162,11 +162,6 @@ class Product
     #[ORM\Embedded(class: ProductMarketplace::class, columnPrefix: 'marketplace_')]
     private ProductMarketplace $marketplace;
 
-/*
-    #[ORM\Column(type: 'text', length: 50, nullable: true)]
-    private ?string $externalArticle = null;
-*/
-
     public function __construct(ProductPrice $price)
     {
         $this->price = $price;
