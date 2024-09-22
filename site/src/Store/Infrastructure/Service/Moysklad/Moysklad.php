@@ -74,7 +74,7 @@ readonly class Moysklad
 
                 // если нет не одного контрагент, создаём
                 if ($counterparty->meta->size === 0) {
-                    $name = sprintf('%s %s', $customer->getLastName(), $customer->getFirstName());
+                    $name = \sprintf('%s %s', $customer->getLastName(), $customer->getFirstName());
 
                     $counterparty = Counterparty::make($moyskladClient, [
                         'name' => $name,

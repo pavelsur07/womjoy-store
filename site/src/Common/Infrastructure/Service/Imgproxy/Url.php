@@ -40,15 +40,15 @@ class Url
             ProcessingOption::FORMAT->value
         );
 
-        $path = sprintf('/%s/%s', $this->options->toString(), rtrim(strtr(base64_encode($this->url), '+/', '-_'), '='));
+        $path = \sprintf('/%s/%s', $this->options->toString(), rtrim(strtr(base64_encode($this->url), '+/', '-_'), '='));
 
         if ($secure && $this->builder->getSignature()) {
-            $path = sprintf('/%s%s', $this->builder->getSignature()->sing($path), $path);
+            $path = \sprintf('/%s%s', $this->builder->getSignature()->sing($path), $path);
         } else {
-            $path = sprintf('/insecure%s', $path);
+            $path = \sprintf('/insecure%s', $path);
         }
 
-        return sprintf('%s%s.%s', $this->builder->getBaseUrl(), $path, $this->extension ?: $this->resolveExtension());
+        return \sprintf('%s%s.%s', $this->builder->getBaseUrl(), $path, $this->extension ?: $this->resolveExtension());
     }
 
     public function getOptions(): OptionSet

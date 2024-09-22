@@ -23,7 +23,7 @@ class BadRequestException extends Exception
         }
 
         if (isset($contents->details) && $contents->details) {
-            $message = sprintf('%s: %s', $message, json_encode($contents->details));
+            $message = \sprintf('%s: %s', $message, json_encode($contents->details));
         }
 
         parent::__construct($message, self::HTTP_CODE);

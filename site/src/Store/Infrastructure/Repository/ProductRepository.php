@@ -142,7 +142,7 @@ class ProductRepository
             // Добавить фильтрацию товаров по характеристикам
             foreach ($filterIds as $attributeId => $variantIds) {
                 // создаём алиас для подзапроса
-                $alias = sprintf('attr_%d', $attributeId);
+                $alias = \sprintf('attr_%d', $attributeId);
 
                 $filterQb = $this->em->createQueryBuilder()->select('IDENTITY(' . $alias . '.product)')
                     ->from(AttributeAssignment::class, $alias);

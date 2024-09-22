@@ -36,7 +36,7 @@ class PaymentProvider
         }
 
         throw new InvalidArgumentException(
-            sprintf('The "%s" provider is not supported', $this->providerName)
+            \sprintf('The "%s" provider is not supported', $this->providerName)
         );
     }
 }

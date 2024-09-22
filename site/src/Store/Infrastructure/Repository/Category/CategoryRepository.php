@@ -85,7 +85,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $categories = [
             new CategoryForChoice(
-                label: sprintf('%s %s', str_repeat('—', $depth), $category->getName()),
+                label: \sprintf('%s %s', str_repeat('—', $depth), $category->getName()),
                 value: (string)$category->getId(),
             ),
         ];

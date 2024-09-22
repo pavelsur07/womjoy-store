@@ -125,7 +125,7 @@ class ThumbnailService
         int $type = self::JPG,
     ): File {
         // собираем путь до оригинальной загруженной картинки
-        $url = sprintf('%s/%s/%s', $this->baseUrl, $path, $inputName);
+        $url = \sprintf('%s/%s/%s', $this->baseUrl, $path, $inputName);
 
         // собираем ссылку на imgproxy
         $imgproxy = $this->imgproxyUrlBuilder->build(
@@ -150,24 +150,24 @@ class ThumbnailService
         fwrite($tmp = tmpfile(), $data);
 
         // собираем имя
-        $filename = sprintf(
+        $filename = \sprintf(
             '%s.%s',
             $name = pathinfo($inputName, PATHINFO_FILENAME),
             pathinfo($url, PATHINFO_EXTENSION)
         );
 
         if ($type === self::WEBP) {
-            $filename = sprintf('%s.webp', $inputName);
+            $filename = \sprintf('%s.webp', $inputName);
         }
 
         $this->defaultStorage->createDirectory($outputPath);
         $this->defaultStorage->writeStream(
-            sprintf('%s/%s', $outputPath, $filename),
+            \sprintf('%s/%s', $outputPath, $filename),
             $tmp
         );
 
         $filesize = $this->defaultStorage->fileSize(
-            sprintf('%s/%s', $outputPath, $filename)
+            \sprintf('%s/%s', $outputPath, $filename)
         );
 
         fclose($tmp);

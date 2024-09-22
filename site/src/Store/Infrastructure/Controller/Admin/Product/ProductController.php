@@ -39,10 +39,12 @@ class ProductController extends AbstractController
     public function new(Request $request, ProductRepository $productRepository, Flusher $flusher, CategoryRepositoryInterface $categories): Response
     {
         $product = new Product(new ProductPrice());
-        $form = $this->createForm(ProductEditForm::class,
+        $form = $this->createForm(
+            ProductEditForm::class,
             [
-                'popularity' => 100
-            ]);
+                'popularity' => 100,
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,8 +59,8 @@ class ProductController extends AbstractController
 
             $productRepository->save($product, true);
             $product->regenerateSeoMetadataByTemplate();
-            /*$product->setArticle(article: date_format($product->getCreatedAt(), 'Y') . $product->getId());*/
-            /*$product->setArticle($product->getId());*/
+            // $product->setArticle(article: date_format($product->getCreatedAt(), 'Y') . $product->getId());
+            // $product->setArticle($product->getId());
             $flusher->flush();
 
             return $this->redirectToRoute('store.admin.product.index', [], Response::HTTP_SEE_OTHER);

@@ -58,7 +58,6 @@ class Item
         $this->isShortBanner = $isShortBanner;
     }
 
-
     public function getNameDesktopImage(): ?string
     {
         return $this->nameDesktopImage;

@@ -162,8 +162,8 @@ class Product
     #[ORM\Embedded(class: ProductMarketplace::class, columnPrefix: 'marketplace_')]
     private ProductMarketplace $marketplace;
 
-    #[ORM\Column(type: 'text', length:50, nullable: true)]
-    private null|string $externalArticle = null;
+    #[ORM\Column(type: 'text', length: 50, nullable: true)]
+    private ?string $externalArticle = null;
 
     public function __construct(ProductPrice $price)
     {
@@ -204,7 +204,6 @@ class Product
             $this->externalArticle = $externalArticle;
         }
     }
-
 
     public function getMarketplace(): ProductMarketplace
     {
@@ -930,6 +929,13 @@ class Product
         return $result;
     }
 
+    public function hasMoyskladIdInVariants(): bool
+    {
+        $callback = static fn (Variant $variant) => $variant->getMoyskladId();
+
+        return $this->getVariants()->filter($callback)->count() === $this->getVariants()->count();
+    }
+
     private function textConversion(null|int|string $text): string
     {
         if ($text === null) {
@@ -947,14 +953,5 @@ class Product
             $image->setSort($number);
             ++$number;
         }
-    }
-
-    public function hasMoyskladIdInVariants(): bool
-    {
-        $callback = function (Variant $variant) {
-            return $variant->getMoyskladId();
-        };
-
-        return $this->getVariants()->filter($callback)->count() === $this->getVariants()->count();
     }
 }
