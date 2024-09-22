@@ -37,6 +37,7 @@ class HomeController extends BaseController
         $newItems = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
+            filter: null,
             direction: 'ASC',
             status: ProductStatus::ACTIVE,
         );
@@ -44,6 +45,7 @@ class HomeController extends BaseController
         $popularity = $products->getAll(
             page: $request->query->getInt('page', 1),
             size: $request->query->getInt('size', self::PER_PAGE),
+            filter: null,
             direction: 'asc',
             status: ProductStatus::ACTIVE,
         );

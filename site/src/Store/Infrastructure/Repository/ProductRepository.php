@@ -71,18 +71,20 @@ class ProductRepository
             $qb->setParameter('status_value', $status);
         }
 
-        if ($filter->getName() !== null) {
-            $qb->andWhere(
-                $qb->expr()->like('LOWER(p.name)', ':name')
-            );
-            $qb->setParameter('name', '%' . mb_strtolower($filter->getName()) . '%');
-        }
+        if ($filter !== null) {
+            if ($filter->getName() !== null) {
+                $qb->andWhere(
+                    $qb->expr()->like('LOWER(p.name)', ':name')
+                );
+                $qb->setParameter('name', '%' . mb_strtolower($filter->getName()) . '%');
+            }
 
-        if ($filter->getArticle() !== null) {
-            $qb->andWhere(
-                $qb->expr()->like('LOWER(p.article)', ':article')
-            );
-            $qb->setParameter('article', '%' . mb_strtolower($filter->getArticle()) . '%');
+            if ($filter->getArticle() !== null) {
+                $qb->andWhere(
+                    $qb->expr()->like('LOWER(p.article)', ':article')
+                );
+                $qb->setParameter('article', '%' . mb_strtolower($filter->getArticle()) . '%');
+            }
         }
 
         if (!\in_array($sort, ['createdAt', 'id'], true)) {
