@@ -198,7 +198,11 @@ class Product
 
     public function changeExternalArticle(?string $externalArticle): void
     {
-        $this->externalArticle = $externalArticle;
+        if ($externalArticle !== null) {
+            $this->externalArticle = mb_strtoupper($externalArticle);
+        } else {
+            $this->externalArticle = $externalArticle;
+        }
     }
 
 

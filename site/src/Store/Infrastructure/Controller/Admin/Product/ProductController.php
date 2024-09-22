@@ -78,6 +78,7 @@ class ProductController extends AbstractController
             ProductEditForm::class,
             [
                 'article'=> $product->getArticle(),
+                'externalArticle' => $product->getExternalArticle(),
                 'name' => $product->getName(),
                 'fabrics' => $product->getFabrics(),
                 'description' => $product->getDescription() !== null ? $product->getDescription() : ' ',
@@ -112,6 +113,7 @@ class ProductController extends AbstractController
                 $product->setMainCategory($categories->get((int)$data['mainCategory']->getValue()));
             }
             $product->setCategoriesIds();
+            $product->changeExternalArticle($data['externalArticle']);
 
             $product->setPopularity($data['popularity']);
 
