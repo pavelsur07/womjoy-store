@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="mb-3 mt-3">
+    <div class="mb-2 mt-2">
         <a class="btn btn-bitbucket" href="{{ path('store.order.admin.index') }}">Back to list</a>
         <a class="btn btn-bitbucket" href="{{ path('store.order.admin.print', {'id': order.id}) }}">Print</a>
         --
@@ -29,8 +29,8 @@
         {% if order.isPaid %}
             <a class="btn btn-bitbucket" href="{{ path('store.admin.order.status.send', {'order_id': order.id}) }}">Send</a>
         {% endif %}
-        <a class="btn btn-bitbucket" href="{{ path('store.admin.order.amo.create_lead', {'order_id': order.id}) }}">Create Lead By AmoCRM</a>
-        <a class="btn btn-bitbucket" href="{{ path('store.order.admin.unisender', {'id': order.id}) }}">Unisender</a>
+        {#<a class="btn btn-bitbucket" href="{{ path('store.admin.order.amo.create_lead', {'order_id': order.id}) }}">Create Lead By AmoCRM</a>#}
+        {#<a class="btn btn-bitbucket" href="{{ path('store.order.admin.unisender', {'id': order.id}) }}">Unisender</a>#}
     </div>
 
     <div class="card">
@@ -39,16 +39,20 @@
         </div>
 
         <div class="card-body">
-            <p><strong>Id: </strong> {{ order.id }}</p>
+            {#<p><strong>Id: </strong> {{ order.id }}</p>#}
             <p><strong>Moysklad Id: </strong> {{ order.moysklad.id|default('&mdash;')|raw }}</p>
             <p><strong>Number: </strong>
                 {% if order.orderNumber is not null %}
                     {{ order.orderNumber.value }}
                 {% endif %}
+
+                -- {{ order.createdAt| date('d-m-Y') }}
             </p>
-            <p><strong>Data: </strong> {{ order.createdAt| date('Y-m-d') }}</p>
-            <p><strong>Name: </strong> {{ order.customer.firstName }}  {{ order.customer.lastName }}</p>
-            <p><strong>Phone: </strong> {{ order.customer.phone }}</p>
+            <p>
+                <strong>Name: </strong> {{ order.customer.firstName }}  {{ order.customer.lastName }}
+                -- <strong>email: </strong>{{ order.customer.email }}
+                -- <strong>phone:</strong> {{ order.customer.phone }}
+            </p>
 
             <div>
                 {{ form_start(form) }}
